@@ -2,6 +2,7 @@
 #include <QGuiApplication>
 #include <QApplication>
 #include <QMenuBar>
+#include <QMessageBox>
 #include <QDebug>
 #include "mainwindow.h"
 
@@ -38,11 +39,12 @@ void MainWindow::quitApp() {
 }
 
 void MainWindow::about() {
-    qDebug() << "about";
+    QMessageBox::about(this, tr("About Greenery"),
+            tr("<b>Greenery</b>"));
 }
 
 void MainWindow::aboutQt() {
-    qDebug() << "about Qt";
+    QMessageBox::aboutQt(this);
 }
 
 void MainWindow::createActions() {
