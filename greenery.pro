@@ -3,12 +3,12 @@ CONFIG += c++11
 TEMPLATE = app
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp
+    src\main.cpp \
+    src\mainwindow.cpp
 
 DISTFILES += \
     README.md
 
 HEADERS += \
-    mainwindow.h
+    src\mainwindow.h
 
