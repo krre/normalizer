@@ -1,15 +1,19 @@
 QT += core gui widgets
 CONFIG += c++11
 TEMPLATE = app
-TARGET = ../greenery
+
+win32 {
+    release: DESTDIR = $$OUT_PWD
+    debug:   DESTDIR = $$OUT_PWD
+}
 
 SOURCES += \
-    src\main.cpp \
-    src\mainwindow.cpp
+    src/main.cpp \
+    src/mainwindow.cpp
 
 DISTFILES += \
     README.md
 
 HEADERS += \
-    src\mainwindow.h
+    src/mainwindow.h
 
