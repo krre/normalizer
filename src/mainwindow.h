@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStatusBar>
 #include "commandline.h"
 #include "visualarea.h"
 
@@ -24,9 +25,11 @@ private slots:
 private:
     void createActions();
     void createMenus();
+    void createStatusBar();
 
     VisualArea visualArea;
     CommandLine commandLine;
+    QStatusBar statusBar;
 
     QMenu *fileMenu;
     QMenu *helpMenu;

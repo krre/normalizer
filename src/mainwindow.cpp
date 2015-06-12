@@ -29,6 +29,7 @@ MainWindow::MainWindow() : QMainWindow() {
 
     createActions();
     createMenus();
+    createStatusBar();
 }
 
 void MainWindow::newFile() {
@@ -91,5 +92,9 @@ void MainWindow::createMenus() {
     helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(aboutAct);
     helpMenu->addAction(aboutQtAct);
+}
+
+void MainWindow::createStatusBar() {
+    setStatusBar(&statusBar);
 }
 
