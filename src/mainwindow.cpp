@@ -12,18 +12,18 @@ MainWindow::MainWindow() : QMainWindow() {
     setWindowTitle("Greenery");
     setMinimumSize(160, 160);
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QSize screenSize = screen->size();
-    int width = 800;
-    int height = 600;
-    int x = (screenSize.width() - width) / 2;
-    int y = (screenSize.height() - height) / 2;
+    auto *screen = QGuiApplication::primaryScreen();
+    auto screenSize = screen->size();
+    auto width = 800;
+    auto height = 600;
+    auto x = (screenSize.width() - width) / 2;
+    auto y = (screenSize.height() - height) / 2;
     setGeometry(x, y, width, height);
 
-    QWidget *centralWidget = new QWidget();
+    auto *centralWidget = new QWidget();
     setCentralWidget(centralWidget);
 
-    QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    auto *layout = new QVBoxLayout(centralWidget);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0 ,0);
     layout->addWidget(&visualArea);
