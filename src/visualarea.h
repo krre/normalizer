@@ -2,11 +2,12 @@
 #define VISUALAREA_H
 
 #include <QOpenGLWidget>
+#include <QWidget>
 
 class VisualArea : public QOpenGLWidget {
     Q_OBJECT
 public:
-    VisualArea();
+    VisualArea(QWidget *parent=0);
 };
 
 #endif // VISUALAREA_H

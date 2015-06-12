@@ -1,6 +1,6 @@
 #include "visualarea.h"
 
-VisualArea::VisualArea() {
+VisualArea::VisualArea(QWidget *parent): QOpenGLWidget(parent) {
 
 }
 

@@ -24,6 +24,8 @@ MainWindow::MainWindow() : QMainWindow() {
     setCentralWidget(centralWidget);
 
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0 ,0);
     layout->addWidget(&visualArea);
     layout->addWidget(&commandLine);
 
