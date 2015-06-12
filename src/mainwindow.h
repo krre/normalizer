@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "commandline.h"
+#include "visualarea.h"
 
 class QAction;
 class QMenu;
@@ -22,6 +24,9 @@ private slots:
 private:
     void createActions();
     void createMenus();
+
+    VisualArea visualArea;
+    CommandLine commandLine;
 
     QMenu *fileMenu;
     QMenu *helpMenu;

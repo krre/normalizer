@@ -4,9 +4,14 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QDebug>
+#include <QVBoxLayout>
+#include <QLineEdit>
 #include "mainwindow.h"
 
 MainWindow::MainWindow() : QMainWindow() {
+    setWindowTitle("Greenery");
+    setMinimumSize(160, 160);
+
     QScreen *screen = QGuiApplication::primaryScreen();
     QSize screenSize = screen->size();
     int width = 800;
@@ -15,11 +20,15 @@ MainWindow::MainWindow() : QMainWindow() {
     int y = (screenSize.height() - height) / 2;
     setGeometry(x, y, width, height);
 
+    QWidget *centralWidget = new QWidget();
+    setCentralWidget(centralWidget);
+
+    QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    layout->addWidget(&visualArea);
+    layout->addWidget(&commandLine);
+
     createActions();
     createMenus();
-
-    setWindowTitle("Greenery");
-    setMinimumSize(160, 160);
 }
 
 void MainWindow::newFile() {
