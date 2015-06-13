@@ -2,12 +2,17 @@
 #define VISUALAREA_H
 
 #include <QOpenGLWidget>
-#include <QWidget>
+#include <QOpenGLFunctions>
 
-class VisualArea : public QOpenGLWidget {
+class VisualArea : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
 public:
-    VisualArea(QWidget *parent=0);
+    VisualArea() {}
+private:
+    void initializeGL();
+    void paintGL();
+    void resizeGL(int w, int h);
+
 };
 
 #endif // VISUALAREA_H
