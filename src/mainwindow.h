@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QStatusBar>
-#include "commandline.h"
 #include "visualarea.h"
 
 class QAction;
@@ -28,7 +27,6 @@ private:
     void createStatusBar();
 
     VisualArea visualArea;
-    CommandLine commandLine;
     QStatusBar statusBar;
 
     QMenu *fileMenu;

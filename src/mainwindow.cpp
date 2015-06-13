@@ -19,15 +19,7 @@ MainWindow::MainWindow() : QMainWindow() {
     auto x = (screenSize.width() - width) / 2;
     auto y = (screenSize.height() - height) / 2;
     setGeometry(x, y, width, height);
-
-    auto *centralWidget = new QWidget();
-    setCentralWidget(centralWidget);
-
-    auto *layout = new QVBoxLayout(centralWidget);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0 ,0);
-    layout->addWidget(&visualArea);
-    layout->addWidget(&commandLine);
+    setCentralWidget(&visualArea);
 
     createActions();
     createMenus();
