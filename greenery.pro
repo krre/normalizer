@@ -12,7 +12,8 @@ SOURCES += \
 
 DISTFILES += \
     README.md \
-    src/qml/main.qml
+    src/qml/main.qml \
+    src/qml/TopMenuBar.qml
 
 RESOURCES += \
     src/greenery.qrc
