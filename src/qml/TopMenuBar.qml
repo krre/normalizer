@@ -85,4 +85,13 @@ MenuBar {
             onTriggered: Qt.quit()
         }
     }
+
+    Menu {
+        title: qsTr("Help")
+
+        MenuItem {
+            text: qsTr("About Greenery...")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/About.qml")
+        }
+    }
 }

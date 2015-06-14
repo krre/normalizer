@@ -8,7 +8,8 @@ win32 {
 }
 
 SOURCES += \
-    src/cpp/main.cpp
+    src/cpp/main.cpp \
+    src/cpp/utils.cpp
 
 DISTFILES += \
     README.md \
@@ -23,8 +24,12 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogInformation.qml \
     src/qml/components/messagedialog/MessageDialogQuestion.qml \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
-    src/qml/components/messagedialog/MessageDialogError.qml
+    src/qml/components/messagedialog/MessageDialogError.qml \
+    src/qml/About.qml
 
 RESOURCES += \
     src/greenery.qrc
+
+HEADERS += \
+    src/cpp/utils.h
 
