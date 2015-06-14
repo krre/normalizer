@@ -12,7 +12,8 @@ MenuBar {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
             onTriggered: {
-                tabView.addTab(qsTr("Untitled"), treeArea)
+                var tab = tabView.addTab(qsTr("Untitled"))
+                tab.setSource("qrc:/qml/TreeArea.qml")
                 tabView.currentIndex = tabView.count - 1
             }
         }
