@@ -6,7 +6,7 @@
         <file>qml/components/filedialog/FileDialogBase.qml</file>
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>qml/components/filedialog/FileDialogSave.qml</file>
-        <file>qml/TreeArea.qml</file>
+        <file>qml/AstArea.qml</file>
         <file>qml/About.qml</file>
         <file>qml/components/messagedialog/MessageDialogBase.qml</file>
         <file>qml/components/messagedialog/MessageDialogError.qml</file>

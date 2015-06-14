@@ -13,7 +13,7 @@ MenuBar {
             shortcut: "Ctrl+N"
             onTriggered: {
                 var tab = tabView.addTab(qsTr("Untitled"))
-                tab.setSource("qrc:/qml/TreeArea.qml")
+                tab.setSource("qrc:/qml/AstArea.qml")
                 tabView.currentIndex = tabView.count - 1
             }
         }

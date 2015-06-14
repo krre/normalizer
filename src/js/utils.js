@@ -11,7 +11,7 @@ function createDynamicObject(parent, url, properties) {
 function openFile(path) {
     addRecentFile(path)
     var tab = tabView.addTab(UTILS.urlToFileName(path))
-    tab.setSource("qrc:/qml/TreeArea.qml", { filePath: path })
+    tab.setSource("qrc:/qml/AstArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
 }
 
