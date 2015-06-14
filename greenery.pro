@@ -1,4 +1,4 @@
-QT += core gui widgets
+QT += qml quick
 CONFIG += c++11
 TEMPLATE = app
 
@@ -8,14 +8,12 @@ win32 {
 }
 
 SOURCES += \
-    src/cpp/main.cpp \
-    src/cpp/mainwindow.cpp \
-    src/cpp/visualarea.cpp
+    src/cpp/main.cpp
 
 DISTFILES += \
-    README.md
+    README.md \
+    src/qml/main.qml
 
-HEADERS += \
-    src/cpp/mainwindow.h \
-    src/cpp/visualarea.h
+RESOURCES += \
+    src/greenery.qrc
 
