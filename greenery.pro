@@ -18,7 +18,12 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
     src/js/utils.js \
-    src/qml/TreeArea.qml
+    src/qml/TreeArea.qml \
+    src/qml/components/messagedialog/MessageDialogBase.qml \
+    src/qml/components/messagedialog/MessageDialogInformation.qml \
+    src/qml/components/messagedialog/MessageDialogQuestion.qml \
+    src/qml/components/messagedialog/MessageDialogWarning.qml \
+    src/qml/components/messagedialog/MessageDialogError.qml
 
 RESOURCES += \
     src/greenery.qrc
