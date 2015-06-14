@@ -60,19 +60,21 @@ MenuBar {
             text: qsTr("Save")
             shortcut: "Ctrl+S"
             enabled: tabView.count > 0
+            onTriggered: Utils.saveFile(currentTab.filePath)
         }
 
         MenuItem {
             text: qsTr("Save As...")
             shortcut: "Ctrl+Alt+S"
             enabled: tabView.count > 0
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+            onTriggered: Utils.saveAsFile()
         }
 
         MenuItem {
             text: qsTr("Save All")
             shortcut: "Ctrl+Shift+S"
             enabled: tabView.count > 0
+            onTriggered: Utils.saveAllFiles()
         }
 
         MenuSeparator {}

@@ -15,6 +15,27 @@ function openFile(path) {
     tabView.currentIndex = tabView.count - 1
 }
 
+function saveFile(path) {
+    if (path) {
+        print("File", path, "saved")
+    } else {
+        saveAsFile()
+    }
+}
+
+function saveAsFile() {
+    createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+}
+
+function saveAllFiles() {
+    for (var i = 0; i < tabView.count; i++) {
+        var path = tabView.getTab(i).item.filePath
+        if (path) {
+            saveFile(path)
+        }
+    }
+}
+
 function addRecentFile(path) {
     var model = topMenuBar.recentFilesModel
     // Prevention of duplication of filePath and raising it on top.
@@ -38,9 +59,7 @@ function saveRecentFiles(model) {
             list.push(path)
         }
     }
-    if (list.length) {
-        SETTINGS.setRecentFiles(list)
-    }
+    SETTINGS.setRecentFiles(list)
 }
 
 function loadRecentFiles() {
@@ -59,9 +78,7 @@ function saveSession() {
             list.push(path)
         }
     }
-    if (list.length) {
-        SETTINGS.setSession(list)
-    }
+    SETTINGS.setSession(list)
 }
 
 function loadSession() {
