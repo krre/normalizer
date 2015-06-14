@@ -2,8 +2,7 @@ import QtQuick 2.5
 import QtQuick.Dialogs 1.2
 
 FileDialog {
-    id: root
-    onVisibleChanged: if (!visible) root.destroy()
+    onVisibleChanged: if (!visible) destroy()
     nameFilters: [ qsTr("Sprout Files (*.sprout)"), qsTr("All files (*)") ]
     Component.onCompleted: open()
 }
