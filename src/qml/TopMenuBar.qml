@@ -23,27 +23,6 @@ MenuBar {
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
         }
 
-        MenuSeparator {}
-
-        MenuItem {
-            text: qsTr("Save")
-            shortcut: "Ctrl+S"
-            enabled: tabView.count > 0
-        }
-
-        MenuItem {
-            text: qsTr("Save As...")
-            shortcut: "Ctrl+Alt+S"
-            enabled: tabView.count > 0
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
-        }
-
-        MenuItem {
-            text: qsTr("Save All")
-            shortcut: "Ctrl+Shift+S"
-            enabled: tabView.count > 0
-        }
-
         Menu {
             id: recentFilesMenu
             title: qsTr("Recent Files")
@@ -73,6 +52,27 @@ MenuBar {
             ListModel {
                 id: recentFilesModel
             }
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Save")
+            shortcut: "Ctrl+S"
+            enabled: tabView.count > 0
+        }
+
+        MenuItem {
+            text: qsTr("Save As...")
+            shortcut: "Ctrl+Alt+S"
+            enabled: tabView.count > 0
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+        }
+
+        MenuItem {
+            text: qsTr("Save All")
+            shortcut: "Ctrl+Shift+S"
+            enabled: tabView.count > 0
         }
 
         MenuSeparator {}

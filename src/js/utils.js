@@ -33,9 +33,14 @@ function addRecentFile(path) {
 function saveRecentFiles(model) {
     var list = []
     for (var i = 0; i < model.count; i++) {
-        list.push(model.get(i).filePath)
+        var path = model.get(i).filePath
+        if (path) {
+            list.push(path)
+        }
     }
-    SETTINGS.setRecentFiles(list)
+    if (list.length) {
+        SETTINGS.setRecentFiles(list)
+    }
 }
 
 function loadRecentFiles() {
@@ -49,9 +54,14 @@ function loadRecentFiles() {
 function saveSession() {
     var list = []
     for (var i = 0; i < tabView.count; i++) {
-        list.push(tabView.getTab(i).item.filePath)
+        var path = tabView.getTab(i).item.filePath
+        if (path) {
+            list.push(path)
+        }
     }
-    SETTINGS.setSession(list)
+    if (list.length) {
+        SETTINGS.setSession(list)
+    }
 }
 
 function loadSession() {
