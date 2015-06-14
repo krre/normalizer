@@ -38,6 +38,10 @@ void MainWindow::save() {
     qDebug() << "save";
 }
 
+void MainWindow::saveAs() {
+    qDebug() << "save as";
+}
+
 void MainWindow::quitApp() {
     QApplication::quit();
 }
@@ -64,6 +68,10 @@ void MainWindow::createActions() {
     saveAct->setShortcut(QKeySequence("Ctrl+S"));
     connect(saveAct, SIGNAL(triggered(bool)), this, SLOT(save()));
 
+    saveAsAct = new QAction(tr("Save As..."), this);
+    saveAsAct->setShortcut(QKeySequence("Ctrl+Shift+S"));
+    connect(saveAsAct, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
+
     quitAct = new QAction(tr("Quit"), this);
     quitAct->setShortcut(QKeySequence("Ctrl+Q"));
     connect(quitAct, SIGNAL(triggered(bool)), this, SLOT(quitApp()));
@@ -80,6 +88,7 @@ void MainWindow::createMenus() {
     fileMenu->addAction(newAct);
     fileMenu->addAction(openAct);
     fileMenu->addAction(saveAct);
+    fileMenu->addAction(saveAsAct);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 

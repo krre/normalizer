@@ -17,6 +17,7 @@ private slots:
     void newFile();
     void open();
     void save();
+    void saveAs();
     void quitApp();
     void about();
     void aboutQt();
@@ -35,6 +36,7 @@ private:
     QAction *newAct;
     QAction *openAct;
     QAction *saveAct;
+    QAction *saveAsAct;
     QAction *quitAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
