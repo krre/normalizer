@@ -9,7 +9,8 @@ win32 {
 
 SOURCES += \
     src/cpp/main.cpp \
-    src/cpp/utils.cpp
+    src/cpp/utils.cpp \
+    src/cpp/settings.cpp
 
 DISTFILES += \
     README.md \
@@ -31,5 +32,6 @@ RESOURCES += \
     src/greenery.qrc
 
 HEADERS += \
-    src/cpp/utils.h
+    src/cpp/utils.h \
+    src/cpp/settings.h
 

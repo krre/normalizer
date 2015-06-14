@@ -3,6 +3,8 @@ import QtQuick.Controls 1.4
 import "../js/utils.js" as Utils
 
 MenuBar {
+    property alias recentFilesModel: recentFilesModel
+
     Menu {
         title: qsTr("File")
 
@@ -40,6 +42,37 @@ MenuBar {
             text: qsTr("Save All")
             shortcut: "Ctrl+Shift+S"
             enabled: tabView.count > 0
+        }
+
+        Menu {
+            id: recentFilesMenu
+            title: qsTr("Recent Files")
+            enabled: recentFilesModel.count > 0
+
+            Instantiator {
+                model: recentFilesModel
+
+                MenuItem {
+                    text: model.filePath
+                    onTriggered: Utils.openFile(text)
+                }
+
+                onObjectAdded: recentFilesMenu.insertItem(index, object)
+                onObjectRemoved: recentFilesMenu.removeItem(object)
+            }
+
+            MenuSeparator {
+                visible: recentFilesModel.count > 0
+            }
+
+            MenuItem {
+                text: qsTr("Clear Menu")
+                onTriggered: recentFilesModel.clear()
+            }
+
+            ListModel {
+                id: recentFilesModel
+            }
         }
 
         MenuSeparator {}
