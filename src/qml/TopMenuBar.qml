@@ -123,6 +123,24 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Window")
+
+        MenuItem {
+            text: qsTr("Code Editor")
+            shortcut: "Alt+1"
+            onTriggered: currentTab.forceActiveFocus()
+            enabled: tabView.count > 0
+        }
+
+        MenuItem {
+            text: qsTr("Console")
+            shortcut: "Alt+2"
+            onTriggered: mainRoot.consoleArea.forceActiveFocus()
+            enabled: tabView.count > 0
+        }
+    }
+
+    Menu {
         title: qsTr("Help")
 
         MenuItem {
