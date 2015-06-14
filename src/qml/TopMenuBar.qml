@@ -11,6 +11,7 @@ MenuBar {
             shortcut: "Ctrl+N"
             onTriggered: {
                 tabView.addTab(qsTr("Untitled"))
+                tabView.currentIndex = tabView.count - 1
             }
         }
 
