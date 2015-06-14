@@ -14,6 +14,7 @@ void Settings::setGeometry(const QVariantMap &geometry)
         settings->setValue("y", geometry["y"].toString());
         settings->setValue("width", geometry["width"].toString());
         settings->setValue("height", geometry["height"].toString());
+        settings->setValue("split", geometry["split"].toString());
     settings->endGroup();
 }
 
@@ -27,6 +28,7 @@ QVariantMap Settings::getGeometry()
             map["y"] = settings->value("y").toString();
             map["width"] = settings->value("width").toString();
             map["height"] = settings->value("height").toString();
+            map["split"] = settings->value("split").toString();
         }
     settings->endGroup();
 

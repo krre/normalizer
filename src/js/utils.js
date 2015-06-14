@@ -94,6 +94,7 @@ function saveGeometry() {
     map.y = mainRoot.y
     map.width = mainRoot.width
     map.height = mainRoot.height
+    map.split = mainRoot.consoleArea.height
     SETTINGS.setGeometry(map)
 }
 
@@ -104,6 +105,7 @@ function loadGeometry() {
         mainRoot.y = map.y
         mainRoot.width = map.width
         mainRoot.height = map.height
+        mainRoot.consoleArea.height = map.split
         return true
     } else {
         return false
