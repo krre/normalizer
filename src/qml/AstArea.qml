@@ -7,7 +7,7 @@ Canvas3D {
     id: root
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
-    property var astModel
+    property var astModel: ["Sprout"]
     visible: false
 
     Component.onCompleted: forceActiveFocus()

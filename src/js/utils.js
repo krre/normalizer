@@ -12,12 +12,14 @@ function openFile(path) {
     addRecentFile(path)
     var tab = tabView.addTab(UTILS.urlToFileName(path))
     tab.setSource("qrc:/qml/AstArea.qml", { filePath: path })
+    var fileData = UTILS.loadSproutFile(path)
     tabView.currentIndex = tabView.count - 1
+    currentTab.astModel = JSON.parse(fileData)
 }
 
 function saveFile(path) {
     if (path) {
-        print("File", path, "saved")
+        UTILS.saveSproutFile(path, JSON.stringify(currentTab.astModel, null, 4))
     } else {
         saveAsFile()
     }
