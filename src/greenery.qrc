@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/TopMenuBar.qml</file>
+        <file>js/utils.js</file>
+        <file>qml/components/filedialog/FileDialogBase.qml</file>
+        <file>qml/components/filedialog/FileDialogOpen.qml</file>
+        <file>qml/components/filedialog/FileDialogSave.qml</file>
     </qresource>
 </RCC>

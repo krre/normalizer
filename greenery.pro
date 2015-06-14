@@ -13,7 +13,11 @@ SOURCES += \
 DISTFILES += \
     README.md \
     src/qml/main.qml \
-    src/qml/TopMenuBar.qml
+    src/qml/TopMenuBar.qml \
+    src/qml/components/filedialog/FileDialogBase.qml \
+    src/qml/components/filedialog/FileDialogSave.qml \
+    src/qml/components/filedialog/FileDialogOpen.qml \
+    src/js/utils.js
 
 RESOURCES += \
     src/greenery.qrc

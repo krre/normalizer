@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import "../js/utils.js" as Utils
 
 MenuBar {
     Menu {
@@ -16,6 +17,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Open...")
             shortcut: "Ctrl+O"
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
         }
 
         MenuSeparator {}
@@ -30,6 +32,7 @@ MenuBar {
             text: qsTr("Save As...")
             shortcut: "Ctrl+Alt+S"
             enabled: tabView.count > 0
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
         }
 
         MenuItem {
