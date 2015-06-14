@@ -17,7 +17,8 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
-    src/js/utils.js
+    src/js/utils.js \
+    src/qml/TreeArea.qml
 
 RESOURCES += \
     src/greenery.qrc

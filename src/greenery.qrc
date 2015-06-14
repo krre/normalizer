@@ -6,5 +6,6 @@
         <file>qml/components/filedialog/FileDialogBase.qml</file>
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>qml/components/filedialog/FileDialogSave.qml</file>
+        <file>qml/TreeArea.qml</file>
     </qresource>
 </RCC>

@@ -10,7 +10,7 @@ MenuBar {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
             onTriggered: {
-                tabView.addTab(qsTr("Untitled"))
+                tabView.addTab(qsTr("Untitled"), treeArea)
                 tabView.currentIndex = tabView.count - 1
             }
         }
