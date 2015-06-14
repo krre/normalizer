@@ -8,14 +8,14 @@ win32 {
 }
 
 SOURCES += \
-    src/main.cpp \
-    src/mainwindow.cpp \
-    src/visualarea.cpp
+    src/cpp/main.cpp \
+    src/cpp/mainwindow.cpp \
+    src/cpp/visualarea.cpp
 
 DISTFILES += \
     README.md
 
 HEADERS += \
-    src/mainwindow.h \
-    src/visualarea.h
+    src/cpp/mainwindow.h \
+    src/cpp/visualarea.h
 
