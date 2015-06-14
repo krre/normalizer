@@ -118,7 +118,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Exit")
             shortcut: "Ctrl+Q"
-            onTriggered: Qt.quit()
+            onTriggered: mainRoot.prepareAndClose()
         }
     }
 

@@ -6,6 +6,7 @@ Canvas3D {
     id: root
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
+    property var astModel
     visible: false
 
     onInitializeGL: {

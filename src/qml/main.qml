@@ -22,10 +22,22 @@ ApplicationWindow {
         Utils.loadSession()
     }
 
-    Component.onDestruction: {
+    onClosing: {
+        close.accepted = false
+        prepareAndClose()
+    }
+
+    function prepareAndClose() {
         Utils.saveRecentFiles(topMenuBar.recentFilesModel)
         Utils.saveSession()
         Utils.saveGeometry()
+
+        // clearing tab bar to prevent crash caused canvas3d in Qt 5.5 RC1
+        while (tabView.count > 0) {
+            tabView.removeTab(tabView.currentIndex)
+        }
+
+        Qt.quit()
     }
 
     TabView {
