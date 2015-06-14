@@ -9,11 +9,13 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent = 0);
     ~Settings() {}
-    Q_INVOKABLE void setLang(QString lang);
+    Q_INVOKABLE void setGeometry(const QVariantMap &geometry);
+    Q_INVOKABLE QVariantMap getGeometry();
+    Q_INVOKABLE void setLang(const QString &lang);
     Q_INVOKABLE QString getLang();
-    Q_INVOKABLE void setRecentFiles(QStringList fileList);
+    Q_INVOKABLE void setRecentFiles(const QStringList &fileList);
     Q_INVOKABLE QStringList getRecentFiles();
-    Q_INVOKABLE void setSession(QStringList fileList);
+    Q_INVOKABLE void setSession(const QStringList &fileList);
     Q_INVOKABLE QStringList getSession();
 
 private:

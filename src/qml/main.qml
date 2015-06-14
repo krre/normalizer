@@ -14,8 +14,10 @@ ApplicationWindow {
     menuBar: TopMenuBar { id: topMenuBar }
 
     Component.onCompleted: {
-        x = (Screen.width - width) / 2
-        y = (Screen.height - height) / 2
+        if (!Utils.loadGeometry()) {
+            x = (Screen.width - width) / 2
+            y = (Screen.height - height) / 2
+        }
         Utils.loadRecentFiles()
         Utils.loadSession()
     }
@@ -23,6 +25,7 @@ ApplicationWindow {
     Component.onDestruction: {
         Utils.saveRecentFiles(topMenuBar.recentFilesModel)
         Utils.saveSession()
+        Utils.saveGeometry()
     }
 
     TabView {

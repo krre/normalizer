@@ -88,4 +88,26 @@ function loadSession() {
     }
 }
 
+function saveGeometry() {
+    var map = {}
+    map.x = mainRoot.x
+    map.y = mainRoot.y
+    map.width = mainRoot.width
+    map.height = mainRoot.height
+    SETTINGS.setGeometry(map)
+}
+
+function loadGeometry() {
+    var map = SETTINGS.getGeometry()
+    if (Object.keys(map).length) {
+        mainRoot.x = map.x
+        mainRoot.y = map.y
+        mainRoot.width = map.width
+        mainRoot.height = map.height
+        return true
+    } else {
+        return false
+    }
+}
+
 
