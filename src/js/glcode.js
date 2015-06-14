@@ -12,7 +12,7 @@ function initializeGL(canvas) {
     canvas3d = canvas
     try {
         gl = canvas.getContext("canvas3d")
-        gl.clearColor(1.0, 1.0, 1.0, 1.0)
+        gl.clearColor(0.19, 0.12, 0.08, 1.0)
     } catch(e) {
         print("initializeGL FAILURE!")
         print(""+e)
