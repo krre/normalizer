@@ -129,9 +129,7 @@ MenuBar {
             text: qsTr("Run")
             shortcut: "F9"
             enabled: currentTab && currentTab.filePath
-            onTriggered: {
-                print("run")
-            }
+            onTriggered: interpretator.run(currentTab.filePath)
         }
     }
 

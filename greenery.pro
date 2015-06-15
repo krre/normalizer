@@ -10,7 +10,8 @@ win32 {
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
-    src/cpp/settings.cpp
+    src/cpp/settings.cpp \
+    src/cpp/interpretator.cpp
 
 DISTFILES += \
     README.md \
@@ -35,5 +36,6 @@ RESOURCES += \
 
 HEADERS += \
     src/cpp/utils.h \
-    src/cpp/settings.h
+    src/cpp/settings.h \
+    src/cpp/interpretator.h
 
