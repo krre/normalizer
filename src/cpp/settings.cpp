@@ -94,3 +94,15 @@ QStringList Settings::getSession()
 
     return values;
 }
+
+void Settings::setSproutPath(const QString &path)
+{
+    settings->beginGroup("Sprout");
+        settings->setValue("path", path);
+    settings->endGroup();
+}
+
+QString Settings::getSproutPath()
+{
+    return settings->value("Sprout/path").toString();
+}

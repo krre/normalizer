@@ -29,7 +29,8 @@ DISTFILES += \
     src/qml/About.qml \
     src/js/glcode.js \
     src/qml/AstArea.qml \
-    src/js/command.js
+    src/js/command.js \
+    src/qml/Options.qml
 
 RESOURCES += \
     src/greenery.qrc

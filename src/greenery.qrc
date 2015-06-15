@@ -15,5 +15,6 @@
         <file>qml/components/messagedialog/MessageDialogWarning.qml</file>
         <file>js/glcode.js</file>
         <file>js/command.js</file>
+        <file>qml/Options.qml</file>
     </qresource>
 </RCC>

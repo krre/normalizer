@@ -21,7 +21,12 @@ MenuBar {
         MenuItem {
             text: qsTr("Open...")
             shortcut: "Ctrl+O"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
+            onTriggered: {
+                var fileDialog = Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
+                fileDialog.accepted.connect(function() {
+                    Utils.openFile(UTILS.urlToPath(fileDialog.fileUrl))
+                })
+            }
         }
 
         Menu {
@@ -130,6 +135,15 @@ MenuBar {
             shortcut: "F9"
             enabled: currentTab && currentTab.filePath
             onTriggered: interpretator.run(currentTab.filePath)
+        }
+    }
+
+    Menu {
+        title: qsTr("Tools")
+
+        MenuItem {
+            text: qsTr("Options...")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/Options.qml")
         }
     }
 
