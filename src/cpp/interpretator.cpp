@@ -23,6 +23,7 @@ void Interpretator::onStarted()
 void Interpretator::onFinished(int exitCode)
 {
     emit consoleMessage(arguments().at(0) + " exited with code " + QString::number(exitCode));
+    emit consoleMessage("");
 }
 
 void Interpretator::onReadyRead()
