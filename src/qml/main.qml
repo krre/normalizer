@@ -57,6 +57,8 @@ ApplicationWindow {
             id: consoleArea
             Layout.minimumHeight: 50
             height: 50
+            backgroundVisible: false
+            readOnly: true
         }
     }
 }
