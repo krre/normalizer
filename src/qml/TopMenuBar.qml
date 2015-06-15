@@ -123,6 +123,19 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Run")
+
+        MenuItem {
+            text: qsTr("Run")
+            shortcut: "F9"
+            enabled: currentTab && currentTab.filePath
+            onTriggered: {
+                print("run")
+            }
+        }
+    }
+
+    Menu {
         title: qsTr("Window")
 
         MenuItem {
