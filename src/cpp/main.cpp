@@ -1,11 +1,11 @@
-#include <QtGui/QGuiApplication>
+#include <QApplication>
 #include <QtQml>
 #include "utils.h"
 #include "settings.h"
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     Utils utils;
     Settings settings;
