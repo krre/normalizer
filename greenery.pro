@@ -34,7 +34,8 @@ DISTFILES += \
     src/qml/Options.qml
 
 RESOURCES += \
-    src/greenery.qrc
+    src/greenery.qrc \
+    src/three.qrc
 
 HEADERS += \
     src/cpp/utils.h \
