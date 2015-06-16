@@ -1,29 +1,28 @@
-
 function run(event) {
-    if (!mainRoot.commandState) {
+    if (!commandState) {
         switch (event.text) {
-            case "a": mainRoot.commandState = "Add"; break
-            case "d": mainRoot.commandState = "Delete"; break
-            case "u": mainRoot.commandState = "Update"; break
-            case "m": mainRoot.commandState = "Move"; break
+            case "a": commandState = "Add"; break
+            case "d": commandState = "Delete"; break
+            case "u": commandState = "Update"; break
+            case "m": commandState = "Move"; break
         }
-    } else if (mainRoot.commandState === "Add" || mainRoot.commandState === "Update") {
+    } else if (commandState === "Add" || commandState === "Update") {
         switch (event.text) {
-            case "e": mainRoot.commandState = "Expression"; break
-            case "l": mainRoot.commandState = "Literal"; break
+            case "e": commandState = "Expression"; break
+            case "l": commandState = "Literal"; break
         }
     }
 }
 
 function cancel() {
-    mainRoot.commandState = ""
+    commandState = ""
 }
 
 function add(value) {
     if (value) {
-        if (mainRoot.commandState === "Expression") {
+        if (commandState === "Expression") {
             addExpression(value)
-        } else if (mainRoot.commandState === "Literal") {
+        } else if (commandState === "Literal") {
             addLiteral(value)
         }
     }
