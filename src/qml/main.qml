@@ -4,23 +4,38 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
 import Greenery.Lib 1.0
 import "../js/utils.js" as Utils
+import "../js/command.js" as Command
 
 ApplicationWindow {
     id: mainRoot
     property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias consoleArea: consoleArea
-    property alias status: statusBar.status
+    property string commandState
     title: "Greenery"
     width: 800
     height: 600
     visible: true
     menuBar: TopMenuBar { id: topMenuBar }
     statusBar: StatusBar {
-        Label {
-            id: statusBar
-            property string status
-            text: status ? status : qsTr("Ready")
+        RowLayout {
+
+            Label {
+                text: commandState ? commandState : qsTr("Ready")
+            }
+
+            TextField {
+                Layout.preferredWidth: commandState === "Expression" || commandState === "Literal" ? 200 : 0
+                onWidthChanged: {
+                    if (width) {
+                        forceActiveFocus()
+                    }  else if (currentTab) {
+                        text = ""
+                        currentTab.forceActiveFocus()
+                    }
+                }
+                Keys.onReturnPressed: Command.cancel()
+            }
         }
     }
 
@@ -64,6 +79,7 @@ ApplicationWindow {
             id: tabView
             Layout.minimumHeight: 50
             Layout.fillHeight: true
+            onCurrentIndexChanged: commandState = ""
 
         }
 
