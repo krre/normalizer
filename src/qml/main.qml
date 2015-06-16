@@ -34,7 +34,7 @@ ApplicationWindow {
                         currentTab.forceActiveFocus()
                     }
                 }
-                Keys.onReturnPressed: Command.cancel()
+                Keys.onReturnPressed: Command.add(text)
             }
         }
     }

@@ -19,3 +19,23 @@ function cancel() {
     mainRoot.commandState = ""
 }
 
+function add(value) {
+    if (value) {
+        if (mainRoot.commandState === "Expression") {
+            addExpression(value)
+        } else if (mainRoot.commandState === "Literal") {
+            addLiteral(value)
+        }
+    }
+    cancel()
+    print(JSON.stringify(currentTab.astModel))
+}
+
+function addExpression(value) {
+    print("expression:", value)
+}
+
+function addLiteral(value) {
+    print("literal:", value)
+}
+
