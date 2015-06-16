@@ -27,7 +27,16 @@ function saveFile(path) {
 }
 
 function saveAsFile() {
-    createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+    var fileDialog = createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+    fileDialog.accepted.connect(function() {
+        var path = UTILS.urlToPath(fileDialog.fileUrl)
+        if (path.substr(-7) !== ".sprout") {
+            path += ".sprout"
+        }
+        currentTab.filePath = path
+        tabView.getTab(tabView.currentIndex).title = UTILS.urlToFileName(path)
+        saveFile(path)
+    })
 }
 
 function saveAllFiles() {
