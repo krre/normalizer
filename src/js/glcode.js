@@ -4,15 +4,15 @@ Qt.include("three.js")
  var geometry, material, mesh;
 
  function initializeGL(canvas) {
-    camera = new THREE.PerspectiveCamera( 75, canvas.width / canvas.height, 1, 10000 );
+    camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 1, 10000);
     camera.position.z = 1000;
 
     scene = new THREE.Scene();
 
-    geometry = new THREE.BoxGeometry( 200, 200, 200 );
-    material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+    geometry = new THREE.BoxGeometry( 100, 100, 100 );
+    material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe: true });
 
-    mesh = new THREE.Mesh( geometry, material );
+    mesh = new THREE.Mesh(geometry, material);
     scene.add( mesh );
 
     renderer = new THREE.Canvas3DRenderer( {canvas: canvas, devicePixelRatio: canvas.devicePixelRatio});
@@ -34,7 +34,7 @@ Qt.include("three.js")
     camera.aspect = canvas.width / canvas.height;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( canvas.width, canvas.height );
+    renderer.setSize(canvas.width, canvas.height);
  }
 
 
