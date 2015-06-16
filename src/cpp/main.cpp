@@ -2,13 +2,13 @@
 #include <QtQml>
 #include "utils.h"
 #include "settings.h"
-#include "interpretator.h"
+#include "interpreter.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    qmlRegisterType<Interpretator>("Greenery.Lib", 1, 0, "Interpretator");
+    qmlRegisterType<Interpreter>("Greenery.Lib", 1, 0, "Interpreter");
 
     Utils utils;
     Settings settings;

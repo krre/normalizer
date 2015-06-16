@@ -66,8 +66,8 @@ ApplicationWindow {
         Qt.quit()
     }
 
-    Interpretator {
-        id: interpretator
+    Interpreter {
+        id: interpreter
         onConsoleMessage: consoleArea.append(message)
     }
 

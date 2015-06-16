@@ -11,7 +11,7 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/interpretator.cpp
+    src/cpp/interpreter.cpp
 
 DISTFILES += \
     README.md \
@@ -40,5 +40,5 @@ RESOURCES += \
 HEADERS += \
     src/cpp/utils.h \
     src/cpp/settings.h \
-    src/cpp/interpretator.h
+    src/cpp/interpreter.h
 

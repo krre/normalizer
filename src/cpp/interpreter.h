@@ -1,13 +1,13 @@
-#ifndef INTERPRETATOR_H
-#define INTERPRETATOR_H
+#ifndef INTERPRETER_H
+#define INTERPRETER_H
 
 #include <QtCore>
 
-class Interpretator: public QProcess
+class Interpreter: public QProcess
 {
     Q_OBJECT
 public:
-    Interpretator();
+    Interpreter();
     Q_INVOKABLE void run(const QString &sproutPath, const QString &sourcePath);
 
 signals:
@@ -20,4 +20,4 @@ private slots:
     void onError(QProcess::ProcessError error);
 };
 
-#endif // INTERPRETATOR_H
+#endif // INTERPRETER_H
