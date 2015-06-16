@@ -31,7 +31,11 @@ function add(value) {
 }
 
 function addExpression(value) {
+    var node = {}
+    node[value] = []
+    currentTab.currentNode.push(node)
     print("expression:", value)
+    currentTab.currentNode = node[value]
 }
 
 function addLiteral(value) {

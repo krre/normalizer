@@ -7,10 +7,14 @@ Canvas3D {
     id: root
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
-    property var astModel: ["Sprout"]
-    visible: false
+    property var astModel: []
+    property var currentNode
 
-    Component.onCompleted: forceActiveFocus()
+    Component.onCompleted: {
+        astModel.push({ lang: ["Sprout", "0.1.0"] })
+        currentNode = astModel
+        forceActiveFocus()
+    }
 
     onInitializeGL: {
         GLCode.initializeGL(root)

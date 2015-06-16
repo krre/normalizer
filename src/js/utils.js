@@ -15,6 +15,7 @@ function openFile(path) {
     var fileData = UTILS.loadSproutFile(path)
     tabView.currentIndex = tabView.count - 1
     currentTab.astModel = JSON.parse(fileData)
+    currentTab.currentNode = currentTab.astModel
 }
 
 function saveFile(path) {
