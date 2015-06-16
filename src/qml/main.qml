@@ -10,11 +10,19 @@ ApplicationWindow {
     property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias consoleArea: consoleArea
+    property alias status: statusBar.status
     title: "Greenery"
     width: 800
     height: 600
     visible: true
     menuBar: TopMenuBar { id: topMenuBar }
+    statusBar: StatusBar {
+        Label {
+            id: statusBar
+            property string status
+            text: status ? status : qsTr("Ready")
+        }
+    }
 
     Component.onCompleted: {
         if (!Utils.loadGeometry()) {

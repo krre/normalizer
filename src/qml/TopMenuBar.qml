@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import "../js/utils.js" as Utils
+import "../js/command.js" as Command
 
 MenuBar {
     property alias recentFilesModel: recentFilesModel
@@ -124,6 +125,16 @@ MenuBar {
             text: qsTr("Exit")
             shortcut: "Ctrl+Q"
             onTriggered: mainRoot.prepareAndClose()
+        }
+    }
+
+    Menu {
+        title: qsTr("Edit")
+
+        MenuItem {
+            text: qsTr("Cancel")
+            shortcut: "Esc"
+            onTriggered: Command.cancel()
         }
     }
 
