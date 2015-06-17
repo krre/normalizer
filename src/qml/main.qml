@@ -11,7 +11,7 @@ ApplicationWindow {
     property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias consoleArea: consoleArea
-    property string commandState
+    property string commandState: "ready"
     title: "Greenery"
     width: 800
     height: 600
@@ -21,11 +21,11 @@ ApplicationWindow {
         RowLayout {
 
             Label {
-                text: commandState ? commandState : qsTr("Ready")
+                text: commandState
             }
 
             TextField {
-                Layout.preferredWidth: commandState === "Expression" || commandState === "Literal" ? 200 : 0
+                Layout.preferredWidth: commandState === "expression" || commandState === "literal" ? 200 : 0
                 onWidthChanged: {
                     if (width) {
                         forceActiveFocus()
@@ -79,8 +79,7 @@ ApplicationWindow {
             id: tabView
             Layout.minimumHeight: 50
             Layout.fillHeight: true
-            onCurrentIndexChanged: commandState = ""
-
+            onCurrentIndexChanged: commandState = "ready"
         }
 
         TextArea {
