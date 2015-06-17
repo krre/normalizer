@@ -10,7 +10,7 @@ Qt.include("three.js")
     scene = new THREE.Scene();
 
     geometry = new THREE.BoxGeometry( 100, 100, 100 );
-    material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe: true });
+    material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
 
     mesh = new THREE.Mesh(geometry, material);
     scene.add( mesh );
