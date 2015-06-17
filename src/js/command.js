@@ -39,6 +39,7 @@ function addExpression(value) {
 }
 
 function addLiteral(value) {
+    currentTab.currentNode.push(value)
     print("literal:", value)
 }
 
