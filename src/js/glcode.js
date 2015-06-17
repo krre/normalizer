@@ -1,11 +1,19 @@
-Qt.include("three.js")
+Qt.include("../3rdparty/three.js")
+Qt.include("../3rdparty/TrackballControls.js")
 
- var camera, scene, renderer
- var geometry, material, mesh
+var camera, scene, renderer, clock, trackballControls
+var geometry, material, mesh
 
- function initializeGL(canvas) {
+function initializeGL(canvas, eventSource) {
+    clock = new THREE.Clock();
+
     camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 1, 10000)
     camera.position.z = 10
+
+    trackballControls = new THREE.TrackballControls(camera, eventSource)
+    trackballControls.rotateSpeed = 1.0
+    trackballControls.zoomSpeed = 1.0
+    trackballControls.panSpeed = 1.0
 
     scene = new THREE.Scene()
 
@@ -18,23 +26,23 @@ Qt.include("three.js")
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
     renderer.setClearColor(new THREE.Color(0.19, 0.12, 0.08), 1)
- }
+}
 
- function paintGL(canvas) {
-    mesh.rotation.x += 0.01
-    mesh.rotation.y += 0.02
+function paintGL(canvas) {
+    var delta = clock.getDelta();
+    trackballControls.update(delta);
 
     renderer.clear()
     renderer.render(scene, camera)
- }
+}
 
- function resizeGL(canvas) {
+function resizeGL(canvas) {
     if (camera === undefined) return
 
     camera.aspect = canvas.width / canvas.height
     camera.updateProjectionMatrix()
 
     renderer.setSize(canvas.width, canvas.height)
- }
+}
 
 

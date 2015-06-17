@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>3rdparty/ControlEventSource.qml</file>
+        <file>3rdparty/three.js</file>
+        <file>3rdparty/TrackballControls.js</file>
+    </qresource>
+</RCC>

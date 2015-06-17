@@ -18,7 +18,6 @@ DISTFILES += \
     src/js/utils.js \
     src/js/glcode.js \
     src/js/command.js \
-    src/js/three.js \
     src/qml/main.qml \
     src/qml/TopMenuBar.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
@@ -31,11 +30,14 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/About.qml \
     src/qml/AstArea.qml \
-    src/qml/Options.qml
+    src/qml/Options.qml \
+    src/3rdparty/ControlEventSource.qml \
+    src/3rdparty/TrackballControls.js \
+    src/3rdparty/three.js
 
 RESOURCES += \
     src/greenery.qrc \
-    src/three.qrc
+    src/3rdparty.qrc
 
 HEADERS += \
     src/cpp/utils.h \

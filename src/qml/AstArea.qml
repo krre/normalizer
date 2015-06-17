@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtCanvas3D 1.0
+import "../3rdparty"
 import "../js/glcode.js" as GLCode
 import "../js/command.js" as Command
 
@@ -17,18 +18,18 @@ Canvas3D {
     }
 
     onInitializeGL: {
-        GLCode.initializeGL(root)
+        GLCode.initializeGL(root, eventSource)
         root.visible = true
     }
     onPaintGL: GLCode.paintGL(root)
 
     Keys.onPressed: Command.run(event)
 
-    MouseArea {
+    ControlEventSource {
+        id: eventSource
         anchors.fill: parent
-        onClicked: {
-            root.forceActiveFocus()
-        }
+        focus: true
+        onMouseDown: root.forceActiveFocus()
     }
 }
 
