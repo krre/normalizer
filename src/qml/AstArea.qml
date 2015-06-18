@@ -12,7 +12,6 @@ Canvas3D {
     property var currentNode
 
     Component.onCompleted: {
-        astModel.push({ lang: ["Sprout", "0.1.0"] })
         currentNode = astModel
         forceActiveFocus()
     }
