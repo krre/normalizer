@@ -16,6 +16,7 @@ function openFile(path) {
     tabView.currentIndex = tabView.count - 1
     currentTab.astModel = JSON.parse(fileData)
     currentTab.currentNode = currentTab.astModel
+    currentTab.currentPos = 0
 }
 
 function saveFile(path) {

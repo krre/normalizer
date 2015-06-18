@@ -25,7 +25,9 @@ ApplicationWindow {
             }
 
             TextField {
-                Layout.preferredWidth: commandState === "expression" || commandState === "literal" ? 200 : 0
+                id: inputField
+                property bool isActive: false
+                Layout.preferredWidth: isActive ? 200 : 0
                 onWidthChanged: {
                     if (width) {
                         forceActiveFocus()
@@ -34,7 +36,7 @@ ApplicationWindow {
                         currentTab.forceActiveFocus()
                     }
                 }
-                Keys.onReturnPressed: Command.add(text)
+                Keys.onReturnPressed: Command.newItem(text)
             }
         }
     }

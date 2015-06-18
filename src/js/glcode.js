@@ -29,6 +29,8 @@ function initializeGL(canvas, eventSource) {
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
     renderer.setClearColor(new THREE.Color(0.19, 0.12, 0.08), 1)
+
+    loadModel(astModel)
 }
 
 function paintGL(canvas) {
@@ -46,6 +48,18 @@ function resizeGL(canvas) {
     camera.updateProjectionMatrix()
 
     renderer.setSize(canvas.width, canvas.height)
+}
+
+function loadModel(model) {
+    print(JSON.stringify(model))
+    for (var item in model) {
+        var obj = model[item]
+        print(model[item], item, typeof obj)
+//        loadModel(obj)
+
+    }
+
+//    print(typeof model)
 }
 
 

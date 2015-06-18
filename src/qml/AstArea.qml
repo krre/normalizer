@@ -11,6 +11,7 @@ Canvas3D {
     property var astModel: []
     property var currentNode
     property int currentPos: -1
+    property var parentStack: []
 
     Component.onCompleted: {
         currentNode = astModel
