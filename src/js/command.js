@@ -5,6 +5,8 @@ function run(event) {
             case "d": commandState = "delete"; break
             case "u": commandState = "update"; break
             case "m": commandState = "move"; break
+            case ".": increasePos(); break
+            case ",": decreasePos(); break
         }
     } else if (commandState === "add" || commandState === "update") {
         switch (event.text) {
@@ -28,6 +30,7 @@ function add(value) {
     }
     cancel()
     print(JSON.stringify(currentTab.astModel))
+    print("currentPos", currentTab.currentPos)
 }
 
 function addExpression(value) {
@@ -35,9 +38,25 @@ function addExpression(value) {
     node.push(value)
     currentTab.currentNode.push(node)
     currentTab.currentNode = node
+    currentTab.currentPos = 0
 }
 
 function addLiteral(value) {
     currentTab.currentNode.push(value)
+    currentTab.currentPos++
+}
+
+function increasePos() {
+    if (currentNode.length > 1) {
+        currentPos = Math.min(currentNode.length - 1, ++currentPos)
+    }
+    print("currentPos", currentTab.currentPos)
+}
+
+function decreasePos() {
+    if (currentNode.length > 1) {
+        currentPos = Math.max(0, --currentPos)
+    }
+    print("currentPos", currentTab.currentPos)
 }
 

@@ -10,6 +10,7 @@ Canvas3D {
     property string filePath
     property var astModel: []
     property var currentNode
+    property int currentPos: -1
 
     Component.onCompleted: {
         currentNode = astModel
