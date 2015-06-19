@@ -17,6 +17,10 @@ Canvas3D {
         GLCode.trackballControls.reset()
     }
 
+    function loadModel() {
+        GLCode.loadModel(astModel)
+    }
+
     Component.onCompleted: {
         currentNode = astModel
         forceActiveFocus()

@@ -41,8 +41,7 @@ function newItem(value) {
         }
     }
     cancel()
-    print(JSON.stringify(currentTab.astModel))
-//    print("currentPos", currentTab.currentPos)
+    currentTab.loadModel()
 }
 
 function addExpression(value) {

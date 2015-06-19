@@ -17,11 +17,6 @@ function initializeGL(canvas, eventSource) {
     trackballControls.zoomSpeed = 1.0
     trackballControls.panSpeed = 1.0
 
-    scene = new THREE.Scene()
-
-    var axisHelper = new THREE.AxisHelper(5)
-    scene.add(axisHelper)
-
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
     renderer.setClearColor(new THREE.Color(0.19, 0.12, 0.08), 1)
@@ -48,6 +43,10 @@ function resizeGL(canvas) {
 
 function loadModel(model) {
     print(JSON.stringify(model))
+    scene = new THREE.Scene()
+    var axisHelper = new THREE.AxisHelper(5)
+    scene.add(axisHelper)
+
     var rootItemCount = model.length
     if (rootItemCount) {
         var step = Math.PI * 2 / rootItemCount
@@ -62,6 +61,10 @@ function loadModel(model) {
             }
         }
     }
+}
+
+function addBranch(branch) {
+
 }
 
 function createBox(x, y, z) {
