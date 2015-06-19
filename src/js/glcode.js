@@ -1,5 +1,7 @@
 Qt.include("../3rdparty/three.js")
 Qt.include("../3rdparty/TrackballControls.js")
+Qt.include("../3rdparty/fonts/helvetiker_bold.typeface.js")
+Qt.include("../3rdparty/fonts/helvetiker_regular.typeface.js")
 
 var camera, scene, renderer, clock, trackballControls
 var geometry, material, mesh
@@ -60,10 +62,10 @@ function loadModel(model) {
             var origin = new THREE.Vector3(0, 0, 0)
             var itemPos = new THREE.Vector3(x, 0, z)
             if (typeof model[i] === "object") {
-                item = createSphere(itemPos)
+                item = createExpression(itemPos)
                 addBranch(model[i], origin, itemPos)
             } else {
-                item = createBox(itemPos)
+                item = createLiteral(itemPos, model[i])
             }
             item.lookAt(origin)
             scene.add(item)
@@ -85,17 +87,43 @@ function addBranch(branch, origin, direction) {
     print(JSON.stringify(origin))
 }
 
-function createBox(pos) {
+function createLiteral(pos, label) {
+    var options = {
+        size: 0.5,
+        height: 0,
+        weight: 'normal',
+        font: 'helvetiker',
+        style: 'normal',
+        bevelThickness: 2,
+        bevelSize: 4,
+        bevelSegments: 3,
+        bevelEnabled: false,
+        curveSegments: 2,
+        steps: 1
+    }
+
+    var textGeo = new THREE.TextGeometry(label, options)
+    textGeo.computeBoundingBox()
+    textGeo.computeVertexNormals()
+    var textMat = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    var textMesh = new THREE.Mesh(textGeo, textMat)
+    textMesh.position.x = -textGeo.boundingBox.max.x / 2
+    textMesh.position.y = boxSize / 2
+
     var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
     var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
     var box = new THREE.Mesh(geometry, material)
-    box.position.x = pos.x
-    box.position.y = pos.y
-    box.position.z = pos.z
-    return box
+
+    var literal = new THREE.Object3D()
+    literal.add(textMesh)
+    literal.add(box)
+    literal.position.x = pos.x
+    literal.position.y = pos.y
+    literal.position.z = pos.z
+    return literal
 }
 
-function createSphere(pos) {
+function createExpression(pos) {
     var geometry = new THREE.SphereGeometry(sphereSize)
     var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
     var sphere = new THREE.Mesh(geometry, material)

@@ -33,7 +33,9 @@ DISTFILES += \
     src/qml/Options.qml \
     src/3rdparty/ControlEventSource.qml \
     src/3rdparty/TrackballControls.js \
-    src/3rdparty/three.js
+    src/3rdparty/three.js \
+    src/3rdparty/fonts/helvetiker_bold.typeface.js \
+    src/3rdparty/fonts/helvetiker_regular.typeface.js
 
 RESOURCES += \
     src/greenery.qrc \
