@@ -46,15 +46,12 @@ function resizeGL(canvas) {
 function loadModel(model) {
     print(JSON.stringify(model))
     scene = new THREE.Scene()
-    var axisHelper = new THREE.AxisHelper(5)
-    scene.add(axisHelper)
+    scene.add(createLine(new THREE.Vector3(0, 2, 0), new THREE.Vector3(0, -2, 0)))
 
     var rootItemCount = model.length
     if (rootItemCount) {
         var step = Math.PI * 2 / rootItemCount
         var radius = 2
-        var startLinePos
-        var firstListPos
         for (var i in model) {
             var x = radius * Math.cos(step * i)
             var z = radius * Math.sin(step * i)
@@ -63,28 +60,37 @@ function loadModel(model) {
             var itemPos = new THREE.Vector3(x, 0, z)
             if (typeof model[i] === "object") {
                 item = createExpression(itemPos)
-                addBranch(model[i], origin, itemPos)
+                var branchPos = itemPos.multiplyScalar(sphereSize)
+                addBranch(model[i], new THREE.Ray(itemPos, branchPos))
             } else {
                 item = createLiteral(itemPos, model[i])
             }
             item.lookAt(origin)
             scene.add(item)
-            if (!firstListPos) {
-                firstListPos = itemPos
-            }
-
-            if (startLinePos) {
-                scene.add(createLine(startLinePos, itemPos))
-            }
-            startLinePos = itemPos
+            scene.add(createLine(origin, itemPos))
         }
-        scene.add(createLine(itemPos, firstListPos))
     }
 }
 
-function addBranch(branch, origin, direction) {
-//    new THREE.Ray(origin, new THREE.Vector3(x, 0, z).normalize())
-    print(JSON.stringify(origin))
+function addBranch(branch, ray) {
+    var step = Math.PI * 2 / branch.length
+    var radius = 2
+    for (var i in branch) {
+        var y = radius * Math.cos(step * i)
+        var z = radius * Math.sin(step * i)
+        var item
+        var itemPos = new THREE.Vector3(ray.origin.x + sphereSize, y, z)
+        if (typeof branch[i] === "object") {
+            item = createExpression(itemPos)
+            var branchPos = itemPos.multiplyScalar(sphereSize)
+            addBranch(branch[i], new THREE.Ray(itemPos, branchPos))
+        } else {
+            item = createLiteral(itemPos, branch[i])
+        }
+        item.lookAt(ray.origin)
+        scene.add(item)
+        scene.add(createLine(ray.origin, itemPos))
+    }
 }
 
 function createLiteral(pos, label) {
@@ -107,6 +113,7 @@ function createLiteral(pos, label) {
     textGeo.computeVertexNormals()
     var textMat = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
     var textMesh = new THREE.Mesh(textGeo, textMat)
+//    textMesh.rotation.y = Math.PI / 2
     textMesh.position.x = -textGeo.boundingBox.max.x / 2
     textMesh.position.y = boxSize / 2
 
