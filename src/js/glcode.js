@@ -3,6 +3,8 @@ Qt.include("../3rdparty/TrackballControls.js")
 
 var camera, scene, renderer, clock, trackballControls
 var geometry, material, mesh
+var boxSize = 1
+var sphereSize = 1
 
 function initializeGL(canvas, eventSource) {
     clock = new THREE.Clock();
@@ -20,11 +22,11 @@ function initializeGL(canvas, eventSource) {
     var axisHelper = new THREE.AxisHelper(5)
     scene.add(axisHelper)
 
-    geometry = new THREE.BoxGeometry(1, 1, 1)
-    material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    var box = createBox(5, 0, 0)
+    scene.add(box)
 
-    mesh = new THREE.Mesh(geometry, material)
-    scene.add(mesh)
+    var sphere = createSphere(-5, 0, 0)
+    scene.add(sphere)
 
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
@@ -51,11 +53,32 @@ function resizeGL(canvas) {
 }
 
 function loadModel(model) {
+    print(model.length)
     print(JSON.stringify(model))
     for (var item in model) {
         var obj = model[item]
 //        print(model[item], item, typeof obj)
     }
+}
+
+function createBox(x, y, z) {
+    var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
+    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    var box = new THREE.Mesh(geometry, material)
+    box.position.x = x
+    box.position.y = y
+    box.position.z = z
+    return box
+}
+
+function createSphere(x, y, z) {
+    var geometry = new THREE.SphereGeometry(sphereSize)
+    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    var sphere = new THREE.Mesh(geometry, material)
+    sphere.position.x = x
+    sphere.position.y = y
+    sphere.position.z = z
+    return sphere
 }
 
 
