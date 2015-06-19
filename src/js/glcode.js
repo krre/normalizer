@@ -54,11 +54,14 @@ function loadModel(model) {
         for (var i in model) {
             var x = radius * Math.cos(step * i)
             var z = radius * Math.sin(step * i)
+            var item
             if (typeof model[i] === "object") {
-                scene.add(createSphere(x, 0, z))
+                item = createSphere(x, 0, z)
             } else {
-                scene.add(createBox(x, 0, z))
+                item = createBox(x, 0, z)
             }
+            item.lookAt(new THREE.Vector3(0, 0, 0))
+            scene.add(item)
         }
     }
 }
