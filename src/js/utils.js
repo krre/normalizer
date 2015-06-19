@@ -12,9 +12,9 @@ function openFile(path) {
     addRecentFile(path)
     var fileData = UTILS.loadSproutFile(path)
     if (fileData) {
-        var model = JSON.parse(model)
+        var model = JSON.parse(fileData)
         var tab = tabView.addTab(UTILS.urlToFileName(path))
-        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: fileData })
+        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
         tabView.currentIndex = tabView.count - 1
     }
 }

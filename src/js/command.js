@@ -41,14 +41,19 @@ function newItem(value) {
         }
     }
     cancel()
-//    print(JSON.stringify(currentTab.astModel))
+    print(JSON.stringify(currentTab.astModel))
 //    print("currentPos", currentTab.currentPos)
 }
 
 function addExpression(value) {
     var node = []
     node.push(value)
-    currentTab.currentNode.splice(currentTab.currentPos + 1, 0, node)
+    if (currentTab.currentNode.length) {
+        currentTab.currentNode.splice(currentTab.currentPos + 1, 0, node)
+    } else {
+        currentTab.currentNode.push(node)
+    }
+
     currentTab.parentStack.push(currentTab.currentNode)
     currentTab.currentNode = node
     currentTab.currentPos = 0
@@ -57,7 +62,11 @@ function addExpression(value) {
 function insertExpression(value) {
     var node = []
     node.push(value)
-    currentTab.currentNode.splice(currentTab.currentPos, 0, node)
+    if (currentTab.currentNode.length) {
+        currentTab.currentNode.splice(currentTab.currentPos, 0, node)
+    } else {
+        currentNode.push(node)
+    }
     currentTab.parentStack.push(currentTab.currentNode)
     currentTab.currentNode = node
     currentTab.currentPos = 0
