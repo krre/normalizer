@@ -22,12 +22,6 @@ function initializeGL(canvas, eventSource) {
     var axisHelper = new THREE.AxisHelper(5)
     scene.add(axisHelper)
 
-    var box = createBox(5, 0, 0)
-    scene.add(box)
-
-    var sphere = createSphere(-5, 0, 0)
-    scene.add(sphere)
-
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
     renderer.setClearColor(new THREE.Color(0.19, 0.12, 0.08), 1)
@@ -53,11 +47,20 @@ function resizeGL(canvas) {
 }
 
 function loadModel(model) {
-    print(model.length)
     print(JSON.stringify(model))
-    for (var item in model) {
-        var obj = model[item]
-//        print(model[item], item, typeof obj)
+    var rootItemCount = model.length
+    if (rootItemCount) {
+        var step = Math.PI * 2 / rootItemCount
+        var radius = 2
+        for (var i in model) {
+            var x = radius * Math.cos(step * i)
+            var z = radius * Math.sin(step * i)
+            if (typeof model[i] === "object") {
+                scene.add(createSphere(x, 0, z))
+            } else {
+                scene.add(createBox(x, 0, z))
+            }
+        }
     }
 }
 
