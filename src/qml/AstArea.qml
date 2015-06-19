@@ -13,6 +13,10 @@ Canvas3D {
     property int currentPos: -1
     property var parentStack: []
 
+    function reset() {
+        GLCode.trackballControls.reset()
+    }
+
     Component.onCompleted: {
         currentNode = astModel
         forceActiveFocus()

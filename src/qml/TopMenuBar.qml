@@ -166,6 +166,12 @@ MenuBar {
             shortcut: "Shift+Del"
             onTriggered: consoleArea.text = ""
         }
+
+        MenuItem {
+            text: qsTr("Reset")
+            shortcut: "F12"
+            onTriggered:currentTab.reset()
+        }
     }
 
     Menu {
