@@ -41,8 +41,8 @@ function newItem(value) {
         }
     }
     cancel()
-    print(JSON.stringify(currentTab.astModel))
-    print("currentPos", currentTab.currentPos)
+//    print(JSON.stringify(currentTab.astModel))
+//    print("currentPos", currentTab.currentPos)
 }
 
 function addExpression(value) {
@@ -65,7 +65,6 @@ function insertExpression(value) {
 
 function addLiteral(value) {
     currentTab.currentPos++
-    print("XXX", currentTab.currentPos)
     currentTab.currentNode.splice(currentTab.currentPos, 0, value)
 }
 
@@ -77,14 +76,14 @@ function increasePos() {
     if (currentNode.length > 1) {
         currentPos = Math.min(currentNode.length - 1, ++currentPos)
     }
-    print("currentPos", currentTab.currentPos)
+//    print("currentPos", currentTab.currentPos)
 }
 
 function decreasePos() {
     if (currentNode.length > 1) {
         currentPos = Math.max(0, --currentPos)
     }
-    print("currentPos", currentTab.currentPos)
+//    print("currentPos", currentTab.currentPos)
 }
 
 function upLevel() {

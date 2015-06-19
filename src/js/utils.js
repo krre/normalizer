@@ -10,10 +10,13 @@ function createDynamicObject(parent, url, properties) {
 
 function openFile(path) {
     addRecentFile(path)
-    var fileData = JSON.parse(UTILS.loadSproutFile(path))
-    var tab = tabView.addTab(UTILS.urlToFileName(path))
-    tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: fileData })
-    tabView.currentIndex = tabView.count - 1
+    var fileData = UTILS.loadSproutFile(path)
+    if (fileData) {
+        var model = JSON.parse(model)
+        var tab = tabView.addTab(UTILS.urlToFileName(path))
+        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: fileData })
+        tabView.currentIndex = tabView.count - 1
+    }
 }
 
 function saveFile(path) {

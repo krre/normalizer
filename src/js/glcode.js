@@ -54,12 +54,8 @@ function loadModel(model) {
     print(JSON.stringify(model))
     for (var item in model) {
         var obj = model[item]
-        print(model[item], item, typeof obj)
-//        loadModel(obj)
-
+//        print(model[item], item, typeof obj)
     }
-
-//    print(typeof model)
 }
 
 
