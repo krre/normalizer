@@ -26,6 +26,7 @@ Canvas3D {
         GLCode.initializeGL(root, eventSource)
         root.visible = true
     }
+
     onPaintGL: GLCode.paintGL(root)
 
     Keys.onPressed: Command.run(event)
