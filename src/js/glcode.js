@@ -4,9 +4,7 @@ Qt.include("../3rdparty/fonts/helvetiker_bold.typeface.js")
 Qt.include("../3rdparty/fonts/helvetiker_regular.typeface.js")
 
 var camera, scene, renderer, clock, trackballControls
-var geometry, material, mesh
-var boxSize = 1
-var sphereSize = 1
+var rectSize = 1
 
 function initializeGL(canvas, eventSource) {
     clock = new THREE.Clock();
@@ -22,6 +20,8 @@ function initializeGL(canvas, eventSource) {
     renderer = new THREE.Canvas3DRenderer({canvas: canvas, devicePixelRatio: canvas.devicePixelRatio})
     renderer.setSize(canvas.width, canvas.height)
     renderer.setClearColor(new THREE.Color(0.19, 0.12, 0.08), 1)
+
+    scene = new THREE.Scene()
 
     loadModel(astModel)
 }
@@ -45,31 +45,38 @@ function resizeGL(canvas) {
 
 function loadModel(model) {
     print(JSON.stringify(model))
-    scene = new THREE.Scene()
     scene.add(createLine(new THREE.Vector3(0, 2, 0), new THREE.Vector3(0, -2, 0)))
 
     var rootItemCount = model.length
     if (rootItemCount) {
         var step = Math.PI * 2 / rootItemCount
-        var radius = 2
+        var radius = 1
         for (var i in model) {
             var x = radius * Math.cos(step * i)
             var z = radius * Math.sin(step * i)
-            var item
             var origin = new THREE.Vector3(0, 0, 0)
             var itemPos = new THREE.Vector3(x, 0, z)
-            if (typeof model[i] === "object") {
-                item = createExpression(itemPos)
-                var branchPos = itemPos.multiplyScalar(sphereSize)
-                addBranch(model[i], new THREE.Ray(itemPos, branchPos))
-            } else {
-                item = createLiteral(itemPos, model[i])
-            }
+            var item = createItem(itemPos, model[i])
             item.lookAt(origin)
             scene.add(item)
             scene.add(createLine(origin, itemPos))
         }
     }
+}
+
+function createItem(pos, obj) {
+    var item = new THREE.Object3D()
+    var rect = createRectanle()
+    item.add(rect)
+
+    var text = createText(obj)
+    text.position.y = rectSize / 2
+    item.add(text)
+
+    item.position.x = pos.x
+    item.position.y = pos.y
+    item.position.z = pos.z
+    return item
 }
 
 function addBranch(branch, ray) {
@@ -93,7 +100,22 @@ function addBranch(branch, ray) {
     }
 }
 
-function createLiteral(pos, label) {
+function createLine(startPos, endPos) {
+    var material = new THREE.LineBasicMaterial({ color: 0xff00ff })
+    var geometry = new THREE.Geometry()
+    geometry.vertices.push(startPos, endPos)
+    var line = new THREE.Line(geometry, material)
+    return line
+}
+
+function createRectanle() {
+    var geometry = new THREE.BoxGeometry(rectSize, rectSize, 0)
+    var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe: true })
+    var rectMesh = new THREE.Mesh(geometry, material)
+    return rectMesh
+}
+
+function createText(text) {
     var options = {
         size: 0.5,
         height: 0,
@@ -108,44 +130,14 @@ function createLiteral(pos, label) {
         steps: 1
     }
 
-    var textGeo = new THREE.TextGeometry(label, options)
+    var textGeo = new THREE.TextGeometry(text, options)
     textGeo.computeBoundingBox()
     textGeo.computeVertexNormals()
     var textMat = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
     var textMesh = new THREE.Mesh(textGeo, textMat)
-//    textMesh.rotation.y = Math.PI / 2
-    textMesh.position.x = -textGeo.boundingBox.max.x / 2
-    textMesh.position.y = boxSize / 2
+    textMesh.rotation.y = Math.PI
+    textMesh.position.x = textGeo.boundingBox.max.x / 2
 
-    var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
-    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
-    var box = new THREE.Mesh(geometry, material)
-
-    var literal = new THREE.Object3D()
-    literal.add(textMesh)
-    literal.add(box)
-    literal.position.x = pos.x
-    literal.position.y = pos.y
-    literal.position.z = pos.z
-    return literal
+    return textMesh
 }
-
-function createExpression(pos) {
-    var geometry = new THREE.SphereGeometry(sphereSize)
-    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
-    var sphere = new THREE.Mesh(geometry, material)
-    sphere.position.x = pos.x
-    sphere.position.y = pos.y
-    sphere.position.z = pos.z
-    return sphere
-}
-
-function createLine(startPos, endPos) {
-    var material = new THREE.LineBasicMaterial({ color: 0xff000ff })
-    var geometry = new THREE.Geometry()
-    geometry.vertices.push(startPos, endPos)
-    var line = new THREE.Line(geometry, material)
-    return line
-}
-
 
