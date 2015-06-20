@@ -56,7 +56,7 @@ function loadModel(model) {
             var z = radius * Math.sin(step * i)
             var origin = new THREE.Vector3(0, 0, 0)
             var itemPos = new THREE.Vector3(x, 0, z)
-            var item = createItem(itemPos, model[i])
+            var item = createItem(itemPos, model[i], true)
             item.lookAt(origin)
             scene.add(item)
             scene.add(createLine(origin, itemPos))
@@ -64,14 +64,14 @@ function loadModel(model) {
     }
 }
 
-function createItem(pos, obj) {
+function createItem(pos, text, inverse) {
     var item = new THREE.Object3D()
-    var rect = createRectanle()
-    item.add(rect)
+    var rectMesh = createRectanle()
+    item.add(rectMesh)
 
-    var text = createText(obj)
-    text.position.y = rectSize / 2
-    item.add(text)
+    var textMesh = createText(text, inverse)
+    textMesh.position.y = rectSize / 2
+    item.add(textMesh)
 
     item.position.x = pos.x
     item.position.y = pos.y
@@ -115,7 +115,7 @@ function createRectanle() {
     return rectMesh
 }
 
-function createText(text) {
+function createText(text, inverse) {
     var options = {
         size: 0.5,
         height: 0,
@@ -135,8 +135,8 @@ function createText(text) {
     textGeo.computeVertexNormals()
     var textMat = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
     var textMesh = new THREE.Mesh(textGeo, textMat)
-    textMesh.rotation.y = Math.PI
-    textMesh.position.x = textGeo.boundingBox.max.x / 2
+    textMesh.rotation.y = inverse ? Math.PI : 0
+    textMesh.position.x = textGeo.boundingBox.max.x / 2 * (inverse ? 1 : -1)
 
     return textMesh
 }
