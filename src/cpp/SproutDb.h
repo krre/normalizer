@@ -12,5 +12,6 @@ public:
     Q_INVOKABLE bool create(const QString &path);
     Q_INVOKABLE void open(const QString &path);
 private:
+    void initDb();
     QSqlDatabase db;
 };
