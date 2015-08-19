@@ -9,7 +9,8 @@ class SproutDb: public QObject
 public:
     SproutDb();
     ~SproutDb();
-    Q_INVOKABLE void create(const QString &path);
+    Q_INVOKABLE bool create(const QString &path);
+    Q_INVOKABLE void open(const QString &path);
 private:
     QSqlDatabase db;
 };
