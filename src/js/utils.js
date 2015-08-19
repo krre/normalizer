@@ -8,11 +8,25 @@ function createDynamicObject(parent, url, properties) {
     }
 }
 
+function newFile() {
+    var fileDialog = createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+    fileDialog.accepted.connect(function() {
+        var path = UTILS.urlToPath(fileDialog.fileUrl)
+        if (path.substr(-7) !== ".sprout") {
+            path += ".sprout"
+        }
+        var tab = tabView.addTab(UTILS.urlToFileName(path))
+//        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
+        tabView.currentIndex = tabView.count - 1
+        addRecentFile(path)
+    })
+}
+
 function openFile(path) {
     addRecentFile(path)
     var fileData = UTILS.loadSproutFile(path)
     if (fileData) {
-        var model = JSON.parse(fileData)
+//        var model = JSON.parse(fileData)
         var tab = tabView.addTab(UTILS.urlToFileName(path))
 //        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
         tabView.currentIndex = tabView.count - 1

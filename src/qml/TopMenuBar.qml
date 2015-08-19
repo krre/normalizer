@@ -12,9 +12,7 @@ MenuBar {
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
-            onTriggered: {
-
-            }
+            onTriggered: Utils.newFile()
         }
 
         MenuItem {

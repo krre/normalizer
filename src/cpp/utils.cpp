@@ -7,7 +7,7 @@ QString Utils::urlToPath(QUrl url)
 
 QString Utils::urlToFileName(QUrl url)
 {
-    return url.fileName();
+    return url.fileName().replace(".sprout", "");
 }
 
 QVariant Utils::loadSproutFile(const QString &filePath)
