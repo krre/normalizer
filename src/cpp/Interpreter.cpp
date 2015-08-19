@@ -1,5 +1,5 @@
-#include "interpreter.h"
-#include "settings.h"
+#include "Interpreter.h"
+#include "Settings.h"
 
 Interpreter::Interpreter()
 {

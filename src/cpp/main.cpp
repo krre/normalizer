@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QtQml>
-#include "utils.h"
-#include "settings.h"
-#include "interpreter.h"
+#include "Utils.h"
+#include "Settings.h"
+#include "Interpreter.h"
 
 int main(int argc, char *argv[])
 {

@@ -8,15 +8,15 @@ win32 {
 }
 
 HEADERS += \
-    src/cpp/utils.h \
-    src/cpp/settings.h \
-    src/cpp/interpreter.h
+    src/cpp/Utils.h \
+    src/cpp/Settings.h \
+    src/cpp/Interpreter.h
 
 SOURCES += \
     src/cpp/main.cpp \
-    src/cpp/utils.cpp \
-    src/cpp/settings.cpp \
-    src/cpp/interpreter.cpp
+    src/cpp/Utils.cpp \
+    src/cpp/Settings.cpp \
+    src/cpp/Interpreter.cpp
 
 DISTFILES += \
     README.md \
