@@ -1,6 +1,4 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
+#pragma once
 #include <QtCore>
 
 class Settings : public QObject
@@ -24,5 +22,3 @@ private:
     QSettings *settings;
 
 };
-
-#endif // SETTINGS_H

@@ -1,6 +1,4 @@
-#ifndef INTERPRETER_H
-#define INTERPRETER_H
-
+#pragma once
 #include <QtCore>
 
 class Interpreter: public QProcess
@@ -19,5 +17,3 @@ private slots:
     void onReadyRead();
     void onError(QProcess::ProcessError error);
 };
-
-#endif // INTERPRETER_H

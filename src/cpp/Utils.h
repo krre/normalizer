@@ -1,6 +1,4 @@
-#ifndef UTILS_H
-#define UTILS_H
-
+#pragma once
 #include <QtCore>
 
 class Utils : public QObject
@@ -16,5 +14,3 @@ public:
     Q_INVOKABLE QVariant loadSproutFile(const QString &filePath);
     Q_INVOKABLE void saveSproutFile(const QString filePath, const QVariant &fileData);
 };
-
-#endif // UTILS_H
