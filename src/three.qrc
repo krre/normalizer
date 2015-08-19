@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>js/three.js</file>
-        <file>js/TrackballControls.js</file>
-    </qresource>
-</RCC>

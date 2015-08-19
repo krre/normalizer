@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>3rdparty/ControlEventSource.qml</file>
-        <file>3rdparty/three.js</file>
-        <file>3rdparty/TrackballControls.js</file>
-        <file>3rdparty/fonts/helvetiker_bold.typeface.js</file>
-        <file>3rdparty/fonts/helvetiker_regular.typeface.js</file>
-    </qresource>
-</RCC>

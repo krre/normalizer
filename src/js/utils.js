@@ -14,7 +14,7 @@ function openFile(path) {
     if (fileData) {
         var model = JSON.parse(fileData)
         var tab = tabView.addTab(UTILS.urlToFileName(path))
-        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
+//        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
         tabView.currentIndex = tabView.count - 1
     }
 }

@@ -16,7 +16,6 @@ SOURCES += \
 DISTFILES += \
     README.md \
     src/js/utils.js \
-    src/js/glcode.js \
     src/js/command.js \
     src/qml/main.qml \
     src/qml/TopMenuBar.qml \
@@ -29,17 +28,10 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/About.qml \
-    src/qml/AstArea.qml \
-    src/qml/Options.qml \
-    src/3rdparty/ControlEventSource.qml \
-    src/3rdparty/TrackballControls.js \
-    src/3rdparty/three.js \
-    src/3rdparty/fonts/helvetiker_bold.typeface.js \
-    src/3rdparty/fonts/helvetiker_regular.typeface.js
+    src/qml/Options.qml
 
 RESOURCES += \
-    src/greenery.qrc \
-    src/3rdparty.qrc
+    src/greenery.qrc
 
 HEADERS += \
     src/cpp/utils.h \
