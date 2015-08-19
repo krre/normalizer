@@ -28,7 +28,8 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/About.qml \
-    src/qml/Options.qml
+    src/qml/Options.qml \
+    src/qml/WorkArea.qml
 
 RESOURCES += \
     src/greenery.qrc

@@ -16,7 +16,7 @@ function newFile() {
             path += ".sprout"
         }
         var tab = tabView.addTab(UTILS.urlToFileName(path))
-//        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
+        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
         tabView.currentIndex = tabView.count - 1
         addRecentFile(path)
     })
@@ -26,9 +26,8 @@ function openFile(path) {
     addRecentFile(path)
     var fileData = UTILS.loadSproutFile(path)
     if (fileData) {
-//        var model = JSON.parse(fileData)
         var tab = tabView.addTab(UTILS.urlToFileName(path))
-//        tab.setSource("qrc:/qml/AstArea.qml", { filePath: path, astModel: model })
+        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
         tabView.currentIndex = tabView.count - 1
     }
 }
