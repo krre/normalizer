@@ -8,7 +8,7 @@ SproutDb::SproutDb()
 SproutDb::~SproutDb()
 {
     db.close();
-    qDebug() << "CLOSE";
+//    qDebug() << "CLOSE";
 }
 
 bool SproutDb::create(const QString &path)
@@ -16,13 +16,14 @@ bool SproutDb::create(const QString &path)
     db = QSqlDatabase::addDatabase("QSQLITE", path);
     db.setDatabaseName(path);
     db.open();
-    qDebug() << "NEW";
+//    qDebug() << "NEW";
+    return true;
 }
 
 void SproutDb::open(const QString &path)
 {
     db = QSqlDatabase::database(path);
-    qDebug() << "OPEN";
+//    qDebug() << "OPEN";
 }
 
 
