@@ -1,4 +1,4 @@
-QT += qml quick widgets
+QT += qml quick widgets 3dcore 3drenderer 3dinput 3dquick
 CONFIG += c++11
 TEMPLATE = app
 
@@ -6,6 +6,11 @@ win32 {
     release: DESTDIR = $$OUT_PWD
     debug:   DESTDIR = $$OUT_PWD
 }
+
+HEADERS += \
+    src/cpp/utils.h \
+    src/cpp/settings.h \
+    src/cpp/interpreter.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -34,8 +39,4 @@ DISTFILES += \
 RESOURCES += \
     src/greenery.qrc
 
-HEADERS += \
-    src/cpp/utils.h \
-    src/cpp/settings.h \
-    src/cpp/interpreter.h
 
