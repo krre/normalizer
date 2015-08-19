@@ -15,6 +15,7 @@ function newFile() {
         if (path.substr(-7) !== ".sprout") {
             path += ".sprout"
         }
+        SPROUT_DB.create(path)
         var tab = tabView.addTab(UTILS.urlToFileName(path))
         tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
         tabView.currentIndex = tabView.count - 1

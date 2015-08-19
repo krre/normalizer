@@ -1,5 +1,6 @@
 #pragma once
 #include <QtCore>
+#include <QtSql>
 
 class SproutDb: public QObject
 {
@@ -7,4 +8,8 @@ class SproutDb: public QObject
 
 public:
     SproutDb();
+    ~SproutDb();
+    Q_INVOKABLE void create(const QString &path);
+private:
+    QSqlDatabase db;
 };
