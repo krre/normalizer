@@ -32,14 +32,6 @@ function openFile(path) {
     }
 }
 
-function saveFile(path) {
-    if (path) {
-        UTILS.saveSproutFile(path, JSON.stringify(currentTab.astModel, null, 4))
-    } else {
-        saveAsFile()
-    }
-}
-
 function saveAsFile() {
     var fileDialog = createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
     fileDialog.accepted.connect(function() {
@@ -49,17 +41,8 @@ function saveAsFile() {
         }
         currentTab.filePath = path
         tabView.getTab(tabView.currentIndex).title = UTILS.urlToFileName(path)
-        saveFile(path)
+        addRecentFile(path)
     })
-}
-
-function saveAllFiles() {
-    for (var i = 0; i < tabView.count; i++) {
-        var path = tabView.getTab(i).item.filePath
-        if (path) {
-            saveFile(path)
-        }
-    }
 }
 
 function addRecentFile(path) {

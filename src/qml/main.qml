@@ -47,7 +47,7 @@ ApplicationWindow {
             y = (Screen.height - height) / 2
         }
         Utils.loadRecentFiles()
-//        Utils.loadSession()
+        Utils.loadSession()
     }
 
     onClosing: {
@@ -57,7 +57,7 @@ ApplicationWindow {
 
     function prepareAndClose() {
         Utils.saveRecentFiles(topMenuBar.recentFilesModel)
-//        Utils.saveSession()
+        Utils.saveSession()
         Utils.saveGeometry()
 
         // clearing tab bar to prevent crash caused canvas3d in Qt 5.5 RC1
