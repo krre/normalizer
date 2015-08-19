@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Scene3D 2.0
 import Greenery.Lib 1.0
 import "../js/command.js" as Command
 
@@ -25,5 +26,11 @@ Item {
 
     SproutDb {
         id: sproutDb
+    }
+
+    Scene3D {
+        anchors.fill: parent
+        focus: true
+        aspects: "input"
     }
 }
