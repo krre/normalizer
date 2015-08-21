@@ -17,7 +17,6 @@ bool SproutDb::create(const QString &path)
     db.setDatabaseName(path);
     db.open();
     initDb();
-//    qDebug() << "NEW";
     return true;
 }
 
@@ -29,7 +28,13 @@ void SproutDb::open(const QString &path)
 
 void SproutDb::initDb()
 {
+    QSqlQuery query(db);
+    query.exec("CREATE TABLE Defs(version)");
+    bool result = query.exec("INSERT INTO Defs (version) VALUES ('0.1.0')");
+    if (!result) {
 
+    }
+    qDebug() << "insert" << result;
 }
 
 
