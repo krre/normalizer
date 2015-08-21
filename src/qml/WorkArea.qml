@@ -82,6 +82,20 @@ Item {
                 radius: 3
             }
 
+            CuboidMesh {
+                id: cubeMesh
+                xExtent: 5
+                yExtent: 5
+                zExtent: 5
+            }
+
+            Transform {
+                id: cubeTransform
+                Translate {
+                    translation: Qt.vector3d(10, 0.5, 0)
+                }
+            }
+
             Transform {
                 id: sphereTransform
                 Translate {
@@ -90,8 +104,11 @@ Item {
             }
 
             Entity {
-                id: sphereEntity
                 components: [ sphereMesh, material, sphereTransform ]
+            }
+
+            Entity {
+                components: [ cubeMesh, material, cubeTransform ]
             }
         }
     }
