@@ -24,7 +24,6 @@ DISTFILES += \
     README.md \
     src/js/utils.js \
     src/js/command.js \
-    src/qml/main.qml \
     src/qml/TopMenuBar.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
@@ -36,7 +35,8 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/About.qml \
     src/qml/Options.qml \
-    src/qml/WorkArea.qml
+    src/qml/WorkArea.qml \
+    src/qml/Main.qml
 
 RESOURCES += \
     src/greenery.qrc

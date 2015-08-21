@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/main.qml</file>
+        <file>qml/Main.qml</file>
         <file>qml/TopMenuBar.qml</file>
         <file>js/utils.js</file>
         <file>qml/components/filedialog/FileDialogBase.qml</file>
