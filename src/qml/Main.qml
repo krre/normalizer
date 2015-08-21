@@ -10,8 +10,7 @@ ApplicationWindow {
     id: mainRoot
     property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
-    property alias consoleArea: consoleArea
-    property string commandState: "ready"
+//    property alias consoleArea: consoleArea
     title: "Greenery"
     width: 800
     height: 600
@@ -35,28 +34,12 @@ ApplicationWindow {
 
     Interpreter {
         id: interpreter
-        onConsoleMessage: consoleArea.append(message)
+//        onConsoleMessage: consoleArea.append(message)
     }
 
-    SplitView {
+    TabView {
+        id: tabView
         anchors.fill: parent
-        orientation: Qt.Vertical
-
-        TabView {
-            id: tabView
-            Layout.minimumHeight: 50
-            Layout.fillHeight: true
-            onCurrentIndexChanged: commandState = "ready"
-        }
-
-        TextArea {
-            id: consoleArea
-            Layout.minimumHeight: 50
-            height: 50
-            backgroundVisible: false
-            readOnly: true
-            activeFocusOnPress: false
-        }
     }
 }
 
