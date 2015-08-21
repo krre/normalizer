@@ -78,6 +78,7 @@ ApplicationWindow {
             height: 50
             backgroundVisible: false
             readOnly: true
+            activeFocusOnPress: false
         }
     }
 }

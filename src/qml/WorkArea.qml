@@ -16,7 +16,7 @@ Item {
     }
 
     Component.onCompleted: {
-        forceActiveFocus()
+        keyInput.forceActiveFocus()
         if (isNew) {
             sproutDb.create(filePath)
         } else {
@@ -32,7 +32,6 @@ Item {
 
     Scene3D {
         anchors.fill: parent
-        focus: true
         aspects: "input"
 
         Entity {
@@ -54,24 +53,25 @@ Item {
                 controlledCamera: camera
             }
 
-            components: [
-                FrameGraph {
-                    activeFrameGraph: Viewport {
-                        id: viewport
-                        rect: Qt.rect(0.0, 0.0, 1.0, 1.0)
-                        clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
+            FrameGraph {
+                id: frameGraph
+                activeFrameGraph: Viewport {
+                    id: viewport
+                    rect: Qt.rect(0.0, 0.0, 1.0, 1.0)
+                    clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
 
-                        CameraSelector {
-                            id : cameraSelector
-                            camera: camera
+                    CameraSelector {
+                        id : cameraSelector
+                        camera: camera
 
-                            ClearBuffer {
-                                buffers : ClearBuffer.ColorDepthBuffer
-                            }
+                        ClearBuffer {
+                            buffers : ClearBuffer.ColorDepthBuffer
                         }
                     }
                 }
-            ]
+            }
+
+            components: [ frameGraph ]
 
             Material {
                 id: material
@@ -93,6 +93,15 @@ Item {
                 id: sphereEntity
                 components: [ sphereMesh, material, sphereTransform ]
             }
+        }
+    }
+
+    Item {
+        id: keyInput
+        anchors.fill: parent
+        Keys.onTabPressed: print("tab")
+        Keys.onPressed: {
+            print(event.key)
         }
     }
 }
