@@ -17,29 +17,6 @@ ApplicationWindow {
     height: 600
     visible: true
     menuBar: TopMenuBar { id: topMenuBar }
-    statusBar: StatusBar {
-        RowLayout {
-
-            Label {
-                text: commandState
-            }
-
-            TextField {
-                id: inputField
-                property bool isActive: false
-                Layout.preferredWidth: isActive ? 200 : 0
-                onWidthChanged: {
-                    if (width) {
-                        forceActiveFocus()
-                    }  else if (currentTab) {
-                        text = ""
-                        currentTab.forceActiveFocus()
-                    }
-                }
-                Keys.onReturnPressed: Command.newItem(text)
-            }
-        }
-    }
 
     Component.onCompleted: {
         if (!Utils.loadGeometry()) {
