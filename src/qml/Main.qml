@@ -48,5 +48,3 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
     }
 }
-
-

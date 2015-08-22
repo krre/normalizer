@@ -1,7 +1,4 @@
-var count = 0
-
 function run(event) {
-    output.textEdit.append("Message " + count++)
     return
     if (commandState === "ready") {
         switch (event.text) {
