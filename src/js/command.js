@@ -1,4 +1,8 @@
+var count = 0
+
 function run(event) {
+    output.textEdit.append("Message " + count++)
+    return
     if (commandState === "ready") {
         switch (event.text) {
             case "a": commandState = "add"; break
@@ -19,8 +23,8 @@ function run(event) {
 }
 
 function cancel() {
-    commandState = "ready"
-    inputField.isActive = false
+//    commandState = "ready"
+//    inputField.isActive = false
 }
 
 function newItem(value) {

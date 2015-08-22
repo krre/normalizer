@@ -36,6 +36,7 @@ DISTFILES += \
     src/qml/About.qml \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
+    src/qml/Output.qml \
     src/qml/Main.qml
 
 RESOURCES += \

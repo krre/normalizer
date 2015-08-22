@@ -146,7 +146,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Clear Output")
             shortcut: "Shift+Del"
-            onTriggered: consoleArea.text = ""
+            onTriggered: output.textEdit.text = ""
         }
 
         MenuItem {
