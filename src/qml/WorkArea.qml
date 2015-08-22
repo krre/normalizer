@@ -16,7 +16,7 @@ Item {
     }
 
     Component.onCompleted: {
-        keyInput.forceActiveFocus()
+        forceActiveFocus()
         if (isNew) {
             sproutDb.create(filePath)
         } else {
@@ -110,15 +110,6 @@ Item {
             Entity {
                 components: [ cubeMesh, material, cubeTransform ]
             }
-        }
-    }
-
-    Item {
-        id: keyInput
-        anchors.fill: parent
-        Keys.onTabPressed: print("tab")
-        Keys.onPressed: {
-            print(event.key)
         }
     }
 }
