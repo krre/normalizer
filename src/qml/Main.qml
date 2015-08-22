@@ -32,9 +32,9 @@ ApplicationWindow {
         Utils.saveGeometry()
     }
 
-    Interpreter {
-        id: interpreter
-//        onConsoleMessage: consoleArea.append(message)
+    Console {
+        id: cons
+        onMessage: print(message)
     }
 
     TabView {

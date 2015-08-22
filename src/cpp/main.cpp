@@ -2,14 +2,14 @@
 #include <QtQml>
 #include "Utils.h"
 #include "Settings.h"
-#include "Interpreter.h"
+#include "Console.h"
 #include "SproutDb.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    qmlRegisterType<Interpreter>("Greenery.Lib", 1, 0, "Interpreter");
+    qmlRegisterType<Console>("Greenery.Lib", 1, 0, "Console");
     qmlRegisterType<SproutDb>("Greenery.Lib", 1, 0, "SproutDb");
 
     Utils utils;

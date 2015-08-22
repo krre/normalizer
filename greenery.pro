@@ -10,15 +10,15 @@ win32 {
 HEADERS += \
     src/cpp/Utils.h \
     src/cpp/Settings.h \
-    src/cpp/Interpreter.h \
-    src/cpp/SproutDb.h
+    src/cpp/SproutDb.h \
+    src/cpp/Console.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/Utils.cpp \
     src/cpp/Settings.cpp \
-    src/cpp/Interpreter.cpp \
-    src/cpp/SproutDb.cpp
+    src/cpp/SproutDb.cpp \
+    src/cpp/Console.cpp
 
 DISTFILES += \
     README.md \
