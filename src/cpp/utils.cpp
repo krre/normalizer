@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "utils.h"
 
 QString Utils::urlToPath(QUrl url)
 {

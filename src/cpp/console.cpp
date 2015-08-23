@@ -1,5 +1,5 @@
-#include "Console.h"
-#include "Settings.h"
+#include "console.h"
+#include "settings.h"
 
 Console::Console()
 {

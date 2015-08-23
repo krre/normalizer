@@ -1,9 +1,9 @@
 #include <QApplication>
 #include <QtQml>
-#include "Utils.h"
-#include "Settings.h"
-#include "Console.h"
-#include "SproutDb.h"
+#include "utils.h"
+#include "settings.h"
+#include "console.h"
+#include "sproutdb.h"
 
 int main(int argc, char *argv[])
 {

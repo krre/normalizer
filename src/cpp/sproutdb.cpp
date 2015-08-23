@@ -1,4 +1,4 @@
-#include "SproutDb.h"
+#include "sproutdb.h"
 
 SproutDb::SproutDb()
 {

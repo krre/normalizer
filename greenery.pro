@@ -8,17 +8,17 @@ win32 {
 }
 
 HEADERS += \
-    src/cpp/Utils.h \
-    src/cpp/Settings.h \
-    src/cpp/SproutDb.h \
-    src/cpp/Console.h
+    src/cpp/console.h \
+    src/cpp/settings.h \
+    src/cpp/sproutdb.h \
+    src/cpp/utils.h
 
 SOURCES += \
     src/cpp/main.cpp \
-    src/cpp/Utils.cpp \
-    src/cpp/Settings.cpp \
-    src/cpp/SproutDb.cpp \
-    src/cpp/Console.cpp
+    src/cpp/utils.cpp \
+    src/cpp/sproutdb.cpp \
+    src/cpp/settings.cpp \
+    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \
