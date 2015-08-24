@@ -16,5 +16,8 @@
         <file>qml/Options.qml</file>
         <file>qml/WorkArea.qml</file>
         <file>qml/Output.qml</file>
+        <file>qml/entities/EntityBase.qml</file>
+        <file>qml/entities/Cube.qml</file>
+        <file>qml/entities/Sphere.qml</file>
     </qresource>
 </RCC>

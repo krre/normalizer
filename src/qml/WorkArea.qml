@@ -4,6 +4,7 @@ import Qt3D.Renderer 2.0
 import QtQuick.Scene3D 2.0
 import Greenery.Lib 1.0
 import "../js/command.js" as Command
+import "../js/utils.js" as Utils
 
 Item {
     id: root
@@ -22,9 +23,14 @@ Item {
         } else {
             sproutDb.open(filePath)
         }
+
+        Utils.createDynamicObject(origin, "qrc:/qml/entities/Cube.qml", { x: 10 })
+        Utils.createDynamicObject(origin, "qrc:/qml/entities/Sphere.qml", { x: -10 })
     }
 
-    Keys.onPressed: Command.run(event)
+    Keys.onPressed: {
+        Command.run(event)
+    }
 
     SproutDb {
         id: sproutDb
@@ -74,42 +80,8 @@ Item {
 
             components: [ frameGraph ]
 
-            Material {
-                id: material
-            }
-
-            SphereMesh {
-                id: sphereMesh
-                radius: 3
-            }
-
-            CuboidMesh {
-                id: cubeMesh
-                xExtent: 5
-                yExtent: 5
-                zExtent: 5
-            }
-
-            Transform {
-                id: cubeTransform
-                Translate {
-                    translation: Qt.vector3d(10, 0.5, 0)
-                }
-            }
-
-            Transform {
-                id: sphereTransform
-                Translate {
-                    translation: Qt.vector3d(0, 0, 0)
-                }
-            }
-
             Entity {
-                components: [ sphereMesh, material, sphereTransform ]
-            }
-
-            Entity {
-                components: [ cubeMesh, material, cubeTransform ]
+                id: origin
             }
         }
     }

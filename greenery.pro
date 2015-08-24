@@ -33,6 +33,9 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogQuestion.qml \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/components/messagedialog/MessageDialogError.qml \
+    src/qml/entities/EntityBase.qml \
+    src/qml/entities/Cube.qml \
+    src/qml/entities/Sphere.qml \
     src/qml/About.qml \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
