@@ -26,7 +26,7 @@ Item {
 
         Utils.createDynamicObject(origin, "qrc:/qml/entities/Cube.qml", { x: 10 })
         Utils.createDynamicObject(origin, "qrc:/qml/entities/Sphere.qml", { x: -10 })
-        Utils.createDynamicObject(origin, "qrc:/qml/entities/Text3D.qml", { text: "abc" })
+        Utils.createDynamicObject(origin, "qrc:/qml/entities/Text3D.qml", { text: "hello world" })
     }
 
     Keys.onPressed: {

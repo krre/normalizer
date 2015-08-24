@@ -8,7 +8,7 @@ Entity {
     property string text
     property int y: 1
     property real scale: 5
-    property string setOfLetters: "abc?"
+    property string setOfLetters: "abcdefghijklmnoprstuvwxyz0123456789 "
 
     onTextChanged: {
         // remove old letters
@@ -21,7 +21,9 @@ Entity {
 
         for (var index in text) {
             var letter = setOfLetters.search(text[index]) !== -1 ? text[index] : "query"
-            textMesh.createObject(root, { x: -index, scale: 5, letter: letter })
+            if (letter !== " ") {
+                textMesh.createObject(root, { x: -index, scale: 5, letter: letter })
+            }
         }
     }
 

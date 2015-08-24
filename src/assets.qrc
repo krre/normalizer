@@ -4,5 +4,38 @@
         <file>assets/obj/letter/b.obj</file>
         <file>assets/obj/letter/c.obj</file>
         <file>assets/obj/letter/query.obj</file>
+        <file>assets/obj/letter/0.obj</file>
+        <file>assets/obj/letter/1.obj</file>
+        <file>assets/obj/letter/2.obj</file>
+        <file>assets/obj/letter/3.obj</file>
+        <file>assets/obj/letter/4.obj</file>
+        <file>assets/obj/letter/5.obj</file>
+        <file>assets/obj/letter/6.obj</file>
+        <file>assets/obj/letter/7.obj</file>
+        <file>assets/obj/letter/8.obj</file>
+        <file>assets/obj/letter/9.obj</file>
+        <file>assets/obj/letter/d.obj</file>
+        <file>assets/obj/letter/e.obj</file>
+        <file>assets/obj/letter/f.obj</file>
+        <file>assets/obj/letter/g.obj</file>
+        <file>assets/obj/letter/h.obj</file>
+        <file>assets/obj/letter/i.obj</file>
+        <file>assets/obj/letter/j.obj</file>
+        <file>assets/obj/letter/k.obj</file>
+        <file>assets/obj/letter/l.obj</file>
+        <file>assets/obj/letter/m.obj</file>
+        <file>assets/obj/letter/n.obj</file>
+        <file>assets/obj/letter/o.obj</file>
+        <file>assets/obj/letter/p.obj</file>
+        <file>assets/obj/letter/q.obj</file>
+        <file>assets/obj/letter/r.obj</file>
+        <file>assets/obj/letter/s.obj</file>
+        <file>assets/obj/letter/t.obj</file>
+        <file>assets/obj/letter/u.obj</file>
+        <file>assets/obj/letter/v.obj</file>
+        <file>assets/obj/letter/w.obj</file>
+        <file>assets/obj/letter/x.obj</file>
+        <file>assets/obj/letter/y.obj</file>
+        <file>assets/obj/letter/z.obj</file>
     </qresource>
 </RCC>
