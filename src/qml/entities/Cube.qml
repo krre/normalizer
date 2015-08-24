@@ -6,6 +6,6 @@ EntityBase {
       xExtent: 5
       yExtent: 5
       zExtent: 5
-  }
+    }
 }
 

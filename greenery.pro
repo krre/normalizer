@@ -36,6 +36,7 @@ DISTFILES += \
     src/qml/entities/EntityBase.qml \
     src/qml/entities/Cube.qml \
     src/qml/entities/Sphere.qml \
+    src/qml/entities/Text3D.qml \
     src/qml/About.qml \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
@@ -43,6 +44,7 @@ DISTFILES += \
     src/qml/main.qml
 
 RESOURCES += \
-    src/greenery.qrc
+    src/greenery.qrc \
+    src/assets.qrc
 
 
