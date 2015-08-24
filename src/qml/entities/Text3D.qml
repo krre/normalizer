@@ -1,52 +1,36 @@
 import QtQuick 2.5
 import Qt3D 2.0
 import Qt3D.Renderer 2.0
+import "../../js/utils.js" as Utils
 
 Entity {
     id: root
-    property string text: "abc"
+    property string text
     property int y: 1
     property real scale: 5
+    property string setOfLetters: "abc?"
 
-    Component.onCompleted: {
-        a.createObject(root, { x: 0, y: y, scale: scale })
-        b.createObject(root, { x: -1, y: y, scale: scale })
-        c.createObject(root, { x: -2, y: y, scale: scale })
-        query.createObject(root, { x: -3, y: y, scale: scale })
-    }
-
-    Component {
-        id: a
-        EntityBase {
-            mesh: Mesh {
-                source: "qrc:/assets/obj/letter/a.obj"
+    onTextChanged: {
+        // remove old letters
+        for (var item in root.childNodes) {
+            var child = root.childNodes[item]
+            if (child) {
+                child.destroy()
             }
+        }
+
+        for (var index in text) {
+            var letter = setOfLetters.search(text[index]) !== -1 ? text[index] : "query"
+            textMesh.createObject(root, { x: -index, scale: 5, letter: letter })
         }
     }
 
     Component {
-        id: b
+        id: textMesh
         EntityBase {
+            property string letter: "a"
             mesh: Mesh {
-                source: "qrc:/assets/obj/letter/b.obj"
-            }
-        }
-    }
-
-    Component {
-        id: c
-        EntityBase {
-            mesh: Mesh {
-                source: "qrc:/assets/obj/letter/c.obj"
-            }
-        }
-    }
-
-    Component {
-        id: query
-        EntityBase {
-            mesh: Mesh {
-                source: "qrc:/assets/obj/letter/query.obj"
+                source: "qrc:/assets/obj/letter/" + letter + ".obj"
             }
         }
     }
