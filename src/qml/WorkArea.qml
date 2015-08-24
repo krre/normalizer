@@ -50,7 +50,8 @@ Item {
             }
 
             Configuration  {
-                controlledCamera: camera
+                // disabled to prevent crash on close tab
+//                controlledCamera: camera
             }
 
             FrameGraph {
