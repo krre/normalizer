@@ -37,7 +37,7 @@ DISTFILES += \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
     src/qml/Output.qml \
-    src/qml/Main.qml
+    src/qml/main.qml
 
 RESOURCES += \
     src/greenery.qrc
