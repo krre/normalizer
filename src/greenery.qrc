@@ -20,5 +20,6 @@
         <file>qml/entities/Cube.qml</file>
         <file>qml/entities/Sphere.qml</file>
         <file>qml/entities/Text3D.qml</file>
+        <file>qml/blocks/Print.qml</file>
     </qresource>
 </RCC>

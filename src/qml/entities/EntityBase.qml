@@ -5,7 +5,11 @@ import Qt3D.Renderer 2.0
 Entity {
     id: root
     property Material material: Material {}
-    property var mesh: CuboidMesh {}
+    property var mesh: CuboidMesh {
+        xExtent: 5
+        yExtent: 5
+        zExtent: 5
+    }
 
     property int x: 0
     property int y: 0

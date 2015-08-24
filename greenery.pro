@@ -37,6 +37,7 @@ DISTFILES += \
     src/qml/entities/Cube.qml \
     src/qml/entities/Sphere.qml \
     src/qml/entities/Text3D.qml \
+    src/qml/blocks/Print.qml \
     src/qml/About.qml \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
