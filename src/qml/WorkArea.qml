@@ -24,10 +24,7 @@ Item {
             sproutDb.open(filePath)
         }
 
-//        Utils.createDynamicObject(origin, "qrc:/qml/entities/Cube.qml", { x: 10 })
-//        Utils.createDynamicObject(origin, "qrc:/qml/entities/Sphere.qml", { x: -10 })
-//        Utils.createDynamicObject(origin, "qrc:/qml/entities/Text3D.qml", { text: "hello world" })
-        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { text: "hello world" })
+        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "hello world" })
     }
 
     Keys.onPressed: {
