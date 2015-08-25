@@ -10,6 +10,7 @@ Dialog {
     width: 400
     height: 200
     visible: true
+    modality: Qt.ApplicationModal
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     Component.onCompleted: sproutPath.text = SETTINGS.getSproutPath()
