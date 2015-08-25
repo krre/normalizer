@@ -18,4 +18,8 @@ EntityBase {
         x: -2
         y: 0
     }
+
+//    Rectangle {
+//        color: "#0d0d2b"
+//    }
 }

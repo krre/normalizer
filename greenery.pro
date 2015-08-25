@@ -28,6 +28,7 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
+    src/qml/components/filedialog/FileDialogDirectory.qml \
     src/qml/components/messagedialog/MessageDialogBase.qml \
     src/qml/components/messagedialog/MessageDialogInformation.qml \
     src/qml/components/messagedialog/MessageDialogQuestion.qml \
@@ -42,7 +43,8 @@ DISTFILES += \
     src/qml/Options.qml \
     src/qml/WorkArea.qml \
     src/qml/Output.qml \
-    src/qml/main.qml
+    src/qml/main.qml \
+    src/qml/NewProject.qml
 
 RESOURCES += \
     src/greenery.qrc \

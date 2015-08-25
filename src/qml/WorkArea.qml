@@ -12,6 +12,7 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property bool isNew: false
+    property string module
 
     function reset() {
         camera.reset()

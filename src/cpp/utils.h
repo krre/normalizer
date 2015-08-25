@@ -13,4 +13,5 @@ public:
     Q_INVOKABLE QString urlToFileName(QUrl url);
     Q_INVOKABLE QVariant loadSproutFile(const QString &filePath);
     Q_INVOKABLE void saveSproutFile(const QString filePath, const QVariant &fileData);
+    Q_INVOKABLE QString homePath() { return QStandardPaths::writableLocation(QStandardPaths::HomeLocation); }
 };
