@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
 import Greenery.Lib 1.0
+import "sheets"
 import "../js/utils.js" as Utils
 import "../js/command.js" as Command
 
@@ -46,5 +47,13 @@ ApplicationWindow {
         id: output
         width: parent.width
         anchors.bottom: parent.bottom
+    }
+
+    CommandSheet {
+        id: commandSheet
+        anchors.top: parent.top
+        anchors.bottom: output.top
+        anchors.topMargin: 30
+        anchors.right: parent.right
     }
 }

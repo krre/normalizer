@@ -154,6 +154,13 @@ MenuBar {
             shortcut: "F12"
             onTriggered:currentTab.reset()
         }
+
+        MenuItem {
+            text: qsTr("Command Sheet")
+            checkable: true
+            checked: true
+            onTriggered: commandSheet.visible = !commandSheet.visible
+        }
     }
 
     Menu {
