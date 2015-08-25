@@ -17,6 +17,8 @@ public:
     Q_INVOKABLE QStringList getSession();
     Q_INVOKABLE void setSproutPath(const QString &path);
     Q_INVOKABLE QString getSproutPath();
+    Q_INVOKABLE void setRecentDirectory(const QString &path);
+    Q_INVOKABLE QString getRecentDirectory();
 
 private:
     QSettings *settings;

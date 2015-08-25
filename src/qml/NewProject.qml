@@ -24,6 +24,7 @@ Dialog {
         tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, isNew: true, module: module.text })
         tabView.currentIndex = tabView.count - 1
         Utils.addRecentFile(path)
+        SETTINGS.setRecentDirectory(directory.text)
     }
 
     GridLayout {
@@ -60,7 +61,7 @@ Dialog {
             TextField {
                 id: directory
                 Layout.fillWidth: true
-                text: UTILS.homePath()
+                text: SETTINGS.getRecentDirectory() ? SETTINGS.getRecentDirectory() : UTILS.homePath()
             }
 
             Button {

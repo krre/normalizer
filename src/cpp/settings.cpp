@@ -106,3 +106,15 @@ QString Settings::getSproutPath()
 {
     return settings->value("Sprout/path").toString();
 }
+
+void Settings::setRecentDirectory(const QString &path)
+{
+    settings->beginGroup("RecentDirectory");
+        settings->setValue("path", path);
+    settings->endGroup();
+}
+
+QString Settings::getRecentDirectory()
+{
+    return settings->value("RecentDirectory/path").toString();
+}
