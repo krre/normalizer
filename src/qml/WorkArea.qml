@@ -64,7 +64,7 @@ Item {
                 activeFrameGraph: Viewport {
                     id: viewport
                     rect: Qt.rect(0.0, 0.0, 1.0, 1.0)
-                    clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
+                    clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
 
                     CameraSelector {
                         id : cameraSelector
