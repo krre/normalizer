@@ -12,8 +12,9 @@ function openFile(path) {
     addRecentFile(path)
     var fileData = UTILS.loadSproutFile(path)
     if (fileData) {
-        var tab = tabView.addTab(UTILS.urlToFileName(path))
-        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
+        var projectName = UTILS.urlToFileName(path)
+        var tab = tabView.addTab(projectName)
+        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: projectName })
         tabView.currentIndex = tabView.count - 1
     }
 }

@@ -24,5 +24,6 @@
         <file>qml/NewProject.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/sheets/CommandSheet.qml</file>
+        <file>qml/blocks/Project.qml</file>
     </qresource>
 </RCC>
