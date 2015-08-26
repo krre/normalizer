@@ -20,8 +20,10 @@ Dialog {
 
     onAccepted: {
         var path = directory.text + "/" + name.text + ".sprout"
+        PROJECT.create(path)
+
         var tab = tabView.addTab(name.text)
-        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, isNew: true, projectName: name, module: module.text })
+        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: name })
         tabView.currentIndex = tabView.count - 1
         Utils.addRecentFile(path)
         SETTINGS.setRecentDirectory(directory.text)

@@ -11,14 +11,16 @@ HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/sproutdb.h \
-    src/cpp/utils.h
+    src/cpp/utils.h \
+    src/cpp/project.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/sproutdb.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp
+    src/cpp/console.cpp \
+    src/cpp/project.cpp
 
 DISTFILES += \
     README.md \

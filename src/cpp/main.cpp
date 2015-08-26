@@ -4,6 +4,7 @@
 #include "settings.h"
 #include "console.h"
 #include "sproutdb.h"
+#include "project.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,8 +15,10 @@ int main(int argc, char *argv[])
 
     Utils utils;
     Settings settings;
+    Project project;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", &settings);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));

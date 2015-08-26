@@ -9,13 +9,11 @@ class SproutDb: public QObject
 public:
     SproutDb();
     ~SproutDb();
-    Q_INVOKABLE bool create(const QString &path);
     Q_INVOKABLE void open(const QString &path);
     Q_INVOKABLE void readRecord();
     Q_INVOKABLE void insertRecord();
     Q_INVOKABLE void updateRecord();
     Q_INVOKABLE void deleteRecord();
 private:
-    void initDb();
     QSqlDatabase db;
 };

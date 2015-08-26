@@ -11,8 +11,6 @@ Item {
     property alias sproutDb: sproutDb
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
-    property bool isNew: false
-    property string module
     property string projectName: UTILS.urlToFileName()
 
     function reset() {
@@ -21,11 +19,7 @@ Item {
 
     Component.onCompleted: {
         forceActiveFocus()
-        if (isNew) {
-            sproutDb.create(filePath)
-        } else {
-            sproutDb.open(filePath)
-        }
+        sproutDb.open(filePath)
 
 //        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "hello world" })
         Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: projectName })
