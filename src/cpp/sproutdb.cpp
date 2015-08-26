@@ -28,11 +28,33 @@ void SproutDb::open(const QString &path)
     db = QSqlDatabase::database(path);
 }
 
+void SproutDb::readRecord()
+{
+
+}
+
+void SproutDb::insertRecord()
+{
+
+}
+
+void SproutDb::updateRecord()
+{
+
+}
+
+void SproutDb::deleteRecord()
+{
+
+}
+
 void SproutDb::initDb()
 {
     QSqlQuery query(db);
     query.exec("CREATE TABLE Defs(version)");
-    query.exec("CREATE TABLE Functions(name, command, argument)");
+    query.exec("CREATE TABLE Modules(id, name)");
+    query.exec("CREATE TABLE Functions(id, name, command, argument)");
+    query.exec("CREATE TABLE Comments(id, comment)");
     bool result = query.exec("INSERT INTO Defs (version) VALUES ('0.1.0')");
     if (!result) {
 
