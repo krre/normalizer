@@ -5,6 +5,7 @@ import QtQuick.Scene3D 2.0
 import Greenery.Lib 1.0
 import "../js/command.js" as Command
 import "../js/utils.js" as Utils
+import "../js/world.js" as World
 
 Item {
     id: root
@@ -19,9 +20,7 @@ Item {
     Component.onCompleted: {
         forceActiveFocus()
         sproutDb.open(filePath)
-
-//        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "hello world" })
-//        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: projectName })
+        World.createWorld()
     }
 
     Keys.onPressed: {

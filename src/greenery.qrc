@@ -25,5 +25,6 @@
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/sheets/CommandSheet.qml</file>
         <file>qml/blocks/Project.qml</file>
+        <file>js/world.js</file>
     </qresource>
 </RCC>
