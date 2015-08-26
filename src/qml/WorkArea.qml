@@ -12,6 +12,7 @@ Item {
     property alias sproutDb: sproutDb
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
+    property string commandState: Command.Ready
 
     function reset() {
         camera.reset()
