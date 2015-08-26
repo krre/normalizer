@@ -15,8 +15,8 @@ bool SproutDb::create(const QString &path)
     db = QSqlDatabase::addDatabase("QSQLITE", path);
     db.setDatabaseName(path);
     if (!db.open()) {
-         qDebug("Error occurred opening the database.");
-         qDebug("%s.", qPrintable(db.lastError().text()));
+         qDebug("Error occurred opening the database");
+         qDebug("%s", qPrintable(db.lastError().text()));
          return -1;
     }
     initDb();
@@ -55,11 +55,6 @@ void SproutDb::initDb()
     query.exec("CREATE TABLE Modules(id, name)");
     query.exec("CREATE TABLE Functions(id, name, command, argument)");
     query.exec("CREATE TABLE Comments(id, comment)");
-    bool result = query.exec("INSERT INTO Defs (version) VALUES ('0.1.0')");
-    if (!result) {
-
-    }
-    qDebug() << "insert" << result;
 }
 
 
