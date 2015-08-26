@@ -11,7 +11,6 @@ Item {
     property alias sproutDb: sproutDb
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
-    property string projectName: UTILS.urlToFileName()
 
     function reset() {
         camera.reset()
@@ -22,7 +21,7 @@ Item {
         sproutDb.open(filePath)
 
 //        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "hello world" })
-        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: projectName })
+//        Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: projectName })
     }
 
     Keys.onPressed: {

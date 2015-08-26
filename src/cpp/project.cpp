@@ -5,7 +5,7 @@ Project::Project()
 
 }
 
-bool Project::create(const QString &path)
+bool Project::create(const QString &path, const QString &name)
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", path);
     db.setDatabaseName(path);

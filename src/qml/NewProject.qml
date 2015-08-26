@@ -19,11 +19,11 @@ Dialog {
     }
 
     onAccepted: {
-        var path = directory.text + "/" + name.text + ".sprout"
-        PROJECT.create(path)
+        var path = directory.text + "/" + file.text + ".sprout"
+        PROJECT.create(path, name.text)
 
         var tab = tabView.addTab(name.text)
-        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: name })
+        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
         tabView.currentIndex = tabView.count - 1
         Utils.addRecentFile(path)
         SETTINGS.setRecentDirectory(directory.text)
@@ -44,13 +44,13 @@ Dialog {
         }
 
         Label {
-            text: qsTr("Module:")
+            text: qsTr("File:")
         }
 
         TextField {
-            id: module
+            id: file
             Layout.fillWidth: true
-            text: "main"
+            text: "project-1.0"
         }
 
         Label {
@@ -75,6 +75,16 @@ Dialog {
                     })
                 }
             }
+        }
+
+        Label {
+            id: template
+            text: qsTr("Template:")
+        }
+
+        ComboBox {
+            Layout.fillWidth: true
+            model: ["Empty", "Hello World"]
         }
     }
 }
