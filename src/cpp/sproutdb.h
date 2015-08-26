@@ -10,7 +10,7 @@ public:
     SproutDb();
     ~SproutDb();
     Q_INVOKABLE void open(const QString &path);
-    Q_INVOKABLE QVariantMap readRecord(const QString &table);
+    Q_INVOKABLE QVariantList readRecords(const QString &sql);
     Q_INVOKABLE void insertRecord();
     Q_INVOKABLE void updateRecord();
     Q_INVOKABLE void deleteRecord();

@@ -20,21 +20,28 @@ void SproutDb::open(const QString &path)
     }
 }
 
-QVariantMap SproutDb::readRecord(const QString &table)
+QVariantList SproutDb::readRecords(const QString &sql)
 {
     QSqlQuery query(db);
-    bool result = query.exec("SELECT * FROM " + table);
+    bool result = query.exec(sql);
     if (!result) {
         qDebug("Error occurred insert record");
         qDebug("%s", qPrintable(query.lastError().text()));
-        return QVariantMap();
+        return QVariantList();
     }
 
+    QVariantList list;
     QVariantMap map;
+    QSqlRecord record = query.record();
+    int columnCount = record.count();
     while (query.next()) {
-        map[query.value(0).toString()] = query.value(1).toString();
+        map.clear();
+        for (int i = 0; i < columnCount; i++) {
+            map[record.fieldName(i)] = query.value(i).toString();
+        }
+        list << map;
     }
-    return map;
+    return list;
 }
 
 void SproutDb::insertRecord()
