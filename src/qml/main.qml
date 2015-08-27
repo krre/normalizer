@@ -34,5 +34,6 @@ ApplicationWindow {
     TabView {
         id: tabView
         anchors.fill: parent
+        frameVisible: false
     }
 }

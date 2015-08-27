@@ -115,8 +115,10 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Cancel")
-            shortcut: "Esc"
-            onTriggered: currentTab.cancel()
+            shortcut: "Tab"
+            onTriggered: {
+                currentTab.cancel()
+            }
         }
     }
 

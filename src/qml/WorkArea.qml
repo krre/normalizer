@@ -36,6 +36,8 @@ Item {
         Command.run(event)
     }
 
+    Keys.onEscapePressed: cancel()
+
     SproutDb {
         id: sproutDb
     }
