@@ -44,9 +44,14 @@ QVariantList SproutDb::readRecords(const QString &sql)
     return list;
 }
 
-void SproutDb::insertRecord()
+void SproutDb::insertRecord(const QString &sql)
 {
-
+    QSqlQuery query(db);
+    bool result = query.exec(sql);
+    if (!result) {
+        qDebug("Error occurred insert record");
+        qDebug("%s", qPrintable(query.lastError().text()));
+    }
 }
 
 void SproutDb::updateRecord()

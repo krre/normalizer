@@ -65,20 +65,40 @@ Item {
         }
     }
 
-    Row {
+    Column {
         anchors.fill: parent
         anchors.margins: 10
-        visible: commandState !== Command.Ready
-        spacing: 20
+        spacing: 10
 
-        Label {
-            text: qsTr("Mode:")
-            color: labelColor
+        Row {
+            visible: commandState !== Command.Ready
+            spacing: 20
+
+            Label {
+                text: qsTr("Mode:")
+                color: labelColor
+            }
+
+            Label {
+                text: commandState
+                color: labelColor
+            }
         }
 
-        Label {
-            text: commandState
-            color: labelColor
+        Grid {
+            columns: 2
+            columnSpacing: 20
+            visible: commandState === Command.Add
+
+            Label {
+                text: "m"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Module")
+                color: labelColor
+            }
         }
     }
 }

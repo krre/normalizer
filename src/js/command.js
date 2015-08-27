@@ -1,3 +1,5 @@
+.import "../js/world.js" as World
+
 var Ready = "Ready"
 var Add = "Add"
 var Edit = "Edit"
@@ -16,7 +18,7 @@ function run(event) {
         }
     } else if (commandState === Add) {
         switch (event.text) {
-
+            case "m": World.addModule(); commandState = Ready; break
         }
     } else if (commandState === Delete) {
         switch (event.text) {

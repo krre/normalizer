@@ -10,3 +10,7 @@ function createWorld() {
         }
     }
 }
+
+function addModule() {
+    sproutDb.insertRecord("INSERT INTO Modules (name) VALUES ('module1')")
+}

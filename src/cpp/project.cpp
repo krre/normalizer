@@ -12,7 +12,7 @@ bool Project::create(const QString &path, const QString &projectName)
     if (!db.open()) {
          qDebug("Error occurred opening the database");
          qDebug("%s", qPrintable(db.lastError().text()));
-         return -1;
+         return false;
     }
     initTables(db);
     initRecords(db, projectName);
@@ -38,7 +38,7 @@ void Project::initRecords(const QSqlDatabase &db, const QString &projectName)
     bool result = query.exec();
     if (!result) {
         qDebug("Error occurred insert record");
-        qDebug("%s", qPrintable(db.lastError().text()));
+        qDebug("%s", qPrintable(query.lastError().text()));
     }
 
     query.bindValue(":name", "project");
@@ -46,7 +46,7 @@ void Project::initRecords(const QSqlDatabase &db, const QString &projectName)
     result = query.exec();
     if (!result) {
         qDebug("Error occurred insert record");
-        qDebug("%s", qPrintable(db.lastError().text()));
+        qDebug("%s", qPrintable(query.lastError().text()));
     }
 }
 
