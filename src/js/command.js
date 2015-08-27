@@ -30,8 +30,9 @@ function run(event) {
         switch (event.text) {
 
         }
+    } else if (commandState === Info) {
+        switch (event.text) {
+
+        }
     }
 }
-
-
-
