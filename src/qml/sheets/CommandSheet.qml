@@ -11,17 +11,17 @@ Item {
         anchors.margins: 10
 
         Label {
-            text: "A | Add"
+            text: "a | Add"
             color: labelColor
         }
 
         Label {
-            text: "U | Update"
+            text: "e | Edit"
             color: labelColor
         }
 
         Label {
-            text: "D | Delete"
+            text: "d | Delete"
             color: labelColor
         }
     }
