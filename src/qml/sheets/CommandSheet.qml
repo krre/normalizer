@@ -6,27 +6,59 @@ Item {
     width: 200
     property color labelColor: "white"
 
-    Column {
+    Grid {
         anchors.fill: parent
         anchors.margins: 10
+        columns: 2
+        columnSpacing: 20
 
         Label {
-            text: "a | Add"
+            text: "a"
             color: labelColor
         }
 
         Label {
-            text: "e | Edit"
+            text: qsTr("Add")
             color: labelColor
         }
 
         Label {
-            text: "d | Delete"
+            text: "e"
             color: labelColor
         }
 
         Label {
-            text: "g | Go"
+            text: qsTr("Edit")
+            color: labelColor
+        }
+
+        Label {
+            text: "d"
+            color: labelColor
+        }
+
+        Label {
+            text:  qsTr("Delete")
+            color: labelColor
+        }
+
+        Label {
+            text: "g"
+            color: labelColor
+        }
+
+        Label {
+            text: qsTr("Go")
+            color: labelColor
+        }
+
+        Label {
+            text: "i"
+            color: labelColor
+        }
+
+        Label {
+            text: qsTr("Info")
             color: labelColor
         }
     }

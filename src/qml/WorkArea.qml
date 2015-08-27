@@ -3,6 +3,7 @@ import Qt3D 2.0
 import Qt3D.Renderer 2.0
 import QtQuick.Scene3D 2.0
 import Greenery.Lib 1.0
+import "sheets"
 import "../js/command.js" as Command
 import "../js/utils.js" as Utils
 import "../js/world.js" as World
@@ -85,5 +86,11 @@ Item {
                 id: origin
             }
         }
+    }
+
+    CommandSheet {
+        id: commandSheet
+        anchors.top: parent.top
+        anchors.right: parent.right
     }
 }
