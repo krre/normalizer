@@ -1,8 +1,8 @@
-var Ready = 0
-var Add = 1
-var Edit = 2
-var Delete = 3
-var Go = 4
+var Ready = "ready"
+var Add = "add"
+var Edit = "edit"
+var Delete = "delete"
+var Go = "go"
 
 function run(event) {
     if (commandState === Ready) {
@@ -31,8 +31,5 @@ function run(event) {
     }
 }
 
-function cancel() {
-    commandState = Ready
-}
 
 

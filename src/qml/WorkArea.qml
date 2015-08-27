@@ -22,6 +22,10 @@ Item {
         camera.reset()
     }
 
+    function cancel() {
+        commandState = Command.Ready
+    }
+
     Component.onCompleted: {
         forceActiveFocus()
         sproutDb.open(filePath)
