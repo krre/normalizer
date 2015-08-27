@@ -8,6 +8,17 @@ function createDynamicObject(parent, url, properties) {
     }
 }
 
+function newFile(directory, file, name) {
+    var path = directory + "/" + file + ".sprout"
+    PROJECT.create(path, name.text)
+
+    var tab = tabView.addTab(name)
+    tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
+    tabView.currentIndex = tabView.count - 1
+    addRecentFile(path)
+    SETTINGS.setRecentDirectory(directory.text)
+}
+
 function openFile(path) {
     addRecentFile(path)
     var fileData = UTILS.loadSproutFile(path)
