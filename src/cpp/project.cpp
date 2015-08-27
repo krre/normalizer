@@ -23,9 +23,10 @@ void Project::initTables(const QSqlDatabase &db)
 {
     QSqlQuery query(db);
     query.exec("CREATE TABLE Defs(name, value)");
-    query.exec("CREATE TABLE Modules(id, name)");
-    query.exec("CREATE TABLE Functions(id, name, command, argument)");
-    query.exec("CREATE TABLE Comments(id, comment)");
+    query.exec("CREATE TABLE Modules(id INTEGER PRIMARY KEY AUTOINCREMENT, name)");
+    query.exec("CREATE TABLE Functions(id INTEGER PRIMARY KEY AUTOINCREMENT, name, command, argument)");
+    query.exec("CREATE TABLE Comments(id INTEGER PRIMARY KEY AUTOINCREMENT, comment)");
+
 }
 
 void Project::initRecords(const QSqlDatabase &db, const QString &projectName)
