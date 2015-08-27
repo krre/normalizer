@@ -24,5 +24,10 @@ Item {
             text: "d | Delete"
             color: labelColor
         }
+
+        Label {
+            text: "g | Go"
+            color: labelColor
+        }
     }
 }
