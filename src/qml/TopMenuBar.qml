@@ -112,6 +112,7 @@ MenuBar {
 
     Menu {
         title: qsTr("Edit")
+        visible: currentTab
 
         MenuItem {
             text: qsTr("Cancel")
@@ -122,12 +123,13 @@ MenuBar {
 
     Menu {
         title: qsTr("Run")
+        visible: currentTab
 
         MenuItem {
             text: qsTr("Run")
             shortcut: "F9"
             enabled: currentTab && currentTab.filePath
-            onTriggered: cons.run(SETTINGS.getSproutPath(), currentTab.filePath)
+            onTriggered: currentTab.cons.run(SETTINGS.getSproutPath(), currentTab.filePath)
         }
     }
 
@@ -142,11 +144,12 @@ MenuBar {
 
     Menu {
         title: qsTr("Window")
+        visible: currentTab
 
         MenuItem {
             text: qsTr("Clear Output")
             shortcut: "Shift+Del"
-            onTriggered: output.textEdit.text = ""
+            onTriggered: currentTab.output.textEdit.text = ""
         }
 
         MenuItem {
@@ -159,7 +162,7 @@ MenuBar {
             text: qsTr("Command Sheet")
             checkable: true
             checked: true
-            onTriggered: commandSheet.visible = !commandSheet.visible
+            onTriggered: currentTab.commandSheet.visible = !currentTab.commandSheet.visible
         }
     }
 

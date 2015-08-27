@@ -10,7 +10,6 @@ ApplicationWindow {
     id: mainRoot
     property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
-    property alias output: output
     title: "Greenery"
     width: 800
     height: 600
@@ -32,19 +31,8 @@ ApplicationWindow {
         Utils.saveGeometry()
     }
 
-    Console {
-        id: cons
-        onMessage: output.textEdit.append(message)
-    }
-
     TabView {
         id: tabView
         anchors.fill: parent
-    }
-
-    Output {
-        id: output
-        width: parent.width
-        anchors.bottom: parent.bottom
     }
 }

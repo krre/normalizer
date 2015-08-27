@@ -11,6 +11,9 @@ import "../js/world.js" as World
 Item {
     id: root
     property alias sproutDb: sproutDb
+    property alias commandSheet: commandSheet
+    property alias output: output
+    property alias cons: cons
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
@@ -31,6 +34,11 @@ Item {
 
     SproutDb {
         id: sproutDb
+    }
+
+    Console {
+        id: cons
+        onMessage: output.textEdit.append(message)
     }
 
     Scene3D {
@@ -92,5 +100,11 @@ Item {
         id: commandSheet
         anchors.top: parent.top
         anchors.right: parent.right
+    }
+
+    Output {
+        id: output
+        width: parent.width
+        anchors.bottom: parent.bottom
     }
 }
