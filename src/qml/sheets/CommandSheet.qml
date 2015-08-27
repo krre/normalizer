@@ -20,7 +20,7 @@ Item {
         }
 
         Label {
-            text: qsTr("Add")
+            text: Command.Add
             color: labelColor
         }
 
@@ -30,7 +30,7 @@ Item {
         }
 
         Label {
-            text: qsTr("Edit")
+            text: Command.Edit
             color: labelColor
         }
 
@@ -40,7 +40,7 @@ Item {
         }
 
         Label {
-            text:  qsTr("Delete")
+            text:  Command.Delete
             color: labelColor
         }
 
@@ -50,7 +50,7 @@ Item {
         }
 
         Label {
-            text: qsTr("Go")
+            text: Command.Go
             color: labelColor
         }
 
@@ -60,7 +60,24 @@ Item {
         }
 
         Label {
-            text: qsTr("Info")
+            text: Command.Info
+            color: labelColor
+        }
+    }
+
+    Row {
+        anchors.fill: parent
+        anchors.margins: 10
+        visible: commandState !== Command.Ready
+        spacing: 20
+
+        Label {
+            text: qsTr("Mode:")
+            color: labelColor
+        }
+
+        Label {
+            text: commandState
             color: labelColor
         }
     }

@@ -1,8 +1,9 @@
-var Ready = "ready"
-var Add = "add"
-var Edit = "edit"
-var Delete = "delete"
-var Go = "go"
+var Ready = "Ready"
+var Add = "Add"
+var Edit = "Edit"
+var Delete = "Delete"
+var Go = "Go"
+var Info = "Info"
 
 function run(event) {
     if (commandState === Ready) {
@@ -11,6 +12,7 @@ function run(event) {
             case "d": commandState = Delete; break
             case "e": commandState = Edit; break
             case "g": commandState = Go; break
+            case "i": commandState = Info; break
         }
     } else if (commandState === Add) {
         switch (event.text) {
