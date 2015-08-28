@@ -20,14 +20,11 @@ function newFile(directory, file, name) {
 }
 
 function openFile(path) {
+    var projectName = UTILS.urlToFileName(path)
+    var tab = tabView.addTab(projectName)
+    tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: projectName })
+    tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
-    var fileData = UTILS.loadSproutFile(path)
-    if (fileData) {
-        var projectName = UTILS.urlToFileName(path)
-        var tab = tabView.addTab(projectName)
-        tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: projectName })
-        tabView.currentIndex = tabView.count - 1
-    }
 }
 
 function saveAsFile() {
@@ -101,7 +98,6 @@ function saveGeometry() {
     map.y = mainRoot.y
     map.width = mainRoot.width
     map.height = mainRoot.height
-//    map.split = mainRoot.consoleArea.height
     SETTINGS.setGeometry(map)
 }
 
@@ -112,7 +108,6 @@ function loadGeometry() {
         mainRoot.y = map.y
         mainRoot.width = map.width
         mainRoot.height = map.height
-//        mainRoot.consoleArea.height = map.split
         return true
     } else {
         return false
