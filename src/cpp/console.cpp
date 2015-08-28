@@ -9,7 +9,7 @@ Console::Console()
     connect(this, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
 }
 
-void Console::run(const QString &sproutPath, const QString &sourcePath)
+void Console::run(const QString& sproutPath, const QString& sourcePath)
 {
     setProcessChannelMode(QProcess::MergedChannels);
     start(sproutPath + " " + sourcePath);

@@ -5,7 +5,7 @@ Project::Project()
 
 }
 
-bool Project::create(const QString &path, const QString &projectName)
+bool Project::create(const QString& path, const QString& projectName)
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", path);
     db.setDatabaseName(path);
@@ -19,7 +19,7 @@ bool Project::create(const QString &path, const QString &projectName)
     return true;
 }
 
-void Project::initTables(const QSqlDatabase &db)
+void Project::initTables(const QSqlDatabase& db)
 {
     QSqlQuery query(db);
     query.exec("CREATE TABLE Defs(name, value)");
@@ -29,7 +29,7 @@ void Project::initTables(const QSqlDatabase &db)
 
 }
 
-void Project::initRecords(const QSqlDatabase &db, const QString &projectName)
+void Project::initRecords(const QSqlDatabase& db, const QString& projectName)
 {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Defs (name, value) "

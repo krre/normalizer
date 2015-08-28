@@ -7,7 +7,7 @@ Settings::Settings(QObject *parent) : QObject(parent)
     settings->setIniCodec("UTF-8");
 }
 
-void Settings::setGeometry(const QVariantMap &geometry)
+void Settings::setGeometry(const QVariantMap& geometry)
 {
     settings->beginGroup("Geometry");
         settings->setValue("x", geometry["x"].toString());
@@ -35,7 +35,7 @@ QVariantMap Settings::getGeometry()
     return map;
 }
 
-void Settings::setLang(const QString &lang)
+void Settings::setLang(const QString& lang)
 {
     settings->beginGroup("i18n");
         settings->setValue("lang", lang);
@@ -47,7 +47,7 @@ QString Settings::getLang()
     return settings->value("i18n/lang").toString();
 }
 
-void Settings::setRecentFiles(const QStringList &fileList)
+void Settings::setRecentFiles(const QStringList& fileList)
 {
     settings->remove("Recent");
 
@@ -71,7 +71,7 @@ QStringList Settings::getRecentFiles()
     return values;
 }
 
-void Settings::setSession(const QStringList &fileList)
+void Settings::setSession(const QStringList& fileList)
 {
     settings->remove("Session");
 
@@ -95,7 +95,7 @@ QStringList Settings::getSession()
     return values;
 }
 
-void Settings::setSproutPath(const QString &path)
+void Settings::setSproutPath(const QString& path)
 {
     settings->beginGroup("Sprout");
         settings->setValue("path", path);
@@ -107,7 +107,7 @@ QString Settings::getSproutPath()
     return settings->value("Sprout/path").toString();
 }
 
-void Settings::setRecentDirectory(const QString &path)
+void Settings::setRecentDirectory(const QString& path)
 {
     settings->beginGroup("RecentDirectory");
         settings->setValue("path", path);

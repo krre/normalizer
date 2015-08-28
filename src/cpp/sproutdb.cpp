@@ -10,7 +10,7 @@ SproutDb::~SproutDb()
     db.close();
 }
 
-void SproutDb::open(const QString &path)
+void SproutDb::open(const QString& path)
 {
     db = QSqlDatabase::addDatabase("QSQLITE", path);
     db.setDatabaseName(path);
@@ -20,7 +20,7 @@ void SproutDb::open(const QString &path)
     }
 }
 
-QVariantList SproutDb::readRecords(const QString &sql)
+QVariantList SproutDb::readRecords(const QString& sql)
 {
     QSqlQuery query(db);
     bool result = query.exec(sql);
@@ -44,7 +44,7 @@ QVariantList SproutDb::readRecords(const QString &sql)
     return list;
 }
 
-void SproutDb::insertRecord(const QString &sql)
+void SproutDb::insertRecord(const QString& sql)
 {
     QSqlQuery query(db);
     bool result = query.exec(sql);
