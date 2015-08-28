@@ -22,10 +22,25 @@ bool Project::create(const QString& path, const QString& projectName)
 void Project::initTables(const QSqlDatabase& db)
 {
     QSqlQuery query(db);
-    query.exec("CREATE TABLE Defs(name, value)");
-    query.exec("CREATE TABLE Modules(id INTEGER PRIMARY KEY AUTOINCREMENT, name)");
-    query.exec("CREATE TABLE Functions(id INTEGER PRIMARY KEY AUTOINCREMENT, name, command, argument)");
-    query.exec("CREATE TABLE Comments(id INTEGER PRIMARY KEY AUTOINCREMENT, comment)");
+    query.exec("CREATE TABLE Defs("
+               "name,"
+               "value"
+               ")");
+    query.exec("CREATE TABLE Modules("
+               "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+               "name"
+               ")");
+    query.exec("CREATE TABLE Functions("
+               "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+               "module INTEGER,"
+               "name,"
+               "command,"
+               "argument"
+               ")");
+    query.exec("CREATE TABLE Comments("
+               "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+               "comment"
+               ")");
 
 }
 
