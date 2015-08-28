@@ -12,5 +12,11 @@ function createWorld() {
 }
 
 function addModule() {
-    sproutDb.insertRecord("INSERT INTO Modules (name) VALUES ('module1')")
+    var id = parseInt(lastId("Modules")) + 1
+    sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg("Module" + id))
+}
+
+function lastId(table) {
+    var module = sproutDb.readRecords(String("SELECT seq FROM sqlite_sequence WHERE name='%1'").arg(table))
+    return module[0].seq
 }
