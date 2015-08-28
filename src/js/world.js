@@ -13,7 +13,9 @@ function createWorld() {
 
 function addModule() {
     var id = parseInt(lastId("Modules")) + 1
-    sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg("Module" + id))
+    var moduleName = "Module" + id
+    sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(moduleName))
+    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
 }
 
 function lastId(table) {

@@ -26,5 +26,6 @@
         <file>qml/sheets/CommandSheet.qml</file>
         <file>qml/blocks/Project.qml</file>
         <file>js/world.js</file>
+        <file>qml/blocks/Module.qml</file>
     </qresource>
 </RCC>

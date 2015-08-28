@@ -49,7 +49,8 @@ DISTFILES += \
     src/qml/WorkArea.qml \
     src/qml/Output.qml \
     src/qml/main.qml \
-    src/qml/NewProject.qml
+    src/qml/NewProject.qml \
+    src/qml/blocks/Module.qml
 
 RESOURCES += \
     src/greenery.qrc \
