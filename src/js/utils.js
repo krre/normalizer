@@ -16,7 +16,7 @@ function newFile(directory, file, name) {
     tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
-    SETTINGS.setRecentDirectory(directory.text)
+    SETTINGS.setRecentDirectory(directory)
 }
 
 function openFile(path) {
