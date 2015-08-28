@@ -12,4 +12,5 @@ public:
     Q_INVOKABLE QString urlToPath(QUrl url);
     Q_INVOKABLE QString urlToFileName(QUrl url);
     Q_INVOKABLE QString homePath() { return QStandardPaths::writableLocation(QStandardPaths::HomeLocation); }
+    Q_INVOKABLE bool isFileExists(const QString& filePath);
 };
