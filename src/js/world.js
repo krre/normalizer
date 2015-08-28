@@ -20,5 +20,5 @@ function addModule() {
 
 function lastId(table) {
     var module = sproutDb.readRecords(String("SELECT seq FROM sqlite_sequence WHERE name='%1'").arg(table))
-    return module[0].seq
+    return module.length ? module[0].seq : 0
 }
