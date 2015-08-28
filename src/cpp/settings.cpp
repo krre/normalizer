@@ -1,6 +1,6 @@
 #include "settings.h"
 
-Settings::Settings(QObject *parent) : QObject(parent)
+Settings::Settings(QObject* parent) : QObject(parent)
 {
     QString path = qApp->applicationDirPath() + QDir::separator() + "settings.ini";
     settings = new QSettings(path, QSettings::IniFormat, this);

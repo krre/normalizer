@@ -5,7 +5,7 @@ class Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings(QObject *parent = 0);
+    explicit Settings(QObject* parent = 0);
     ~Settings() {}
     Q_INVOKABLE void setGeometry(const QVariantMap& geometry);
     Q_INVOKABLE QVariantMap getGeometry();
@@ -21,6 +21,6 @@ public:
     Q_INVOKABLE QString getRecentDirectory();
 
 private:
-    QSettings *settings;
+    QSettings* settings;
 
 };
