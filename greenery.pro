@@ -27,6 +27,7 @@ DISTFILES += \
     src/js/utils.js \
     src/js/command.js \
     src/js/world.js \
+    src/js/dialog.js \
     src/qml/TopMenuBar.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogSave.qml \

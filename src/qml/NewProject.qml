@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Dialogs 1.2
 import "../js/utils.js" as Utils
+import "../js/dialog.js" as Dialog
 
 Dialog {
     id: root
@@ -12,13 +13,18 @@ Dialog {
     modality: Qt.ApplicationModal
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
-    onVisibilityChanged: {
-        if (!visible) {
-            root.destroy()
+    onAccepted: {
+        var path = directory.text + "/" + file.text + ".sprout"
+        if (UTILS.isFileExists(path)) {
+            var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
+            dialog.yes.connect(function() { Utils.newFile(directory.text, file.text, name.text) })
+            dialog.no.connect(function() { root.open() })
+        } else {
+            Utils.newFile(directory.text, file.text, name.text)
         }
     }
 
-    onAccepted: Utils.newFile(directory.text, file.text, name.text)
+    onRejected: root.destroy()
 
     GridLayout {
         width: parent.width

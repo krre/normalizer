@@ -27,5 +27,6 @@
         <file>qml/blocks/Project.qml</file>
         <file>js/world.js</file>
         <file>qml/blocks/Module.qml</file>
+        <file>js/dialog.js</file>
     </qresource>
 </RCC>
