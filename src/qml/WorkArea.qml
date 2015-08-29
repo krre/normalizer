@@ -28,12 +28,25 @@ Item {
 
     function clear() {
         sproutDb.close()
+        for (var index in origin.childNodes) {
+            var node = origin.childNodes[index]
+            if (node) {
+                node.destroy()
+            }
+        }
+
+        origin.data = []
+        reset()
+    }
+
+    function createWorld() {
+        sproutDb.open(filePath)
+        World.createWorld()
     }
 
     Component.onCompleted: {
         forceActiveFocus()
-        sproutDb.open(filePath)
-        World.createWorld()
+        createWorld()
     }
 
     Keys.onPressed: {
