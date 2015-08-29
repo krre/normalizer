@@ -20,6 +20,13 @@ function newFile(directory, name) {
 }
 
 function openFile(path) {
+    for (var i = 0; i < tabView.count; i++) {
+        if (tabView.getTab(i).item.filePath === path) {
+            createDynamicObject(mainRoot, "qrc:/qml/components/messagedialog/MessageDialogError.qml", { text: qsTr("File already loaded") })
+            return
+        }
+    }
+
     var projectName = UTILS.urlToFileName(path)
     var tab = tabView.addTab(projectName)
     tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: projectName })
