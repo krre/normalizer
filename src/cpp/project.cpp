@@ -7,15 +7,18 @@ Project::Project()
 
 bool Project::create(const QString& path, const QString& projectName)
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", path);
-    db.setDatabaseName(path);
-    if (!db.open()) {
-         qDebug("Error occurred opening the database");
-         qDebug("%s", qPrintable(db.lastError().text()));
-         return false;
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", path);
+        db.setDatabaseName(path);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+             return false;
+        }
+        initTables(db);
+        initRecords(db, projectName);
     }
-    initTables(db);
-    initRecords(db, projectName);
+    QSqlDatabase::removeDatabase(path);
     return true;
 }
 
