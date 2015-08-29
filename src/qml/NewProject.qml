@@ -25,6 +25,7 @@ Dialog {
                     currentTab.createWorld()
                     SETTINGS.setRecentDirectory(directory.text)
                 } else {
+                    UTILS.removeFile(path)
                     Utils.newFile(directory.text, name.text)
                 }
             })
