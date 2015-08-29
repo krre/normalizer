@@ -59,15 +59,6 @@ MenuBar {
         MenuSeparator {}
 
         MenuItem {
-            text: qsTr("Save As...")
-            shortcut: "Ctrl+Alt+S"
-            enabled: tabView.count > 0
-            onTriggered: Utils.saveAsFile()
-        }
-
-        MenuSeparator {}
-
-        MenuItem {
             text: qsTr("Close")
             shortcut: "Ctrl+W"
             onTriggered: tabView.removeTab(tabView.currentIndex)

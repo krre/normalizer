@@ -27,19 +27,6 @@ function openFile(path) {
     addRecentFile(path)
 }
 
-function saveAsFile() {
-    var fileDialog = createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
-    fileDialog.accepted.connect(function() {
-        var path = UTILS.urlToPath(fileDialog.fileUrl)
-        if (path.substr(-7) !== ".sprout") {
-            path += ".sprout"
-        }
-        currentTab.filePath = path
-        tabView.getTab(tabView.currentIndex).title = UTILS.urlToFileName(path)
-        addRecentFile(path)
-    })
-}
-
 function addRecentFile(path) {
     var model = topMenuBar.recentFilesModel
     // Prevention of duplication of filePath and raising it on top.
