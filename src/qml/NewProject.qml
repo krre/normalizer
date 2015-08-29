@@ -18,8 +18,14 @@ Dialog {
         if (UTILS.isFileExists(path)) {
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
-                UTILS.removeFile(path)
-                Utils.newFile(directory.text, name.text)
+                if (currentTab && currentTab.filePath === path) {
+                    currentTab.clear()
+                    UTILS.removeFile(path)
+                    PROJECT.create(path, name.text)
+                    SETTINGS.setRecentDirectory(directory.text)
+                } else {
+                    Utils.newFile(directory.text, name.text)
+                }
             })
             dialog.no.connect(function() { root.open() })
         } else {

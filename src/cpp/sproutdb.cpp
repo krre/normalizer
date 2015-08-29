@@ -20,6 +20,14 @@ void SproutDb::open(const QString& path)
     }
 }
 
+void SproutDb::close()
+{
+    db.close();
+    QString connection = db.connectionName();
+    db = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
+}
+
 QVariantList SproutDb::readRecords(const QString& sql)
 {
     QSqlQuery query(db);

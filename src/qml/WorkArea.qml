@@ -26,6 +26,10 @@ Item {
         commandState = Command.Ready
     }
 
+    function clear() {
+        sproutDb.close()
+    }
+
     Component.onCompleted: {
         forceActiveFocus()
         sproutDb.open(filePath)
