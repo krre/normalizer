@@ -70,7 +70,10 @@ function loadRecentFiles() {
     var list = SETTINGS.getRecentFiles()
     var model = topMenuBar.recentFilesModel
     for (var i = 0; i < list.length; i++) {
-        model.append({ filePath: list[i] })
+        var path = list[i]
+        if (UTILS.isFileExists(path)) {
+            model.append({ filePath: path })
+        }
     }
 }
 
@@ -88,7 +91,10 @@ function saveSession() {
 function loadSession() {
     var list = SETTINGS.getSession()
     for (var i = 0; i < list.length; i++) {
-        openFile(list[i])
+        var path = list[i]
+        if (UTILS.isFileExists(path)) {
+            openFile(list[i])
+        }
     }
 }
 
