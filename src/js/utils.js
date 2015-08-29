@@ -10,7 +10,7 @@ function createDynamicObject(parent, url, properties) {
 
 function newFile(directory, name) {
     var path = directory + "/" + name + ".sprout"
-    PROJECT.create(path, name.text)
+    PROJECT.create(path, name)
 
     var tab = tabView.addTab(name)
     tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })

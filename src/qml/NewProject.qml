@@ -17,7 +17,10 @@ Dialog {
         var path = directory.text + "/" + name.text + ".sprout"
         if (UTILS.isFileExists(path)) {
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
-            dialog.yes.connect(function() { Utils.newFile(directory.text, name.text) })
+            dialog.yes.connect(function() {
+                UTILS.removeFile(path)
+                Utils.newFile(directory.text, name.text)
+            })
             dialog.no.connect(function() { root.open() })
         } else {
             Utils.newFile(directory.text, name.text)

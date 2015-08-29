@@ -21,3 +21,9 @@ bool Utils::isFileExists(const QString &filePath)
     }
 }
 
+void Utils::removeFile(const QString &path)
+{
+    QDir dir;
+    dir.remove(path);
+}
+
