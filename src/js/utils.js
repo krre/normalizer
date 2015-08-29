@@ -8,8 +8,8 @@ function createDynamicObject(parent, url, properties) {
     }
 }
 
-function newFile(directory, file, name) {
-    var path = directory + "/" + file + ".sprout"
+function newFile(directory, name) {
+    var path = directory + "/" + name + ".sprout"
     PROJECT.create(path, name.text)
 
     var tab = tabView.addTab(name)

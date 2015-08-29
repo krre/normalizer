@@ -14,13 +14,13 @@ Dialog {
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     onAccepted: {
-        var path = directory.text + "/" + file.text + ".sprout"
+        var path = directory.text + "/" + name.text + ".sprout"
         if (UTILS.isFileExists(path)) {
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
-            dialog.yes.connect(function() { Utils.newFile(directory.text, file.text, name.text) })
+            dialog.yes.connect(function() { Utils.newFile(directory.text, name.text) })
             dialog.no.connect(function() { root.open() })
         } else {
-            Utils.newFile(directory.text, file.text, name.text)
+            Utils.newFile(directory.text, name.text)
         }
     }
 
@@ -41,17 +41,7 @@ Dialog {
         }
 
         Label {
-            text: qsTr("File:")
-        }
-
-        TextField {
-            id: file
-            Layout.fillWidth: true
-            text: "project-1.0"
-        }
-
-        Label {
-            text: qsTr("Path:")
+            text: qsTr("Directory:")
         }
 
         RowLayout {
