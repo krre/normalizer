@@ -13,10 +13,16 @@ Dialog {
     modality: Qt.ApplicationModal
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
-    Component.onCompleted: sproutPath.text = SETTINGS.getSproutPath()
+    Component.onCompleted: {
+        sproutPath.text = SETTINGS.getSproutPath()
+        session.checked = SETTINGS.getAutoLoadSession()
+    }
 
     onVisibilityChanged: if (!visible) root.destroy()
-    onAccepted: SETTINGS.setSproutPath(sproutPath.text)
+    onAccepted: {
+        SETTINGS.setSproutPath(sproutPath.text)
+        SETTINGS.setAutoLoadSession(session.checked)
+    }
 
     GridLayout {
         width: parent.width
@@ -41,6 +47,12 @@ Dialog {
                     sproutPath.text = UTILS.urlToPath(fileDialog.fileUrl)
                 })
             }
+        }
+
+        CheckBox {
+            id: session
+            text: qsTr("Autoload Session")
+            Layout.columnSpan: 2
         }
     }
 }

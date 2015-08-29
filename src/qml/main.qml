@@ -22,12 +22,16 @@ ApplicationWindow {
             y = (Screen.height - height) / 2
         }
         Utils.loadRecentFiles()
-        Utils.loadSession()
+        if (SETTINGS.getAutoLoadSession()) {
+            Utils.loadSession()
+        }
     }
 
     Component.onDestruction: {
         Utils.saveRecentFiles(topMenuBar.recentFilesModel)
-        Utils.saveSession()
+        if (SETTINGS.getAutoLoadSession()) {
+            Utils.saveSession()
+        }
         Utils.saveGeometry()
     }
 

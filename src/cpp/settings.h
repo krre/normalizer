@@ -19,6 +19,8 @@ public:
     Q_INVOKABLE QString getSproutPath();
     Q_INVOKABLE void setRecentDirectory(const QString& path);
     Q_INVOKABLE QString getRecentDirectory();
+    Q_INVOKABLE void setAutoLoadSession(bool value);
+    Q_INVOKABLE bool getAutoLoadSession();
 
 private:
     QSettings* settings;

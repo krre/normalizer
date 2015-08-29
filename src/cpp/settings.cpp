@@ -77,7 +77,7 @@ void Settings::setSession(const QStringList& fileList)
         for (int i = 0; i < fileList.count(); i++) {
             settings->setValue(QString::number(i), fileList.at(i));
         }
-        settings->endGroup();
+    settings->endGroup();
 }
 
 QStringList Settings::getSession()
@@ -115,4 +115,16 @@ void Settings::setRecentDirectory(const QString& path)
 QString Settings::getRecentDirectory()
 {
     return settings->value("RecentDirectory/path").toString();
+}
+
+void Settings::setAutoLoadSession(bool value)
+{
+    settings->beginGroup("AutoLoad");
+        settings->setValue("session", value);
+    settings->endGroup();
+}
+
+bool Settings::getAutoLoadSession()
+{
+    return settings->value("AutoLoad/session").toBool();
 }
