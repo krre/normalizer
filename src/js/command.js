@@ -19,6 +19,7 @@ function run(event) {
     } else if (commandState === Add) {
         switch (event.text) {
             case "m": World.addModule(); commandState = Ready; break
+            case "p": World.addPrint(); commandState = Ready; break
         }
     } else if (commandState === Delete) {
         switch (event.text) {
