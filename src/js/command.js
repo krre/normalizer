@@ -15,6 +15,17 @@ function run(event) {
             case "e": commandState = Edit; break
             case "g": commandState = Go; break
             case "i": commandState = Info; break
+
+            // move
+            case "5": camera.position.z++; break // forward
+            case "0": camera.position.z--; break // back
+            case "4": camera.position.x++; camera.viewCenter.x++; break // left
+            case "6": camera.position.x--; camera.viewCenter.x--; break // right
+            case "8": camera.position.y++; camera.viewCenter.y++; break // up
+            case "2": camera.position.y--; camera.viewCenter.y--; break // down
+
+            case ".": camera.viewCenter = Qt.vector3d(0.0, 0.0, 0.0); break // view look at
+
         }
     } else if (commandState === Add) {
         switch (event.text) {
