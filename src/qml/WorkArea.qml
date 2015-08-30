@@ -82,9 +82,9 @@ Item {
                 Component.onCompleted: reset()
 
                 function reset() {
-                    upVector = Qt.vector3d( 0.0, 1.0, 0.0 )
-                    position = Qt.vector3d( 0.0, 0.0, -40.0 )
-                    viewCenter = Qt.vector3d( 0.0, 0.0, 0.0 )
+                    upVector = Qt.vector3d(0.0, 1.0, 0.0)
+                    position = Qt.vector3d(0.0, 0.0, -40.0)
+                    viewCenter = Qt.vector3d(0.0, 0.0, 0.0)
                 }
             }
 
