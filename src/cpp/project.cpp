@@ -40,6 +40,12 @@ void Project::initTables(const QSqlDatabase& db)
                "command,"
                "argument"
                ")");
+    query.exec("CREATE TABLE Commands("
+               "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+               "function INTEGER,"
+               "name,"
+               "args"
+               ")");
     query.exec("CREATE TABLE Comments("
                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                "comment"
