@@ -12,7 +12,6 @@ EntityBase {
 
     Text3D {
         id: arg
-        x: 2
-        y: 2
+        x: -4
     }
 }
