@@ -18,25 +18,16 @@ Item {
     property string filePath
     property string commandState: Command.Ready
 
+    Component.onDestruction: {
+        sproutDb.close()
+    }
+
     function reset() {
         camera.reset()
     }
 
     function cancel() {
         commandState = Command.Ready
-    }
-
-    function clear() {
-        sproutDb.close()
-        for (var index in origin.childNodes) {
-            var node = origin.childNodes[index]
-            if (node) {
-                node.destroy()
-            }
-        }
-
-        origin.data = []
-        reset()
     }
 
     function createWorld() {

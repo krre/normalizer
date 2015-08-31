@@ -15,20 +15,21 @@ Dialog {
 
     onAccepted: {
         var path = directory.text + "/" + name.text + ".sprout"
+        for(var i = 0; i < tabView.count; i++) {
+            var tab = tabView.getTab(i).item
+            if (tabView.getTab(i).item.filePath === path) {
+                tabView.currentIndex = i
+                Dialog.infoMessage(qsTr("File is open. Close file first"))
+                return
+            }
+        }
         if (UTILS.isFileExists(path)) {
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
-                if (currentTab && currentTab.filePath === path) {
-                    currentTab.clear()
-                    UTILS.removeFile(path)
-                    PROJECT.create(path, name.text)
-                    currentTab.createWorld()
-                    SETTINGS.setRecentDirectory(directory.text)
-                } else {
-                    UTILS.removeFile(path)
-                    Utils.newFile(directory.text, name.text)
-                }
+                UTILS.removeFile(path)
+                Utils.newFile(directory.text, name.text)
             })
+
             dialog.no.connect(function() { root.open() })
         } else {
             Utils.newFile(directory.text, name.text)
