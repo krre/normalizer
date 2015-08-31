@@ -6,7 +6,7 @@ EntityBase {
     property alias arg: arg.text
     objectName: "project"
     mesh: SphereMesh {
-        radius: 3
+        radius: 4
     }
 
     Text3D {

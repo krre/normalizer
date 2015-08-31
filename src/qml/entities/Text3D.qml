@@ -6,12 +6,13 @@ EntityBase {
     id: root
     property string text
     property string setOfLetters: "abcdefghijklmnoprstuvwxyz0123456789 "
+    mesh: null
 
     onTextChanged: {
         // remove old letters
         for (var item in root.childNodes) {
             var child = root.childNodes[item]
-            if (child) {
+            if (child && child.objectName === "letter") {
                 child.destroy()
             }
         }
@@ -27,6 +28,7 @@ EntityBase {
     Component {
         id: textMesh
         EntityBase {
+            objectName: "letter"
             property string letter: "a"
             mesh: Mesh {
                 source: "qrc:/assets/obj/letter/" + letter + ".obj"
