@@ -22,7 +22,7 @@ function addModule() {
 }
 
 function addPrint() {
-    var name = "Print"
+    var name = "print"
     sproutDb.insertRecord(String("INSERT INTO Commands (name) VALUES ('%1')").arg(name))
-    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "Text" })
+    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "text" })
 }

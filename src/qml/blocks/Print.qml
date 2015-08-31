@@ -7,19 +7,8 @@ EntityBase {
     property alias arg: arg.text
 
     Text3D {
-        text: "print"
-        x: 2
-        y: 2
-    }
-
-    Text3D {
         id: arg
         text: "text"
-        x: -2
-        y: 0
+        x: -4
     }
-
-//    Rectangle {
-//        color: "#0d0d2b"
-//    }
 }
