@@ -20,7 +20,7 @@ EntityBase {
         for (var index in text) {
             var letter = setOfLetters.search(text[index]) !== -1 ? text[index] : "query"
             if (letter !== " ") {
-                textMesh.createObject(root, { x: -index + x, y: y, z: z, scale: 2, letter: letter })
+                textMesh.createObject(root, { x: -index, scale: 2, letter: letter })
             }
         }
     }
