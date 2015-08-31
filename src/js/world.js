@@ -1,19 +1,17 @@
 .import "../js/utils.js" as Utils
 
 function createWorld() {
-    var list = sproutDb.readRecords("SELECT * FROM Defs")
-    for (var i in list) {
-        var record = list[i]
-        if (record.name === "project") {
-            Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: record.value })
-            break
-        }
-    }
+    addProject()
 }
 
 function lastId(table) {
     var module = sproutDb.readRecords(String("SELECT seq FROM sqlite_sequence WHERE name='%1'").arg(table))
     return module.length ? module[0].seq : 0
+}
+
+function addProject() {
+    var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
+    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: record[0].value })
 }
 
 function addModule() {
