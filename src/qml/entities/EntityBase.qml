@@ -5,7 +5,8 @@ import Qt3D.Renderer 2.0
 Entity {
     id: root
     property bool isCurrent: root === currentNode
-    property Material material: isCurrent ? phongMaterial : lambertMaterial
+//    property Material material: isCurrent ? phongMaterial : lambertMaterial
+    property Material material: isCurrent ? lambertMaterial : lambertMaterial
     property var mesh: CuboidMesh {
         xExtent: 5
         yExtent: 5
@@ -29,7 +30,7 @@ Entity {
         id: lambertMaterial
     }
 
-    PhongMaterial {
-        id: phongMaterial
-    }
+//    PhongMaterial {
+//        id: phongMaterial
+//    }
 }

@@ -5,6 +5,7 @@ import "../entities"
 EntityBase {
     objectName: "print"
     property alias arg: arg.text
+    y: 10
 
     Text3D {
         id: arg

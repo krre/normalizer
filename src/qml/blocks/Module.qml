@@ -5,6 +5,7 @@ import "../entities"
 EntityBase {
     property alias arg: arg.text
     objectName: "module"
+    y: 10
     mesh: CylinderMesh {
         radius: 3
         length: 6

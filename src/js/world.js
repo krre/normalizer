@@ -22,7 +22,6 @@ function addProject(parent) {
 function addModule(parent) {
     var id = parseInt(lastId("Modules")) + 1
     var moduleName = "module" + id
-    print(parent)
     sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(moduleName))
     return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
 }
