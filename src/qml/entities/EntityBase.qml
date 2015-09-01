@@ -11,16 +11,16 @@ Entity {
         zExtent: 5
     }
 
-    property alias x: translate.dx
-    property alias y: translate.dy
-    property alias z: translate.dz
+    property alias x: translateTransform.dx
+    property alias y: translateTransform.dy
+    property alias z: translateTransform.dz
     property alias scale: scaleTransform.scale
 
     components: [ mesh, material, transform ]
 
     Transform {
         id: transform
-        Translate { id: translate }
+        Translate { id: translateTransform }
         Scale { id: scaleTransform }
     }
 }
