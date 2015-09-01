@@ -1,12 +1,17 @@
 .import "../js/utils.js" as Utils
 
 function createWorld() {
+    addFloor()
     addProject()
 }
 
 function lastId(table) {
     var module = sproutDb.readRecords(String("SELECT seq FROM sqlite_sequence WHERE name='%1'").arg(table))
     return module.length ? module[0].seq : 0
+}
+
+function addFloor() {
+    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Floor.qml")
 }
 
 function addProject() {

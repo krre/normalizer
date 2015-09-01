@@ -65,7 +65,7 @@ Item {
             Camera {
                 id: camera
                 projectionType: CameraLens.PerspectiveProjection
-                fieldOfView: 90
+                fieldOfView: 22
                 aspectRatio: root.width / root.height
                 nearPlane : 0.1
                 farPlane : 1000.0
@@ -74,7 +74,7 @@ Item {
 
                 function reset() {
                     upVector = Qt.vector3d(0.0, 1.0, 0.0)
-                    position = Qt.vector3d(0.0, 0.0, -40.0)
+                    position = Qt.vector3d(0.0, 10.0, -150.0)
                     viewCenter = Qt.vector3d(0.0, 0.0, 0.0)
                 }
             }
