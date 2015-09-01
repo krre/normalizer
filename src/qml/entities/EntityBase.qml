@@ -4,7 +4,8 @@ import Qt3D.Renderer 2.0
 
 Entity {
     id: root
-    property Material material: Material {}
+    property bool isCurrent: false
+    property Material material: isCurrent ? phongMaterial : lambertMaterial
     property var mesh: CuboidMesh {
         xExtent: 5
         yExtent: 5
@@ -22,5 +23,13 @@ Entity {
         id: transform
         Translate { id: translateTransform }
         Scale { id: scaleTransform }
+    }
+
+    Material {
+        id: lambertMaterial
+    }
+
+    PhongMaterial {
+        id: phongMaterial
     }
 }
