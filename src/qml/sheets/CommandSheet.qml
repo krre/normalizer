@@ -99,6 +99,16 @@ Item {
                 text: qsTr("Module")
                 color: labelColor
             }
+
+            Label {
+                text: "p"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Print")
+                color: labelColor
+            }
         }
     }
 }
