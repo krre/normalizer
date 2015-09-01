@@ -11,21 +11,16 @@ Entity {
         zExtent: 5
     }
 
-    property int x: 0
-    property int y: 0
-    property int z: 0
-    property real scale: 1
+    property alias x: translate.dx
+    property alias y: translate.dy
+    property alias z: translate.dz
+    property alias scale: scaleTransform.scale
 
     components: [ mesh, material, transform ]
 
     Transform {
         id: transform
-        Translate {
-            translation: Qt.vector3d(x, y, z)
-        }
-
-        Scale {
-            scale: root.scale
-        }
+        Translate { id: translate }
+        Scale { id: scaleTransform }
     }
 }
