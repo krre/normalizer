@@ -2,7 +2,7 @@
 
 function createWorld() {
     addFloor()
-    addProject()
+    currentNode = addProject(origin)
 }
 
 function lastId(table) {
@@ -11,23 +11,24 @@ function lastId(table) {
 }
 
 function addFloor() {
-    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Floor.qml")
+    return Utils.createDynamicObject(origin, "qrc:/qml/blocks/Floor.qml")
 }
 
-function addProject() {
+function addProject(parent) {
     var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
-    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Project.qml", { arg: record[0].value })
+    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Project.qml", { arg: record[0].value })
 }
 
-function addModule() {
+function addModule(parent) {
     var id = parseInt(lastId("Modules")) + 1
     var moduleName = "module" + id
+    print(parent)
     sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(moduleName))
-    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
+    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
 }
 
-function addPrint() {
+function addPrint(parent) {
     var name = "print"
     sproutDb.insertRecord(String("INSERT INTO Commands (name) VALUES ('%1')").arg(name))
-    Utils.createDynamicObject(origin, "qrc:/qml/blocks/Print.qml", { arg: "text" })
+    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: "text" })
 }

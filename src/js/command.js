@@ -29,8 +29,8 @@ function run(event) {
         }
     } else if (commandState === Add) {
         switch (event.text) {
-            case "m": World.addModule(); commandState = Ready; break
-            case "p": World.addPrint(); commandState = Ready; break
+            case "m": currentNode = World.addModule(currentNode); commandState = Ready; break
+            case "p": currentNode = World.addPrint(currentNode); commandState = Ready; break
         }
     } else if (commandState === Delete) {
         switch (event.text) {

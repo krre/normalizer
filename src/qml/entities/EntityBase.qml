@@ -4,7 +4,7 @@ import Qt3D.Renderer 2.0
 
 Entity {
     id: root
-    property bool isCurrent: false
+    property bool isCurrent: root === currentNode
     property Material material: isCurrent ? phongMaterial : lambertMaterial
     property var mesh: CuboidMesh {
         xExtent: 5
