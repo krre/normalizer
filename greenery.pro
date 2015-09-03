@@ -1,4 +1,4 @@
-QT += qml quick widgets sql 3dcore 3drenderer 3dinput 3dquick
+QT += widgets sql
 CONFIG += c++11
 TEMPLATE = app
 
@@ -12,7 +12,8 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/sproutdb.h \
     src/cpp/utils.h \
-    src/cpp/project.h
+    src/cpp/project.h \
+    src/cpp/mainwindow.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -20,7 +21,8 @@ SOURCES += \
     src/cpp/sproutdb.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/project.cpp
+    src/cpp/project.cpp \
+    src/cpp/mainwindow.cpp
 
 DISTFILES += \
     README.md \
@@ -57,5 +59,3 @@ DISTFILES += \
 RESOURCES += \
     src/greenery.qrc \
     src/assets.qrc
-
-
