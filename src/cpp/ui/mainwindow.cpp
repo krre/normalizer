@@ -4,6 +4,8 @@
 #include <QDesktopWidget>
 #include <QDebug>
 
+#include "osgwidget.h"
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setWindowTitle("Greenery");
@@ -14,5 +16,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     int y = (desktopSize.height() - size().height()) / 2;
     move(x, y);
 
+    OsgWidget* osgWidget = new OsgWidget(this);
+    setCentralWidget(osgWidget);
 }
-

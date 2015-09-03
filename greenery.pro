@@ -1,4 +1,4 @@
-QT += widgets sql
+QT += widgets sql opengl
 CONFIG += c++11
 TEMPLATE = app
 
@@ -7,7 +7,7 @@ win32 {
     debug:   DESTDIR = $$OUT_PWD
 }
 
-LIBS += -L../osg/lib64 -losg -lOpenThreads
+LIBS += -L../osg/lib64 -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 INCLUDEPATH += ../osg/include
 
 HEADERS += \
@@ -16,7 +16,8 @@ HEADERS += \
     src/cpp/sproutdb.h \
     src/cpp/utils.h \
     src/cpp/project.h \
-    src/cpp/mainwindow.h
+    src/cpp/ui/osgwidget.h \
+    src/cpp/ui/mainwindow.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -25,7 +26,8 @@ SOURCES += \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
     src/cpp/project.cpp \
-    src/cpp/mainwindow.cpp
+    src/cpp/ui/osgwidget.cpp \
+    src/cpp/ui/mainwindow.cpp
 
 DISTFILES += \
     README.md \

@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <osg/ArgumentParser>
 #include <QtDebug>
-#include "mainwindow.h"
+#include "ui/mainwindow.h"
 
 int main(int argc, char** argv)
 {
