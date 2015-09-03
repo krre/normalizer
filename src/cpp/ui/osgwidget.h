@@ -20,5 +20,5 @@ protected:
 private:
     QWidget* addViewWidget(osgQt::GraphicsWindowQt* gw, osg::Node* scene);
     osgQt::GraphicsWindowQt* createGraphicsWindow(int x, int y, int w, int h, const std::string& name="", bool windowDecoration=false);
-    virtual void paintEvent(QPaintEvent* event) { frame(); }
+    virtual void paintEvent(QPaintEvent* event) { Q_UNUSED(event); frame(); }
 };
