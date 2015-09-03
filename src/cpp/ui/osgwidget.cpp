@@ -1,7 +1,9 @@
 #include <osgDB/ReadFile>
 #include <osgGA/MultiTouchTrackballManipulator>
 #include <QGridLayout>
+#include <QBoxLayout>
 #include "osgwidget.h"
+
 
 
 OsgWidget::OsgWidget(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::ThreadingModel threadingModel) : QWidget(parent, f)
@@ -11,17 +13,10 @@ OsgWidget::OsgWidget(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::
     // disable the default setting of viewer.done() by pressing Escape.
     setKeyEventSetsDone(0);
 
-    QWidget* widget1 = addViewWidget(createGraphicsWindow(0,0,100,100), osgDB::readNodeFile("cow.osgt"));
-    QWidget* widget2 = addViewWidget(createGraphicsWindow(0,0,100,100), osgDB::readNodeFile("glider.osgt"));
-    QWidget* widget3 = addViewWidget(createGraphicsWindow(0,0,100,100), osgDB::readNodeFile("axes.osgt"));
-    QWidget* widget4 = addViewWidget(createGraphicsWindow(0,0,100,100), osgDB::readNodeFile("fountain.osgt"));
-
-    QGridLayout* grid = new QGridLayout;
-    grid->addWidget(widget1, 0, 0);
-    grid->addWidget(widget2, 0, 1);
-    grid->addWidget(widget3, 1, 0);
-    grid->addWidget(widget4, 1, 1);
-    setLayout(grid);
+    QWidget* widget = addViewWidget(createGraphicsWindow(0, 0, width(), height()), osgDB::readNodeFile("cow.osgt"));
+    QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
+    layout->addWidget(widget);
+    setLayout(layout);
 
     connect(&_timer, SIGNAL(timeout()), this, SLOT(update()));
     _timer.start(10);
