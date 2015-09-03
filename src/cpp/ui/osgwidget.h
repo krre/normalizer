@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QTimer>
 
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/ViewerEventHandlers>
@@ -13,7 +14,11 @@ class OsgWidget : public QWidget, osgViewer::CompositeViewer
 public:
     explicit OsgWidget(QWidget* parent = 0, Qt::WindowFlags f = 0, osgViewer::ViewerBase::ThreadingModel threadingModel = osgViewer::CompositeViewer::SingleThreaded);
 
-signals:
+protected:
+    QTimer _timer;
 
-public slots:
+private:
+    QWidget* addViewWidget(osgQt::GraphicsWindowQt* gw, osg::Node* scene);
+    osgQt::GraphicsWindowQt* createGraphicsWindow(int x, int y, int w, int h, const std::string& name="", bool windowDecoration=false);
+    virtual void paintEvent(QPaintEvent* event) { frame(); }
 };
