@@ -7,6 +7,9 @@ win32 {
     debug:   DESTDIR = $$OUT_PWD
 }
 
+LIBS += -L../osg/lib64 -losg -lOpenThreads
+INCLUDEPATH += ../osg/include
+
 HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
