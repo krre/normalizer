@@ -26,6 +26,7 @@ function addModule(parent) {
     var moduleName = "module" + id
     sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(moduleName))
 //    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Module.qml", { arg: moduleName, x: parent.width + 10 })
 }
 
 function addPrint(parent) {
