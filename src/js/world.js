@@ -2,7 +2,8 @@
 
 function createWorld() {
     addFloor()
-    currentNode = addProject(origin)
+//    currentNode = addProject(origin)
+    currentNode = addProject(scene2d)
 }
 
 function lastId(table) {
@@ -17,6 +18,7 @@ function addFloor() {
 function addProject(parent) {
     var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
 //    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Project.qml", { arg: record[0].value })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Project.qml", { arg: record[0].value, x: 10, y: 10 })
 }
 
 function addModule(parent) {
