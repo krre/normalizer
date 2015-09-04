@@ -33,4 +33,5 @@ function addPrint(parent) {
     var name = "print"
     sproutDb.insertRecord(String("INSERT INTO Commands (name) VALUES ('%1')").arg(name))
 //    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: "text" })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Print.qml", { arg: "text", x: parent.width + 10 })
 }
