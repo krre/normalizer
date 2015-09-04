@@ -32,10 +32,11 @@ function addModule(parent) {
 }
 
 function addPrint(parent) {
-    var name = "print"
-    sproutDb.insertRecord(String("INSERT INTO Commands (name) VALUES ('%1')").arg(name))
-//    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: "text" })
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Print.qml", { arg: "text", x: parent.width + 10 })
+    var id = parseInt(lastId("Commands")) + 1
+    var arg = "value" + id
+    sproutDb.insertRecord(String("INSERT INTO Commands (name, args) VALUES ('%1', '%2')").arg("print").arg(arg))
+//    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: arg })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Print.qml", { arg: arg, x: parent.width + 10 })
 }
 
 // ******************************** EDIT *************************************
