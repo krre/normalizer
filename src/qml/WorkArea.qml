@@ -23,6 +23,12 @@ Item {
         sproutDb.close()
     }
 
+    onCommandStateChanged: {
+        if (commandState === Command.Ready) {
+            forceActiveFocus()
+        }
+    }
+
     function reset() {
         camera.reset()
     }
