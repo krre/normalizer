@@ -56,9 +56,17 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
+    // use until Qt3D is not released
+    Rectangle {
+        id: scene2d
+        anchors.fill: parent
+        color: Qt.rgba(0.05, 0.05, 0.17, 1)
+    }
+
     Scene3D {
         anchors.fill: parent
         aspects: "input"
+        visible: false // hide until Qt3D is not released
 
         Entity {
             id: sceneRoot
