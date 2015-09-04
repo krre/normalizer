@@ -87,19 +87,9 @@ Item {
 
             FrameGraph {
                 id: frameGraph
-                activeFrameGraph: Viewport {
-                    id: viewport
-                    rect: Qt.rect(0.0, 0.0, 1.0, 1.0)
+                activeFrameGraph: ForwardRenderer {
+                    camera: camera
                     clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
-
-                    CameraSelector {
-                        id : cameraSelector
-                        camera: camera
-
-                        ClearBuffer {
-                            buffers : ClearBuffer.ColorDepthBuffer
-                        }
-                    }
                 }
             }
 
