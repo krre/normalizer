@@ -25,10 +25,10 @@ function addProject(parent) {
 
 function addModule(parent) {
     var id = parseInt(lastId("Modules")) + 1
-    var moduleName = "module" + id
-    sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(moduleName))
-//    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Module.qml", { arg: moduleName })
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Module.qml", { nodeId: id, arg: moduleName, x: parent.width + 10 })
+    var name = "module" + id
+    sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(name))
+//    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Module.qml", { arg: name })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Module.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
 function addPrint(parent) {
