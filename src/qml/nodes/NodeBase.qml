@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.2
 import "../../js/command.js" as Command
 
 Rectangle {
@@ -9,7 +10,7 @@ Rectangle {
     property bool isCurrent: root === currentNode
     property bool isEdit: isCurrent && commandState === Command.Edit
     width: 100
-    height: 100
+    height: 50
     color: isCurrent ? "darkred" : "green"
     border.color: isCurrent ? "pink" : "lightgreen"
 
@@ -17,34 +18,38 @@ Rectangle {
         anchors.fill: parent
     }
 
-    Label {
-        text: name
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: "white"
-    }
+    ColumnLayout {
+        anchors.fill: parent
 
-    TextField {
-        visible: isEdit
-        width: parent.width
-        anchors.centerIn: parent
-        onVisibleChanged: {
-            if (visible) {
-                text = arg
-                forceActiveFocus()
-            } else if (isCurrent) {
-                arg = text
-            }
+        Label {
+            text: name
+            color: "white"
+            Layout.alignment: Qt.AlignHCenter
         }
 
-        Keys.onReturnPressed: commandState = Command.Ready
-        Keys.onEnterPressed: commandState = Command.Ready
-    }
+        TextEdit {
+            visible: isEdit
+            Layout.fillWidth: true
+            horizontalAlignment: TextEdit.AlignHCenter
+            onVisibleChanged: {
+                if (visible) {
+                    text = arg
+                    forceActiveFocus()
+                } else if (isCurrent) {
+                    arg = text
+                }
+            }
+            color: "white"
 
-    Label {
-        text: arg
-        anchors.centerIn: parent
-        color: "white"
-        visible: !isEdit
+            Keys.onReturnPressed: commandState = Command.Ready
+            Keys.onEnterPressed: commandState = Command.Ready
+        }
+
+        Label {
+            Layout.alignment: Qt.AlignHCenter
+            text: arg
+            color: "white"
+            visible: !isEdit
+        }
     }
 }
