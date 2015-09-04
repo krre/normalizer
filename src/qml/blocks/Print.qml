@@ -4,11 +4,11 @@ import "../entities"
 
 EntityBase {
     objectName: "print"
-    property alias arg: arg.text
+    property alias arg: text3d.text
     y: 10
 
     Text3D {
-        id: arg
+        id: text3d
         text: "text"
         x: -4
     }

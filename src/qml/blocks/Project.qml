@@ -3,14 +3,14 @@ import Qt3D.Renderer 2.0
 import "../entities"
 
 EntityBase {
-    property alias arg: arg.text
+    property alias arg: text3d.text
     objectName: "project"
     mesh: SphereMesh {
         radius: 4
     }
 
     Text3D {
-        id: arg
+        id: text3d
         x: -5
     }
 }
