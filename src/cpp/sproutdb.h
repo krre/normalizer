@@ -13,7 +13,7 @@ public:
     Q_INVOKABLE void close();
     Q_INVOKABLE QVariantList readRecords(const QString& sql);
     Q_INVOKABLE void insertRecord(const QString& sql);
-    Q_INVOKABLE void updateRecord();
+    Q_INVOKABLE void updateRecord(const QString &sql);
     Q_INVOKABLE void deleteRecord();
 private:
     QSqlDatabase db;
