@@ -1,15 +1,23 @@
 .import "../js/utils.js" as Utils
 
 function createWorld() {
-    addFloor()
+//    addFloor()
 //    currentNode = addProject(origin)
     currentNode = addProject(scene2d)
+    var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
+    for (var i in moduleList) {
+        var module = moduleList[i]
+        Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+    }
 }
 
 function lastId(table) {
     var module = sproutDb.readRecords(String("SELECT seq FROM sqlite_sequence WHERE name='%1'").arg(table))
     return module.length ? module[0].seq : 0
 }
+
+// ******************************** READ*************************************
+
 
 // ******************************** ADD *************************************
 
