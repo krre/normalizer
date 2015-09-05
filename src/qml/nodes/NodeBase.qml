@@ -18,6 +18,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
+        onClicked: currentNode = root
     }
 
     ColumnLayout {
