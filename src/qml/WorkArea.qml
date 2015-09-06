@@ -68,7 +68,7 @@ Item {
         anchors.fill: parent
         color: Qt.rgba(0.05, 0.05, 0.17, 1)
     }
-
+/*
     Scene3D {
         anchors.fill: parent
         aspects: "input"
@@ -114,7 +114,7 @@ Item {
             }
         }
     }
-
+*/
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top
