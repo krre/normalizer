@@ -110,5 +110,31 @@ Item {
                 color: labelColor
             }
         }
+
+        Grid {
+            columns: 2
+            columnSpacing: 20
+            visible: commandState === Command.Delete
+
+            Label {
+                text: "y"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Yes")
+                color: labelColor
+            }
+
+            Label {
+                text: "n"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("No")
+                color: labelColor
+            }
+        }
     }
 }
