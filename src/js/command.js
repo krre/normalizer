@@ -35,7 +35,8 @@ function run(event) {
         }
     } else if (commandState === Delete) {
         switch (event.text) {
-
+            case "y": currentNode = World.deleteModule(currentNode.nodeId); commandState = Ready; break
+            case "n": commandState = Ready; break
         }
     } else if (commandState === Edit) {
         switch (event.text) {

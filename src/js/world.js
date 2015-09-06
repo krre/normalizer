@@ -59,3 +59,11 @@ function addPrint(parent) {
 function editModule(id, name) {
     sproutDb.updateRecord(String("UPDATE Modules SET name='%1' WHERE id='%2'").arg(name).arg(id))
 }
+
+// ******************************** DELETE ************************************
+
+function deleteModule(id) {
+    sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
+    currentNode.destroy()
+    currentNode = undefined
+}

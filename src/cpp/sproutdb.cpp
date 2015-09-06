@@ -72,9 +72,14 @@ void SproutDb::updateRecord(const QString& sql)
     }
 }
 
-void SproutDb::deleteRecord()
+void SproutDb::deleteRecord(const QString& sql)
 {
-
+    QSqlQuery query(db);
+    bool result = query.exec(sql);
+    if (!result) {
+        qDebug("Error occurred update record");
+        qDebug("%s", qPrintable(query.lastError().text()));
+    }
 }
 
 
