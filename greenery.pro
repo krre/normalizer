@@ -7,12 +7,21 @@ win32 {
     debug:   DESTDIR = $$OUT_PWD
 }
 
+win32: LIBS += "-L../sprout/build"
+!win32: LIBS += -L../sprout/build
+
+LIBS += -lsproutc -lsproutdb
+
+INCLUDEPATH += ../sprout/sprout-c/src
+INCLUDEPATH += ../sprout/sprout-db/src
+
 HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/sproutdb.h \
     src/cpp/utils.h \
-    src/cpp/project.h
+    src/cpp/project.h \
+    src/cpp/sproutc.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -20,7 +29,8 @@ SOURCES += \
     src/cpp/sproutdb.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/project.cpp
+    src/cpp/project.cpp \
+    src/cpp/sproutc.cpp
 
 DISTFILES += \
     README.md \
