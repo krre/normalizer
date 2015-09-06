@@ -39,10 +39,10 @@ function addModule(parent) {
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Module.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
-function addFunction(parent) {
+function addFunction(parent, moduleId) {
     var id = parseInt(lastId("Functions")) + 1
     var name = "function" + id
-    sproutDb.insertRecord(String("INSERT INTO Functions (name) VALUES ('%1')").arg(name))
+    sproutDb.insertRecord(String("INSERT INTO Functions (name, moduleId) VALUES ('%1', %2)").arg(name).arg(moduleId))
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Function.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 

@@ -35,16 +35,13 @@ void Project::initTables(const QSqlDatabase& db)
                ")");
     query.exec("CREATE TABLE Functions("
                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-               "module INTEGER,"
-               "name,"
-               "command,"
-               "argument"
+               "moduleId INTEGER,"
+               "name"
                ")");
     query.exec("CREATE TABLE Commands("
                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-               "function INTEGER,"
-               "name,"
-               "args"
+               "functionId INTEGER,"
+               "name"
                ")");
     query.exec("CREATE TABLE Comments("
                "id INTEGER PRIMARY KEY AUTOINCREMENT,"

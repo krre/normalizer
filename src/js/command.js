@@ -30,7 +30,7 @@ function run(event) {
     } else if (commandState === Add) {
         switch (event.text) {
             case "m": currentNode = World.addModule(currentNode); commandState = Ready; break
-            case "f": currentNode = World.addFunction(currentNode); commandState = Ready; break
+            case "f": currentNode = World.addFunction(currentNode, 42); commandState = Ready; break
             case "p": currentNode = World.addPrint(currentNode); commandState = Ready; break
         }
     } else if (commandState === Delete) {
