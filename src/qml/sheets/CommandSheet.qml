@@ -101,6 +101,16 @@ Item {
             }
 
             Label {
+                text: "f"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Function")
+                color: labelColor
+            }
+
+            Label {
                 text: "p"
                 color: labelColor
             }

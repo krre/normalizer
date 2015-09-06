@@ -33,5 +33,6 @@
         <file>qml/nodes/Project.qml</file>
         <file>qml/nodes/Module.qml</file>
         <file>qml/nodes/Print.qml</file>
+        <file>qml/nodes/Function.qml</file>
     </qresource>
 </RCC>

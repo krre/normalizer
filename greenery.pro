@@ -56,7 +56,8 @@ DISTFILES += \
     src/qml/nodes/NodeBase.qml \
     src/qml/nodes/Project.qml \
     src/qml/nodes/Module.qml \
-    src/qml/nodes/Print.qml
+    src/qml/nodes/Print.qml \
+    src/qml/nodes/Function.qml
 
 RESOURCES += \
     src/greenery.qrc \
