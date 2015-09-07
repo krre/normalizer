@@ -37,6 +37,7 @@ Rectangle {
             onVisibleChanged: {
                 if (visible) {
                     text = arg
+                    selectAll()
                     forceActiveFocus()
                 } else if (isCurrent) {
                     arg = text
