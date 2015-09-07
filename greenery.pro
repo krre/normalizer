@@ -19,7 +19,6 @@ HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/utils.h \
-    src/cpp/project.h \
     src/cpp/sproutc.h
 
 SOURCES += \
@@ -27,7 +26,6 @@ SOURCES += \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/project.cpp \
     src/cpp/sproutc.cpp
 
 DISTFILES += \
