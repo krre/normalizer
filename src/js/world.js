@@ -7,7 +7,15 @@ function createWorld() {
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
     for (var i in moduleList) {
         var module = moduleList[i]
-        Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var moduleNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+    }
+
+    currentNode = moduleNode
+
+    var functionList = sproutDb.readRecords("SELECT * FROM Functions")
+    for (i in functionList) {
+        var func = functionList[i]
+        Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Function.qml", { nodeId: func.id, arg: func.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
 }
 
