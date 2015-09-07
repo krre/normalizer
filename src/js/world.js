@@ -60,6 +60,10 @@ function editModule(id, name) {
     sproutDb.updateRecord(String("UPDATE Modules SET name='%1' WHERE id='%2'").arg(name).arg(id))
 }
 
+function editFunction(id, name) {
+    sproutDb.updateRecord(String("UPDATE Functions SET name='%1' WHERE id='%2'").arg(name).arg(id))
+}
+
 // ******************************** DELETE ************************************
 
 function deleteModule(id) {
