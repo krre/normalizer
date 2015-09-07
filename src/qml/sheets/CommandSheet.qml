@@ -119,6 +119,16 @@ Item {
                 text: qsTr("Print")
                 color: labelColor
             }
+
+            Label {
+                text: "a"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Argument")
+                color: labelColor
+            }
         }
 
         Grid {

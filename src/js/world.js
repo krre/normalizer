@@ -15,8 +15,26 @@ function createWorld() {
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
     for (i in functionList) {
         var func = functionList[i]
-        Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Function.qml", { nodeId: func.id, arg: func.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var funcNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Function.qml", { nodeId: func.id, arg: func.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
+
+    currentNode = funcNode
+
+    var instructionList = sproutDb.readRecords("SELECT * FROM Instructions")
+    for (i in functionList) {
+        var instr = instructionList[i]
+        var instrNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Instruction.qml", { nodeId: instr.id, arg: instr.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+    }
+
+    currentNode = instrNode
+
+    var argumentList = sproutDb.readRecords("SELECT * FROM Arguments")
+    for (i in argumentList) {
+        var arg = argumentList[i]
+        var argNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Argument.qml", { nodeId: arg.id, arg: arg.arg, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+    }
+
+    currentNode = argNode
 }
 
 function lastId(table) {
@@ -54,12 +72,19 @@ function addFunction(parent, moduleId) {
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Function.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
-function addPrint(parent) {
+function addPrint(parent, functionId) {
     var id = parseInt(lastId("Instructions")) + 1
     var name = "print"
-    sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(id))
+    sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(functionId))
 //    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: arg })
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Print.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+}
+
+function addArgument(parent, instructionId) {
+    var id = parseInt(lastId("Arguments")) + 1
+    var arg = "arg" + id
+    sproutDb.insertRecord(String("INSERT INTO Arguments (arg, instructionId) VALUES ('%1', %2)").arg(arg).arg(instructionId))
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Argument.qml", { nodeId: id, arg: arg, x: parent.width + 10 })
 }
 
 // ******************************** EDIT *************************************
@@ -70,6 +95,10 @@ function editModule(id, name) {
 
 function editFunction(id, name) {
     sproutDb.updateRecord(String("UPDATE Functions SET name='%1' WHERE id='%2'").arg(name).arg(id))
+}
+
+function editArgument(id, arg) {
+    sproutDb.updateRecord(String("UPDATE Arguments SET arg='%1' WHERE id='%2'").arg(arg).arg(id))
 }
 
 // ******************************** DELETE ************************************
