@@ -27,7 +27,7 @@ ApplicationWindow {
             Utils.loadSession()
         }
 
-        var sv = sproutC.version()
+        var sv = sproutDefines.version()
         sproutVersion = String("%1.%2.%3").arg(sv.major).arg(sv.minor).arg(sv.patch)
     }
 
@@ -39,8 +39,8 @@ ApplicationWindow {
         Utils.saveGeometry()
     }
 
-    SproutC {
-        id: sproutC
+    SproutDefines {
+        id: sproutDefines
     }
 
     TabView {
