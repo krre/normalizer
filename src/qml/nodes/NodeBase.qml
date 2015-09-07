@@ -31,15 +31,17 @@ Rectangle {
         }
 
         TextEdit {
+            property bool isEscape: false
             visible: isEdit
             Layout.fillWidth: true
             horizontalAlignment: TextEdit.AlignHCenter
             onVisibleChanged: {
                 if (visible) {
+                    isEscape = false
                     text = arg
                     selectAll()
                     forceActiveFocus()
-                } else if (isCurrent) {
+                } else if (isCurrent && !isEscape) {
                     arg = text
                     edit(text)
                 }
@@ -48,6 +50,10 @@ Rectangle {
 
             Keys.onReturnPressed: commandState = Command.Ready
             Keys.onEnterPressed: commandState = Command.Ready
+            Keys.onEscapePressed: {
+                isEscape = true
+                commandState = Command.Ready
+            }
         }
 
         Label {
