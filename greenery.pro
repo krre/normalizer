@@ -1,4 +1,4 @@
-QT += widgets sql opengl
+QT += widgets sql opengl qml quick 3dcore 3drenderer 3dinput 3dquick
 CONFIG += c++11
 TEMPLATE = app
 
@@ -7,27 +7,32 @@ win32 {
     debug:   DESTDIR = $$OUT_PWD
 }
 
+win32: LIBS += "-L../sprout/build"
+!win32: LIBS += -L../sprout/build
+
+LIBS += -lsproutc -lsproutdb
 LIBS += -L../osg/lib64 -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
+
+INCLUDEPATH += ../sprout/sprout-c/src
+INCLUDEPATH += ../sprout/sprout-db/src
 INCLUDEPATH += ../osg/include
 
 HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
-    src/cpp/sproutdb.h \
     src/cpp/utils.h \
-    src/cpp/project.h \
     src/cpp/ui/osgwidget.h \
     src/cpp/ui/mainwindow.h
+    src/cpp/version.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
-    src/cpp/sproutdb.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/project.cpp \
     src/cpp/ui/osgwidget.cpp \
     src/cpp/ui/mainwindow.cpp
+    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \
@@ -59,7 +64,13 @@ DISTFILES += \
     src/qml/main.qml \
     src/qml/NewProject.qml \
     src/qml/blocks/Module.qml \
-    src/qml/blocks/Floor.qml
+    src/qml/blocks/Floor.qml \
+    src/qml/nodes/NodeBase.qml \
+    src/qml/nodes/Project.qml \
+    src/qml/nodes/Module.qml \
+    src/qml/nodes/Function.qml \
+    src/qml/nodes/Argument.qml \
+    src/qml/nodes/Instruction.qml
 
 RESOURCES += \
     src/greenery.qrc \

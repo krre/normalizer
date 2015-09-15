@@ -101,12 +101,68 @@ Item {
             }
 
             Label {
+                text: "f"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Function")
+                color: labelColor
+            }
+
+            Label {
+                text: "a"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Argument")
+                color: labelColor
+            }
+
+            Label {
                 text: "p"
                 color: labelColor
             }
 
             Label {
-                text: qsTr("Print")
+                text: qsTr("Print Line")
+                color: labelColor
+            }
+
+            Label {
+                text: "r"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Read Line")
+                color: labelColor
+            }
+        }
+
+        Grid {
+            columns: 2
+            columnSpacing: 20
+            visible: commandState === Command.Delete
+
+            Label {
+                text: "y"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Yes")
+                color: labelColor
+            }
+
+            Label {
+                text: "n"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("No")
                 color: labelColor
             }
         }

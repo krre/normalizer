@@ -8,7 +8,6 @@ import "../js/command.js" as Command
 
 ApplicationWindow {
     id: mainRoot
-    property string version: "0.1.0"
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     title: "Greenery"
     width: 800

@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 
 Item {
     property alias textEdit: textEdit
-    height: 87
+    height: 120
 
     Rectangle {
         anchors.fill: parent

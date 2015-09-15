@@ -6,7 +6,8 @@ class Console: public QProcess
     Q_OBJECT
 public:
     Console();
-    Q_INVOKABLE void run(const QString& sproutPath, const QString& sourcePath);
+    Q_INVOKABLE void run(const QString& binPath);
+    Q_INVOKABLE void build(const QString& sproutPath, const QString& sourcePath);
 
 signals:
     void message(const QString& message);

@@ -29,5 +29,11 @@
         <file>qml/blocks/Module.qml</file>
         <file>js/dialog.js</file>
         <file>qml/blocks/Floor.qml</file>
+        <file>qml/nodes/NodeBase.qml</file>
+        <file>qml/nodes/Project.qml</file>
+        <file>qml/nodes/Module.qml</file>
+        <file>qml/nodes/Instruction.qml</file>
+        <file>qml/nodes/Function.qml</file>
+        <file>qml/nodes/Argument.qml</file>
     </qresource>
 </RCC>

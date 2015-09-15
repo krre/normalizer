@@ -3,7 +3,7 @@ import Qt3D.Renderer 2.0
 import "../entities"
 
 EntityBase {
-    property alias arg: arg.text
+    property alias arg: text3d.text
     objectName: "module"
     y: 10
     mesh: CylinderMesh {
@@ -12,7 +12,7 @@ EntityBase {
     }
 
     Text3D {
-        id: arg
+        id: text3d
         x: -4
     }
 }
