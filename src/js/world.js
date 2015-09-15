@@ -72,6 +72,13 @@ function addFunction(parent, moduleId) {
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Function.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
+function addArgument(parent, instructionId) {
+    var id = parseInt(lastId("Arguments")) + 1
+    var arg = "arg" + id
+    sproutDb.insertRecord(String("INSERT INTO Arguments (arg, instructionId) VALUES ('%1', %2)").arg(arg).arg(instructionId))
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Argument.qml", { nodeId: id, arg: arg, x: parent.width + 10 })
+}
+
 function addPrintLine(parent, functionId) {
     var id = parseInt(lastId("Instructions")) + 1
     var name = "print-line"
@@ -80,11 +87,11 @@ function addPrintLine(parent, functionId) {
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
-function addArgument(parent, instructionId) {
-    var id = parseInt(lastId("Arguments")) + 1
-    var arg = "arg" + id
-    sproutDb.insertRecord(String("INSERT INTO Arguments (arg, instructionId) VALUES ('%1', %2)").arg(arg).arg(instructionId))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Argument.qml", { nodeId: id, arg: arg, x: parent.width + 10 })
+function addReadLine(parent, functionId) {
+    var id = parseInt(lastId("Instructions")) + 1
+    var name = "read-line"
+    sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(functionId))
+    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
 // ******************************** EDIT *************************************

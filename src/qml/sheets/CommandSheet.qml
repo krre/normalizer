@@ -111,6 +111,16 @@ Item {
             }
 
             Label {
+                text: "a"
+                color: labelColor
+            }
+
+            Label {
+                text: qsTr("Argument")
+                color: labelColor
+            }
+
+            Label {
                 text: "p"
                 color: labelColor
             }
@@ -121,12 +131,12 @@ Item {
             }
 
             Label {
-                text: "a"
+                text: "r"
                 color: labelColor
             }
 
             Label {
-                text: qsTr("Argument")
+                text: qsTr("Read Line")
                 color: labelColor
             }
         }
