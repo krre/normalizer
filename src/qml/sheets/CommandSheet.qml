@@ -116,7 +116,7 @@ Item {
             }
 
             Label {
-                text: qsTr("Print")
+                text: qsTr("Print Line")
                 color: labelColor
             }
 

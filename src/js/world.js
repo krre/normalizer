@@ -72,9 +72,9 @@ function addFunction(parent, moduleId) {
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Function.qml", { nodeId: id, arg: name, x: parent.width + 10 })
 }
 
-function addPrint(parent, functionId) {
+function addPrintLine(parent, functionId) {
     var id = parseInt(lastId("Instructions")) + 1
-    var name = "print"
+    var name = "print-line"
     sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(functionId))
 //    return Utils.createDynamicObject(parent, "qrc:/qml/blocks/Print.qml", { arg: arg })
     return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })

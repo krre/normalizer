@@ -31,7 +31,7 @@ function run(event) {
         switch (event.text) {
             case "m": currentNode = World.addModule(currentNode); commandState = Ready; break
             case "f": currentNode = World.addFunction(currentNode, currentNode.nodeId); commandState = Ready; break
-            case "p": currentNode = World.addPrint(currentNode, currentNode.nodeId); commandState = Ready; break
+            case "p": currentNode = World.addPrintLine(currentNode, currentNode.nodeId); commandState = Ready; break
             case "a": currentNode = World.addArgument(currentNode, currentNode.nodeId); commandState = Ready; break
         }
     } else if (commandState === Delete) {
