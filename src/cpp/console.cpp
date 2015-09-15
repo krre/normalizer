@@ -13,7 +13,7 @@ Console::Console()
 
 void Console::run(const QString& binPath)
 {
-    qDebug() << "run: " << binPath;
+    start(binPath);
 }
 
 void Console::build(const QString &sproutPath, const QString &sourcePath)
@@ -23,12 +23,20 @@ void Console::build(const QString &sproutPath, const QString &sourcePath)
 
 void Console::onStarted()
 {
-    emit message("Starting " + arguments().at(0) + "...");
+    if (arguments().count()) {
+        emit message("Starting build " + arguments().at(0) + "...");
+    } else {
+        emit message("Starting run " + program() + "...");
+    }
 }
 
 void Console::onFinished(int exitCode)
 {
-    emit message(arguments().at(0) + " exited with code " + QString::number(exitCode));
+    if (arguments().count()) {
+        emit message(arguments().at(0) + " exited with code " + QString::number(exitCode));
+    } else {
+        emit message(program() + " exited with code " + QString::number(exitCode));
+    }
     emit message("");
 }
 
