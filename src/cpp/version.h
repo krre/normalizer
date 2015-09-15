@@ -1,6 +1,5 @@
 #pragma once
-
-#include <QObject>
+#include <QtCore>
 
 #define MAJOR 0
 #define MINOR 1

@@ -7,11 +7,17 @@ win32 {
     debug:   DESTDIR = $$OUT_PWD
 }
 
-win32: LIBS += "-L../sprout/build"
-!win32: LIBS += -L../sprout/build
+win32: {
+    LIBS += "-L../sprout/build"
+    LIBS += "-L../OSG/lib"
+}
+!win32: {
+    LIBS += -L../sprout/build
+    LIBS += -L../OSG/lib64
+}
 
 LIBS += -lsproutc -lsproutdb
-LIBS += -L../osg/lib64 -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
+LIBS += -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += ../sprout/sprout-c/src
 INCLUDEPATH += ../sprout/sprout-db/src
@@ -22,7 +28,7 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/ui/osgwidget.h \
-    src/cpp/ui/mainwindow.h
+    src/cpp/ui/mainwindow.h \
     src/cpp/version.h
 
 SOURCES += \
