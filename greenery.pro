@@ -25,8 +25,7 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp \
-    src/cpp/version.cpp
+    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \
