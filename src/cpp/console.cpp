@@ -11,7 +11,12 @@ Console::Console()
     connect(this, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
 }
 
-void Console::run(const QString& sproutPath, const QString& sourcePath)
+void Console::run(const QString& binPath)
+{
+    qDebug() << "run: " << binPath;
+}
+
+void Console::build(const QString &sproutPath, const QString &sourcePath)
 {
     start(sproutPath + " " + sourcePath);
 }
