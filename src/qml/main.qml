@@ -8,7 +8,6 @@ import "../js/command.js" as Command
 
 ApplicationWindow {
     id: mainRoot
-    property string sproutVersion
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     title: "Greenery"
     width: 800
@@ -25,9 +24,6 @@ ApplicationWindow {
         if (SETTINGS.getAutoLoadSession()) {
             Utils.loadSession()
         }
-
-        var sv = sproutDefines.version()
-        sproutVersion = String("%1.%2.%3").arg(sv.major).arg(sv.minor).arg(sv.patch)
     }
 
     Component.onDestruction: {
@@ -36,10 +32,6 @@ ApplicationWindow {
             Utils.saveSession()
         }
         Utils.saveGeometry()
-    }
-
-    SproutDefines {
-        id: sproutDefines
     }
 
     TabView {
