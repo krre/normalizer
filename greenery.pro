@@ -18,13 +18,15 @@ INCLUDEPATH += ../sprout/sprout-db/src
 HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
-    src/cpp/utils.h
+    src/cpp/utils.h \
+    src/cpp/version.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp
+    src/cpp/console.cpp \
+    src/cpp/version.cpp
 
 DISTFILES += \
     README.md \

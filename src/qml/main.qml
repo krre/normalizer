@@ -8,7 +8,6 @@ import "../js/command.js" as Command
 
 ApplicationWindow {
     id: mainRoot
-    property string greeneryVersion: "0.1.0"
     property string sproutVersion
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     title: "Greenery"

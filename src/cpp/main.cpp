@@ -7,12 +7,13 @@
 #include "sproutc.h"
 #include "project.h"
 #include "defines.h"
+#include "version.h"
 
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     app.setApplicationName("Greenery");
-    QCoreApplication::setApplicationVersion("0.1.0");
+    QCoreApplication::setApplicationVersion(Version::full());
 
     QCommandLineParser parser;
     parser.setApplicationDescription("IDE for Sprout language");
@@ -36,11 +37,13 @@ int main(int argc, char* argv[])
     Utils utils;
     Settings settings;
     Project project;
+    Version version;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", &settings);
+    engine.rootContext()->setContextProperty("VERSION", &version);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
