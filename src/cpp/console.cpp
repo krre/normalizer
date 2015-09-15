@@ -3,6 +3,8 @@
 
 Console::Console()
 {
+    setProcessChannelMode(QProcess::MergedChannels);
+
     connect(this, SIGNAL(started()), this, SLOT(onStarted()));
     connect(this, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
     connect(this, SIGNAL(error(QProcess::ProcessError)), this, SLOT(onError(QProcess::ProcessError)));
@@ -11,7 +13,6 @@ Console::Console()
 
 void Console::run(const QString& sproutPath, const QString& sourcePath)
 {
-    setProcessChannelMode(QProcess::MergedChannels);
     start(sproutPath + " " + sourcePath);
 }
 
