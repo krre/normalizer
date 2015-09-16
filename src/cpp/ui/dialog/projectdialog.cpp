@@ -1,11 +1,14 @@
 #include "projectdialog.h"
 #include "../../settings.h"
+#include "../../utils.h"
+#include "project.h"
 #include <QtCore>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QDialogButtonBox>
 #include <QFileDialog>
+#include <QMessageBox>
 
 extern QSharedPointer<Settings> settings;
 
@@ -18,7 +21,7 @@ ProjectDialog::ProjectDialog(QWidget *parent) : QDialog(parent)
     QGridLayout* layout = new QGridLayout(this);
 
     QLabel* nameLabel = new QLabel(tr("Name:"));
-    QLineEdit* nameLineEdit = new QLineEdit("project");
+    nameLineEdit = new QLineEdit("project");
     layout->addWidget(nameLabel, 0, 0);
     layout->addWidget(nameLineEdit, 0, 1, 1, 2);
 
@@ -42,8 +45,18 @@ ProjectDialog::ProjectDialog(QWidget *parent) : QDialog(parent)
 
 void ProjectDialog::onAccepted()
 {
-    settings.data()->setRecentDirectory(directoryLineEdit->text());
-    accept();
+    QString projectPath = directoryLineEdit->text() + QDir::separator() + nameLineEdit->text() + ".sprout";
+    if (Utils::isFileExists(projectPath)) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, tr("Warning"),
+                                        QDialog::tr("File already exists. Overwrite?"));
+        if (reply == QMessageBox::Yes) {
+            Utils::removeFile(projectPath);
+            createProject(projectPath);
+        }
+    } else {
+        createProject(projectPath);
+    }
 }
 
 void ProjectDialog::onBrowseDirectory()
@@ -56,4 +69,11 @@ void ProjectDialog::onBrowseDirectory()
     if (!directory.isEmpty()) {
         directoryLineEdit->setText(directory);
     }
+}
+
+void ProjectDialog::createProject(QString &path)
+{
+    Project::create(path, nameLineEdit->text());
+    settings.data()->setRecentDirectory(directoryLineEdit->text());
+    accept();
 }

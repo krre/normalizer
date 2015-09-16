@@ -13,6 +13,9 @@ public slots:
     void onBrowseDirectory();
 
 private:
+    void createProject(QString& path);
+
+    QLineEdit* nameLineEdit;
     QLineEdit* directoryLineEdit;
 
 };
