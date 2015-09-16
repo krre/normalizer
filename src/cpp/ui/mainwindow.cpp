@@ -30,9 +30,9 @@ void MainWindow::addTab(QString &name, QString &path)
 {
     int index = tabWidget.count();
     OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
+    osgWidget->setProjectPath(path);
     tabWidget.addTab(osgWidget, name);
     tabWidget.setCurrentIndex(index);
-    qDebug() << path;
 }
 
 void MainWindow::onNewTab() {
