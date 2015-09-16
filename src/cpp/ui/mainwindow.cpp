@@ -22,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
     setCentralWidget(osgWidget);
 
-    createActions();
     createMenus();
     loadSettings();
 }
@@ -48,36 +47,16 @@ void MainWindow::aboutQt() {
     QMessageBox::aboutQt(this);
 }
 
-void MainWindow::createActions() {
-    newAct = new QAction(tr("New"), this);
-    newAct->setShortcut(QKeySequence("Ctrl+N"));
-    connect(newAct, SIGNAL(triggered(bool)), this, SLOT(newFile()));
-
-    openAct = new QAction(tr("Open..."), this);
-    openAct->setShortcut(QKeySequence("Ctrl+O"));
-    connect(openAct, SIGNAL(triggered(bool)), this, SLOT(open()));
-
-    quitAct = new QAction(tr("Quit"), this);
-    quitAct->setShortcut(QKeySequence("Ctrl+Q"));
-    connect(quitAct, SIGNAL(triggered(bool)), this, SLOT(quitApp()));
-
-    aboutAct = new QAction(tr("About..."), this);
-    connect(aboutAct, SIGNAL(triggered(bool)), this, SLOT(about()));
-
-    aboutQtAct = new QAction(tr("About Qt..."), this);
-    connect(aboutQtAct, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
-}
-
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(newAct);
-    fileMenu->addAction(openAct);
+    fileMenu->addAction(tr("New"), this, SLOT(newFile()), Qt::CTRL + Qt::Key_N);
+    fileMenu->addAction(tr("Open..."), this, SLOT(open()), Qt::CTRL + Qt::Key_O);
     fileMenu->addSeparator();
-    fileMenu->addAction(quitAct);
+    fileMenu->addAction(tr("Quit"), this, SLOT(about()), Qt::CTRL + Qt::Key_Q);
 
     helpMenu = menuBar()->addMenu(tr("Help"));
-    helpMenu->addAction(aboutAct);
-    helpMenu->addAction(aboutQtAct);
+    helpMenu->addAction(tr("About..."), this, SLOT(about()));
+    helpMenu->addAction(tr("About Qt..."), this, SLOT(aboutQt()));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

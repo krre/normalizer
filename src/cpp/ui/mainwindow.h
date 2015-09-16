@@ -18,7 +18,6 @@ private slots:
     void aboutQt();
 
 private:
-    void createActions();
     void createMenus();
     void closeEvent(QCloseEvent* event) override;
     void saveSettings();
@@ -26,10 +25,4 @@ private:
 
     QMenu *fileMenu;
     QMenu *helpMenu;
-
-    QAction *newAct;
-    QAction *openAct;
-    QAction *quitAct;
-    QAction *aboutAct;
-    QAction *aboutQtAct;
 };
