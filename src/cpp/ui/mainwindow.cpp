@@ -16,6 +16,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     int y = (desktopSize.height() - size().height()) / 2;
     move(x, y);
 
-//    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
-//    setCentralWidget(osgWidget);
+    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
+    setCentralWidget(osgWidget);
 }
