@@ -19,15 +19,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowTitle("Greenery");
     setMinimumSize(160, 160);
 
-    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
-    setCentralWidget(osgWidget);
+    setCentralWidget(&tabWidget);
 
     createMenus();
+    setupTabWidget();
     loadSettings();
 }
 
-void MainWindow::newFile() {
-    qDebug() << "new";
+void MainWindow::onNewTab() {
+    int index = tabWidget.count();
+    QString tabName = tr("Untitled ") + QString("%1").arg(index + 1, 2, 10, QChar('0'));
+    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
+    tabWidget.addTab(osgWidget, tabName);
+    tabWidget.setCurrentIndex(index);
 }
 
 void MainWindow::open() {
@@ -47,16 +51,33 @@ void MainWindow::aboutQt() {
     QMessageBox::aboutQt(this);
 }
 
+void MainWindow::onCloseTab(int index)
+{
+    tabWidget.removeTab(index);
+}
+
+void MainWindow::onActiveTabChanged(int index)
+{
+    Q_UNUSED(index)
+}
+
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(tr("New"), this, SLOT(newFile()), Qt::CTRL + Qt::Key_N);
-    fileMenu->addAction(tr("Open..."), this, SLOT(open()), Qt::CTRL + Qt::Key_O);
+    fileMenu->addAction(tr("New Project..."), this, SLOT(onNewTab()), Qt::CTRL + Qt::Key_N);
+    fileMenu->addAction(tr("Open Project..."), this, SLOT(open()), Qt::CTRL + Qt::Key_O);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Quit"), this, SLOT(about()), Qt::CTRL + Qt::Key_Q);
 
     helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About..."), this, SLOT(about()));
     helpMenu->addAction(tr("About Qt..."), this, SLOT(aboutQt()));
+}
+
+void MainWindow::setupTabWidget()
+{
+    tabWidget.setTabsClosable(true);
+    connect(&tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onCloseTab(int)));
+    connect(&tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onActiveTabChanged(int)));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
