@@ -29,7 +29,8 @@ HEADERS += \
     src/cpp/utils.h \
     src/cpp/ui/osgwidget.h \
     src/cpp/ui/mainwindow.h \
-    src/cpp/version.h
+    src/cpp/version.h \
+    src/cpp/ui/dialog/projectdialog.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -37,7 +38,8 @@ SOURCES += \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
     src/cpp/ui/osgwidget.cpp \
-    src/cpp/ui/mainwindow.cpp
+    src/cpp/ui/mainwindow.cpp \
+    src/cpp/ui/dialog/projectdialog.cpp
     src/cpp/console.cpp
 
 DISTFILES += \

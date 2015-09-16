@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "osgwidget.h"
 #include "version.h"
+#include "dialog/projectdialog.h"
 #include "../settings.h"
 #include <QtCore/QRect>
 #include <QApplication>
@@ -26,11 +27,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 }
 
 void MainWindow::onNewTab() {
-    int index = tabWidget.count();
-    QString tabName = tr("Untitled ") + QString("%1").arg(index + 1, 2, 10, QChar('0'));
-    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
-    tabWidget.addTab(osgWidget, tabName);
-    tabWidget.setCurrentIndex(index);
+//    int index = tabWidget.count();
+//    QString tabName = tr("Untitled ") + QString("%1").arg(index + 1, 2, 10, QChar('0'));
+//    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
+//    tabWidget.addTab(osgWidget, tabName);
+//    tabWidget.setCurrentIndex(index);
+
+    ProjectDialog* pd = new ProjectDialog(this);
+    pd->exec();
 }
 
 void MainWindow::open() {
@@ -140,5 +144,4 @@ void MainWindow::loadSettings()
         setGeometry(map["x"], map["y"], map["width"], map["height"]);
     }
 }
-
 
