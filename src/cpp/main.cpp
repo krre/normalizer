@@ -1,13 +1,6 @@
 #include <QApplication>
 #include <QtDebug>
-//#include <QtQml>
 #include "ui/mainwindow.h"
-#include "utils.h"
-#include "settings.h"
-#include "console.h"
-#include "sproutdb.h"
-#include "sproutc.h"
-#include "project.h"
 #include "version.h"
 
 int main(int argc, char* argv[])
@@ -29,28 +22,8 @@ int main(int argc, char* argv[])
 
     parser.process(app);
 
-    bool isQml = parser.isSet("qml");
-
-    if (isQml) {
-//        qmlRegisterType<Console>("Greenery.Lib", 1, 0, "Console");
-//        qmlRegisterType<SproutDb>("Greenery.Lib", 1, 0, "SproutDb");
-
-//        Utils* utils = new Utils();
-//        Settings* settings = new Settings();
-//        Project* project = new Project();
-//        Version* version = new Version();
-
-//        QQmlApplicationEngine* engine = new QQmlApplicationEngine();
-//        engine->rootContext()->setContextProperty("PROJECT", project);
-//        engine->rootContext()->setContextProperty("UTILS", utils);
-//        engine->rootContext()->setContextProperty("SETTINGS", settings);
-//        engine->rootContext()->setContextProperty("VERSION", version);
-//        engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
-    } else {
-        MainWindow* mainWindow = new MainWindow();
-        mainWindow->resize(800, 600);
-        mainWindow->show();
-    }
+    MainWindow mainWindow;
+    mainWindow.show();
 
     return app.exec();
 }
