@@ -10,6 +10,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
+public:
+    void addTab(QString& name, QString& path);
+
 private slots:
     void onNewTab();
     void open();

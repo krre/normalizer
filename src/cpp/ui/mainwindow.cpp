@@ -26,13 +26,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     loadSettings();
 }
 
-void MainWindow::onNewTab() {
-//    int index = tabWidget.count();
-//    QString tabName = tr("Untitled ") + QString("%1").arg(index + 1, 2, 10, QChar('0'));
-//    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
-//    tabWidget.addTab(osgWidget, tabName);
-//    tabWidget.setCurrentIndex(index);
+void MainWindow::addTab(QString &name, QString &path)
+{
+    int index = tabWidget.count();
+    OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
+    tabWidget.addTab(osgWidget, name);
+    tabWidget.setCurrentIndex(index);
+    qDebug() << path;
+}
 
+void MainWindow::onNewTab() {
     ProjectDialog* pd = new ProjectDialog(this);
     pd->exec();
 }

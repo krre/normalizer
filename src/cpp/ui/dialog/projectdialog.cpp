@@ -1,4 +1,5 @@
 #include "projectdialog.h"
+#include "../mainwindow.h"
 #include "../../settings.h"
 #include "../../utils.h"
 #include "project.h"
@@ -73,7 +74,10 @@ void ProjectDialog::onBrowseDirectory()
 
 void ProjectDialog::createProject(QString &path)
 {
-    Project::create(path, nameLineEdit->text());
+    QString name = nameLineEdit->text();
+    Project::create(path, name);
     settings.data()->setRecentDirectory(directoryLineEdit->text());
+    MainWindow* mainWindow = static_cast<MainWindow*>(parentWidget());
+    mainWindow->addTab(name, path);
     accept();
 }
