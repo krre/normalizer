@@ -19,25 +19,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowTitle("Greenery");
     setMinimumSize(160, 160);
 
-    QMap<QString, int>map = ::settings.data()->getGeometry();
-    if (map.isEmpty()) {
-        // move window to center screen
-        auto *screen = QGuiApplication::primaryScreen();
-        auto screenSize = screen->size();
-        int width = 800;
-        int height = 600;
-        int x = (screenSize.width() - width) / 2;
-        int y = (screenSize.height() - height) / 2;
-        setGeometry(x, y, width, height);
-    } else {
-        setGeometry(map["x"], map["y"], map["width"], map["height"]);
-    }
-
     OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
     setCentralWidget(osgWidget);
 
     createActions();
     createMenus();
+    loadSettings();
 }
 
 void MainWindow::newFile() {
@@ -96,12 +83,34 @@ void MainWindow::createMenus() {
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event)
+    saveSettings();
+}
+
+void MainWindow::saveSettings()
+{
     QMap<QString, int> map;
     map["x"] = x();
     map["y"] = y();
     map["width"] = width();
     map["height"] = height();
     ::settings.data()->setGeometry(map);
+}
+
+void MainWindow::loadSettings()
+{
+    QMap<QString, int>map = ::settings.data()->getGeometry();
+    if (map.isEmpty()) {
+        // move window to center screen
+        auto *screen = QGuiApplication::primaryScreen();
+        auto screenSize = screen->size();
+        int width = 800;
+        int height = 600;
+        int x = (screenSize.width() - width) / 2;
+        int y = (screenSize.height() - height) / 2;
+        setGeometry(x, y, width, height);
+    } else {
+        setGeometry(map["x"], map["y"], map["width"], map["height"]);
+    }
 }
 
 

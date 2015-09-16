@@ -21,6 +21,8 @@ private:
     void createActions();
     void createMenus();
     void closeEvent(QCloseEvent* event) override;
+    void saveSettings();
+    void loadSettings();
 
     QMenu *fileMenu;
     QMenu *helpMenu;
