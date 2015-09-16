@@ -21,7 +21,7 @@ LIBS += -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgT
 
 INCLUDEPATH += ../sprout/sprout-c/src
 INCLUDEPATH += ../sprout/sprout-db/src
-INCLUDEPATH += ../osg/include
+INCLUDEPATH += ../OSG/include
 
 HEADERS += \
     src/cpp/console.h \
