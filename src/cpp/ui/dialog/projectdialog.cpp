@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QDialogButtonBox>
+#include <QFileDialog>
 
 extern QSharedPointer<Settings> settings;
 
@@ -28,6 +29,7 @@ ProjectDialog::ProjectDialog(QWidget *parent) : QDialog(parent)
     }
     directoryLineEdit = new QLineEdit(projectDir);
     QPushButton* browseButton = new QPushButton(tr("Browse..."));
+    connect(browseButton, SIGNAL(clicked(bool)), this, SLOT(onBrowseDirectory()));
     layout->addWidget(directoryLabel, 1, 0);
     layout->addWidget(directoryLineEdit, 1, 1);
     layout->addWidget(browseButton, 1, 2);
@@ -42,4 +44,16 @@ void ProjectDialog::onAccepted()
 {
     settings.data()->setRecentDirectory(directoryLineEdit->text());
     accept();
+}
+
+void ProjectDialog::onBrowseDirectory()
+{
+    QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
+    QString directory = QFileDialog::getExistingDirectory(this,
+                                tr("Select Directory"),
+                                directoryLineEdit->text(),
+                                options);
+    if (!directory.isEmpty()) {
+        directoryLineEdit->setText(directory);
+    }
 }

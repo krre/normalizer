@@ -10,6 +10,7 @@ public:
 
 public slots:
     void onAccepted();
+    void onBrowseDirectory();
 
 private:
     QLineEdit* directoryLineEdit;
