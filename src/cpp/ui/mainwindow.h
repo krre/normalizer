@@ -20,6 +20,7 @@ private slots:
 private:
     void createActions();
     void createMenus();
+    void closeEvent(QCloseEvent* event) override;
 
     QMenu *fileMenu;
     QMenu *helpMenu;

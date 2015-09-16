@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "osgwidget.h"
 #include "version.h"
+#include "../settings.h"
 #include <QtCore/QRect>
 #include <QApplication>
 #include <QDebug>
@@ -11,19 +12,26 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 
+extern QSharedPointer<Settings> settings;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setWindowTitle("Greenery");
     setMinimumSize(160, 160);
 
-    // move window to center screen
-    auto *screen = QGuiApplication::primaryScreen();
-    auto screenSize = screen->size();
-    auto width = 800;
-    auto height = 600;
-    auto x = (screenSize.width() - width) / 2;
-    auto y = (screenSize.height() - height) / 2;
-    setGeometry(x, y, width, height);
+    QMap<QString, int>map = ::settings.data()->getGeometry();
+    if (map.isEmpty()) {
+        // move window to center screen
+        auto *screen = QGuiApplication::primaryScreen();
+        auto screenSize = screen->size();
+        int width = 800;
+        int height = 600;
+        int x = (screenSize.width() - width) / 2;
+        int y = (screenSize.height() - height) / 2;
+        setGeometry(x, y, width, height);
+    } else {
+        setGeometry(map["x"], map["y"], map["width"], map["height"]);
+    }
 
     OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
     setCentralWidget(osgWidget);
@@ -41,7 +49,7 @@ void MainWindow::open() {
 }
 
 void MainWindow::quitApp() {
-    QApplication::quit();
+    close();
 }
 
 void MainWindow::about() {
@@ -83,6 +91,17 @@ void MainWindow::createMenus() {
     helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(aboutAct);
     helpMenu->addAction(aboutQtAct);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event)
+    QMap<QString, int> map;
+    map["x"] = x();
+    map["y"] = y();
+    map["width"] = width();
+    map["height"] = height();
+    ::settings.data()->setGeometry(map);
 }
 
 

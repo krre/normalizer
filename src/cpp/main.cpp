@@ -2,6 +2,9 @@
 #include <QtDebug>
 #include "ui/mainwindow.h"
 #include "version.h"
+#include "settings.h"
+
+QSharedPointer<Settings> settings;
 
 int main(int argc, char* argv[])
 {
@@ -21,6 +24,8 @@ int main(int argc, char* argv[])
     });
 
     parser.process(app);
+
+    ::settings = QSharedPointer<Settings>(new Settings());
 
     MainWindow mainWindow;
     mainWindow.show();

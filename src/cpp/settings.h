@@ -6,21 +6,20 @@ class Settings : public QObject
     Q_OBJECT
 public:
     explicit Settings(QObject* parent = 0);
-    ~Settings() {}
-    Q_INVOKABLE void setGeometry(const QVariantMap& geometry);
-    Q_INVOKABLE QVariantMap getGeometry();
-    Q_INVOKABLE void setLang(const QString& lang);
-    Q_INVOKABLE QString getLang();
-    Q_INVOKABLE void setRecentFiles(const QStringList& fileList);
-    Q_INVOKABLE QStringList getRecentFiles();
-    Q_INVOKABLE void setSession(const QStringList& fileList);
-    Q_INVOKABLE QStringList getSession();
-    Q_INVOKABLE void setSproutPath(const QString& path);
-    Q_INVOKABLE QString getSproutPath();
-    Q_INVOKABLE void setRecentDirectory(const QString& path);
-    Q_INVOKABLE QString getRecentDirectory();
-    Q_INVOKABLE void setAutoLoadSession(bool value);
-    Q_INVOKABLE bool getAutoLoadSession();
+    void setGeometry(const QMap<QString, int>& geometry);
+    QMap<QString, int> getGeometry();
+    void setLang(const QString& lang);
+    QString getLang();
+    void setRecentFiles(const QStringList& fileList);
+    QStringList getRecentFiles();
+    void setSession(const QStringList& fileList);
+    QStringList getSession();
+    void setSproutPath(const QString& path);
+    QString getSproutPath();
+    void setRecentDirectory(const QString& path);
+    QString getRecentDirectory();
+    void setAutoLoadSession(bool value);
+    bool getAutoLoadSession();
 
 private:
     QSettings* settings;
