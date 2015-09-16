@@ -1,13 +1,32 @@
 #pragma once
 #include <QMainWindow>
 
+class QAction;
+class QMenu;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-signals:
+private slots:
+    void newFile();
+    void open();
+    void quitApp();
+    void about();
+    void aboutQt();
 
-public slots:
+private:
+    void createActions();
+    void createMenus();
+
+    QMenu *fileMenu;
+    QMenu *helpMenu;
+
+    QAction *newAct;
+    QAction *openAct;
+    QAction *quitAct;
+    QAction *aboutAct;
+    QAction *aboutQtAct;
 };
