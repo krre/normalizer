@@ -55,6 +55,31 @@ void MainWindow::onCloseTab(int index)
     tabWidget.removeTab(index);
 }
 
+void MainWindow::onCloseCurrentTab()
+{
+    onCloseTab(tabWidget.currentIndex());
+}
+
+void MainWindow::onCloseAllTabs()
+{
+    int count = tabWidget.count();
+    for (int i = 0; i < count; i++) {
+        onCloseTab(0);
+    }
+}
+
+void MainWindow::onCloseOthersTabs()
+{
+    int count = tabWidget.count();
+    QWidget *activeTab = tabWidget.currentWidget();
+    for (int i = 0; i < count; i++) {
+        if (tabWidget.widget(0) != activeTab)
+            onCloseTab(0);
+        else
+            onCloseTab(1);
+    }
+}
+
 void MainWindow::onActiveTabChanged(int index)
 {
     Q_UNUSED(index)
@@ -64,6 +89,10 @@ void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New Project..."), this, SLOT(onNewTab()), Qt::CTRL + Qt::Key_N);
     fileMenu->addAction(tr("Open Project..."), this, SLOT(open()), Qt::CTRL + Qt::Key_O);
+    fileMenu->addSeparator();
+    fileMenu->addAction(tr("Close"), this, SLOT(onCloseCurrentTab()), Qt::CTRL + Qt::Key_W);
+    fileMenu->addAction(tr("Close All"), this, SLOT(onCloseAllTabs()), Qt::CTRL + Qt::SHIFT + Qt::Key_W);
+    fileMenu->addAction(tr("Close Others"), this, SLOT(onCloseOthersTabs()), Qt::CTRL + Qt::ALT + Qt::Key_W);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Quit"), this, SLOT(about()), Qt::CTRL + Qt::Key_Q);
 

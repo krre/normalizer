@@ -17,6 +17,9 @@ private slots:
     void about();
     void aboutQt();
     void onCloseTab(int index);
+    void onCloseCurrentTab();
+    void onCloseAllTabs();
+    void onCloseOthersTabs();
     void onActiveTabChanged(int index);
 
 private:
