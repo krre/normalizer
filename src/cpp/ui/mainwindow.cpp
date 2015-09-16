@@ -111,6 +111,7 @@ void MainWindow::createMenus() {
 void MainWindow::setupTabWidget()
 {
     tabWidget.setTabsClosable(true);
+    tabWidget.setMovable(true);
     connect(&tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onCloseTab(int)));
     connect(&tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onActiveTabChanged(int)));
 }
