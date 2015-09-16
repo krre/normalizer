@@ -11,7 +11,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 
 public:
-    void addTab(QString& name, QString& path);
+    void addTab(const QString& name, const QString& path);
 
 private slots:
     void onNewTab();

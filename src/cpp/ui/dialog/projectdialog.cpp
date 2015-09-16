@@ -72,7 +72,7 @@ void ProjectDialog::onBrowseDirectory()
     }
 }
 
-void ProjectDialog::createProject(QString &path)
+void ProjectDialog::createProject(const QString &path)
 {
     QString name = nameLineEdit->text();
     Project::create(path, name);

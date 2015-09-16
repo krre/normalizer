@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     loadSettings();
 }
 
-void MainWindow::addTab(QString &name, QString &path)
+void MainWindow::addTab(const QString &name, const QString &path)
 {
     int index = tabWidget.count();
     OsgWidget* osgWidget = new OsgWidget(this, Qt::Widget, osgViewer::CompositeViewer::SingleThreaded);
