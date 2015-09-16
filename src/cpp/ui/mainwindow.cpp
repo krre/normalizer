@@ -12,6 +12,8 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QLineEdit>
+#include <QFileDialog>
+#include <QFileInfo>
 
 extern QSharedPointer<Settings> settings;
 
@@ -41,7 +43,23 @@ void MainWindow::onNewTab() {
 }
 
 void MainWindow::open() {
-    qDebug() << "open";
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                tr("Open Sprout project"),
+                                settings.data()->getRecentDirectory(),
+                                tr("Sprout Files (*.sprout);;All Files (*)"));
+    if (!filePath.isEmpty()) {
+        for (int i = 0; i < tabWidget.count(); i++) {
+            OsgWidget *osgWidget = static_cast<OsgWidget*>(tabWidget.widget(i));
+            if (filePath ==osgWidget->projectPath()) {
+                QMessageBox::warning(this, tr("Warning"), QDialog::tr("File already loaded"));
+                return;
+            }
+        }
+    }
+
+    QFileInfo fileInfo(filePath);
+    QString name = fileInfo.fileName().remove(".sprout");
+    addTab(name, filePath);
 }
 
 void MainWindow::quitApp() {
