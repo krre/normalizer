@@ -13,6 +13,7 @@ OsgWidget::OsgWidget(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::
     QWidget* widget = addViewWidget(createGraphicsWindow(0, 0, width(), height()), osgDB::readNodeFile("cow.osgt"));
     QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
     layout->addWidget(widget);
+    layout->setContentsMargins(0, 1, 0, 0);
     setLayout(layout);
 
     connect(&_timer, SIGNAL(timeout()), this, SLOT(update()));

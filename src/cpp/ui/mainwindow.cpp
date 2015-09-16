@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setWindowTitle("Greenery");
     setMinimumSize(160, 160);
-
     setCentralWidget(&tabWidget);
 
     createMenus();
