@@ -27,7 +27,7 @@ ProjectDialog::ProjectDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(nameLineEdit, 0, 1, 1, 2);
 
     QLabel* directoryLabel = new QLabel(tr("Directory:"));
-    QString projectDir = settings.data()->getRecentDirectory();
+    QString projectDir = settings.data()->recentDirectory();
     if (projectDir.isEmpty()) {
         projectDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     }

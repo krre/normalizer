@@ -17,7 +17,7 @@ void Settings::setGeometry(const QMap<QString, int> &geometry)
     settings->endGroup();
 }
 
-QMap<QString, int> Settings::getGeometry()
+QMap<QString, int> Settings::geometry()
 {
     settings->beginGroup("Geometry");
         QMap<QString, int> map;
@@ -40,7 +40,7 @@ void Settings::setLang(const QString& lang)
     settings->endGroup();
 }
 
-QString Settings::getLang()
+QString Settings::lang()
 {
     return settings->value("i18n/lang").toString();
 }
@@ -56,7 +56,7 @@ void Settings::setRecentFiles(const QStringList& fileList)
     settings->endGroup();
 }
 
-QStringList Settings::getRecentFiles()
+QStringList Settings::recentFiles()
 {
     settings->beginGroup("Recent");
         QStringList keys = settings->allKeys();
@@ -80,7 +80,7 @@ void Settings::setSession(const QStringList& fileList)
     settings->endGroup();
 }
 
-QStringList Settings::getSession()
+QStringList Settings::session()
 {
     settings->beginGroup("Session");
         QStringList keys = settings->allKeys();
@@ -100,7 +100,7 @@ void Settings::setSproutPath(const QString& path)
     settings->endGroup();
 }
 
-QString Settings::getSproutPath()
+QString Settings::sproutPath()
 {
     return settings->value("Sprout/path").toString();
 }
@@ -112,7 +112,7 @@ void Settings::setRecentDirectory(const QString& path)
     settings->endGroup();
 }
 
-QString Settings::getRecentDirectory()
+QString Settings::recentDirectory()
 {
     return settings->value("RecentDirectory/path").toString();
 }
@@ -124,7 +124,7 @@ void Settings::setAutoLoadSession(bool value)
     settings->endGroup();
 }
 
-bool Settings::getAutoLoadSession()
+bool Settings::autoLoadSession()
 {
     return settings->value("AutoLoad/session").toBool();
 }

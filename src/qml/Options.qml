@@ -14,8 +14,8 @@ Dialog {
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     Component.onCompleted: {
-        sproutPath.text = SETTINGS.getSproutPath()
-        session.checked = SETTINGS.getAutoLoadSession()
+        sproutPath.text = SETTINGS.sproutPath()
+        session.checked = SETTINGS.autoLoadSession()
     }
 
     onVisibilityChanged: if (!visible) root.destroy()

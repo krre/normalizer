@@ -62,7 +62,7 @@ Dialog {
             TextField {
                 id: directory
                 Layout.fillWidth: true
-                text: SETTINGS.getRecentDirectory() ? SETTINGS.getRecentDirectory() : UTILS.homePath()
+                text: SETTINGS.recentDirectory() ? SETTINGS.recentDirectory() : UTILS.homePath()
             }
 
             Button {

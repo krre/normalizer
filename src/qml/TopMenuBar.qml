@@ -121,7 +121,7 @@ MenuBar {
             text: qsTr("Build")
             shortcut: "Ctrl+F9"
             enabled: currentTab && currentTab.filePath
-            onTriggered: currentTab.cons.build(SETTINGS.getSproutPath(), currentTab.filePath)
+            onTriggered: currentTab.cons.build(SETTINGS.sproutPath(), currentTab.filePath)
         }
 
         MenuItem {

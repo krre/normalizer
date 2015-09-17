@@ -61,7 +61,7 @@ function saveRecentFiles(model) {
 }
 
 function loadRecentFiles() {
-    var list = SETTINGS.getRecentFiles()
+    var list = SETTINGS.recentFiles()
     var model = topMenuBar.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
@@ -83,7 +83,7 @@ function saveSession() {
 }
 
 function loadSession() {
-    var list = SETTINGS.getSession()
+    var list = SETTINGS.session()
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
         if (UTILS.isFileExists(path)) {
@@ -102,7 +102,7 @@ function saveGeometry() {
 }
 
 function loadGeometry() {
-    var map = SETTINGS.getGeometry()
+    var map = SETTINGS.geometry()
     if (Object.keys(map).length) {
         mainRoot.x = map.x
         mainRoot.y = map.y

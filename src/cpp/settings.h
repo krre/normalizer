@@ -7,19 +7,19 @@ class Settings : public QObject
 public:
     explicit Settings(QObject* parent = 0);
     void setGeometry(const QMap<QString, int>& geometry);
-    QMap<QString, int> getGeometry();
+    QMap<QString, int> geometry();
     void setLang(const QString& lang);
-    QString getLang();
+    QString lang();
     void setRecentFiles(const QStringList& fileList);
-    QStringList getRecentFiles();
+    QStringList recentFiles();
     void setSession(const QStringList& fileList);
-    QStringList getSession();
+    QStringList session();
     void setSproutPath(const QString& path);
-    QString getSproutPath();
+    QString sproutPath();
     void setRecentDirectory(const QString& path);
-    QString getRecentDirectory();
+    QString recentDirectory();
     void setAutoLoadSession(bool value);
-    bool getAutoLoadSession();
+    bool autoLoadSession();
 
 private:
     QSettings* settings;

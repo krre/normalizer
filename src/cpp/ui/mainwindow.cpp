@@ -45,7 +45,7 @@ void MainWindow::onNewTab() {
 void MainWindow::open() {
     QString filePath = QFileDialog::getOpenFileName(this,
                                 tr("Open Sprout project"),
-                                settings.data()->getRecentDirectory(),
+                                settings.data()->recentDirectory(),
                                 tr("Sprout Files (*.sprout);;All Files (*)"));
     if (!filePath.isEmpty()) {
         for (int i = 0; i < tabWidget.count(); i++) {
@@ -152,7 +152,7 @@ void MainWindow::saveSettings()
 
 void MainWindow::loadSettings()
 {
-    QMap<QString, int>map = ::settings.data()->getGeometry();
+    QMap<QString, int>map = ::settings.data()->geometry();
     if (map.isEmpty()) {
         // move window to center screen
         auto *screen = QGuiApplication::primaryScreen();
