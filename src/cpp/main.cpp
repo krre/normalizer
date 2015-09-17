@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
     bool isQml = parser.isSet("qml");
 
     ::settings = QSharedPointer<Settings>(new Settings());
-    QPointer<QQmlApplicationEngine> engine;
-    QPointer<MainWindow> mainWindow;
+    QSharedPointer<QQmlApplicationEngine> engine;
+    QSharedPointer<MainWindow> mainWindow;
 
     if (isQml) {
         qmlRegisterType<Console>("Greenery.Lib", 1, 0, "Console");
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
         Project* project = new Project();
         Version* version = new Version();
 
-        engine = QPointer<QQmlApplicationEngine>(new QQmlApplicationEngine());
+        engine = QSharedPointer<QQmlApplicationEngine>(new QQmlApplicationEngine());
 
         engine->rootContext()->setContextProperty("PROJECT", project);
         engine->rootContext()->setContextProperty("UTILS", utils);
@@ -52,19 +52,9 @@ int main(int argc, char* argv[])
         engine->rootContext()->setContextProperty("VERSION", version);
         engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     } else {
-        mainWindow = QPointer<MainWindow>(new MainWindow());
+        mainWindow = QSharedPointer<MainWindow>(new MainWindow());
         mainWindow->show();
     }
 
-    int exitCode = app.exec();
-
-    if (!mainWindow.isNull()) {
-        delete mainWindow;
-    }
-
-    if (!engine.isNull()) {
-        delete engine;
-    }
-
-    return exitCode;
+    return app.exec();
 }
