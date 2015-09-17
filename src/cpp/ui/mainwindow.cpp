@@ -119,7 +119,7 @@ void MainWindow::createMenus() {
     fileMenu->addAction(tr("Close All"), this, SLOT(onCloseAllTabs()), Qt::CTRL + Qt::SHIFT + Qt::Key_W);
     fileMenu->addAction(tr("Close Others"), this, SLOT(onCloseOthersTabs()), Qt::CTRL + Qt::ALT + Qt::Key_W);
     fileMenu->addSeparator();
-    fileMenu->addAction(tr("Quit"), this, SLOT(about()), Qt::CTRL + Qt::Key_Q);
+    fileMenu->addAction(tr("Exit"), this, SLOT(quitApp()), Qt::CTRL + Qt::Key_Q);
 
     helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About..."), this, SLOT(about()));
