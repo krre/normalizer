@@ -14,6 +14,16 @@ void Settings::setGeometry(const QMap<QString, int> &geometry)
         settings->setValue("y", geometry["y"]);
         settings->setValue("width", geometry["width"]);
         settings->setValue("height", geometry["height"]);
+        settings->endGroup();
+}
+
+void Settings::setGeometryVar(const QVariantMap& geometry)
+{
+    settings->beginGroup("Geometry");
+        settings->setValue("x", geometry["x"].toString());
+        settings->setValue("y", geometry["y"].toString());
+        settings->setValue("width", geometry["width"].toString());
+        settings->setValue("height", geometry["height"].toString());
     settings->endGroup();
 }
 
@@ -27,6 +37,22 @@ QMap<QString, int> Settings::geometry()
             map["y"] = settings->value("y").toInt();
             map["width"] = settings->value("width").toInt();
             map["height"] = settings->value("height").toInt();
+        }
+    settings->endGroup();
+
+    return map;
+}
+
+QVariantMap Settings::geometryVar()
+{
+    settings->beginGroup("Geometry");
+        QVariantMap map;
+        QStringList keys = settings->allKeys();
+        if (keys.count()) {
+            map["x"] = settings->value("x").toString();
+            map["y"] = settings->value("y").toString();
+            map["width"] = settings->value("width").toString();
+            map["height"] = settings->value("height").toString();
         }
     settings->endGroup();
 

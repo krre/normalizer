@@ -1,4 +1,4 @@
-QT += widgets sql opengl
+QT += widgets sql opengl qml quick 3dcore 3drenderer 3dinput 3dquick
 CONFIG += c++11
 TEMPLATE = app
 

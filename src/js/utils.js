@@ -98,11 +98,11 @@ function saveGeometry() {
     map.y = mainRoot.y
     map.width = mainRoot.width
     map.height = mainRoot.height
-    SETTINGS.setGeometry(map)
+    SETTINGS.setGeometryVar(map)
 }
 
 function loadGeometry() {
-    var map = SETTINGS.geometry()
+    var map = SETTINGS.geometryVar()
     if (Object.keys(map).length) {
         mainRoot.x = map.x
         mainRoot.y = map.y

@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include <QDebug>
 
 class QAction;
 class QMenu;
