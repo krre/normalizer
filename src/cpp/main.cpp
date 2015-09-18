@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
         Version* version = new Version();
 
         engine = QSharedPointer<QQmlApplicationEngine>(new QQmlApplicationEngine());
-
+        engine->addImportPath(app.applicationDirPath() + "/../osgqtquick/imports");
         engine->rootContext()->setContextProperty("PROJECT", project);
         engine->rootContext()->setContextProperty("UTILS", utils);
         engine->rootContext()->setContextProperty("SETTINGS", ::settings.data());

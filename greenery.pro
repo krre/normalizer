@@ -10,13 +10,15 @@ win32 {
 win32: {
     LIBS += "-L../sprout/build"
     LIBS += "-L../OSG/lib"
+    LIBS += "-L../osgqtquick/lib"
 }
 !win32: {
     LIBS += -L../sprout/build
     LIBS += -L../OSG/lib64
+    LIBS += -L../osgqtquick/lib
 }
 
-LIBS += -lsproutc -lsproutdb
+LIBS += -lsproutc -lsproutdb -losgQtQml
 LIBS += -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += ../sprout/sprout-c/src
