@@ -24,7 +24,8 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
-    src/cpp/cyberspace/viewport.h
+    src/cpp/cyberspace/viewport.h \
+    src/cpp/registers.h
 
 SOURCES += \
     src/cpp/main.cpp \

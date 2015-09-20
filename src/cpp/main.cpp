@@ -1,14 +1,11 @@
 #include <QApplication>
 #include <QtDebug>
 #include <QtQml>
-#include "cyberspace/viewport.h"
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
-#include "console.h"
-#include "sproutdb.h"
-#include "sproutc.h"
 #include "project.h"
+#include "registers.h"
 
 QSharedPointer<Settings> settings;
 
@@ -36,13 +33,11 @@ int main(int argc, char* argv[])
     ::settings = QSharedPointer<Settings>(new Settings());
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<Console>("Greenery", 0, 1, "Console");
-    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
-    qmlRegisterType<Viewport>("Cyberspace", 0, 1, "Viewport");
-
     Utils* utils = new Utils();
     Project* project = new Project();
     Version* version = new Version();
+
+    registerQmlModules();
 
     engine.rootContext()->setContextProperty("PROJECT", project);
     engine.rootContext()->setContextProperty("UTILS", utils);
