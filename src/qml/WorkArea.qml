@@ -3,11 +3,6 @@ import Qt3D 2.0
 import Qt3D.Renderer 2.0
 import QtQuick.Scene3D 2.0
 import Greenery 0.1
-// OpenSceneGraph
-import osg 2.0 as OSG
-import osgDB 2.0 as OSGDB
-import osgGA 2.0 as OSGGA
-import osgViewer 2.0 as OSGViewer
 import "sheets"
 import "../js/command.js" as Command
 import "../js/utils.js" as Utils
@@ -72,16 +67,6 @@ Item {
         id: scene2d
         anchors.fill: parent
         color: Qt.rgba(0.05, 0.05, 0.17, 1)
-
-        OSGViewer.View {
-            id: view
-            anchors.fill: parent
-            cameraManipulator: OSGGA.TrackballManipulator {}
-            sceneData: OSGDB.Loader {
-                source: "cow.osg"
-                onNodeChanged: view.cameraManipulator.home()
-            }
-        }
     }
 /*
     Scene3D {

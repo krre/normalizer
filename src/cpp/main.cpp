@@ -1,7 +1,6 @@
 #include <QApplication>
 #include <QtDebug>
 #include <QtQml>
-#include "ui/mainwindow.h"
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
@@ -31,30 +30,23 @@ int main(int argc, char* argv[])
 
     parser.process(app);
     bool isQml = parser.isSet("qml");
+    if (isQml) {}
 
     ::settings = QSharedPointer<Settings>(new Settings());
-    QSharedPointer<QQmlApplicationEngine> engine;
-    QSharedPointer<MainWindow> mainWindow;
+    QQmlApplicationEngine engine;
 
-    if (isQml) {
-        qmlRegisterType<Console>("Greenery", 0, 1, "Console");
-        qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
+    qmlRegisterType<Console>("Greenery", 0, 1, "Console");
+    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
 
-        Utils* utils = new Utils();
-        Project* project = new Project();
-        Version* version = new Version();
+    Utils* utils = new Utils();
+    Project* project = new Project();
+    Version* version = new Version();
 
-        engine = QSharedPointer<QQmlApplicationEngine>(new QQmlApplicationEngine());
-        engine->addImportPath(app.applicationDirPath() + "/../osgqtquick/imports");
-        engine->rootContext()->setContextProperty("PROJECT", project);
-        engine->rootContext()->setContextProperty("UTILS", utils);
-        engine->rootContext()->setContextProperty("SETTINGS", ::settings.data());
-        engine->rootContext()->setContextProperty("VERSION", version);
-        engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
-    } else {
-        mainWindow = QSharedPointer<MainWindow>(new MainWindow());
-        mainWindow->show();
-    }
+    engine.rootContext()->setContextProperty("PROJECT", project);
+    engine.rootContext()->setContextProperty("UTILS", utils);
+    engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
+    engine.rootContext()->setContextProperty("VERSION", version);
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
 }
