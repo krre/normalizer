@@ -1,7 +1,4 @@
 import QtQuick 2.5
-import Qt3D 2.0
-import Qt3D.Renderer 2.0
-import QtQuick.Scene3D 2.0
 import Greenery 0.1
 import "sheets"
 import "../js/command.js" as Command
@@ -62,59 +59,12 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    // use until Qt3D is not released
     Rectangle {
         id: scene2d
         anchors.fill: parent
         color: Qt.rgba(0.05, 0.05, 0.17, 1)
     }
-/*
-    Scene3D {
-        anchors.fill: parent
-        aspects: "input"
-        visible: false // hide until Qt3D is not released
 
-        Entity {
-            id: sceneRoot
-
-            Camera {
-                id: camera
-                projectionType: CameraLens.PerspectiveProjection
-                fieldOfView: 22
-                aspectRatio: root.width / root.height
-                nearPlane : 0.1
-                farPlane : 1000.0
-
-                Component.onCompleted: reset()
-
-                function reset() {
-                    upVector = Qt.vector3d(0.0, 1.0, 0.0)
-                    position = Qt.vector3d(0.0, 10.0, -150.0)
-                    viewCenter = Qt.vector3d(0.0, 0.0, 0.0)
-                }
-            }
-
-            Configuration  {
-                // disabled to prevent crash on close tab
-//                controlledCamera: camera
-            }
-
-            FrameGraph {
-                id: frameGraph
-                activeFrameGraph: ForwardRenderer {
-                    camera: camera
-                    clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
-                }
-            }
-
-            components: [ frameGraph ]
-
-            Entity {
-                id: origin
-            }
-        }
-    }
-*/
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top
