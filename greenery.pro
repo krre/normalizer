@@ -42,7 +42,6 @@ SOURCES += \
     src/cpp/ui/osgwidget.cpp \
     src/cpp/ui/mainwindow.cpp \
     src/cpp/ui/dialog/projectdialog.cpp
-    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \
