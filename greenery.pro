@@ -23,13 +23,15 @@ HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/utils.h \
-    src/cpp/version.h
+    src/cpp/version.h \
+    src/cpp/cyberspace/viewport.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp
+    src/cpp/console.cpp \
+    src/cpp/cyberspace/viewport.cpp
 
 DISTFILES += \
     README.md \

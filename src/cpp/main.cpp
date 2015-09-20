@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QtDebug>
 #include <QtQml>
+#include "cyberspace/viewport.h"
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
@@ -37,6 +38,7 @@ int main(int argc, char* argv[])
 
     qmlRegisterType<Console>("Greenery", 0, 1, "Console");
     qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
+    qmlRegisterType<Viewport>("Cyberspace", 0, 1, "Viewport");
 
     Utils* utils = new Utils();
     Project* project = new Project();
