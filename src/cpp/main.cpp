@@ -33,16 +33,16 @@ int main(int argc, char* argv[])
     ::settings = QSharedPointer<Settings>(new Settings());
     QQmlApplicationEngine engine;
 
-    Utils* utils = new Utils();
-    Project* project = new Project();
-    Version* version = new Version();
+    Utils utils;
+    Project project;
+    Version version;
 
     registerQmlModules();
 
-    engine.rootContext()->setContextProperty("PROJECT", project);
-    engine.rootContext()->setContextProperty("UTILS", utils);
+    engine.rootContext()->setContextProperty("PROJECT", &project);
+    engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
-    engine.rootContext()->setContextProperty("VERSION", version);
+    engine.rootContext()->setContextProperty("VERSION", &version);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
