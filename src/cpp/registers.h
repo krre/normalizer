@@ -5,7 +5,7 @@
 #include "sproutdb.h"
 
 static void registerQmlModules() {
-    qmlRegisterType<Console>("Greenery", 0, 1, "Console");
-    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
-    qmlRegisterType<Viewport>("Cyberspace", 0, 1, "Viewport");
+    qmlRegisterType<Console>("Greenery", 1, 0, "Console");
+    qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
+    qmlRegisterType<Viewport>("Cyberspace", 1, 0, "Viewport");
 }
