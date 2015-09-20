@@ -2,7 +2,7 @@ import QtQuick 2.5
 import Qt3D 2.0
 import Qt3D.Renderer 2.0
 import QtQuick.Scene3D 2.0
-import Greenery.Lib 1.0
+import Greenery 0.1
 // OpenSceneGraph
 import osg 2.0 as OSG
 import osgDB 2.0 as OSGDB

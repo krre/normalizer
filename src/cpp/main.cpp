@@ -37,8 +37,8 @@ int main(int argc, char* argv[])
     QSharedPointer<MainWindow> mainWindow;
 
     if (isQml) {
-        qmlRegisterType<Console>("Greenery.Lib", 1, 0, "Console");
-        qmlRegisterType<SproutDb>("Greenery.Lib", 1, 0, "SproutDb");
+        qmlRegisterType<Console>("Greenery", 0, 1, "Console");
+        qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
 
         Utils* utils = new Utils();
         Project* project = new Project();
