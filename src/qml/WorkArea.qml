@@ -69,8 +69,14 @@ Item {
         id: scene
     }
 
+    Camera {
+        id: camera
+    }
+
     Viewport {
         anchors.fill: parent
+        scene: scene
+        camera: camera
     }
 
     CommandSheet {

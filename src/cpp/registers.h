@@ -13,5 +13,5 @@ static void registerQmlModules() {
     qmlRegisterType<Viewport>("Greenery", 1, 0, "Viewport");
     qmlRegisterType<Scene>("Greenery", 1, 0, "Scene");
     qmlRegisterType<Camera>("Greenery", 1, 0, "Camera");
-    qmlRegisterType<Node>("Greenery", 1, 0, "Camera");
+    qmlRegisterType<Node>("Greenery", 1, 0, "Node");
 }
