@@ -26,7 +26,8 @@ HEADERS += \
     src/cpp/version.h \
     src/cpp/scenegraph/viewport.h \
     src/cpp/registers.h \
-    src/cpp/scenegraph/scene.h
+    src/cpp/scenegraph/scene.h \
+    src/cpp/scenegraph/camera.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -34,7 +35,8 @@ SOURCES += \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
     src/cpp/scenegraph/viewport.cpp \
-    src/cpp/scenegraph/scene.cpp
+    src/cpp/scenegraph/scene.cpp \
+    src/cpp/scenegraph/camera.cpp
 
 DISTFILES += \
     README.md \
