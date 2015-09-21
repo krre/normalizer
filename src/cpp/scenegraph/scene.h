@@ -10,7 +10,7 @@ class Scene : public QObject
 
 public:
     explicit Scene(QObject *parent = 0);
-    QQmlListProperty<Node> nodes();
+    QQmlListProperty<Node> nodes() { return QQmlListProperty<Node>(this, m_nodes); }
     int count() const { return m_nodes.count(); }
     Node* node(int index) const { return m_nodes.at(index); }
 

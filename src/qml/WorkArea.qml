@@ -69,7 +69,9 @@ Item {
         id: scene
         nodes: [
             Node {},
-            Node {}
+            Node {
+                nodes: [ Node {} ]
+            }
         ]
     }
 
