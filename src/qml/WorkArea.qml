@@ -65,6 +65,10 @@ Item {
         color: Qt.rgba(0.05, 0.05, 0.17, 1)
     }
 
+    Viewport {
+        anchors.fill: parent
+    }
+
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top

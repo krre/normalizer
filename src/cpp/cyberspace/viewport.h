@@ -1,6 +1,4 @@
-#ifndef VIEWPORT_H
-#define VIEWPORT_H
-
+#pragma once
 #include <QQuickItem>
 
 class Viewport : public QQuickItem
@@ -9,9 +7,6 @@ class Viewport : public QQuickItem
 public:
     Viewport();
 
-signals:
-
-public slots:
+protected:
+    QSGNode *updatePaintNode(QSGNode*oldNode, UpdatePaintNodeData*);
 };
-
-#endif // VIEWPORT_H
