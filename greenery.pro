@@ -24,7 +24,7 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
-    src/cpp/cyberspace/viewport.h \
+    src/cpp/scenegraph/viewport.h \
     src/cpp/registers.h
 
 SOURCES += \
@@ -32,7 +32,7 @@ SOURCES += \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/cyberspace/viewport.cpp
+    src/cpp/scenegraph/viewport.cpp
 
 DISTFILES += \
     README.md \
