@@ -67,6 +67,10 @@ Item {
 
     Scene {
         id: scene
+        nodes: [
+            Node {},
+            Node {}
+        ]
     }
 
     Camera {
