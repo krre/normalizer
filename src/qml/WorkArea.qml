@@ -65,6 +65,10 @@ Item {
         color: Qt.rgba(0.05, 0.05, 0.17, 1)
     }
 
+    Scene {
+        id: scene
+    }
+
     Viewport {
         anchors.fill: parent
     }
