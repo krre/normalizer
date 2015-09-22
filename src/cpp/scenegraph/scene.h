@@ -7,6 +7,7 @@ class Scene : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Node> nodes READ nodes)
+    Q_CLASSINFO("DefaultProperty", "nodes")
 
 public:
     explicit Scene(QObject *parent = 0);
