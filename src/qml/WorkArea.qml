@@ -76,7 +76,7 @@ Item {
         OSGViewer.View {
             id: view
             anchors.fill: parent
-            cameraManipulator: OSGGA.TrackballManipulator {}
+            cameraManipulator: OSGGA.TrackballManipulator { wheelZoomFactor: -0.1 }
             sceneData: OSGDB.Loader {
                 source: "cow.osg"
                 onNodeChanged: view.cameraManipulator.home()
