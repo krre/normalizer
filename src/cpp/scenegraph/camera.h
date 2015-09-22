@@ -10,7 +10,7 @@ class Camera : public QObject
 
 public:
     explicit Camera(QObject *parent = 0);
-    QColor color() const;
+    QColor color() const { return m_color; }
     void setColor(QColor color);
 
 private:
