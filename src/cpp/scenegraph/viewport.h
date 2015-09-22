@@ -22,7 +22,7 @@ signals:
     void sceneChanged(Scene* scene);
 
 protected:
-    QSGNode* updatePaintNode(QSGNode*oldNode, UpdatePaintNodeData*);
+    QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*);
 private:
     Camera* m_camera;
     Scene* m_scene;

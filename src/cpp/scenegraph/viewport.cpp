@@ -1,4 +1,5 @@
 #include "viewport.h"
+#include <QtQuick>
 
 Viewport::Viewport()
 {
@@ -21,9 +22,15 @@ void Viewport::setScene(Scene *scene) {
     emit sceneChanged(scene);
 }
 
-QSGNode *Viewport::updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *)
+QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNodeData*)
 {
-    qDebug() << oldNode;
-    return oldNode;
+    QSGSimpleRectNode* n = static_cast<QSGSimpleRectNode*>(oldNode);
+    if (!n) {
+        n = new QSGSimpleRectNode();
+        n->setColor(camera()->color());
+    }
+    n->setRect(boundingRect());
+
+    return n;
 }
 

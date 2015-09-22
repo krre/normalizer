@@ -76,7 +76,7 @@ Item {
 
     Camera {
         id: camera
-        color: Qt.rgba(1, 0, 0, 1)
+        color: Qt.rgba(0.05, 0.05, 0.17, 1)
     }
 
     Viewport {
