@@ -6,15 +6,15 @@
 class Viewport : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(Camera* camera READ getCamera WRITE setCamera NOTIFY cameraChanged)
-    Q_PROPERTY(Scene* scene READ getScene WRITE setScene NOTIFY sceneChanged)
+    Q_PROPERTY(Camera* camera READ camera WRITE setCamera NOTIFY cameraChanged)
+    Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
     Viewport();
 
-    Camera* getCamera() const { return m_camera; }
+    Camera* camera() const { return m_camera; }
     void setCamera(Camera* camera);
-    Scene* getScene() const { return m_scene; }
+    Scene* scene() const { return m_scene; }
     void setScene(Scene* scene);
 
 signals:
