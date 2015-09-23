@@ -1,4 +1,4 @@
-QT += sql opengl qml quick 3dcore 3drenderer 3dinput 3dquick
+QT += sql opengl qml quick
 CONFIG += c++11
 TEMPLATE = app
 
@@ -49,12 +49,6 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogQuestion.qml \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/components/messagedialog/MessageDialogError.qml \
-    src/qml/entities/EntityBase.qml \
-    src/qml/entities/Cube.qml \
-    src/qml/entities/Sphere.qml \
-    src/qml/entities/Text3D.qml \
-    src/qml/blocks/Print.qml \
-    src/qml/blocks/Project.qml \
     src/qml/sheets/CommandSheet.qml \
     src/qml/About.qml \
     src/qml/Options.qml \
@@ -62,8 +56,6 @@ DISTFILES += \
     src/qml/Output.qml \
     src/qml/main.qml \
     src/qml/NewProject.qml \
-    src/qml/blocks/Module.qml \
-    src/qml/blocks/Floor.qml \
     src/qml/nodes/NodeBase.qml \
     src/qml/nodes/Project.qml \
     src/qml/nodes/Module.qml \

@@ -16,19 +16,11 @@
         <file>qml/Options.qml</file>
         <file>qml/WorkArea.qml</file>
         <file>qml/Output.qml</file>
-        <file>qml/entities/EntityBase.qml</file>
-        <file>qml/entities/Cube.qml</file>
-        <file>qml/entities/Sphere.qml</file>
-        <file>qml/entities/Text3D.qml</file>
-        <file>qml/blocks/Print.qml</file>
         <file>qml/NewProject.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/sheets/CommandSheet.qml</file>
-        <file>qml/blocks/Project.qml</file>
         <file>js/world.js</file>
-        <file>qml/blocks/Module.qml</file>
         <file>js/dialog.js</file>
-        <file>qml/blocks/Floor.qml</file>
         <file>qml/nodes/NodeBase.qml</file>
         <file>qml/nodes/Project.qml</file>
         <file>qml/nodes/Module.qml</file>
