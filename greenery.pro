@@ -1,4 +1,4 @@
-QT += widgets sql opengl qml quick 3dcore 3drenderer 3dinput 3dquick
+QT += sql opengl qml quick 3dcore 3drenderer 3dinput 3dquick
 CONFIG += c++11
 TEMPLATE = app
 
@@ -9,39 +9,29 @@ win32 {
 
 win32: {
     LIBS += "-L../sprout/build"
-    LIBS += "-L../OSG/lib"
     LIBS += "-L../osgqtquick/lib"
 }
 !win32: {
     LIBS += -L../sprout/build
-    LIBS += -L../OSG/lib64
     LIBS += -L../osgqtquick/lib
 }
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
-LIBS += -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += ../sprout/sprout-c/src
 INCLUDEPATH += ../sprout/sprout-db/src
-INCLUDEPATH += ../OSG/include
 
 HEADERS += \
     src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/utils.h \
-    src/cpp/ui/osgwidget.h \
-    src/cpp/ui/mainwindow.h \
-    src/cpp/version.h \
-    src/cpp/ui/dialog/projectdialog.h
+    src/cpp/version.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp \
-    src/cpp/ui/osgwidget.cpp \
-    src/cpp/ui/mainwindow.cpp \
-    src/cpp/ui/dialog/projectdialog.cpp
+    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \
