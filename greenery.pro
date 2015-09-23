@@ -3,14 +3,13 @@ QT += opengl qml quick sql
 CONFIG += c++11
 TEMPLATE = app
 
-LIBS += -L$$(SPROUT_HOME)/build
+LIBS += -L$$(SPROUT_HOME)/bin
 LIBS += -L$$(OSGQTQUICK_HOME)/bin
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
 
 INCLUDEPATH += \
-    $$(SPROUT_HOME)/sprout-c/src \
-    $$(SPROUT_HOME)/sprout-db/src
+    $$(SPROUT_HOME)/include
 
 HEADERS += \
     src/cpp/console.h \
