@@ -8,18 +8,19 @@ win32 {
 }
 
 win32: {
-    LIBS += "-L../sprout/build"
+    LIBS += -L$$(SPROUT_HOME)/build
     LIBS += -L$$(OSGQTQUICK_HOME)/lib
 }
 !win32: {
-    LIBS += -L../sprout/build
+    LIBS += -L$$(SPROUT_HOME)/build
     LIBS += -L$$(OSGQTQUICK_HOME)/lib
 }
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
 
-INCLUDEPATH += ../sprout/sprout-c/src
-INCLUDEPATH += ../sprout/sprout-db/src
+INCLUDEPATH += \
+    $$(SPROUT_HOME)/sprout-c/src \
+    $$(SPROUT_HOME)/sprout-db/src
 
 HEADERS += \
     src/cpp/console.h \
