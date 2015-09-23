@@ -25,11 +25,16 @@ int main(int argc, char* argv[])
     parser.addPositionalArgument("source", QCoreApplication::translate("main", "Sprout file to edit"));
 
     parser.addOptions({
-        {{"q", "qml"}, QCoreApplication::translate("main", "QML Window")},
+        {{"t", "threaded"}, QCoreApplication::translate("main", "QML Window")},
     });
 
     parser.process(app);
-//    bool isQml = parser.isSet("qml");
+    bool isThreaded = parser.isSet("threaded");
+    if (isThreaded) {
+        qputenv("QSG_RENDER_LOOP", "threaded");
+    } else {
+        qputenv("QSG_RENDER_LOOP", "basic");
+    }
 
     ::settings = QSharedPointer<Settings>(new Settings());
     QQmlApplicationEngine engine;
