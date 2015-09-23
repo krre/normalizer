@@ -1,20 +1,10 @@
-QT += sql opengl qml quick
+QT += opengl qml quick sql
+
 CONFIG += c++11
 TEMPLATE = app
 
-win32 {
-    release: DESTDIR = $$OUT_PWD
-    debug:   DESTDIR = $$OUT_PWD
-}
-
-win32: {
-    LIBS += -L$$(SPROUT_HOME)/build
-    LIBS += -L$$(OSGQTQUICK_HOME)/lib
-}
-!win32: {
-    LIBS += -L$$(SPROUT_HOME)/build
-    LIBS += -L$$(OSGQTQUICK_HOME)/lib
-}
+LIBS += -L$$(SPROUT_HOME)/build
+LIBS += -L$$(OSGQTQUICK_HOME)/lib
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
 
