@@ -41,7 +41,11 @@ int main(int argc, char* argv[])
     Project project;
     Version version;
 
-    engine.addImportPath(app.applicationDirPath() + "/../osgqtquick/imports");
+    QString osgQtQuickPath = qgetenv("OSGQTQUICK_HOME");
+    if (osgQtQuickPath.isEmpty()) {
+        osgQtQuickPath = ".";
+    }
+    engine.addImportPath(osgQtQuickPath + "/imports");
     engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
