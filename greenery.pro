@@ -4,7 +4,7 @@ CONFIG += c++11
 TEMPLATE = app
 
 LIBS += -L$$(SPROUT_HOME)/build
-LIBS += -L$$(OSGQTQUICK_HOME)/lib
+LIBS += -L$$(OSGQTQUICK_HOME)/bin
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
 
