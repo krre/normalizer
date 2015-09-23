@@ -9,11 +9,11 @@ win32 {
 
 win32: {
     LIBS += "-L../sprout/build"
-    LIBS += "-L../osgqtquick/lib"
+    LIBS += -L$$(OSGQTQUICK_HOME)/lib
 }
 !win32: {
     LIBS += -L../sprout/build
-    LIBS += -L../osgqtquick/lib
+    LIBS += -L$$(OSGQTQUICK_HOME)/lib
 }
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
