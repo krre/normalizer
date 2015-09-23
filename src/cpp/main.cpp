@@ -32,22 +32,21 @@ int main(int argc, char* argv[])
 //    bool isQml = parser.isSet("qml");
 
     ::settings = QSharedPointer<Settings>(new Settings());
-    QSharedPointer<QQmlApplicationEngine> engine;
+    QQmlApplicationEngine engine;
 
     qmlRegisterType<Console>("Greenery", 0, 1, "Console");
     qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
 
-    Utils* utils = new Utils();
-    Project* project = new Project();
-    Version* version = new Version();
+    Utils utils;
+    Project project;
+    Version version;
 
-    engine = QSharedPointer<QQmlApplicationEngine>(new QQmlApplicationEngine());
-    engine->addImportPath(app.applicationDirPath() + "/../osgqtquick/imports");
-    engine->rootContext()->setContextProperty("PROJECT", project);
-    engine->rootContext()->setContextProperty("UTILS", utils);
-    engine->rootContext()->setContextProperty("SETTINGS", ::settings.data());
-    engine->rootContext()->setContextProperty("VERSION", version);
-    engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    engine.addImportPath(app.applicationDirPath() + "/../osgqtquick/imports");
+    engine.rootContext()->setContextProperty("PROJECT", &project);
+    engine.rootContext()->setContextProperty("UTILS", &utils);
+    engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
+    engine.rootContext()->setContextProperty("VERSION", &version);
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
 }
