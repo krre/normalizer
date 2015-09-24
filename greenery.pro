@@ -3,8 +3,10 @@ QT += opengl qml quick sql
 CONFIG += c++11
 TEMPLATE = app
 
-LIBS += -L$$(SPROUT_HOME)/bin
-LIBS += -L$$(OSGQTQUICK_HOME)/bin
+LIBS += \
+    -L$$(SPROUT_HOME)/bin \
+    -L$$(OSGQTQUICK_HOME)/bin \
+    -L$$(OSGQTQUICK_HOME)/lib
 
 LIBS += -lsproutc -lsproutdb -losgQtQml
 
