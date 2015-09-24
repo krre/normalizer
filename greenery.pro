@@ -8,7 +8,7 @@ LIBS += \
     -L$$(OSGQTQUICK_HOME)/bin \
     -L$$(OSGQTQUICK_HOME)/lib
 
-LIBS += -lsproutc -lsproutdb -losgQtQml
+LIBS += -lsprout -losgQtQml
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include
