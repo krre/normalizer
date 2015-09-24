@@ -1,20 +1,34 @@
 import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.2
+import osg 2.0 as OSG
 import "../../js/command.js" as Command
 
-Rectangle {
+OSG.PositionAttitudeTransform {
     id: root
+    default property alias shape: shapeDrawable.shape
     property string name
     property string arg
     property bool isCurrent: root === currentNode
     property bool isEdit: isCurrent && commandState === Command.Edit
     property string nodeId
-    width: 100
-    height: 50
-    color: isCurrent ? "darkred" : "green"
-    border.color: isCurrent ? "pink" : "lightgreen"
+    property color color: "yellow"
     signal edit(var name)
+
+    OSG.Geode {
+
+        OSG.ShapeDrawable {
+            id: shapeDrawable
+            color: isCurrent ? "darkred" : root.color
+            shape: OSG.Box {
+                halfLengths: Qt.vector3d(0.1, 0.1, 0.1)
+            }
+        }
+    }
+}
+
+/*
+
+Rectangle {
+
 
     MouseArea {
         anchors.fill: parent
@@ -64,3 +78,4 @@ Rectangle {
         }
     }
 }
+*/

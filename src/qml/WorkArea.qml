@@ -4,6 +4,7 @@ import osg 2.0 as OSG
 import osgGA 2.0 as OSGGA
 import osgViewer 2.0 as OSGViewer
 import "sheets"
+import "nodes"
 import "../js/command.js" as Command
 import "../js/utils.js" as Utils
 import "../js/world.js" as World
@@ -67,18 +68,10 @@ Item {
         anchors.fill: parent
         cameraManipulator: OSGGA.TrackballManipulator { wheelZoomFactor: -0.1 }
         camera.clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
-        sceneData: OSG.Group {
-
-            OSG.Geode {
-
-                OSG.ShapeDrawable {
-                    color: "red"
-                    shape: OSG.Cylinder {
-                        center: Qt.vector3d(0, 0, 0)
-                        radius: 0.2
-                        height: 0.4
-                    }
-                }
+        sceneData: NodeBase {
+            OSG.Cylinder {
+                radius: 0.2
+                height: 0.4
             }
         }
     }
