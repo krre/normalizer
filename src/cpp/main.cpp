@@ -6,7 +6,6 @@
 #include "utils.h"
 #include "console.h"
 #include <sprout/SproutDb>
-#include <sprout/SproutC>
 #include <sprout/Project>
 
 QSharedPointer<Settings> settings;
