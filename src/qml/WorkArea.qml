@@ -1,7 +1,6 @@
 import QtQuick 2.5
 import Greenery 0.1
 import osg 2.0 as OSG
-import osgDB 2.0 as OSGDB
 import osgGA 2.0 as OSGGA
 import osgViewer 2.0 as OSGViewer
 import "sheets"
@@ -45,7 +44,7 @@ Item {
 
     Component.onCompleted: {
         forceActiveFocus()
-        createWorld()
+//        createWorld()
     }
 
     Keys.onPressed: {
@@ -63,20 +62,23 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    // use until Qt3D is not released
-    Rectangle {
-        id: scene2d
+    OSGViewer.View {
+        id: view
         anchors.fill: parent
-        color: Qt.rgba(0.05, 0.05, 0.17, 1)
+        cameraManipulator: OSGGA.TrackballManipulator { wheelZoomFactor: -0.1 }
+        camera.clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
+        sceneData: OSG.Group {
 
-        OSGViewer.View {
-            id: view
-            anchors.fill: parent
-            cameraManipulator: OSGGA.TrackballManipulator { wheelZoomFactor: -0.1 }
-            camera.clearColor: "lightgray"
-            sceneData: OSGDB.Loader {
-                source: "cow.osg"
-                onNodeChanged: view.cameraManipulator.home()
+            OSG.Geode {
+
+                OSG.ShapeDrawable {
+                    color: "red"
+                    shape: OSG.Cylinder {
+                        center: Qt.vector3d(0, 0, 0)
+                        radius: 0.2
+                        height: 0.4
+                    }
+                }
             }
         }
     }
