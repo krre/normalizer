@@ -5,8 +5,8 @@
 #include "settings.h"
 #include "utils.h"
 #include "console.h"
-#include <sprout/SproutDb>
-#include <sprout/Project>
+#include <sprout/sproutdb.h>
+#include <sprout/project.h>
 
 QSharedPointer<Settings> settings;
 
