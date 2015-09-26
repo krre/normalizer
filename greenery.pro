@@ -10,7 +10,7 @@ LIBS += \
 LIBS += -lsprout -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += \
-    $$(SPROUT_HOME)/include
+    $$(SPROUT_HOME)/include \
     $$(OSG_HOME)/include
 
 HEADERS += \
