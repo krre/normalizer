@@ -7,7 +7,8 @@ LIBS += \
     -L$$(SPROUT_HOME)/bin \
     -L$$(OSG_HOME)/lib
 
-LIBS += -lsprout -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
+Debug:LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd
+Release:LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include \
