@@ -12,8 +12,8 @@ RegisterTypes::RegisterTypes(QObject *parent) : QObject(parent)
 void RegisterTypes::run()
 {
     // Greenery
-    qmlRegisterType<Console>("Greenery", 0, 1, "Console");
-    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
+    qmlRegisterType<Console>("Greenery", 1, 0, "Console");
+    qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
 
     // Osg
     qmlRegisterType<Viewport>("Osg", 1, 0, "Viewport");

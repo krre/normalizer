@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Greenery 0.1
+import Greenery 1.0
 import Osg 1.0
 import "sheets"
 import "nodes"
