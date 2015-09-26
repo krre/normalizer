@@ -10,6 +10,8 @@ LIBS += \
 Debug:LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd
 Release:LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText
 
+include(src/cpp/osg-adapter/osg-adapter.pri)
+
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include \
     $$(OSG_HOME)/include
@@ -19,23 +21,13 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
-    src/cpp/registertypes.h \
-    src/cpp/osg-adapter/scene.h \
-    src/cpp/osg-adapter/camera.h \
-    src/cpp/osg-adapter/node.h \
-    src/cpp/osg-adapter/osgViewer/viewer.h \
-    src/cpp/osg-adapter/osgViewer/view.h
+    src/cpp/registertypes.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp \
-    src/cpp/osg-adapter/scene.cpp \
-    src/cpp/osg-adapter/camera.cpp \
-    src/cpp/osg-adapter/node.cpp \
-    src/cpp/osg-adapter/osgViewer/viewer.cpp \
-    src/cpp/osg-adapter/osgViewer/view.cpp
+    src/cpp/console.cpp
 
 DISTFILES += \
     README.md \

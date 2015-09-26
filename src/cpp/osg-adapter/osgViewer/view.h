@@ -1,5 +1,5 @@
 #pragma once
-#include <QtQuick>
+#include <QQuickItem>
 
 class View : public QQuickItem
 {
