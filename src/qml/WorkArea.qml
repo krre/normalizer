@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import Greenery 0.1
+import Osg 1.0
 import "sheets"
 import "nodes"
 import "../js/command.js" as Command
@@ -60,7 +61,7 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    Rectangle {
+    Viewport {
         anchors.fill: parent
     }
 

@@ -17,14 +17,16 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
-    src/cpp/registertypes.h
+    src/cpp/registertypes.h \
+    src/cpp/osg-adapter/viewport.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/registertypes.cpp
+    src/cpp/registertypes.cpp \
+    src/cpp/osg-adapter/viewport.cpp
 
 DISTFILES += \
     README.md \
