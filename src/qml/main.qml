@@ -4,7 +4,6 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
 import Greenery 1.0
 import "../js/utils.js" as Utils
-import "../js/command.js" as Command
 
 ApplicationWindow {
     id: mainRoot

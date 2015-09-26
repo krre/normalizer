@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
     });
 
     parser.process(app);
+
     bool isThreaded = parser.isSet("threaded");
     if (isThreaded) {
         qputenv("QSG_RENDER_LOOP", "threaded");
@@ -37,17 +38,12 @@ int main(int argc, char* argv[])
     ::settings = QSharedPointer<Settings>(new Settings());
     QQmlApplicationEngine engine;
 
-    RegisterTypes::run();
+    registerTypes();
 
     Utils utils;
     Project project;
     Version version;
 
-    QString osgQtQuickPath = qgetenv("OSGQTQUICK_HOME");
-    if (osgQtQuickPath.isEmpty()) {
-        osgQtQuickPath = ".";
-    }
-    engine.addImportPath(osgQtQuickPath + "/imports");
     engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());

@@ -11,6 +11,7 @@ LIBS += -lsprout -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUt
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include
+    $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/console.h \
@@ -18,15 +19,20 @@ HEADERS += \
     src/cpp/utils.h \
     src/cpp/version.h \
     src/cpp/registertypes.h \
-    src/cpp/osg-adapter/viewport.h
+    src/cpp/osg-adapter/viewport.h \
+    src/cpp/osg-adapter/scene.h \
+    src/cpp/osg-adapter/camera.h \
+    src/cpp/osg-adapter/node.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/registertypes.cpp \
-    src/cpp/osg-adapter/viewport.cpp
+    src/cpp/osg-adapter/viewport.cpp \
+    src/cpp/osg-adapter/scene.cpp \
+    src/cpp/osg-adapter/camera.cpp \
+    src/cpp/osg-adapter/node.cpp
 
 DISTFILES += \
     README.md \
