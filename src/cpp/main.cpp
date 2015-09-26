@@ -4,8 +4,7 @@
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
-#include "console.h"
-#include <sprout/sproutdb.h>
+#include "registertypes.h"
 #include <sprout/project.h>
 
 QSharedPointer<Settings> settings;
@@ -38,8 +37,7 @@ int main(int argc, char* argv[])
     ::settings = QSharedPointer<Settings>(new Settings());
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<Console>("Greenery", 0, 1, "Console");
-    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
+    RegisterTypes::run();
 
     Utils utils;
     Project project;
