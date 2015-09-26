@@ -1,16 +1,17 @@
 #pragma once
+#include "../camera.h"
+#include "../scene.h"
 #include <QQuickItem>
-#include "camera.h"
-#include "scene.h"
+#include <osgViewer/Viewer>
 
-class Viewport : public QQuickItem
+class Viewer : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera NOTIFY cameraChanged)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
-    Viewport();
+    Viewer();
 
     Camera* camera() const { return m_camera; }
     void setCamera(Camera* camera);
@@ -26,4 +27,5 @@ protected:
 private:
     Camera* m_camera;
     Scene* m_scene;
+    osgViewer::Viewer* viewer;
 };
