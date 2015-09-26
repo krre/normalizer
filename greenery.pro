@@ -5,10 +5,9 @@ TEMPLATE = app
 
 LIBS += \
     -L$$(SPROUT_HOME)/bin \
-    -L$$(OSGQTQUICK_HOME)/bin \
-    -L$$(OSGQTQUICK_HOME)/lib
+    -L$$(OSG_HOME)/lib
 
-LIBS += -lsprout -losgQtQml
+LIBS += -lsprout -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include

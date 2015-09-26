@@ -1,8 +1,5 @@
 import QtQuick 2.5
 import Greenery 0.1
-import osg 2.0 as OSG
-import osgGA 2.0 as OSGGA
-import osgViewer 2.0 as OSGViewer
 import "sheets"
 import "nodes"
 import "../js/command.js" as Command
@@ -63,17 +60,8 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    OSGViewer.View {
-        id: view
+    Rectangle {
         anchors.fill: parent
-        cameraManipulator: OSGGA.TrackballManipulator { wheelZoomFactor: -0.1 }
-        camera.clearColor: Qt.rgba(0.05, 0.05, 0.17, 1)
-        sceneData: NodeBase {
-            OSG.Cylinder {
-                radius: 0.2
-                height: 0.4
-            }
-        }
     }
 
     CommandSheet {
