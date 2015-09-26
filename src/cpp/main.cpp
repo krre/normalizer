@@ -1,11 +1,11 @@
 #include <QApplication>
 #include <QtDebug>
 #include <QtQml>
+#include <sprout/project.h>
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
 #include "registertypes.h"
-#include <sprout/project.h>
 
 QSharedPointer<Settings> settings;
 
