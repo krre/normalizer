@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     parser.addPositionalArgument("source", QCoreApplication::translate("main", "Sprout file to edit"));
 
     parser.addOptions({
-        {{"t", "threaded"}, QCoreApplication::translate("main", "QML Window")},
+        {{"t", "threaded"}, QCoreApplication::translate("main", "Threaded QSG render loop")},
     });
 
     parser.process(app);
