@@ -23,7 +23,8 @@ HEADERS += \
     src/cpp/osg-adapter/scene.h \
     src/cpp/osg-adapter/camera.h \
     src/cpp/osg-adapter/node.h \
-    src/cpp/osg-adapter/osgViewer/viewer.h
+    src/cpp/osg-adapter/osgViewer/viewer.h \
+    src/cpp/osg-adapter/osgViewer/view.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -33,7 +34,8 @@ SOURCES += \
     src/cpp/osg-adapter/scene.cpp \
     src/cpp/osg-adapter/camera.cpp \
     src/cpp/osg-adapter/node.cpp \
-    src/cpp/osg-adapter/osgViewer/viewer.cpp
+    src/cpp/osg-adapter/osgViewer/viewer.cpp \
+    src/cpp/osg-adapter/osgViewer/view.cpp
 
 DISTFILES += \
     README.md \

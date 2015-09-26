@@ -61,30 +61,34 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    Rectangle {
-        id: scene2d
+//    Rectangle {
+//        id: scene2d
+//        anchors.fill: parent
+//        color: Qt.rgba(0.05, 0.05, 0.17, 1)
+//    }
+
+//    Scene {
+//        id: scene
+//        Node {}
+
+//        Node {
+//            Node {}
+//        }
+//    }
+
+//    Camera {
+//        id: camera
+//        color: Qt.rgba(0.05, 0.05, 0.17, 1)
+//    }
+
+//    Viewer {
+//        anchors.fill: parent
+//        scene: scene
+//        camera: camera
+//    }
+
+    View {
         anchors.fill: parent
-        color: Qt.rgba(0.05, 0.05, 0.17, 1)
-    }
-
-    Scene {
-        id: scene
-        Node {}
-
-        Node {
-            Node {}
-        }
-    }
-
-    Camera {
-        id: camera
-        color: Qt.rgba(0.05, 0.05, 0.17, 1)
-    }
-
-    Viewer {
-        anchors.fill: parent
-        scene: scene
-        camera: camera
     }
 
     CommandSheet {
