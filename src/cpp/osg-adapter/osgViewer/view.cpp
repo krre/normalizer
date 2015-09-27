@@ -1,8 +1,10 @@
 #include "view.h"
+#include <osgDB/ReadFile>
 
 View::View()
 {
     view = new osgViewer::View;
+    view->setSceneData(osgDB::readNodeFile("cow.osgt"));
     camera = view->getCamera();
 
     osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
@@ -14,6 +16,9 @@ View::View()
     traits->samples = ds->getNumMultiSamples();
 
     graphicsContext = osg::GraphicsContext::createGraphicsContext(traits);
+//    camera->setGraphicsContext(graphicsContext);
+
+
     camera->setGraphicsContext(graphicsContext);
     camera->setClearColor(osg::Vec4(0.2, 0.2, 0.6, 1.0));
     setFlag(QQuickItem::ItemHasContents, true);
@@ -42,5 +47,6 @@ QSGNode* View::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNodeData
 void View::timerEvent(QTimerEvent*)
 {
 //    update();
+    compositeViewer->frame();
 }
 

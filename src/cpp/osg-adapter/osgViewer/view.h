@@ -4,6 +4,7 @@
 #include <osgViewer/View>
 #include <osg/Camera>
 #include <osg/GraphicsContext>
+#include <osgViewer/CompositeViewer>
 
 class View : public QQuickItem
 {
@@ -17,4 +18,6 @@ private:
     void geometryChanged(const QRectF& newGeometry, const QRectF& oldGeometry) override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
     void timerEvent(QTimerEvent*) override;
+    osg::ref_ptr<osgViewer::GraphicsWindowEmbedded> graphicsWindowEmbedded;
+    osg::ref_ptr<osgViewer::CompositeViewer> compositeViewer;
 };
