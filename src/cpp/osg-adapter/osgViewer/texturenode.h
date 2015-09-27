@@ -24,11 +24,9 @@ public slots:
     void prepareNode();
 
 private:
-    int m_id;
-    QSize m_size;
-
+    int m_id = 0;
+    QSize m_size = QSize(0, 0);
     QMutex m_mutex;
-
-    QSGTexture *m_texture;
+    QSGTexture* m_texture = nullptr;
     QQuickWindow *m_window;
 };
