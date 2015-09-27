@@ -11,9 +11,10 @@ class View : public QQuickItem
 public:
     explicit View();
 private:
-    osgViewer::View* view;
+    osg::ref_ptr<osgViewer::View> view;
     osg::Camera* camera;
     osg::GraphicsContext* graphicsContext;
     void geometryChanged(const QRectF& newGeometry, const QRectF& oldGeometry) override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    void timerEvent(QTimerEvent*) override;
 };

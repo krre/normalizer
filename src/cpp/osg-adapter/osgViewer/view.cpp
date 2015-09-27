@@ -5,7 +5,7 @@ View::View()
     view = new osgViewer::View;
     camera = view->getCamera();
 
-    osg::GraphicsContext::Traits* traits = new osg::GraphicsContext::Traits;
+    osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
     osg::DisplaySettings* ds = osg::DisplaySettings::instance().get();
     traits->doubleBuffer = true;
     traits->alpha = ds->getMinimumNumAlphaBits();
@@ -17,6 +17,7 @@ View::View()
     camera->setGraphicsContext(graphicsContext);
     camera->setClearColor(osg::Vec4(0.2, 0.2, 0.6, 1.0));
     setFlag(QQuickItem::ItemHasContents, true);
+    startTimer(17);
 }
 
 void View::geometryChanged(const QRectF& newGeometry, const QRectF& oldGeometry)
@@ -36,5 +37,10 @@ QSGNode* View::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNodeData
 {
     qDebug() << "updatePaintNode" << oldNode;
     return oldNode;
+}
+
+void View::timerEvent(QTimerEvent*)
+{
+//    update();
 }
 
