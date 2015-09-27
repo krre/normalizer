@@ -7,8 +7,8 @@ LIBS += \
     -L$$(SPROUT_HOME)/bin \
     -L$$(OSG_HOME)/lib
 
-Debug:LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd
-Release:LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText
+Debug:LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
+Release:LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
 
 include(src/cpp/osg-adapter/osg-adapter.pri)
 
