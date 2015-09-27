@@ -1,6 +1,10 @@
 #pragma once
-#include <QQuickItem>
+#include "renderthread.h"
+#include <QtCore>
+#include <QtQuick>
 #include <osgViewer/Viewer>
+
+class RenderThread;
 
 class Viewer : public QQuickItem
 {
@@ -8,9 +12,14 @@ class Viewer : public QQuickItem
 
 public:
     Viewer();
+    static QList<QThread*> threads;
+
+public Q_SLOTS:
+    void ready();
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*);
 private:
-    osgViewer::Viewer* viewer;
+    RenderThread *m_renderThread;
+    osg::ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
 };

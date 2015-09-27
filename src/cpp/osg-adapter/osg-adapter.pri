@@ -1,11 +1,15 @@
 INCLUDEPATH += $$PWD
 
 SOURCES += \
-    $$PWD/osgViewer/View.cpp \
-    $$PWD/osgViewer/Viewer.cpp \
+    $$PWD/osgViewer/texturenode.cpp \
+    $$PWD/osgViewer/view.cpp \
+    $$PWD/osgViewer/viewer.cpp \
+    $$PWD/osgViewer/renderthread.cpp
 
 
 HEADERS += \
-    $$PWD/osgViewer/View.h \
-    $$PWD/osgViewer/Viewer.h \
+    $$PWD/osgViewer/texturenode.h \
+    $$PWD/osgViewer/view.h \
+    $$PWD/osgViewer/viewer.h \
+    $$PWD/osgViewer/renderthread.h
 
