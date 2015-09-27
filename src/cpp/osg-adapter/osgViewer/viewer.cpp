@@ -3,19 +3,15 @@
 #include <QtQuick>
 #include <osg/ShapeDrawable>
 #include <osgDB/ReadFile>
+#include <osgGA/MultiTouchTrackballManipulator>
+#include <osg/Camera>
+#include <osgViewer/Renderer>
 
 QList<QThread*> Viewer::threads;
 
-Viewer::Viewer() : m_renderThread(0)
+Viewer::Viewer()
 {
     setFlag(ItemHasContents, true);
-    m_renderThread = new RenderThread(QSize(512, 512));
-    /*
-    viewer = new osgViewer::Viewer;
-    viewer->setUpViewInWindow(0, 0, 800, 600);
-    viewer->setSceneData(osgDB::readNodeFile("cow.osgt"));
-    viewer->run();
-    */
 }
 
 void Viewer::ready()
@@ -35,6 +31,40 @@ void Viewer::ready()
 QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     TextureNode* node = static_cast<TextureNode*>(oldNode);
+
+    if (!m_renderThread) {
+        int width = window()->width();
+        int height = window()->height();
+        viewer = new osgViewer::Viewer;
+        viewer->setSceneData(osgDB::readNodeFile("cow.osgt"));
+        viewer->setCameraManipulator(new osgGA::MultiTouchTrackballManipulator);
+        viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
+        viewer->getEventQueue()->windowResize(0, 0, width, height);
+
+        osg::Camera* camera = viewer->getCamera();
+        camera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
+        camera->setViewport(0, 0, width, height);
+        camera->setProjectionMatrixAsPerspective(fov, width / height, zNear, zFar);
+        camera->setNearFarRatio(zNearFarRatio);
+        camera->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        camera->setClearColor(color);
+
+        fboTexture = new osg::Texture2D();
+        fboTexture->setTextureSize(width, height);
+        fboTexture->setInternalFormat(GL_RGBA);
+        fboTexture->setFilter(osg::Texture2D::MIN_FILTER,osg::Texture2D::LINEAR);
+        fboTexture->setFilter(osg::Texture2D::MAG_FILTER,osg::Texture2D::LINEAR);
+        fboTexture->apply(*camera->getGraphicsContext()->getState());
+
+        camera->attach(osg::Camera::COLOR_BUFFER, fboTexture, 0, 0);
+
+        osgViewer::Renderer* renderer = dynamic_cast<osgViewer::Renderer*>(camera->getRenderer());
+        if (renderer) {
+            renderer->setCameraRequiresSetUp(true);
+        }
+
+        m_renderThread = new RenderThread(QSize(width, height), viewer, fboTexture);
+    }
 
     if (!m_renderThread->context) {
         QOpenGLContext *current = window()->openglContext();

@@ -1,6 +1,9 @@
 #include "renderthread.h"
 
-RenderThread::RenderThread(const QSize& size) : m_size(size)
+RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture)
+    : m_size(size),
+      osgViewer(viewer),
+      fboTexture(fboTexture)
 {
     Viewer::threads << this;
 }
@@ -17,12 +20,14 @@ void RenderThread::renderNext()
         m_displayFbo = new QOpenGLFramebufferObject(m_size, format);
 //        m_logoRenderer = new LogoRenderer();
 //        m_logoRenderer->initialize();
+        qDebug() << "new framebuffer" << m_size;
     }
 
     m_renderFbo->bind();
     context->functions()->glViewport(0, 0, m_size.width(), m_size.height());
 
 //    m_logoRenderer->render();
+    osgViewer->frame();
 
     // We need to flush the contents to the FBO before posting
     // the texture to the other thread, otherwise, we might
@@ -32,7 +37,10 @@ void RenderThread::renderNext()
     m_renderFbo->bindDefault();
     qSwap(m_renderFbo, m_displayFbo);
 
-    emit textureReady(m_displayFbo->texture(), m_size);
+    unsigned int contextID = osgViewer->getCamera()->getGraphicsContext()->getState()->getContextID();
+    int id = fboTexture->getTextureObject(contextID)->id();
+
+    emit textureReady(id, m_size);
 }
 
 void RenderThread::shutDown()

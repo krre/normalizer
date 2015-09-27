@@ -1,10 +1,8 @@
 #include "texturenode.h"
 
-TextureNode::TextureNode(QQuickWindow *window) : m_window(window)
+TextureNode::TextureNode(QQuickWindow* window) : m_window(window)
 {
-    // Our texture node must have a texture, so use the default 0 texture.
-    m_texture = m_window->createTextureFromId(0, QSize(1, 1));
-    setTexture(m_texture);
+    setTextureCoordinatesTransform(QSGSimpleTextureNode::MirrorVertically);
     setFiltering(QSGTexture::Linear);
 }
 
@@ -13,7 +11,7 @@ TextureNode::~TextureNode()
     delete m_texture;
 }
 
-void TextureNode::newTexture(int id, const QSize &size) {
+void TextureNode::newTexture(int id, const QSize& size) {
     m_mutex.lock();
     m_id = id;
     m_size = size;
@@ -32,8 +30,6 @@ void TextureNode::prepareNode() {
     m_mutex.unlock();
     if (newId) {
         delete m_texture;
-        // note: include QQuickWindow::TextureHasAlphaChannel if the rendered content
-        // has alpha.
         m_texture = m_window->createTextureFromId(newId, size);
         setTexture(m_texture);
 

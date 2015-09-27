@@ -1,6 +1,8 @@
 #pragma once
 #include <QtCore>
 #include <QtGui>
+#include <osgViewer/Viewer>
+#include <osg/Texture2D>
 #include "viewer.h"
 
 // Based on Qt example "Scene Graph - Rendering FBOs in a thread"
@@ -14,7 +16,7 @@ class RenderThread : public QThread
 {
     Q_OBJECT
 public:
-    RenderThread(const QSize &size);
+    RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture);
     QOffscreenSurface* surface = nullptr;
     QOpenGLContext* context = nullptr;
 
@@ -30,5 +32,7 @@ private:
     QOpenGLFramebufferObject* m_displayFbo = nullptr;
 
 //    LogoRenderer *m_logoRenderer;
-    QSize m_size;
+    osgViewer::Viewer* osgViewer;
+    osg::Texture2D* fboTexture;
+    QSize m_size = QSize(0, 0);
 };
