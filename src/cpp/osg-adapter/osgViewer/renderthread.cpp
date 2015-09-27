@@ -1,12 +1,6 @@
 #include "renderthread.h"
 
-RenderThread::RenderThread(const QSize& size)
-    : surface(0)
-    , context(0)
-    , m_renderFbo(0)
-    , m_displayFbo(0)
-//    , m_logoRenderer(0)
-    , m_size(size)
+RenderThread::RenderThread(const QSize& size) : m_size(size)
 {
     Viewer::threads << this;
 }

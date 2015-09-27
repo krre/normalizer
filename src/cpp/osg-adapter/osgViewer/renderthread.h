@@ -15,8 +15,8 @@ class RenderThread : public QThread
     Q_OBJECT
 public:
     RenderThread(const QSize &size);
-    QOffscreenSurface* surface;
-    QOpenGLContext* context;
+    QOffscreenSurface* surface = nullptr;
+    QOpenGLContext* context = nullptr;
 
 public slots:
     void renderNext();
@@ -26,8 +26,8 @@ signals:
     void textureReady(int id, const QSize &size);
 
 private:
-    QOpenGLFramebufferObject* m_renderFbo;
-    QOpenGLFramebufferObject* m_displayFbo;
+    QOpenGLFramebufferObject* m_renderFbo = nullptr;
+    QOpenGLFramebufferObject* m_displayFbo = nullptr;
 
 //    LogoRenderer *m_logoRenderer;
     QSize m_size;
