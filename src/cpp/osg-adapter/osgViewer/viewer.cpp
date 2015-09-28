@@ -32,10 +32,10 @@ void Viewer::ready()
 QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     TextureNode* node = static_cast<TextureNode*>(oldNode);
+    qreal width = window()->width();
+    qreal height = window()->height();
 
     if (!m_renderThread) {
-        int width = window()->width();
-        int height = window()->height();
         viewer = new osgViewer::Viewer;
         viewer->setSceneData(osgDB::readNodeFile("cow.osgt"));
         viewer->setCameraManipulator(new osgGA::MultiTouchTrackballManipulator);
@@ -44,8 +44,6 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
         osg::Camera* camera = viewer->getCamera();
         camera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
-        camera->setViewport(0, 0, width, height);
-        camera->setProjectionMatrixAsPerspective(fov, width / height, zNear, zFar);
         camera->setNearFarRatio(zNearFarRatio);
         camera->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         camera->setClearColor(color);
@@ -61,6 +59,9 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
         m_renderThread = new RenderThread(QSize(width, height), viewer, fboTexture, window());
     }
+
+    viewer->getCamera()->setViewport(0, 0, width, height);
+    viewer->getCamera()->setProjectionMatrixAsPerspective(fov, width / height, zNear, zFar);
 
     if (!m_renderThread->context) {
         QOpenGLContext *current = window()->openglContext();
