@@ -34,5 +34,5 @@ private:
 //    LogoRenderer *m_logoRenderer;
     osgViewer::Viewer* osgViewer;
     osg::Texture2D* fboTexture;
-    QSize m_size = QSize(0, 0);
+    QSize m_size;
 };

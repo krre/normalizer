@@ -1,11 +1,11 @@
 #include "renderthread.h"
 
 RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture)
-    : m_size(size),
-      osgViewer(viewer),
+    : osgViewer(viewer),
       fboTexture(fboTexture)
 {
     Viewer::threads << this;
+    m_size = QSize(size.width(), size.height());
 }
 
 void RenderThread::renderNext()
