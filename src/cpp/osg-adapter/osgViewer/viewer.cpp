@@ -32,15 +32,12 @@ void Viewer::ready()
 QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     TextureNode* node = static_cast<TextureNode*>(oldNode);
-    qreal width = window()->width();
-    qreal height = window()->height();
 
     if (!m_renderThread) {
         viewer = new osgViewer::Viewer;
         viewer->setSceneData(osgDB::readNodeFile("cow.osgt"));
         viewer->setCameraManipulator(new osgGA::MultiTouchTrackballManipulator);
-        viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
-        viewer->getEventQueue()->windowResize(0, 0, width, height);
+        viewer->setUpViewerAsEmbeddedInWindow(0, 0, width(), height());
 
         osg::Camera* camera = viewer->getCamera();
         camera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
@@ -49,7 +46,7 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
         camera->setClearColor(color);
 
         fboTexture = new osg::Texture2D();
-        fboTexture->setTextureSize(width, height);
+        fboTexture->setTextureSize(width(), height());
         fboTexture->setInternalFormat(GL_RGBA);
         fboTexture->setFilter(osg::Texture2D::MIN_FILTER,osg::Texture2D::LINEAR);
         fboTexture->setFilter(osg::Texture2D::MAG_FILTER,osg::Texture2D::LINEAR);
@@ -57,11 +54,12 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
         camera->attach(osg::Camera::COLOR_BUFFER, fboTexture, 0, 0);
 
-        m_renderThread = new RenderThread(QSize(width, height), viewer, fboTexture, window());
+        m_renderThread = new RenderThread(QSize(width(), height()), viewer, fboTexture);
     }
 
-    viewer->getCamera()->setViewport(0, 0, width, height);
-    viewer->getCamera()->setProjectionMatrixAsPerspective(fov, width / height, zNear, zFar);
+    viewer->getCamera()->setViewport(0, 0, width(), height());
+    viewer->getCamera()->setProjectionMatrixAsPerspective(fov, width() / height(), zNear, zFar);
+    viewer->getEventQueue()->windowResize(0, 0, width(), height());
 
     if (!m_renderThread->context) {
         QOpenGLContext *current = window()->openglContext();

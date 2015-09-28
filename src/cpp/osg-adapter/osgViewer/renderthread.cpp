@@ -1,9 +1,8 @@
 #include "renderthread.h"
 
-RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture, QQuickWindow *window)
+RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture)
     : osgViewer(viewer),
-      fboTexture(fboTexture),
-      window(window)
+      fboTexture(fboTexture)
 {
     Viewer::threads << this;
     m_size = QSize(size.width(), size.height());

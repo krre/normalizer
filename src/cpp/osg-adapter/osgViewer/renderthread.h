@@ -13,7 +13,7 @@ class RenderThread : public QThread
 {
     Q_OBJECT
 public:
-    RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture, QQuickWindow* window);
+    RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture);
     QOpenGLContext* context = nullptr;
     QOffscreenSurface *surface;
 
