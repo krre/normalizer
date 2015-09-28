@@ -5,10 +5,14 @@ TEMPLATE = app
 
 LIBS += \
     -L$$(SPROUT_HOME)/bin \
-    -L$$(OSG_HOME)/lib
+    -L$$(OSG_HOME)/lib \
+    -L$$(OSG_HOME)/lib64
 
-Debug:LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
-Release:LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
+CONFIG(debug, debug|release) {
+    LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
+} else {
+    LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
+}
 
 include(src/cpp/osg-adapter/osg-adapter.pri)
 
