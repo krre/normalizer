@@ -25,12 +25,17 @@ ApplicationWindow {
         }
     }
 
-    Component.onDestruction: {
+    onClosing: {
         Utils.saveRecentFiles(topMenuBar.recentFilesModel)
         if (SETTINGS.autoLoadSession()) {
             Utils.saveSession()
         }
         Utils.saveGeometry()
+
+        // correct quit from app need close all tabs before
+        for (var i = 0; i < tabView.count; i++) {
+            tabView.removeTab(0)
+        }
     }
 
     TabView {
