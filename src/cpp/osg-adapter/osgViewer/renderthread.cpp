@@ -1,8 +1,9 @@
 #include "renderthread.h"
 
-RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture)
+RenderThread::RenderThread(const QSize& size, osgViewer::Viewer* viewer, osg::Texture2D* fboTexture, QQuickWindow *window)
     : osgViewer(viewer),
-      fboTexture(fboTexture)
+      fboTexture(fboTexture),
+      window(window)
 {
     Viewer::threads << this;
     m_size = QSize(size.width(), size.height());
@@ -13,20 +14,13 @@ void RenderThread::renderNext()
     context->makeCurrent(surface);
 
     if (!m_renderFbo) {
-        // Initialize the buffers and renderer
         QOpenGLFramebufferObjectFormat format;
         format.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
         m_renderFbo = new QOpenGLFramebufferObject(m_size, format);
-        m_displayFbo = new QOpenGLFramebufferObject(m_size, format);
-//        m_logoRenderer = new LogoRenderer();
-//        m_logoRenderer->initialize();
-        qDebug() << "new framebuffer" << m_size;
     }
 
     m_renderFbo->bind();
     context->functions()->glViewport(0, 0, m_size.width(), m_size.height());
-
-//    m_logoRenderer->render();
     osgViewer->frame();
 
     // We need to flush the contents to the FBO before posting
@@ -35,7 +29,6 @@ void RenderThread::renderNext()
     context->functions()->glFlush();
 
     m_renderFbo->bindDefault();
-    qSwap(m_renderFbo, m_displayFbo);
 
     unsigned int contextID = osgViewer->getCamera()->getGraphicsContext()->getState()->getContextID();
     int id = fboTexture->getTextureObject(contextID)->id();
@@ -47,8 +40,6 @@ void RenderThread::shutDown()
 {
     context->makeCurrent(surface);
     delete m_renderFbo;
-    delete m_displayFbo;
-//    delete m_logoRenderer;
     context->doneCurrent();
     delete context;
 

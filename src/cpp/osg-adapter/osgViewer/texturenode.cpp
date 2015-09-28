@@ -3,6 +3,8 @@
 TextureNode::TextureNode(QQuickWindow* window) : m_window(window)
 {
     setTextureCoordinatesTransform(QSGSimpleTextureNode::MirrorVertically);
+    m_texture = m_window->createTextureFromId(0, QSize(1, 1));
+    setTexture(m_texture);
     setFiltering(QSGTexture::Linear);
 }
 

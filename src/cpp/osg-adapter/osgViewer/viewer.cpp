@@ -6,6 +6,7 @@
 #include <osgGA/MultiTouchTrackballManipulator>
 #include <osg/Camera>
 #include <osgViewer/Renderer>
+#include <QOpenGLContext>
 
 QList<QThread*> Viewer::threads;
 
@@ -58,12 +59,7 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
         camera->attach(osg::Camera::COLOR_BUFFER, fboTexture, 0, 0);
 
-        osgViewer::Renderer* renderer = dynamic_cast<osgViewer::Renderer*>(camera->getRenderer());
-        if (renderer) {
-            renderer->setCameraRequiresSetUp(true);
-        }
-
-        m_renderThread = new RenderThread(QSize(width, height), viewer, fboTexture);
+        m_renderThread = new RenderThread(QSize(width, height), viewer, fboTexture, window());
     }
 
     if (!m_renderThread->context) {
@@ -88,30 +84,14 @@ QSGNode* Viewer::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     if (!node) {
         node = new TextureNode(window());
 
-        /* Set up connections to get the production of FBO textures in sync with vsync on the
-         * rendering thread.
-         *
-         * When a new texture is ready on the rendering thread, we use a direct connection to
-         * the texture node to let it know a new texture can be used. The node will then
-         * emit pendingNewTexture which we bind to QQuickWindow::update to schedule a redraw.
-         *
-         * When the scene graph starts rendering the next frame, the prepareNode() function
-         * is used to update the node with the new texture. Once it completes, it emits
-         * textureInUse() which we connect to the FBO rendering thread's renderNext() to have
-         * it start producing content into its current "back buffer".
-         *
-         * This FBO rendering pipeline is throttled by vsync on the scene graph rendering thread.
-         */
         connect(m_renderThread, SIGNAL(textureReady(int,QSize)), node, SLOT(newTexture(int,QSize)), Qt::DirectConnection);
         connect(node, SIGNAL(pendingNewTexture()), window(), SLOT(update()), Qt::QueuedConnection);
         connect(window(), SIGNAL(beforeRendering()), node, SLOT(prepareNode()), Qt::DirectConnection);
         connect(node, SIGNAL(textureInUse()), m_renderThread, SLOT(renderNext()), Qt::QueuedConnection);
 
-        // Get the production of FBO textures started..
         QMetaObject::invokeMethod(m_renderThread, "renderNext", Qt::QueuedConnection);
     }
 
     node->setRect(boundingRect());
-
     return node;
 }
