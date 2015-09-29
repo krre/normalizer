@@ -1,6 +1,6 @@
 import QtQuick 2.5
 import Greenery 1.0
-import Osg 1.0
+//import Osg 1.0
 import "sheets"
 import "nodes"
 import "../js/command.js" as Command
@@ -61,9 +61,9 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    Viewer {
-        anchors.fill: parent
-    }
+//    Viewer {
+//        anchors.fill: parent
+//    }
 
 //    View {
 //        anchors.fill: parent

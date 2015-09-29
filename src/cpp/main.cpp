@@ -6,7 +6,6 @@
 #include "settings.h"
 #include "utils.h"
 #include "registertypes.h"
-#include "osg-adapter/osgViewer/viewer.h"
 
 QSharedPointer<Settings> settings;
 
@@ -59,10 +58,10 @@ int main(int argc, char* argv[])
     // As the render threads make use of our QGuiApplication object
     // to clean up gracefully, wait for them to finish before
     // QGuiApp is taken off the heap.
-    foreach (QThread *t, Viewer::threads) {
-        t->wait();
-        delete t;
-    }
+//    foreach (QThread *t, Viewer::threads) {
+//        t->wait();
+//        delete t;
+//    }
 
     return exitCode;
 }

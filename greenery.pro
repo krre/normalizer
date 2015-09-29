@@ -5,20 +5,20 @@ TEMPLATE = app
 
 LIBS += \
     -L$$(SPROUT_HOME)/bin \
-    -L$$(OSG_HOME)/lib \
-    -L$$(OSG_HOME)/lib64
+#    -L$$(OSG_HOME)/lib \
+#    -L$$(OSG_HOME)/lib64
 
 CONFIG(debug, debug|release) {
-    LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
+    LIBS += -lsproutd #-losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
 } else {
-    LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
+    LIBS += -lsprout #-losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
 }
 
-include(src/cpp/osg-adapter/osg-adapter.pri)
+#include(src/cpp/osg-adapter/osg-adapter.pri)
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include \
-    $$(OSG_HOME)/include
+#    $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/console.h \
