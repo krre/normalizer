@@ -61,6 +61,13 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
+    Viewport {
+        anchors.fill: parent
+        camera: Camera {
+            color: "darkblue"
+        }
+    }
+
 //    Viewer {
 //        anchors.fill: parent
 //    }

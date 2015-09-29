@@ -25,13 +25,21 @@ HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
-    src/cpp/registertypes.h
+    src/cpp/registertypes.h \
+    src/cpp/scenegraph/camera.h \
+    src/cpp/scenegraph/node.h \
+    src/cpp/scenegraph/scene.h \
+    src/cpp/scenegraph/viewport.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp
+    src/cpp/console.cpp \
+    src/cpp/scenegraph/camera.cpp \
+    src/cpp/scenegraph/node.cpp \
+    src/cpp/scenegraph/scene.cpp \
+    src/cpp/scenegraph/viewport.cpp
 
 DISTFILES += \
     README.md \
