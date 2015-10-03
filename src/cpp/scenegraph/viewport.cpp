@@ -39,15 +39,21 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
             Vertex3D_Attributes
         };
 
-        QSGGeometry* geometry = new QSGGeometry(Vertex3D_AttributeSet, 4);
+        QSGGeometry* geometry = new QSGGeometry(Vertex3D_AttributeSet, 4, 4);
         geometry->setLineWidth(3);
-        geometry->setDrawingMode(GL_LINES);
+        geometry->setDrawingMode(GL_LINE_LOOP);
 
         Vertex3D* vertices = static_cast<Vertex3D*>(geometry->vertexData());
-        vertices[0].set(0, 0, -3);
-        vertices[1].set(0, height(), -3);
-        vertices[2].set(width(), 0, 0);
-        vertices[3].set(width(), height(), 0);
+        vertices[0].set(0, 0, 0);
+        vertices[1].set(0, height(), 0);
+        vertices[2].set(width(), height(), 0);
+        vertices[3].set(width(), 0, 0);
+
+        quint16* indices = geometry->indexDataAsUShort();
+        indices[0] = 0;
+        indices[1] = 1;
+        indices[2] = 2;
+        indices[3] = 3;
 
         QSGFlatColorMaterial* material = new QSGFlatColorMaterial;
         material->setColor(QColor(255, 0, 0));
