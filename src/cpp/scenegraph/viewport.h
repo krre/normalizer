@@ -23,7 +23,10 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*);
+
 private:
     Camera* m_camera = nullptr;
     Scene* m_scene = nullptr;
+    QSGTransformNode transformNode;
+    QMatrix4x4 matrix;
 };

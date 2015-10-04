@@ -64,11 +64,15 @@ void Frame::updateGeometry()
 {
     geometry->setLineWidth(m_lineWidth);
 
+    float x0 = -m_width / 2.0;
+    float y0 = -m_height / 2.0;
+    float x1 = m_width / 2.0;
+    float y1 = m_height / 2.0;
     Vertex3D* vertices = static_cast<Vertex3D*>(geometry->vertexData());
-    vertices[0].set(0, 0, 0);
-    vertices[1].set(0, m_height, 0);
-    vertices[2].set(m_width, m_height, 0);
-    vertices[3].set(m_width, 0, 0);
+    vertices[0].set(x0, y0, 0);
+    vertices[1].set(x0, y1, 0);
+    vertices[2].set(x1, y1, 0);
+    vertices[3].set(x1, y0, 0);
 
     m_geometryNode->markDirty(QSGNode::DirtyGeometry);
 }

@@ -35,7 +35,8 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
         n = new QSGSimpleRectNode();
         if (m_scene != nullptr) {
             n->setColor(m_scene->color());
-            n->appendChildNode(m_scene->rootNode());
+            n->appendChildNode(&transformNode);
+            transformNode.appendChildNode(m_scene->rootNode());
         }
 
 //        QSGTransformNode* transformNode = new QSGTransformNode;
@@ -52,6 +53,8 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
 //        n->appendChildNode(transformNode);
     }
 
+    matrix.translate(width() / 2.0, height() / 2.0, 0);
+    transformNode.setMatrix(matrix);
     n->setRect(boundingRect());
 
     return n;
