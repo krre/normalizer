@@ -29,7 +29,8 @@ HEADERS += \
     src/cpp/scenegraph/camera.h \
     src/cpp/scenegraph/node.h \
     src/cpp/scenegraph/scene.h \
-    src/cpp/scenegraph/viewport.h
+    src/cpp/scenegraph/viewport.h \
+    src/cpp/scenegraph/frame.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -39,7 +40,8 @@ SOURCES += \
     src/cpp/scenegraph/camera.cpp \
     src/cpp/scenegraph/node.cpp \
     src/cpp/scenegraph/scene.cpp \
-    src/cpp/scenegraph/viewport.cpp
+    src/cpp/scenegraph/viewport.cpp \
+    src/cpp/scenegraph/frame.cpp
 
 DISTFILES += \
     README.md \

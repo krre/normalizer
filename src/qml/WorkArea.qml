@@ -61,16 +61,28 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
+    Scene {
+        id: scene
+
+        Frame {
+
+        }
+    }
+
+    Camera {
+        id: camera
+        color: "yellow"
+        verticalAngle: 45
+        aspectRatio: viewport.width / viewport.height
+        nearPlane: 0
+        farPlane: 100
+    }
+
     Viewport {
         id: viewport
         anchors.fill: parent
-        camera: Camera {
-            color: "yellow"
-            verticalAngle: 45
-            aspectRatio: viewport.width / viewport.height
-            nearPlane: 0
-            farPlane: 100
-        }
+//        camera: camera
+        scene: scene
     }
 
     CommandSheet {
