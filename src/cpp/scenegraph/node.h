@@ -24,11 +24,17 @@ public:
     QVector3D scale() const { return m_scale; }
     void setScale(QVector3D scale);
 
+    QSGTransformNode* transformNode() { return &m_transformNode; }
+
 signals:
     void nodesChanged();
     void positionChanged(QVector3D position);
     void rotationChanged(QVector3D rotation);
     void scaleChanged(QVector3D scale);
+
+protected:
+    QList<Node*> m_nodes;
+    QSGTransformNode m_transformNode;
 
 private:
     static void appendNode(QQmlListProperty<Node>* list, Node* node);
@@ -36,8 +42,6 @@ private:
     static int nodeCount(QQmlListProperty<Node>* list);
     static void clearNode(QQmlListProperty<Node>* list);
 
-    QList<Node*> m_nodes;
-    QSGTransformNode transformNode;
     QMatrix4x4 matrix;
     QVector3D m_position;
     QVector3D m_rotation;

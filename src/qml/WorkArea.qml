@@ -63,12 +63,13 @@ Item {
 
     Scene {
         id: scene
-        color: "white"
+        color: "blue"
 
         Frame {
-            width: 50
-            height: 50
-            lineWidth: 10
+            width: 200
+            height: 200
+            lineWidth: 3
+            color: "red"
         }
     }
 

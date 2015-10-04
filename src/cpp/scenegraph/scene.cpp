@@ -14,6 +14,10 @@ void Scene::setColor(QColor color)
     emit colorChanged(color);
 }
 
-Node *Scene::rootNode() {
+QSGNode* Scene::rootNode() {
+    m_rootNode.removeAllChildNodes();
+    for (int i = 0; i < m_nodes.count(); i++) {
+        m_rootNode.appendChildNode(m_nodes.at(i)->transformNode());
+    }
     return &m_rootNode;
 }

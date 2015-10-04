@@ -22,6 +22,7 @@ Frame::Frame()
     indices[3] = 3;
 
     m_geometryNode->setGeometry(geometry);
+    m_transformNode.appendChildNode(m_geometryNode);
 }
 
 Frame::~Frame()
@@ -61,13 +62,13 @@ void Frame::setLineWidth(float lineWidth)
 
 void Frame::updateGeometry()
 {
-    geometry->setLineWidth(3);
+    geometry->setLineWidth(m_lineWidth);
 
     Vertex3D* vertices = static_cast<Vertex3D*>(geometry->vertexData());
     vertices[0].set(0, 0, 0);
-    vertices[1].set(0, height(), 0);
-    vertices[2].set(width(), height(), 0);
-    vertices[3].set(width(), 0, 0);
+    vertices[1].set(0, m_height, 0);
+    vertices[2].set(m_width, m_height, 0);
+    vertices[3].set(m_width, 0, 0);
 
     m_geometryNode->markDirty(QSGNode::DirtyGeometry);
 }

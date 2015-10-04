@@ -35,6 +35,7 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
         n = new QSGSimpleRectNode();
         if (m_scene != nullptr) {
             n->setColor(m_scene->color());
+            n->appendChildNode(m_scene->rootNode());
         }
 
 //        QSGTransformNode* transformNode = new QSGTransformNode;

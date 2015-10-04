@@ -39,7 +39,6 @@ void Node::clearNode(QQmlListProperty<Node>* list)
     self->nodesChanged();
 }
 
-
 void Node::setPosition(QVector3D position)
 {
     if (m_position == position)
