@@ -1,4 +1,5 @@
 #pragma once
+#include "scene.h"
 #include <QtCore>
 #include <QtGui>
 
@@ -25,11 +26,15 @@ public:
     float farPlane() const { return m_farPlane; }
     void setFarPlane(float farPlane);
 
+    void setScene(Scene* scene) { m_scene = scene; }
+
 private:
+    Scene* m_scene;
     float m_verticalAngle = 45;
     float m_aspectRatio = 1;
     float m_nearPlane = 0;
     float m_farPlane = 100;
+    void updateCamera();
 
 signals:
     void verticalAngleChanged(float verticalAngle);

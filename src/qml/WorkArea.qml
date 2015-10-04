@@ -66,7 +66,9 @@ Item {
         color: "white"
 
         Frame {
-
+            width: 50
+            height: 50
+            lineWidth: 10
         }
     }
 
@@ -81,7 +83,7 @@ Item {
     Viewport {
         id: viewport
         anchors.fill: parent
-//        camera: camera
+        camera: camera
         scene: scene
     }
 

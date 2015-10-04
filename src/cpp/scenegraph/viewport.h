@@ -9,18 +9,6 @@ class Viewport : public QQuickItem
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera NOTIFY cameraChanged)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 
-struct Vertex3D {
-    float x;
-    float y;
-    float z;
-
-    void set(float x_, float y_, float z_) {
-        x = x_;
-        y = y_;
-        z = z_;
-    }
-};
-
 public:
     Viewport();
 

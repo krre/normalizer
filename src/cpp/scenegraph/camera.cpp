@@ -11,6 +11,7 @@ void Camera::setVerticalAngle(float verticalAngle)
         return;
 
     m_verticalAngle = verticalAngle;
+    updateCamera();
     emit verticalAngleChanged(verticalAngle);
 }
 
@@ -20,6 +21,7 @@ void Camera::setAspectRatio(float aspectRatio)
         return;
 
     m_aspectRatio = aspectRatio;
+    updateCamera();
     emit aspectRatioChanged(aspectRatio);
 }
 
@@ -29,6 +31,7 @@ void Camera::setNearPlane(float nearPlane)
         return;
 
     m_nearPlane = nearPlane;
+    updateCamera();
     emit nearPlaneChanged(nearPlane);
 }
 
@@ -38,6 +41,14 @@ void Camera::setFarPlane(float farPlane)
         return;
 
     m_farPlane = farPlane;
+    updateCamera();
     emit farPlaneChanged(farPlane);
+}
+
+
+
+void Camera::updateCamera()
+{
+
 }
 

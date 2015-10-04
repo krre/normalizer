@@ -1,25 +1,27 @@
 #pragma once
-#include <QtCore>
-#include <QtQml>
 #include "node.h"
+#include <QtCore>
+#include <QtQuick>
 
-class Scene : public Node
+class Geometry : public Node
 {
     Q_OBJECT
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-
 public:
-    explicit Scene();
+    Geometry();
+    ~Geometry();
+    QSGGeometryNode* geometryNode() { return m_geometryNode; }
 
     QColor color() const { return m_color; }
     void setColor(QColor color);
 
-    Node* rootNode();
-
 signals:
     void colorChanged(QColor color);
 
+protected:
+    QSGGeometryNode* m_geometryNode;
+
 private:
-    QColor m_color = Qt::blue;
-    Node m_rootNode;
+    QColor m_color;
+    QSGFlatColorMaterial material;
 };

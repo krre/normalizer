@@ -1,6 +1,6 @@
 #include "scene.h"
 
-Scene::Scene(QObject *parent) : QObject(parent)
+Scene::Scene()
 {
 
 }
@@ -14,4 +14,6 @@ void Scene::setColor(QColor color)
     emit colorChanged(color);
 }
 
-
+Node *Scene::rootNode() {
+    return &m_rootNode;
+}
