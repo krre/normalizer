@@ -63,6 +63,7 @@ Item {
 
     Scene {
         id: scene
+        color: "white"
 
         Frame {
 
@@ -71,7 +72,6 @@ Item {
 
     Camera {
         id: camera
-        color: "yellow"
         verticalAngle: 45
         aspectRatio: viewport.width / viewport.height
         nearPlane: 0

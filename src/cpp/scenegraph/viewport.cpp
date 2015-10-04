@@ -27,8 +27,8 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
     QSGSimpleRectNode* n = static_cast<QSGSimpleRectNode*>(oldNode);
     if (!n) {
         n = new QSGSimpleRectNode();
-        if (m_camera != nullptr) {
-            n->setColor(m_camera->color());
+        if (m_scene != nullptr) {
+            n->setColor(m_scene->color());
         }
 
         static QSGGeometry::Attribute Vertex3D_Attributes[] = {

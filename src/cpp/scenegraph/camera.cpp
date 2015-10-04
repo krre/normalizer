@@ -5,15 +5,6 @@ Camera::Camera(QObject *parent) : QObject(parent)
 
 }
 
-void Camera::setColor(QColor color)
-{
-    if (m_color == color)
-        return;
-
-    m_color = color;
-    emit colorChanged(color);
-}
-
 void Camera::setVerticalAngle(float verticalAngle)
 {
     if (m_verticalAngle == verticalAngle)
