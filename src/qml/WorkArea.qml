@@ -62,19 +62,16 @@ Item {
     }
 
     Viewport {
+        id: viewport
         anchors.fill: parent
         camera: Camera {
-            color: "darkblue"
+            color: "yellow"
+            verticalAngle: 45
+            aspectRatio: viewport.width / viewport.height
+            nearPlane: 0
+            farPlane: 100
         }
     }
-
-//    Viewer {
-//        anchors.fill: parent
-//    }
-
-//    View {
-//        anchors.fill: parent
-//    }
 
     CommandSheet {
         id: commandSheet

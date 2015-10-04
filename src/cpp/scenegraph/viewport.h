@@ -36,6 +36,6 @@ signals:
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*);
 private:
-    Camera* m_camera;
-    Scene* m_scene;
+    Camera* m_camera = nullptr;
+    Scene* m_scene = nullptr;
 };

@@ -27,7 +27,9 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
     QSGSimpleRectNode* n = static_cast<QSGSimpleRectNode*>(oldNode);
     if (!n) {
         n = new QSGSimpleRectNode();
-        n->setColor(camera()->color());
+        if (m_camera != nullptr) {
+            n->setColor(m_camera->color());
+        }
 
         static QSGGeometry::Attribute Vertex3D_Attributes[] = {
             QSGGeometry::Attribute::create(0, 3, GL_FLOAT, true)
@@ -60,7 +62,9 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
 
         QSGTransformNode* transformNode = new QSGTransformNode;
         QMatrix4x4* matrix = new QMatrix4x4;
-        matrix->perspective(45, width() / height(), 0, 10000);
+        if (m_camera != nullptr) {
+            matrix->perspective(m_camera->verticalAngle(), m_camera->aspectRatio(), m_camera->nearPlane(), m_camera->farPlane());
+        }
         matrix->translate(0, 0, -1);
         matrix->scale(0.5);
         transformNode->setMatrix(*matrix);
