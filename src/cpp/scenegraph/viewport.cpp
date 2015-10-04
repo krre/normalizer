@@ -53,8 +53,12 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
 //        n->appendChildNode(transformNode);
     }
 
-    matrix.translate(width() / 2.0, height() / 2.0, 0);
-    transformNode.setMatrix(matrix);
+    if (matrix != nullptr) {
+        delete matrix;
+    }
+    matrix = new QMatrix4x4;
+    matrix->translate(width() / 2.0, height() / 2.0, 0);
+    transformNode.setMatrix(*matrix);
     n->setRect(boundingRect());
 
     return n;
