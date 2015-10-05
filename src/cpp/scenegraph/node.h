@@ -24,7 +24,7 @@ public:
     QVector3D scale() const { return m_scale; }
     void setScale(QVector3D scale);
 
-    QSGTransformNode* transformNode() { return &m_transformNode; }
+    QSGTransformNode* transformNode() { return m_transformNode; }
 
 signals:
     void nodesChanged();
@@ -34,7 +34,7 @@ signals:
 
 protected:
     QList<Node*> m_nodes;
-    QSGTransformNode m_transformNode;
+    QSGTransformNode* m_transformNode;
 
 private:
     static void appendNode(QQmlListProperty<Node>* list, Node* node);

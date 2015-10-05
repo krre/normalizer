@@ -21,5 +21,5 @@ signals:
 
 private:
     QColor m_color = Qt::black;
-    QSGNode m_rootNode;
+    QSGNode* m_rootNode = nullptr;
 };

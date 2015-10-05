@@ -22,12 +22,7 @@ Frame::Frame()
     indices[3] = 3;
 
     m_geometryNode->setGeometry(geometry);
-    m_transformNode.appendChildNode(m_geometryNode);
-}
-
-Frame::~Frame()
-{
-    delete geometry;
+    m_transformNode->appendChildNode(m_geometryNode);
 }
 
 void Frame::setWidth(float width)

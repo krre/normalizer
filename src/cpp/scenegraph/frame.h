@@ -24,7 +24,6 @@ struct Vertex3D {
 
 public:
     explicit Frame();
-    ~Frame();
     float width() const { return m_width; }
     void setWidth(float width);
 

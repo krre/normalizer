@@ -5,12 +5,9 @@ Geometry::Geometry()
     m_geometryNode = new QSGGeometryNode();
     m_geometryNode->setFlag(QSGNode::OwnsGeometry);
     m_geometryNode->setFlag(QSGNode::OwnsMaterial);
-    m_geometryNode->setMaterial(&material);
-}
 
-Geometry::~Geometry()
-{
-    delete m_geometryNode;
+    material = new QSGFlatColorMaterial;
+    m_geometryNode->setMaterial(material);
 }
 
 void Geometry::setColor(QColor color)
@@ -20,7 +17,7 @@ void Geometry::setColor(QColor color)
 
     m_color = color;
 
-    material.setColor(color);
+    material->setColor(color);
     m_geometryNode->markDirty(QSGNode::DirtyMaterial);
 
     emit colorChanged(color);

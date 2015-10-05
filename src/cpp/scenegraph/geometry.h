@@ -9,7 +9,6 @@ class Geometry : public Node
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
 public:
     Geometry();
-    ~Geometry();
     QSGGeometryNode* geometryNode() { return m_geometryNode; }
 
     QColor color() const { return m_color; }
@@ -23,5 +22,5 @@ protected:
 
 private:
     QColor m_color;
-    QSGFlatColorMaterial material;
+    QSGFlatColorMaterial* material;
 };

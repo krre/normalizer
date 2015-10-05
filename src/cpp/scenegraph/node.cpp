@@ -2,7 +2,7 @@
 
 Node::Node(QObject *parent) : QObject(parent)
 {
-
+    m_transformNode = new QSGTransformNode;
 }
 
 QQmlListProperty<Node> Node::nodes()
