@@ -66,8 +66,8 @@ Item {
         color: "blue"
 
         Frame {
-            width: 200
-            height: 200
+            width: 100
+            height: 100
             lineWidth: 3
             color: "red"
         }
@@ -76,9 +76,10 @@ Item {
     Camera {
         id: camera
         verticalAngle: 45
-        aspectRatio: viewport.width / viewport.height
-        nearPlane: -0.1
-        farPlane: 10
+        aspectRatio: 1
+//        aspectRatio: viewport.width / viewport.height
+        nearPlane: 0
+        farPlane: 1
     }
 
     Viewport {
