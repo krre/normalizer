@@ -13,7 +13,7 @@ Frame::Frame()
     };
 
     geometry = new QSGGeometry(Vertex3D_AttributeSet, 4, 4);
-    geometry->setDrawingMode(GL_LINE_LOOP);
+//    geometry->setDrawingMode(GL_LINE_LOOP);
 
     quint16* indices = geometry->indexDataAsUShort();
     indices[0] = 0;

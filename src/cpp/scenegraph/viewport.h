@@ -27,6 +27,6 @@ protected:
 private:
     Camera* m_camera = nullptr;
     Scene* m_scene = nullptr;
-    QSGTransformNode transformNode;
+    QSGTransformNode* transformNode = nullptr;
     QMatrix4x4* matrix = nullptr;
 };

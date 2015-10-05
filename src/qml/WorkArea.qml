@@ -77,8 +77,8 @@ Item {
         id: camera
         verticalAngle: 45
         aspectRatio: viewport.width / viewport.height
-        nearPlane: 0
-        farPlane: 100
+        nearPlane: -0.1
+        farPlane: 10
     }
 
     Viewport {
