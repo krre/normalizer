@@ -64,10 +64,10 @@ void Frame::updateGeometry()
     float x2 = m_width / 2.0;
     float y2 = m_height / 2.0;
     Vertex3D* vertices = static_cast<Vertex3D*>(geometry->vertexData());
-    vertices[0].set(x1, y1, -1);
-    vertices[1].set(x1, y2, -1);
-    vertices[2].set(x2, y2, -1);
-    vertices[3].set(x2, y1, -1);
+    vertices[0].set(x1, y1, 0);
+    vertices[1].set(x1, y2, 0);
+    vertices[2].set(x2, y2, 0);
+    vertices[3].set(x2, y1, 0);
 
     m_geometryNode->markDirty(QSGNode::DirtyGeometry);
 }

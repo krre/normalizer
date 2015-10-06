@@ -14,12 +14,9 @@ public:
     QColor color() const { return m_color; }
     void setColor(QColor color);
 
-    QSGNode* rootNode();
-
 signals:
     void colorChanged(QColor color);
 
 private:
     QColor m_color = Qt::black;
-    QSGNode* m_rootNode = nullptr;
 };

@@ -30,10 +30,6 @@ void Viewport::setScene(Scene *scene) {
 
 QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNodeData*)
 {
-    if (transformNode == nullptr) {
-        transformNode = new QSGTransformNode;
-    }
-
     QSGSimpleRectNode* n = static_cast<QSGSimpleRectNode*>(oldNode);
 
     if (!n) {
@@ -41,8 +37,7 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
 
         if (m_scene != nullptr) {
             n->setColor(m_scene->color());
-            transformNode->appendChildNode(m_scene->rootNode());
-            n->appendChildNode(transformNode);
+            n->appendChildNode(m_scene->transformNode());
         }
     }
 
@@ -50,11 +45,13 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
         delete matrix;
     }
     matrix = new QMatrix4x4;
-    matrix->translate(width() / 2.0, height() / 2.0, 0);
+
     if (m_camera != nullptr) {
+        matrix->translate(width() / 2.0, height() / 2.0, 0); // move scene to origin
         matrix->perspective(m_camera->verticalAngle(), m_camera->aspectRatio(), m_camera->nearPlane(), m_camera->farPlane());
+        matrix->translate(0, 0, -1);
     }
-    transformNode->setMatrix(*matrix);
+    m_scene->transformNode()->setMatrix(*matrix);
 
     n->setRect(boundingRect());
 

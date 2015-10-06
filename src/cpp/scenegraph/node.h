@@ -25,6 +25,7 @@ public:
     void setScale(QVector3D scale);
 
     QSGTransformNode* transformNode() { return m_transformNode; }
+    int count() { return m_nodes.count(); }
 
 signals:
     void nodesChanged();

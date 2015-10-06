@@ -17,6 +17,7 @@ void Node::appendNode(QQmlListProperty<Node>* list, Node *node)
     }
     Node* self = static_cast<Node*>(list->object);
     self->m_nodes.append(node);
+    self->m_transformNode->appendChildNode(node->transformNode());
     self->nodesChanged();
 }
 
