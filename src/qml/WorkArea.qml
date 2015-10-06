@@ -1,6 +1,6 @@
 import QtQuick 2.5
 import Greenery 1.0
-//import Osg 1.0
+import OsgBridge 1.0
 import "sheets"
 import "nodes"
 import "../js/command.js" as Command
@@ -61,6 +61,11 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
+    Viewer {
+        anchors.fill: parent
+    }
+
+/*
     Scene {
         id: scene
         color: "blue"
@@ -91,7 +96,7 @@ Item {
         camera: camera
         scene: scene
     }
-
+*/
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top

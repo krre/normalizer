@@ -4,16 +4,19 @@ CONFIG += c++11
 TEMPLATE = app
 
 LIBS += \
-    -L$$(SPROUT_HOME)/bin
+    -L$$(SPROUT_HOME)/bin \
+    -L$$(OSG_HOME)/lib \
+    -L$$(OSG_HOME)/lib64
 
 CONFIG(debug, debug|release) {
-    LIBS += -lsproutd
+    LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
 } else {
-    LIBS += -lsprout
+    LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
 }
 
 INCLUDEPATH += \
-    $$(SPROUT_HOME)/include
+    $$(SPROUT_HOME)/include \
+    $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/console.h \
@@ -26,7 +29,11 @@ HEADERS += \
     src/cpp/scenegraph/scene.h \
     src/cpp/scenegraph/viewport.h \
     src/cpp/scenegraph/frame.h \
-    src/cpp/scenegraph/geometry.h
+    src/cpp/scenegraph/geometry.h \
+    src/cpp/osgbridge/osgViewer/renderthread.h \
+    src/cpp/osgbridge/osgViewer/texturenode.h \
+    src/cpp/osgbridge/osgViewer/view.h \
+    src/cpp/osgbridge/osgViewer/viewer.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -38,7 +45,11 @@ SOURCES += \
     src/cpp/scenegraph/scene.cpp \
     src/cpp/scenegraph/viewport.cpp \
     src/cpp/scenegraph/frame.cpp \
-    src/cpp/scenegraph/geometry.cpp
+    src/cpp/scenegraph/geometry.cpp \
+    src/cpp/osgbridge/osgViewer/renderthread.cpp \
+    src/cpp/osgbridge/osgViewer/texturenode.cpp \
+    src/cpp/osgbridge/osgViewer/view.cpp \
+    src/cpp/osgbridge/osgViewer/viewer.cpp
 
 DISTFILES += \
     README.md \
