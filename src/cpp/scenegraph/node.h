@@ -42,8 +42,10 @@ private:
     static int nodeCount(QQmlListProperty<Node>* list);
     static void clearNode(QQmlListProperty<Node>* list);
 
-    QMatrix4x4 matrix;
-    QVector3D m_position;
-    QVector3D m_rotation;
-    QVector3D m_scale;
+    void updateTransform();
+
+    QMatrix4x4* matrix = nullptr;
+    QVector3D m_position = QVector3D(0, 0, 0);
+    QVector3D m_rotation = QVector3D(0, 0, 0);
+    QVector3D m_scale = QVector3D(1, 1, 1);
 };

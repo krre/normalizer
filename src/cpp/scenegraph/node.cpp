@@ -39,12 +39,26 @@ void Node::clearNode(QQmlListProperty<Node>* list)
     self->nodesChanged();
 }
 
+void Node::updateTransform()
+{
+    if (matrix != nullptr) {
+        delete matrix;
+    }
+
+    matrix = new QMatrix4x4;
+    matrix->translate(m_position);
+//    matrix->rotate(m_rotation);
+    matrix->scale(m_scale);
+    m_transformNode->setMatrix(*matrix);
+}
+
 void Node::setPosition(QVector3D position)
 {
     if (m_position == position)
         return;
 
     m_position = position;
+    updateTransform();
     emit positionChanged(position);
 }
 
@@ -54,6 +68,7 @@ void Node::setRotation(QVector3D rotation)
         return;
 
     m_rotation = rotation;
+    updateTransform();
     emit rotationChanged(rotation);
 }
 
@@ -63,6 +78,6 @@ void Node::setScale(QVector3D scale)
         return;
 
     m_scale = scale;
+    updateTransform();
     emit scaleChanged(scale);
 }
-
