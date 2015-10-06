@@ -11,6 +11,8 @@ class Camera : public QObject
     Q_PROPERTY(float nearPlane READ nearPlane WRITE setNearPlane NOTIFY nearPlaneChanged)
     Q_PROPERTY(float farPlane READ farPlane WRITE setFarPlane NOTIFY farPlaneChanged)
 
+    Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
+
 public:
     explicit Camera(QObject *parent = 0);
 
@@ -28,6 +30,16 @@ public:
 
     void setScene(Scene* scene) { m_scene = scene; }
 
+    QVector3D position() const { return m_position; }
+    void setPosition(QVector3D position);
+
+signals:
+    void verticalAngleChanged(float verticalAngle);
+    void aspectRatioChanged(float aspectRatio);
+    void nearPlaneChanged(float nearPlane);
+    void farPlaneChanged(float farPlane);
+    void positionChanged(QVector3D position);
+
 private:
     Scene* m_scene;
     float m_verticalAngle = 45;
@@ -36,9 +48,5 @@ private:
     float m_farPlane = 100;
     void updateCamera();
 
-signals:
-    void verticalAngleChanged(float verticalAngle);
-    void aspectRatioChanged(float aspectRatio);
-    void nearPlaneChanged(float nearPlane);
-    void farPlaneChanged(float farPlane);
+    QVector3D m_position;
 };

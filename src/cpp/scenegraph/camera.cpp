@@ -45,7 +45,15 @@ void Camera::setFarPlane(float farPlane)
     emit farPlaneChanged(farPlane);
 }
 
+void Camera::setPosition(QVector3D position)
+{
+    if (m_position == position)
+        return;
 
+    m_position = position;
+    updateCamera();
+    emit positionChanged(position);
+}
 
 void Camera::updateCamera()
 {

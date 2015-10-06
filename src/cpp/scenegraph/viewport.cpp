@@ -49,7 +49,7 @@ QSGNode* Viewport::updatePaintNode(QSGNode* oldNode, QQuickItem::UpdatePaintNode
     if (m_camera != nullptr) {
         matrix->translate(width() / 2.0, height() / 2.0, 0); // move scene to origin
         matrix->perspective(m_camera->verticalAngle(), m_camera->aspectRatio(), m_camera->nearPlane(), m_camera->farPlane());
-        matrix->translate(0, 0, -1);
+        matrix->translate(m_camera->position());
     }
     m_scene->transformNode()->setMatrix(*matrix);
 

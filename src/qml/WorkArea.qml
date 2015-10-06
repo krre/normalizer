@@ -82,6 +82,7 @@ Item {
 //        aspectRatio: viewport.width / viewport.height
         nearPlane: 0
         farPlane: 1
+        position: Qt.vector3d(0, 0, -1)
     }
 
     Viewport {
