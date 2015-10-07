@@ -61,7 +61,7 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    ViewerThread {
+    Viewer {
         anchors.fill: parent
     }
 
