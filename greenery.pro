@@ -30,7 +30,6 @@ HEADERS += \
     src/cpp/scenegraph/viewport.h \
     src/cpp/scenegraph/frame.h \
     src/cpp/scenegraph/geometry.h \
-    src/cpp/osgbridge/osgViewer/view.h \
     src/cpp/osgbridge/osgViewer/viewer.h
 
 SOURCES += \
@@ -44,7 +43,6 @@ SOURCES += \
     src/cpp/scenegraph/viewport.cpp \
     src/cpp/scenegraph/frame.cpp \
     src/cpp/scenegraph/geometry.cpp \
-    src/cpp/osgbridge/osgViewer/view.cpp \
     src/cpp/osgbridge/osgViewer/viewer.cpp
 
 DISTFILES += \
