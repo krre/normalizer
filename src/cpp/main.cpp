@@ -6,7 +6,6 @@
 #include "settings.h"
 #include "utils.h"
 #include "registertypes.h"
-#include "osgbridge/osgViewer/viewer_thread.h"
 
 QSharedPointer<Settings> settings;
 
@@ -36,33 +35,20 @@ int main(int argc, char* argv[])
         qputenv("QSG_RENDER_LOOP", "basic");
     }
 
-    int exitCode = 0;
-    {
-        QQmlApplicationEngine engine;
+    QQmlApplicationEngine engine;
 
-        registerTypes();
+    registerTypes();
 
-        Utils utils;
-        Project project;
-        Version version;
-        ::settings = QSharedPointer<Settings>(new Settings());
+    Utils utils;
+    Project project;
+    Version version;
+    ::settings = QSharedPointer<Settings>(new Settings());
 
-        engine.rootContext()->setContextProperty("PROJECT", &project);
-        engine.rootContext()->setContextProperty("UTILS", &utils);
-        engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
-        engine.rootContext()->setContextProperty("VERSION", &version);
-        engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    engine.rootContext()->setContextProperty("PROJECT", &project);
+    engine.rootContext()->setContextProperty("UTILS", &utils);
+    engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
+    engine.rootContext()->setContextProperty("VERSION", &version);
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
-        exitCode = app.exec();
-    }
-
-    // As the render threads make use of our QGuiApplication object
-    // to clean up gracefully, wait for them to finish before
-    // QGuiApp is taken off the heap.
-    foreach (QThread *t, ViewerThread::threads) {
-        t->wait();
-        delete t;
-    }
-
-    return exitCode;
+    return app.exec();
 }

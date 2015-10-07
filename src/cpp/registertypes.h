@@ -7,7 +7,6 @@
 #include "scenegraph/camera.h"
 #include "scenegraph/node.h"
 #include "scenegraph/frame.h"
-#include "osgbridge/osgViewer/viewer_thread.h"
 #include "osgbridge/osgViewer/viewer.h"
 #include "osgbridge/osgViewer/view.h"
 
@@ -22,6 +21,5 @@ static void registerTypes() {
     qmlRegisterType<Frame>("Greenery", 1, 0, "Frame");
     // OpenSceneGraph
     qmlRegisterType<View>("OsgBridge", 1, 0, "View");
-    qmlRegisterType<ViewerThread>("OsgBridge", 1, 0, "ViewerThread");
     qmlRegisterType<Viewer>("OsgBridge", 1, 0, "Viewer");
 }
