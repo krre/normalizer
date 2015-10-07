@@ -33,7 +33,7 @@ HEADERS += \
     src/cpp/osgbridge/osgViewer/renderthread.h \
     src/cpp/osgbridge/osgViewer/texturenode.h \
     src/cpp/osgbridge/osgViewer/view.h \
-    src/cpp/osgbridge/osgViewer/viewer.h
+    src/cpp/osgbridge/osgViewer/viewer_thread.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -49,7 +49,7 @@ SOURCES += \
     src/cpp/osgbridge/osgViewer/renderthread.cpp \
     src/cpp/osgbridge/osgViewer/texturenode.cpp \
     src/cpp/osgbridge/osgViewer/view.cpp \
-    src/cpp/osgbridge/osgViewer/viewer.cpp
+    src/cpp/osgbridge/osgViewer/viewer_thread.cpp
 
 DISTFILES += \
     README.md \
