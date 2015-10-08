@@ -10,6 +10,7 @@
 #include "osgbridge/osg/transform.h"
 #include "osgbridge/osg/drawable.h"
 #include "osgbridge/osg/shape.h"
+#include "osgbridge/osg/shapedrawable.h"
 #include "osgbridge/osg/box.h"
 
 static void registerTypes() {
@@ -26,5 +27,6 @@ static void registerTypes() {
     qmlRegisterType<Transform>("OsgBridge", 1, 0, "Transform");
     qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");
     qmlRegisterUncreatableType<Shape>("OsgBridge", 1, 0, "Shape", "Shape is uncreatable type");
+    qmlRegisterType<ShapeDrawable>("OsgBridge", 1, 0, "ShapeDrawable");
     qmlRegisterType<Box>("OsgBridge", 1, 0, "Box");
 }
