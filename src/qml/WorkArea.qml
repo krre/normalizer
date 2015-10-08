@@ -63,6 +63,7 @@ Item {
 
     Osg.Viewer {
         anchors.fill: parent
+        sceneData: Osg.Node {}
 
         Osg.Box {}
     }
