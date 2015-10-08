@@ -64,7 +64,7 @@ Item {
     Osg.Viewer {
         anchors.fill: parent
 
-        Osg.Transform {}
+        Osg.Box {}
     }
 
     CommandSheet {
