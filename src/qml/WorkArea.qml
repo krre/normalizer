@@ -65,38 +65,6 @@ Item {
         anchors.fill: parent
     }
 
-/*
-    Scene {
-        id: scene
-        color: "blue"
-
-        Frame {
-            width: 100
-            height: 100
-            lineWidth: 3
-            color: "red"
-            position: Qt.vector3d(0, 0, 0)
-            scale: Qt.vector3d(1, 1, 1)
-        }
-    }
-
-    Camera {
-        id: camera
-        verticalAngle: 45
-        aspectRatio: 1
-//        aspectRatio: viewport.width / viewport.height
-        nearPlane: 0
-        farPlane: 1
-        position: Qt.vector3d(0, 0, -1)
-    }
-
-    Viewport {
-        id: viewport
-        anchors.fill: parent
-        camera: camera
-        scene: scene
-    }
-*/
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top

@@ -24,12 +24,6 @@ HEADERS += \
     src/cpp/utils.h \
     src/cpp/version.h \
     src/cpp/registertypes.h \
-    src/cpp/scenegraph/camera.h \
-    src/cpp/scenegraph/node.h \
-    src/cpp/scenegraph/scene.h \
-    src/cpp/scenegraph/viewport.h \
-    src/cpp/scenegraph/frame.h \
-    src/cpp/scenegraph/geometry.h \
     src/cpp/osgbridge/osgViewer/viewer.h
 
 SOURCES += \
@@ -37,12 +31,6 @@ SOURCES += \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/scenegraph/camera.cpp \
-    src/cpp/scenegraph/node.cpp \
-    src/cpp/scenegraph/scene.cpp \
-    src/cpp/scenegraph/viewport.cpp \
-    src/cpp/scenegraph/frame.cpp \
-    src/cpp/scenegraph/geometry.cpp \
     src/cpp/osgbridge/osgViewer/viewer.cpp
 
 DISTFILES += \
