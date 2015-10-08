@@ -33,7 +33,8 @@ HEADERS += \
     src/cpp/osgbridge/osg/shape.h \
     src/cpp/osgbridge/osg/box.h \
     src/cpp/osgbridge/osg/geode.h \
-    src/cpp/osgbridge/osg/shapedrawable.h
+    src/cpp/osgbridge/osg/shapedrawable.h \
+    src/cpp/osgbridge/osg/sphere.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -49,7 +50,8 @@ SOURCES += \
     src/cpp/osgbridge/osg/shape.cpp \
     src/cpp/osgbridge/osg/box.cpp \
     src/cpp/osgbridge/osg/geode.cpp \
-    src/cpp/osgbridge/osg/shapedrawable.cpp
+    src/cpp/osgbridge/osg/shapedrawable.cpp \
+    src/cpp/osgbridge/osg/sphere.cpp
 
 DISTFILES += \
     README.md \
