@@ -64,9 +64,9 @@ Item {
     Osg.Viewer {
         anchors.fill: parent
         sceneData: Osg.Geode {
-//            Osg.ShapeDrawable {
+            Osg.ShapeDrawable {
 
-//            }
+            }
         }
 //        Osg.Sphere {
 //            radius: 0.5
