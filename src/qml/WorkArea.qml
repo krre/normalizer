@@ -63,6 +63,8 @@ Item {
 
     Viewer {
         anchors.fill: parent
+
+        Node {}
     }
 
     CommandSheet {
