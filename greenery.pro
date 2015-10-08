@@ -24,14 +24,16 @@ HEADERS += \
     src/cpp/utils.h \
     src/cpp/version.h \
     src/cpp/registertypes.h \
-    src/cpp/osgbridge/osgViewer/viewer.h
+    src/cpp/osgbridge/osgViewer/viewer.h \
+    src/cpp/osgbridge/osg/object.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
     src/cpp/console.cpp \
-    src/cpp/osgbridge/osgViewer/viewer.cpp
+    src/cpp/osgbridge/osgViewer/viewer.cpp \
+    src/cpp/osgbridge/osg/object.cpp
 
 DISTFILES += \
     README.md \
