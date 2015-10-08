@@ -5,6 +5,7 @@
 #include "osgbridge/osgViewer/viewer.h"
 #include "osgbridge/osg/object.h"
 #include "osgbridge/osg/node.h"
+#include "osgbridge/osg/group.h"
 
 static void registerTypes() {
     // Greenery
@@ -15,4 +16,5 @@ static void registerTypes() {
     qmlRegisterType<Viewer>("OsgBridge", 1, 0, "Viewer");
     qmlRegisterUncreatableType<Object>("OsgBridge", 1, 0, "Object", "Object is uncreatable type");
     qmlRegisterType<Node>("OsgBridge", 1, 0, "Node");
+    qmlRegisterType<Group>("OsgBridge", 1, 0, "Group");
 }

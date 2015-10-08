@@ -64,7 +64,7 @@ Item {
     Viewer {
         anchors.fill: parent
 
-        Node {}
+        Group {}
     }
 
     CommandSheet {
