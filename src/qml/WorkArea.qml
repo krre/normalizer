@@ -63,9 +63,11 @@ Item {
 
     Osg.Viewer {
         anchors.fill: parent
-        sceneData: Osg.Node {}
+        sceneData: Osg.Geode {
+            Osg.ShapeDrawable {
 
-        Osg.Box {}
+            }
+        }
     }
 
     CommandSheet {
