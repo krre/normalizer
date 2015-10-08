@@ -5,6 +5,7 @@
 #include "osgbridge/osgViewer/viewer.h"
 #include "osgbridge/osg/object.h"
 #include "osgbridge/osg/node.h"
+#include "osgbridge/osg/geode.h"
 #include "osgbridge/osg/group.h"
 #include "osgbridge/osg/transform.h"
 #include "osgbridge/osg/drawable.h"
@@ -20,6 +21,7 @@ static void registerTypes() {
     qmlRegisterType<Viewer>("OsgBridge", 1, 0, "Viewer");
     qmlRegisterUncreatableType<Object>("OsgBridge", 1, 0, "Object", "Object is uncreatable type");
     qmlRegisterType<Node>("OsgBridge", 1, 0, "Node");
+    qmlRegisterType<Geode>("OsgBridge", 1, 0, "Geode");
     qmlRegisterType<Group>("OsgBridge", 1, 0, "Group");
     qmlRegisterType<Transform>("OsgBridge", 1, 0, "Transform");
     qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");
