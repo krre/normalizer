@@ -28,7 +28,8 @@ HEADERS += \
     src/cpp/osgbridge/osg/object.h \
     src/cpp/osgbridge/osg/node.h \
     src/cpp/osgbridge/osg/group.h \
-    src/cpp/osgbridge/osg/transform.h
+    src/cpp/osgbridge/osg/transform.h \
+    src/cpp/osgbridge/osg/drawable.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -39,7 +40,8 @@ SOURCES += \
     src/cpp/osgbridge/osg/object.cpp \
     src/cpp/osgbridge/osg/node.cpp \
     src/cpp/osgbridge/osg/group.cpp \
-    src/cpp/osgbridge/osg/transform.cpp
+    src/cpp/osgbridge/osg/transform.cpp \
+    src/cpp/osgbridge/osg/drawable.cpp
 
 DISTFILES += \
     README.md \

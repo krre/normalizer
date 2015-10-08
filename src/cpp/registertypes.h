@@ -7,6 +7,7 @@
 #include "osgbridge/osg/node.h"
 #include "osgbridge/osg/group.h"
 #include "osgbridge/osg/transform.h"
+#include "osgbridge/osg/drawable.h"
 
 static void registerTypes() {
     // Greenery
@@ -19,4 +20,5 @@ static void registerTypes() {
     qmlRegisterType<Node>("OsgBridge", 1, 0, "Node");
     qmlRegisterType<Group>("OsgBridge", 1, 0, "Group");
     qmlRegisterType<Transform>("OsgBridge", 1, 0, "Transform");
+    qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");
 }
