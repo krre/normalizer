@@ -1,6 +1,6 @@
 import QtQuick 2.5
 import Greenery 1.0
-import OsgBridge 1.0
+import OsgBridge 1.0 as Osg
 import "sheets"
 import "nodes"
 import "../js/command.js" as Command
@@ -61,10 +61,10 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
-    Viewer {
+    Osg.Viewer {
         anchors.fill: parent
 
-        Group {}
+        Osg.Transform {}
     }
 
     CommandSheet {
