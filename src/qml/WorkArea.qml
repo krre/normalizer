@@ -65,14 +65,14 @@ Item {
         anchors.fill: parent
         sceneData: Osg.Geode {
             Osg.ShapeDrawable {
-
+                shape: Osg.Sphere {
+                    radius: 1.5
+                    Component.onCompleted: print(radius)
+                }
             }
         }
-//        Osg.Sphere {
-//            radius: 0.5
 
-//            Component.onCompleted: print(radius)
-//        }
+        Component.onCompleted: print(sceneData)
     }
 
     CommandSheet {
