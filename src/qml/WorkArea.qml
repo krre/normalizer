@@ -65,6 +65,7 @@ Item {
     Osg.Viewer {
         id: viewer
         anchors.fill: parent
+        camera.clearColor: "gray"
         sceneData: Osg.Geode {
             Osg.Text3D {
                 id: osgText
