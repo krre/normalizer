@@ -17,6 +17,7 @@
 
 #include "osgbridge/osgText/textbase.h"
 #include "osgbridge/osgText/text.h"
+#include "osgbridge/osgText/text3d.h"
 
 static void registerTypes() {
     // Greenery
@@ -38,5 +39,6 @@ static void registerTypes() {
 
     // osgText
     qmlRegisterType<Text>("OsgBridge", 1, 0, "Text");
+    qmlRegisterType<Text3D>("OsgBridge", 1, 0, "Text3D");
     qmlRegisterUncreatableType<TextBase>("OsgBridge", 1, 0, "TextBase", "TextBase is uncreatable type");
 }

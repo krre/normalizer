@@ -36,7 +36,8 @@ HEADERS += \
     src/cpp/osgbridge/osg/object.h \
     src/cpp/osgbridge/osg/shape.h \
     src/cpp/osgbridge/osgText/textbase.h \
-    src/cpp/osgbridge/osgText/text.h
+    src/cpp/osgbridge/osgText/text.h \
+    src/cpp/osgbridge/osgText/text3d.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -55,7 +56,8 @@ SOURCES += \
     src/cpp/osgbridge/osg/object.cpp \
     src/cpp/osgbridge/osg/shape.cpp \
     src/cpp/osgbridge/osgText/textbase.cpp \
-    src/cpp/osgbridge/osgText/text.cpp
+    src/cpp/osgbridge/osgText/text.cpp \
+    src/cpp/osgbridge/osgText/text3d.cpp
 
 DISTFILES += \
     README.md \

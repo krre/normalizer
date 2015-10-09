@@ -66,10 +66,10 @@ Item {
         id: viewer
         anchors.fill: parent
         sceneData: Osg.Geode {
-            Osg.Text {
+            Osg.Text3D {
                 id: osgText
-                text: textField.text
-//                text: "hello world!"
+//                text: textField.text
+                text: "hello world!"
             }
 
 //            Osg.ShapeDrawable {
@@ -90,6 +90,7 @@ Item {
 
         TextField {
             id: textField
+            text: "Hello"
         }
 
         Button {
