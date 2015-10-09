@@ -9,6 +9,7 @@
 #include "osgbridge/osg/group.h"
 #include "osgbridge/osg/transform.h"
 #include "osgbridge/osg/drawable.h"
+#include "osgbridge/osg/shape.h"
 #include "osgbridge/osg/shapedrawable.h"
 #include "osgbridge/osg/box.h"
 #include "osgbridge/osg/sphere.h"
@@ -30,4 +31,5 @@ static void registerTypes() {
 
     qmlRegisterUncreatableType<Object>("OsgBridge", 1, 0, "Object", "Object is uncreatable type");
     qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");
+    qmlRegisterUncreatableType<Shape>("OsgBridge", 1, 0, "Shape", "Shape is uncreatable type");
 }
