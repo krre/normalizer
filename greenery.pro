@@ -38,7 +38,8 @@ HEADERS += \
     src/cpp/osgbridge/osgText/textbase.h \
     src/cpp/osgbridge/osgText/text.h \
     src/cpp/osgbridge/osgText/text3d.h \
-    src/cpp/osgbridge/osg/camera.h
+    src/cpp/osgbridge/osg/camera.h \
+    src/cpp/osgbridge/converter.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -59,7 +60,8 @@ SOURCES += \
     src/cpp/osgbridge/osgText/textbase.cpp \
     src/cpp/osgbridge/osgText/text.cpp \
     src/cpp/osgbridge/osgText/text3d.cpp \
-    src/cpp/osgbridge/osg/camera.cpp
+    src/cpp/osgbridge/osg/camera.cpp \
+    src/cpp/osgbridge/converter.cpp
 
 DISTFILES += \
     README.md \
