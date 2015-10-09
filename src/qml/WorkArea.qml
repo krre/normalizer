@@ -65,7 +65,7 @@ Item {
         anchors.fill: parent
         sceneData: Osg.Geode {
             Osg.Text {
-
+                text: "Hello World!"
             }
 
 //            Osg.ShapeDrawable {
