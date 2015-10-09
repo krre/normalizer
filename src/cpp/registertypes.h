@@ -3,6 +3,7 @@
 #include <sprout/sproutdb.h>
 #include "console.h"
 #include "osgbridge/osgViewer/viewer.h"
+
 #include "osgbridge/osg/object.h"
 #include "osgbridge/osg/node.h"
 #include "osgbridge/osg/geode.h"
@@ -13,6 +14,8 @@
 #include "osgbridge/osg/shapedrawable.h"
 #include "osgbridge/osg/box.h"
 #include "osgbridge/osg/sphere.h"
+
+#include "osgbridge/osgText/textbase.h"
 
 static void registerTypes() {
     // Greenery
@@ -32,4 +35,5 @@ static void registerTypes() {
     qmlRegisterUncreatableType<Object>("OsgBridge", 1, 0, "Object", "Object is uncreatable type");
     qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");
     qmlRegisterUncreatableType<Shape>("OsgBridge", 1, 0, "Shape", "Shape is uncreatable type");
+    qmlRegisterUncreatableType<Shape>("OsgBridge", 1, 0, "TextBase", "TextBase is uncreatable type");
 }
