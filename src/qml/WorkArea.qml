@@ -68,21 +68,21 @@ Item {
         sceneData: Osg.Geode {
             Osg.Text3D {
                 id: osgText
-//                text: textField.text
-                text: "hello world!"
+                text: textField.text
+//                text: "hello world!"
             }
 
-//            Osg.ShapeDrawable {
-//                shape: Osg.Box {
-//                    halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-//                }
-//            }
+            Osg.ShapeDrawable {
+                shape: Osg.Box {
+                    halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
+                }
+            }
 
-//            Osg.ShapeDrawable {
-//                shape: Osg.Sphere {
-//                    radius: 0.7
-//                }
-//            }
+            Osg.ShapeDrawable {
+                shape: Osg.Sphere {
+                    radius: 0.7
+                }
+            }
         }
     }
 
