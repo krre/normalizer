@@ -64,17 +64,21 @@ Item {
     Osg.Viewer {
         anchors.fill: parent
         sceneData: Osg.Geode {
-            Osg.ShapeDrawable {
-                shape: Osg.Box {
-                    halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-                }
+            Osg.Text {
+
             }
 
-            Osg.ShapeDrawable {
-                shape: Osg.Sphere {
-                    radius: 0.7
-                }
-            }
+//            Osg.ShapeDrawable {
+//                shape: Osg.Box {
+//                    halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
+//                }
+//            }
+
+//            Osg.ShapeDrawable {
+//                shape: Osg.Sphere {
+//                    radius: 0.7
+//                }
+//            }
         }
     }
 
