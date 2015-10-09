@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 import Greenery 1.0
 import OsgBridge 1.0 as Osg
 import "sheets"
@@ -62,10 +63,13 @@ Item {
     }
 
     Osg.Viewer {
+        id: viewer
         anchors.fill: parent
         sceneData: Osg.Geode {
             Osg.Text {
-                text: "Hello World!"
+                id: osgText
+                text: textField.text
+//                text: "hello world!"
             }
 
 //            Osg.ShapeDrawable {
@@ -79,6 +83,18 @@ Item {
 //                    radius: 0.7
 //                }
 //            }
+        }
+    }
+
+    Column {
+
+        TextField {
+            id: textField
+        }
+
+        Button {
+            text: "Save scene"
+            onClicked: viewer.saveScene("/home/krre/1/scene.osg")
         }
     }
 
