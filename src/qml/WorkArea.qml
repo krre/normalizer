@@ -72,7 +72,7 @@ Item {
 
             Osg.ShapeDrawable {
                 shape: Osg.Sphere {
-                    radius: 0.5
+                    radius: 0.7
                 }
             }
         }
