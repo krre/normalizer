@@ -70,6 +70,7 @@ Item {
             Osg.Text3D {
                 id: osgText
                 color: "yellow"
+                characterSize: 1
                 text: textField.text
 //                text: "hello world!"
             }
