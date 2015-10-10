@@ -69,6 +69,7 @@ Item {
         sceneData: Osg.Geode {
             Osg.Text3D {
                 id: osgText
+                color: "yellow"
                 text: textField.text
 //                text: "hello world!"
             }
