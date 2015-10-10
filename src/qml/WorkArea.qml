@@ -69,8 +69,8 @@ Item {
         sceneData: Osg.Geode {
             Osg.Text3D {
                 id: osgText
-//                text: textField.text
-                text: "hello world!"
+                text: textField.text
+//                text: "hello world!"
             }
 
             Osg.ShapeDrawable {
