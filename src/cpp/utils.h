@@ -5,6 +5,7 @@ class Utils : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString buildDate READ getBuildDate CONSTANT)
+    Q_PROPERTY(QString homePath READ homePath CONSTANT)
 
 public:
     explicit Utils(QObject* parent = 0) { Q_UNUSED(parent) }
