@@ -101,6 +101,8 @@ Item {
                 shape: Osg.Cylinder {
                     radius: 0.3
                     height: 1.5
+                    center: Qt.vector3d(-0.5, 0.1, -0.3)
+
                 }
             }
         }
