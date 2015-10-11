@@ -17,7 +17,8 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
-    property var currentNode
+    property var currentNode: viewer.sceneData
+    property var sceneNode: viewer.sceneData
 
     Component.onDestruction: {
         sproutDb.close()

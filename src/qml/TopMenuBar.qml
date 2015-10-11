@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import OsgBridge 1.0 as Osg
 import "../js/utils.js" as Utils
 
 MenuBar {
@@ -170,8 +171,13 @@ MenuBar {
         visible: isDebug
 
         MenuItem {
-            text: qsTr("Write Node to File")
-            onTriggered: print("write")
+            text: qsTr("Write Current Node to File")
+            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentNode, UTILS.homePath + "/node.osg")
+        }
+
+        MenuItem {
+            text: qsTr("Write Scene Node to File")
+            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.sceneNode, UTILS.homePath + "/scene.osg")
         }
     }
 
