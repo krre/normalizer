@@ -79,6 +79,7 @@ Item {
                 characterSize: 1
                 characterDepth: 0
                 text: textField.text
+                position: Qt.vector3d(1, 0, -0.3)
             }
 
             Osg.ShapeDrawable {
