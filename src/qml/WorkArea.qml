@@ -72,6 +72,10 @@ Item {
         id: viewer
         anchors.fill: parent
         camera.clearColor: "gray"
+        camera.fovy: 30
+        camera.aspectRatio: width / height
+        camera.zNear: 0.1
+        camera.zFar: 10000
         sceneData: Osg.Geode {
             Osg.Text3D {
                 id: osgText
