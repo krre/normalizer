@@ -93,6 +93,7 @@ Item {
                 color: "green"
                 shape: Osg.Sphere {
                     radius: 0.7
+                    center: Qt.vector3d(0.2, -0.5, 0.1)
                 }
             }
 
