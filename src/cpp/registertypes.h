@@ -20,6 +20,15 @@
 #include "osgbridge/osgText/text.h"
 #include "osgbridge/osgText/text3d.h"
 
+#include "osgbridge/osgDB/osgdb.h"
+
+static QObject* osgdb_singletontype_provider(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new OsgDb();
+}
+
 static void registerTypes() {
     // Greenery
     qmlRegisterType<Console>("Greenery", 1, 0, "Console");
@@ -43,4 +52,7 @@ static void registerTypes() {
     qmlRegisterType<Text>("OsgBridge", 1, 0, "Text");
     qmlRegisterType<Text3D>("OsgBridge", 1, 0, "Text3D");
     qmlRegisterUncreatableType<TextBase>("OsgBridge", 1, 0, "TextBase", "TextBase is uncreatable type");
+
+    // osgDB
+    qmlRegisterSingletonType<OsgDb>("OsgBridge", 1, 0, "OsgDb", osgdb_singletontype_provider);
 }

@@ -72,7 +72,6 @@ Item {
                 color: "yellow"
                 characterSize: 1
                 text: textField.text
-//                text: "hello world!"
             }
 
             Osg.ShapeDrawable {
@@ -100,7 +99,7 @@ Item {
 
         Button {
             text: "Save scene"
-            onClicked: viewer.saveScene("/home/krre/1/scene.osg")
+            onClicked: Osg.OsgDb.writeNodeFile(viewer.sceneData, "d:/1/sceneData.osg")
         }
     }
 
