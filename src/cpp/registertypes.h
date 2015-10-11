@@ -14,6 +14,7 @@
 #include "osgbridge/osg/shapedrawable.h"
 #include "osgbridge/osg/box.h"
 #include "osgbridge/osg/sphere.h"
+#include "osgbridge/osg/cylinder.h"
 #include "osgbridge/osg/camera.h"
 
 #include "osgbridge/osgText/textbase.h"
@@ -43,6 +44,7 @@ static void registerTypes() {
     qmlRegisterType<ShapeDrawable>("OsgBridge", 1, 0, "ShapeDrawable");
     qmlRegisterType<Box>("OsgBridge", 1, 0, "Box");
     qmlRegisterType<Sphere>("OsgBridge", 1, 0, "Sphere");
+    qmlRegisterType<Cylinder>("OsgBridge", 1, 0, "Cylinder");
     qmlRegisterType<Camera>("OsgBridge", 1, 0, "Camera");
     qmlRegisterUncreatableType<Object>("OsgBridge", 1, 0, "Object", "Object is uncreatable type");
     qmlRegisterUncreatableType<Drawable>("OsgBridge", 1, 0, "Drawable", "Drawable is uncreatable type");

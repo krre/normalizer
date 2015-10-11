@@ -89,6 +89,14 @@ Item {
                     radius: 0.7
                 }
             }
+
+            Osg.ShapeDrawable {
+                color: "pink"
+                shape: Osg.Cylinder {
+                    radius: 0.3
+                    height: 1.5
+                }
+            }
         }
     }
 
