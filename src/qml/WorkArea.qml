@@ -72,6 +72,7 @@ Item {
                 id: osgText
                 color: "yellow"
                 characterSize: 1
+                characterDepth: 0
                 text: textField.text
             }
 
