@@ -30,6 +30,10 @@ Item {
         }
     }
 
+    function home() {
+        viewer.home()
+    }
+
     function reset() {
         camera.reset()
     }
@@ -46,6 +50,7 @@ Item {
     Component.onCompleted: {
         forceActiveFocus()
 //        createWorld()
+        viewer.home()
     }
 
     Keys.onPressed: {

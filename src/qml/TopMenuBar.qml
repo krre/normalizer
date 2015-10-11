@@ -134,6 +134,15 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Camera")
+
+        MenuItem {
+            text: qsTr("Home")
+            onTriggered: currentTab.home()
+        }
+    }
+
+    Menu {
         title: qsTr("Tools")
 
         MenuItem {
