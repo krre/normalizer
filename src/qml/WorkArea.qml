@@ -85,6 +85,7 @@ Item {
                 color: "red"
                 shape: Osg.Box {
                     halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
+                    center: Qt.vector3d(0.5, 0.1, 0.3)
                 }
             }
 
