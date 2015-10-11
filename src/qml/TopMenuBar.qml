@@ -166,6 +166,16 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Debug")
+        visible: isDebug
+
+        MenuItem {
+            text: qsTr("Write Node to File")
+            onTriggered: print("write")
+        }
+    }
+
+    Menu {
         title: qsTr("Help")
 
         MenuItem {

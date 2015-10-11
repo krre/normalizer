@@ -44,6 +44,12 @@ int main(int argc, char* argv[])
     Version version;
     ::settings = QSharedPointer<Settings>(new Settings());
 
+#ifdef QT_DEBUG
+    engine.rootContext()->setContextProperty("isDebug", true);
+#else
+    engine.rootContext()->setContextProperty("isDebug", false);
+#endif
+
     engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("SETTINGS", ::settings.data());
