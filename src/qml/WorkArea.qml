@@ -34,10 +34,6 @@ Item {
         viewer.home()
     }
 
-    function reset() {
-        camera.reset()
-    }
-
     function cancel() {
         commandState = Command.Ready
     }

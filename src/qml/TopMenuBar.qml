@@ -139,6 +139,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Home")
             onTriggered: currentTab.home()
+            shortcut: "F12"
         }
     }
 
@@ -159,12 +160,6 @@ MenuBar {
             text: qsTr("Clear Output")
             shortcut: "Shift+Del"
             onTriggered: currentTab.output.textEdit.text = ""
-        }
-
-        MenuItem {
-            text: qsTr("Reset")
-            shortcut: "F12"
-            onTriggered:currentTab.reset()
         }
 
         MenuItem {
