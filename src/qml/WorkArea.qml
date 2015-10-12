@@ -119,11 +119,6 @@ Item {
             id: textField
             text: "Hello"
         }
-
-        Button {
-            text: "Save scene"
-            onClicked: Osg.OsgDb.writeNodeFile(viewer.sceneData, "d:/1/sceneData.osg")
-        }
     }
 
     CommandSheet {
