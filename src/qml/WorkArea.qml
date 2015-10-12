@@ -76,8 +76,10 @@ Item {
         }
 
         sceneData: Osg.Geode {
+            name: "geode"
             Osg.Text3D {
                 id: osgText
+                name: "text"
                 color: "yellow"
                 characterSize: 1
                 characterDepth: 0
@@ -86,6 +88,7 @@ Item {
             }
 
             Osg.ShapeDrawable {
+                name: "box"
                 color: "red"
                 shape: Osg.Box {
                     halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
@@ -94,6 +97,7 @@ Item {
             }
 
             Osg.ShapeDrawable {
+                name: "sphere"
                 color: "green"
                 shape: Osg.Sphere {
                     radius: 0.7
@@ -102,6 +106,7 @@ Item {
             }
 
             Osg.ShapeDrawable {
+                name: "cylinder"
                 color: "pink"
                 shape: Osg.Cylinder {
                     radius: 0.3
