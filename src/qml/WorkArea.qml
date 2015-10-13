@@ -87,7 +87,7 @@ Item {
                     characterSize: 1
                     characterDepth: 0
                     text: textField.text
-                    position: Qt.vector3d(1, 0, -0.3)
+//                    position: Qt.vector3d(1, 2, -3)
                 }
             }
 
@@ -98,7 +98,7 @@ Item {
                     color: "red"
                     shape: Osg.Box {
                         halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-                        center: Qt.vector3d(0.5, 0.1, 0.3)
+//                        center: Qt.vector3d(0.5, 0.1, 0.3)
                     }
                 }
             }
@@ -110,7 +110,7 @@ Item {
                     color: "green"
                     shape: Osg.Sphere {
                         radius: 0.7
-                        center: Qt.vector3d(0.2, -0.5, 0.1)
+//                        center: Qt.vector3d(0.2, -0.5, 0.1)
                     }
                 }
             }
@@ -123,7 +123,7 @@ Item {
                     shape: Osg.Cylinder {
                         radius: 0.3
                         height: 1.5
-                        center: Qt.vector3d(-0.5, 0.1, -0.3)
+//                        center: Qt.vector3d(-0.5, 0.1, -0.3)
 
                     }
                 }
