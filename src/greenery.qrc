@@ -27,5 +27,6 @@
         <file>qml/nodes/Instruction.qml</file>
         <file>qml/nodes/Function.qml</file>
         <file>qml/nodes/Argument.qml</file>
+        <file>qml/units/UnitBase.qml</file>
     </qresource>
 </RCC>

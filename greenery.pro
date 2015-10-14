@@ -99,7 +99,8 @@ DISTFILES += \
     src/qml/nodes/Module.qml \
     src/qml/nodes/Function.qml \
     src/qml/nodes/Argument.qml \
-    src/qml/nodes/Instruction.qml
+    src/qml/nodes/Instruction.qml \
+    src/qml/units/UnitBase.qml
 
 RESOURCES += \
     src/greenery.qrc \

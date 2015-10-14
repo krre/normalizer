@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import Greenery 1.0
 import OsgBridge 1.0 as Osg
 import "sheets"
-import "nodes"
+import "units"
 import "../js/command.js" as Command
 import "../js/utils.js" as Utils
 import "../js/world.js" as World
@@ -17,7 +17,7 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
-    property var currentNode: viewer.sceneData
+    property var currentNode
     property var sceneNode: viewer.sceneData
 
     Component.onDestruction: {
@@ -76,6 +76,12 @@ Item {
         }
         onPicked: print(name)
 
+        sceneData: UnitBase {
+            title: "project"
+            arg: "hello"
+        }
+
+/*
         sceneData: Osg.Group {
             Osg.PositionAttitudeTransform {
                 position: Qt.vector3d(-1, 1, 1)
@@ -126,7 +132,7 @@ Item {
                     }
                 }
             }
-        }
+        } */
     }
 
     Column {
