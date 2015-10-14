@@ -72,7 +72,7 @@ Item {
             zNear: 0.1
             zFar: 10000
         }
-        onPicked: print(name)
+        onPicked: currentNode = name
 
         sceneData: Osg.Group {
             id: sceneGroup

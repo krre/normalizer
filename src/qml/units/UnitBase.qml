@@ -7,7 +7,7 @@ Osg.PositionAttitudeTransform {
     default property alias shape: shapeDrawable.shape
     property string title
     property string arg
-    property bool isCurrent: root === currentNode
+    property bool isCurrent: geode.name === currentNode
     property bool isEdit: isCurrent && commandState === Command.Edit
     property string unitId
     property color color: "yellow"
@@ -17,6 +17,7 @@ Osg.PositionAttitudeTransform {
     Osg.PositionAttitudeTransform {
 
         Osg.Geode {
+            id: geode
 
             Osg.ShapeDrawable {
                 id: shapeDrawable
