@@ -76,63 +76,9 @@ Item {
         }
         onPicked: print(name)
 
-        sceneData: UnitBase {
-            title: "project"
+        sceneData: Project {
             arg: "hello"
         }
-
-/*
-        sceneData: Osg.Group {
-            Osg.PositionAttitudeTransform {
-                position: Qt.vector3d(-1, 1, 1)
-
-                Osg.Geode {
-                    Osg.Text3D {
-                        id: osgText
-                        color: "yellow"
-                        characterSize: 1
-                        characterDepth: 0
-                        text: textField.text
-                    }
-                }
-            }
-
-            Osg.PositionAttitudeTransform {
-                position: Qt.vector3d(1, 2, 0.3)
-
-                Osg.Geode {
-                    Osg.ShapeDrawable {
-                        color: "red"
-                        shape: Osg.Box {
-                            halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-                        }
-                    }
-                }
-            }
-
-            Osg.PositionAttitudeTransform {
-                position: Qt.vector3d(-1.5, 0, 1)
-
-                Osg.Geode {
-                    Osg.ShapeDrawable {
-                        color: "green"
-                        shape: Osg.Sphere {
-                            radius: 0.7
-                        }
-                    }
-                }
-            }
-
-            Osg.Geode {
-                Osg.ShapeDrawable {
-                    color: "pink"
-                    shape: Osg.Cylinder {
-                        radius: 0.3
-                        height: 1.5
-                    }
-                }
-            }
-        } */
     }
 
     Column {

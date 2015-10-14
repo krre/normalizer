@@ -1,8 +1,13 @@
 import QtQuick 2.5
+import OsgBridge 1.0 as Osg
 import "../../js/world.js" as World
 
-NodeBase {
+UnitBase {
     objectName: "argument"
-    name: "Argument"
-    onEdit: World.editArgument(nodeId, name)
+    title: "Argument"
+    onEdit: World.editArgument(unitId, name)
+    color: "blue"
+    shape: Osg.Sphere {
+        radius: 0.1
+    }
 }

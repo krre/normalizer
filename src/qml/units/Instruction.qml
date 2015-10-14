@@ -1,6 +1,11 @@
 import QtQuick 2.5
+import OsgBridge 1.0 as Osg
 
-NodeBase {
+UnitBase {
     objectName: "instruction"
-    name: "Instruction"
+    title: "Instruction"
+    color: "yellow"
+    shape: Osg.Sphere {
+        radius: 0.1
+    }
 }

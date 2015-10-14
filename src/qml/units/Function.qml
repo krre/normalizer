@@ -1,8 +1,14 @@
 import QtQuick 2.5
+import OsgBridge 1.0 as Osg
 import "../../js/world.js" as World
 
-NodeBase {
+UnitBase {
     objectName: "function"
-    name: "Function"
-    onEdit: World.editFunction(nodeId, name)
+    title: "Function"
+    onEdit: World.editFunction(unitId, name)
+    color: "red"
+    shape: Osg.Cylinder {
+        radius: 0.1
+        height: 0.2
+    }
 }

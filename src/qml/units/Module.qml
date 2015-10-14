@@ -1,8 +1,10 @@
 import QtQuick 2.5
+import OsgBridge 1.0 as Osg
 import "../../js/world.js" as World
 
-NodeBase {
+UnitBase {
     objectName: "module"
-    name: "Module"
-    onEdit: World.editModule(nodeId, name)
+    title: "Module"
+    color: "lightgreen"
+    onEdit: World.editModule(unitId, name)
 }
