@@ -46,7 +46,7 @@ function addFloor() {
 
 function addProject(parent) {
     var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
-    var projectUnit = unitSet.project.createObject()
+    var projectUnit = unitSet.project.createObject(undefined, { arg: record[0].value })
     parent.addChild(projectUnit)
     return projectUnit
 }
