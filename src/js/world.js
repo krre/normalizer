@@ -1,40 +1,34 @@
 .import "../js/utils.js" as Utils
 
-function createWorld() {
-//    addFloor()
-//    currentNode = addProject(origin)
-    currentNode = addProject(scene2d)
+function createWorld(origin) {
+    addProject(origin)
+    return
+
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
     for (var i in moduleList) {
         var module = moduleList[i]
-        var moduleNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var moduleUnit = unitSet.project.createObject()
+        origin.addChild(moduleUnit)
+//        var moduleNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
-
-    currentNode = moduleNode
 
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
     for (i in functionList) {
         var func = functionList[i]
-        var funcNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Function.qml", { nodeId: func.id, arg: func.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var funcNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Function.qml", { nodeId: func.id, arg: func.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
-
-    currentNode = funcNode
 
     var instructionList = sproutDb.readRecords("SELECT * FROM Instructions")
     for (i in functionList) {
         var instr = instructionList[i]
-        var instrNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Instruction.qml", { nodeId: instr.id, arg: instr.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var instrNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Instruction.qml", { nodeId: instr.id, arg: instr.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
-
-    currentNode = instrNode
 
     var argumentList = sproutDb.readRecords("SELECT * FROM Arguments")
     for (i in argumentList) {
         var arg = argumentList[i]
-        var argNode = Utils.createDynamicObject(currentNode, "qrc:/qml/nodes/Argument.qml", { nodeId: arg.id, arg: arg.arg, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var argNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Argument.qml", { nodeId: arg.id, arg: arg.arg, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
     }
-
-    currentNode = argNode
 }
 
 function lastId(table) {
@@ -52,42 +46,44 @@ function addFloor() {
 
 function addProject(parent) {
     var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Project.qml", { arg: record[0].value, x: 10, y: 10 })
+    var projectUnit = unitSet.project.createObject()
+    parent.addChild(projectUnit)
+    return projectUnit
 }
 
 function addModule(parent) {
     var id = parseInt(lastId("Modules")) + 1
     var name = "module" + id
     sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(name))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Module.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/units/Module.qml", { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
 }
 
 function addFunction(parent, moduleId) {
     var id = parseInt(lastId("Functions")) + 1
     var name = "function" + id
     sproutDb.insertRecord(String("INSERT INTO Functions (name, moduleId) VALUES ('%1', %2)").arg(name).arg(moduleId))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Function.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/units/Function.qml", { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
 }
 
 function addArgument(parent, instructionId) {
     var id = parseInt(lastId("Arguments")) + 1
     var arg = "arg" + id
     sproutDb.insertRecord(String("INSERT INTO Arguments (arg, instructionId) VALUES ('%1', %2)").arg(arg).arg(instructionId))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Argument.qml", { nodeId: id, arg: arg, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/units/Argument.qml", { unitId: id, arg: arg, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
 }
 
 function addPrintLine(parent, functionId) {
     var id = parseInt(lastId("Instructions")) + 1
     var name = "print-line"
     sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(functionId))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/units/Instruction.qml", { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
 }
 
 function addReadLine(parent, functionId) {
     var id = parseInt(lastId("Instructions")) + 1
     var name = "read-line"
     sproutDb.insertRecord(String("INSERT INTO Instructions (name, functionId) VALUES ('%1', %2)").arg(name).arg(functionId))
-    return Utils.createDynamicObject(parent, "qrc:/qml/nodes/Instruction.qml", { nodeId: id, arg: name, x: parent.width + 10 })
+    return Utils.createDynamicObject(parent, "qrc:/qml/units/Instruction.qml", { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
 }
 
 // ******************************** EDIT *************************************

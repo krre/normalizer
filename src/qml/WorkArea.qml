@@ -38,14 +38,10 @@ Item {
         commandState = Command.Ready
     }
 
-    function createWorld() {
-        sproutDb.open(filePath)
-        World.createWorld()
-    }
-
     Component.onCompleted: {
         forceActiveFocus()
-//        createWorld()
+        sproutDb.open(filePath)
+        World.createWorld(sceneGroup)
         viewer.home()
     }
 
@@ -64,6 +60,8 @@ Item {
         onMessage: output.textEdit.append(message)
     }
 
+    UnitSet { id: unitSet }
+
     Osg.Viewer {
         id: viewer
         anchors.fill: parent
@@ -76,8 +74,8 @@ Item {
         }
         onPicked: print(name)
 
-        sceneData: Project {
-            arg: "hello"
+        sceneData: Osg.Group {
+            id: sceneGroup
         }
     }
 

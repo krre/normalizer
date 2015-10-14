@@ -99,7 +99,8 @@ DISTFILES += \
     src/qml/units/Function.qml \
     src/qml/units/Argument.qml \
     src/qml/units/Instruction.qml \
-    src/qml/units/UnitBase.qml
+    src/qml/units/UnitBase.qml \
+    src/qml/units/UnitSet.qml
 
 RESOURCES += \
     src/greenery.qrc \
