@@ -79,14 +79,6 @@ Item {
         }
     }
 
-    Column {
-
-        TextField {
-            id: textField
-            text: "Hello"
-        }
-    }
-
     CommandSheet {
         id: commandSheet
         anchors.top: parent.top
