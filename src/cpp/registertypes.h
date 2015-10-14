@@ -9,6 +9,7 @@
 #include "osgbridge/osg/geode.h"
 #include "osgbridge/osg/group.h"
 #include "osgbridge/osg/transform.h"
+#include "osgbridge/osg/positionattitudetransform.h"
 #include "osgbridge/osg/drawable.h"
 #include "osgbridge/osg/shape.h"
 #include "osgbridge/osg/shapedrawable.h"
@@ -41,6 +42,7 @@ static void registerTypes() {
     qmlRegisterType<Geode>("OsgBridge", 1, 0, "Geode");
     qmlRegisterType<Group>("OsgBridge", 1, 0, "Group");
     qmlRegisterType<Transform>("OsgBridge", 1, 0, "Transform");
+    qmlRegisterType<PositionAttitudeTransform>("OsgBridge", 1, 0, "PositionAttitudeTransform");
     qmlRegisterType<ShapeDrawable>("OsgBridge", 1, 0, "ShapeDrawable");
     qmlRegisterType<Box>("OsgBridge", 1, 0, "Box");
     qmlRegisterType<Sphere>("OsgBridge", 1, 0, "Sphere");
