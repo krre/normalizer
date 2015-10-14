@@ -74,13 +74,10 @@ Item {
             zNear: 0.1
             zFar: 10000
         }
+        onPicked: print(name)
 
         sceneData: Osg.Group {
-            name: "group"
-
             Osg.Geode {
-                name: "text"
-
                 Osg.Text3D {
                     id: osgText
                     color: "yellow"
@@ -92,8 +89,6 @@ Item {
             }
 
             Osg.Geode {
-                name: "box"
-
                 Osg.ShapeDrawable {
                     color: "red"
                     shape: Osg.Box {
@@ -104,8 +99,6 @@ Item {
             }
 
             Osg.Geode {
-                name: "sphere"
-
                 Osg.ShapeDrawable {
                     color: "green"
                     shape: Osg.Sphere {
@@ -116,8 +109,6 @@ Item {
             }
 
             Osg.Geode {
-                name: "cylinder"
-
                 Osg.ShapeDrawable {
                     color: "pink"
                     shape: Osg.Cylinder {
