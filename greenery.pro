@@ -94,12 +94,11 @@ DISTFILES += \
     src/qml/Output.qml \
     src/qml/main.qml \
     src/qml/NewProject.qml \
-    src/qml/nodes/NodeBase.qml \
-    src/qml/nodes/Project.qml \
-    src/qml/nodes/Module.qml \
-    src/qml/nodes/Function.qml \
-    src/qml/nodes/Argument.qml \
-    src/qml/nodes/Instruction.qml \
+    src/qml/units/Project.qml \
+    src/qml/units/Module.qml \
+    src/qml/units/Function.qml \
+    src/qml/units/Argument.qml \
+    src/qml/units/Instruction.qml \
     src/qml/units/UnitBase.qml
 
 RESOURCES += \

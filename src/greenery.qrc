@@ -21,12 +21,11 @@
         <file>qml/sheets/CommandSheet.qml</file>
         <file>js/world.js</file>
         <file>js/dialog.js</file>
-        <file>qml/nodes/NodeBase.qml</file>
-        <file>qml/nodes/Project.qml</file>
-        <file>qml/nodes/Module.qml</file>
-        <file>qml/nodes/Instruction.qml</file>
-        <file>qml/nodes/Function.qml</file>
-        <file>qml/nodes/Argument.qml</file>
+        <file>qml/units/Project.qml</file>
+        <file>qml/units/Module.qml</file>
+        <file>qml/units/Instruction.qml</file>
+        <file>qml/units/Function.qml</file>
+        <file>qml/units/Argument.qml</file>
         <file>qml/units/UnitBase.qml</file>
     </qresource>
 </RCC>
