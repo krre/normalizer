@@ -2,16 +2,13 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Dialogs 1.2
-import "../js/utils.js" as Utils
-import "../js/dialog.js" as Dialog
+import "../../../js/utils.js" as Utils
+import "../../../js/dialog.js" as Dialog
 
-Dialog {
+DialogBase {
     id: root
     title: qsTr("New Project")
     width: 500
-    visible: true
-    modality: Qt.ApplicationModal
-    standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     onAccepted: {
         var path = directory.text + "/" + name.text + ".sprout"
@@ -34,10 +31,7 @@ Dialog {
         } else {
             Utils.newFile(directory.text, name.text)
         }
-        root.destroy()
     }
-
-    onRejected: root.destroy()
 
     GridLayout {
         width: parent.width
@@ -88,4 +82,3 @@ Dialog {
         }
     }
 }
-

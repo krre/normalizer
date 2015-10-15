@@ -95,7 +95,6 @@ DISTFILES += \
     src/qml/WorkArea.qml \
     src/qml/Output.qml \
     src/qml/main.qml \
-    src/qml/NewProject.qml \
     src/qml/units/Project.qml \
     src/qml/units/Module.qml \
     src/qml/units/Function.qml \
@@ -104,7 +103,8 @@ DISTFILES += \
     src/qml/units/UnitBase.qml \
     src/qml/units/UnitSet.qml \
     src/qml/components/dialog/EditUnitDialog.qml \
-    src/qml/components/dialog/DialogBase.qml
+    src/qml/components/dialog/DialogBase.qml \
+    src/qml/components/dialog/NewProjectDialog.qml
 
 RESOURCES += \
     src/greenery.qrc \

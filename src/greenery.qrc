@@ -16,7 +16,6 @@
         <file>qml/Options.qml</file>
         <file>qml/WorkArea.qml</file>
         <file>qml/Output.qml</file>
-        <file>qml/NewProject.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/sheets/CommandSheet.qml</file>
         <file>js/world.js</file>
@@ -28,7 +27,8 @@
         <file>qml/units/Argument.qml</file>
         <file>qml/units/UnitBase.qml</file>
         <file>qml/units/UnitSet.qml</file>
-        <file>qml/components/dialog/EditUnitDialog.qml</file>
         <file>qml/components/dialog/DialogBase.qml</file>
+        <file>qml/components/dialog/EditUnitDialog.qml</file>
+        <file>qml/components/dialog/NewProjectDialog.qml</file>
     </qresource>
 </RCC>
