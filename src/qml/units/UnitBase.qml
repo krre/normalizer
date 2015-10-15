@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import OsgBridge 1.0 as Osg
-import "../../js/command.js" as Command
 
 Osg.PositionAttitudeTransform {
     id: root
@@ -60,58 +59,3 @@ Osg.PositionAttitudeTransform {
         }
     }
 }
-
-/*
-
-Rectangle {
-
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: currentUnit = root
-    }
-
-    ColumnLayout {
-        anchors.fill: parent
-
-        Label {
-            text: name
-            color: "white"
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        TextEdit {
-            property bool isEscape: false
-            visible: isEdit
-            Layout.fillWidth: true
-            horizontalAlignment: TextEdit.AlignHCenter
-            onVisibleChanged: {
-                if (visible) {
-                    isEscape = false
-                    text = arg
-                    selectAll()
-                    forceActiveFocus()
-                } else if (isCurrent && !isEscape) {
-                    arg = text
-                    edit(text)
-                }
-            }
-            color: "white"
-
-            Keys.onReturnPressed: commandState = Command.Ready
-            Keys.onEnterPressed: commandState = Command.Ready
-            Keys.onEscapePressed: {
-                isEscape = true
-                commandState = Command.Ready
-            }
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignHCenter
-            text: arg
-            color: "white"
-            visible: !isEdit
-        }
-    }
-}
-*/

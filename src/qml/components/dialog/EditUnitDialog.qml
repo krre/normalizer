@@ -2,6 +2,8 @@ import QtQuick 2.5
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
+import "../../../js/command.js" as Command
+import "../../../js/world.js" as World
 
 Dialog {
     id: root
@@ -13,10 +15,15 @@ Dialog {
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     onAccepted: {
-        print(arg.text)
+        World.editModule(unit.unitId, arg.text)
+        unit.arg = arg.text
+        commandState = Command.Ready
         root.destroy()
     }
-    onRejected: root.destroy()
+    onRejected: {
+        commandState = Command.Ready
+        root.destroy()
+    }
 
     GridLayout {
         width: parent.width
