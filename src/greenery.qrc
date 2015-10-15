@@ -28,5 +28,6 @@
         <file>qml/units/Argument.qml</file>
         <file>qml/units/UnitBase.qml</file>
         <file>qml/units/UnitSet.qml</file>
+        <file>qml/components/dialog/EditUnitDialog.qml</file>
     </qresource>
 </RCC>

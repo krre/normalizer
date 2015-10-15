@@ -30,6 +30,7 @@ Item {
             forceActiveFocus()
         } else if (commandState === Command.Edit && currentUnit) {
             print(currentUnit)
+            Utils.createDynamicObject(root, "qrc:/qml/components/dialog/EditUnitDialog.qml", { unit: currentUnit })
         }
     }
 
