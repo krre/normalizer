@@ -43,7 +43,8 @@ HEADERS += \
     src/cpp/osgbridge/osgDB/osgdb.h \
     src/cpp/osgbridge/osg/cylinder.h \
     src/cpp/osgbridge/osgGA/pickhandler.h \
-    src/cpp/osgbridge/osg/positionattitudetransform.h
+    src/cpp/osgbridge/osg/positionattitudetransform.h \
+    src/cpp/osgbridge/osg/boundingsphere.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -69,7 +70,8 @@ SOURCES += \
     src/cpp/osgbridge/osgDB/osgdb.cpp \
     src/cpp/osgbridge/osg/cylinder.cpp \
     src/cpp/osgbridge/osgGA/pickhandler.cpp \
-    src/cpp/osgbridge/osg/positionattitudetransform.cpp
+    src/cpp/osgbridge/osg/positionattitudetransform.cpp \
+    src/cpp/osgbridge/osg/boundingsphere.cpp
 
 DISTFILES += \
     README.md \

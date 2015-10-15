@@ -1,16 +1,17 @@
 .import "../js/utils.js" as Utils
 
 function createWorld(origin) {
-    addProject(origin)
-    return
+    var projectUnit = addProject(origin)
 
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
     for (var i in moduleList) {
         var module = moduleList[i]
-        var moduleUnit = unitSet.project.createObject()
-        origin.addChild(moduleUnit)
-//        var moduleNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Module.qml", { nodeId: module.id, arg: module.name, x: currentNode.width + 10, y: (currentNode.height + 10) * i })
+        var moduleUnit = unitSet.module.createObject(undefined, { arg: module.name, position: Qt.vector3d(0, 0.35, projectUnit.position.z + 0.2) })
+        print(JSON.stringify(module))
+        projectUnit.addChild(moduleUnit)
     }
+
+    return
 
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
     for (i in functionList) {
