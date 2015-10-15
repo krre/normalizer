@@ -11,7 +11,6 @@ class Version : public QObject
     Q_PROPERTY(QString full READ full CONSTANT)
 
 public:
-    explicit Version() {}
     Q_INVOKABLE static unsigned int major() { return MAJOR; }
     Q_INVOKABLE static unsigned int minor() { return MINOR; }
     Q_INVOKABLE static unsigned int patch() { return PATCH; }

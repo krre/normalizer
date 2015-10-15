@@ -7,7 +7,7 @@ function createWorld(origin) {
     for (var i in moduleList) {
         var module = moduleList[i]
         var moduleUnit = unitSet.module.createObject(undefined, { arg: module.name, position: Qt.vector3d(0, 0.35, projectUnit.position.z + 0.2) })
-        print(moduleUnit.bound.center)
+        print(moduleUnit.bound.radius)
         print(JSON.stringify(module))
         projectUnit.addChild(moduleUnit)
     }
