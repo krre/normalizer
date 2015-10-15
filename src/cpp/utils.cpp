@@ -27,3 +27,8 @@ void Utils::removeFile(const QString &path)
     dir.remove(path);
 }
 
+PositionAttitudeTransform* Utils::findUnit(const PositionAttitudeTransform* parentUnit, const QString& nameUnit) const
+{
+    return parentUnit->findChild<PositionAttitudeTransform*>(nameUnit);
+}
+

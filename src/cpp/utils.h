@@ -1,5 +1,6 @@
 #pragma once
 #include <QtCore>
+#include "osgbridge/osg/positionattitudetransform.h"
 
 class Utils : public QObject
 {
@@ -14,4 +15,5 @@ public:
     QString homePath() { return QStandardPaths::writableLocation(QStandardPaths::HomeLocation); }
     Q_INVOKABLE static bool isFileExists(const QString& filePath);
     Q_INVOKABLE static void removeFile(const QString& path);
+    Q_INVOKABLE PositionAttitudeTransform* findUnit(const PositionAttitudeTransform* parentUnit, const QString& nameUnit) const;
 };
