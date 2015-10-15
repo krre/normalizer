@@ -1,28 +1,21 @@
 import QtQuick 2.5
-import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import "../../../js/command.js" as Command
 import "../../../js/world.js" as World
 
-Dialog {
+DialogBase {
     id: root
     property var unit
     title: qsTr("Edit Unit")
-    visible: true
     width: 400
-    modality: Qt.ApplicationModal
-    standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     onAccepted: {
         World.editModule(unit.unitId, arg.text)
         unit.arg = arg.text
     }
 
-    onVisibleChanged: {
-        commandState = Command.Ready
-        root.destroy()
-    }
+    onVisibleChanged: commandState = Command.Ready
 
     GridLayout {
         width: parent.width
