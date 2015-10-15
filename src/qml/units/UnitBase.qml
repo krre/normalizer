@@ -10,12 +10,17 @@ Osg.PositionAttitudeTransform {
     property string type
     property string arg
     property string unitId
-    property bool isCurrent: geode.name === currentNode
-    property bool isEdit: isCurrent && commandState === Command.Edit
+    property bool isCurrent: geode.name === currentGeode
     property color color: "yellow"
     property color selectColor: "white"
     signal edit(var name)
     objectName: type + unitId
+
+    onIsCurrentChanged: {
+        if (isCurrent) {
+            currentUnit = root
+        }
+    }
 
     Osg.PositionAttitudeTransform {
         id: pickForm
@@ -63,7 +68,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: currentNode = root
+        onClicked: currentUnit = root
     }
 
     ColumnLayout {

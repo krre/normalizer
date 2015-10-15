@@ -17,7 +17,8 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
-    property var currentNode
+    property var currentUnit
+    property var currentGeode
     property var sceneNode: viewer.sceneData
 
     Component.onDestruction: {
@@ -27,6 +28,8 @@ Item {
     onCommandStateChanged: {
         if (commandState === Command.Ready) {
             forceActiveFocus()
+        } else if (commandState === Command.Edit && currentUnit) {
+            print(currentUnit)
         }
     }
 
@@ -45,10 +48,7 @@ Item {
         viewer.home()
     }
 
-    Keys.onPressed: {
-        Command.run(event)
-    }
-
+    Keys.onPressed: Command.run(event)
     Keys.onEscapePressed: cancel()
 
     SproutDb {
@@ -72,7 +72,7 @@ Item {
             zNear: 0.1
             zFar: 10000
         }
-        onPicked: currentNode = name
+        onPicked: currentGeode = name
 
         sceneData: Osg.Group {
             id: sceneGroup

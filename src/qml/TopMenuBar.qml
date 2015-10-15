@@ -176,7 +176,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Write Current Node to File")
-            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentNode, UTILS.homePath + "/node.osg")
+            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentUnit, UTILS.homePath + "/node.osg")
         }
 
         MenuItem {
