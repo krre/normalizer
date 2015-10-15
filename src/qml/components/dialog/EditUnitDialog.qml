@@ -17,10 +17,9 @@ Dialog {
     onAccepted: {
         World.editModule(unit.unitId, arg.text)
         unit.arg = arg.text
-        commandState = Command.Ready
-        root.destroy()
     }
-    onRejected: {
+
+    onVisibleChanged: {
         commandState = Command.Ready
         root.destroy()
     }
