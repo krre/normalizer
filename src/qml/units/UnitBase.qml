@@ -5,6 +5,7 @@ import "../../js/command.js" as Command
 Osg.PositionAttitudeTransform {
     id: root
     default property alias shape: shapeDrawable.shape
+    property alias pickForm: pickForm
     property string title
     property string arg
     property bool isCurrent: geode.name === currentNode
@@ -15,6 +16,7 @@ Osg.PositionAttitudeTransform {
     signal edit(var name)
 
     Osg.PositionAttitudeTransform {
+        id: pickForm
 
         Osg.Geode {
             id: geode

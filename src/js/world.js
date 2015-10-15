@@ -4,11 +4,19 @@ function createWorld(origin) {
     var projectUnit = addProject(origin)
 
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
+    var step = 2 * Math.PI / moduleList.length
+    var radius = 0
     for (var i in moduleList) {
         var module = moduleList[i]
-        var moduleUnit = unitSet.module.createObject(undefined, { arg: module.name, position: Qt.vector3d(0, 0.35, projectUnit.position.z + 0.2) })
-        print(moduleUnit.bound.radius)
-        print(JSON.stringify(module))
+        var x = radius * Math.cos(i * step)
+        var y = 0.4
+        var z = radius * Math.sin(i * step)
+        var moduleUnit = unitSet.module.createObject(root, { unitId: module.id, arg: module.name, position: Qt.vector3d(x, y, z)} )
+        if (!radius) {
+            radius = 5 * moduleUnit.pickForm.bound.radius * moduleList.length / (2 * Math.PI)
+            moduleUnit.position = Qt.vector3d(radius, y, z)
+        }
+
         projectUnit.addChild(moduleUnit)
     }
 
