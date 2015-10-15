@@ -3,8 +3,8 @@ import OsgBridge 1.0 as Osg
 import "../../js/world.js" as World
 
 UnitBase {
-    objectName: "module"
-    title: "Module"
+    type: "module"
+    title: qsTr("Module")
     color: "lightgreen"
     onEdit: World.editModule(unitId, name)
 }

@@ -7,13 +7,15 @@ Osg.PositionAttitudeTransform {
     default property alias shape: shapeDrawable.shape
     property alias pickForm: pickForm
     property string title
+    property string type
     property string arg
+    property string unitId
     property bool isCurrent: geode.name === currentNode
     property bool isEdit: isCurrent && commandState === Command.Edit
-    property string unitId
     property color color: "yellow"
     property color selectColor: "white"
     signal edit(var name)
+    objectName: type + unitId
 
     Osg.PositionAttitudeTransform {
         id: pickForm

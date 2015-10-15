@@ -3,8 +3,8 @@ import OsgBridge 1.0 as Osg
 import "../../js/world.js" as World
 
 UnitBase {
-    objectName: "function"
-    title: "Function"
+    type: "function"
+    title: qsTr("Function")
     onEdit: World.editFunction(unitId, name)
     color: "red"
     shape: Osg.Cylinder {
