@@ -34,6 +34,7 @@ Dialog {
         } else {
             Utils.newFile(directory.text, name.text)
         }
+        root.destroy()
     }
 
     onRejected: root.destroy()
