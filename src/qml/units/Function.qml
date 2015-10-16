@@ -5,7 +5,6 @@ import "../../js/world.js" as World
 UnitBase {
     type: "function"
     title: qsTr("Function")
-    onEdit: World.editFunction(unitId, name)
     color: "red"
     shape: Osg.Cylinder {
         radius: 0.1

@@ -12,7 +12,6 @@ Osg.PositionAttitudeTransform {
     property bool isCurrent: geode.name === currentGeode
     property color color: "yellow"
     property color selectColor: "white"
-    signal edit(var name)
     objectName: type + unitId
 
     onIsCurrentChanged: {

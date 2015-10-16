@@ -6,5 +6,4 @@ UnitBase {
     type: "module"
     title: qsTr("Module")
     color: "lightgreen"
-    onEdit: World.editModule(unitId, name)
 }
