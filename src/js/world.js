@@ -9,7 +9,7 @@ function createWorld(origin) {
     for (var i in moduleList) {
         var module = moduleList[i]
         var x = radius * Math.cos(i * step)
-        var y = 0.4
+        var y = 0.06
         var z = radius * Math.sin(i * step)
         var moduleUnit = unitSet.module.createObject(projectUnit, { unitId: module.id, arg: module.name, position: Qt.vector3d(x, y, z)} )
         if (!radius) {

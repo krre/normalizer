@@ -30,29 +30,29 @@ Osg.PositionAttitudeTransform {
                 id: shapeDrawable
                 color: isCurrent ? selectColor : root.color
                 shape: Osg.Box {
-                    halfLengths: Qt.vector3d(0.1, 0.1, 0.1)
+                    halfLengths: Qt.vector3d(0.02, 0.02, 0.02)
                 }
             }
         }
     }
 
     Osg.Geode {
-
+        // Title
         Osg.Text3D {
-            position: Qt.vector3d(-0.1, 0.15, 0)
+            position: Qt.vector3d(-0.02, 0.03, 0)
             color: isCurrent ? selectColor : root.color
-            characterSize: 0.1
+            characterSize: 0.015
             characterDepth: 0
             text: title
         }
     }
 
     Osg.Geode {
-
+        // Arg
         Osg.Text3D {
-            position: Qt.vector3d(0.12, 0, 0)
+            position: Qt.vector3d(0.03, -0.01, 0)
             color: isCurrent ? selectColor : root.color
-            characterSize: 0.1
+            characterSize: 0.015
             characterDepth: 0
             text: arg
         }

@@ -6,7 +6,7 @@ UnitBase {
     title: qsTr("Project")
     color: "pink"
     shape: Osg.Cylinder {
-        radius: 0.1
-        height: 0.2
+        radius: 0.02
+        height: 0.04
     }
 }
