@@ -1,7 +1,7 @@
 .import "../js/utils.js" as Utils
 
 function createWorld(origin) {
-    var projectUnit = addProject(origin)
+    projectUnit = addProject(origin)
 
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
     var step = 2 * Math.PI / moduleList.length

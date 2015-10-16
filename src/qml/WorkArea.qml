@@ -17,6 +17,7 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
+    property var projectUnit
     property var currentUnit
     property var currentGeode
     property var sceneNode: viewer.sceneData
