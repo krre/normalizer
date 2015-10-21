@@ -4,24 +4,22 @@ function createWorld(origin) {
     projectUnit = addProject(origin)
 
     var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
-    var step = 2 * Math.PI / moduleList.length
     var radius = 0
     for (var i in moduleList) {
         var module = moduleList[i]
-        var x = radius * Math.cos(i * step)
-        var y = 0.06
-        var z = radius * Math.sin(i * step)
+        var x = 0
+        var y = -(i * radius * 2 + 0.07)
+        var z = 0
         var moduleUnit = unitSet.module.createObject(projectUnit, { unitId: module.id, arg: module.name, position: Qt.vector3d(x, y, z)} )
         if (!radius) {
-            radius = 5 * moduleUnit.pickForm.bound.radius * moduleList.length / (2 * Math.PI)
-            moduleUnit.position = Qt.vector3d(radius, y, z)
+            radius = moduleUnit.pickForm.bound.radius
+            moduleUnit.position = Qt.vector3d(x, y, z)
         }
 
         projectUnit.addChild(moduleUnit)
     }
 
-    return
-
+/*
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
     for (i in functionList) {
         var func = functionList[i]
@@ -39,6 +37,7 @@ function createWorld(origin) {
         var arg = argumentList[i]
         var argNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Argument.qml", { nodeId: arg.id, arg: arg.arg, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
     }
+    */
 }
 
 function lastId(table) {
