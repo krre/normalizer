@@ -23,19 +23,19 @@ function createWorld(origin) {
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
     for (i in functionList) {
         var func = functionList[i]
-        var funcNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Function.qml", { nodeId: func.id, arg: func.name, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
+        var funcNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Function.qml", { unitId: func.id, arg: func.name, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
     }
 
     var instructionList = sproutDb.readRecords("SELECT * FROM Instructions")
     for (i in functionList) {
         var instr = instructionList[i]
-        var instrNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Instruction.qml", { nodeId: instr.id, arg: instr.name, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
+        var instrNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Instruction.qml", { unitId: instr.id, arg: instr.name, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
     }
 
     var argumentList = sproutDb.readRecords("SELECT * FROM Arguments")
     for (i in argumentList) {
         var arg = argumentList[i]
-        var argNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Argument.qml", { nodeId: arg.id, arg: arg.arg, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
+        var argNode = Utils.createDynamicObject(undefined, "qrc:/qml/units/Argument.qml", { unitId: arg.id, arg: arg.arg, x: currentUnit.width + 10, y: (currentUnit.height + 10) * i })
     }
     */
 }
@@ -112,7 +112,7 @@ function editArgument(id, arg) {
 // ******************************** DELETE ************************************
 
 function deleteModule(id) {
-    sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
-    currentUnit.destroy()
-    currentUnit = undefined
+//    sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
+//    currentUnit.destroy()
+//    currentUnit = undefined
 }

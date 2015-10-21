@@ -30,14 +30,14 @@ function run(event) {
     } else if (commandState === Add) {
         switch (event.text) {
             case "m": currentUnit = World.addModule(currentUnit); commandState = Ready; break
-            case "f": currentUnit = World.addFunction(currentUnit, currentUnit.nodeId); commandState = Ready; break
-            case "a": currentUnit = World.addArgument(currentUnit, currentUnit.nodeId); commandState = Ready; break
-            case "p": currentUnit = World.addPrintLine(currentUnit, currentUnit.nodeId); commandState = Ready; break
-            case "r": currentUnit = World.addReadLine(currentUnit, currentUnit.nodeId); commandState = Ready; break
+            case "f": currentUnit = World.addFunction(currentUnit, currentUnit.unitId); commandState = Ready; break
+            case "a": currentUnit = World.addArgument(currentUnit, currentUnit.unitId); commandState = Ready; break
+            case "p": currentUnit = World.addPrintLine(currentUnit, currentUnit.unitId); commandState = Ready; break
+            case "r": currentUnit = World.addReadLine(currentUnit, currentUnit.unitId); commandState = Ready; break
         }
     } else if (commandState === Delete) {
         switch (event.text) {
-            case "y": currentUnit = World.deleteModule(currentUnit.nodeId); commandState = Ready; break
+            case "y": currentUnit = World.deleteModule(currentUnit.unitId); commandState = Ready; break
             case "n": commandState = Ready; break
         }
     } else if (commandState === Edit) {
