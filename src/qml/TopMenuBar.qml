@@ -163,6 +163,13 @@ MenuBar {
         }
 
         MenuItem {
+            text: qsTr("Output")
+            checkable: true
+            checked: true
+            onTriggered: currentTab.output.visible = !currentTab.output.visible
+        }
+
+        MenuItem {
             text: qsTr("Command Sheet")
             checkable: true
             checked: true
