@@ -24,7 +24,7 @@ DialogBase {
         rowSpacing: 10
 
         Label {
-            text: qsTr("Title:")
+            text: qsTr("Unit Type:")
         }
 
         Label {
