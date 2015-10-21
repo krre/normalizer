@@ -112,7 +112,6 @@ function editArgument(id, arg) {
 // ******************************** DELETE ************************************
 
 function deleteModule(id) {
-//    sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
-//    currentUnit.destroy()
-//    currentUnit = undefined
+    sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
+    currentUnit.getParentGroup().removeChild(currentUnit)
 }
