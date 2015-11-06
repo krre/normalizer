@@ -64,7 +64,8 @@ function addModule(parent) {
     var id = parseInt(lastId("Modules")) + 1
     var name = "module" + id
     sproutDb.insertRecord(String("INSERT INTO Modules (name) VALUES ('%1')").arg(name))
-    return Utils.createDynamicObject(parent, "qrc:/qml/units/Module.qml", { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1) })
+    var moduleUnit = unitSet.module.createObject(parent, { unitId: id, arg: name, position: Qt.vector3d(0, 0, parent.position.z + 0.1)} )
+    return moduleUnit
 }
 
 function addFunction(parent, moduleId) {
@@ -113,5 +114,6 @@ function editArgument(id, arg) {
 
 function deleteModule(id) {
     sproutDb.deleteRecord(String("DELETE FROM Modules WHERE id=%1").arg(id))
-    currentUnit.getParentGroup().removeChild(currentUnit)
+    var projectUnit = currentUnit.getParentGroup()
+    projectUnit.removeChild(currentUnit)
 }
