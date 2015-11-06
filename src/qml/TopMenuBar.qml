@@ -115,21 +115,14 @@ MenuBar {
     }
 
     Menu {
-        title: qsTr("Build")
+        title: qsTr("Run")
         visible: currentTab
-
-        MenuItem {
-            text: qsTr("Build")
-            shortcut: "Ctrl+F9"
-            enabled: currentTab && currentTab.filePath
-            onTriggered: currentTab.cons.build(SETTINGS.sproutPath(), currentTab.filePath)
-        }
 
         MenuItem {
             text: qsTr("Run")
             shortcut: "F9"
             enabled: currentTab && currentTab.filePath
-            onTriggered: currentTab.cons.run(currentTab.filePath.replace(".sprout", ""))
+            onTriggered: currentTab.cons.run(SETTINGS.sproutPath(), currentTab.filePath)
         }
     }
 

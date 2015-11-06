@@ -11,32 +11,19 @@ Console::Console()
     connect(this, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
 }
 
-void Console::run(const QString& binPath)
-{
-    start(binPath);
-}
-
-void Console::build(const QString &sproutPath, const QString &sourcePath)
+void Console::run(const QString &sproutPath, const QString &sourcePath)
 {
     start(sproutPath + " " + sourcePath);
 }
 
 void Console::onStarted()
 {
-    if (arguments().count()) {
-        emit message("Starting build " + arguments().at(0) + "...");
-    } else {
-        emit message("Starting run " + program() + "...");
-    }
+    emit message("Starting run " + arguments().at(0) + "...");
 }
 
 void Console::onFinished(int exitCode)
 {
-    if (arguments().count()) {
-        emit message(arguments().at(0) + " exited with code " + QString::number(exitCode));
-    } else {
-        emit message(program() + " exited with code " + QString::number(exitCode));
-    }
+    emit message(arguments().at(0) + " exited with code " + QString::number(exitCode));
     emit message("");
 }
 
