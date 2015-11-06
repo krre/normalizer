@@ -21,10 +21,12 @@ DialogBase {
             }
         }
         if (UTILS.isFileExists(path)) {
+            isDestroyOnHide = false
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
                 UTILS.removeFile(path)
                 Utils.newFile(directory.text, name.text)
+                root.destroy()
             })
 
             dialog.no.connect(function() { root.open() })
