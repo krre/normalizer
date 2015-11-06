@@ -37,18 +37,6 @@ Osg.PositionAttitudeTransform {
     }
 
     Osg.Geode {
-        // Title
-        Osg.Text3D {
-            position: Qt.vector3d(-0.02, 0.03, 0)
-            color: isCurrent ? selectColor : root.color
-            characterSize: 0.015
-            characterDepth: 0
-            text: title
-        }
-    }
-
-    Osg.Geode {
-        // Arg
         Osg.Text3D {
             position: Qt.vector3d(0.03, -0.01, 0)
             color: isCurrent ? selectColor : root.color
