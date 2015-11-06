@@ -30,5 +30,6 @@
         <file>qml/components/dialog/DialogBase.qml</file>
         <file>qml/components/dialog/EditUnitDialog.qml</file>
         <file>qml/components/dialog/NewProjectDialog.qml</file>
+        <file>qml/components/dialog/InfoUnitDialog.qml</file>
     </qresource>
 </RCC>

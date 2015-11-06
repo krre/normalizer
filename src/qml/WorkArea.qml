@@ -29,8 +29,10 @@ Item {
     onCommandStateChanged: {
         if (commandState === Command.Ready) {
             forceActiveFocus()
-        } else if (commandState === Command.Edit && currentUnit) {
+        } else if (commandState === Command.Edit) {
             Utils.createDynamicObject(root, "qrc:/qml/components/dialog/EditUnitDialog.qml", { unit: currentUnit })
+        } else if (commandState === Command.Info) {
+            Utils.createDynamicObject(root, "qrc:/qml/components/dialog/InfoUnitDialog.qml", { unit: currentUnit })
         }
     }
 

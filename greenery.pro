@@ -104,7 +104,8 @@ DISTFILES += \
     src/qml/units/UnitSet.qml \
     src/qml/components/dialog/EditUnitDialog.qml \
     src/qml/components/dialog/DialogBase.qml \
-    src/qml/components/dialog/NewProjectDialog.qml
+    src/qml/components/dialog/NewProjectDialog.qml \
+    src/qml/components/dialog/InfoUnitDialog.qml
 
 RESOURCES += \
     src/greenery.qrc \
