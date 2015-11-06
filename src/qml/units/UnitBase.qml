@@ -5,6 +5,7 @@ Osg.PositionAttitudeTransform {
     id: root
     default property alias shape: shapeDrawable.shape
     property alias pickForm: pickForm
+    property alias geode: geode
     property string title
     property string type
     property string arg

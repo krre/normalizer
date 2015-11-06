@@ -46,6 +46,7 @@ Item {
         forceActiveFocus()
         sproutDb.open(filePath)
         World.createWorld(sceneGroup)
+        currentGeode = projectUnit.geode.name
         viewer.home()
     }
 
