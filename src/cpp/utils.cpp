@@ -10,18 +10,14 @@ QString Utils::urlToFileName(QUrl url)
     return url.fileName().replace(".sprout", "");
 }
 
-bool Utils::isFileExists(const QString &filePath)
+bool Utils::isFileExists(const QString& filePath)
 {
     QFileInfo checkFile(filePath);
     // check if file exists and if yes: Is it really a file and no directory?
-    if (checkFile.exists() && checkFile.isFile()) {
-        return true;
-    } else {
-        return false;
-    }
+    return checkFile.exists() && checkFile.isFile();
 }
 
-void Utils::removeFile(const QString &path)
+void Utils::removeFile(const QString& path)
 {
     QDir dir;
     dir.remove(path);
@@ -31,4 +27,3 @@ PositionAttitudeTransform* Utils::findUnit(const PositionAttitudeTransform* pare
 {
     return parentUnit->findChild<PositionAttitudeTransform*>(nameUnit);
 }
-
