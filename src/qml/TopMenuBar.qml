@@ -128,6 +128,7 @@ MenuBar {
 
     Menu {
         title: qsTr("Camera")
+        visible: currentTab
 
         MenuItem {
             text: qsTr("Home")
@@ -172,7 +173,7 @@ MenuBar {
 
     Menu {
         title: qsTr("Debug")
-        visible: isDebug
+        visible: isDebug && currentTab
 
         MenuItem {
             text: qsTr("Write Current Node to File")
