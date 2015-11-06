@@ -13,7 +13,7 @@ Item {
     property alias sproutDb: sproutDb
     property alias commandSheet: commandSheet
     property alias output: output
-    property alias cons: cons
+    property alias process: process
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
     property string commandState: Command.Ready
@@ -56,8 +56,8 @@ Item {
         id: sproutDb
     }
 
-    Console {
-        id: cons
+    Process {
+        id: process
         onMessage: output.textEdit.append(message)
     }
 

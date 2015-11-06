@@ -19,7 +19,6 @@ INCLUDEPATH += \
     $$(OSG_HOME)/include
 
 HEADERS += \
-    src/cpp/console.h \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
@@ -44,13 +43,13 @@ HEADERS += \
     src/cpp/osgbridge/osg/cylinder.h \
     src/cpp/osgbridge/osgGA/pickhandler.h \
     src/cpp/osgbridge/osg/positionattitudetransform.h \
-    src/cpp/osgbridge/osg/boundingsphere.h
+    src/cpp/osgbridge/osg/boundingsphere.h \
+    src/cpp/process.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/console.cpp \
     src/cpp/osgbridge/osgViewer/viewer.cpp \
     src/cpp/osgbridge/osg/node.cpp \
     src/cpp/osgbridge/osg/group.cpp \
@@ -71,7 +70,8 @@ SOURCES += \
     src/cpp/osgbridge/osg/cylinder.cpp \
     src/cpp/osgbridge/osgGA/pickhandler.cpp \
     src/cpp/osgbridge/osg/positionattitudetransform.cpp \
-    src/cpp/osgbridge/osg/boundingsphere.cpp
+    src/cpp/osgbridge/osg/boundingsphere.cpp \
+    src/cpp/process.cpp
 
 DISTFILES += \
     README.md \

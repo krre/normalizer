@@ -1,11 +1,11 @@
 #pragma once
 #include <QtCore>
 
-class Console: public QProcess
+class Process: public QProcess
 {
     Q_OBJECT
 public:
-    Console();
+    Process();
     Q_INVOKABLE void run(const QString& sproutPath, const QString& sourcePath);
 
 signals:

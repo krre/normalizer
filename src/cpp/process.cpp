@@ -1,7 +1,7 @@
-#include "console.h"
+#include "process.h"
 #include "settings.h"
 
-Console::Console()
+Process::Process()
 {
     setProcessChannelMode(QProcess::MergedChannels);
 
@@ -11,28 +11,28 @@ Console::Console()
     connect(this, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
 }
 
-void Console::run(const QString &sproutPath, const QString &sourcePath)
+void Process::run(const QString &sproutPath, const QString &sourcePath)
 {
     start(sproutPath + " " + sourcePath);
 }
 
-void Console::onStarted()
+void Process::onStarted()
 {
     emit message("Starting run " + arguments().at(0) + "...");
 }
 
-void Console::onFinished(int exitCode)
+void Process::onFinished(int exitCode)
 {
     emit message(arguments().at(0) + " exited with code " + QString::number(exitCode));
     emit message("");
 }
 
-void Console::onReadyRead()
+void Process::onReadyRead()
 {
     emit message(readAllStandardOutput());
 }
 
-void Console::onError(ProcessError error)
+void Process::onError(ProcessError error)
 {
     emit message("Error: " + QString::number(error));
 }

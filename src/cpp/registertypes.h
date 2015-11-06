@@ -1,9 +1,9 @@
 #pragma once
 #include <QtQml>
 #include <sprout/sproutdb.h>
-#include "console.h"
-#include "osgbridge/osgViewer/viewer.h"
+#include "process.h"
 
+#include "osgbridge/osgViewer/viewer.h"
 #include "osgbridge/osg/object.h"
 #include "osgbridge/osg/node.h"
 #include "osgbridge/osg/geode.h"
@@ -18,11 +18,9 @@
 #include "osgbridge/osg/cylinder.h"
 #include "osgbridge/osg/camera.h"
 #include "osgbridge/osg/boundingsphere.h"
-
 #include "osgbridge/osgText/textbase.h"
 #include "osgbridge/osgText/text.h"
 #include "osgbridge/osgText/text3d.h"
-
 #include "osgbridge/osgDB/osgdb.h"
 
 static QObject* osgdb_singletontype_provider(QQmlEngine* engine, QJSEngine* scriptEngine)
@@ -34,7 +32,7 @@ static QObject* osgdb_singletontype_provider(QQmlEngine* engine, QJSEngine* scri
 
 static void registerTypes() {
     // Greenery
-    qmlRegisterType<Console>("Greenery", 1, 0, "Console");
+    qmlRegisterType<Process>("Greenery", 1, 0, "Process");
     qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
 
     // osg
