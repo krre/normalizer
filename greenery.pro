@@ -79,7 +79,6 @@ DISTFILES += \
     src/js/command.js \
     src/js/world.js \
     src/js/dialog.js \
-    src/qml/TopMenuBar.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
@@ -90,10 +89,6 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/sheets/CommandSheet.qml \
-    src/qml/About.qml \
-    src/qml/Options.qml \
-    src/qml/WorkArea.qml \
-    src/qml/Output.qml \
     src/qml/main.qml \
     src/qml/units/Project.qml \
     src/qml/units/Module.qml \
@@ -105,7 +100,12 @@ DISTFILES += \
     src/qml/components/dialog/EditUnitDialog.qml \
     src/qml/components/dialog/DialogBase.qml \
     src/qml/components/dialog/NewProjectDialog.qml \
-    src/qml/components/dialog/InfoUnitDialog.qml
+    src/qml/components/dialog/InfoUnitDialog.qml \
+    src/qml/main/Options.qml \
+    src/qml/main/About.qml \
+    src/qml/main/Output.qml \
+    src/qml/main/TopMenuBar.qml \
+    src/qml/main/WorkArea.qml
 
 RESOURCES += \
     src/greenery.qrc \

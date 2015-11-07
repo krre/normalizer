@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
 import Greenery 1.0
+import "main"
 import "../js/utils.js" as Utils
 
 ApplicationWindow {

@@ -13,7 +13,7 @@ function newFile(directory, name) {
     PROJECT.create(path, name)
 
     var tab = tabView.addTab(name)
-    tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path })
+    tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
     SETTINGS.setRecentDirectory(directory)
@@ -29,7 +29,7 @@ function openFile(path) {
 
     var projectName = UTILS.urlToFileName(path)
     var tab = tabView.addTab(projectName)
-    tab.setSource("qrc:/qml/WorkArea.qml", { filePath: path, projectName: projectName })
+    tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path, projectName: projectName })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
 }

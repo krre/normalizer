@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Dialogs 1.2
-import "../js/utils.js" as Utils
+import "../../js/utils.js" as Utils
 
 Dialog {
     id: root

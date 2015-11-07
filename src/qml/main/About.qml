@@ -1,6 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Dialogs 1.2
-import "components/messagedialog"
+import "../components/messagedialog"
 
 MessageDialogBase {
     title: qsTr("About Greenery")

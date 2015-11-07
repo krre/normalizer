@@ -1,7 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import OsgBridge 1.0 as Osg
-import "../js/utils.js" as Utils
+import "../../js/utils.js" as Utils
+//import "../../js/utils.js" as Utils
 
 MenuBar {
     property alias recentFilesModel: recentFilesModel
