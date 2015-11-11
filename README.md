@@ -1,2 +1,2 @@
 # Greenery
-IDE for Sprout language
+IDE for [Sprout](https://github.com/krre/sprout) language
