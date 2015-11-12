@@ -2,7 +2,7 @@
 #include <QtDebug>
 #include <QtQml>
 #include <sprout/project.h>
-#include <src/registerosgtypes.h>
+#include <registerosgtypes.h>
 #include "version.h"
 #include "settings.h"
 #include "utils.h"

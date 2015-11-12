@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore>
-#include <src/osg/positionattitudetransform.h>
+#include <osg/positionattitudetransform.h>
 
 class Utils : public QObject
 {

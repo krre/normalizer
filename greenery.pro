@@ -15,7 +15,7 @@ CONFIG(debug, debug|release) {
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include \
 
-include(../qosg/qosg.pri)
+include(../qosg/src/qosg.pri)
 
 HEADERS += \
     src/cpp/settings.h \
