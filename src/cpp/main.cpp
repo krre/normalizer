@@ -2,6 +2,7 @@
 #include <QtDebug>
 #include <QtQml>
 #include <sprout/project.h>
+#include <src/registerosgtypes.h>
 #include "version.h"
 #include "settings.h"
 #include "utils.h"
@@ -38,6 +39,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
 
     registerTypes();
+    registerOsgTypes();
 
     Utils utils;
     Project project;

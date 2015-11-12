@@ -5,72 +5,29 @@ TEMPLATE = app
 
 LIBS += \
     -L$$(SPROUT_HOME)/bin \
-    -L$$(OSG_HOME)/lib \
-    -L$$(OSG_HOME)/lib64
 
 CONFIG(debug, debug|release) {
-    LIBS += -lsproutd -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd
+    LIBS += -lsproutd
 } else {
-    LIBS += -lsprout -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads
+    LIBS += -lsprout
 }
 
 INCLUDEPATH += \
     $$(SPROUT_HOME)/include \
-    $$(OSG_HOME)/include
+
+include(../qosg/qosg.pri)
 
 HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
     src/cpp/version.h \
     src/cpp/registertypes.h \
-    src/cpp/osgbridge/osgViewer/viewer.h \
-    src/cpp/osgbridge/osg/node.h \
-    src/cpp/osgbridge/osg/group.h \
-    src/cpp/osgbridge/osg/transform.h \
-    src/cpp/osgbridge/osg/box.h \
-    src/cpp/osgbridge/osg/geode.h \
-    src/cpp/osgbridge/osg/shapedrawable.h \
-    src/cpp/osgbridge/osg/sphere.h \
-    src/cpp/osgbridge/osg/drawable.h \
-    src/cpp/osgbridge/osg/object.h \
-    src/cpp/osgbridge/osg/shape.h \
-    src/cpp/osgbridge/osgText/textbase.h \
-    src/cpp/osgbridge/osgText/text.h \
-    src/cpp/osgbridge/osgText/text3d.h \
-    src/cpp/osgbridge/osg/camera.h \
-    src/cpp/osgbridge/converter.h \
-    src/cpp/osgbridge/osgDB/osgdb.h \
-    src/cpp/osgbridge/osg/cylinder.h \
-    src/cpp/osgbridge/osgGA/pickhandler.h \
-    src/cpp/osgbridge/osg/positionattitudetransform.h \
-    src/cpp/osgbridge/osg/boundingsphere.h \
     src/cpp/process.h
 
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/osgbridge/osgViewer/viewer.cpp \
-    src/cpp/osgbridge/osg/node.cpp \
-    src/cpp/osgbridge/osg/group.cpp \
-    src/cpp/osgbridge/osg/transform.cpp \
-    src/cpp/osgbridge/osg/box.cpp \
-    src/cpp/osgbridge/osg/geode.cpp \
-    src/cpp/osgbridge/osg/shapedrawable.cpp \
-    src/cpp/osgbridge/osg/sphere.cpp \
-    src/cpp/osgbridge/osg/drawable.cpp \
-    src/cpp/osgbridge/osg/object.cpp \
-    src/cpp/osgbridge/osg/shape.cpp \
-    src/cpp/osgbridge/osgText/textbase.cpp \
-    src/cpp/osgbridge/osgText/text.cpp \
-    src/cpp/osgbridge/osgText/text3d.cpp \
-    src/cpp/osgbridge/osg/camera.cpp \
-    src/cpp/osgbridge/converter.cpp \
-    src/cpp/osgbridge/osgDB/osgdb.cpp \
-    src/cpp/osgbridge/osg/cylinder.cpp \
-    src/cpp/osgbridge/osgGA/pickhandler.cpp \
-    src/cpp/osgbridge/osg/positionattitudetransform.cpp \
-    src/cpp/osgbridge/osg/boundingsphere.cpp \
     src/cpp/process.cpp
 
 DISTFILES += \

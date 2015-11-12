@@ -1,7 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import Greenery 1.0
-import OsgBridge 1.0 as Osg
+import Osg 1.0 as Osg
 import "../sheets"
 import "../units"
 import "../../js/command.js" as Command
