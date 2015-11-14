@@ -18,7 +18,7 @@ Dialog {
         session.checked = SETTINGS.autoLoadSession()
     }
 
-    onVisibilityChanged: if (!visible) root.destroy()
+    onVisibleChanged: if (!visible) root.destroy()
     onAccepted: {
         SETTINGS.setSproutPath(sproutPath.text)
         SETTINGS.setAutoLoadSession(session.checked)
