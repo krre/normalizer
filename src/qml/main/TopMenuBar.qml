@@ -142,7 +142,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Options...")
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/Options.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Options.qml")
         }
     }
 
@@ -191,7 +191,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("About Greenery...")
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/About.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
         }
     }
 }
