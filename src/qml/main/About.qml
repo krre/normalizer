@@ -6,6 +6,7 @@ MessageDialogBase {
     title: qsTr("About Greenery")
     standardButtons: StandardButton.Ok
     text: String("<h3>Greenery %1</h3>
-          Build on %2<br>
-          Copyright (c) 2015, Vladimir Zarypov").arg(VERSION.full).arg(UTILS.buildDate)
+          Based on Qt %2<br>
+          Build on %3<br><br>
+          Copyright (c) 2015, Vladimir Zarypov").arg(VERSION.full).arg(UTILS.qtVersion).arg(UTILS.buildDate)
 }
