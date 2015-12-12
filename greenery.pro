@@ -61,8 +61,8 @@ DISTFILES += \
     src/qml/main/Options.qml \
     src/qml/main/About.qml \
     src/qml/main/Output.qml \
-    src/qml/main/TopMenuBar.qml \
-    src/qml/main/WorkArea.qml
+    src/qml/main/WorkArea.qml \
+    src/qml/main/MainMenu.qml
 
 RESOURCES += \
     src/greenery.qrc \

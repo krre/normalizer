@@ -13,7 +13,7 @@ ApplicationWindow {
     width: 800
     height: 600
     visible: true
-    menuBar: TopMenuBar { id: topMenuBar }
+    menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: {
         if (!Utils.loadGeometry()) {
@@ -27,7 +27,7 @@ ApplicationWindow {
     }
 
     onClosing: {
-        Utils.saveRecentFiles(topMenuBar.recentFilesModel)
+        Utils.saveRecentFiles(mainMenu.recentFilesModel)
         if (SETTINGS.autoLoadSession()) {
             Utils.saveSession()
         }

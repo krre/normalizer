@@ -35,7 +35,7 @@ function openFile(path) {
 }
 
 function addRecentFile(path) {
-    var model = topMenuBar.recentFilesModel
+    var model = mainMenu.recentFilesModel
     // Prevention of duplication of filePath and raising it on top.
     for (var i = 0; i < model.count; i++) {
         if (model.get(i).filePath === path) {
@@ -62,7 +62,7 @@ function saveRecentFiles(model) {
 
 function loadRecentFiles() {
     var list = SETTINGS.recentFiles()
-    var model = topMenuBar.recentFilesModel
+    var model = mainMenu.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
         if (UTILS.isFileExists(path)) {
