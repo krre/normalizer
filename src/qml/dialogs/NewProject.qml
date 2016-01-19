@@ -2,10 +2,11 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Dialogs 1.2
-import "../../../js/utils.js" as Utils
-import "../../../js/dialog.js" as Dialog
+import "../components"
+import "../../js/utils.js" as Utils
+import "../../js/dialog.js" as Dialog
 
-DialogBase {
+WindowDialog {
     id: root
     title: qsTr("New Project")
     width: 500
@@ -21,7 +22,7 @@ DialogBase {
             }
         }
         if (UTILS.isFileExists(path)) {
-            isDestroyOnHide = false
+            stayOnScreen = true
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
                 UTILS.removeFile(path)

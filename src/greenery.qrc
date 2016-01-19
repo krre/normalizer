@@ -13,7 +13,7 @@
         <file>qml/components/messagedialog/MessageDialogQuestion.qml</file>
         <file>qml/components/messagedialog/MessageDialogWarning.qml</file>
         <file>js/command.js</file>
-        <file>qml/main/Options.qml</file>
+        <file>qml/dialogs/Options.qml</file>
         <file>qml/main/WorkArea.qml</file>
         <file>qml/main/Output.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
@@ -27,10 +27,9 @@
         <file>qml/units/Argument.qml</file>
         <file>qml/units/UnitBase.qml</file>
         <file>qml/units/UnitSet.qml</file>
-        <file>qml/components/dialog/DialogBase.qml</file>
-        <file>qml/components/dialog/EditUnitDialog.qml</file>
-        <file>qml/components/dialog/NewProjectDialog.qml</file>
-        <file>qml/components/dialog/InfoUnitDialog.qml</file>
+        <file>qml/dialogs/EditUnit.qml</file>
+        <file>qml/dialogs/NewProject.qml</file>
+        <file>qml/dialogs/InfoUnit.qml</file>
         <file>qml/components/WindowDialog.qml</file>
         <file>qml/components/ButtonBase.qml</file>
     </qresource>

@@ -12,7 +12,7 @@ MenuBar {
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/dialog/NewProjectDialog.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/dialogs/NewProject.qml")
         }
 
         MenuItem {
@@ -142,7 +142,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Options...")
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Options.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/dialogs/Options.qml")
         }
     }
 

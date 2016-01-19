@@ -54,17 +54,16 @@ DISTFILES += \
     src/qml/units/Instruction.qml \
     src/qml/units/UnitBase.qml \
     src/qml/units/UnitSet.qml \
-    src/qml/components/dialog/EditUnitDialog.qml \
-    src/qml/components/dialog/DialogBase.qml \
-    src/qml/components/dialog/NewProjectDialog.qml \
-    src/qml/components/dialog/InfoUnitDialog.qml \
-    src/qml/main/Options.qml \
     src/qml/main/About.qml \
     src/qml/main/Output.qml \
     src/qml/main/WorkArea.qml \
     src/qml/main/MainMenu.qml \
     src/qml/components/WindowDialog.qml \
-    src/qml/components/ButtonBase.qml
+    src/qml/components/ButtonBase.qml \
+    src/qml/dialogs/EditUnit.qml \
+    src/qml/dialogs/InfoUnit.qml \
+    src/qml/dialogs/NewProject.qml \
+    src/qml/dialogs/Options.qml
 
 RESOURCES += \
     src/greenery.qrc \

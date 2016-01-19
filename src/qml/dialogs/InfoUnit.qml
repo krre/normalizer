@@ -1,19 +1,16 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
-import "../../../js/command.js" as Command
-import "../../../js/world.js" as World
+import QtQuick.Dialogs 1.2
+import "../components"
+import "../../js/command.js" as Command
 
-DialogBase {
+WindowDialog {
     id: root
     property var unit
-    title: qsTr("Edit Unit")
+    title: qsTr("Info Unit")
     width: 400
-
-    onAccepted: {
-        World.editModule(unit.unitId, arg.text)
-        unit.arg = arg.text
-    }
+    standardButtons: StandardButton.Ok
 
     onVisibleChanged: commandState = Command.Ready
 
@@ -24,11 +21,23 @@ DialogBase {
         rowSpacing: 10
 
         Label {
-            text: qsTr("Unit Type:")
+            text: qsTr("Title:")
+        }
+
+        TextField {
+            text: unit.title
+            Layout.fillWidth: true
+            readOnly: true
         }
 
         Label {
-            text: unit.title
+            text: qsTr("Type:")
+        }
+
+        TextField {
+            text: unit.type
+            Layout.fillWidth: true
+            readOnly: true
         }
 
         Label {
@@ -36,10 +45,9 @@ DialogBase {
         }
 
         TextField {
-            id: arg
             text: unit.arg
             Layout.fillWidth: true
-            Component.onCompleted: forceActiveFocus()
+            readOnly: true
         }
     }
 }

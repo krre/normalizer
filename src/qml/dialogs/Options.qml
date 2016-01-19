@@ -1,24 +1,21 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
-import QtQuick.Dialogs 1.2
+import "../components"
 import "../../js/utils.js" as Utils
 
-Dialog {
+WindowDialog {
     id: root
     title: qsTr("Options")
     width: 400
     height: 200
     visible: true
-    modality: Qt.ApplicationModal
-    standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     Component.onCompleted: {
         sproutPath.text = Settings.value("Path", "sprout", "")
         session.checked = Settings.value("Common", "autoLoadSession", false)
     }
 
-    onVisibleChanged: if (!visible) root.destroy()
     onAccepted: {
         Settings.setValue("Path", "sprout", sproutPath.text)
         Settings.setValue("Common", "autoLoadSession", session.checked)

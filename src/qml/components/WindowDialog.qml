@@ -10,8 +10,6 @@ Window {
     property int standardButtons: StandardButton.Ok | StandardButton.Cancel
     property bool stayOnScreen
     id: root
-    width: 500
-    height: 500
     minimumWidth: 200
     minimumHeight: 200
     visible: true
