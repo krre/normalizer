@@ -29,8 +29,6 @@ WindowDialog {
                 Utils.newFile(directory.text, name.text)
                 root.destroy()
             })
-
-            dialog.no.connect(function() { root.open() })
         } else {
             Utils.newFile(directory.text, name.text)
         }
