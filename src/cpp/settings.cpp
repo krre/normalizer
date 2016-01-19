@@ -7,150 +7,62 @@ Settings::Settings(QObject* parent) : QObject(parent)
     settings->setIniCodec("UTF-8");
 }
 
-void Settings::setGeometry(const QMap<QString, int> &geometry)
+void Settings::setValue(const QString& group, const QString& key, const QVariant& value)
 {
-    settings->beginGroup("Geometry");
-        settings->setValue("x", geometry["x"]);
-        settings->setValue("y", geometry["y"]);
-        settings->setValue("width", geometry["width"]);
-        settings->setValue("height", geometry["height"]);
+    settings->beginGroup(group);
+    settings->setValue(key, value);
+    settings->endGroup();
+}
+
+QVariant Settings::value(const QString& group, const QString& key, const QVariant& defaultValue)
+{
+    return settings->value(QString("%1/%2").arg(group).arg(key), defaultValue);
+}
+
+void Settings::setMap(const QString& group, const QVariantMap& map)
+{
+    settings->beginGroup(group);
+    QMapIterator<QString, QVariant> i(map);
+    while (i.hasNext()) {
+        i.next();
+        settings->setValue(i.key(), i.value());
+    }
+    settings->endGroup();
+}
+
+QVariantMap Settings::map(const QString& group)
+{
+    settings->beginGroup(group);
+    QVariantMap map;
+    QStringListIterator i(settings->allKeys());
+    while (i.hasNext()) {
+        QString key = i.next();
+        map[key] = settings->value(key);
+    }
+    settings->endGroup();
+    return map;
+}
+
+void Settings::setList(const QString& group, const QStringList& list)
+{
+    settings->remove(group);
+
+    settings->beginGroup(group);
+        for (int i = 0; i < list.count(); i++) {
+            settings->setValue(QString::number(i), list.at(i));
+        }
         settings->endGroup();
 }
 
-void Settings::setGeometryVar(const QVariantMap& geometry)
+QStringList Settings::list(const QString& group)
 {
-    settings->beginGroup("Geometry");
-        settings->setValue("x", geometry["x"].toString());
-        settings->setValue("y", geometry["y"].toString());
-        settings->setValue("width", geometry["width"].toString());
-        settings->setValue("height", geometry["height"].toString());
-    settings->endGroup();
-}
-
-QMap<QString, int> Settings::geometry()
-{
-    settings->beginGroup("Geometry");
-        QMap<QString, int> map;
+    settings->beginGroup(group);
         QStringList keys = settings->allKeys();
-        if (keys.count()) {
-            map["x"] = settings->value("x").toInt();
-            map["y"] = settings->value("y").toInt();
-            map["width"] = settings->value("width").toInt();
-            map["height"] = settings->value("height").toInt();
-        }
-    settings->endGroup();
-
-    return map;
-}
-
-QVariantMap Settings::geometryVar()
-{
-    settings->beginGroup("Geometry");
-        QVariantMap map;
-        QStringList keys = settings->allKeys();
-        if (keys.count()) {
-            map["x"] = settings->value("x").toString();
-            map["y"] = settings->value("y").toString();
-            map["width"] = settings->value("width").toString();
-            map["height"] = settings->value("height").toString();
-        }
-    settings->endGroup();
-
-    return map;
-}
-
-void Settings::setLang(const QString& lang)
-{
-    settings->beginGroup("i18n");
-        settings->setValue("lang", lang);
-    settings->endGroup();
-}
-
-QString Settings::lang()
-{
-    return settings->value("i18n/lang").toString();
-}
-
-void Settings::setRecentFiles(const QStringList& fileList)
-{
-    settings->remove("Recent");
-
-    settings->beginGroup("Recent");
-        for (int i = 0; i < fileList.count(); i++) {
-            settings->setValue(QString::number(i), fileList.at(i));
-        }
-    settings->endGroup();
-}
-
-QStringList Settings::recentFiles()
-{
-    settings->beginGroup("Recent");
-        QStringList keys = settings->allKeys();
-        QStringList values;
+        QStringList list;
         for (int i = 0; i < keys.count(); i++) {
-            values.append(settings->value(keys.at(i)).toString());
+            list.append(settings->value(keys.at(i)).toString());
         }
     settings->endGroup();
 
-    return values;
-}
-
-void Settings::setSession(const QStringList& fileList)
-{
-    settings->remove("Session");
-
-    settings->beginGroup("Session");
-        for (int i = 0; i < fileList.count(); i++) {
-            settings->setValue(QString::number(i), fileList.at(i));
-        }
-    settings->endGroup();
-}
-
-QStringList Settings::session()
-{
-    settings->beginGroup("Session");
-        QStringList keys = settings->allKeys();
-        QStringList values;
-        for (int i = 0; i < keys.count(); i++) {
-            values.append(settings->value(keys.at(i)).toString());
-        }
-    settings->endGroup();
-
-    return values;
-}
-
-void Settings::setSproutPath(const QString& path)
-{
-    settings->beginGroup("Sprout");
-        settings->setValue("path", path);
-    settings->endGroup();
-}
-
-QString Settings::sproutPath()
-{
-    return settings->value("Sprout/path").toString();
-}
-
-void Settings::setRecentDirectory(const QString& path)
-{
-    settings->beginGroup("RecentDirectory");
-        settings->setValue("path", path);
-    settings->endGroup();
-}
-
-QString Settings::recentDirectory()
-{
-    return settings->value("RecentDirectory/path").toString();
-}
-
-void Settings::setAutoLoadSession(bool value)
-{
-    settings->beginGroup("AutoLoad");
-        settings->setValue("session", value);
-    settings->endGroup();
-}
-
-bool Settings::autoLoadSession()
-{
-    return settings->value("AutoLoad/session").toBool();
+    return list;
 }

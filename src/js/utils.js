@@ -16,7 +16,7 @@ function newFile(directory, name) {
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
-    SETTINGS.setRecentDirectory(directory)
+    SETTINGS.setValue("Path", "recentDirectory", directory)
 }
 
 function openFile(path) {
@@ -49,7 +49,8 @@ function addRecentFile(path) {
     }
 }
 
-function saveRecentFiles(model) {
+function saveRecentFiles() {
+    var model = mainMenu.recentFilesModel
     var list = []
     for (var i = 0; i < model.count; i++) {
         var path = model.get(i).filePath
@@ -57,11 +58,11 @@ function saveRecentFiles(model) {
             list.push(path)
         }
     }
-    SETTINGS.setRecentFiles(list)
+    SETTINGS.setList("RecentFiles", list)
 }
 
 function loadRecentFiles() {
-    var list = SETTINGS.recentFiles()
+    var list = SETTINGS.list("RecentFiles")
     var model = mainMenu.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
@@ -79,37 +80,17 @@ function saveSession() {
             list.push(path)
         }
     }
-    SETTINGS.setSession(list)
+    SETTINGS.setList("Session", list)
 }
 
 function loadSession() {
-    var list = SETTINGS.session()
-    for (var i = 0; i < list.length; i++) {
-        var path = list[i]
-        if (UTILS.isFileExists(path)) {
-            openFile(list[i])
+    var list = SETTINGS.list("Session")
+    if (list) {
+        for (var i = 0; i < list.length; i++) {
+            var path = list[i]
+            if (UTILS.isFileExists(path)) {
+                openFile(list[i])
+            }
         }
-    }
-}
-
-function saveGeometry() {
-    var map = {}
-    map.x = mainRoot.x
-    map.y = mainRoot.y
-    map.width = mainRoot.width
-    map.height = mainRoot.height
-    SETTINGS.setGeometryVar(map)
-}
-
-function loadGeometry() {
-    var map = SETTINGS.geometryVar()
-    if (Object.keys(map).length) {
-        mainRoot.x = map.x
-        mainRoot.y = map.y
-        mainRoot.width = map.width
-        mainRoot.height = map.height
-        return true
-    } else {
-        return false
     }
 }

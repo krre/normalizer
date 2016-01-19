@@ -122,7 +122,7 @@ MenuBar {
             text: qsTr("Run")
             shortcut: "F9"
             enabled: currentTab && currentTab.filePath
-            onTriggered: currentTab.process.run(SETTINGS.sproutPath(), currentTab.filePath)
+            onTriggered: currentTab.process.run(SETTINGS.value("Path", "sprout"), currentTab.filePath)
         }
     }
 

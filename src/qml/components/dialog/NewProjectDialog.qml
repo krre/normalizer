@@ -59,7 +59,7 @@ DialogBase {
             TextField {
                 id: directory
                 Layout.fillWidth: true
-                text: SETTINGS.recentDirectory() ? SETTINGS.recentDirectory() : UTILS.homePath
+                text: SETTINGS.value("Path", "recentDirectory", UTILS.homePath)
             }
 
             Button {
