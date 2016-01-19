@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     engine.rootContext()->setContextProperty("PROJECT", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
-    engine.rootContext()->setContextProperty("SETTINGS", &settings);
+    engine.rootContext()->setContextProperty("Settings", &settings);
     engine.rootContext()->setContextProperty("VERSION", &version);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));

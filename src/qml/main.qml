@@ -10,30 +10,30 @@ ApplicationWindow {
     id: mainRoot
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     title: "Greenery"
-    width: SETTINGS.value("Main", "width", 800)
-    height: SETTINGS.value("Main", "height", 600)
+    width: Settings.value("Main", "width", 800)
+    height: Settings.value("Main", "height", 600)
     visible: true
     menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: {
-        x = SETTINGS.value("Main", "x", (Screen.width - width) / 2)
-        y = SETTINGS.value("Main", "y", (Screen.height - height) / 2)
+        x = Settings.value("Main", "x", (Screen.width - width) / 2)
+        y = Settings.value("Main", "y", (Screen.height - height) / 2)
 
         Utils.loadRecentFiles()
-        if (SETTINGS.value("Common", "autoLoadSession", false)) {
+        if (Settings.value("Common", "autoLoadSession", false)) {
             Utils.loadSession()
         }
     }
 
     onClosing: {
-        SETTINGS.setValue("Main", "x", x)
-        SETTINGS.setValue("Main", "y", y)
-        SETTINGS.setValue("Main", "width", width)
-        SETTINGS.setValue("Main", "height", height)
+        Settings.setValue("Main", "x", x)
+        Settings.setValue("Main", "y", y)
+        Settings.setValue("Main", "width", width)
+        Settings.setValue("Main", "height", height)
 
         Utils.saveRecentFiles()
 
-        if (SETTINGS.value("Common", "autoloadSession")) {
+        if (Settings.value("Common", "autoloadSession")) {
             Utils.saveSession()
         }
 

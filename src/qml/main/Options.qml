@@ -14,14 +14,14 @@ Dialog {
     standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     Component.onCompleted: {
-        sproutPath.text = SETTINGS.value("Path", "sprout", "")
-        session.checked = SETTINGS.value("Common", "autoLoadSession", false)
+        sproutPath.text = Settings.value("Path", "sprout", "")
+        session.checked = Settings.value("Common", "autoLoadSession", false)
     }
 
     onVisibleChanged: if (!visible) root.destroy()
     onAccepted: {
-        SETTINGS.setValue("Path", "sprout", sproutPath.text)
-        SETTINGS.setValue("Common", "autoLoadSession", session.checked)
+        Settings.setValue("Path", "sprout", sproutPath.text)
+        Settings.setValue("Common", "autoLoadSession", session.checked)
     }
 
     GridLayout {

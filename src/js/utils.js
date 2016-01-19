@@ -16,7 +16,7 @@ function newFile(directory, name) {
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
-    SETTINGS.setValue("Path", "recentDirectory", directory)
+    Settings.setValue("Path", "recentDirectory", directory)
 }
 
 function openFile(path) {
@@ -58,11 +58,11 @@ function saveRecentFiles() {
             list.push(path)
         }
     }
-    SETTINGS.setList("RecentFiles", list)
+    Settings.setList("RecentFiles", list)
 }
 
 function loadRecentFiles() {
-    var list = SETTINGS.list("RecentFiles")
+    var list = Settings.list("RecentFiles")
     var model = mainMenu.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
@@ -80,11 +80,11 @@ function saveSession() {
             list.push(path)
         }
     }
-    SETTINGS.setList("Session", list)
+    Settings.setList("Session", list)
 }
 
 function loadSession() {
-    var list = SETTINGS.list("Session")
+    var list = Settings.list("Session")
     if (list) {
         for (var i = 0; i < list.length; i++) {
             var path = list[i]
