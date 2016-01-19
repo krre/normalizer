@@ -29,8 +29,7 @@ int main(int argc, char* argv[])
 
     parser.process(app);
 
-    bool isThreaded = parser.isSet("threaded");
-    if (isThreaded) {
+    if (parser.isSet("threaded")) {
         qputenv("QSG_RENDER_LOOP", "threaded");
     } else {
         qputenv("QSG_RENDER_LOOP", "basic");
