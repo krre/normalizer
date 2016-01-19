@@ -62,7 +62,9 @@ DISTFILES += \
     src/qml/main/About.qml \
     src/qml/main/Output.qml \
     src/qml/main/WorkArea.qml \
-    src/qml/main/MainMenu.qml
+    src/qml/main/MainMenu.qml \
+    src/qml/components/WindowDialog.qml \
+    src/qml/components/ButtonBase.qml
 
 RESOURCES += \
     src/greenery.qrc \
