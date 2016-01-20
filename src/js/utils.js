@@ -26,7 +26,7 @@ function openFile(path) {
         }
     }
 
-    var projectName = UTILS.urlToFileName(path)
+    var projectName = Core.urlToFileName(path)
     var tab = tabView.addTab(projectName)
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path, projectName: projectName })
     tabView.currentIndex = tabView.count - 1
@@ -65,7 +65,7 @@ function loadRecentFiles() {
     var model = mainMenu.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
-        if (UTILS.isFileExists(path)) {
+        if (Core.isFileExists(path)) {
             model.append({ filePath: path })
         }
     }
@@ -87,7 +87,7 @@ function loadSession() {
     if (list) {
         for (var i = 0; i < list.length; i++) {
             var path = list[i]
-            if (UTILS.isFileExists(path)) {
+            if (Core.isFileExists(path)) {
                 openFile(list[i])
             }
         }

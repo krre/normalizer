@@ -21,11 +21,11 @@ WindowDialog {
                 return
             }
         }
-        if (UTILS.isFileExists(path)) {
+        if (Core.isFileExists(path)) {
             stayOnScreen = true
             var dialog = Dialog.questionMessage(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
-                UTILS.removeFile(path)
+                Core.removeFile(path)
                 Utils.newFile(directory.text, name.text)
                 root.destroy()
             })
@@ -58,7 +58,7 @@ WindowDialog {
             TextField {
                 id: directory
                 Layout.fillWidth: true
-                text: Settings.value("Path", "recentDirectory", UTILS.homePath)
+                text: Settings.value("Path", "recentDirectory", Core.homePath)
             }
 
             Button {
@@ -66,7 +66,7 @@ WindowDialog {
                 onClicked: {
                     var fileDialog = Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogDirectory.qml", { folder: "file://" + directory.text })
                     fileDialog.accepted.connect(function() {
-                        directory.text = UTILS.urlToPath(fileDialog.fileUrl)
+                        directory.text = Core.urlToPath(fileDialog.fileUrl)
                     })
                 }
             }

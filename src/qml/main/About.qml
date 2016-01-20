@@ -8,5 +8,5 @@ MessageDialogBase {
     text: String("<h3>Greenery %1</h3>
           Based on Qt %2<br>
           Build on %3<br><br>
-          Copyright © 2015-2016, Vladimir Zarypov").arg(Qt.application.version).arg(UTILS.qtVersion).arg(UTILS.buildDate)
+          Copyright © 2015-2016, Vladimir Zarypov").arg(Qt.application.version).arg(Core.qtVersion).arg(Core.buildDate)
 }

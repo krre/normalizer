@@ -7,15 +7,15 @@ include(../qosg/src/qosg.pri)
 
 HEADERS += \
     src/cpp/settings.h \
-    src/cpp/utils.h \
     src/cpp/registertypes.h \
-    src/cpp/process.h
+    src/cpp/process.h \
+    src/cpp/core.h
 
 SOURCES += \
     src/cpp/main.cpp \
-    src/cpp/utils.cpp \
     src/cpp/settings.cpp \
-    src/cpp/process.cpp
+    src/cpp/process.cpp \
+    src/cpp/core.cpp
 
 DISTFILES += \
     README.md \

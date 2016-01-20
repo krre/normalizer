@@ -2,7 +2,7 @@
 #include <QtCore>
 #include <osg/positionattitudetransform.h>
 
-class Utils : public QObject
+class Core : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString buildDate READ buildDate CONSTANT)

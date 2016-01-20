@@ -21,7 +21,7 @@ MenuBar {
             onTriggered: {
                 var fileDialog = Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
                 fileDialog.accepted.connect(function() {
-                    Utils.openFile(UTILS.urlToPath(fileDialog.fileUrl))
+                    Utils.openFile(Core.urlToPath(fileDialog.fileUrl))
                 })
             }
         }
@@ -177,12 +177,12 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Write Current Node to File")
-            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentUnit, UTILS.homePath + "/node.osg")
+            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentUnit, Core.homePath + "/node.osg")
         }
 
         MenuItem {
             text: qsTr("Write Scene Node to File")
-            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.sceneNode, UTILS.homePath + "/scene.osg")
+            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.sceneNode, Core.homePath + "/scene.osg")
         }
     }
 

@@ -3,7 +3,7 @@
 #include <QtQml>
 #include <registerosgtypes.h>
 #include "settings.h"
-#include "utils.h"
+#include "core.h"
 #include "registertypes.h"
 
 int main(int argc, char* argv[])
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     registerTypes();
     registerOsgTypes();
 
-    Utils utils;
+    Core core;
     Settings settings;
 
 #ifdef QT_DEBUG
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     engine.rootContext()->setContextProperty("isDebug", false);
 #endif
 
-    engine.rootContext()->setContextProperty("UTILS", &utils);
+    engine.rootContext()->setContextProperty("Core", &core);
     engine.rootContext()->setContextProperty("Settings", &settings);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));

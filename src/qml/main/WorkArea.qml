@@ -20,6 +20,7 @@ Item {
     property var currentUnit
     property var currentGeode
     property var sceneNode: viewer.sceneData
+    property var sproutModel
 
     onCommandStateChanged: {
         if (commandState === Command.Ready) {

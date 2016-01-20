@@ -1,29 +1,29 @@
-#include "utils.h"
+#include "core.h"
 
-QString Utils::urlToPath(QUrl url)
+QString Core::urlToPath(QUrl url)
 {
     return url.toLocalFile();
 }
 
-QString Utils::urlToFileName(QUrl url)
+QString Core::urlToFileName(QUrl url)
 {
     return url.fileName().replace(".sprout", "");
 }
 
-bool Utils::isFileExists(const QString& filePath)
+bool Core::isFileExists(const QString& filePath)
 {
     QFileInfo checkFile(filePath);
     // check if file exists and if yes: Is it really a file and no directory?
     return checkFile.exists() && checkFile.isFile();
 }
 
-void Utils::removeFile(const QString& path)
+void Core::removeFile(const QString& path)
 {
     QDir dir;
     dir.remove(path);
 }
 
-PositionAttitudeTransform* Utils::findUnit(const PositionAttitudeTransform* parentUnit, const QString& nameUnit) const
+PositionAttitudeTransform* Core::findUnit(const PositionAttitudeTransform* parentUnit, const QString& nameUnit) const
 {
     return parentUnit->findChild<PositionAttitudeTransform*>(nameUnit);
 }

@@ -41,7 +41,7 @@ WindowDialog {
             onClicked: {
                 var fileDialog = Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml", { nameFilters: [ qsTr("All files (*)") ] })
                 fileDialog.accepted.connect(function() {
-                    sproutPath.text = UTILS.urlToPath(fileDialog.fileUrl)
+                    sproutPath.text = Core.urlToPath(fileDialog.fileUrl)
                 })
             }
         }
