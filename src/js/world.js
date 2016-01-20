@@ -3,21 +3,21 @@
 function createWorld(origin) {
     projectUnit = addProject(origin)
 
-    var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
-    var radius = 0
-    for (var i in moduleList) {
-        var module = moduleList[i]
-        var x = 0
-        var y = -(i * radius * 2 + 0.07)
-        var z = 0
-        var moduleUnit = unitSet.module.createObject(projectUnit, { unitId: module.id, arg: module.name, position: Qt.vector3d(x, y, z)} )
-        if (!radius) {
-            radius = moduleUnit.pickForm.bound.radius
-            moduleUnit.position = Qt.vector3d(x, y, z)
-        }
+//    var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
+//    var radius = 0
+//    for (var i in moduleList) {
+//        var module = moduleList[i]
+//        var x = 0
+//        var y = -(i * radius * 2 + 0.07)
+//        var z = 0
+//        var moduleUnit = unitSet.module.createObject(projectUnit, { unitId: module.id, arg: module.name, position: Qt.vector3d(x, y, z)} )
+//        if (!radius) {
+//            radius = moduleUnit.pickForm.bound.radius
+//            moduleUnit.position = Qt.vector3d(x, y, z)
+//        }
 
-        projectUnit.addChild(moduleUnit)
-    }
+//        projectUnit.addChild(moduleUnit)
+//    }
 
 /*
     var functionList = sproutDb.readRecords("SELECT * FROM Functions")
@@ -54,8 +54,8 @@ function addFloor() {
 }
 
 function addProject(parent) {
-    var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
-    var projectUnit = unitSet.project.createObject(undefined, { arg: record[0].value })
+//    var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
+    var projectUnit = unitSet.project.createObject(undefined, { arg: "name" })
     parent.addChild(projectUnit)
     return projectUnit
 }

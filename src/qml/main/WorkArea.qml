@@ -10,7 +10,6 @@ import "../../js/world.js" as World
 
 Item {
     id: root
-    property alias sproutDb: sproutDb
     property alias commandSheet: commandSheet
     property alias output: output
     property alias process: process
@@ -21,10 +20,6 @@ Item {
     property var currentUnit
     property var currentGeode
     property var sceneNode: viewer.sceneData
-
-    Component.onDestruction: {
-        sproutDb.close()
-    }
 
     onCommandStateChanged: {
         if (commandState === Command.Ready) {
@@ -46,7 +41,6 @@ Item {
 
     Component.onCompleted: {
         forceActiveFocus()
-        sproutDb.open(filePath)
         World.createWorld(sceneGroup)
         currentGeode = projectUnit.geode.name
         viewer.home()
@@ -54,10 +48,6 @@ Item {
 
     Keys.onPressed: Command.run(event)
     Keys.onEscapePressed: cancel()
-
-    SproutDb {
-        id: sproutDb
-    }
 
     Process {
         id: process

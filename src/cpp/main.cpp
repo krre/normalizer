@@ -1,7 +1,6 @@
 #include <QApplication>
 #include <QtDebug>
 #include <QtQml>
-#include <sprout/project.h>
 #include <registerosgtypes.h>
 #include "settings.h"
 #include "utils.h"
@@ -38,7 +37,6 @@ int main(int argc, char* argv[])
     registerOsgTypes();
 
     Utils utils;
-    Project project;
     Settings settings;
 
 #ifdef QT_DEBUG
@@ -47,7 +45,6 @@ int main(int argc, char* argv[])
     engine.rootContext()->setContextProperty("isDebug", false);
 #endif
 
-    engine.rootContext()->setContextProperty("Project", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("Settings", &settings);
 

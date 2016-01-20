@@ -1,19 +1,7 @@
-QT += opengl qml quick sql
+QT += opengl qml quick
 
 CONFIG += c++11
 TEMPLATE = app
-
-LIBS += \
-    -L$$(SPROUT_HOME)/bin \
-
-CONFIG(debug, debug|release) {
-    LIBS += -lsproutd
-} else {
-    LIBS += -lsprout
-}
-
-INCLUDEPATH += \
-    $$(SPROUT_HOME)/include \
 
 include(../qosg/src/qosg.pri)
 
