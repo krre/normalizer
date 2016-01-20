@@ -20,7 +20,6 @@ include(../qosg/src/qosg.pri)
 HEADERS += \
     src/cpp/settings.h \
     src/cpp/utils.h \
-    src/cpp/version.h \
     src/cpp/registertypes.h \
     src/cpp/process.h
 

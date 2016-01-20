@@ -3,7 +3,6 @@
 #include <QtQml>
 #include <sprout/project.h>
 #include <registerosgtypes.h>
-#include "version.h"
 #include "settings.h"
 #include "utils.h"
 #include "registertypes.h"
@@ -13,7 +12,7 @@ int main(int argc, char* argv[])
     QApplication app(argc, argv);
 
     app.setApplicationName("Greenery");
-    QCoreApplication::setApplicationVersion(Version::full());
+    QCoreApplication::setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
     parser.setApplicationDescription("IDE for Sprout language");
@@ -40,7 +39,6 @@ int main(int argc, char* argv[])
 
     Utils utils;
     Project project;
-    Version version;
     Settings settings;
 
 #ifdef QT_DEBUG
@@ -52,7 +50,6 @@ int main(int argc, char* argv[])
     engine.rootContext()->setContextProperty("Project", &project);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("Settings", &settings);
-    engine.rootContext()->setContextProperty("VERSION", &version);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
