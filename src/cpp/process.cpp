@@ -1,5 +1,4 @@
 #include "process.h"
-#include "settings.h"
 
 Process::Process()
 {
