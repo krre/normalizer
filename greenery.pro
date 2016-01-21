@@ -27,11 +27,6 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
     src/qml/components/filedialog/FileDialogDirectory.qml \
-    src/qml/components/messagedialog/MessageDialogBase.qml \
-    src/qml/components/messagedialog/MessageDialogInformation.qml \
-    src/qml/components/messagedialog/MessageDialogQuestion.qml \
-    src/qml/components/messagedialog/MessageDialogWarning.qml \
-    src/qml/components/messagedialog/MessageDialogError.qml \
     src/qml/sheets/CommandSheet.qml \
     src/qml/main.qml \
     src/qml/units/Project.qml \
@@ -50,7 +45,8 @@ DISTFILES += \
     src/qml/dialogs/EditUnit.qml \
     src/qml/dialogs/InfoUnit.qml \
     src/qml/dialogs/NewProject.qml \
-    src/qml/dialogs/Options.qml
+    src/qml/dialogs/Options.qml \
+    src/qml/components/MessageDialogBase.qml
 
 RESOURCES += \
     src/greenery.qrc \

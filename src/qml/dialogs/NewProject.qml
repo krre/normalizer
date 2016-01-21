@@ -17,7 +17,7 @@ WindowDialog {
             var tab = tabView.getTab(i).item
             if (tabView.getTab(i).item.filePath === path) {
                 tabView.currentIndex = i
-                Dialog.infoMessage(qsTr("File is open. Close file first"))
+                Dialog.errorMessage(qsTr("File is open. Close file first"))
                 return
             }
         }
