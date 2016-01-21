@@ -35,8 +35,8 @@ function openFile(path) {
     addRecentFile(path)
 }
 
-function saveFile(path, unit) {
-    Core.saveFile(path, JSON.stringify(unit, "", 4))
+function saveFile(path, model) {
+    Core.saveFile(path, JSON.stringify(model, "", 4))
 }
 
 function addRecentFile(path) {

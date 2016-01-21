@@ -41,7 +41,7 @@ Item {
     }
 
     function save() {
-        Utils.saveFile(filePath, projectUnit)
+        Utils.saveFile(filePath, sproutModel)
     }
 
     Component.onCompleted: {

@@ -1,7 +1,9 @@
 .import "../js/utils.js" as Utils
 
 function createWorld(origin) {
-    projectUnit = addProject(origin)
+    var result = addProject(origin)
+    projectUnit = result.project
+    sproutModel = result.model
 
 //    var moduleList = sproutDb.readRecords("SELECT * FROM Modules")
 //    var radius = 0
@@ -57,7 +59,7 @@ function addProject(parent) {
     var obj = JSON.parse(Core.loadFile(filePath))
     var projectUnit = unitSet.project.createObject(undefined, { arg: obj.name })
     parent.addChild(projectUnit)
-    return projectUnit
+    return { project: projectUnit, model: obj }
 }
 
 function addModule(parent) {
