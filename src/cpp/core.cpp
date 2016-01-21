@@ -27,3 +27,30 @@ PositionAttitudeTransform* Core::findUnit(const PositionAttitudeTransform* paren
 {
     return parentUnit->findChild<PositionAttitudeTransform*>(nameUnit);
 }
+
+void Core::saveFile(const QString& filePath, const QString& data)
+{
+    QFile file(filePath);
+    if (file.open(QFile::WriteOnly | QFile::Text)) {
+        QTextStream stream(&file);
+        stream << data;
+    } else {
+        qDebug() << "Error opening file";
+    }
+    file.close();
+}
+
+QString Core::loadFile(const QString& filePath)
+{
+    QFile file(filePath);
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+        QTextStream stream(&file);
+        QString data;
+        while (!stream.atEnd()) {
+            data.append(stream.readLine());
+        }
+        return data;
+    } else {
+        return QString();
+    }
+}

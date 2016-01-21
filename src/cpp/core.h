@@ -18,4 +18,6 @@ public:
     Q_INVOKABLE static bool isFileExists(const QString& filePath);
     Q_INVOKABLE static void removeFile(const QString& path);
     Q_INVOKABLE PositionAttitudeTransform* findUnit(const PositionAttitudeTransform* parentUnit, const QString& nameUnit) const;
+    Q_INVOKABLE void saveFile(const QString& filePath, const QString &data);
+    Q_INVOKABLE QString loadFile(const QString& filePath);
 };
