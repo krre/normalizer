@@ -10,7 +10,9 @@ function createDynamicObject(parent, url, properties) {
 
 function newFile(directory, name) {
     var path = directory + "/" + name + ".sprout"
-
+    var obj = {}
+    obj.name = name
+    Core.saveFile(path, JSON.stringify(obj, "", 4))
     var tab = tabView.addTab(name)
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
