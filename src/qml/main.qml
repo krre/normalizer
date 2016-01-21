@@ -9,7 +9,7 @@ import "../js/utils.js" as Utils
 ApplicationWindow {
     id: mainRoot
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
-    title: "Greenery"
+    title: Qt.application.name
     width: Settings.value("Main", "width", 800)
     height: Settings.value("Main", "height", 600)
     visible: true

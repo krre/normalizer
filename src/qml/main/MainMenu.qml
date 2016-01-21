@@ -197,7 +197,7 @@ MenuBar {
         title: qsTr("Help")
 
         MenuItem {
-            text: qsTr("About Greenery...")
+            text: qsTr(String("About %1...").arg(Qt.application.name))
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
         }
     }
