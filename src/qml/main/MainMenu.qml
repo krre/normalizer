@@ -26,6 +26,13 @@ MenuBar {
             }
         }
 
+        MenuItem {
+            text: qsTr("Save")
+            shortcut: "Ctrl+S"
+            onTriggered: currentTab.save()
+            enabled: currentTab
+        }
+
         Menu {
             id: recentFilesMenu
             title: qsTr("Recent Files")

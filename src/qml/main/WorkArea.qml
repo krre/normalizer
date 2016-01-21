@@ -40,6 +40,10 @@ Item {
         commandState = Command.Ready
     }
 
+    function save() {
+        Utils.saveFile(filePath, projectUnit)
+    }
+
     Component.onCompleted: {
         forceActiveFocus()
         World.createWorld(sceneGroup)

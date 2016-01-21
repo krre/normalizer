@@ -12,7 +12,7 @@ function newFile(directory, name) {
     var path = directory + "/" + name + ".sprout"
     var obj = {}
     obj.name = name
-    Core.saveFile(path, JSON.stringify(obj, "", 4))
+    saveFile(path, obj)
     var tab = tabView.addTab(name)
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
     tabView.currentIndex = tabView.count - 1
@@ -33,6 +33,10 @@ function openFile(path) {
     tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path, projectName: projectName })
     tabView.currentIndex = tabView.count - 1
     addRecentFile(path)
+}
+
+function saveFile(path, unit) {
+    Core.saveFile(path, JSON.stringify(unit, "", 4))
 }
 
 function addRecentFile(path) {
