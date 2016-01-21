@@ -54,8 +54,8 @@ function addFloor() {
 }
 
 function addProject(parent) {
-//    var record = sproutDb.readRecords("SELECT value FROM Defs WHERE name='project'")
-    var projectUnit = unitSet.project.createObject(undefined, { arg: "name" })
+    var obj = JSON.parse(Core.loadFile(filePath))
+    var projectUnit = unitSet.project.createObject(undefined, { arg: obj.name })
     parent.addChild(projectUnit)
     return projectUnit
 }
