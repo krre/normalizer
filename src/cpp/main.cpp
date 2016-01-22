@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
     QApplication app(argc, argv);
 
     app.setApplicationName("Greenery");
-    QCoreApplication::setApplicationVersion("0.1.0");
+    app.setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
     parser.setApplicationDescription("IDE for Sprout language");
