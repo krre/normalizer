@@ -7,7 +7,8 @@ SOURCES += \
     src/cpp/main.cpp \
 
 RESOURCES += \
-    src/qml.qrc
+    src/qml.qrc \
+    src/js.qrc
 
 DISTFILES += \
     README.md \
