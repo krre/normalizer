@@ -14,4 +14,5 @@ DISTFILES += \
     README.md \
     src/js/utils.js \
     src/qml/main.qml \
-    src/qml/main/MainMenu.qml
+    src/qml/main/MainMenu.qml \
+    src/js/gl.js
