@@ -14,6 +14,11 @@ ApplicationWindow {
     visible: true
     menuBar: MainMenu { id: mainMenu }
 
+    Component.onCompleted: {
+        x = (Screen.width - width) / 2
+        y = (Screen.height - height) / 2
+    }
+
     Canvas3D {
         id: canvas3d
         anchors.fill: parent
