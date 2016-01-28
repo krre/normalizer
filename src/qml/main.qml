@@ -22,6 +22,7 @@ ApplicationWindow {
     Canvas3D {
         id: canvas3d
         anchors.fill: parent
+        renderOnDemand: true
 
         onInitializeGL: GL.initializeGL(canvas3d)
         onResizeGL: GL.resizeGL(canvas3d)
