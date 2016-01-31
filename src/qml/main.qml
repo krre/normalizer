@@ -4,10 +4,14 @@ import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
 import QtCanvas3D 1.1
 import "main"
+import "../js/utils.js" as Utils
 import "../js/gl.js" as GL
 
 ApplicationWindow {
     id: mainRoot
+    property var gl
+    property var scene
+    property var logger: new Utils.Logger()
     title: Qt.application.name
     width: 800
     height: 600

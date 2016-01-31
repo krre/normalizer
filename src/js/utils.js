@@ -8,3 +8,20 @@ function createDynamicObject(parent, url, properties) {
         print(component.errorString())
     }
 }
+
+function Logger() {
+    this.isEnabled = true
+    this.isInitEnabled = false
+
+    this.log = function (message) {
+        if (this.isEnabled) {
+            print(message)
+        }
+    }
+
+    this.initLog = function (message) {
+        if (this.isInitEnabled) {
+            print(message)
+        }
+    }
+}
