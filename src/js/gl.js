@@ -1,5 +1,6 @@
 var gl
 var isLogEnabled = true
+var isInitLogEnabled = false
 
 function log(message) {
     if (isLogEnabled) {
@@ -7,22 +8,28 @@ function log(message) {
     }
 }
 
+function initLog(message) {
+    if (isInitLogEnabled) {
+        print(message)
+    }
+}
+
 function initializeGL(canvas) {
-    log("*******************************************************************************************")
-    log("initializeGL ENTER...")
+    initLog("*******************************************************************************************")
+    initLog("initializeGL ENTER...")
     try {
-        log("Getting Context");
-        gl = canvas.getContext("canvas3d", { depth:true, antialias:true, alpha:false })
-        log("Context received " + gl)
+        initLog("Getting Context");
+        gl = canvas.getContext("canvas3d", { depth: true, antialias: true, alpha: false })
+        initLog("Context received " + gl)
 
         var contextConfig = gl.getContextAttributes()
-        log("Depth: " + contextConfig.alpha)
-        log("Stencil: " + contextConfig.stencil)
-        log("Antialiasing: " + contextConfig.antialias)
-        log("Premultiplied alpha: " + contextConfig.premultipliedAlpha)
-        log("Preserve drawingbuffer: " + contextConfig.preserveDrawingBuffer)
-        log("Prefer Low Power To High Performance: " + contextConfig.preferLowPowerToHighPerformance)
-        log("Fail If Major Performance Caveat: " + contextConfig.failIfMajorPerformanceCaveat)
+        initLog("Depth: " + contextConfig.alpha)
+        initLog("Stencil: " + contextConfig.stencil)
+        initLog("Antialiasing: " + contextConfig.antialias)
+        initLog("Premultiplied alpha: " + contextConfig.premultipliedAlpha)
+        initLog("Preserve drawingbuffer: " + contextConfig.preserveDrawingBuffer)
+        initLog("Prefer Low Power To High Performance: " + contextConfig.preferLowPowerToHighPerformance)
+        initLog("Fail If Major Performance Caveat: " + contextConfig.failIfMajorPerformanceCaveat)
 
         // Setup the OpenGL state
         gl.enable(gl.DEPTH_TEST)
@@ -40,12 +47,11 @@ function initializeGL(canvas) {
         gl.viewport(0, 0, canvas.width * canvas.devicePixelRatio,
                     canvas.height * canvas.devicePixelRatio)
     } catch (e){
-        log("*******************************************************************************************")
-        print("...initializeGL FAILURE!")
-        print(e)
+        initLog("*******************************************************************************************")
+        initLog("...initializeGL FAILURE!")
         print(e.message)
     }
-    log("*******************************************************************************************")
+    initLog("*******************************************************************************************")
 }
 
 function resizeGL(canvas) {
