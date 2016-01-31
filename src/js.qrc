@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>js/utils.js</file>
         <file>js/gl.js</file>
+        <file>js/style.js</file>
     </qresource>
 </RCC>

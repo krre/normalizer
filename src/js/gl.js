@@ -1,3 +1,5 @@
+.import "style.js" as Style
+
 var gl
 var isLogEnabled = true
 var isInitLogEnabled = false
@@ -40,7 +42,7 @@ function initializeGL(canvas) {
 
         gl.disable(gl.BLEND)
 
-        gl.clearColor(0.19, 0.12, 0.08, 1.0)
+        gl.clearColor(Style.bg.r, Style.bg.g, Style.bg.b, Style.bg.a)
         gl.clearDepth(1.0)
 
         // Set viewport
