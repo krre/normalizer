@@ -55,3 +55,8 @@ QString Core::loadFile(const QString& filePath)
         return QString();
     }
 }
+
+void Core::mkpath(const QString &dirPath) {
+    QDir dir;
+    dir.mkpath(dirPath);
+}

@@ -23,5 +23,6 @@ public:
     Q_INVOKABLE bool removeFile(const QString& filePath);
     Q_INVOKABLE void saveFile(const QString& filePath, const QString &data);
     Q_INVOKABLE QString loadFile(const QString& filePath);
+    Q_INVOKABLE void mkpath(const QString& dirPath);
 
 };

@@ -12,12 +12,13 @@ WindowDialog {
     height: 200
 
     onAccepted: {
-        var dirPath = Settings.value("Path", "workspace") + "/" + name.text
+        var dirPath = workspace.text + "/" + name.text
         if (Core.isDirectoryExists(dirPath)) {
             Dialog.error(qsTr(String("Directory %1 is exists").arg(dirPath)))
             stayOnScreen = true
         } else {
-            print(dirPath)
+            Core.mkpath(dirPath)
+            Core.saveFile(dirPath + "/" + name.text + ".impression", "")
         }
     }
 
@@ -42,6 +43,7 @@ WindowDialog {
         }
 
         Label {
+            id: workspace
             text: Settings.value("Path", "workspace", Core.homePath + "/impression")
         }
     }
