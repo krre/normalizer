@@ -42,7 +42,7 @@ WindowDialog {
         }
 
         Label {
-            text: Settings.value("Path", "workspace")
+            text: Settings.value("Path", "workspace", Core.homePath + "/impression")
         }
     }
 }
