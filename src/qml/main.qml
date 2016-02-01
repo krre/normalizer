@@ -6,11 +6,12 @@ import QtCanvas3D 1.1
 import "main"
 import "../js/utils.js" as Utils
 import "../js/gl.js" as GL
+import "../js/scene.js" as Scene
 
 ApplicationWindow {
     id: mainRoot
     property var gl
-    property var scene
+    property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
     title: Qt.application.name
     width: 800
