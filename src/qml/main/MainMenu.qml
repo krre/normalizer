@@ -12,6 +12,7 @@ MenuBar {
 
             MenuItem {
                 text: qsTr("Project...")
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewProject.qml")
             }
 
             MenuItem {

@@ -10,6 +10,7 @@ ApplicationWindow {
     id: mainRoot
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
+    property alias sysPalette: sysPalette
     title: Qt.application.name
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)
@@ -23,6 +24,11 @@ ApplicationWindow {
 
     onClosing: {
         Utils.saveGeometry("MainWindow")
+    }
+
+    SystemPalette {
+        id: sysPalette
+        colorGroup: SystemPalette.Active
     }
 
     TabView {
