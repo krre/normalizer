@@ -24,7 +24,13 @@ DISTFILES += \
     src/qml/main/About.qml \
     src/qml/main/WorkArea.qml \
     src/qml/components/WindowDialog.qml \
-    src/qml/components/ButtonBase.qml
+    src/qml/components/ButtonBase.qml \
+    src/qml/main/Options.qml \
+    src/qml/components/BrowseButton.qml \
+    src/qml/components/filedialog/FileDialogBase.qml \
+    src/qml/components/filedialog/FileDialogDirectory.qml \
+    src/qml/components/filedialog/FileDialogOpen.qml \
+    src/js/dialog.js
 
 HEADERS += \
     src/cpp/base/core.h \

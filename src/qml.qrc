@@ -7,5 +7,11 @@
         <file>qml/main/WorkArea.qml</file>
         <file>qml/components/ButtonBase.qml</file>
         <file>qml/components/WindowDialog.qml</file>
+        <file>qml/main/Options.qml</file>
+        <file>qml/components/BrowseButton.qml</file>
+        <file>qml/components/filedialog/FileDialogBase.qml</file>
+        <file>qml/components/filedialog/FileDialogDirectory.qml</file>
+        <file>qml/components/filedialog/FileDialogOpen.qml</file>
+        <file>js/dialog.js</file>
     </qresource>
 </RCC>
