@@ -7,6 +7,21 @@ MenuBar {
     Menu {
         title: qsTr("File")
 
+        Menu {
+            title: qsTr("New")
+
+            MenuItem {
+                text: qsTr("Project...")
+            }
+
+            MenuItem {
+                text: qsTr("File")
+                shortcut: "Ctrl+N"
+            }
+        }
+
+        MenuSeparator {}
+
         MenuItem {
             text: qsTr("Exit")
             shortcut: "Ctrl+Q"
