@@ -22,7 +22,9 @@ DISTFILES += \
     src/js/scene.js \
     src/qml/components/MessageDialogBase.qml \
     src/qml/main/About.qml \
-    src/qml/main/WorkArea.qml
+    src/qml/main/WorkArea.qml \
+    src/qml/components/WindowDialog.qml \
+    src/qml/components/ButtonBase.qml
 
 HEADERS += \
     src/cpp/base/core.h \
