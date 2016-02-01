@@ -42,8 +42,8 @@ function loadGeomerty(name) {
         y = geometry.y
         width = geometry.width
         height = geometry.height
-    } else if (Screen.width && Screen.height) {
-        x = (Screen.width - width) / 2
-        y = (Screen.height - height) / 2
+        return true
     }
+
+    return false
 }

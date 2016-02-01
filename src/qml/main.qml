@@ -20,7 +20,10 @@ ApplicationWindow {
     menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: {
-        Utils.loadGeomerty("MainWindow")
+        if (!Utils.loadGeomerty("MainWindow") && Screen.width && Screen.height) {
+            x = (Screen.width - width) / 2
+            y = (Screen.height - height) / 2
+        }
     }
 
     onClosing: {
