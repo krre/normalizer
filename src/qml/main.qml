@@ -20,8 +20,11 @@ ApplicationWindow {
     menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: {
-        x = (Screen.width - width) / 2
-        y = (Screen.height - height) / 2
+        Utils.loadGeomerty("MainWindow")
+    }
+
+    onClosing: {
+        Utils.saveGeometry("MainWindow")
     }
 
     Canvas3D {
