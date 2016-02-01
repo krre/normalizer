@@ -18,6 +18,7 @@ MenuBar {
             MenuItem {
                 text: qsTr("File")
                 shortcut: "Ctrl+N"
+                enabled: mainRoot.projectPath
             }
         }
 

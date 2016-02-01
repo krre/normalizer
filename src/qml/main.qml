@@ -11,6 +11,7 @@ ApplicationWindow {
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
     property alias sysPalette: sysPalette
+    property string projectPath
     title: Qt.application.name
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)

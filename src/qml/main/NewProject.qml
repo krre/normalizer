@@ -19,6 +19,7 @@ WindowDialog {
         } else {
             Core.mkpath(dirPath)
             Core.saveFile(dirPath + "/" + name.text + ".impression", "")
+            mainRoot.projectPath = dirPath
         }
     }
 
