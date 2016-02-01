@@ -6,6 +6,12 @@ MenuBar {
 
     Menu {
         title: qsTr("File")
+
+        MenuItem {
+            text: qsTr("Exit")
+            shortcut: "Ctrl+Q"
+            onTriggered: Qt.quit()
+        }
     }
 
     Menu {
