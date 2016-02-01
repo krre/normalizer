@@ -35,15 +35,3 @@ function saveGeometry(name) {
     Settings.setMap(name, geometry)
 }
 
-function loadGeomerty(name) {
-    var geometry = Settings.map(name)
-    if (Object.keys(geometry).length) {
-        x = geometry.x
-        y = geometry.y
-        width = geometry.width
-        height = geometry.height
-        return true
-    }
-
-    return false
-}
