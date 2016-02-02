@@ -24,12 +24,14 @@ ApplicationWindow {
         y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
         Utils.loadRecentPaths("RecentFiles", mainMenu.recentFilesModel)
         Utils.loadRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+        Utils.loadSession()
     }
 
     onClosing: {
         Utils.saveGeometry("MainWindow")
         Utils.saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
         Utils.saveRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+        Utils.saveSession()
     }
 
     SystemPalette {
@@ -39,7 +41,7 @@ ApplicationWindow {
 
     ProjectFileSystemModel {
         id: projectFileSystemModel
-        rootDir: projectPath
+        rootDir: Core.pathToDir(projectPath)
     }
 
     SplitView {

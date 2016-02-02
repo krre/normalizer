@@ -57,7 +57,10 @@ WindowDialog {
             CheckBox {
                 id: lastSession
                 text: qsTr("Restore last session")
-                checked: Settings.value("Interface", "restoreLastSession", false)
+                checked: {
+                    var value = Settings.value("Interface", "restoreLastSession", false)
+                    return typeof value === "boolean" ? value : value === "true"
+                }
             }
         }
     }

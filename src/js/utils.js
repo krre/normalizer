@@ -53,7 +53,7 @@ function openFile(path) {
 }
 
 function openProject(path) {
-    mainRoot.projectPath = Core.pathToDir(path)
+    mainRoot.projectPath = path
     addRecentPath(path, mainMenu.recentProjectsModel)
 }
 
@@ -89,6 +89,23 @@ function loadRecentPaths(group, model) {
         if (Core.isFileExists(path)) {
             model.append({ path: path })
         }
+    }
+}
+
+function loadSession() {
+    var value = Settings.value("Interface", "restoreLastSession", false)
+    var restoreLastSession = typeof value === "boolean" ? value : value === "true"
+    if (restoreLastSession) {
+        var lastProject = Settings.value("Path", "lastProject")
+        if (lastProject) {
+            openProject(lastProject)
+        }
+    }
+}
+
+function saveSession() {
+    if (Settings.value("Interface", "restoreLastSession")) {
+        Settings.setValue("Path", "lastProject", projectPath)
     }
 }
 
