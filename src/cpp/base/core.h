@@ -14,9 +14,10 @@ public:
     QString qtVersion() { return QT_VERSION_STR; }
     Q_INVOKABLE QString urlToPath(const QUrl& url) { return url.toLocalFile(); }
     Q_INVOKABLE QString urlToFileName(const QUrl& url) { return url.fileName(); }
-    Q_INVOKABLE QUrl pathToUrl(const QString& path) { return QUrl::fromLocalFile(path); }
-    Q_INVOKABLE QString pathToBaseName(const QString& path);
-    Q_INVOKABLE static QString pathToDir(const QString& path);
+    Q_INVOKABLE QUrl pathToUrl(const QString& filePath) { return QUrl::fromLocalFile(filePath); }
+    Q_INVOKABLE QString pathToBaseName(const QString& filePath);
+    Q_INVOKABLE static QString pathToDir(const QString& filePath);
+    Q_INVOKABLE QString pathToExt(const QString& filePath);
     static QString homePath() { return QStandardPaths::writableLocation(QStandardPaths::HomeLocation); }
     Q_INVOKABLE bool isFileExists(const QString& filePath);
     Q_INVOKABLE bool isDirectoryExists(const QString& dirPath);

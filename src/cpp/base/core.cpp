@@ -1,21 +1,27 @@
 #include "core.h"
 
-QString Core::pathToBaseName(const QString& path)
+QString Core::pathToBaseName(const QString& filePath)
 {
-    QFileInfo fileInfo(path);
+    QFileInfo fileInfo(filePath);
     return fileInfo.baseName();
 }
 
-QString Core::pathToDir(const QString &path)
+QString Core::pathToDir(const QString &filePath)
 {
-    QFileInfo fileInfo(path);
+    QFileInfo fileInfo(filePath);
     return fileInfo.dir().absolutePath();
+}
+
+QString Core::pathToExt(const QString &filePath)
+{
+    QFileInfo fileInfo(filePath);
+    return fileInfo.suffix();
 }
 
 bool Core::isFileExists(const QString& filePath)
 {
-    QFileInfo checkFile(filePath);
-    return checkFile.exists() && checkFile.isFile();
+    QFileInfo fileInfo(filePath);
+    return fileInfo.exists() && fileInfo.isFile();
 }
 
 bool Core::isDirectoryExists(const QString &dirPath)
