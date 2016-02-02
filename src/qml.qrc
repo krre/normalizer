@@ -15,5 +15,6 @@
         <file>js/dialog.js</file>
         <file>qml/main/NewProject.qml</file>
         <file>qml/main/NewFile.qml</file>
+        <file>qml/main/ProjectTreeView.qml</file>
     </qresource>
 </RCC>
