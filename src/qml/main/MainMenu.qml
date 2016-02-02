@@ -34,7 +34,7 @@ MenuBar {
                 dialog.accepted.connect(function() {
                     var path = Core.urlToPath(dialog.fileUrl)
                     var ext = Core.pathToExt(path)
-                    if (ext === "impression") {
+                    if (ext === "impr") {
                         Utils.openProject(path)
                     } else if (ext === "sprout") {
                         Utils.openFile(path)

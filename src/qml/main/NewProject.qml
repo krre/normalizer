@@ -18,8 +18,9 @@ WindowDialog {
             stayOnScreen = true
         } else {
             Core.mkpath(dirPath)
-            Core.saveFile(dirPath + "/" + name.text + ".impression", "")
-            mainRoot.projectPath = dirPath
+            var projectPath = dirPath + "/" + name.text + ".impr"
+            Core.saveFile(projectPath, "")
+            mainRoot.projectPath = projectPath
         }
     }
 
