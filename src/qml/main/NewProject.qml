@@ -9,7 +9,7 @@ WindowDialog {
     id: root
     title: qsTr("New Project")
     width: 400
-    height: 200
+    height: 100
 
     onAccepted: {
         var dirPath = workspace.text + "/" + name.text
