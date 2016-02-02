@@ -98,7 +98,7 @@ function loadSession() {
     var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
         var lastProject = Settings.value("Path", "lastProject")
-        if (lastProject) {
+        if (lastProject && Core.isFileExists(lastProject)) {
             openProject(lastProject)
         }
     }
