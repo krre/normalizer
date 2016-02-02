@@ -14,6 +14,7 @@ WindowDialog {
 
     onAccepted: {
         Settings.setValue("Path", "workspace", workspacePath.text)
+        Settings.setValue("Interface", "restoreLastSession", lastSession.checked)
     }
 
     ColumnLayout {
@@ -46,6 +47,17 @@ WindowDialog {
                         })
                     }
                 }
+            }
+        }
+
+        GroupBox {
+            title: qsTr("Interface")
+            Layout.preferredWidth: parent.width
+
+            CheckBox {
+                id: lastSession
+                text: qsTr("Restore last session")
+                checked: Settings.value("Interface", "restoreLastSession", false)
             }
         }
     }
