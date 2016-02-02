@@ -93,8 +93,7 @@ function loadRecentPaths(group, model) {
 }
 
 function loadSession() {
-    var value = Settings.value("Interface", "restoreLastSession", false)
-    var restoreLastSession = typeof value === "boolean" ? value : value === "true"
+    var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
         var lastProject = Settings.value("Path", "lastProject")
         if (lastProject) {
@@ -107,5 +106,9 @@ function saveSession() {
     if (Settings.value("Interface", "restoreLastSession")) {
         Settings.setValue("Path", "lastProject", projectPath)
     }
+}
+
+function variantToBool(value) {
+    return typeof value === "boolean" ? value : value === "true"
 }
 

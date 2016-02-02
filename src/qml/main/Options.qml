@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
 import "../components"
+import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
 
 WindowDialog {
@@ -57,10 +58,7 @@ WindowDialog {
             CheckBox {
                 id: lastSession
                 text: qsTr("Restore last session")
-                checked: {
-                    var value = Settings.value("Interface", "restoreLastSession", false)
-                    return typeof value === "boolean" ? value : value === "true"
-                }
+                checked: Utils.variantToBool(Settings.value("Interface", "restoreLastSession", false))
             }
         }
     }
