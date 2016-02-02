@@ -71,3 +71,24 @@ function addRecentPath(path, model) {
     }
 }
 
+function saveRecentPaths(group, model) {
+    var list = []
+    for (var i = 0; i < model.count; i++) {
+        var path = model.get(i).path
+        if (path) {
+            list.push(path)
+        }
+    }
+    Settings.setList(group, list)
+}
+
+function loadRecentPaths(group, model) {
+    var list = Settings.list(group)
+    for (var i = 0; i < list.length; i++) {
+        var path = list[i]
+        if (Core.isFileExists(path)) {
+            model.append({ path: path })
+        }
+    }
+}
+

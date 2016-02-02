@@ -22,10 +22,14 @@ ApplicationWindow {
     Component.onCompleted: {
         x = Settings.value("MainWindow", "x", (Screen.width - width) / 2)
         y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
+        Utils.loadRecentPaths("RecentFiles", mainMenu.recentFilesModel)
+        Utils.loadRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
     }
 
     onClosing: {
         Utils.saveGeometry("MainWindow")
+        Utils.saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
+        Utils.saveRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
     }
 
     SystemPalette {
