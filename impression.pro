@@ -23,7 +23,6 @@ DISTFILES += \
     src/js/scene.js \
     src/qml/components/MessageDialogBase.qml \
     src/qml/main/About.qml \
-    src/qml/main/WorkArea.qml \
     src/qml/components/WindowDialog.qml \
     src/qml/components/ButtonBase.qml \
     src/qml/main/Options.qml \
@@ -34,7 +33,8 @@ DISTFILES += \
     src/js/dialog.js \
     src/qml/main/NewProject.qml \
     src/qml/main/NewFile.qml \
-    src/qml/main/ProjectTreeView.qml
+    src/qml/main/ProjectTreeView.qml \
+    src/qml/main/Editor3D.qml
 
 HEADERS += \
     src/cpp/base/core.h \
