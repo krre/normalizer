@@ -17,7 +17,7 @@ Window {
     width: 500
     height: 500
     minimumWidth: 200
-    minimumHeight: 200
+    minimumHeight: 100
     visible: true
     modality: Qt.ApplicationModal
     color: sysPalette.window

@@ -22,6 +22,7 @@ MenuBar {
                 text: qsTr("File")
                 shortcut: "Ctrl+N"
                 enabled: mainRoot.projectPath
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewFile.qml")
             }
         }
 
