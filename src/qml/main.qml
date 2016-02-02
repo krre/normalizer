@@ -12,7 +12,7 @@ ApplicationWindow {
     property var logger: new Utils.Logger()
     property alias sysPalette: sysPalette
     property string projectPath
-    title: Qt.application.name
+    title: Qt.application.name + (projectPath ? String(" [%1]").arg(projectPath) : "")
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)
     visible: true
