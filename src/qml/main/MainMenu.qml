@@ -15,11 +15,12 @@ MenuBar {
 
             MenuItem {
                 text: qsTr("Project...")
+                shortcut: "Ctrl+Shift+N"
                 onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewProject.qml")
             }
 
             MenuItem {
-                text: qsTr("File")
+                text: qsTr("File...")
                 shortcut: "Ctrl+N"
                 enabled: mainRoot.projectPath
                 onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewFile.qml")
