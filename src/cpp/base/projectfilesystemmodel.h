@@ -9,6 +9,7 @@ class ProjectFileSystemModel : public QFileSystemModel
     Q_PROPERTY(QModelIndex rootIndex READ rootIndex NOTIFY rootIndexChanged)
 public:
     explicit ProjectFileSystemModel(QObject *parent = Q_NULLPTR);
+    Q_INVOKABLE QString path(const QModelIndex &index) { return filePath(index); }
 
     QString rootDir() const { return rootPath(); }
     void setRootDir(const QString& rootDir);

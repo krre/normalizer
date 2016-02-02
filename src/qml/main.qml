@@ -57,6 +57,8 @@ ApplicationWindow {
             model: projectFileSystemModel
             rootIndex: projectFileSystemModel.rootIndex
 
+            onDoubleClicked: Utils.openFile(projectFileSystemModel.path(index))
+
             TableViewColumn {
                 role: "fileName"
                 resizable: true
