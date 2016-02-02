@@ -9,6 +9,7 @@ TreeView {
     property string currentPath: projectFileSystemModel.path(selection.currentIndex)
     width: 200
     height: parent.height
+    frameVisible: false
     model: projectFileSystemModel
     rootIndex: projectFileSystemModel.rootIndex
     selection: itemSelectionModel
