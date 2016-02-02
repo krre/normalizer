@@ -53,8 +53,10 @@ function openFile(path) {
 }
 
 function openProject(path) {
-    mainRoot.projectPath = path
-    addRecentPath(path, mainMenu.recentProjectsModel)
+    if (path !== mainRoot.projectPath) {
+        mainRoot.projectPath = path
+        addRecentPath(path, mainMenu.recentProjectsModel)
+    }
 }
 
 function addRecentPath(path, model) {
