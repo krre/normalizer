@@ -21,6 +21,7 @@ ApplicationWindow {
     Component.onCompleted: {
         x = Settings.value("MainWindow", "x", (Screen.width - width) / 2)
         y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
+        Utils.loadGui()
         Utils.loadRecentPaths("RecentFiles", mainMenu.recentFilesModel)
         Utils.loadRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
         Utils.loadSession()
@@ -28,6 +29,7 @@ ApplicationWindow {
 
     onClosing: {
         Utils.saveGeometry("MainWindow")
+        Utils.saveGui()
         Utils.saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
         Utils.saveRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
         Utils.saveSession()
@@ -45,6 +47,7 @@ ApplicationWindow {
         ProjectTreeView {
             id: projectTreeView
             Layout.minimumWidth: 50
+            width: Settings.value("Gui", "projectTreeWidth", 200)
         }
 
         TabView {

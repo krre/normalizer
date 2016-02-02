@@ -7,7 +7,6 @@ import "../../js/utils.js" as Utils
 TreeView {
     id: root
     property string currentPath: projectFileSystemModel.path(selection.currentIndex)
-    width: 200
     height: parent.height
     frameVisible: false
     model: projectFileSystemModel

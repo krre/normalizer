@@ -48,6 +48,14 @@ function loadGeomerty(name) {
     }
 }
 
+function saveGui() {
+    Settings.setValue("Gui", "projectTreeWidth", projectTreeView.width)
+}
+
+function loadGui() {
+
+}
+
 function openFile(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
