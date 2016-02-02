@@ -84,13 +84,16 @@ ApplicationWindow {
 
                 MenuItem {
                     text: qsTr("Open File")
-                    onTriggered: {
-                        Utils.openFile(treeView.currentPath)
-                    }
+                    onTriggered: Utils.openFile(treeView.currentPath)
                 }
 
                 MenuItem {
                     text: qsTr("Remove File")
+                    onTriggered: {
+                        if (Core.pathToExt(treeView.currentPath) !== "impression") {
+                            projectFileSystemModel.removeFile(treeView.selection.currentIndex)
+                        }
+                    }
                 }
 
                 MenuItem {
