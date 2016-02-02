@@ -48,3 +48,26 @@ function loadGeomerty(name) {
     }
 }
 
+function openFile(path) {
+    addRecentPath(path, mainMenu.recentFilesModel)
+}
+
+function openProject(path) {
+    mainRoot.projectPath = Core.pathToDir(path)
+    addRecentPath(path, mainMenu.recentProjectsModel)
+}
+
+function addRecentPath(path, model) {
+    // Prevention of duplication of filePath and raising it on top
+    for (var i = 0; i < model.count; i++) {
+        if (model.get(i).path === path) {
+            model.remove(i)
+        }
+    }
+    model.insert(0, { path: path })
+    var maxRecentPaths = 10
+    if (model.count === maxRecentPaths + 1) {
+        model.remove(maxRecentPaths)
+    }
+}
+

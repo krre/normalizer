@@ -4,6 +4,8 @@ import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
 
 MenuBar {
+    property alias recentFilesModel: recentFilesModel
+    property alias recentProjectsModel: recentProjectsModel
 
     Menu {
         title: qsTr("File")
@@ -32,9 +34,75 @@ MenuBar {
                     var path = Core.urlToPath(dialog.fileUrl)
                     var ext = Core.pathToExt(path)
                     if (ext === "impression") {
-                        mainRoot.projectPath = Core.pathToDir(path)
+                        Utils.openProject(path)
+                    } else if (ext === "sprout") {
+                        Utils.openFile(path)
+                    } else {
+                        print("Error: unknown path")
                     }
                 })
+            }
+        }
+
+        Menu {
+            id: recentFilesMenu
+            title: qsTr("Recent Files")
+            enabled: recentFilesModel.count > 0
+
+            Instantiator {
+                model: recentFilesModel
+
+                MenuItem {
+                    text: model.path
+                    onTriggered: Utils.openProject(text)
+                }
+
+                onObjectAdded: recentFilesMenu.insertItem(index, object)
+                onObjectRemoved: recentFilesMenu.removeItem(object)
+            }
+
+            MenuSeparator {
+                visible: recentFilesModel.count > 0
+            }
+
+            MenuItem {
+                text: qsTr("Clear Menu")
+                onTriggered: recentFilesModel.clear()
+            }
+
+            ListModel {
+                id: recentFilesModel
+            }
+        }
+
+        Menu {
+            id: recentProjectsMenu
+            title: qsTr("Recent Projects")
+            enabled: recentProjectsModel.count > 0
+
+            Instantiator {
+                model: recentProjectsModel
+
+                MenuItem {
+                    text: model.path
+                    onTriggered: Utils.openProject(text)
+                }
+
+                onObjectAdded: recentProjectsMenu.insertItem(index, object)
+                onObjectRemoved: recentProjectsMenu.removeItem(object)
+            }
+
+            MenuSeparator {
+                visible: recentProjectsModel.count > 0
+            }
+
+            MenuItem {
+                text: qsTr("Clear Menu")
+                onTriggered: recentProjectsModel.clear()
+            }
+
+            ListModel {
+                id: recentProjectsModel
             }
         }
 
