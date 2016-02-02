@@ -41,6 +41,14 @@ MenuBar {
         MenuSeparator {}
 
         MenuItem {
+            text: qsTr("Close Project")
+            enabled: mainRoot.projectPath
+            onTriggered: mainRoot.projectPath = ""
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
             text: qsTr("Exit")
             shortcut: "Ctrl+Q"
             onTriggered: Qt.quit()
