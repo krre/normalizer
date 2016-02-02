@@ -2,6 +2,7 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
+import Impression 1.0
 import "main"
 import "../js/utils.js" as Utils
 import "../js/scene.js" as Scene
@@ -32,9 +33,35 @@ ApplicationWindow {
         colorGroup: SystemPalette.Active
     }
 
-    TabView {
-        id: tabView
+//    ProjectFileSystemModel {
+//        id: projectFileSystemModel
+//    }
+
+    SplitView {
         anchors.fill: parent
-        frameVisible: false
+
+        TreeView {
+            Layout.minimumWidth: 50
+            width: 200
+            height: parent.height
+            headerVisible: false
+            model: fileSystemModel
+            rootIndex: rootPathIndex
+
+            TableViewColumn {
+                role: "fileName"
+                resizable: true
+
+            }
+        }
+
+        TabView {
+            id: tabView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            frameVisible: false
+        }
     }
+
+
 }
