@@ -48,11 +48,7 @@ TreeView {
 
         MenuItem {
             text: qsTr("Remove File")
-            onTriggered: {
-                if (Core.pathToExt(root.currentPath) !== "impression") {
-                    projectFileSystemModel.removeFile(root.selection.currentIndex)
-                }
-            }
+            onTriggered: projectFileSystemModel.removeFile(root.selection.currentIndex)
         }
 
         MenuItem {
