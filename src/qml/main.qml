@@ -2,6 +2,7 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
+import QtQml.Models 2.2
 import Impression 1.0
 import "main"
 import "../js/utils.js" as Utils
@@ -50,16 +51,55 @@ ApplicationWindow {
 
         TreeView {
             id: treeView
+            property string currentPath: projectFileSystemModel.path(treeView.selection.currentIndex)
             Layout.minimumWidth: 50
             width: 200
             height: parent.height
-            headerVisible: false
             model: projectFileSystemModel
             rootIndex: projectFileSystemModel.rootIndex
+            selection: itemSelectionModel
 
             onDoubleClicked: Utils.openFile(projectFileSystemModel.path(index))
 
+            ItemSelectionModel {
+                id: itemSelectionModel
+                model: projectFileSystemModel
+            }
+
+            MouseArea {
+                z: -1
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                onPressed:  {
+                    var index = treeView.indexAt(mouseX, mouseY)
+                    treeView.selection.setCurrentIndex(index, ItemSelectionModel.ClearAndSelect)
+                    if (treeView.currentPath) {
+                        fileMenu.popup()
+                    }
+                }
+            }
+
+            Menu {
+                id: fileMenu
+
+                MenuItem {
+                    text: qsTr("Open File")
+                    onTriggered: {
+                        Utils.openFile(treeView.currentPath)
+                    }
+                }
+
+                MenuItem {
+                    text: qsTr("Remove File")
+                }
+
+                MenuItem {
+                    text: qsTr("Rename File")
+                }
+            }
+
             TableViewColumn {
+                title: qsTr("Project")
                 role: "fileName"
                 resizable: true
             }
