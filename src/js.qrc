@@ -4,5 +4,6 @@
         <file>js/gl.js</file>
         <file>js/style.js</file>
         <file>js/scene.js</file>
+        <file>js/dialog.js</file>
     </qresource>
 </RCC>

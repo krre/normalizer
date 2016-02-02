@@ -33,25 +33,27 @@ ApplicationWindow {
         colorGroup: SystemPalette.Active
     }
 
-//    ProjectFileSystemModel {
-//        id: projectFileSystemModel
-//    }
+    ProjectFileSystemModel {
+        id: projectFileSystemModel
+        rootDir: projectPath
+    }
 
     SplitView {
         anchors.fill: parent
+        visible: projectPath
 
         TreeView {
+            id: treeView
             Layout.minimumWidth: 50
             width: 200
             height: parent.height
             headerVisible: false
-            model: fileSystemModel
-            rootIndex: rootPathIndex
+            model: projectFileSystemModel
+            rootIndex: projectFileSystemModel.rootIndex
 
             TableViewColumn {
                 role: "fileName"
                 resizable: true
-
             }
         }
 
@@ -62,6 +64,4 @@ ApplicationWindow {
             frameVisible: false
         }
     }
-
-
 }

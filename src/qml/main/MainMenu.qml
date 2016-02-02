@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import "../../js/utils.js" as Utils
+import "../../js/dialog.js" as Dialog
 
 MenuBar {
 
@@ -19,6 +20,21 @@ MenuBar {
                 text: qsTr("File")
                 shortcut: "Ctrl+N"
                 enabled: mainRoot.projectPath
+            }
+        }
+
+        MenuItem {
+            text: qsTr("Open...")
+            shortcut: "Ctrl+O"
+            onTriggered: {
+                var dialog = Dialog.selectFile(mainRoot)
+                dialog.accepted.connect(function() {
+                    var path = Core.urlToPath(dialog.fileUrl)
+                    var ext = Core.pathToExt(path)
+                    if (ext === "impression") {
+                        mainRoot.projectPath = Core.pathToDir(path)
+                    }
+                })
             }
         }
 
