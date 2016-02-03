@@ -9,6 +9,7 @@ Canvas3D {
     property string path
     objectName: "3d"
     renderOnDemand: true
+    visible: Qt.platform.os !== "linux"
 
     onInitializeGL: GL.initializeGL(root)
     onResizeGL: GL.resizeGL(root)
