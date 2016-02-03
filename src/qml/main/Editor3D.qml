@@ -17,7 +17,17 @@ Canvas3D {
 
     Action {
         shortcut: " "
-        onTriggered: print("space")
         enabled: root == currentTab
+        onTriggered: finder.visible = true
+    }
+
+    Action {
+        shortcut: "Esc"
+        enabled: root == currentTab
+        onTriggered: {
+            if (finder.visible) {
+                finder.visible = false
+            }
+        }
     }
 }

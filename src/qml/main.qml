@@ -8,6 +8,7 @@ import "../js/scene.js" as Scene
 
 ApplicationWindow {
     id: mainRoot
+    property alias finder: finder
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
@@ -56,6 +57,39 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             frameVisible: false
+
+            ColumnLayout {
+                id: finder
+                anchors.centerIn: parent
+                width: 200
+                height: 200
+                spacing: 0
+                visible: false
+
+                onVisibleChanged: {
+                    if (visible) {
+                        finderTextField.forceActiveFocus()
+                    } else {
+                        currentTab.forceActiveFocus()
+                    }
+                }
+
+                TextField {
+                    id: finderTextField
+                    Layout.preferredWidth: parent.width
+                }
+
+                TableView {
+                    Layout.preferredWidth: parent.width
+                    Layout.fillHeight: true
+                    alternatingRowColors: false
+                    headerVisible: false
+
+                    TableViewColumn {
+
+                    }
+                }
+            }
         }
     }
 }
