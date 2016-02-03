@@ -4,12 +4,11 @@ import QtCanvas3D 1.1
 import "../../js/gl.js" as GL
 
 Canvas3D {
-    id: canvas3d
+    id: root
     property var gl
-    anchors.fill: parent
     renderOnDemand: true
 
-    onInitializeGL: GL.initializeGL(canvas3d)
-    onResizeGL: GL.resizeGL(canvas3d)
-    onPaintGL: GL.paintGL(canvas3d)
+    onInitializeGL: GL.initializeGL(root)
+    onResizeGL: GL.resizeGL(root)
+    onPaintGL: GL.paintGL(root)
 }

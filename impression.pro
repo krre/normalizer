@@ -34,7 +34,8 @@ DISTFILES += \
     src/qml/main/NewProject.qml \
     src/qml/main/NewFile.qml \
     src/qml/main/ProjectTreeView.qml \
-    src/qml/main/Editor3D.qml
+    src/qml/main/Editor3D.qml \
+    src/qml/main/EditorText.qml
 
 HEADERS += \
     src/cpp/base/core.h \

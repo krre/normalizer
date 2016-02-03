@@ -16,5 +16,6 @@
         <file>qml/main/NewProject.qml</file>
         <file>qml/main/NewFile.qml</file>
         <file>qml/main/ProjectTreeView.qml</file>
+        <file>qml/main/EditorText.qml</file>
     </qresource>
 </RCC>
