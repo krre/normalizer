@@ -26,6 +26,22 @@ function Logger() {
     }
 }
 
+function saveSettings() {
+    saveProject()
+    saveGeometry("MainWindow")
+    saveGui()
+    saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
+    saveRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+    saveSession()
+}
+
+function loadSettings() {
+    loadGui()
+    loadRecentPaths("RecentFiles", mainMenu.recentFilesModel)
+    loadRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+    loadSession()
+}
+
 function saveGeometry(name) {
     var geometry = {}
     geometry.x = x
