@@ -47,18 +47,16 @@ void Core::saveFile(const QString& filePath, const QString& data)
     file.close();
 }
 
-QString Core::loadFile(const QString& filePath)
+QByteArray Core::loadFile(const QString& filePath)
 {
     QFile file(filePath);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QTextStream stream(&file);
-        QString data;
-        while (!stream.atEnd()) {
-            data.append(stream.readLine());
-        }
+        QByteArray data;
+        data.append(stream.readAll());
         return data;
     } else {
-        return QString();
+        return QByteArray();
     }
 }
 
