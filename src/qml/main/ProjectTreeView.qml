@@ -47,6 +47,11 @@ TreeView {
         }
 
         MenuItem {
+            text: qsTr("Open in Editor")
+            onTriggered: Utils.openFileInEditor(root.currentPath)
+        }
+
+        MenuItem {
             text: qsTr("Remove")
             onTriggered: projectFileSystemModel.removeFile(root.selection.currentIndex)
         }

@@ -60,6 +60,10 @@ function openFile(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
+function openFileInEditor(path) {
+    addRecentPath(path, mainMenu.recentFilesModel)
+}
+
 function openProject(path) {
     if (path !== mainRoot.projectPath) {
         mainRoot.projectPath = path
