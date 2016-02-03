@@ -91,9 +91,35 @@ function openFileInEditor(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
+function saveProject() {
+    var list = []
+    for (var i = 0; i < tabView.count; i++) {
+        var path = tabView.getTab(i).item.path
+        list.push(path)
+    }
+
+    projectSettings.openFiles = list
+    projectSettings.currentFile = currentTab.path
+    Core.saveFile(projectPath, JSON.stringify(projectSettings, null, 4))
+}
+
 function openProject(path) {
     if (path !== mainRoot.projectPath) {
-        mainRoot.projectPath = path
+        projectPath = path
+        projectSettings = JSON.parse(Core.loadFile(path))
+        var currentIndex = -1
+        for (var i = 0; i < projectSettings.openFiles.length; i++) {
+            var filePath = projectSettings.openFiles[i]
+            openFile(filePath)
+            if (projectSettings.currentFile && filePath === projectSettings.currentFile) {
+                currentIndex = i
+            }
+        }
+
+        if (currentIndex !== -1) {
+            tabView.currentIndex = currentIndex
+        }
+
         addRecentPath(path, mainMenu.recentProjectsModel)
     }
 }

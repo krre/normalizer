@@ -8,10 +8,12 @@ import "../js/scene.js" as Scene
 
 ApplicationWindow {
     id: mainRoot
+    property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
     property alias sysPalette: sysPalette
     property string projectPath
+    property var projectSettings: Object()
     title: Qt.application.name + (projectPath ? String(" [%1]").arg(projectPath) : "")
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)
@@ -28,6 +30,7 @@ ApplicationWindow {
     }
 
     onClosing: {
+        Utils.saveProject()
         Utils.saveGeometry("MainWindow")
         Utils.saveGui()
         Utils.saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
