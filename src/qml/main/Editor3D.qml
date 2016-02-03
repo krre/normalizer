@@ -13,4 +13,10 @@ Canvas3D {
     onInitializeGL: GL.initializeGL(root)
     onResizeGL: GL.resizeGL(root)
     onPaintGL: GL.paintGL(root)
+
+    Action {
+        shortcut: " "
+        onTriggered: print("space")
+        enabled: root == currentTab
+    }
 }

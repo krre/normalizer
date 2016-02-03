@@ -26,6 +26,12 @@ ApplicationWindow {
         Utils.loadSettings()
     }
 
+    onCurrentTabChanged: {
+        if (currentTab) {
+            currentTab.forceActiveFocus()
+        }
+    }
+
     onClosing: {
         Utils.saveSettings()
     }
