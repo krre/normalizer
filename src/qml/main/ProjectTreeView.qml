@@ -42,17 +42,17 @@ TreeView {
         id: fileMenu
 
         MenuItem {
-            text: qsTr("Open File")
+            text: qsTr("Open")
             onTriggered: Utils.openFile(root.currentPath)
         }
 
         MenuItem {
-            text: qsTr("Remove File")
+            text: qsTr("Remove")
             onTriggered: projectFileSystemModel.removeFile(root.selection.currentIndex)
         }
 
         MenuItem {
-            text: qsTr("Rename File")
+            text: qsTr("Rename")
         }
     }
 
