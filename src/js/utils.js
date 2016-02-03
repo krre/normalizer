@@ -57,10 +57,37 @@ function loadGui() {
 }
 
 function openFile(path) {
+    if (Core.pathToExt(path) !== "sprout") {
+        openFileInEditor(path)
+        return
+    }
+
+    for (var i = 0; i < tabView.count; i++) {
+        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.objectName === "3d") {
+            tabView.currentIndex = i
+            return
+        }
+    }
+
+    var name = Core.urlToFileName(path)
+    var tab = tabView.addTab(name)
+    tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
+    tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
 function openFileInEditor(path) {
+    for (var i = 0; i < tabView.count; i++) {
+        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.objectName === "2d") {
+            tabView.currentIndex = i
+            return
+        }
+    }
+
+    var name = Core.urlToFileName(path)
+    var tab = tabView.addTab(name)
+    tab.setSource("qrc:/qml/main/EditorText.qml", { path: path })
+    tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 

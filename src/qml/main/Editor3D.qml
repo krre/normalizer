@@ -6,6 +6,8 @@ import "../../js/gl.js" as GL
 Canvas3D {
     id: root
     property var gl
+    property string path
+    objectName: "3d"
     renderOnDemand: true
 
     onInitializeGL: GL.initializeGL(root)
