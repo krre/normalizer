@@ -1,8 +1,9 @@
 var operators = [
-    { name: "Print", shortcut: "P", action: printOperator },
-    { name: "Add", shortcut: "Ctrl+A", action: addOperator },
-    { name: "Remove", shortcut: "Ctrl+R", action: removeOperator },
-    { name: "Update", shortcut: "Ctrl+U", action: updateOperator }
+    { name: "Print", shortcut: "P", action: printOp },
+    { name: "Flow", shortcut: "F", action: flowOp },
+    { name: "Add", shortcut: "Ctrl+A", action: addOp },
+    { name: "Remove", shortcut: "Ctrl+R", action: removeOp },
+    { name: "Update", shortcut: "Ctrl+U", action: updateOp }
 ]
 
 function add() {
@@ -11,18 +12,22 @@ function add() {
     }
 }
 
-function printOperator() {
+function printOp() {
     print("print")
 }
 
-function addOperator() {
+function flowOp() {
+    print("flow")
+}
+
+function addOp() {
     print("add")
 }
 
-function removeOperator() {
+function removeOp() {
     print("remove")
 }
 
-function updateOperator() {
+function updateOp() {
     print("update")
 }
