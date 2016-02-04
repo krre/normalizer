@@ -35,6 +35,7 @@ Canvas3D {
 
     function save() {
         Core.saveFile(path, JSON.stringify(program, null, 4))
+        isDirty = false
     }
 
     function reload() {
