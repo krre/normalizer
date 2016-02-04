@@ -8,6 +8,7 @@ Canvas3D {
     property var program: Object()
     property var gl
     property string path
+    property bool isDirty: false
     objectName: "3d"
     renderOnDemand: true
 
