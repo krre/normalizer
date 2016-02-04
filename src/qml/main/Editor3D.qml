@@ -5,7 +5,7 @@ import "../../js/gl.js" as GL
 
 Canvas3D {
     id: root
-    property string title: Core.pathToBaseName(path) + (isDirty ? "*" : "")
+    property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
     property var program: Object()
     property var gl
     property string path
@@ -19,7 +19,9 @@ Canvas3D {
     onResizeGL: GL.resizeGL(root)
     onPaintGL: GL.paintGL(root)
 
-    onTitleChanged: {
+    onTitleChanged: updateTabTitle()
+
+    function updateTabTitle() {
         for (var i = 0; i < tabView.count; i++) {
             var tab = tabView.getTab(i)
             if (root === tab.item) {

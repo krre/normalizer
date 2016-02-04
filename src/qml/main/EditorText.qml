@@ -12,7 +12,9 @@ TextArea {
 
     onTextChanged: isDirty = true
 
-    onTitleChanged: {
+    onTitleChanged: updateTabTitle()
+
+    function updateTabTitle() {
         for (var i = 0; i < tabView.count; i++) {
             var tab = tabView.getTab(i)
             if (root === tab.item) {

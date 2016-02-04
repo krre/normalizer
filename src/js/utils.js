@@ -87,8 +87,9 @@ function openSprout(path) {
 
     var properties = {}
     properties.path = path
-    var name = Core.urlToFileName(path)
-    tabView.addTab(name).setSource("qrc:/qml/main/Editor3D.qml", properties)
+    var tab = tabView.addTab("")
+    tab.loaded.connect(function() { tab.item.updateTabTitle() })
+    tab.setSource("qrc:/qml/main/Editor3D.qml", properties)
     tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
 }
@@ -104,8 +105,8 @@ function openSproutInEditor(path) {
     var properties = {}
     properties.path = path
     properties.text = Core.loadFile(path)
-    var name = Core.urlToFileName(path)
-    var tab = tabView.addTab(name)
+    var tab = tabView.addTab("")
+    tab.loaded.connect(function() { tab.item.updateTabTitle() })
     tab.setSource("qrc:/qml/main/EditorText.qml", properties)
     tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
