@@ -5,6 +5,7 @@ import "../../js/gl.js" as GL
 
 Canvas3D {
     id: root
+    property var program: Object()
     property var gl
     property string path
     objectName: "3d"

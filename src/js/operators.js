@@ -1,3 +1,5 @@
+.import "object-factory.js" as ObjectFactory
+
 var operators = [
     { name: "Print", shortcut: "P", action: printOp },
     { name: "Flow", shortcut: "F", action: flowOp },
@@ -18,6 +20,7 @@ function printOp() {
 
 function flowOp() {
     print("flow")
+    program.flow = ObjectFactory.flow()
 }
 
 function addOp() {
