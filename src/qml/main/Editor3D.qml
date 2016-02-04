@@ -5,7 +5,7 @@ import "../../js/gl.js" as GL
 
 Canvas3D {
     id: root
-    property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
+    property string title: "{ " + Core.pathToFileName(path) + (isDirty ? "*" : "") + " }"
     property var program: Object()
     property var gl
     property string path
