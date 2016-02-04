@@ -22,7 +22,7 @@ WindowDialog {
             })
             stayOnScreen = true
         } else {
-            Core.saveFile(filePath, "")
+            Core.saveFile(filePath, "{}")
             Utils.openSprout(filePath)
         }
     }
