@@ -201,6 +201,22 @@ MenuBar {
            checkable: true
            onTriggered: checked ? mainRoot.showFullScreen() : mainRoot.showNormal()
         }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Next Tab")
+            shortcut: "Ctrl+Tab"
+            enabled: tabView.count > 1
+            onTriggered: tabView.nextTab()
+        }
+
+        MenuItem {
+            text: qsTr("Previous Tab")
+            shortcut: "Ctrl+Shift+Tab"
+            enabled: tabView.count > 1
+            onTriggered: tabView.previousTab()
+        }
     }
 
     Menu {

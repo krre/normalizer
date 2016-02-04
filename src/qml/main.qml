@@ -60,6 +60,22 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             frameVisible: false
+
+            function nextTab() {
+                if (currentIndex + 1 < count) {
+                    currentIndex++
+                } else {
+                    currentIndex = 0
+                }
+            }
+
+            function previousTab() {
+                if (currentIndex - 1 < 0) {
+                    currentIndex = count - 1
+                } else {
+                    currentIndex--
+                }
+            }
         }
     }
 }
