@@ -122,7 +122,7 @@ MenuBar {
             text: qsTr("Save")
             shortcut: "Ctrl+S"
             enabled: currentTab && currentTab.isDirty
-            onTriggered:  Utils.saveSprout()
+            onTriggered:  currentTab.save()
         }
 
         MenuItem {

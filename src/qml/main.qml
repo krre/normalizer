@@ -10,6 +10,7 @@ import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
+    property alias tabView: tabView
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()

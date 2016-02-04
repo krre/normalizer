@@ -105,7 +105,8 @@ function openSproutInEditor(path) {
     properties.path = path
     properties.text = Core.loadFile(path)
     var name = Core.urlToFileName(path)
-    tabView.addTab(name).setSource("qrc:/qml/main/EditorText.qml", properties)
+    var tab = tabView.addTab(name)
+    tab.setSource("qrc:/qml/main/EditorText.qml", properties)
     tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
 }
@@ -116,16 +117,8 @@ function saveAsSprout(path) {
     }
     currentTab.path = path
     tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(path)
-    saveSprout()
-    addRecentPath(path)
-}
-
-function saveSprout() {
-    currentTab.isDirty = false
-}
-
-function reloadSprout() {
-
+    currentTab.save()
+    addRecentPath(path, mainMenu.recentFilesModel)
 }
 
 function saveProject() {

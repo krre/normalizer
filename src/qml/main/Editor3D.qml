@@ -5,6 +5,7 @@ import "../../js/gl.js" as GL
 
 Canvas3D {
     id: root
+    property string title: Core.pathToBaseName(path) + (isDirty ? "*" : "")
     property var program: Object()
     property var gl
     property string path
@@ -12,9 +13,25 @@ Canvas3D {
     objectName: "3d"
     renderOnDemand: true
 
+    Component.onCompleted: isDirty = false
+
     onInitializeGL: GL.initializeGL(root)
     onResizeGL: GL.resizeGL(root)
     onPaintGL: GL.paintGL(root)
+
+    onTitleChanged: {
+        for (var i = 0; i < tabView.count; i++) {
+            var tab = tabView.getTab(i)
+            if (root === tab.item) {
+                tab.title = title
+                break
+            }
+        }
+    }
+
+    function save() {
+        Core.saveFile(path, JSON.stringify(program, null, 4))
+    }
 
     Action {
         shortcut: " "
