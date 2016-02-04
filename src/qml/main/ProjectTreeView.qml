@@ -47,7 +47,7 @@ TreeView {
         }
 
         MenuItem {
-            text: qsTr("Open in Editor")
+            text: qsTr("Open as Text")
             onTriggered: Utils.openSproutInEditor(root.currentPath)
         }
 
