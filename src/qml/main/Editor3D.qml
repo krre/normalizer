@@ -38,7 +38,12 @@ Canvas3D {
     }
 
     function reload() {
-        isDirty = false
+        try {
+            program = JSON.parse(Core.loadFile(path))
+            isDirty = false
+        } catch(e) {
+            print(qsTr("Opening ") + path + ": " + e)
+        }
     }
 
     Action {
