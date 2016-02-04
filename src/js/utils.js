@@ -72,9 +72,9 @@ function loadGui() {
 
 }
 
-function openFile(path) {
+function openSprout(path) {
     if (Core.pathToExt(path) !== "sprout") {
-        openFileInEditor(path)
+        openSproutInEditor(path)
         return
     }
 
@@ -93,7 +93,7 @@ function openFile(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
-function openFileInEditor(path) {
+function openSproutInEditor(path) {
     for (var i = 0; i < tabView.count; i++) {
         if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.objectName === "2d") {
             tabView.currentIndex = i
@@ -108,6 +108,24 @@ function openFileInEditor(path) {
     tabView.addTab(name).setSource("qrc:/qml/main/EditorText.qml", properties)
     tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
+}
+
+function saveAsSprout(path) {
+    if (path.substr(-7) !== ".sprout") {
+        path += ".sprout"
+    }
+    currentTab.path = path
+    tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(path)
+    saveSprout()
+    addRecentPath(path)
+}
+
+function saveSprout() {
+    currentTab.isDirty = false
+}
+
+function reloadSprout() {
+
 }
 
 function saveProject() {
@@ -129,7 +147,7 @@ function openProject(path) {
         var currentIndex = -1
         for (var i = 0; i < projectSettings.openFiles.length; i++) {
             var filePath = projectSettings.openFiles[i]
-            openFile(filePath)
+            openSprout(filePath)
             if (projectSettings.currentFile && filePath === projectSettings.currentFile) {
                 currentIndex = i
             }

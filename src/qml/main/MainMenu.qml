@@ -23,7 +23,7 @@ MenuBar {
                 text: qsTr("File...")
                 shortcut: "Ctrl+N"
                 enabled: mainRoot.projectPath
-                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewFile.qml")
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewSprout.qml")
             }
         }
 
@@ -38,7 +38,7 @@ MenuBar {
                     if (ext === "impr") {
                         Utils.openProject(path)
                     } else if (ext === "sprout") {
-                        Utils.openFile(path)
+                        Utils.openSprout(path)
                     } else {
                         print("Error: unknown path")
                     }
@@ -119,21 +119,44 @@ MenuBar {
         MenuSeparator {}
 
         MenuItem {
+            text: qsTr("Save")
+            shortcut: "Ctrl+S"
+            enabled: currentTab && currentTab.isDirty
+            onTriggered:  Utils.saveSprout()
+        }
+
+        MenuItem {
+            text: qsTr("Save As...")
+            shortcut: "Ctrl+Shift+S"
+            enabled: currentTab
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+        }
+
+        MenuItem {
+            text: qsTr("Reload")
+            shortcut: "F5"
+            enabled: currentTab
+            onTriggered: Utils.reloadSprout()
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
             text: qsTr("Close")
             shortcut: "Ctrl+W"
-            onTriggered: tabView.removeTab(tabView.currentIndex)
             enabled: tabView.count > 0
+            onTriggered: tabView.removeTab(tabView.currentIndex)
         }
 
         MenuItem {
             text: qsTr("Close All")
             shortcut: "Ctrl+Shift+W"
+            enabled: tabView.count > 0
             onTriggered: {
                 while (tabView.count > 0) {
                     tabView.removeTab(0)
                 }
             }
-            enabled: tabView.count > 0
         }
 
         MenuItem {

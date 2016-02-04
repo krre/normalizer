@@ -21,6 +21,7 @@ function printOp() {
 function flowOp() {
     print("flow")
     program.flow = ObjectFactory.flow()
+    isDirty = true
 }
 
 function addOp() {

@@ -17,13 +17,13 @@ WindowDialog {
             var dialog = Dialog.question(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
                 Core.saveFile(filePath, "")
-                Utils.openFile(filePath)
+                Utils.openSprout(filePath)
                 root.close()
             })
             stayOnScreen = true
         } else {
             Core.saveFile(filePath, "")
-            Utils.openFile(filePath)
+            Utils.openSprout(filePath)
         }
     }
 

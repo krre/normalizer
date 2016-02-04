@@ -13,7 +13,7 @@ TreeView {
     rootIndex: projectFileSystemModel.rootIndex
     selection: itemSelectionModel
 
-    onDoubleClicked: Utils.openFile(projectFileSystemModel.path(index))
+    onDoubleClicked: Utils.openSprout(projectFileSystemModel.path(index))
 
     ProjectFileSystemModel {
         id: projectFileSystemModel
@@ -43,12 +43,12 @@ TreeView {
 
         MenuItem {
             text: qsTr("Open")
-            onTriggered: Utils.openFile(root.currentPath)
+            onTriggered: Utils.openSprout(root.currentPath)
         }
 
         MenuItem {
             text: qsTr("Open in Editor")
-            onTriggered: Utils.openFileInEditor(root.currentPath)
+            onTriggered: Utils.openSproutInEditor(root.currentPath)
         }
 
         MenuItem {

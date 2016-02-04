@@ -34,13 +34,14 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogOpen.qml \
     src/js/dialog.js \
     src/qml/main/NewProject.qml \
-    src/qml/main/NewFile.qml \
     src/qml/main/ProjectTreeView.qml \
     src/qml/main/Editor3D.qml \
     src/qml/main/EditorText.qml \
     src/qml/main/Finder.qml \
     src/js/operators.js \
-    src/js/object-factory.js
+    src/js/object-factory.js \
+    src/qml/main/NewSprout.qml \
+    src/qml/components/filedialog/FileDialogSave.qml
 
 HEADERS += \
     src/cpp/base/core.h \
