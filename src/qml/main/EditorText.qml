@@ -4,9 +4,9 @@ import QtQuick.Controls 1.5
 TextArea {
     id: root
     property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
+    property string type: "2d"
     property bool isDirty: false
     property string path
-    objectName: "2d"
 
     Component.onCompleted: isDirty = false
 

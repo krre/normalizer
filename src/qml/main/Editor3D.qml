@@ -6,11 +6,11 @@ import "../../js/gl.js" as GL
 Canvas3D {
     id: root
     property string title: "{ " + Core.pathToFileName(path) + (isDirty ? "*" : "") + " }"
+    property string type: "3d"
     property var program: Object()
     property var gl
     property string path
     property bool isDirty: false
-    objectName: "3d"
     renderOnDemand: true
 
     Component.onCompleted: isDirty = false

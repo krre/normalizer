@@ -79,7 +79,7 @@ function openSprout(path) {
     }
 
     for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.objectName === "3d") {
+        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.type === "3d") {
             tabView.currentIndex = i
             return
         }
@@ -96,7 +96,7 @@ function openSprout(path) {
 
 function openSproutInEditor(path) {
     for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.objectName === "2d") {
+        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.type === "2d") {
             tabView.currentIndex = i
             return
         }
@@ -125,12 +125,12 @@ function saveAsSprout(path) {
 function saveProject() {
     var list = []
     for (var i = 0; i < tabView.count; i++) {
-        var path = tabView.getTab(i).item.path
-        list.push(path)
+        var editor = tabView.getTab(i).item
+        list.push({ path: editor.path, type: editor.type })
     }
 
     projectSettings.openFiles = list
-    projectSettings.currentFile = currentTab ? currentTab.path : ""
+    projectSettings.currentFile = currentTab ? { path: currentTab.path, type: currentTab.type } : {}
     Core.saveFile(projectPath, JSON.stringify(projectSettings, null, 4))
 }
 
@@ -140,15 +140,21 @@ function openProject(path) {
         projectSettings = JSON.parse(Core.loadFile(path))
         var currentIndex = -1
         for (var i = 0; i < projectSettings.openFiles.length; i++) {
-            var filePath = projectSettings.openFiles[i]
-            if (Core.isFileExists(filePath))
-            openSprout(filePath)
-            if (projectSettings.currentFile && filePath === projectSettings.currentFile) {
-                currentIndex = i
+            var props = projectSettings.openFiles[i]
+            if (Core.isFileExists(props.path)) {
+                if (props.type === "3d") {
+                    openSprout(props.path)
+                } else {
+                    openSproutInEditor(props.path)
+                }
+
+                if (props.path === projectSettings.currentFile.path && props.type === projectSettings.currentFile.type) {
+                    currentIndex = i
+                }
             }
         }
 
-        if (currentIndex !== -1) {
+        if (currentIndex !== -1 && currentIndex < tabView.count) {
             tabView.currentIndex = currentIndex
         }
 
