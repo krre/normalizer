@@ -136,7 +136,7 @@ MenuBar {
             text: qsTr("Reload")
             shortcut: "F5"
             enabled: currentTab
-            onTriggered: Utils.reloadSprout()
+            onTriggered: currentTab.reload()
         }
 
         MenuSeparator {}

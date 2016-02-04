@@ -8,7 +8,9 @@ TextArea {
     property bool isDirty: false
     property string path
 
-    Component.onCompleted: isDirty = false
+    Component.onCompleted: {
+        reload()
+    }
 
     onTextChanged: isDirty = true
 
@@ -26,6 +28,11 @@ TextArea {
 
     function save() {
         Core.saveFile(path, text)
+        isDirty = false
+    }
+
+    function reload() {
+        text = Core.loadFile(path)
         isDirty = false
     }
 }

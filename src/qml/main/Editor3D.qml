@@ -13,7 +13,9 @@ Canvas3D {
     property bool isDirty: false
     renderOnDemand: true
 
-    Component.onCompleted: isDirty = false
+    Component.onCompleted: {
+        reload()
+    }
 
     onInitializeGL: GL.initializeGL(root)
     onResizeGL: GL.resizeGL(root)
@@ -33,6 +35,10 @@ Canvas3D {
 
     function save() {
         Core.saveFile(path, JSON.stringify(program, null, 4))
+    }
+
+    function reload() {
+        isDirty = false
     }
 
     Action {
