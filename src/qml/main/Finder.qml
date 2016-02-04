@@ -21,6 +21,7 @@ ColumnLayout {
     TextField {
         id: finderTextField
         Layout.preferredWidth: parent.width
+        onTextChanged: operatorProxyModel.setFilterPattern(text)
 
         Keys.onReturnPressed: root.visible = false
     }
@@ -30,7 +31,7 @@ ColumnLayout {
         Layout.fillHeight: true
         alternatingRowColors: false
         headerVisible: false
-        model: operatorModel
+        model: operatorProxyModel
 
         TableViewColumn {
             role: "name"

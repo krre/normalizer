@@ -4,6 +4,7 @@
 #include "base/settings.h"
 #include "base/projectfilesystemmodel.h"
 #include "base/operatormodel.h"
+#include "base/operatorproxymodel.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char* argv[])
 
     qmlRegisterType<ProjectFileSystemModel>("Impression", 1, 0, "ProjectFileSystemModel");
     qmlRegisterType<OperatorModel>("Impression", 1, 0, "OperatorModel");
+    qmlRegisterType<OperatorProxyModel>("Impression", 1, 0, "OperatorProxyModel");
 
     Core core;
     Settings settings;

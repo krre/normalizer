@@ -9,6 +9,7 @@ public:
     Q_INVOKABLE void addOperator(const QVariantMap& operatorMap);
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+    Q_INVOKABLE int firstRole() { return Qt::UserRole + 1; }
 
 protected:
     QHash<int, QByteArray> roleNames() const;
