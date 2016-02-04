@@ -6,7 +6,7 @@ var operators = [
 
 function add() {
     for (var i = 0; i < operators.length; i++) {
-        operatorModel.addOperator(operators[i])
+        OperatorModel.addOperator(operators[i])
     }
 }
 

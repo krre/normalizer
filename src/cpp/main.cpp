@@ -13,15 +13,20 @@ int main(int argc, char* argv[])
     app.setApplicationVersion("0.1.0");
 
     qmlRegisterType<ProjectFileSystemModel>("Impression", 1, 0, "ProjectFileSystemModel");
-    qmlRegisterType<OperatorModel>("Impression", 1, 0, "OperatorModel");
-    qmlRegisterType<OperatorProxyModel>("Impression", 1, 0, "OperatorProxyModel");
 
     Core core;
     Settings settings;
 
+    OperatorModel operatorModel;
+    OperatorProxyModel operatorProxyModel;
+    operatorProxyModel.setSourceModel(&operatorModel);
+    operatorProxyModel.setFilterRole(operatorModel.firstRole());
+
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("Core", &core);
     engine.rootContext()->setContextProperty("Settings", &settings);
+    engine.rootContext()->setContextProperty("OperatorModel", &operatorModel);
+    engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
     engine.load(QUrl("qrc:/qml/main.qml"));
 
     if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;

@@ -23,10 +23,10 @@ ColumnLayout {
     TextField {
         id: finderTextField
         Layout.preferredWidth: parent.width
-        onTextChanged: operatorProxyModel.setFilterPattern(text)
+        onTextChanged: OperatorProxyModel.setFilterPattern(text)
 
         Keys.onReturnPressed: {
-            var index = operatorProxyModel.sourceIndex(tableView.currentRow)
+            var index = OperatorProxyModel.sourceIndex(tableView.currentRow)
             Operators.operators[index].action()
             root.visible = false
         }
@@ -40,7 +40,7 @@ ColumnLayout {
         Layout.fillHeight: true
         alternatingRowColors: false
         headerVisible: false
-        model: operatorProxyModel
+        model: OperatorProxyModel
 
         onRowCountChanged: {
             if (rowCount) {

@@ -10,8 +10,6 @@ import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
-    property alias operatorModel: operatorModel
-    property alias operatorProxyModel: operatorProxyModel
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
@@ -29,8 +27,6 @@ ApplicationWindow {
         y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
         Utils.loadSettings()
         Operators.add()
-        operatorProxyModel.sourceModel = operatorModel
-        operatorProxyModel.filterRole = operatorModel.firstRole()
     }
 
     onCurrentTabChanged: {
@@ -46,14 +42,6 @@ ApplicationWindow {
     SystemPalette {
         id: sysPalette
         colorGroup: SystemPalette.Active
-    }
-
-    OperatorModel {
-        id: operatorModel
-    }
-
-    OperatorProxyModel {
-        id: operatorProxyModel
     }
 
     SplitView {
