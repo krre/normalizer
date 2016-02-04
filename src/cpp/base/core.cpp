@@ -6,6 +6,12 @@ QString Core::pathToBaseName(const QString& filePath)
     return fileInfo.baseName();
 }
 
+QString Core::pathToFileName(const QString& path)
+{
+    QFileInfo fileInfo(path);
+    return fileInfo.fileName();
+}
+
 QString Core::pathToDir(const QString &filePath)
 {
     QFileInfo fileInfo(filePath);
