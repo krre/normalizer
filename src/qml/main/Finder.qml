@@ -38,7 +38,6 @@ ColumnLayout {
         id: tableView
         Layout.preferredWidth: parent.width
         Layout.fillHeight: true
-        alternatingRowColors: false
         headerVisible: false
         model: OperatorProxyModel
 
