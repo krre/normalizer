@@ -13,3 +13,8 @@ void OperatorProxyModel::setFilterPattern(const QString& pattern)
     setFilterRegExp(QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp));
 }
 
+int OperatorProxyModel::sourceIndex(int row)
+{
+    return mapToSource(index(row, 0)).row();
+}
+

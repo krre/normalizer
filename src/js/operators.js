@@ -1,4 +1,23 @@
+var operators = [
+    { name: "Add", shortcut: "Ctrl+A", action: addOperator },
+    { name: "Remove", shortcut: "Ctrl+R", action: removeOperator },
+    { name: "Update", shortcut: "Ctrl+U", action: updateOperator }
+]
+
 function add() {
-    operatorModel.addOperator({ name: "Add", shortcut: "Ctrl+A" })
-    operatorModel.addOperator({ name: "Remove", shortcut: "Ctrl+R" })
+    for (var i = 0; i < operators.length; i++) {
+        operatorModel.addOperator(operators[i])
+    }
+}
+
+function addOperator() {
+    print("add")
+}
+
+function removeOperator() {
+    print("remove")
+}
+
+function updateOperator() {
+    print("update")
 }

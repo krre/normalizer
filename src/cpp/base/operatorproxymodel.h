@@ -7,7 +7,5 @@ class OperatorProxyModel : public QSortFilterProxyModel
 public:
     explicit OperatorProxyModel();
     Q_INVOKABLE void setFilterPattern(const QString& pattern);
-signals:
-
-public slots:
+    Q_INVOKABLE int sourceIndex(int row);
 };
