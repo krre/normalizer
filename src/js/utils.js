@@ -140,6 +140,7 @@ function openProject(path) {
         var currentIndex = -1
         for (var i = 0; i < projectSettings.openFiles.length; i++) {
             var filePath = projectSettings.openFiles[i]
+            if (Core.isFileExists(filePath))
             openSprout(filePath)
             if (projectSettings.currentFile && filePath === projectSettings.currentFile) {
                 currentIndex = i
@@ -151,6 +152,7 @@ function openProject(path) {
         }
 
         addRecentPath(path, mainMenu.recentProjectsModel)
+        saveProject() // for maybe changing in opened file list
     }
 }
 
