@@ -3,6 +3,7 @@
 #include "base/core.h"
 #include "base/settings.h"
 #include "base/projectfilesystemmodel.h"
+#include "base/operatormodel.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,6 +12,7 @@ int main(int argc, char* argv[])
     app.setApplicationVersion("0.1.0");
 
     qmlRegisterType<ProjectFileSystemModel>("Impression", 1, 0, "ProjectFileSystemModel");
+    qmlRegisterType<OperatorModel>("Impression", 1, 0, "OperatorModel");
 
     Core core;
     Settings settings;

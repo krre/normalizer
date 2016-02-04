@@ -30,9 +30,16 @@ ColumnLayout {
         Layout.fillHeight: true
         alternatingRowColors: false
         headerVisible: false
+        model: operatorModel
 
         TableViewColumn {
+            role: "name"
+            width: 145
+        }
 
+        TableViewColumn {
+            role: "shortcut"
+            width: 50
         }
     }
 }

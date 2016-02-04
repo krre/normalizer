@@ -2,12 +2,15 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
+import Impression 1.0
 import "main"
 import "../js/utils.js" as Utils
 import "../js/scene.js" as Scene
+import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
+    property alias operatorModel: operatorModel
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property var scene: new Scene.Scene()
     property var logger: new Utils.Logger()
@@ -24,6 +27,7 @@ ApplicationWindow {
         x = Settings.value("MainWindow", "x", (Screen.width - width) / 2)
         y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
         Utils.loadSettings()
+        Operators.add()
     }
 
     onCurrentTabChanged: {
@@ -39,6 +43,10 @@ ApplicationWindow {
     SystemPalette {
         id: sysPalette
         colorGroup: SystemPalette.Active
+    }
+
+    OperatorModel {
+        id: operatorModel
     }
 
     SplitView {

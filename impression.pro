@@ -7,7 +7,8 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/base/core.cpp \
     src/cpp/base/settings.cpp \
-    src/cpp/base/projectfilesystemmodel.cpp
+    src/cpp/base/projectfilesystemmodel.cpp \
+    src/cpp/base/operatormodel.cpp
 
 RESOURCES += \
     src/qml.qrc \
@@ -36,9 +37,11 @@ DISTFILES += \
     src/qml/main/ProjectTreeView.qml \
     src/qml/main/Editor3D.qml \
     src/qml/main/EditorText.qml \
-    src/qml/main/Finder.qml
+    src/qml/main/Finder.qml \
+    src/js/operators.js
 
 HEADERS += \
     src/cpp/base/core.h \
     src/cpp/base/settings.h \
-    src/cpp/base/projectfilesystemmodel.h
+    src/cpp/base/projectfilesystemmodel.h \
+    src/cpp/base/operatormodel.h
