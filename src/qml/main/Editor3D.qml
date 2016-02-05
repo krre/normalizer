@@ -1,7 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtCanvas3D 1.1
-import "../../js/gl.js" as GL
+import "../../js/webgl/gl.js" as GL
 import "../../js/webgl/scene.js" as Scene
 
 Canvas3D {

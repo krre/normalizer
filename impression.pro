@@ -20,7 +20,6 @@ DISTFILES += \
     src/js/utils.js \
     src/qml/main.qml \
     src/qml/main/MainMenu.qml \
-    src/js/gl.js \
     src/js/style.js \
     src/qml/components/MessageDialogBase.qml \
     src/qml/main/About.qml \
@@ -41,7 +40,8 @@ DISTFILES += \
     src/js/object-factory.js \
     src/qml/main/NewSprout.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
-    src/js/webgl/scene.js
+    src/js/webgl/scene.js \
+    src/js/webgl/gl.js
 
 HEADERS += \
     src/cpp/base/core.h \

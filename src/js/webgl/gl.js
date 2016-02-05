@@ -1,4 +1,4 @@
-.import "style.js" as Style
+.import "../style.js" as Style
 
 function initializeGL(canvas) {
     logger.initLog("*******************************************************************************************")
