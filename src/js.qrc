@@ -3,7 +3,7 @@
         <file>js/utils.js</file>
         <file>js/gl.js</file>
         <file>js/style.js</file>
-        <file>js/scenegraph/scene.js</file>
+        <file>js/webgl/scene.js</file>
         <file>js/dialog.js</file>
     </qresource>
 </RCC>

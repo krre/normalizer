@@ -41,7 +41,7 @@ DISTFILES += \
     src/js/object-factory.js \
     src/qml/main/NewSprout.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
-    src/js/scenegraph/scene.js
+    src/js/webgl/scene.js
 
 HEADERS += \
     src/cpp/base/core.h \
