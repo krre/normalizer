@@ -2,11 +2,13 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtCanvas3D 1.1
 import "../../js/gl.js" as GL
+import "../../js/scenegraph/scene.js" as Scene
 
 Canvas3D {
     id: root
     property string title: "{ " + Core.pathToFileName(path) + (isDirty ? "*" : "") + " }"
     property string type: "3d"
+    property var scene: new Scene.Scene()
     property var program: Object()
     property var gl
     property string path

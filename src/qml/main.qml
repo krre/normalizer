@@ -2,21 +2,18 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
-import Impression 1.0
 import "main"
 import "../js/utils.js" as Utils
-import "../js/scene.js" as Scene
 import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
     property alias tabView: tabView
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
-    property var scene: new Scene.Scene()
-    property var logger: new Utils.Logger()
     property alias sysPalette: sysPalette
     property string projectPath
     property var projectSettings: Object()
+    property var logger: new Utils.Logger()
     title: Qt.application.name + (projectPath ? " [%1]".arg(projectPath) : "")
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)

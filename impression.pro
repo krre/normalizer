@@ -22,7 +22,6 @@ DISTFILES += \
     src/qml/main/MainMenu.qml \
     src/js/gl.js \
     src/js/style.js \
-    src/js/scene.js \
     src/qml/components/MessageDialogBase.qml \
     src/qml/main/About.qml \
     src/qml/components/WindowDialog.qml \
@@ -41,7 +40,8 @@ DISTFILES += \
     src/js/operators.js \
     src/js/object-factory.js \
     src/qml/main/NewSprout.qml \
-    src/qml/components/filedialog/FileDialogSave.qml
+    src/qml/components/filedialog/FileDialogSave.qml \
+    src/js/scenegraph/scene.js
 
 HEADERS += \
     src/cpp/base/core.h \
