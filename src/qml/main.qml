@@ -17,7 +17,7 @@ ApplicationWindow {
     property alias sysPalette: sysPalette
     property string projectPath
     property var projectSettings: Object()
-    title: Qt.application.name + (projectPath ? String(" [%1]").arg(projectPath) : "")
+    title: Qt.application.name + (projectPath ? " [%1]".arg(projectPath) : "")
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)
     visible: true

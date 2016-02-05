@@ -14,7 +14,7 @@ WindowDialog {
     onAccepted: {
         var dirPath = workspace.text + "/" + name.text
         if (Core.isDirectoryExists(dirPath)) {
-            Dialog.error(qsTr(String("Directory %1 is exists").arg(dirPath)))
+            Dialog.error(qsTr("Directory %1 is exists".arg(dirPath)))
             stayOnScreen = true
         } else {
             Core.mkpath(dirPath)
