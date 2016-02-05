@@ -1,11 +1,7 @@
-function obj(type, name) {
-    return {
-        type: type,
-        name: name
-    }
+function flow() {
+    return { name: "main" }
 }
 
-
-function flow() {
-    return obj("flow", "main")
+function print() {
+    return { arg: "hello world" }
 }

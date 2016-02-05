@@ -15,11 +15,11 @@ function add() {
 }
 
 function printOp() {
-    print("print")
+    program.print = ObjectFactory.print()
+    isDirty = true
 }
 
 function flowOp() {
-    print("flow")
     program.flow = ObjectFactory.flow()
     isDirty = true
 }
