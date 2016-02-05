@@ -10,6 +10,7 @@ Canvas3D {
     property string type: "3d"
     property var scene: new Scene.Scene()
     property var program: Object()
+    property var currentNode
     property var gl
     property string path
     property bool isDirty: false
@@ -17,6 +18,7 @@ Canvas3D {
 
     Component.onCompleted: {
         reload()
+        currentNode = program
     }
 
     onInitializeGL: GL.initializeGL(root)
