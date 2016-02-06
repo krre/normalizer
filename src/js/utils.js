@@ -74,7 +74,7 @@ function loadGui() {
 
 function openSprout(path) {
     if (Core.pathToExt(path) !== "sprout") {
-        openSproutInEditor(path)
+        openAsText(path)
         return
     }
 
@@ -92,7 +92,7 @@ function openSprout(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
-function openSproutInEditor(path) {
+function openAsText(path) {
     for (var i = 0; i < tabView.count; i++) {
         if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.type === "2d") {
             tabView.currentIndex = i
@@ -140,7 +140,7 @@ function openProject(path) {
                 if (props.type === "3d") {
                     openSprout(props.path)
                 } else {
-                    openSproutInEditor(props.path)
+                    openAsText(props.path)
                 }
 
                 if (props.path === projectSettings.currentFile.path && props.type === projectSettings.currentFile.type) {
