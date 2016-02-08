@@ -31,7 +31,7 @@ MenuBar {
             text: qsTr("Open...")
             shortcut: "Ctrl+O"
             onTriggered: {
-                var dialog = Dialog.selectFile(mainRoot)
+                var dialog = Dialog.selectFile()
                 dialog.accepted.connect(function() {
                     var path = Core.urlToPath(dialog.fileUrl)
                     var ext = Core.pathToExt(path)

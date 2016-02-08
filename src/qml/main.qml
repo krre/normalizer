@@ -14,6 +14,7 @@ ApplicationWindow {
     property string projectPath
     property var projectSettings: Object()
     property var logger: new Utils.Logger()
+    property var parentWindow: mainRoot
     title: Qt.application.name + (projectPath ? " [%1]".arg(projectPath) : "")
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)

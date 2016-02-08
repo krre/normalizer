@@ -13,6 +13,7 @@ Window {
     property alias okButton: okButton
     property bool hideButtons: false
     property string settingsGroup
+    property var parentWindow: root
     id: root
     width: 500
     height: 500
