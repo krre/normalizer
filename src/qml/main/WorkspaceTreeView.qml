@@ -57,7 +57,7 @@ TreeView {
     }
 
     TableViewColumn {
-        title: qsTr("Project")
+        title: qsTr("Workspace")
         role: "fileName"
         resizable: true
     }

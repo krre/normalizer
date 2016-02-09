@@ -62,7 +62,7 @@ function loadGeomerty(name) {
 }
 
 function saveGui() {
-    Settings.setValue("Gui", "projectTreeWidth", projectTreeView.width)
+    Settings.setValue("Gui", "workspaceWidth", workspaceTreeView.width)
 }
 
 function loadGui() {

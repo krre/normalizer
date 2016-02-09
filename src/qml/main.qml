@@ -44,10 +44,10 @@ ApplicationWindow {
     SplitView {
         anchors.fill: parent
 
-        ProjectTreeView {
-            id: projectTreeView
+        WorkspaceTreeView {
+            id: workspaceTreeView
             Layout.minimumWidth: 50
-            width: Settings.value("Gui", "projectTreeWidth", 200)
+            width: Settings.value("Gui", "workspaceWidth", 200)
         }
 
         TabView {
