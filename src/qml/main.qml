@@ -11,11 +11,9 @@ ApplicationWindow {
     property alias tabView: tabView
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias sysPalette: sysPalette
-    property string projectPath
-    property var projectSettings: Object()
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
-    title: Qt.application.name + (projectPath ? " [%1]".arg(projectPath) : "")
+    title: Qt.application.name
     width: Settings.value("MainWindow", "width", 800)
     height: Settings.value("MainWindow", "height", 600)
     visible: true
@@ -45,7 +43,6 @@ ApplicationWindow {
 
     SplitView {
         anchors.fill: parent
-        visible: projectPath
 
         ProjectTreeView {
             id: projectTreeView

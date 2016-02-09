@@ -27,18 +27,15 @@ function Logger() {
 }
 
 function saveSettings() {
-    saveProject()
     saveGeometry("MainWindow")
     saveGui()
-    saveRecentPaths("RecentFiles", mainMenu.recentFilesModel)
-    saveRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+    saveRecentPaths()
     saveSession()
 }
 
 function loadSettings() {
     loadGui()
-    loadRecentPaths("RecentFiles", mainMenu.recentFilesModel)
-    loadRecentPaths("RecentProjects", mainMenu.recentProjectsModel)
+    loadRecentPaths()
     loadSession()
 }
 
@@ -79,7 +76,7 @@ function openSprout(path) {
     }
 
     for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.type === "3d") {
+        if (tabView.getTab(i).item.path === path) {
             tabView.currentIndex = i
             return
         }
@@ -89,7 +86,7 @@ function openSprout(path) {
     tab.loaded.connect(function() { tab.item.updateTabTitle() })
     tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
     tabView.currentIndex = tabView.count - 1
-    addRecentPath(path, mainMenu.recentFilesModel)
+    addRecentPath(path)
 }
 
 function saveAsSprout(path) {
@@ -102,48 +99,8 @@ function saveAsSprout(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
-function saveProject() {
-    var list = []
-    for (var i = 0; i < tabView.count; i++) {
-        var editor = tabView.getTab(i).item
-        list.push({ path: editor.path, type: editor.type })
-    }
-
-    projectSettings.openFiles = list
-    projectSettings.currentFile = currentTab ? { path: currentTab.path, type: currentTab.type } : {}
-    Core.saveFile(projectPath, JSON.stringify(projectSettings, null, 4))
-}
-
-function openProject(path) {
-    if (path !== mainRoot.projectPath) {
-        projectPath = path
-        projectSettings = JSON.parse(Core.loadFile(path))
-        var currentIndex = -1
-        for (var i = 0; i < projectSettings.openFiles.length; i++) {
-            var props = projectSettings.openFiles[i]
-            if (Core.isFileExists(props.path)) {
-                if (props.type === "3d") {
-                    openSprout(props.path)
-                } else {
-                    openAsText(props.path)
-                }
-
-                if (props.path === projectSettings.currentFile.path && props.type === projectSettings.currentFile.type) {
-                    currentIndex = i
-                }
-            }
-        }
-
-        if (currentIndex !== -1 && currentIndex < tabView.count) {
-            tabView.currentIndex = currentIndex
-        }
-
-        addRecentPath(path, mainMenu.recentProjectsModel)
-        saveProject() // for maybe changing in opened file list
-    }
-}
-
-function addRecentPath(path, model) {
+function addRecentPath(path) {
+    var model = mainMenu.recentFilesModel
     // Prevention of duplication of filePath and raising it on top
     for (var i = 0; i < model.count; i++) {
         if (model.get(i).path === path) {
@@ -157,7 +114,8 @@ function addRecentPath(path, model) {
     }
 }
 
-function saveRecentPaths(group, model) {
+function saveRecentPaths() {
+    var model = mainMenu.recentFilesModel
     var list = []
     for (var i = 0; i < model.count; i++) {
         var path = model.get(i).path
@@ -165,11 +123,12 @@ function saveRecentPaths(group, model) {
             list.push(path)
         }
     }
-    Settings.setList(group, list)
+    Settings.setList("RecentFiles", list)
 }
 
-function loadRecentPaths(group, model) {
-    var list = Settings.list(group)
+function loadRecentPaths() {
+    var model = mainMenu.recentFilesModel
+    var list = Settings.list("RecentFiles")
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
         if (Core.isFileExists(path)) {
@@ -181,16 +140,38 @@ function loadRecentPaths(group, model) {
 function loadSession() {
     var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
-        var lastProject = Settings.value("Path", "lastProject")
-        if (lastProject && Core.isFileExists(lastProject)) {
-            openProject(lastProject)
+        var openFiles = Settings.list("OpenFiles")
+        if (openFiles) {
+            var currentFile = Settings.value("Path", "currentFile")
+            var currentIndex = -1
+            for (var i = 0; i < openFiles.length; i++) {
+                var sprotPath = openFiles[i]
+                openSprout(sprotPath)
+
+                if (sprotPath === currentFile) {
+                    currentIndex = i
+                }
+            }
+
+            if (currentIndex !== -1 && currentIndex < tabView.count) {
+                tabView.currentIndex = currentIndex
+            }
+
+            addRecentPath(sprotPath)
         }
     }
 }
 
 function saveSession() {
     if (Settings.value("Interface", "restoreLastSession")) {
-        Settings.setValue("Path", "lastProject", projectPath)
+        var list = []
+        for (var i = 0; i < tabView.count; i++) {
+            var editor = tabView.getTab(i).item
+            list.push(editor.path)
+        }
+
+        Settings.setList("OpenFiles", list)
+        Settings.setValue("Path", "currentFile", currentTab ? currentTab.path : "")
     }
 }
 

@@ -5,26 +5,14 @@ import "../../js/dialog.js" as Dialog
 
 MenuBar {
     property alias recentFilesModel: recentFilesModel
-    property alias recentProjectsModel: recentProjectsModel
 
     Menu {
         title: qsTr("File")
 
-        Menu {
-            title: qsTr("New")
-
-            MenuItem {
-                text: qsTr("Project...")
-                shortcut: "Ctrl+Shift+N"
-                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewProject.qml")
-            }
-
-            MenuItem {
-                text: qsTr("File...")
-                shortcut: "Ctrl+N"
-                enabled: mainRoot.projectPath
-                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewSprout.qml")
-            }
+        MenuItem {
+            text: qsTr("New...")
+            shortcut: "Ctrl+N"
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewSprout.qml")
         }
 
         MenuItem {
@@ -34,13 +22,10 @@ MenuBar {
                 var dialog = Dialog.selectFile()
                 dialog.accepted.connect(function() {
                     var path = Core.urlToPath(dialog.fileUrl)
-                    var ext = Core.pathToExt(path)
-                    if (ext === "impr") {
-                        Utils.openProject(path)
-                    } else if (ext === "sprout") {
+                    if (Core.pathToExt(path) === "sprout") {
                         Utils.openSprout(path)
                     } else {
-                        print("Error: unknown path")
+                        print(qsTr("Error: unknown path"))
                     }
                 })
             }
@@ -56,7 +41,7 @@ MenuBar {
 
                 MenuItem {
                     text: model.path
-                    onTriggered: Utils.openProject(text)
+                    onTriggered: Utils.openSprout(text)
                 }
 
                 onObjectAdded: recentFilesMenu.insertItem(index, object)
@@ -76,47 +61,6 @@ MenuBar {
                 id: recentFilesModel
             }
         }
-
-        Menu {
-            id: recentProjectsMenu
-            title: qsTr("Recent Projects")
-            enabled: recentProjectsModel.count > 0
-
-            Instantiator {
-                model: recentProjectsModel
-
-                MenuItem {
-                    text: model.path
-                    onTriggered: Utils.openProject(text)
-                }
-
-                onObjectAdded: recentProjectsMenu.insertItem(index, object)
-                onObjectRemoved: recentProjectsMenu.removeItem(object)
-            }
-
-            MenuSeparator {
-                visible: recentProjectsModel.count > 0
-            }
-
-            MenuItem {
-                text: qsTr("Clear Menu")
-                onTriggered: recentProjectsModel.clear()
-            }
-
-            ListModel {
-                id: recentProjectsModel
-            }
-        }
-
-        MenuSeparator {}
-
-        MenuItem {
-            text: qsTr("Close Project")
-            enabled: mainRoot.projectPath
-            onTriggered: mainRoot.projectPath = ""
-        }
-
-        MenuSeparator {}
 
         MenuItem {
             text: qsTr("Save")

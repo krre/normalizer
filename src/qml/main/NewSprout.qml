@@ -49,7 +49,7 @@ WindowDialog {
 
         Label {
             id: directory
-            text: Core.pathToDir(mainRoot.projectPath)
+            text: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
         }
     }
 }

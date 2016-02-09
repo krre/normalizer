@@ -31,7 +31,6 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogDirectory.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
     src/js/dialog.js \
-    src/qml/main/NewProject.qml \
     src/qml/main/ProjectTreeView.qml \
     src/qml/main/Editor3D.qml \
     src/qml/main/Finder.qml \

@@ -13,7 +13,6 @@
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>js/dialog.js</file>
-        <file>qml/main/NewProject.qml</file>
         <file>qml/main/NewSprout.qml</file>
         <file>qml/main/ProjectTreeView.qml</file>
         <file>qml/main/Finder.qml</file>

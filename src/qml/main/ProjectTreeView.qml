@@ -17,7 +17,7 @@ TreeView {
 
     ProjectFileSystemModel {
         id: projectFileSystemModel
-        rootDir: Core.pathToDir(projectPath)
+        rootDir: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
     }
 
     ItemSelectionModel {
