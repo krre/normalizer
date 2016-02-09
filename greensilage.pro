@@ -34,7 +34,6 @@ DISTFILES += \
     src/qml/main/NewProject.qml \
     src/qml/main/ProjectTreeView.qml \
     src/qml/main/Editor3D.qml \
-    src/qml/main/EditorText.qml \
     src/qml/main/Finder.qml \
     src/js/operators.js \
     src/js/object-factory.js \

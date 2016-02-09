@@ -16,7 +16,6 @@
         <file>qml/main/NewProject.qml</file>
         <file>qml/main/NewSprout.qml</file>
         <file>qml/main/ProjectTreeView.qml</file>
-        <file>qml/main/EditorText.qml</file>
         <file>qml/main/Finder.qml</file>
         <file>js/operators.js</file>
         <file>js/object-factory.js</file>

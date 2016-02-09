@@ -47,11 +47,6 @@ TreeView {
         }
 
         MenuItem {
-            text: qsTr("Open as Text")
-            onTriggered: Utils.openAsText(root.currentPath)
-        }
-
-        MenuItem {
             text: qsTr("Remove")
             onTriggered: projectFileSystemModel.removeFile(root.selection.currentIndex)
         }

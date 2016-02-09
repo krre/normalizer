@@ -74,7 +74,7 @@ function loadGui() {
 
 function openSprout(path) {
     if (Core.pathToExt(path) !== "sprout") {
-        openAsText(path)
+        print("Not Sprout file")
         return
     }
 
@@ -88,21 +88,6 @@ function openSprout(path) {
     var tab = tabView.addTab("")
     tab.loaded.connect(function() { tab.item.updateTabTitle() })
     tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
-    tabView.currentIndex = tabView.count - 1
-    addRecentPath(path, mainMenu.recentFilesModel)
-}
-
-function openAsText(path) {
-    for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.path === path && tabView.getTab(i).item.type === "2d") {
-            tabView.currentIndex = i
-            return
-        }
-    }
-
-    var tab = tabView.addTab("")
-    tab.loaded.connect(function() { tab.item.updateTabTitle() })
-    tab.setSource("qrc:/qml/main/EditorText.qml", { path: path })
     tabView.currentIndex = tabView.count - 1
     addRecentPath(path, mainMenu.recentFilesModel)
 }

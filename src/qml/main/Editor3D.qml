@@ -6,7 +6,7 @@ import "../../js/webgl/scene.js" as Scene
 
 Canvas3D {
     id: root
-    property string title: "{ " + Core.pathToFileName(path) + (isDirty ? "*" : "") + " }"
+    property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
     property string type: "3d"
     property var scene: new Scene.Scene()
     property var program: Object()
