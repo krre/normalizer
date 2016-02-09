@@ -1,7 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQml.Models 2.2
-import Impression 1.0
+import GreenSilage 1.0
 import "../../js/utils.js" as Utils
 
 TreeView {

@@ -46,7 +46,7 @@ WindowDialog {
 
         Label {
             id: workspace
-            text: Settings.value("Path", "workspace", Core.homePath + "/impression")
+            text: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
         }
     }
 }

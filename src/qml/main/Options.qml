@@ -36,7 +36,7 @@ WindowDialog {
                 TextField {
                     id: workspacePath
                     Layout.fillWidth: true
-                    text: Settings.value("Path", "workspace", Core.homePath + "/impression")
+                    text: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
                     Component.onCompleted: forceActiveFocus()
                 }
 
