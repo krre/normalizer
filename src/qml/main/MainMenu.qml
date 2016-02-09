@@ -62,6 +62,8 @@ MenuBar {
             }
         }
 
+        MenuSeparator {}
+
         MenuItem {
             text: qsTr("Save")
             shortcut: "Ctrl+S"
