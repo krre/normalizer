@@ -59,6 +59,15 @@ MenuBar {
 
             ListModel {
                 id: recentFilesModel
+
+                function removeByPath(path) {
+                    for (var i = 0; i < count; i++) {
+                        if (get(i).path === path) {
+                            remove(i, 1)
+                            break
+                        }
+                    }
+                }
             }
         }
 

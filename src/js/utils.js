@@ -101,12 +101,8 @@ function saveAsSprout(path) {
 
 function addRecentPath(path) {
     var model = mainMenu.recentFilesModel
-    // Prevention of duplication of filePath and raising it on top
-    for (var i = 0; i < model.count; i++) {
-        if (model.get(i).path === path) {
-            model.remove(i)
-        }
-    }
+    // Prevention of duplication of path and raising it on top
+    model.removeByPath(path)
     model.insert(0, { path: path })
     var maxRecentPaths = 10
     if (model.count === maxRecentPaths + 1) {

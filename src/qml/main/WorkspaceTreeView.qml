@@ -58,10 +58,12 @@ TreeView {
                 dialog.yes.connect(function() {
                     var treeIndex = selection.currentIndex
                     if (projectFileSystemModel.removeFile(treeIndex)) {
-                        var tabIndex = tabView.findTab(projectFileSystemModel.path(treeIndex))
+                        var path = projectFileSystemModel.path(treeIndex)
+                        var tabIndex = tabView.findTab(path)
                         if (tabIndex !== -1) {
                             tabView.removeTab(tabIndex)
                         }
+                        mainMenu.recentFilesModel.removeByPath(path)
                     }
                 })
             }
