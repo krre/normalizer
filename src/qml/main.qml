@@ -11,6 +11,7 @@ ApplicationWindow {
     property alias tabView: tabView
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias sysPalette: sysPalette
+    property alias workspaceTreeView: workspaceTreeView
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
     title: Qt.application.name
@@ -51,6 +52,7 @@ ApplicationWindow {
             id: workspaceTreeView
             Layout.minimumWidth: 50
             width: Settings.value("Gui", "workspaceWidth", 200)
+            visible: Utils.variantToBool(Settings.value("Gui", "showWorkspace", true))
         }
 
         TabView {

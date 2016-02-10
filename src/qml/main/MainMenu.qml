@@ -197,6 +197,14 @@ MenuBar {
            onTriggered: checked ? mainRoot.showFullScreen() : mainRoot.showNormal()
         }
 
+        MenuItem {
+            text: qsTr("Show Workspace")
+            shortcut: "Ctrl+1"
+            checkable: true
+            checked: workspaceTreeView.visible
+            onCheckedChanged: workspaceTreeView.visible = checked
+        }
+
         MenuSeparator {}
 
         MenuItem {
