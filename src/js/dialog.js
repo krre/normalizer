@@ -30,6 +30,14 @@ function error(text, properties) {
     return createDialog(text, properties, Dialogs.StandardIcon.Critical)
 }
 
+function areYouSure(title) {
+    var properties = {}
+    if (title) {
+        properties.title = title
+    }
+    return question(qsTr("Are you sure?"), properties)
+}
+
 function selectFile(properties) {
     return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/filedialog/FileDialogOpen.qml", properties || {})
 }

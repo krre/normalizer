@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtQml.Models 2.2
 import GreenSilage 1.0
 import "../../js/utils.js" as Utils
+import "../../js/dialog.js" as Dialog
 
 TreeView {
     id: root
@@ -51,15 +52,18 @@ TreeView {
         }
 
         MenuItem {
-            text: qsTr("Remove")
+            text: qsTr("Remove...")
             onTriggered: {
-                var treeIndex = selection.currentIndex
-                if (projectFileSystemModel.removeFile(treeIndex)) {
-                    var tabIndex = tabView.findTab(projectFileSystemModel.path(treeIndex))
-                    if (tabIndex !== -1) {
-                        tabView.removeTab(tabIndex)
+                var dialog = Dialog.areYouSure(qsTr("Remove File"))
+                dialog.yes.connect(function() {
+                    var treeIndex = selection.currentIndex
+                    if (projectFileSystemModel.removeFile(treeIndex)) {
+                        var tabIndex = tabView.findTab(projectFileSystemModel.path(treeIndex))
+                        if (tabIndex !== -1) {
+                            tabView.removeTab(tabIndex)
+                        }
                     }
-                }
+                })
             }
         }
 
