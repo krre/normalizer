@@ -13,6 +13,9 @@ Canvas3D {
     property var gl
     property string path
     property bool isDirty: false
+    property bool isCurrent: root === currentTab
+    property bool rendering: true
+    renderOnDemand: !(isCurrent && rendering)
 
     Component.onCompleted: {
         reload()
@@ -26,7 +29,7 @@ Canvas3D {
     onTitleChanged: updateTabTitle()
 
     // For debug purpose
-    onRenderOnDemandChanged: print("Render %1: %2".arg(path).arg(renderOnDemand ? "Off" : "On"))
+//    onRenderOnDemandChanged: print("Render %1: %2".arg(path).arg(renderOnDemand ? "Off" : "On"))
 
     function updateTabTitle() {
         for (var i = 0; i < tabView.count; i++) {

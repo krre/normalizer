@@ -239,24 +239,14 @@ MenuBar {
             enabled: currentTab
 
             MenuItem {
-                text: qsTr("Run Current")
-                onTriggered: currentTab.renderOnDemand = false
-            }
-
-            MenuItem {
-                text: qsTr("Run All")
-                onTriggered: tabView.forEachTab(function(editor) { editor.renderOnDemand = false })
+                text: qsTr("Enable")
+                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = true })
                 shortcut: "Ctrl+F11"
             }
 
             MenuItem {
-                text: qsTr("Stop Current")
-                onTriggered: currentTab.renderOnDemand = true
-            }
-
-            MenuItem {
-                text: qsTr("Stop All")
-                onTriggered: tabView.forEachTab(function(editor) { editor.renderOnDemand = true })
+                text: qsTr("Disable")
+                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = false })
                 shortcut: "Ctrl+F12"
             }
         }
