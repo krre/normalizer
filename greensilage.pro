@@ -7,9 +7,9 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/base/core.cpp \
     src/cpp/base/settings.cpp \
-    src/cpp/base/projectfilesystemmodel.cpp \
     src/cpp/base/operatormodel.cpp \
-    src/cpp/base/operatorproxymodel.cpp
+    src/cpp/base/operatorproxymodel.cpp \
+    src/cpp/base/filesystemmodel.cpp
 
 RESOURCES += \
     src/qml.qrc \
@@ -44,6 +44,6 @@ DISTFILES += \
 HEADERS += \
     src/cpp/base/core.h \
     src/cpp/base/settings.h \
-    src/cpp/base/projectfilesystemmodel.h \
     src/cpp/base/operatormodel.h \
-    src/cpp/base/operatorproxymodel.h
+    src/cpp/base/operatorproxymodel.h \
+    src/cpp/base/filesystemmodel.h

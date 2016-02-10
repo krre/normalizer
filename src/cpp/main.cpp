@@ -2,7 +2,7 @@
 #include <QtQml>
 #include "base/core.h"
 #include "base/settings.h"
-#include "base/projectfilesystemmodel.h"
+#include "base/filesystemmodel.h"
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
 
@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     app.setApplicationName("GreenSilage");
     app.setApplicationVersion("0.1.0");
 
-    qmlRegisterType<ProjectFileSystemModel>("GreenSilage", 1, 0, "ProjectFileSystemModel");
+    qmlRegisterType<FileSystemModel>("GreenSilage", 1, 0, "FileSystemModel");
 
     Core core;
     Settings settings;

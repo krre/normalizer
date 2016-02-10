@@ -7,10 +7,10 @@ import "../../js/dialog.js" as Dialog
 
 TreeView {
     id: root
-    property string currentPath: projectFileSystemModel.path(selection.currentIndex)
+    property string currentPath: fileSystemModel.path(selection.currentIndex)
     frameVisible: false
-    model: projectFileSystemModel
-    rootIndex: projectFileSystemModel.rootIndex
+    model: fileSystemModel
+    rootIndex: fileSystemModel.rootIndex
     selection: itemSelectionModel
 
     onDoubleClicked: Utils.openSprout(currentPath)
@@ -18,18 +18,18 @@ TreeView {
     Keys.onReturnPressed: Utils.openSprout(currentPath)
 
     function selectByPath(path) {
-        var index = projectFileSystemModel.pathIndex(path)
+        var index = fileSystemModel.pathIndex(path)
         selection.setCurrentIndex(index, ItemSelectionModel.ClearAndSelect)
     }
 
-    ProjectFileSystemModel {
-        id: projectFileSystemModel
+    FileSystemModel {
+        id: fileSystemModel
         rootDir: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
     }
 
     ItemSelectionModel {
         id: itemSelectionModel
-        model: projectFileSystemModel
+        model: fileSystemModel
     }
 
     MouseArea {
@@ -59,8 +59,8 @@ TreeView {
                 var dialog = Dialog.areYouSure(qsTr("Remove File"))
                 dialog.yes.connect(function() {
                     var treeIndex = selection.currentIndex
-                    if (projectFileSystemModel.removeFile(treeIndex)) {
-                        var path = projectFileSystemModel.path(treeIndex)
+                    if (fileSystemModel.removeFile(treeIndex)) {
+                        var path = fileSystemModel.path(treeIndex)
                         var tabIndex = tabView.findTab(path)
                         if (tabIndex !== -1) {
                             tabView.removeTab(tabIndex)

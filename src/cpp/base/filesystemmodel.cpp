@@ -1,13 +1,13 @@
-#include "projectfilesystemmodel.h"
+#include "filesystemmodel.h"
 
-ProjectFileSystemModel::ProjectFileSystemModel(QObject *parent)
+FileSystemModel::FileSystemModel(QObject *parent)
     : QFileSystemModel(parent)
 {
     setRootPath(QDir::homePath());
     setResolveSymlinks(true);
 }
 
-void ProjectFileSystemModel::setRootDir(const QString &rootDir)
+void FileSystemModel::setRootDir(const QString &rootDir)
 {
     if (rootPath() == rootDir) return;
     setRootPath(rootDir);
