@@ -14,7 +14,7 @@
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>qml/components/filedialog/FileDialogSave.qml</file>
         <file>qml/main/NewSprout.qml</file>
-        <file>qml/main/WorkspaceTreeView.qml</file>
+        <file>qml/main/Workspace.qml</file>
         <file>qml/main/Finder.qml</file>
         <file>js/dialog.js</file>
         <file>js/operators.js</file>

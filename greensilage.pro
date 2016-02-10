@@ -39,7 +39,7 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/js/webgl/scene.js \
     src/js/webgl/gl.js \
-    src/qml/main/WorkspaceTreeView.qml
+    src/qml/main/Workspace.qml
 
 HEADERS += \
     src/cpp/base/core.h \

@@ -201,8 +201,8 @@ MenuBar {
             text: qsTr("Show Workspace")
             shortcut: "Ctrl+1"
             checkable: true
-            checked: workspaceTreeView.visible
-            onCheckedChanged: workspaceTreeView.visible = checked
+            checked: workspace.visible
+            onCheckedChanged: workspace.visible = checked
         }
 
         MenuSeparator {}

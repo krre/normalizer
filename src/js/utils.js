@@ -62,8 +62,8 @@ function loadGeomerty(name) {
 }
 
 function saveGui() {
-    Settings.setValue("Gui", "workspaceWidth", workspaceTreeView.width)
-    Settings.setValue("Gui", "showWorkspace", workspaceTreeView.visible)
+    Settings.setValue("Gui", "workspaceWidth", workspace.width)
+    Settings.setValue("Gui", "showWorkspace", workspace.visible)
 }
 
 function loadGui() {

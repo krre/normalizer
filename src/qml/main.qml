@@ -11,7 +11,7 @@ ApplicationWindow {
     property alias tabView: tabView
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias sysPalette: sysPalette
-    property alias workspaceTreeView: workspaceTreeView
+    property alias workspace: workspace
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
     title: Qt.application.name
@@ -30,9 +30,9 @@ ApplicationWindow {
     onCurrentTabChanged: {
         if (currentTab) {
             currentTab.forceActiveFocus()
-            workspaceTreeView.selectByPath(currentTab.path)
+            workspace.selectByPath(currentTab.path)
         } else {
-            workspaceTreeView.selection.clearCurrentIndex()
+            workspace.selection.clearCurrentIndex()
         }
     }
 
@@ -48,8 +48,8 @@ ApplicationWindow {
     SplitView {
         anchors.fill: parent
 
-        WorkspaceTreeView {
-            id: workspaceTreeView
+        Workspace {
+            id: workspace
             Layout.minimumWidth: 50
             width: Settings.value("Gui", "workspaceWidth", 200)
             visible: Utils.variantToBool(Settings.value("Gui", "showWorkspace", true))
