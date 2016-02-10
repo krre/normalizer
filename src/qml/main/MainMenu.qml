@@ -156,6 +156,15 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Run")
+
+        MenuItem {
+            text: qsTr("Run Module")
+            shortcut: "F9"
+        }
+    }
+
+    Menu {
         title: qsTr("Tools")
 
         MenuItem {
