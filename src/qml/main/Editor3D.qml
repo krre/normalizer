@@ -29,7 +29,7 @@ Canvas3D {
     onTitleChanged: updateTabTitle()
 
     // For debug purpose
-//    onRenderOnDemandChanged: print("Render %1: %2".arg(path).arg(renderOnDemand ? "Off" : "On"))
+    onRenderingChanged: print("Render %1: %2".arg(path).arg(rendering ? "On" : "Off"))
 
     function updateTabTitle() {
         for (var i = 0; i < tabView.count; i++) {
