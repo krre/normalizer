@@ -71,6 +71,16 @@ ApplicationWindow {
                     currentIndex--
                 }
             }
+
+            function findTab(path) {
+                for (var i = 0; i < count; i++) {
+                    if (getTab(i).item.path === path) {
+                        return i
+                    }
+                }
+
+                return -1
+            }
         }
     }
 }

@@ -48,7 +48,15 @@ TreeView {
 
         MenuItem {
             text: qsTr("Remove")
-            onTriggered: projectFileSystemModel.removeFile(root.selection.currentIndex)
+            onTriggered: {
+                var treeIndex = root.selection.currentIndex
+                if (projectFileSystemModel.removeFile(treeIndex)) {
+                    var tabIndex = tabView.findTab(projectFileSystemModel.path(treeIndex))
+                    if (tabIndex !== -1) {
+                        tabView.removeTab(tabIndex)
+                    }
+                }
+            }
         }
 
         MenuItem {
