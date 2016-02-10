@@ -134,24 +134,29 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Undo")
+            shortcut: "Ctrl+Z"
         }
 
         MenuItem {
             text: qsTr("Redo")
+            shortcut: "Ctrl+Shift+Z"
         }
 
         MenuSeparator {}
 
         MenuItem {
             text: qsTr("Cut")
+            shortcut: "Ctrl+X"
         }
 
         MenuItem {
             text: qsTr("Copy")
+            shortcut: "Ctrl+C"
         }
 
         MenuItem {
             text: qsTr("Paste")
+            shortcut: "Ctrl+V"
         }
     }
 
