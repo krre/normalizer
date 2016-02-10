@@ -29,6 +29,9 @@ ApplicationWindow {
     onCurrentTabChanged: {
         if (currentTab) {
             currentTab.forceActiveFocus()
+            workspaceTreeView.selectByPath(currentTab.path)
+        } else {
+            workspaceTreeView.selection.clearCurrentIndex()
         }
     }
 

@@ -14,6 +14,11 @@ TreeView {
 
     onDoubleClicked: Utils.openSprout(projectFileSystemModel.path(index))
 
+    function selectByPath(path) {
+        var index = projectFileSystemModel.pathIndex(path)
+        selection.setCurrentIndex(index, ItemSelectionModel.ClearAndSelect)
+    }
+
     ProjectFileSystemModel {
         id: projectFileSystemModel
         rootDir: Settings.value("Path", "workspace", Core.homePath + "/greensilage")
@@ -29,9 +34,9 @@ TreeView {
         anchors.fill: parent
         acceptedButtons: Qt.RightButton
         onPressed:  {
-            var index = root.indexAt(mouseX, mouseY)
-            root.selection.setCurrentIndex(index, ItemSelectionModel.ClearAndSelect)
-            if (root.currentPath) {
+            var index = indexAt(mouseX, mouseY)
+            selection.setCurrentIndex(index, ItemSelectionModel.ClearAndSelect)
+            if (currentPath) {
                 fileMenu.popup()
             }
         }
@@ -42,13 +47,13 @@ TreeView {
 
         MenuItem {
             text: qsTr("Open")
-            onTriggered: Utils.openSprout(root.currentPath)
+            onTriggered: Utils.openSprout(currentPath)
         }
 
         MenuItem {
             text: qsTr("Remove")
             onTriggered: {
-                var treeIndex = root.selection.currentIndex
+                var treeIndex = selection.currentIndex
                 if (projectFileSystemModel.removeFile(treeIndex)) {
                     var tabIndex = tabView.findTab(projectFileSystemModel.path(treeIndex))
                     if (tabIndex !== -1) {

@@ -10,6 +10,7 @@ class ProjectFileSystemModel : public QFileSystemModel
 public:
     explicit ProjectFileSystemModel(QObject *parent = Q_NULLPTR);
     Q_INVOKABLE QString path(const QModelIndex &index) { return filePath(index); }
+    Q_INVOKABLE QModelIndex pathIndex(const QString& path) { return index(path); }
     Q_INVOKABLE bool removeFile(const QModelIndex &index) { return remove(index); }
 
     QString rootDir() const { return rootPath(); }
