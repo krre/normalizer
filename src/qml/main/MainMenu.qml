@@ -175,6 +175,13 @@ MenuBar {
         MenuItem {
             text: qsTr("Run Module")
             shortcut: "F9"
+            onTriggered: print("run")
+        }
+
+        MenuItem {
+            text: qsTr("Stop")
+            shortcut: "Ctrl+Pause"
+            onTriggered: print("stop")
         }
     }
 
