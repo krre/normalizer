@@ -141,7 +141,7 @@ function loadSession() {
     var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
         var openFiles = Settings.list("OpenFiles")
-        if (openFiles) {
+        if (openFiles && openFiles.length) {
             var currentFile = Settings.value("Path", "currentFile")
             var currentIndex = -1
             for (var i = 0; i < openFiles.length; i++) {
@@ -156,8 +156,6 @@ function loadSession() {
             if (currentIndex !== -1 && currentIndex < tabView.count) {
                 tabView.currentIndex = currentIndex
             }
-
-            addRecentPath(sprotPath)
         }
     }
 }
