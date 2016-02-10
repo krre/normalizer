@@ -13,7 +13,9 @@ TreeView {
     rootIndex: projectFileSystemModel.rootIndex
     selection: itemSelectionModel
 
-    onDoubleClicked: Utils.openSprout(projectFileSystemModel.path(index))
+    onDoubleClicked: Utils.openSprout(currentPath)
+
+    Keys.onReturnPressed: Utils.openSprout(currentPath)
 
     function selectByPath(path) {
         var index = projectFileSystemModel.pathIndex(path)
