@@ -130,6 +130,32 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Edit")
+
+        MenuItem {
+            text: qsTr("Undo")
+        }
+
+        MenuItem {
+            text: qsTr("Redo")
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Cut")
+        }
+
+        MenuItem {
+            text: qsTr("Copy")
+        }
+
+        MenuItem {
+            text: qsTr("Paste")
+        }
+    }
+
+    Menu {
         title: qsTr("Tools")
 
         MenuItem {
