@@ -9,7 +9,7 @@ import "../js/operators.js" as Operators
 ApplicationWindow {
     id: mainRoot
     property alias tabView: tabView
-    property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
+    property Editor3D currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias sysPalette: sysPalette
     property alias workspace: workspace
     property var logger: new Utils.Logger()
@@ -85,6 +85,12 @@ ApplicationWindow {
                 }
 
                 return -1
+            }
+
+            function forEachTab(callback) {
+                for (var i = 0; i < count; i++) {
+                    callback(getTab(i).item)
+                }
             }
         }
     }

@@ -27,6 +27,13 @@ int main(int argc, char* argv[])
     engine.rootContext()->setContextProperty("Settings", &settings);
     engine.rootContext()->setContextProperty("OperatorModel", &operatorModel);
     engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
+
+#ifdef QT_DEBUG
+    engine.rootContext()->setContextProperty("isDebug", QVariant(true));
+#else
+    engine.rootContext()->setContextProperty("isDebug", QVariant(false));
+#endif
+
     engine.load(QUrl("qrc:/qml/main.qml"));
 
     if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;

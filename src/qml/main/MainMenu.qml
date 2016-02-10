@@ -230,6 +230,39 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Debug")
+        visible: isDebug
+        enabled: isDebug
+
+        Menu {
+            title: qsTr("Render")
+            enabled: currentTab
+
+            MenuItem {
+                text: qsTr("Run Current")
+                onTriggered: currentTab.renderOnDemand = false
+            }
+
+            MenuItem {
+                text: qsTr("Run All")
+                onTriggered: tabView.forEachTab(function(editor) { editor.renderOnDemand = false })
+                shortcut: "Ctrl+F11"
+            }
+
+            MenuItem {
+                text: qsTr("Stop Current")
+                onTriggered: currentTab.renderOnDemand = true
+            }
+
+            MenuItem {
+                text: qsTr("Stop All")
+                onTriggered: tabView.forEachTab(function(editor) { editor.renderOnDemand = true })
+                shortcut: "Ctrl+F12"
+            }
+        }
+    }
+
+    Menu {
         title: qsTr("Help")
 
         MenuItem {

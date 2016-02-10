@@ -13,7 +13,6 @@ Canvas3D {
     property var gl
     property string path
     property bool isDirty: false
-    renderOnDemand: true
 
     Component.onCompleted: {
         reload()
@@ -25,6 +24,9 @@ Canvas3D {
     onPaintGL: GL.paintGL(root)
 
     onTitleChanged: updateTabTitle()
+
+    // For debug purpose
+    onRenderOnDemandChanged: print("Render %1: %2".arg(path).arg(renderOnDemand ? "Off" : "On"))
 
     function updateTabTitle() {
         for (var i = 0; i < tabView.count; i++) {
