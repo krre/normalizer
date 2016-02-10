@@ -67,7 +67,7 @@ ColumnLayout {
 
         TableViewColumn {
             role: "name"
-            width: 145
+            width: 130
         }
 
         TableViewColumn {
