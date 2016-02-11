@@ -45,6 +45,10 @@ ApplicationWindow {
         colorGroup: SystemPalette.Active
     }
 
+    SelectWorkspace {
+        visible: !Settings.value("Path", "workspace")
+    }
+
     SplitView {
         anchors.fill: parent
 

@@ -8,6 +8,7 @@ import "../../js/dialog.js" as Dialog
 TreeView {
     id: root
     property string currentPath: fileSystemModel.path(selection.currentIndex)
+    property alias rootDir: fileSystemModel.rootDir
     frameVisible: false
     model: fileSystemModel
     rootIndex: fileSystemModel.rootIndex
@@ -24,7 +25,7 @@ TreeView {
 
     FileSystemModel {
         id: fileSystemModel
-        rootDir: Settings.value("Path", "workspace", Core.homePath + "/usilage")
+        rootDir: Settings.value("Path", "workspace", Core.homePath)
     }
 
     ItemSelectionModel {

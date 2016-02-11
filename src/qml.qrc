@@ -19,5 +19,6 @@
         <file>js/dialog.js</file>
         <file>js/operators.js</file>
         <file>js/object-factory.js</file>
+        <file>qml/main/SelectWorkspace.qml</file>
     </qresource>
 </RCC>
