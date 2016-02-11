@@ -49,7 +49,7 @@ WindowDialog {
 
         Label {
             id: directory
-            text: Settings.value("Path", "workspace", Core.homePath + "/usilage")
+            text: Settings.value("Path", "workspace")
         }
     }
 }
