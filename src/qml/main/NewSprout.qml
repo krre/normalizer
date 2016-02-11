@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.2
+import Usilage 1.0
 import "../components"
 import "../../js/dialog.js" as Dialog
 import "../../js/utils.js" as Utils
@@ -12,22 +13,29 @@ WindowDialog {
     height: 100
 
     onAccepted: {
-        var filePath = directory.text + "/" + name.text + ".sprout"
-        if (Core.isFileExists(filePath)) {
+        var path = directory.text + "/" + name.text + ".sprout"
+        if (Core.isFileExists(path)) {
             var dialog = Dialog.question(qsTr("File already exists. Overwrite?"))
             dialog.yes.connect(function() {
-                Core.saveFile(filePath, "")
-                Utils.openSprout(filePath)
+                createDb(path)
                 root.close()
             })
             stayOnScreen = true
         } else {
-            Core.saveFile(filePath, "{}")
-            Utils.openSprout(filePath)
+            createDb(path)
         }
     }
 
     okButton.enabled: name.text
+
+    function createDb(path) {
+        var result = sproutDb.create(path)
+        print("Create db %1: %2".arg(path).arg(result))
+    }
+
+    SproutDb {
+        id: sproutDb
+    }
 
     GridLayout {
         width: parent.width

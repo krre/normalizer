@@ -7,5 +7,7 @@ SproutDb::SproutDb()
 
 bool SproutDb::create(const QString& path)
 {
-    return true;
+    db = QSqlDatabase::addDatabase("QSQLITE", "usilage:" + path);
+    db.setDatabaseName(path);
+    return db.open();
 }
