@@ -1,4 +1,4 @@
-QT += opengl qml quick
+QT += opengl qml quick sql
 
 CONFIG += c++11
 TEMPLATE = app
@@ -10,7 +10,7 @@ SOURCES += \
     src/cpp/base/operatormodel.cpp \
     src/cpp/base/operatorproxymodel.cpp \
     src/cpp/base/filesystemmodel.cpp \
-    src/cpp/db/sdb.cpp
+    src/cpp/db/sproutdb.cpp
 
 RESOURCES += \
     src/qml.qrc \
@@ -48,4 +48,4 @@ HEADERS += \
     src/cpp/base/operatormodel.h \
     src/cpp/base/operatorproxymodel.h \
     src/cpp/base/filesystemmodel.h \
-    src/cpp/db/sdb.h
+    src/cpp/db/sproutdb.h

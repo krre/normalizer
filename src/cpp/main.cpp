@@ -5,7 +5,7 @@
 #include "base/filesystemmodel.h"
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
-#include "db/sdb.h"
+#include "db/sproutdb.h"
 
 int main(int argc, char* argv[])
 {
@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
     app.setApplicationVersion("0.1.0");
 
     qmlRegisterType<FileSystemModel>("Usilage", 1, 0, "FileSystemModel");
+    qmlRegisterType<SproutDb>("Usilage", 1, 0, "SproutDb");
 
     Core core;
     Settings settings;
-    Sdb sdb;
 
     OperatorModel operatorModel;
     OperatorProxyModel operatorProxyModel;
@@ -27,7 +27,6 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("Core", &core);
     engine.rootContext()->setContextProperty("Settings", &settings);
-    engine.rootContext()->setContextProperty("Sdb", &sdb);
     engine.rootContext()->setContextProperty("OperatorModel", &operatorModel);
     engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
 
