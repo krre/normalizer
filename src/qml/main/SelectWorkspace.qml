@@ -10,7 +10,7 @@ WindowDialog {
     id: root
     title: qsTr("Select Workspace")
     width: 500
-    height: 200
+    height: 100
 
     onAccepted: {
         Settings.setValue("Path", "workspace", workspacePath.text)
