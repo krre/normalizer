@@ -1,4 +1,4 @@
-# GreenSilage
+# Usilage
 WebGL based IDE for [Sprout](https://github.com/krre/sprout) language
 
 ## Dependencies

@@ -50,7 +50,10 @@ function moduleOp() {
 }
 
 function functionOp() {
-    print("function")
+    print(JSON.stringify(currentNode))
+    currentNode.func = ObjectFactory.func()
+    print(JSON.stringify(currentNode))
+    isDirty = true
 }
 
 function expressionOp() {

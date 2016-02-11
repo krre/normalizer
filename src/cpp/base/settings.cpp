@@ -3,7 +3,7 @@
 
 Settings::Settings()
 {
-    QString filePath = qApp->applicationDirPath() + "/greensilage.ini";
+    QString filePath = qApp->applicationDirPath() + "/usilage.ini";
     settings = new QSettings(filePath, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
 }

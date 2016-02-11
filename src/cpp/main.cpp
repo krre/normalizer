@@ -9,10 +9,10 @@
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName("GreenSilage");
+    app.setApplicationName("Usilage");
     app.setApplicationVersion("0.1.0");
 
-    qmlRegisterType<FileSystemModel>("GreenSilage", 1, 0, "FileSystemModel");
+    qmlRegisterType<FileSystemModel>("Usilage", 1, 0, "FileSystemModel");
 
     Core core;
     Settings settings;
