@@ -6,7 +6,9 @@ Settings::Settings()
     QString filePath = qApp->applicationDirPath() + "/usilage.ini";
     settings = new QSettings(filePath, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
-    setValue("Path", "workspace", Core::homePath() + "/sprout");
+    if (value("Path", "workspace").toString() == "") {
+        setValue("Path", "workspace", Core::homePath() + "/sprout");
+    }
 }
 
 void Settings::setValue(const QString& group, const QString& key, const QVariant& value)
