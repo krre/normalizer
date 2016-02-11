@@ -30,7 +30,9 @@ WindowDialog {
 
     function createDb(path) {
         var result = sproutDb.create(path)
-        print("Create db %1: %2".arg(path).arg(result))
+        if (result) {
+            Dialog.error(result)
+        }
     }
 
     SproutDb {
