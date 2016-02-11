@@ -9,7 +9,8 @@ SOURCES += \
     src/cpp/base/settings.cpp \
     src/cpp/base/operatormodel.cpp \
     src/cpp/base/operatorproxymodel.cpp \
-    src/cpp/base/filesystemmodel.cpp
+    src/cpp/base/filesystemmodel.cpp \
+    src/cpp/db/sdb.cpp
 
 RESOURCES += \
     src/qml.qrc \
@@ -46,4 +47,5 @@ HEADERS += \
     src/cpp/base/settings.h \
     src/cpp/base/operatormodel.h \
     src/cpp/base/operatorproxymodel.h \
-    src/cpp/base/filesystemmodel.h
+    src/cpp/base/filesystemmodel.h \
+    src/cpp/db/sdb.h
