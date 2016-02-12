@@ -94,9 +94,11 @@ function saveAsSprout(path) {
     if (path.substr(-7) !== ".sprout") {
         path += ".sprout"
     }
+    Core.copyFile(currentTab.path, path)
     currentTab.path = path
     tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(path)
-    currentTab.save()
+    workspace.selectByPath(path)
+    currentTab.reload()
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 

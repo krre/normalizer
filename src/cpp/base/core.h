@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE bool isFileExists(const QString& filePath);
     Q_INVOKABLE bool isDirectoryExists(const QString& dirPath);
     Q_INVOKABLE bool removeFile(const QString& filePath);
+    Q_INVOKABLE bool copyFile(const QString& fileName, const QString& newName);
     Q_INVOKABLE void saveFile(const QString& filePath, const QString &data);
     Q_INVOKABLE QByteArray loadFile(const QString& filePath);
     Q_INVOKABLE void mkpath(const QString& dirPath);

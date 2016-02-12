@@ -41,6 +41,11 @@ bool Core::removeFile(const QString& filePath)
     return QFile::remove(filePath);
 }
 
+bool Core::copyFile(const QString& fileName, const QString& newName)
+{
+    return QFile::copy(fileName, newName);
+}
+
 void Core::saveFile(const QString& filePath, const QString& data)
 {
     QFile file(filePath);

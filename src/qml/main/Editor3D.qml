@@ -20,13 +20,7 @@ Canvas3D {
     renderOnDemand: !(isCurrent && rendering)
 
     Component.onCompleted: {
-        var result = sproutDb.open(path)
-        if (result) {
-            Dialog.error(result)
-        } else {
-            reload()
-            currentNode = program
-        }
+        reload()
     }
 
     onInitializeGL: GL.initializeGL(root)
@@ -48,17 +42,13 @@ Canvas3D {
         }
     }
 
-    function save() {
-//        Core.saveFile(path, JSON.stringify(program, null, 4))
-        isDirty = false
-    }
-
     function reload() {
-        try {
-//            program = JSON.parse(Core.loadFile(path))
-            isDirty = false
-        } catch(e) {
-            print(qsTr("Opening ") + path + ": " + e)
+        sproutDb.close()
+        var result = sproutDb.open(path)
+        if (result) {
+            Dialog.error(result)
+        } else {
+            currentNode = program
         }
     }
 

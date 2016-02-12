@@ -9,10 +9,12 @@ public:
     SproutDb();
     Q_INVOKABLE QString create(const QString& path);
     Q_INVOKABLE QString open(const QString& path);
+    Q_INVOKABLE void close();
 
 private:
     QSqlError initTables();
     QSqlError initRecords();
     QSqlDatabase db;
+    QString connName;
 
 };
