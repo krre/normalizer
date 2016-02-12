@@ -9,10 +9,14 @@ TreeView {
     id: root
     property string currentPath: fileSystemModel.path(selection.currentIndex)
     property alias rootDir: fileSystemModel.rootDir
+    property alias fileSystemModel: fileSystemModel
     frameVisible: false
+    sortIndicatorVisible: true
     model: fileSystemModel
     rootIndex: fileSystemModel.rootIndex
     selection: itemSelectionModel
+
+    onSortIndicatorOrderChanged: fileSystemModel.sortFiles(sortIndicatorOrder)
 
     onDoubleClicked: Utils.openSprout(currentPath)
 
