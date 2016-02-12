@@ -48,9 +48,7 @@ function moduleOp() {
 }
 
 function functionOp() {
-    print(JSON.stringify(currentNode))
-    currentNode.func = ObjectFactory.func()
-    print(JSON.stringify(currentNode))
+    sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('func', 0)")
 }
 
 function expressionOp() {

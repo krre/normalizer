@@ -10,6 +10,7 @@ public:
     Q_INVOKABLE QString create(const QString& path);
     Q_INVOKABLE QString open(const QString& path);
     Q_INVOKABLE void close();
+    Q_INVOKABLE void query(const QString& str);
 
 private:
     QSqlError initTables();
