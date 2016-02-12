@@ -8,14 +8,13 @@ import "../../js/webgl/scene.js" as Scene
 
 Canvas3D {
     id: root
-    property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
+    property string title: Core.pathToFileName(path)
     property alias sproutDb: sproutDb
     property var scene: new Scene.Scene()
     property var program: Object()
     property var currentNode
     property var gl
     property string path
-    property bool isDirty: false
     property bool isCurrent: root === currentTab
     property bool rendering: true
     renderOnDemand: !(isCurrent && rendering)

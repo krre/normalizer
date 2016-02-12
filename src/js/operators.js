@@ -21,12 +21,10 @@ function add() {
 
 function printOp() {
     program.print = ObjectFactory.print()
-    isDirty = true
 }
 
 function flowOp() {
     program.flow = ObjectFactory.flow()
-    isDirty = true
 }
 
 function addOp() {
@@ -53,7 +51,6 @@ function functionOp() {
     print(JSON.stringify(currentNode))
     currentNode.func = ObjectFactory.func()
     print(JSON.stringify(currentNode))
-    isDirty = true
 }
 
 function expressionOp() {
