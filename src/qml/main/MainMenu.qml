@@ -74,13 +74,6 @@ MenuBar {
         MenuSeparator {}
 
         MenuItem {
-            text: qsTr("Save")
-            shortcut: "Ctrl+S"
-            enabled: currentTab && currentTab.isDirty
-            onTriggered:  currentTab.save()
-        }
-
-        MenuItem {
             text: qsTr("Save As...")
             shortcut: "Ctrl+Shift+S"
             enabled: currentTab
