@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
 import "main"
+import "windows"
 import "../js/utils.js" as Utils
 import "../js/operators.js" as Operators
 

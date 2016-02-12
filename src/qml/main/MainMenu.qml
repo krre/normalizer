@@ -12,7 +12,7 @@ MenuBar {
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/NewSprout.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/NewSprout.qml")
         }
 
         MenuItem {
@@ -183,7 +183,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Options...")
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Options.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/Options.qml")
         }
     }
 
@@ -250,7 +250,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("About %1...".arg(Qt.application.name))
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/About.qml")
         }
     }
 }

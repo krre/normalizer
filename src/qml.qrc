@@ -2,23 +2,23 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/main/MainMenu.qml</file>
-        <file>qml/main/About.qml</file>
+        <file>qml/windows/About.qml</file>
         <file>qml/components/MessageDialogBase.qml</file>
         <file>qml/main/Editor3D.qml</file>
         <file>qml/components/ButtonBase.qml</file>
         <file>qml/components/WindowDialog.qml</file>
-        <file>qml/main/Options.qml</file>
+        <file>qml/windows/Options.qml</file>
         <file>qml/components/BrowseButton.qml</file>
         <file>qml/components/filedialog/FileDialogBase.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>qml/components/filedialog/FileDialogSave.qml</file>
-        <file>qml/main/NewSprout.qml</file>
+        <file>qml/windows/NewSprout.qml</file>
         <file>qml/main/Workspace.qml</file>
         <file>qml/main/Finder.qml</file>
         <file>js/dialog.js</file>
         <file>js/operators.js</file>
         <file>js/object-factory.js</file>
-        <file>qml/main/SelectWorkspace.qml</file>
+        <file>qml/windows/SelectWorkspace.qml</file>
     </qresource>
 </RCC>

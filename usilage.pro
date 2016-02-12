@@ -23,10 +23,8 @@ DISTFILES += \
     src/qml/main/MainMenu.qml \
     src/js/style.js \
     src/qml/components/MessageDialogBase.qml \
-    src/qml/main/About.qml \
     src/qml/components/WindowDialog.qml \
     src/qml/components/ButtonBase.qml \
-    src/qml/main/Options.qml \
     src/qml/components/BrowseButton.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogDirectory.qml \
@@ -36,12 +34,14 @@ DISTFILES += \
     src/qml/main/Finder.qml \
     src/js/operators.js \
     src/js/object-factory.js \
-    src/qml/main/NewSprout.qml \
     src/qml/components/filedialog/FileDialogSave.qml \
     src/js/webgl/scene.js \
     src/js/webgl/gl.js \
     src/qml/main/Workspace.qml \
-    src/qml/main/SelectWorkspace.qml
+    src/qml/windows/NewSprout.qml \
+    src/qml/windows/Options.qml \
+    src/qml/windows/SelectWorkspace.qml \
+    src/qml/windows/About.qml
 
 HEADERS += \
     src/cpp/base/core.h \
