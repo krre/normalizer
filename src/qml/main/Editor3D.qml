@@ -1,6 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtCanvas3D 1.1
+import Usilage 1.0
+import "../../js/dialog.js" as Dialog
 import "../../js/webgl/gl.js" as GL
 import "../../js/webgl/scene.js" as Scene
 
@@ -18,8 +20,13 @@ Canvas3D {
     renderOnDemand: !(isCurrent && rendering)
 
     Component.onCompleted: {
-        reload()
-        currentNode = program
+        var result = sproutDb.open(path)
+        if (result) {
+            Dialog.error(result)
+        } else {
+            reload()
+            currentNode = program
+        }
     }
 
     onInitializeGL: GL.initializeGL(root)
@@ -42,17 +49,21 @@ Canvas3D {
     }
 
     function save() {
-        Core.saveFile(path, JSON.stringify(program, null, 4))
+//        Core.saveFile(path, JSON.stringify(program, null, 4))
         isDirty = false
     }
 
     function reload() {
         try {
-            program = JSON.parse(Core.loadFile(path))
+//            program = JSON.parse(Core.loadFile(path))
             isDirty = false
         } catch(e) {
             print(qsTr("Opening ") + path + ": " + e)
         }
+    }
+
+    SproutDb {
+        id: sproutDb
     }
 
     Action {

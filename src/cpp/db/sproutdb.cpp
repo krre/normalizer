@@ -27,6 +27,20 @@ QString SproutDb::create(const QString& path)
     return "";
 }
 
+QString SproutDb::open(const QString &path)
+{
+    if (!QSqlDatabase::drivers().contains("QSQLITE")) {
+        return tr("Unable to load database. Needs the SQLITE driver");
+    }
+    db = QSqlDatabase::addDatabase("QSQLITE", "usilage:" + path);
+    db.setDatabaseName(path);
+    if (db.open()) {
+        return "";
+    } else {
+        return db.lastError().text();
+    }
+}
+
 QSqlError SproutDb::initTables()
 {
     QSqlQuery q(db);

@@ -8,6 +8,7 @@ class SproutDb : public QObject
 public:
     SproutDb();
     Q_INVOKABLE QString create(const QString& path);
+    Q_INVOKABLE QString open(const QString& path);
 
 private:
     QSqlError initTables();
