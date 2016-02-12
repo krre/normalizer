@@ -103,7 +103,7 @@ function saveAsSprout(path) {
 }
 
 function renameSprout(oldPath, newPath) {
-    if (currentTab.path === oldPath) {
+    if (currentTab && currentTab.path === oldPath) {
         currentTab.sproutDb.close()
         Core.renameFile(oldPath, newPath)
         currentTab.path = newPath
