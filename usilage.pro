@@ -41,7 +41,8 @@ DISTFILES += \
     src/qml/windows/NewSprout.qml \
     src/qml/windows/Options.qml \
     src/qml/windows/SelectWorkspace.qml \
-    src/qml/windows/About.qml
+    src/qml/windows/About.qml \
+    src/qml/windows/Rename.qml
 
 HEADERS += \
     src/cpp/base/core.h \

@@ -102,6 +102,22 @@ function saveAsSprout(path) {
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
+function renameSprout(oldPath, newPath) {
+    if (currentTab.path === oldPath) {
+        currentTab.sproutDb.close()
+        Core.renameFile(oldPath, newPath)
+        currentTab.path = newPath
+        tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(newPath)
+        workspace.selectByPath(newPath)
+        currentTab.reload()
+        mainMenu.recentFilesModel.removeByPath(oldPath)
+        addRecentPath(newPath, mainMenu.recentFilesModel)
+    } else {
+        Core.renameFile(oldPath, newPath)
+        workspace.selectByPath(newPath)
+    }
+}
+
 function addRecentPath(path) {
     var model = mainMenu.recentFilesModel
     // Prevention of duplication of path and raising it on top

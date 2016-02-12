@@ -73,7 +73,8 @@ TreeView {
         }
 
         MenuItem {
-            text: qsTr("Rename")
+            text: qsTr("Rename...")
+            onTriggered: Utils.createDynamicObject(root, "qrc:/qml/windows/Rename.qml", { path: currentPath })
         }
     }
 

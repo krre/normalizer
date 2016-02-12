@@ -12,13 +12,13 @@ QString Core::pathToFileName(const QString& path)
     return fileInfo.fileName();
 }
 
-QString Core::pathToDir(const QString &filePath)
+QString Core::pathToDir(const QString& filePath)
 {
     QFileInfo fileInfo(filePath);
     return fileInfo.dir().absolutePath();
 }
 
-QString Core::pathToExt(const QString &filePath)
+QString Core::pathToExt(const QString& filePath)
 {
     QFileInfo fileInfo(filePath);
     return fileInfo.suffix();
@@ -30,7 +30,7 @@ bool Core::isFileExists(const QString& filePath)
     return fileInfo.exists() && fileInfo.isFile();
 }
 
-bool Core::isDirectoryExists(const QString &dirPath)
+bool Core::isDirectoryExists(const QString& dirPath)
 {
     QDir dir(dirPath);
     return dir.exists();
@@ -58,6 +58,11 @@ void Core::saveFile(const QString& filePath, const QString& data)
     file.close();
 }
 
+void Core::renameFile(const QString& oldName, const QString& newName)
+{
+    QFile::rename(oldName, newName);
+}
+
 QByteArray Core::loadFile(const QString& filePath)
 {
     QFile file(filePath);
@@ -71,7 +76,7 @@ QByteArray Core::loadFile(const QString& filePath)
     }
 }
 
-void Core::mkpath(const QString &dirPath) {
+void Core::mkpath(const QString& dirPath) {
     QDir dir;
     dir.mkpath(dirPath);
 }

@@ -20,5 +20,6 @@
         <file>js/operators.js</file>
         <file>js/object-factory.js</file>
         <file>qml/windows/SelectWorkspace.qml</file>
+        <file>qml/windows/Rename.qml</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ import "../../js/webgl/scene.js" as Scene
 Canvas3D {
     id: root
     property string title: Core.pathToFileName(path) + (isDirty ? "*" : "")
+    property alias sproutDb: sproutDb
     property var scene: new Scene.Scene()
     property var program: Object()
     property var currentNode
