@@ -49,7 +49,6 @@ Rectangle {
             Keys.onReturnPressed: {
                 if (text) {
                     root.enter(text)
-                    root.destroy()
                 }
             }
         }
