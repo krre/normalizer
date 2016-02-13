@@ -36,8 +36,9 @@ Rectangle {
         }
 
         TextInput {
-            Layout.fillWidth: true
             id: value
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             color: "white"
 
             Keys.onReturnPressed: {
