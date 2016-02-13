@@ -1,4 +1,7 @@
+.import "utils.js" as Utils
 .import "object-factory.js" as ObjectFactory
+
+var panelPath = "qrc:/qml/components/Panel.qml"
 
 var operators = [
     { name: "Print", shortcut: "P", action: printOp },
@@ -48,7 +51,15 @@ function moduleOp() {
 }
 
 function functionOp() {
-    sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('func', %1)".arg(pos.moduleId))
+    panel = Utils.createDynamicObject(currentTab, panelPath, { state: "function" })
+    panel.enter.connect(function(value) {
+        var records = sproutDb.query("SELECT * FROM Functions WHERE moduleId=0")
+        for (var i = 0; i < records.length; i++) {
+            print(JSON.stringify(records[i]))
+        }
+
+    //    sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('func', %1)".arg(pos.moduleId))
+    })
 }
 
 function expressionOp() {

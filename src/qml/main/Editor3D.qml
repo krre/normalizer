@@ -4,6 +4,7 @@ import QtCanvas3D 1.1
 import Usilage 1.0
 import "../components"
 import "../../js/utils.js" as Utils
+import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
 import "../../js/webgl/gl.js" as GL
 import "../../js/webgl/scene.js" as Scene
@@ -55,6 +56,10 @@ Canvas3D {
             currentNode = program
             pos = { moduleId: 0 }
         }
+    }
+
+    function action(index) {
+        Operators.operators[index].action()
     }
 
     SproutDb {

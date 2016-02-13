@@ -13,7 +13,7 @@ Rectangle {
 
     Component.onCompleted: value.forceActiveFocus()
 
-    signal finished(var value)
+    signal enter(var value)
 
     states: [
         State {
@@ -24,6 +24,11 @@ Rectangle {
             }
         }
     ]
+
+    Action {
+        shortcut: "Esc"
+        onTriggered: root.destroy()
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -42,14 +47,11 @@ Rectangle {
             color: "white"
 
             Keys.onReturnPressed: {
-                root.finished(value.text)
-                root.destroy()
+                if (text) {
+                    root.enter(text)
+                    root.destroy()
+                }
             }
         }
-    }
-
-    Action {
-        shortcut: "Esc"
-        onTriggered: root.destroy()
     }
 }

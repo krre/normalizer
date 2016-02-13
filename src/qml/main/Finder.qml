@@ -1,7 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
-import "../../js/operators.js" as Operators
 
 ColumnLayout {
     id: root
@@ -27,7 +26,7 @@ ColumnLayout {
 
         Keys.onReturnPressed: {
             var index = OperatorProxyModel.sourceIndex(tableView.currentRow)
-            Operators.operators[index].action()
+            currentTab.action(index) // run in context of Editor3D
             root.destroy()
         }
         Keys.onDownPressed: tableView.incrementRow()
