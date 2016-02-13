@@ -50,13 +50,25 @@ void SproutDb::close()
     QSqlDatabase::removeDatabase(connName);
 }
 
-void SproutDb::query(const QString& str)
+QVariantList SproutDb::query(const QString& str)
 {
     QSqlQuery q(db);
     q.exec(str);
     if (q.lastError().type() != QSqlError::NoError) {
         qDebug() << q.lastError().text();
     }
+
+    QVariantList list;
+    while (q.next()) {
+        QVariantMap map;
+        QSqlRecord rec = q.record();
+        for (int i = 0; i < rec.count(); i++) {
+            map[rec.fieldName(i)] = rec.value(i);
+        }
+        list.append(map);
+    }
+
+    return list;
 }
 
 QSqlError SproutDb::initTables()
