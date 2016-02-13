@@ -48,7 +48,7 @@ function moduleOp() {
 }
 
 function functionOp() {
-    sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('func', 0)")
+    sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('func', %1)".arg(pos.moduleId))
 }
 
 function expressionOp() {

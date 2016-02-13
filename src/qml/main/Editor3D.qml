@@ -14,6 +14,7 @@ Canvas3D {
     property var program: Object()
     property var currentNode
     property var gl
+    property var pos
     property string path
     property bool isCurrent: root === currentTab
     property bool rendering: true
@@ -49,6 +50,7 @@ Canvas3D {
             Dialog.error(result)
         } else {
             currentNode = program
+            pos = { moduleId: 0 }
         }
     }
 
