@@ -21,5 +21,6 @@
         <file>js/object-factory.js</file>
         <file>qml/windows/SelectWorkspace.qml</file>
         <file>qml/windows/Rename.qml</file>
+        <file>qml/components/Panel.qml</file>
     </qresource>
 </RCC>

@@ -2,6 +2,7 @@ import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtCanvas3D 1.1
 import Usilage 1.0
+import "../components"
 import "../../js/dialog.js" as Dialog
 import "../../js/webgl/gl.js" as GL
 import "../../js/webgl/scene.js" as Scene
@@ -15,6 +16,7 @@ Canvas3D {
     property var currentNode
     property var gl
     property var pos
+    property var panel
     property string path
     property bool isCurrent: root === currentTab
     property bool rendering: true
@@ -60,18 +62,8 @@ Canvas3D {
 
     Action {
         shortcut: " "
-        enabled: root == currentTab
+        enabled: root == currentTab && !panel
         onTriggered: finder.visible = true
-    }
-
-    Action {
-        shortcut: "Esc"
-        enabled: root == currentTab
-        onTriggered: {
-            if (finder.visible) {
-                finder.visible = false
-            }
-        }
     }
 
     Finder {

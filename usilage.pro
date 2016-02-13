@@ -42,7 +42,8 @@ DISTFILES += \
     src/qml/windows/Options.qml \
     src/qml/windows/SelectWorkspace.qml \
     src/qml/windows/About.qml \
-    src/qml/windows/Rename.qml
+    src/qml/windows/Rename.qml \
+    src/qml/components/Panel.qml
 
 HEADERS += \
     src/cpp/base/core.h \

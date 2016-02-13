@@ -16,8 +16,13 @@ ColumnLayout {
         } else {
             tableView.selectRow(0)
             finderTextField.text = ""
-            currentTab.forceActiveFocus()
         }
+    }
+
+    Action {
+        shortcut: "Esc"
+        enabled: root.visible
+        onTriggered: finder.visible = false
     }
 
     TextField {
