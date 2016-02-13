@@ -10,7 +10,10 @@ ColumnLayout {
     height: 200
     spacing: 0
 
-    Component.onCompleted: finderTextField.forceActiveFocus()
+    Component.onCompleted: {
+        OperatorProxyModel.setFilterPattern("")
+        finderTextField.forceActiveFocus()
+    }
 
     Action {
         shortcut: "Esc"
