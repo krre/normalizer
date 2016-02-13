@@ -5,24 +5,16 @@ import "../../js/operators.js" as Operators
 
 ColumnLayout {
     id: root
+    anchors.centerIn: parent
     width: 200
     height: 200
     spacing: 0
-    visible: false
 
-    onVisibleChanged: {
-        if (visible) {
-            finderTextField.forceActiveFocus()
-        } else {
-            tableView.selectRow(0)
-            finderTextField.text = ""
-        }
-    }
+    Component.onCompleted: finderTextField.forceActiveFocus()
 
     Action {
         shortcut: "Esc"
-        enabled: root.visible
-        onTriggered: finder.visible = false
+        onTriggered: root.destroy()
     }
 
     TextField {
@@ -33,7 +25,7 @@ ColumnLayout {
         Keys.onReturnPressed: {
             var index = OperatorProxyModel.sourceIndex(tableView.currentRow)
             Operators.operators[index].action()
-            root.visible = false
+            root.destroy()
         }
         Keys.onDownPressed: tableView.incrementRow()
         Keys.onUpPressed: tableView.decrementRow()

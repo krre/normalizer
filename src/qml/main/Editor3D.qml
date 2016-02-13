@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtCanvas3D 1.1
 import Usilage 1.0
 import "../components"
+import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
 import "../../js/webgl/gl.js" as GL
 import "../../js/webgl/scene.js" as Scene
@@ -63,11 +64,6 @@ Canvas3D {
     Action {
         shortcut: " "
         enabled: root == currentTab && !panel
-        onTriggered: finder.visible = true
-    }
-
-    Finder {
-        id: finder
-        anchors.centerIn: parent
+        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
 }
