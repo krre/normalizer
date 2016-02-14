@@ -1,24 +1,47 @@
 .import QtQuick.Dialogs 1.2 as Dialogs
 .import "../js/utils.js" as Utils
 
-var messageDialogUrl = "qrc:/qml/components/MessageDialogBase.qml"
+function createDialog(text, properties, icon, standardButtons) {
+    properties = properties || {}
+    properties.text = text
+    properties.icon = properties.hasOwnProperty("icon") ? properties.icon : icon
+    properties.standardButtons = properties.hasOwnProperty("standardButtons") ? properties.standardButtons : standardButtons || Dialogs.StandardButton.Ok
 
-function infoMessage(message, parent) {
-    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
-                                     { icon: Dialogs.StandardIcon.Information, text: message })
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/MessageDialogBase.qml", properties)
 }
 
-function warningMessage(message, parent) {
-    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
-                                     { icon: Dialogs.StandardIcon.Information, text: message })
+function simple(text, properties) {
+    return createDialog(text, properties, Dialogs.StandardIcon.NoIcon)
 }
 
-function questionMessage(message, parent) {
-    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
-                                     { icon: Dialogs.StandardIcon.Information, standardButtons: Dialogs.StandardButton.Yes | Dialogs.StandardButton.No, text: message })
+function info(text, properties) {
+    return createDialog(text, properties,  Dialogs.StandardIcon.Information)
 }
 
-function errorMessage(message, parent) {
-    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
-                                     { icon: Dialogs.StandardIcon.Critical, text: message })
+function warning(text, properties) {
+    return createDialog(text, properties, Dialogs.StandardIcon.Warning)
+}
+
+function question(text, properties) {
+    return createDialog(text, properties, Dialogs.StandardIcon.Question, Dialogs.StandardButton.Yes | Dialogs.StandardButton.No)
+}
+
+function error(text, properties) {
+    return createDialog(text, properties, Dialogs.StandardIcon.Critical)
+}
+
+function areYouSure(title) {
+    var properties = {}
+    if (title) {
+        properties.title = title
+    }
+    return question(qsTr("Are you sure?"), properties)
+}
+
+function selectFile(properties) {
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/filedialog/FileDialogOpen.qml", properties || {})
+}
+
+function selectDirectory(properties) {
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/filedialog/FileDialogDirectory.qml", properties || {})
 }

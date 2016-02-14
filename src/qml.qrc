@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/components/BrowseButton.qml</file>
+        <file>qml/components/ButtonBase.qml</file>
+        <file>qml/components/filedialog/FileDialogBase.qml</file>
+        <file>qml/components/filedialog/FileDialogDirectory.qml</file>
+        <file>qml/components/filedialog/FileDialogOpen.qml</file>
+        <file>qml/components/filedialog/FileDialogSave.qml</file>
+        <file>qml/components/MessageDialogBase.qml</file>
+        <file>qml/components/Panel.qml</file>
+        <file>qml/components/WindowDialog.qml</file>
+        <file>qml/dialogs/EditUnit.qml</file>
+        <file>qml/dialogs/InfoUnit.qml</file>
+        <file>qml/dialogs/NewProject.qml</file>
+        <file>qml/dialogs/Options.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/main/About.qml</file>
+        <file>qml/main/Editor3D.qml</file>
+        <file>qml/main/Finder.qml</file>
+        <file>qml/main/MainMenu.qml</file>
+        <file>qml/main/Output.qml</file>
+        <file>qml/main/WorkArea.qml</file>
+        <file>qml/main/Workspace.qml</file>
+        <file>qml/sheets/CommandSheet.qml</file>
+        <file>qml/units/Argument.qml</file>
+        <file>qml/units/Function.qml</file>
+        <file>qml/units/Instruction.qml</file>
+        <file>qml/units/Module.qml</file>
+        <file>qml/units/Project.qml</file>
+        <file>qml/units/UnitBase.qml</file>
+        <file>qml/units/UnitSet.qml</file>
+        <file>qml/windows/About.qml</file>
+        <file>qml/windows/NewSprout.qml</file>
+        <file>qml/windows/Options.qml</file>
+        <file>qml/windows/Rename.qml</file>
+        <file>qml/windows/SelectWorkspace.qml</file>
+    </qresource>
+</RCC>

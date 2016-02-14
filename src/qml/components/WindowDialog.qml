@@ -1,17 +1,24 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
+import QtQuick 2.6
+import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
+import "../../js/utils.js" as Utils
 
 Window {
     default property alias data: content.data
     property real indent: 10
     property int standardButtons: StandardButton.Ok | StandardButton.Cancel
-    property bool stayOnScreen
+    property bool stayOnScreen: false
+    property alias okButton: okButton
+    property bool hideButtons: false
+    property string settingsGroup
+    property var parentWindow: root
     id: root
+    width: 500
+    height: 500
     minimumWidth: 200
-    minimumHeight: 200
+    minimumHeight: 100
     visible: true
     modality: Qt.ApplicationModal
     color: sysPalette.window
@@ -19,12 +26,19 @@ Window {
     signal accepted
     signal rejected
 
-    onVisibleChanged: if (!visible) root.destroy()
-
-    SystemPalette {
-        id: sysPalette
-        colorGroup: SystemPalette.Active
+    Component.onCompleted: {
+        if (settingsGroup) {
+            Utils.loadGeomerty(settingsGroup)
+        }
     }
+
+    Component.onDestruction: {
+        if (settingsGroup) {
+            Utils.saveGeometry(settingsGroup)
+        }
+    }
+
+    onVisibleChanged: if (!visible) root.destroy()
 
     Action {
         shortcut: "Esc"
@@ -35,7 +49,7 @@ Window {
         anchors.fill: parent
         anchors.margins: indent
         Layout.alignment: Qt.AlignHCenter
-        spacing: indent
+        spacing: 7
 
         Item {
             id: content
@@ -47,15 +61,19 @@ Window {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
 
+            visible: !hideButtons
+
             ButtonBase {
+                id: okButton
                 text: qsTr("OK")
-                isDefault: activeFocus || activeFocusItem && activeFocusItem.objectName !== "ButtonBase"
                 visible: (StandardButton.Ok & standardButtons) === StandardButton.Ok
+                isDefault: activeFocus || activeFocusItem && activeFocusItem.objectName !== "ButtonBase"
                 onClicked: {
-                    stayOnScreen = false
                     root.accepted()
                     if (!stayOnScreen) {
                         root.destroy()
+                    } else {
+                        stayOnScreen = false
                     }
                 }
             }

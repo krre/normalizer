@@ -1,9 +1,10 @@
 #include "settings.h"
+#include "core.h"
 
-Settings::Settings(QObject* parent) : QObject(parent)
+Settings::Settings()
 {
-    QString path = qApp->applicationDirPath() + QDir::separator() + "settings.ini";
-    settings = new QSettings(path, QSettings::IniFormat, this);
+    QString filePath = qApp->applicationDirPath() + "/greenery.ini";
+    settings = new QSettings(filePath, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
 }
 

@@ -5,8 +5,7 @@ class Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings(QObject* parent = 0);
-
+    explicit Settings();
     Q_INVOKABLE void setValue(const QString& group, const QString& key, const QVariant& value);
     Q_INVOKABLE QVariant value(const QString& group, const QString& key, const QVariant& defaultValue = QVariant());
 
@@ -18,5 +17,4 @@ public:
 
 private:
     QSettings* settings;
-
 };

@@ -9,56 +9,131 @@ function createDynamicObject(parent, url, properties) {
     }
 }
 
-function newFile(directory, name) {
-    var path = directory + "/" + name + ".sprout"
-    var obj = {}
-    obj.name = name
-    saveFile(path, obj)
-    var tab = tabView.addTab(name)
-    tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path })
-    tabView.currentIndex = tabView.count - 1
-    addRecentFile(path)
-    Settings.setValue("Path", "recentDirectory", directory)
+function Logger() {
+    this.isEnabled = true
+    this.isInitEnabled = false
+
+    this.log = function (message) {
+        if (this.isEnabled) {
+            print(message)
+        }
+    }
+
+    this.initLog = function (message) {
+        if (this.isInitEnabled) {
+            print(message)
+        }
+    }
 }
 
-function openFile(path) {
+function saveSettings() {
+    saveGeometry("MainWindow")
+    saveGui()
+    saveRecentPaths()
+    saveSession()
+}
+
+function loadSettings() {
+    loadGui()
+    loadRecentPaths()
+    loadSession()
+}
+
+function saveGeometry(name) {
+    var geometry = {}
+    geometry.x = x
+    geometry.y = y
+    geometry.width = width
+    geometry.height = height
+    Settings.setMap(name, geometry)
+}
+
+function loadGeomerty(name) {
+    var geometry = Settings.map(name)
+    if (Object.keys(geometry).length) {
+        x = geometry.x
+        y = geometry.y
+        width = geometry.width
+        height = geometry.height
+    } else if (Screen.width && Screen.height) {
+        x = (Screen.width - width) / 2
+        y = (Screen.height - height) / 2
+    }
+}
+
+function saveGui() {
+    Settings.setValue("Gui", "workspaceWidth", workspace.width)
+    Settings.setValue("Gui", "showWorkspace", workspace.visible)
+}
+
+function loadGui() {
+
+}
+
+function openSprout(path) {
+    if (Core.pathToExt(path) !== "sprout") {
+        print("Not Sprout file")
+        return
+    }
+
     for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.filePath === path) {
+        if (tabView.getTab(i).item.path === path) {
+            tabView.currentIndex = i
             return
         }
     }
 
-    var projectName = Core.urlToFileName(path)
-    var tab = tabView.addTab(projectName)
-    tab.setSource("qrc:/qml/main/WorkArea.qml", { filePath: path, projectName: projectName })
+    var tab = tabView.addTab("")
+    tab.loaded.connect(function() { tab.item.updateTabTitle() })
+    tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
     tabView.currentIndex = tabView.count - 1
-    addRecentFile(path)
+    addRecentPath(path)
 }
 
-function saveFile(path, model) {
-    Core.saveFile(path, JSON.stringify(model, "", 4))
+function saveAsSprout(path) {
+    if (path.substr(-7) !== ".sprout") {
+        path += ".sprout"
+    }
+    Core.copyFile(currentTab.path, path)
+    currentTab.path = path
+    tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(path)
+    workspace.selectByPath(path)
+    currentTab.reload()
+    addRecentPath(path, mainMenu.recentFilesModel)
 }
 
-function addRecentFile(path) {
+function renameSprout(oldPath, newPath) {
+    if (currentTab && currentTab.path === oldPath) {
+        currentTab.sproutDb.close()
+        Core.renameFile(oldPath, newPath)
+        currentTab.path = newPath
+        tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(newPath)
+        workspace.selectByPath(newPath)
+        currentTab.reload()
+        mainMenu.recentFilesModel.removeByPath(oldPath)
+        addRecentPath(newPath, mainMenu.recentFilesModel)
+    } else {
+        Core.renameFile(oldPath, newPath)
+        workspace.selectByPath(newPath)
+    }
+}
+
+function addRecentPath(path) {
     var model = mainMenu.recentFilesModel
-    // Prevention of duplication of filePath and raising it on top.
-    for (var i = 0; i < model.count; i++) {
-        if (model.get(i).filePath === path) {
-            model.remove(i)
-        }
-    }
-    model.insert(0, { filePath: path })
-    var maxRecentFiles = 10
-    if (model.count === maxRecentFiles + 1) {
-        model.remove(maxRecentFiles)
+    // Prevention of duplication of path and raising it on top
+    model.removeByPath(path)
+    model.insert(0, { path: path })
+    var maxRecentPaths = 10
+    if (model.count === maxRecentPaths + 1) {
+        model.remove(maxRecentPaths)
     }
 }
 
-function saveRecentFiles() {
+function saveRecentPaths() {
     var model = mainMenu.recentFilesModel
     var list = []
     for (var i = 0; i < model.count; i++) {
-        var path = model.get(i).filePath
+        var path = model.get(i).path
         if (path) {
             list.push(path)
         }
@@ -66,36 +141,53 @@ function saveRecentFiles() {
     Settings.setList("RecentFiles", list)
 }
 
-function loadRecentFiles() {
-    var list = Settings.list("RecentFiles")
+function loadRecentPaths() {
     var model = mainMenu.recentFilesModel
+    var list = Settings.list("RecentFiles")
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
         if (Core.isFileExists(path)) {
-            model.append({ filePath: path })
+            model.append({ path: path })
+        }
+    }
+}
+
+function loadSession() {
+    var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
+    if (restoreLastSession) {
+        var openFiles = Settings.list("OpenFiles")
+        if (openFiles && openFiles.length) {
+            var currentFile = Settings.value("Path", "currentFile")
+            var currentIndex = -1
+            for (var i = 0; i < openFiles.length; i++) {
+                var sprotPath = openFiles[i]
+                openSprout(sprotPath)
+
+                if (sprotPath === currentFile) {
+                    currentIndex = i
+                }
+            }
+
+            if (currentIndex !== -1 && currentIndex < tabView.count) {
+                tabView.currentIndex = currentIndex
+            }
         }
     }
 }
 
 function saveSession() {
-    var list = []
-    for (var i = 0; i < tabView.count; i++) {
-        var path = tabView.getTab(i).item.filePath
-        if (path) {
-            list.push(path)
+    if (Settings.value("Interface", "restoreLastSession")) {
+        var list = []
+        for (var i = 0; i < tabView.count; i++) {
+            var editor = tabView.getTab(i).item
+            list.push(editor.path)
         }
+
+        Settings.setList("OpenFiles", list)
+        Settings.setValue("Path", "currentFile", currentTab ? currentTab.path : "")
     }
-    Settings.setList("Session", list)
 }
 
-function loadSession() {
-    var list = Settings.list("Session")
-    if (list) {
-        for (var i = 0; i < list.length; i++) {
-            var path = list[i]
-            if (Core.isFileExists(path)) {
-                openFile(list[i])
-            }
-        }
-    }
+function variantToBool(value) {
+    return typeof value === "boolean" ? value : value === "true"
 }

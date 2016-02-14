@@ -1,7 +1,7 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import Osg 1.0 as Osg
+import QtQuick 2.6
+import QtQuick.Controls 1.5
 import "../../js/utils.js" as Utils
+import "../../js/dialog.js" as Dialog
 
 MenuBar {
     property alias recentFilesModel: recentFilesModel
@@ -12,25 +12,23 @@ MenuBar {
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/dialogs/NewProject.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/NewSprout.qml")
         }
 
         MenuItem {
             text: qsTr("Open...")
             shortcut: "Ctrl+O"
             onTriggered: {
-                var fileDialog = Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogOpen.qml")
-                fileDialog.accepted.connect(function() {
-                    Utils.openFile(Core.urlToPath(fileDialog.fileUrl))
+                var dialog = Dialog.selectFile()
+                dialog.accepted.connect(function() {
+                    var path = Core.urlToPath(dialog.fileUrl)
+                    if (Core.pathToExt(path) === "sprout") {
+                        Utils.openSprout(path)
+                    } else {
+                        print(qsTr("Error: unknown path"))
+                    }
                 })
             }
-        }
-
-        MenuItem {
-            text: qsTr("Save")
-            shortcut: "Ctrl+S"
-            onTriggered: currentTab.save()
-            enabled: currentTab
         }
 
         Menu {
@@ -42,8 +40,8 @@ MenuBar {
                 model: recentFilesModel
 
                 MenuItem {
-                    text: model.filePath
-                    onTriggered: Utils.openFile(text)
+                    text: model.path
+                    onTriggered: Utils.openSprout(text)
                 }
 
                 onObjectAdded: recentFilesMenu.insertItem(index, object)
@@ -61,7 +59,32 @@ MenuBar {
 
             ListModel {
                 id: recentFilesModel
+
+                function removeByPath(path) {
+                    for (var i = 0; i < count; i++) {
+                        if (get(i).path === path) {
+                            remove(i, 1)
+                            break
+                        }
+                    }
+                }
             }
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Save As...")
+            shortcut: "Ctrl+Shift+S"
+            enabled: currentTab
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
+        }
+
+        MenuItem {
+            text: qsTr("Reload")
+            shortcut: "F5"
+            enabled: currentTab
+            onTriggered: currentTab.reload()
         }
 
         MenuSeparator {}
@@ -69,19 +92,19 @@ MenuBar {
         MenuItem {
             text: qsTr("Close")
             shortcut: "Ctrl+W"
-            onTriggered: tabView.removeTab(tabView.currentIndex)
             enabled: tabView.count > 0
+            onTriggered: tabView.removeTab(tabView.currentIndex)
         }
 
         MenuItem {
             text: qsTr("Close All")
             shortcut: "Ctrl+Shift+W"
+            enabled: tabView.count > 0
             onTriggered: {
                 while (tabView.count > 0) {
                     tabView.removeTab(0)
                 }
             }
-            enabled: tabView.count > 0
         }
 
         MenuItem {
@@ -110,14 +133,32 @@ MenuBar {
 
     Menu {
         title: qsTr("Edit")
-        visible: currentTab
 
         MenuItem {
-            text: qsTr("Cancel")
-            shortcut: "Tab"
-            onTriggered: {
-                currentTab.cancel()
-            }
+            text: qsTr("Undo")
+            shortcut: "Ctrl+Z"
+        }
+
+        MenuItem {
+            text: qsTr("Redo")
+            shortcut: "Ctrl+Shift+Z"
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Cut")
+            shortcut: "Ctrl+X"
+        }
+
+        MenuItem {
+            text: qsTr("Copy")
+            shortcut: "Ctrl+C"
+        }
+
+        MenuItem {
+            text: qsTr("Paste")
+            shortcut: "Ctrl+V"
         }
     }
 
@@ -128,8 +169,14 @@ MenuBar {
         MenuItem {
             text: qsTr("Run")
             shortcut: "F9"
-            enabled: currentTab && currentTab.filePath
-            onTriggered: currentTab.process.run(Settings.value("Path", "sprout"), currentTab.filePath)
+            enabled: currentTab
+            onTriggered: currentTab.process.run(Settings.value("Path", "sprout"), currentTab.path)
+        }
+
+        MenuItem {
+            text: qsTr("Stop")
+            shortcut: "Ctrl+Pause"
+            onTriggered: print("stop")
         }
     }
 
@@ -149,13 +196,20 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Options...")
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/dialogs/Options.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/Options.qml")
         }
     }
 
     Menu {
         title: qsTr("Window")
         visible: currentTab
+
+        MenuItem {
+           text: qsTr("Full Screen")
+           shortcut: "F11"
+           checkable: true
+           onTriggered: checked ? mainRoot.showFullScreen() : mainRoot.showNormal()
+        }
 
         MenuItem {
             text: qsTr("Clear Output")
@@ -176,20 +230,52 @@ MenuBar {
             checked: true
             onTriggered: currentTab.commandSheet.visible = !currentTab.commandSheet.visible
         }
+
+        MenuItem {
+            text: qsTr("Show Workspace")
+            shortcut: "Ctrl+1"
+            checkable: true
+            checked: workspace.visible
+            onCheckedChanged: workspace.visible = checked
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Next Tab")
+            shortcut: "Ctrl+Tab"
+            enabled: tabView.count > 1
+            onTriggered: tabView.nextTab()
+        }
+
+        MenuItem {
+            text: qsTr("Previous Tab")
+            shortcut: "Ctrl+Shift+Tab"
+            enabled: tabView.count > 1
+            onTriggered: tabView.previousTab()
+        }
     }
 
     Menu {
         title: qsTr("Debug")
-        visible: isDebug && currentTab
+        visible: isDebug
+        enabled: isDebug
 
-        MenuItem {
-            text: qsTr("Write Current Node to File")
-            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.currentUnit, Core.homePath + "/node.osg")
-        }
+        Menu {
+            title: qsTr("Render")
+            enabled: currentTab
 
-        MenuItem {
-            text: qsTr("Write Scene Node to File")
-            onTriggered: Osg.OsgDb.writeNodeFile(currentTab.sceneNode, Core.homePath + "/scene.osg")
+            MenuItem {
+                text: qsTr("Enable")
+                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = true })
+                shortcut: "Ctrl+F11"
+            }
+
+            MenuItem {
+                text: qsTr("Disable")
+                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = false })
+                shortcut: "Ctrl+F12"
+            }
         }
     }
 
@@ -197,8 +283,8 @@ MenuBar {
         title: qsTr("Help")
 
         MenuItem {
-            text: qsTr(String("About %1...").arg(Qt.application.name))
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
+            text: qsTr("About %1...".arg(Qt.application.name))
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/windows/About.qml")
         }
     }
 }

@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>js/command.js</file>
+        <file>js/dialog.js</file>
+        <file>js/object-factory.js</file>
+        <file>js/operators.js</file>
+        <file>js/style.js</file>
+        <file>js/utils.js</file>
+        <file>js/webgl/gl.js</file>
+        <file>js/webgl/scene.js</file>
+        <file>js/world.js</file>
+    </qresource>
+</RCC>
