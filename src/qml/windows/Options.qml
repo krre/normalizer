@@ -44,7 +44,7 @@ WindowDialog {
 
                 BrowseButton {
                     onClicked: {
-                        var dialog = Dialog.selectDirectory()
+                        var dialog = Dialog.selectDirectory({ folder: "file://" + workspacePath.text })
                         dialog.accepted.connect(function() {
                             workspacePath.text = Core.urlToPath(dialog.fileUrl)
                         })
