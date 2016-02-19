@@ -11,7 +11,6 @@
         <file>qml/components/WindowDialog.qml</file>
         <file>qml/dialogs/EditUnit.qml</file>
         <file>qml/dialogs/InfoUnit.qml</file>
-        <file>qml/dialogs/NewProject.qml</file>
         <file>qml/main.qml</file>
         <file>qml/main/About.qml</file>
         <file>qml/main/Editor3D.qml</file>

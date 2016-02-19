@@ -44,7 +44,6 @@ DISTFILES += \
     src/qml/components/WindowDialog.qml \
     src/qml/dialogs/EditUnit.qml \
     src/qml/dialogs/InfoUnit.qml \
-    src/qml/dialogs/NewProject.qml \
     src/qml/main.qml \
     src/qml/main/About.qml \
     src/qml/main/Editor3D.qml \
