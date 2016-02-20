@@ -13,24 +13,6 @@ int main(int argc, char* argv[])
     app.setApplicationName("Greenery");
     app.setApplicationVersion("0.1.0");
 
-    QCommandLineParser parser;
-    parser.setApplicationDescription("IDE for Sprout language");
-    parser.addHelpOption();
-    parser.addVersionOption();
-    parser.addPositionalArgument("source", QCoreApplication::translate("main", "Sprout file to edit"));
-
-    parser.addOptions({
-        {{"t", "threaded"}, QCoreApplication::translate("main", "Threaded QSG render loop")},
-    });
-
-    parser.process(app);
-
-    if (parser.isSet("threaded")) {
-        qputenv("QSG_RENDER_LOOP", "threaded");
-    } else {
-        qputenv("QSG_RENDER_LOOP", "basic");
-    }
-
     qmlRegisterType<FileSystemModel>("Greenery", 1, 0, "FileSystemModel");
     qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
 
