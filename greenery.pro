@@ -50,7 +50,6 @@ DISTFILES += \
     src/qml/main/Finder.qml \
     src/qml/main/MainMenu.qml \
     src/qml/main/Output.qml \
-    src/qml/main/WorkArea.qml \
     src/qml/main/Workspace.qml \
     src/qml/sheets/CommandSheet.qml \
     src/qml/units/Argument.qml \

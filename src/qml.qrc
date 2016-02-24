@@ -17,7 +17,6 @@
         <file>qml/main/Finder.qml</file>
         <file>qml/main/MainMenu.qml</file>
         <file>qml/main/Output.qml</file>
-        <file>qml/main/WorkArea.qml</file>
         <file>qml/main/Workspace.qml</file>
         <file>qml/sheets/CommandSheet.qml</file>
         <file>qml/units/Argument.qml</file>
