@@ -6,6 +6,7 @@
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
 #include "base/codemodel.h"
+#include "base/node.h"
 #include "db/sproutdb.h"
 
 int main(int argc, char* argv[])
@@ -16,6 +17,7 @@ int main(int argc, char* argv[])
 
     qmlRegisterType<FileSystemModel>("Greenery", 1, 0, "FileSystemModel");
     qmlRegisterType<CodeModel>("Greenery", 1, 0, "CodeModel");
+    qmlRegisterType<Node>("Greenery", 1, 0, "Node");
     qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
 
     Core core;
