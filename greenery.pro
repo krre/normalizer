@@ -10,7 +10,8 @@ HEADERS += \
     src/cpp/base/operatorproxymodel.h \
     src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
-    src/cpp/db/sproutdb.h
+    src/cpp/db/sproutdb.h \
+    src/cpp/base/codemodel.h
 
 SOURCES += \
     src/cpp/main.cpp \
@@ -20,7 +21,8 @@ SOURCES += \
     src/cpp/base/operatorproxymodel.cpp \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
-    src/cpp/db/sproutdb.cpp
+    src/cpp/db/sproutdb.cpp \
+    src/cpp/base/codemodel.cpp
 
 DISTFILES += \
     README.md \

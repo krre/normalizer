@@ -66,6 +66,10 @@ Canvas3D {
         id: sproutDb
     }
 
+    CodeModel {
+        id: codeModel
+    }
+
     Action {
         shortcut: " "
         enabled: root == currentTab && !panel
