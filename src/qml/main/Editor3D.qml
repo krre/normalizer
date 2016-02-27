@@ -6,23 +6,22 @@ import "../components"
 import "../../js/utils.js" as Utils
 import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
+import "../../js/gsg/gsg.js" as GSG
 import "../../js/webgl/gl.js" as GL
-import "../../js/gsg/scene.js" as Scene
 
 Canvas3D {
     id: root
     property string title: Core.pathToFileName(path)
     property alias sproutDb: sproutDb
-    property var scene: new Scene.Scene()
-    property var program: Object()
-    property var currentNode
+    property var scene
+    property var camera
     property var gl
-    property var pos
     property var panel
     property string path
     property bool isCurrent: root === currentTab
     property bool rendering: true
-    renderOnDemand: !(isCurrent && rendering)
+    renderOnDemand: true
+//    renderOnDemand: !(isCurrent && rendering)
 
     Component.onCompleted: {
         reload()
@@ -53,8 +52,8 @@ Canvas3D {
         if (result) {
             Dialog.error(result)
         } else {
-            currentNode = program
-            pos = { moduleId: 0 }
+            scene = new GSG.Scene()
+            // Load scene
         }
     }
 

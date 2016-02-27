@@ -9,5 +9,6 @@
         <file>js/webgl/gl.js</file>
         <file>js/gsg/scene.js</file>
         <file>js/world.js</file>
+        <file>js/gsg/gsg.js</file>
     </qresource>
 </RCC>

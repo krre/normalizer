@@ -63,7 +63,8 @@ DISTFILES += \
     src/qml/windows/Options.qml \
     src/qml/windows/Rename.qml \
     src/qml/windows/SelectWorkspace.qml \
-    src/js/gsg/scene.js
+    src/js/gsg/scene.js \
+    src/js/gsg/gsg.js
 
 
 RESOURCES += \
