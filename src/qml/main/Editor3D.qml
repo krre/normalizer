@@ -55,6 +55,8 @@ Canvas3D {
         } else {
             currentNode = program
             pos = { moduleId: 0 }
+            var node = nodeComponent.createObject(codeModel.rootNode)
+            codeModel.addNode(codeModel.rootNode, node)
         }
     }
 
@@ -74,5 +76,10 @@ Canvas3D {
         shortcut: " "
         enabled: root == currentTab && !panel
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    }
+
+    Component {
+        id: nodeComponent
+        Node {}
     }
 }
