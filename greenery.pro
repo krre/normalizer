@@ -31,7 +31,6 @@ DISTFILES += \
     src/js/style.js \
     src/js/utils.js \
     src/js/webgl/gl.js \
-    src/js/webgl/scene.js \
     src/js/world.js \
     src/qml/components/BrowseButton.qml \
     src/qml/components/ButtonBase.qml \
@@ -64,6 +63,7 @@ DISTFILES += \
     src/qml/windows/Options.qml \
     src/qml/windows/Rename.qml \
     src/qml/windows/SelectWorkspace.qml \
+    src/js/gsg/scene.js
 
 
 RESOURCES += \

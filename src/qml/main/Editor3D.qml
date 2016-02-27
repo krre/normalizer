@@ -7,7 +7,7 @@ import "../../js/utils.js" as Utils
 import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
 import "../../js/webgl/gl.js" as GL
-import "../../js/webgl/scene.js" as Scene
+import "../../js/gsg/scene.js" as Scene
 
 Canvas3D {
     id: root

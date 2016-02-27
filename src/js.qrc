@@ -7,7 +7,7 @@
         <file>js/style.js</file>
         <file>js/utils.js</file>
         <file>js/webgl/gl.js</file>
-        <file>js/webgl/scene.js</file>
+        <file>js/gsg/scene.js</file>
         <file>js/world.js</file>
     </qresource>
 </RCC>
