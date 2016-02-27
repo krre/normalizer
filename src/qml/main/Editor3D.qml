@@ -71,9 +71,4 @@ Canvas3D {
         enabled: root == currentTab && !panel
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
-
-    Component {
-        id: nodeComponent
-        Node {}
-    }
 }
