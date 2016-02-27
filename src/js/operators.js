@@ -55,15 +55,16 @@ function moduleOp() {
 function functionOp() {
     panel = Utils.createDynamicObject(currentTab, panelPath, { state: "function" })
     panel.enter.connect(function(value) {
-        var records = sproutDb.query("SELECT * FROM Functions WHERE moduleId=%1".arg(pos.moduleId))
+        var moduleId = scene.currentNode.moduleId
+        var records = sproutDb.query("SELECT * FROM Functions WHERE moduleId=%1".arg(moduleId))
         for (var i = 0; i < records.length; i++) {
             if (records[i].name === value) {
-                print(qsTr("Name '%1' is exists in module %2".arg(value).arg(pos.moduleId)))
+                print(qsTr("Name '%1' is exists in module %2".arg(value).arg(moduleId)))
                 return
             }
         }
 
-        sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('%1', %2)".arg(value).arg(pos.moduleId))
+        sproutDb.query("INSERT INTO Functions(name, moduleId) VALUES('%1', %2)".arg(value).arg(moduleId))
         panel.destroy()
     })
 }
