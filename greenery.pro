@@ -11,7 +11,6 @@ HEADERS += \
     src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
-    src/cpp/base/codemodel.h \
     src/cpp/base/node.h
 
 SOURCES += \
@@ -23,7 +22,6 @@ SOURCES += \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
-    src/cpp/base/codemodel.cpp \
     src/cpp/base/node.cpp
 
 DISTFILES += \

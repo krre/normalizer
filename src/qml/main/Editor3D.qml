@@ -55,8 +55,6 @@ Canvas3D {
         } else {
             currentNode = program
             pos = { moduleId: 0 }
-            var node = nodeComponent.createObject(codeModel.rootNode)
-            codeModel.addNode(codeModel.rootNode, node)
         }
     }
 
@@ -66,10 +64,6 @@ Canvas3D {
 
     SproutDb {
         id: sproutDb
-    }
-
-    CodeModel {
-        id: codeModel
     }
 
     Action {
