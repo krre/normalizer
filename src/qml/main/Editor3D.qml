@@ -8,17 +8,15 @@ import "../components"
 import "../../js/utils.js" as Utils
 import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
-import "../../js/gsg/gsg.js" as GSG
-import "../../js/webgl/gl.js" as GL
 
 Scene3D {
     id: root
     property string title: Core.pathToFileName(path)
-    property var scene
     property var panel
     property string path
     property bool isCurrent: root === currentTab
     property bool rendering: true
+    property var program: ({})
     property SproutDb sproutDb: SproutDb {}
     property Action spaceAction: Action {
         shortcut: " "
@@ -39,7 +37,6 @@ Scene3D {
         if (result) {
             Dialog.error(result)
         } else {
-            scene = new GSG.Scene()
             // Load scene
         }
     }

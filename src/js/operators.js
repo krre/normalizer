@@ -24,8 +24,6 @@ function add() {
 
 function printOp() {
     program.print = ObjectFactory.print()
-    scene.add({})
-
 }
 
 function flowOp() {

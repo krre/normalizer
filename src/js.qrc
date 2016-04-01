@@ -6,9 +6,6 @@
         <file>js/operators.js</file>
         <file>js/style.js</file>
         <file>js/utils.js</file>
-        <file>js/webgl/gl.js</file>
-        <file>js/gsg/scene.js</file>
         <file>js/world.js</file>
-        <file>js/gsg/gsg.js</file>
     </qresource>
 </RCC>
