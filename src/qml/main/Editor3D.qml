@@ -1,6 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
-import QtCanvas3D 1.1
+import Qt3D.Core 2.0
+import Qt3D.Render 2.0
+import QtQuick.Scene3D 2.0
 import Greenery 1.0
 import "../components"
 import "../../js/utils.js" as Utils
@@ -9,42 +11,27 @@ import "../../js/dialog.js" as Dialog
 import "../../js/gsg/gsg.js" as GSG
 import "../../js/webgl/gl.js" as GL
 
-Canvas3D {
+Scene3D {
     id: root
     property string title: Core.pathToFileName(path)
-    property alias sproutDb: sproutDb
     property var scene
-    property var camera
-    property var gl
     property var panel
     property string path
     property bool isCurrent: root === currentTab
     property bool rendering: true
-    renderOnDemand: true
-//    renderOnDemand: !(isCurrent && rendering)
+    property SproutDb sproutDb: SproutDb {}
+    property Action spaceAction: Action {
+        shortcut: " "
+        enabled: root == currentTab && !panel
+        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    }
+    aspects: "input"
 
     Component.onCompleted: {
         reload()
     }
 
-    onInitializeGL: GL.initializeGL(root)
-    onResizeGL: GL.resizeGL(root)
-    onPaintGL: GL.paintGL(root)
-
     onTitleChanged: updateTabTitle()
-
-    // For debug purpose
-    onRenderingChanged: print("Render %1: %2".arg(path).arg(rendering ? "On" : "Off"))
-
-    function updateTabTitle() {
-        for (var i = 0; i < tabView.count; i++) {
-            var tab = tabView.getTab(i)
-            if (root === tab.item) {
-                tab.title = title
-                break
-            }
-        }
-    }
 
     function reload() {
         sproutDb.close()
@@ -61,13 +48,93 @@ Canvas3D {
         Operators.operators[index].action()
     }
 
-    SproutDb {
-        id: sproutDb
+    function updateTabTitle() {
+        for (var i = 0; i < tabView.count; i++) {
+            var tab = tabView.getTab(i)
+            if (root === tab.item) {
+                tab.title = title
+                break
+            }
+        }
     }
 
-    Action {
-        shortcut: " "
-        enabled: root == currentTab && !panel
-        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    Entity {
+        id: sceneRoot
+
+        Camera {
+            id: camera
+            projectionType: CameraLens.PerspectiveProjection
+            fieldOfView: 45
+            aspectRatio: root.width / root.height
+            nearPlane : 0.1
+            farPlane : 1000.0
+            position: Qt.vector3d( 0.0, 0.0, -40.0 )
+            upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
+            viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
+        }
+
+        Configuration  {
+            controlledCamera: camera
+        }
+
+        FrameGraph {
+            id: frameGraph
+            activeFrameGraph: Viewport {
+                id: viewport
+                rect: Qt.rect(0.0, 0.0, 1.0, 1.0)
+                clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
+
+                CameraSelector {
+                    id : cameraSelector
+                    camera: camera
+
+                    ClearBuffer {
+                        buffers : ClearBuffer.ColorDepthBuffer
+                    }
+                }
+            }
+        }
+
+        components: [ frameGraph ]
+
+        Material {
+            id: material
+        }
+
+        SphereMesh {
+            id: sphereMesh
+            radius: 3
+        }
+
+        CuboidMesh {
+            id: cubeMesh
+            xExtent: 5
+            yExtent: 5
+            zExtent: 5
+        }
+
+//        Transform {
+//            id: cubeTransform
+//            Translate {
+//                translation: Qt.vector3d(10, 0.5, 0)
+//            }
+//        }
+
+//        Transform {
+//            id: sphereTransform
+//            Translate {
+//                translation: Qt.vector3d(0, 0, 0)
+//            }
+//        }
+
+        Entity {
+//            components: [ sphereMesh, material, sphereTransform ]
+            components: [ sphereMesh, material ]
+        }
+
+        Entity {
+//            components: [ cubeMesh, material, cubeTransform ]
+            components: [ cubeMesh, material ]
+        }
     }
 }
