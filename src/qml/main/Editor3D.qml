@@ -113,28 +113,22 @@ Scene3D {
             zExtent: 5
         }
 
-//        Transform {
-//            id: cubeTransform
-//            Translate {
-//                translation: Qt.vector3d(10, 0.5, 0)
-//            }
-//        }
+        Transform {
+            id: cubeTransform
+            translation: Qt.vector3d(10, 0.5, 0)
+        }
 
-//        Transform {
-//            id: sphereTransform
-//            Translate {
-//                translation: Qt.vector3d(0, 0, 0)
-//            }
-//        }
-
-        Entity {
-//            components: [ sphereMesh, material, sphereTransform ]
-            components: [ sphereMesh, material ]
+        Transform {
+            id: sphereTransform
+            translation: Qt.vector3d(0, 0, 0)
         }
 
         Entity {
-//            components: [ cubeMesh, material, cubeTransform ]
-            components: [ cubeMesh, material ]
+            components: [ sphereMesh, material, sphereTransform ]
+        }
+
+        Entity {
+            components: [ cubeMesh, material, cubeTransform ]
         }
     }
 }
