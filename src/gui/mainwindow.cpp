@@ -2,8 +2,7 @@
 #include <QtGui>
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
-{
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Greenery");
     QScreen* screen = QGuiApplication::primaryScreen();
     QSize screenSize = screen->size();
