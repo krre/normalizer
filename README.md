@@ -1,5 +1,5 @@
 # Greenery
-Qt3D based IDE for [Sprout](https://github.com/krre/sprout) language
+IDE for [Sprout](https://github.com/krre/sprout) language
 
 ## Dependencies
 - Qt 5.6.0
