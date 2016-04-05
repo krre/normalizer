@@ -1,7 +1,10 @@
-QT += qml quick widgets sql 3dcore 3dinput 3dquick 3drender
+QT += widgets opengl sql
 
 CONFIG += c++11
 TEMPLATE = app
+
+LIBS += -L$$(OSG_HOME)/lib64 -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
+INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/base/core.h \
