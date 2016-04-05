@@ -13,14 +13,14 @@ HEADERS += \
     src/cpp/db/sproutdb.h
 
 SOURCES += \
-    src/cpp/main.cpp \
     src/cpp/base/core.cpp \
     src/cpp/base/settings.cpp \
     src/cpp/base/operatormodel.cpp \
     src/cpp/base/operatorproxymodel.cpp \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
-    src/cpp/db/sproutdb.cpp
+    src/cpp/db/sproutdb.cpp \
+    src/main.cpp
 
 DISTFILES += \
     README.md \
