@@ -1,12 +1,13 @@
 #include <QtCore>
-#include <QtGui>
 #include <QApplication>
 #include <QMessageBox>
 #include <QMenuBar>
+#include <QScreen>
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Greenery");
+
     QScreen* screen = QGuiApplication::primaryScreen();
     QSize screenSize = screen->size();
     int width = 800;
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     int x = (screenSize.width() - width) / 2;
     int y = (screenSize.height() - height) / 2;
     setGeometry(x, y, width, height);
+
+    setCentralWidget(&workArea);
 
     createActions();
     createMenus();

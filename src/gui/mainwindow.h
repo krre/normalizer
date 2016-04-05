@@ -1,6 +1,7 @@
 #pragma once
 #include <QMainWindow>
 #include <QAction>
+#include "workarea.h"
 
 class MainWindow : public QMainWindow
 {
@@ -20,6 +21,8 @@ private slots:
 private:
     void createActions();
     void createMenus();
+
+    WorkArea workArea;
 
     QMenu *fileMenu;
     QMenu *helpMenu;
