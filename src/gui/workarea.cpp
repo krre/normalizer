@@ -1,3 +1,4 @@
+#include <QtCore>
 #include <osgDB/ReadFile>
 #include <osgGA/MultiTouchTrackballManipulator>
 #include <QBoxLayout>
@@ -11,6 +12,7 @@ WorkArea::WorkArea(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::Th
 
     QWidget* widget = addViewWidget(createGraphicsWindow(0, 0, width(), height()), osgDB::readNodeFile("cow.osgt"));
     QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
+    layout->setContentsMargins(1, 1, 1, 1);
     layout->addWidget(widget);
     setLayout(layout);
 
