@@ -3,7 +3,16 @@ QT += widgets opengl sql
 CONFIG += c++11
 TEMPLATE = app
 
-LIBS += -L$$(OSG_HOME)/lib64 -losg -lOpenThreads -losgQt -losgViewer -losgGA -losgDB -losgUtil -losgText
+LIBS += \
+    -L$$(OSG_HOME)/lib \
+    -L$$(OSG_HOME)/lib64
+
+CONFIG(debug, debug|release) {
+    LIBS += -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd -losgQtd
+} else {
+    LIBS += -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads -losgQt
+}
+
 INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
