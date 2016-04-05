@@ -40,7 +40,7 @@ void MainWindow::createActions() {
     quitAct->setShortcut(QKeySequence("Ctrl+Q"));
     connect(quitAct, SIGNAL(triggered(bool)), this, SLOT(quitApp()));
 
-    aboutAct = new QAction(tr("About..."), this);
+    aboutAct = new QAction(QString(tr("About %1...")).arg(QCoreApplication::applicationName()), this);
     connect(aboutAct, SIGNAL(triggered(bool)), this, SLOT(about()));
 
     aboutQtAct = new QAction(tr("About Qt..."), this);
@@ -82,8 +82,17 @@ void MainWindow::quitApp() {
 }
 
 void MainWindow::about() {
-    QMessageBox::about(this, tr("About Greenery..."),
-            tr("<b>Greenery</b>"));
+    QMessageBox::about(this, QString(tr("About %1...")).arg(QCoreApplication::applicationName()),
+        QString(tr("<h3>%1 %2</h3>"
+                  "Based on Qt %3<br>"
+                  "Build on %4<br><br>"
+                  "<a href=\"https://github.com/krre/greenery\">"
+                  "https://github.com/krre/greenery</a><br><br>"
+                  "Copyright © 2015-2016, Vladimir Zarypov")).
+        arg(QCoreApplication::applicationName()).
+        arg(QCoreApplication::applicationVersion()).
+        arg(QT_VERSION_STR).
+        arg(__DATE__));
 }
 
 void MainWindow::aboutQt() {
