@@ -11,7 +11,7 @@ public:
     explicit WorkArea(QWidget* parent = 0, Qt::WindowFlags f = 0, osgViewer::ViewerBase::ThreadingModel threadingModel = osgViewer::CompositeViewer::SingleThreaded);
 
 protected:
-    QTimer _timer;
+    void timerEvent(QTimerEvent*) { update(); }
 
 private:
     QWidget* addViewWidget(osgQt::GraphicsWindowQt* gw, osg::Node* scene);

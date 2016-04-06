@@ -14,8 +14,7 @@ WorkArea::WorkArea(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::Th
     layout->addWidget(widget);
     setLayout(layout);
 
-    connect(&_timer, SIGNAL(timeout()), this, SLOT(update()));
-    _timer.start(10);
+    startTimer(10);
 }
 
 QWidget* WorkArea::addViewWidget(osgQt::GraphicsWindowQt* gw, osg::Node* scene) {
