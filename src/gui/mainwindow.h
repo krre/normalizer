@@ -1,6 +1,6 @@
 #pragma once
-#include <QMainWindow>
-#include <QAction>
+#include <QtCore>
+#include <QtWidgets>
 #include "workarea.h"
 
 class MainWindow : public QMainWindow
@@ -22,7 +22,8 @@ private:
     void createActions();
     void createMenus();
 
-    WorkArea workArea;
+    WorkArea* workArea;
+    QSplitter* splitter;
 
     QMenu *fileMenu;
     QMenu *helpMenu;

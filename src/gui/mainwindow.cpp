@@ -1,8 +1,3 @@
-#include <QtCore>
-#include <QApplication>
-#include <QMessageBox>
-#include <QMenuBar>
-#include <QScreen>
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -16,7 +11,18 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     int y = (screenSize.height() - height) / 2;
     setGeometry(x, y, width, height);
 
-    setCentralWidget(&workArea);
+    splitter = new QSplitter(this);
+
+    QTreeView *treeview = new QTreeView;
+    workArea = new WorkArea;
+    splitter->addWidget(treeview);
+    splitter->addWidget(workArea);
+
+    QList<int> sizes;
+    sizes << 100 << 300;
+    splitter->setSizes(sizes);
+
+    setCentralWidget(splitter);
 
     createActions();
     createMenus();
