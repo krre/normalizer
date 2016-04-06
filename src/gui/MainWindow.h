@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore>
 #include <QtWidgets>
-#include "workarea.h"
+#include "WorkArea.h"
 
 class MainWindow : public QMainWindow
 {

@@ -23,8 +23,8 @@ HEADERS += \
     src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
-    src/gui/mainwindow.h \
-    src/gui/workarea.h
+    src/gui/WorkArea.h \
+    src/gui/MainWindow.h
 
 SOURCES += \
     src/cpp/base/core.cpp \
@@ -35,8 +35,8 @@ SOURCES += \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
     src/main.cpp \
-    src/gui/mainwindow.cpp \
-    src/gui/workarea.cpp
+    src/gui/WorkArea.cpp \
+    src/gui/MainWindow.cpp
 
 DISTFILES += \
     README.md \
