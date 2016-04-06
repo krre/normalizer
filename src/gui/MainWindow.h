@@ -21,7 +21,6 @@ private slots:
 
 private:
     void createActions();
-    void createMenus();
     void readSettings();
     void writeSettings();
     bool maybeSave();
@@ -29,15 +28,4 @@ private:
     WorkArea* workArea;
     QSplitter* splitter;
     QFileSystemModel* fileSystemModel;
-
-    QMenu* fileMenu;
-    QMenu* helpMenu;
-
-    QAction* newAct;
-    QAction* openAct;
-    QAction* saveAct;
-    QAction* saveAsAct;
-    QAction* quitAct;
-    QAction* aboutAct;
-    QAction* aboutQtAct;
 };

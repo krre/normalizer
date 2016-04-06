@@ -4,7 +4,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Greenery");
 
     createActions();
-    createMenus();
 
     splitter = new QSplitter(this);
 
@@ -36,44 +35,43 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::createActions() {
-    newAct = new QAction(tr("New"), this);
+    QMenu* fileMenu = menuBar()->addMenu(tr("&File"));
+
+    QAction* newAct = new QAction(tr("New"), this);
     newAct->setShortcut(QKeySequence("Ctrl+N"));
     connect(newAct, SIGNAL(triggered(bool)), this, SLOT(newFile()));
+    fileMenu->addAction(newAct);
 
-    openAct = new QAction(tr("Open..."), this);
+    QAction* openAct = new QAction(tr("Open..."), this);
     openAct->setShortcut(QKeySequence("Ctrl+O"));
     connect(openAct, SIGNAL(triggered(bool)), this, SLOT(open()));
+    fileMenu->addAction(openAct);
 
-    saveAct = new QAction(tr("Save"), this);
+    QAction* saveAct = new QAction(tr("Save"), this);
     saveAct->setShortcut(QKeySequence("Ctrl+S"));
     connect(saveAct, SIGNAL(triggered(bool)), this, SLOT(save()));
+    fileMenu->addAction(saveAct);
 
-    saveAsAct = new QAction(tr("Save As..."), this);
+    QAction* saveAsAct = new QAction(tr("Save As..."), this);
     saveAsAct->setShortcut(QKeySequence("Ctrl+Shift+S"));
     connect(saveAsAct, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
+    fileMenu->addAction(saveAsAct);
 
-    quitAct = new QAction(tr("Exit"), this);
+    fileMenu->addSeparator();
+
+    QAction* quitAct = new QAction(tr("Exit"), this);
     quitAct->setShortcut(QKeySequence("Ctrl+Q"));
     connect(quitAct, SIGNAL(triggered(bool)), this, SLOT(quitApp()));
-
-    aboutAct = new QAction(QString(tr("About %1...")).arg(QCoreApplication::applicationName()), this);
-    connect(aboutAct, SIGNAL(triggered(bool)), this, SLOT(about()));
-
-    aboutQtAct = new QAction(tr("About Qt..."), this);
-    connect(aboutQtAct, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
-}
-
-void MainWindow::createMenus() {
-    fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(newAct);
-    fileMenu->addAction(openAct);
-    fileMenu->addAction(saveAct);
-    fileMenu->addAction(saveAsAct);
-    fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
-    helpMenu = menuBar()->addMenu(tr("Help"));
+    QMenu* helpMenu = menuBar()->addMenu(tr("&Help"));
+
+    QAction* aboutAct = new QAction(QString(tr("About %1...")).arg(QCoreApplication::applicationName()), this);
+    connect(aboutAct, SIGNAL(triggered(bool)), this, SLOT(about()));
     helpMenu->addAction(aboutAct);
+
+    QAction* aboutQtAct = new QAction(tr("About Qt..."), this);
+    connect(aboutQtAct, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
     helpMenu->addAction(aboutQtAct);
 }
 
