@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    app.setOrganizationName("Sprout Group");
+    app.setOrganizationName("Greenery");
     app.setApplicationName("Greenery");
     app.setApplicationVersion("0.1.0");
 
