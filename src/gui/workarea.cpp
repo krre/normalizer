@@ -1,7 +1,5 @@
-#include <QtCore>
 #include <osgDB/ReadFile>
 #include <osgGA/MultiTouchTrackballManipulator>
-#include <QBoxLayout>
 #include "workarea.h"
 
 WorkArea::WorkArea(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::ThreadingModel threadingModel) : QWidget(parent, f) {

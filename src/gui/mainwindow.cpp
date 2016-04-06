@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     splitter = new QSplitter(this);
 
-    QTreeView *treeview = new QTreeView;
+    QTreeView* treeview = new QTreeView;
     workArea = new WorkArea;
     splitter->addWidget(treeview);
     splitter->addWidget(workArea);

@@ -1,7 +1,6 @@
 #pragma once
-#include <QWidget>
-#include <QTimer>
-
+#include <QtCore>
+#include <QtWidgets>
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/ViewerEventHandlers>
 #include <osgQt/GraphicsWindowQt>

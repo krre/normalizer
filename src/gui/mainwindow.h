@@ -25,8 +25,8 @@ private:
     WorkArea* workArea;
     QSplitter* splitter;
 
-    QMenu *fileMenu;
-    QMenu *helpMenu;
+    QMenu* fileMenu;
+    QMenu* helpMenu;
 
     QAction* newAct;
     QAction* openAct;
