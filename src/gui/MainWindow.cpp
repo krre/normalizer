@@ -9,9 +9,16 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     fileSystemModel = new QFileSystemModel;
     fileSystemModel->setRootPath(QDir::currentPath());
+    fileSystemModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
 
     QTreeView* treeView = new QTreeView(splitter);
     treeView->setModel(fileSystemModel);
+    treeView->resizeColumnToContents(0);
+    treeView->hideColumn(1);
+    treeView->hideColumn(2);
+    treeView->hideColumn(3);
+
+    fileSystemModel->sort(0, Qt::AscendingOrder);
 
     workArea = new WorkArea;
     splitter->addWidget(workArea);
