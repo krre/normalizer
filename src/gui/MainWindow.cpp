@@ -5,31 +5,29 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     createActions();
 
-    splitter = new QSplitter(this);
+    splitter = new QSplitter;
+    setCentralWidget(splitter);
 
     fileSystemModel = new QFileSystemModel;
     fileSystemModel->setRootPath(QDir::currentPath());
     fileSystemModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    fileSystemModel->sort(0, Qt::AscendingOrder);
 
-    QTreeView* treeView = new QTreeView(splitter);
+    QTreeView* treeView = new QTreeView;
     treeView->setModel(fileSystemModel);
     treeView->resizeColumnToContents(0);
     treeView->hideColumn(1);
     treeView->hideColumn(2);
     treeView->hideColumn(3);
 
-    fileSystemModel->sort(0, Qt::AscendingOrder);
-
     workArea = new WorkArea;
-    splitter->addWidget(workArea);
-
-    QList<int> sizes;
-    sizes << 100 << 300;
-    splitter->setSizes(sizes);
-
-    setCentralWidget(splitter);
+    workArea->resize(640, 480);
+    splitter->addWidget(treeView);
+    // Don't works here. Only after first timer event;
+//    splitter->addWidget(workArea);
 
     readSettings();
+    timerId = startTimer(100);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
@@ -39,6 +37,12 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     } else {
         event->ignore();
     }
+}
+
+void MainWindow::timerEvent(QTimerEvent*) {
+    // Hack to prevent crash application on Windows 10, Qt 5.6.0
+    splitter->addWidget(workArea);
+    killTimer(timerId);
 }
 
 void MainWindow::createActions() {
@@ -94,7 +98,14 @@ void MainWindow::readSettings() {
         restoreGeometry(geometry);
     }
 
-    splitter->restoreState(settings.value("splitterSizes").toByteArray());
+    const QByteArray splitterSizes = settings.value("splitterSizes").toByteArray();
+    if (splitterSizes.isEmpty()) {
+        QList<int> sizes;
+        sizes << 100 << 300;
+        splitter->setSizes(sizes);
+    } else {
+        splitter->restoreState(splitterSizes);
+    }
 }
 
 void MainWindow::writeSettings() {

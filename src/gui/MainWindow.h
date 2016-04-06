@@ -9,6 +9,7 @@ public:
 
 protected:
     void closeEvent(QCloseEvent* event) override;
+    void timerEvent(QTimerEvent*);
 
 private slots:
     void newFile();
@@ -28,4 +29,5 @@ private:
     WorkArea* workArea;
     QSplitter* splitter;
     QFileSystemModel* fileSystemModel;
+    int timerId;
 };

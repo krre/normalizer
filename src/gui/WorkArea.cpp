@@ -5,9 +5,8 @@
 WorkArea::WorkArea(QWidget* parent, Qt::WindowFlags f, osgViewer::ViewerBase::ThreadingModel threadingModel) : QWidget(parent, f) {
     setThreadingModel(threadingModel);
 
-    // disable the default setting of viewer.done() by pressing Escape.
+    // Disable the default setting of viewer.done() by pressing Escape.
     setKeyEventSetsDone(0);
-
     QWidget* widget = addViewWidget(createGraphicsWindow(0, 0, width(), height()), osgDB::readNodeFile("cow.osgt"));
     QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
     layout->setContentsMargins(1, 1, 1, 1);
