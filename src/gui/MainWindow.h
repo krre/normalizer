@@ -24,6 +24,7 @@ private:
 
     WorkArea* workArea;
     QSplitter* splitter;
+    QFileSystemModel* fileSystemModel;
 
     QMenu* fileMenu;
     QMenu* helpMenu;

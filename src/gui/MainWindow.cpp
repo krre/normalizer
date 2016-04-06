@@ -13,9 +13,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     splitter = new QSplitter(this);
 
-    QTreeView* treeview = new QTreeView;
+    fileSystemModel = new QFileSystemModel;
+    fileSystemModel->setRootPath(QDir::currentPath());
+
+    QTreeView* treeView = new QTreeView(splitter);
+    treeView->setModel(fileSystemModel);
+
     workArea = new WorkArea;
-    splitter->addWidget(treeview);
     splitter->addWidget(workArea);
 
     QList<int> sizes;
