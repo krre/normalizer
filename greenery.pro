@@ -24,7 +24,8 @@ HEADERS += \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
     src/gui/WorkArea.h \
-    src/gui/MainWindow.h
+    src/gui/MainWindow.h \
+    src/gui/NewSproutDialog.h
 
 SOURCES += \
     src/cpp/base/core.cpp \
@@ -36,7 +37,8 @@ SOURCES += \
     src/cpp/db/sproutdb.cpp \
     src/main.cpp \
     src/gui/WorkArea.cpp \
-    src/gui/MainWindow.cpp
+    src/gui/MainWindow.cpp \
+    src/gui/NewSproutDialog.cpp
 
 DISTFILES += \
     README.md \

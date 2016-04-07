@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "NewSproutDialog.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Greenery");
@@ -119,6 +120,8 @@ bool MainWindow::maybeSave() {
 }
 
 void MainWindow::newFile() {
+    NewSproutDialog newSproutDialog(this);
+    newSproutDialog.exec();
     qDebug() << "new";
 }
 
