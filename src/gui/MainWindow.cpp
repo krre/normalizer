@@ -50,39 +50,39 @@ void MainWindow::createActions() {
 
     QAction* newAct = new QAction(tr("New..."), this);
     newAct->setShortcut(QKeySequence("Ctrl+N"));
-    connect(newAct, SIGNAL(triggered(bool)), this, SLOT(newFile()));
+    connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
     fileMenu->addAction(newAct);
 
     QAction* openAct = new QAction(tr("Open..."), this);
     openAct->setShortcut(QKeySequence("Ctrl+O"));
-    connect(openAct, SIGNAL(triggered(bool)), this, SLOT(open()));
+    connect(openAct, &QAction::triggered, this, &MainWindow::open);
     fileMenu->addAction(openAct);
 
     QAction* saveAct = new QAction(tr("Save"), this);
     saveAct->setShortcut(QKeySequence("Ctrl+S"));
-    connect(saveAct, SIGNAL(triggered(bool)), this, SLOT(save()));
+    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
     fileMenu->addAction(saveAct);
 
     QAction* saveAsAct = new QAction(tr("Save As..."), this);
     saveAsAct->setShortcut(QKeySequence("Ctrl+Shift+S"));
-    connect(saveAsAct, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
+    connect(saveAsAct, &QAction::triggered, this, &MainWindow::saveAs);
     fileMenu->addAction(saveAsAct);
 
     fileMenu->addSeparator();
 
     QAction* quitAct = new QAction(tr("Exit"), this);
     quitAct->setShortcut(QKeySequence("Ctrl+Q"));
-    connect(quitAct, SIGNAL(triggered(bool)), this, SLOT(quitApp()));
+    connect(quitAct, &QAction::triggered, this, &MainWindow::quitApp);
     fileMenu->addAction(quitAct);
 
     QMenu* helpMenu = menuBar()->addMenu(tr("&Help"));
 
     QAction* aboutAct = new QAction(QString(tr("About %1...")).arg(QCoreApplication::applicationName()), this);
-    connect(aboutAct, SIGNAL(triggered(bool)), this, SLOT(about()));
+    connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
     helpMenu->addAction(aboutAct);
 
     QAction* aboutQtAct = new QAction(tr("About Qt..."), this);
-    connect(aboutQtAct, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
+    connect(aboutQtAct, &QAction::triggered, this, &MainWindow::aboutQt);
     helpMenu->addAction(aboutQtAct);
 }
 
@@ -121,8 +121,7 @@ bool MainWindow::maybeSave() {
 void MainWindow::newFile() {
     bool ok;
     QString text = QInputDialog::getText(this, tr("New Sprout"),
-                                         tr("File name:"), QLineEdit::Normal,
-                                         "", &ok);
+        tr("File name:"), QLineEdit::Normal, "", &ok);
     if (ok && !text.isEmpty()) {
         qDebug() << text;
     }
