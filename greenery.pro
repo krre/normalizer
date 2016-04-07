@@ -1,4 +1,4 @@
-QT += widgets opengl sql
+QT += qml quick widgets opengl sql
 
 CONFIG += c++11
 TEMPLATE = app
@@ -34,9 +34,9 @@ SOURCES += \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
-    src/main.cpp \
     src/gui/WorkArea.cpp \
-    src/gui/MainWindow.cpp
+    src/gui/MainWindow.cpp \
+    src/cpp/main.cpp
 
 DISTFILES += \
     README.md \
