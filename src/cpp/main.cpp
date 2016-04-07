@@ -15,10 +15,6 @@ int main(int argc, char* argv[]) {
     app.setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Greenery");
-    parser.addHelpOption();
-    parser.addVersionOption();
-
     parser.addOptions({
         {{"q", "qwidget"}, QCoreApplication::translate("main", "QWidget GUI")},
     });
