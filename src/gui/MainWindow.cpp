@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-#include "NewSproutDialog.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Greenery");
@@ -49,7 +48,7 @@ void MainWindow::timerEvent(QTimerEvent*) {
 void MainWindow::createActions() {
     QMenu* fileMenu = menuBar()->addMenu(tr("&File"));
 
-    QAction* newAct = new QAction(tr("New"), this);
+    QAction* newAct = new QAction(tr("New..."), this);
     newAct->setShortcut(QKeySequence("Ctrl+N"));
     connect(newAct, SIGNAL(triggered(bool)), this, SLOT(newFile()));
     fileMenu->addAction(newAct);
@@ -120,9 +119,13 @@ bool MainWindow::maybeSave() {
 }
 
 void MainWindow::newFile() {
-    NewSproutDialog newSproutDialog(this);
-    newSproutDialog.exec();
-    qDebug() << "new";
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("New Sprout"),
+                                         tr("File name:"), QLineEdit::Normal,
+                                         "", &ok);
+    if (ok && !text.isEmpty()) {
+        qDebug() << text;
+    }
 }
 
 void MainWindow::open() {
