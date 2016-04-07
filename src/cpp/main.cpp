@@ -1,12 +1,13 @@
 #include <QtWidgets>
 #include <QtQml>
+#include <registerosgtypes.h>
 #include "base/core.h"
 #include "base/settings.h"
 #include "base/filesystemmodel.h"
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
 #include "db/sproutdb.h"
-#include "../gui/MainWindow.h"
+//#include "../gui/MainWindow.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
@@ -23,11 +24,12 @@ int main(int argc, char* argv[]) {
 
     bool isQWidget = parser.isSet("qwidget");
     if (isQWidget) {
-        MainWindow mainWindow;
-        mainWindow.show();
-        return app.exec();
+//        MainWindow mainWindow;
+//        mainWindow.show();
+//        return app.exec();
     }
 
+    registerOsgTypes();
     qmlRegisterType<FileSystemModel>("Greenery", 1, 0, "FileSystemModel");
     qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
 

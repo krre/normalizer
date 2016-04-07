@@ -3,17 +3,19 @@ QT += qml quick widgets opengl sql
 CONFIG += c++11
 TEMPLATE = app
 
-LIBS += \
-    -L$$(OSG_HOME)/lib \
-    -L$$(OSG_HOME)/lib64
+include(../qosg/src/qosg.pri)
 
-CONFIG(debug, debug|release) {
-    LIBS += -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd -losgQtd
-} else {
-    LIBS += -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads -losgQt
-}
+#LIBS += \
+#    -L$$(OSG_HOME)/lib \
+#    -L$$(OSG_HOME)/lib64
 
-INCLUDEPATH += $$(OSG_HOME)/include
+#CONFIG(debug, debug|release) {
+#    LIBS += -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd -losgQtd
+#} else {
+#    LIBS += -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads -losgQt
+#}
+
+#INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/base/core.h \
@@ -23,8 +25,8 @@ HEADERS += \
     src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
-    src/gui/WorkArea.h \
-    src/gui/MainWindow.h
+#    src/gui/WorkArea.h \
+#    src/gui/MainWindow.h
 
 SOURCES += \
     src/cpp/base/core.cpp \
@@ -34,8 +36,8 @@ SOURCES += \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
-    src/gui/WorkArea.cpp \
-    src/gui/MainWindow.cpp \
+#    src/gui/WorkArea.cpp \
+#    src/gui/MainWindow.cpp \
     src/cpp/main.cpp
 
 DISTFILES += \
