@@ -11,6 +11,19 @@ import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
 
 Osg.Viewer {
+    id: root
+    property string title: Core.pathToFileName(path)
+    property var panel
+    property string path
+    property bool isCurrent: root === currentTab
+    property bool rendering: true
+    property var program: ({})
+    property SproutDb sproutDb: SproutDb {}
+    property Action spaceAction: Action {
+        shortcut: " "
+        enabled: root == currentTab && !panel
+        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    }
     anchors.fill: parent
     allowThrow: true
     camera {
@@ -30,53 +43,41 @@ Osg.Viewer {
             }
         }
     }
+
+    Component.onCompleted: {
+        reload()
+    }
+
+    onTitleChanged: updateTabTitle()
+
+    function reload() {
+        sproutDb.close()
+        var result = sproutDb.open(path)
+        if (result) {
+            Dialog.error(result)
+        } else {
+            // Load scene
+        }
+    }
+
+    function action(index) {
+        Operators.operators[index].action()
+    }
+
+    function updateTabTitle() {
+        for (var i = 0; i < tabView.count; i++) {
+            var tab = tabView.getTab(i)
+            if (root === tab.item) {
+                tab.title = title
+                break
+            }
+        }
+    }
 }
 
 //Scene3D {
 //    id: root
-//    property string title: Core.pathToFileName(path)
-//    property var panel
-//    property string path
-//    property bool isCurrent: root === currentTab
-//    property bool rendering: true
-//    property var program: ({})
-//    property SproutDb sproutDb: SproutDb {}
-//    property Action spaceAction: Action {
-//        shortcut: " "
-//        enabled: root == currentTab && !panel
-//        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
-//    }
 //    aspects: "input"
-
-//    Component.onCompleted: {
-//        reload()
-//    }
-
-//    onTitleChanged: updateTabTitle()
-
-//    function reload() {
-//        sproutDb.close()
-//        var result = sproutDb.open(path)
-//        if (result) {
-//            Dialog.error(result)
-//        } else {
-//            // Load scene
-//        }
-//    }
-
-//    function action(index) {
-//        Operators.operators[index].action()
-//    }
-
-//    function updateTabTitle() {
-//        for (var i = 0; i < tabView.count; i++) {
-//            var tab = tabView.getTab(i)
-//            if (root === tab.item) {
-//                tab.title = title
-//                break
-//            }
-//        }
-//    }
 
 //    Entity {
 //        id: sceneRoot
