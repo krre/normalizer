@@ -18,7 +18,7 @@ Osg.Viewer {
     anchors.fill: parent
     allowThrow: true
     camera {
-        clearColor: "gray"
+        clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
         fovy: 30
         aspectRatio: width / height
         zNear: 0.1
