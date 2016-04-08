@@ -15,7 +15,6 @@ QOsg.Viewer {
     property bool isCurrent: root === currentTab
     property bool rendering: true
     property var program: ({})
-    anchors.fill: parent
     allowThrow: false
     camera {
         clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
@@ -28,7 +27,7 @@ QOsg.Viewer {
     sceneData: QOsg.Geode {
 
         QOsg.ShapeDrawable {
-            color: "red"
+            color: "yellow"
             shape: QOsg.Box {
                 halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
             }
