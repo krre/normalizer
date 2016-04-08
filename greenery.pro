@@ -1,21 +1,9 @@
-QT += qml quick widgets opengl sql
+QT += qml quick widgets sql
 
 CONFIG += c++11
 TEMPLATE = app
 
 include(../qosg/src/qosg.pri)
-
-#LIBS += \
-#    -L$$(OSG_HOME)/lib \
-#    -L$$(OSG_HOME)/lib64
-
-#CONFIG(debug, debug|release) {
-#    LIBS += -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd -losgQtd
-#} else {
-#    LIBS += -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads -losgQt
-#}
-
-#INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/base/core.h \
@@ -25,8 +13,6 @@ HEADERS += \
     src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
-#    src/gui/WorkArea.h \
-#    src/gui/MainWindow.h
 
 SOURCES += \
     src/cpp/base/core.cpp \
@@ -36,8 +22,6 @@ SOURCES += \
     src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
-#    src/gui/WorkArea.cpp \
-#    src/gui/MainWindow.cpp \
     src/cpp/main.cpp
 
 DISTFILES += \
@@ -80,7 +64,6 @@ DISTFILES += \
     src/qml/windows/Options.qml \
     src/qml/windows/Rename.qml \
     src/qml/windows/SelectWorkspace.qml
-
 
 RESOURCES += \
     src/qml.qrc \
