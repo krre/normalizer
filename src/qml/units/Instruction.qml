@@ -1,11 +1,11 @@
 import QtQuick 2.5
-import Osg 1.0 as Osg
+import QOsg 0.1 as QOsg
 
 UnitBase {
     type: "instruction"
     title: qsTr("Instruction")
     color: "yellow"
-    shape: Osg.Sphere {
+    shape: QOsg.Sphere {
         radius: 0.1
     }
 }

@@ -1,7 +1,7 @@
 import QtQuick 2.5
-import Osg 1.0 as Osg
+import QOsg 0.1 as QOsg
 
-Osg.PositionAttitudeTransform {
+QOsg.PositionAttitudeTransform {
     id: root
     default property alias shape: shapeDrawable.shape
     property alias pickForm: pickForm
@@ -21,24 +21,24 @@ Osg.PositionAttitudeTransform {
         }
     }
 
-    Osg.PositionAttitudeTransform {
+    QOsg.PositionAttitudeTransform {
         id: pickForm
 
-        Osg.Geode {
+        QOsg.Geode {
             id: geode
 
-            Osg.ShapeDrawable {
+            QOsg.ShapeDrawable {
                 id: shapeDrawable
                 color: isCurrent ? selectColor : root.color
-                shape: Osg.Box {
+                shape: QOsg.Box {
                     halfLengths: Qt.vector3d(0.02, 0.02, 0.02)
                 }
             }
         }
     }
 
-    Osg.Geode {
-        Osg.Text3D {
+    QOsg.Geode {
+        QOsg.Text3D {
             position: Qt.vector3d(0.03, -0.01, 0)
             color: isCurrent ? selectColor : root.color
             characterSize: 0.015

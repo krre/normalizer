@@ -1,13 +1,13 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import Greenery 1.0
-import Osg 1.0 as Osg
+import QOsg 0.1 as QOsg
 import "../components"
 import "../../js/utils.js" as Utils
 import "../../js/operators.js" as Operators
 import "../../js/dialog.js" as Dialog
 
-Osg.Viewer {
+QOsg.Viewer {
     id: root
     property string title: Core.pathToFileName(path)
     property var panel
@@ -25,11 +25,11 @@ Osg.Viewer {
         zFar: 10000
     }
 
-    sceneData: Osg.Geode {
+    sceneData: QOsg.Geode {
 
-        Osg.ShapeDrawable {
+        QOsg.ShapeDrawable {
             color: "red"
-            shape: Osg.Box {
+            shape: QOsg.Box {
                 halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
             }
         }

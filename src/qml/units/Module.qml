@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Osg 1.0 as Osg
+import QOsg 0.1 as QOsg
 import "../../js/world.js" as World
 
 UnitBase {
