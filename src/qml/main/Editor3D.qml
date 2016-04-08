@@ -16,7 +16,7 @@ Osg.Viewer {
     property bool rendering: true
     property var program: ({})
     anchors.fill: parent
-    allowThrow: true
+    allowThrow: false
     camera {
         clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
         fovy: 30
