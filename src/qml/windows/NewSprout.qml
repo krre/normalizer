@@ -1,7 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.2
-import Greenery 1.0
+import Greenery 0.1
 import "../components"
 import "../../js/dialog.js" as Dialog
 import "../../js/utils.js" as Utils

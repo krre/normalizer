@@ -1,6 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.5
-import Greenery 1.0
+import Greenery 0.1
 import QOsg 0.1 as QOsg
 import "../components"
 import "../../js/utils.js" as Utils

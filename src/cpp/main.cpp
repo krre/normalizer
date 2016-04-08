@@ -15,8 +15,8 @@ int main(int argc, char* argv[]) {
     app.setApplicationVersion("0.1.0");
 
     registerOsgTypes();
-    qmlRegisterType<FileSystemModel>("Greenery", 1, 0, "FileSystemModel");
-    qmlRegisterType<SproutDb>("Greenery", 1, 0, "SproutDb");
+    qmlRegisterType<FileSystemModel>("Greenery", 0, 1, "FileSystemModel");
+    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
 
     Core core;
     Settings settings;
