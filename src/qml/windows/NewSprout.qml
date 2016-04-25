@@ -68,7 +68,7 @@ WindowDialog {
 
         ComboBox {
             Layout.preferredWidth: 200
-            model: ["Empty", "Project", "Hello World"]
+            model: ["Empty", "Simple project", "Hello World"]
         }
     }
 }
