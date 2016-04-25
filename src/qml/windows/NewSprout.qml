@@ -10,7 +10,7 @@ WindowDialog {
     id: root
     title: qsTr("New Sprout File")
     width: 400
-    height: 100
+    height: 140
 
     onAccepted: {
         var path = directory.text + "/" + name.text + ".sprout"
@@ -60,6 +60,15 @@ WindowDialog {
         Label {
             id: directory
             text: Settings.value("Path", "workspace")
+        }
+
+        Label {
+            text: qsTr("Template:")
+        }
+
+        ComboBox {
+            Layout.preferredWidth: 200
+            model: ["Empty", "Project", "Hello World"]
         }
     }
 }
