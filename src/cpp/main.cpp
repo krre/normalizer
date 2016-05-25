@@ -7,12 +7,27 @@
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
 #include "db/sproutdb.h"
+#include "../gui/MainWindow.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
     app.setOrganizationName("Greenery");
     app.setApplicationName("Greenery");
     app.setApplicationVersion("0.1.0");
+
+    QCommandLineParser parser;
+    parser.addOptions({
+        {{"q", "qwidget"}, QCoreApplication::translate("main", "QWidget GUI")},
+    });
+
+    parser.process(app);
+
+    bool isQWidget = parser.isSet("qwidget");
+    if (isQWidget) {
+        MainWindow mainWindow;
+        mainWindow.show();
+        return app.exec();
+    }
 
     registerOsgTypes();
     qmlRegisterType<FileSystemModel>("Greenery", 0, 1, "FileSystemModel");
