@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QSortFilterProxyModel>
 
 class OperatorProxyModel : public QSortFilterProxyModel {
     Q_OBJECT

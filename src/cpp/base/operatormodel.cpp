@@ -1,4 +1,5 @@
 #include "operatormodel.h"
+#include <QtCore>
 
 OperatorModel::OperatorModel(QObject* parent) : QAbstractListModel(parent) {
     roles << "name" << "shortcut";

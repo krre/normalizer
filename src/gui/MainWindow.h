@@ -1,6 +1,9 @@
 #pragma once
-#include <QtWidgets>
 #include "WorkArea.h"
+#include <QMainWindow>
+#include <QCloseEvent>
+#include <QSplitter>
+#include <QFileSystemModel>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

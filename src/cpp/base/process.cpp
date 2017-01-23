@@ -1,4 +1,5 @@
 #include "process.h"
+#include <QtCore>
 
 Process::Process() {
     setProcessChannelMode(QProcess::MergedChannels);

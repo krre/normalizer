@@ -1,5 +1,7 @@
 #pragma once
-#include <QtCore>
+#include <QObject>
+#include <QUrl>
+#include <QStandardPaths>
 
 class Core : public QObject {
     Q_OBJECT

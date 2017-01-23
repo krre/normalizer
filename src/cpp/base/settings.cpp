@@ -1,5 +1,6 @@
 #include "settings.h"
 #include "core.h"
+#include <QtCore>
 
 Settings::Settings() {
     QString filePath = qApp->applicationDirPath() + "/greenery.ini";

@@ -1,4 +1,5 @@
 #include "filesystemmodel.h"
+#include <QtCore>
 
 FileSystemModel::FileSystemModel(QObject* parent) : QFileSystemModel(parent) {
     setRootPath(QDir::homePath());

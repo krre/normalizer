@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QAbstractListModel>
 
 class OperatorModel : public QAbstractListModel {
     Q_OBJECT

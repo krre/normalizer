@@ -1,6 +1,8 @@
 #pragma once
-#include <QtCore>
-#include <QtSql>
+#include <QObject>
+#include <QSqlError>
+#include <QSqlDatabase>
+#include <QVariantList>
 
 class SproutDb : public QObject {
     Q_OBJECT

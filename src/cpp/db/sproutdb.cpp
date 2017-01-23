@@ -1,3 +1,5 @@
+#include <QtCore>
+#include <QtSql>
 #include "sproutdb.h"
 
 SproutDb::SproutDb() {

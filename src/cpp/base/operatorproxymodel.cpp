@@ -1,4 +1,5 @@
 #include "operatorproxymodel.h"
+#include <QtCore>
 
 OperatorProxyModel::OperatorProxyModel() {
 

@@ -1,4 +1,5 @@
 #include "core.h"
+#include <QtCore>
 
 QString Core::pathToBaseName(const QString& filePath) {
     QFileInfo fileInfo(filePath);
