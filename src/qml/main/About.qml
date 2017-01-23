@@ -8,6 +8,6 @@ MessageDialogBase {
           Build on %4<br><br>
           <a href=\"https://github.com/krre/greenery\">
           https://github.com/krre/greenery</a><br><br>
-          Copyright © 2015-2016, Vladimir Zarypov"
+          Copyright © 2015-2017, Vladimir Zarypov"
           .arg(Qt.application.name).arg(Qt.application.version).arg(Core.qtVersion).arg(Core.buildDate)
 }
