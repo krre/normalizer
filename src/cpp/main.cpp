@@ -47,9 +47,9 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
 
 #ifdef QT_DEBUG
-    engine.rootContext()->setContextProperty("isDebug", QVariant(true));
+    engine.rootContext()->setContextProperty("debugMode", QVariant(true));
 #else
-    engine.rootContext()->setContextProperty("isDebug", QVariant(false));
+    engine.rootContext()->setContextProperty("debugMode", QVariant(false));
 #endif
 
     engine.load(QUrl("qrc:/qml/Main.qml"));

@@ -258,8 +258,8 @@ MenuBar {
 
     Menu {
         title: qsTr("Debug")
-        visible: isDebug
-        enabled: isDebug
+        visible: debugMode
+        enabled: debugMode
 
         Menu {
             title: qsTr("Render")
