@@ -22,8 +22,7 @@ int main(int argc, char* argv[]) {
 
     parser.process(app);
 
-    bool isQWidget = parser.isSet("qwidget");
-    if (isQWidget) {
+    if (parser.isSet("qwidget")) {
         MainWindow mainWindow;
         mainWindow.show();
         return app.exec();
