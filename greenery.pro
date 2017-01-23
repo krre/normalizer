@@ -60,7 +60,6 @@ DISTFILES += \
     src/qml/components/WindowDialog.qml \
     src/qml/dialogs/EditUnit.qml \
     src/qml/dialogs/InfoUnit.qml \
-    src/qml/main.qml \
     src/qml/main/About.qml \
     src/qml/main/Editor3D.qml \
     src/qml/main/Finder.qml \
@@ -79,7 +78,8 @@ DISTFILES += \
     src/qml/windows/NewSprout.qml \
     src/qml/windows/Options.qml \
     src/qml/windows/Rename.qml \
-    src/qml/windows/SelectWorkspace.qml
+    src/qml/windows/SelectWorkspace.qml \
+    src/qml/Main.qml
 
 
 RESOURCES += \

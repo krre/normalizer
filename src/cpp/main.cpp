@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("isDebug", QVariant(false));
 #endif
 
-    engine.load(QUrl("qrc:/qml/main.qml"));
+    engine.load(QUrl("qrc:/qml/Main.qml"));
 
     if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;
 
