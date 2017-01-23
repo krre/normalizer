@@ -1,8 +1,7 @@
 #pragma once
 #include <QtCore>
 
-class OperatorModel : public QAbstractListModel
-{
+class OperatorModel : public QAbstractListModel {
     Q_OBJECT
 public:
     OperatorModel(QObject* parent = 0);

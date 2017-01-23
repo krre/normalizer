@@ -2,8 +2,7 @@
 #include <QtCore>
 #include <QFileSystemModel>
 
-class FileSystemModel : public QFileSystemModel
-{
+class FileSystemModel : public QFileSystemModel {
     Q_OBJECT
     Q_PROPERTY(QString rootDir READ rootDir WRITE setRootDir NOTIFY rootDirChanged)
     Q_PROPERTY(QModelIndex rootIndex READ rootIndex NOTIFY rootIndexChanged)

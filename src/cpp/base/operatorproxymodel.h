@@ -1,8 +1,7 @@
 #pragma once
 #include <QtCore>
 
-class OperatorProxyModel : public QSortFilterProxyModel
-{
+class OperatorProxyModel : public QSortFilterProxyModel {
     Q_OBJECT
 public:
     explicit OperatorProxyModel();
