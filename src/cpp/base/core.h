@@ -10,7 +10,6 @@ class Core : public QObject {
     Q_PROPERTY(QString homePath READ homePath CONSTANT)
 
 public:
-    explicit Core() {}
     QString buildDate() { return QString(__DATE__); }
     QString qtVersion() { return QT_VERSION_STR; }
     Q_INVOKABLE QString urlToPath(const QUrl& url) { return url.toLocalFile(); }

@@ -1,10 +1,6 @@
 #include "operatorproxymodel.h"
 #include <QtCore>
 
-OperatorProxyModel::OperatorProxyModel() {
-
-}
-
 void OperatorProxyModel::setFilterPattern(const QString& pattern) {
     if (filterRegExp().pattern() == pattern) {
         return;
