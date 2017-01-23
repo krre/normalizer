@@ -10,7 +10,7 @@ Process::Process()
     connect(this, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
 }
 
-void Process::run(const QString &sproutPath, const QString &sourcePath)
+void Process::run(const QString& sproutPath, const QString& sourcePath)
 {
     start(sproutPath + " " + sourcePath);
 }

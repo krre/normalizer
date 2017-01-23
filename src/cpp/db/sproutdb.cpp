@@ -28,7 +28,7 @@ QString SproutDb::create(const QString& path)
     return "";
 }
 
-QString SproutDb::open(const QString &path)
+QString SproutDb::open(const QString& path)
 {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         return tr("Unable to load database. Needs the SQLITE driver");
