@@ -64,6 +64,7 @@ ApplicationWindow {
             id: tabView
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: 50
             frameVisible: false
 
             function nextTab() {
