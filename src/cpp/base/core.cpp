@@ -1,53 +1,44 @@
 #include "core.h"
 
-QString Core::pathToBaseName(const QString& filePath)
-{
+QString Core::pathToBaseName(const QString& filePath) {
     QFileInfo fileInfo(filePath);
     return fileInfo.baseName();
 }
 
-QString Core::pathToFileName(const QString& path)
-{
+QString Core::pathToFileName(const QString& path) {
     QFileInfo fileInfo(path);
     return fileInfo.fileName();
 }
 
-QString Core::pathToDir(const QString& filePath)
-{
+QString Core::pathToDir(const QString& filePath) {
     QFileInfo fileInfo(filePath);
     return fileInfo.dir().absolutePath();
 }
 
-QString Core::pathToExt(const QString& filePath)
-{
+QString Core::pathToExt(const QString& filePath) {
     QFileInfo fileInfo(filePath);
     return fileInfo.suffix();
 }
 
-bool Core::isFileExists(const QString& filePath)
-{
+bool Core::isFileExists(const QString& filePath) {
     QFileInfo fileInfo(filePath);
     return fileInfo.exists() && fileInfo.isFile();
 }
 
-bool Core::isDirectoryExists(const QString& dirPath)
-{
+bool Core::isDirectoryExists(const QString& dirPath) {
     QDir dir(dirPath);
     return dir.exists();
 }
 
-bool Core::removeFile(const QString& filePath)
-{
+bool Core::removeFile(const QString& filePath) {
     return QFile::remove(filePath);
 }
 
-bool Core::copyFile(const QString& fileName, const QString& newName)
-{
+bool Core::copyFile(const QString& fileName, const QString& newName) {
     return QFile::copy(fileName, newName);
 }
 
-void Core::saveFile(const QString& filePath, const QString& data)
-{
+void Core::saveFile(const QString& filePath, const QString& data) {
     QFile file(filePath);
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream stream(&file);
@@ -58,13 +49,11 @@ void Core::saveFile(const QString& filePath, const QString& data)
     file.close();
 }
 
-void Core::renameFile(const QString& oldName, const QString& newName)
-{
+void Core::renameFile(const QString& oldName, const QString& newName) {
     QFile::rename(oldName, newName);
 }
 
-QByteArray Core::loadFile(const QString& filePath)
-{
+QByteArray Core::loadFile(const QString& filePath) {
     QFile file(filePath);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QTextStream stream(&file);

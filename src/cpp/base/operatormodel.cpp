@@ -1,26 +1,21 @@
 #include "operatormodel.h"
 
-OperatorModel::OperatorModel(QObject* parent) :
-    QAbstractListModel(parent)
-{
+OperatorModel::OperatorModel(QObject* parent) : QAbstractListModel(parent) {
     roles << "name" << "shortcut";
 }
 
-void OperatorModel::addOperator(const QVariantMap& operatorMap)
-{
+void OperatorModel::addOperator(const QVariantMap& operatorMap) {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     operators << operatorMap;
     endInsertRows();
 }
 
-int OperatorModel::rowCount(const QModelIndex& parent) const
-{
+int OperatorModel::rowCount(const QModelIndex& parent) const {
     Q_UNUSED(parent);
     return operators.count();
 }
 
-QVariant OperatorModel::data(const QModelIndex& index, int role) const
-{
+QVariant OperatorModel::data(const QModelIndex& index, int role) const {
     if (index.row() < 0 || index.row() >= operators.count())
         return QVariant();
 
@@ -29,8 +24,7 @@ QVariant OperatorModel::data(const QModelIndex& index, int role) const
     return operatorMap[roles.at(roleIndex)];
 }
 
-QHash<int, QByteArray> OperatorModel::roleNames() const
-{
+QHash<int, QByteArray> OperatorModel::roleNames() const {
     QHash<int, QByteArray> rolesHash;
     int role = Qt::UserRole + 1;
     for (int i = 0; i < roles.count(); i++) {

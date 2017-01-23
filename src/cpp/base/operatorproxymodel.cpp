@@ -1,20 +1,16 @@
 #include "operatorproxymodel.h"
 
-OperatorProxyModel::OperatorProxyModel()
-{
+OperatorProxyModel::OperatorProxyModel() {
 
 }
 
-void OperatorProxyModel::setFilterPattern(const QString& pattern)
-{
+void OperatorProxyModel::setFilterPattern(const QString& pattern) {
     if (filterRegExp().pattern() == pattern) {
         return;
     }
     setFilterRegExp(QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp));
 }
 
-int OperatorProxyModel::sourceIndex(int row)
-{
+int OperatorProxyModel::sourceIndex(int row) {
     return mapToSource(index(row, 0)).row();
 }
-

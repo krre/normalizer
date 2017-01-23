@@ -1,12 +1,10 @@
 #include "sproutdb.h"
 
-SproutDb::SproutDb()
-{
+SproutDb::SproutDb() {
 
 }
 
-QString SproutDb::create(const QString& path)
-{
+QString SproutDb::create(const QString& path) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         return tr("Unable to load database. Needs the SQLITE driver");
     }
@@ -28,8 +26,7 @@ QString SproutDb::create(const QString& path)
     return "";
 }
 
-QString SproutDb::open(const QString& path)
-{
+QString SproutDb::open(const QString& path) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         return tr("Unable to load database. Needs the SQLITE driver");
     }
@@ -43,15 +40,13 @@ QString SproutDb::open(const QString& path)
     }
 }
 
-void SproutDb::close()
-{
+void SproutDb::close() {
     db.close();
     db = QSqlDatabase();
     QSqlDatabase::removeDatabase(connName);
 }
 
-QVariantList SproutDb::query(const QString& str)
-{
+QVariantList SproutDb::query(const QString& str) {
     QSqlQuery q(db);
     q.exec(str);
     if (q.lastError().type() != QSqlError::NoError) {
@@ -71,8 +66,7 @@ QVariantList SproutDb::query(const QString& str)
     return list;
 }
 
-QSqlError SproutDb::initTables()
-{
+QSqlError SproutDb::initTables() {
     QSqlQuery q(db);
     q.exec("CREATE TABLE Defs("
                "name,"
@@ -105,8 +99,7 @@ QSqlError SproutDb::initTables()
     return q.lastError();
 }
 
-QSqlError SproutDb::initRecords()
-{
+QSqlError SproutDb::initRecords() {
     QSqlQuery q(db);
     q.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
