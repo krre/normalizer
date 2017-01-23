@@ -22,7 +22,6 @@ QOsg.Viewer {
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
     anchors.fill: parent
-    allowThrow: true
     camera {
         clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
         fovy: 30
