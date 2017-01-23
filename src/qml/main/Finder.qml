@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 ColumnLayout {
     id: root
     anchors.centerIn: parent
-    width: 200
+    width: 250
     height: 200
     spacing: 0
 
@@ -66,12 +66,13 @@ ColumnLayout {
 
         TableViewColumn {
             role: "name"
-            width: 130
+            width: tableView.width - shortcutColumn.width - 10
         }
 
         TableViewColumn {
+            id: shortcutColumn
             role: "shortcut"
-            width: 50
+            width: 80
         }
     }
 }
