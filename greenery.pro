@@ -20,24 +20,24 @@ INCLUDEPATH += $$(OSG_HOME)/include
 HEADERS += \
     src/gui/WorkArea.h \
     src/gui/MainWindow.h \
-    src/cpp/base/Core.h \
-    src/cpp/base/FileSystemModel.h \
-    src/cpp/base/OperatorModel.h \
-    src/cpp/base/OperatorProxyModel.h \
-    src/cpp/base/Process.h \
-    src/cpp/base/Settings.h \
+    src/cpp/Base/Core.h \
+    src/cpp/Base/FileSystemModel.h \
+    src/cpp/Base/OperatorModel.h \
+    src/cpp/Base/OperatorProxyModel.h \
+    src/cpp/Base/Process.h \
+    src/cpp/Base/Settings.h \
     src/cpp/db/SproutDb.h
 
 SOURCES += \
     src/gui/WorkArea.cpp \
     src/gui/MainWindow.cpp \
     src/cpp/main.cpp \
-    src/cpp/base/Core.cpp \
-    src/cpp/base/FileSystemModel.cpp \
-    src/cpp/base/OperatorModel.cpp \
-    src/cpp/base/OperatorProxyModel.cpp \
-    src/cpp/base/Process.cpp \
-    src/cpp/base/Settings.cpp \
+    src/cpp/Base/Core.cpp \
+    src/cpp/Base/FileSystemModel.cpp \
+    src/cpp/Base/OperatorModel.cpp \
+    src/cpp/Base/OperatorProxyModel.cpp \
+    src/cpp/Base/Process.cpp \
+    src/cpp/Base/Settings.cpp \
     src/cpp/db/SproutDb.cpp
 
 DISTFILES += \
