@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.8
 import QtQuick.Controls 1.5
 import Greenery 0.1
 import QOsg 0.1 as QOsg
