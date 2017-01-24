@@ -3,7 +3,7 @@
 #include <registerosgtypes.h>
 #include "base/Core.h"
 #include "base/settings.h"
-#include "base/filesystemmodel.h"
+#include "base/FileSystemModel.h"
 #include "base/operatormodel.h"
 #include "base/operatorproxymodel.h"
 #include "db/sproutdb.h"

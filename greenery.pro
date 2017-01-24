@@ -21,24 +21,24 @@ HEADERS += \
     src/cpp/base/settings.h \
     src/cpp/base/operatormodel.h \
     src/cpp/base/operatorproxymodel.h \
-    src/cpp/base/filesystemmodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
     src/gui/WorkArea.h \
     src/gui/MainWindow.h \
-    src/cpp/base/Core.h
+    src/cpp/base/Core.h \
+    src/cpp/base/FileSystemModel.h
 
 SOURCES += \
     src/cpp/base/settings.cpp \
     src/cpp/base/operatormodel.cpp \
     src/cpp/base/operatorproxymodel.cpp \
-    src/cpp/base/filesystemmodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
     src/gui/WorkArea.cpp \
     src/gui/MainWindow.cpp \
     src/cpp/main.cpp \
-    src/cpp/base/Core.cpp
+    src/cpp/base/Core.cpp \
+    src/cpp/base/FileSystemModel.cpp
 
 DISTFILES += \
     README.md \

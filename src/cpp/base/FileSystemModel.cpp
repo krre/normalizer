@@ -1,4 +1,4 @@
-#include "filesystemmodel.h"
+#include "FileSystemModel.h"
 #include <QtCore>
 
 FileSystemModel::FileSystemModel(QObject* parent) : QFileSystemModel(parent) {
