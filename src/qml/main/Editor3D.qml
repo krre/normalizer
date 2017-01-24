@@ -61,8 +61,8 @@ QOsg.Viewer {
     }
 
     function updateTabTitle() {
-        for (var i = 0; i < tabView.count; i++) {
-            var tab = tabView.getTab(i)
+        for (var i = 0; i < editorTabView.count; i++) {
+            var tab = editorTabView.getTab(i)
             if (root === tab.item) {
                 tab.title = title
                 break

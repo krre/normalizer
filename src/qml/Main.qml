@@ -10,7 +10,7 @@ import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
-    property alias tabView: editorTabView
+    property alias editorTabView: editorTabView
     property Editor3D currentTab: editorTabView.count > 0 ? editorTabView.getTab(editorTabView.currentIndex).item : null
     property alias sysPalette: sysPalette
     property alias toolTabView: toolTabView
