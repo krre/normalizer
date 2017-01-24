@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2
 import "main"
+import "main/editorspace"
 import "main/toolspace"
 import "windows"
 import "../js/utils.js" as Utils
@@ -72,44 +73,11 @@ ApplicationWindow {
             }
         }
 
-        TabView {
+        EditorTabView {
             id: editorTabView
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.minimumWidth: 50
-            frameVisible: false
-
-            function nextTab() {
-                if (currentIndex + 1 < count) {
-                    currentIndex++
-                } else {
-                    currentIndex = 0
-                }
-            }
-
-            function previousTab() {
-                if (currentIndex - 1 < 0) {
-                    currentIndex = count - 1
-                } else {
-                    currentIndex--
-                }
-            }
-
-            function findTab(path) {
-                for (var i = 0; i < count; i++) {
-                    if (getTab(i).item.path === path) {
-                        return i
-                    }
-                }
-
-                return -1
-            }
-
-            function forEachTab(callback) {
-                for (var i = 0; i < count; i++) {
-                    callback(getTab(i).item)
-                }
-            }
         }
     }
 }

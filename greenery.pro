@@ -80,7 +80,8 @@ DISTFILES += \
     src/qml/windows/SelectWorkspace.qml \
     src/qml/Main.qml \
     src/qml/main/toolspace/Workspace.qml \
-    src/qml/main/toolspace/ToolTabView.qml
+    src/qml/main/toolspace/ToolTabView.qml \
+    src/qml/main/editorspace/EditorTabView.qml
 
 
 RESOURCES += \

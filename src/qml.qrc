@@ -32,5 +32,6 @@
         <file>qml/windows/Rename.qml</file>
         <file>qml/windows/SelectWorkspace.qml</file>
         <file>qml/main/toolspace/ToolTabView.qml</file>
+        <file>qml/main/editorspace/EditorTabView.qml</file>
     </qresource>
 </RCC>
