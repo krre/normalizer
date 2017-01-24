@@ -92,29 +92,29 @@ MenuBar {
         MenuItem {
             text: qsTr("Close")
             shortcut: "Ctrl+W"
-            enabled: tabView.count > 0
-            onTriggered: tabView.removeTab(tabView.currentIndex)
+            enabled: editorTabView.count > 0
+            onTriggered: editorTabView.removeTab(editorTabView.currentIndex)
         }
 
         MenuItem {
             text: qsTr("Close All")
             shortcut: "Ctrl+Shift+W"
-            enabled: tabView.count > 0
+            enabled: editorTabView.count > 0
             onTriggered: {
-                while (tabView.count > 0) {
-                    tabView.removeTab(0)
+                while (editorTabView.count > 0) {
+                    editorTabView.removeTab(0)
                 }
             }
         }
 
         MenuItem {
             text: qsTr("Close Other")
-            enabled: tabView.count > 1
+            enabled: editorTabView.count > 1
             onTriggered: {
                 var i = 0
-                while (tabView.count > 1) {
-                    if (i !== tabView.currentIndex) {
-                        tabView.removeTab(i)
+                while (editorTabView.count > 1) {
+                    if (i !== editorTabView.currentIndex) {
+                        editorTabView.removeTab(i)
                     } else {
                         i++
                     }
@@ -232,11 +232,11 @@ MenuBar {
         }
 
         MenuItem {
-            text: qsTr("Show Workspace")
+            text: qsTr("Show Toolspace")
             shortcut: "Ctrl+1"
             checkable: true
-            checked: workspace.visible
-            onCheckedChanged: workspace.visible = checked
+            checked: toolspace.visible
+            onCheckedChanged: toolspace.visible = checked
         }
 
         MenuSeparator {}
@@ -244,15 +244,15 @@ MenuBar {
         MenuItem {
             text: qsTr("Next Tab")
             shortcut: "Ctrl+Tab"
-            enabled: tabView.count > 1
-            onTriggered: tabView.nextTab()
+            enabled: editorTabView.count > 1
+            onTriggered: editorTabView.nextTab()
         }
 
         MenuItem {
             text: qsTr("Previous Tab")
             shortcut: "Ctrl+Shift+Tab"
-            enabled: tabView.count > 1
-            onTriggered: tabView.previousTab()
+            enabled: editorTabView.count > 1
+            onTriggered: editorTabView.previousTab()
         }
     }
 
@@ -267,13 +267,13 @@ MenuBar {
 
             MenuItem {
                 text: qsTr("Enable")
-                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = true })
+                onTriggered: editorTabView.forEachTab(function(editor) { editor.rendering = true })
                 shortcut: "Ctrl+F11"
             }
 
             MenuItem {
                 text: qsTr("Disable")
-                onTriggered: tabView.forEachTab(function(editor) { editor.rendering = false })
+                onTriggered: editorTabView.forEachTab(function(editor) { editor.rendering = false })
                 shortcut: "Ctrl+F12"
             }
         }

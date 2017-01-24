@@ -9,10 +9,10 @@ import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
-    property alias tabView: tabView
-    property Editor3D currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
+    property alias tabView: editorTabView
+    property Editor3D currentTab: editorTabView.count > 0 ? editorTabView.getTab(editorTabView.currentIndex).item : null
     property alias sysPalette: sysPalette
-    property alias workspace: workspace
+    property alias toolTabView: toolTabView
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
     title: Qt.application.name
@@ -31,9 +31,9 @@ ApplicationWindow {
     onCurrentTabChanged: {
         if (currentTab) {
             currentTab.forceActiveFocus()
-            workspace.selectByPath(currentTab.path)
+            toolTabView.workspace.selectByPath(currentTab.path)
         } else {
-            workspace.selection.clearCurrentIndex()
+            toolTabView.workspace.selection.clearCurrentIndex()
         }
     }
 
@@ -53,15 +53,36 @@ ApplicationWindow {
     SplitView {
         anchors.fill: parent
 
-        Workspace {
-            id: workspace
+        ColumnLayout {
+            id: toolspace
             Layout.minimumWidth: 50
-            width: Settings.getValue("Gui", "workspaceWidth", 200)
-            visible: Utils.variantToBool(Settings.getValue("Gui", "showWorkspace", true))
+            width: Settings.getValue("Gui", "toolspaceWidth", 200)
+            visible: Utils.variantToBool(Settings.getValue("Gui", "showToolspace", true))
+
+            ComboBox {
+                Layout.preferredWidth: parent.width
+                model: [ qsTr("Workspace") ]
+            }
+
+            TabView {
+                id: toolTabView
+                property Workspace workspace: count > 0 ? getTab(0).item : null
+                Layout.preferredWidth: parent.width
+                Layout.fillHeight: true
+                tabsVisible: false
+
+                Tab {
+                    active: true
+
+                    Workspace {
+
+                    }
+                }
+            }
         }
 
         TabView {
-            id: tabView
+            id: editorTabView
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.minimumWidth: 50

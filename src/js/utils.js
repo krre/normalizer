@@ -62,8 +62,8 @@ function loadGeomerty(name) {
 }
 
 function saveGui() {
-    Settings.setValue("Gui", "workspaceWidth", workspace.width)
-    Settings.setValue("Gui", "showWorkspace", workspace.visible)
+    Settings.setValue("Gui", "toolspaceWidth", toolTabView.width)
+    Settings.setValue("Gui", "showToolspace", toolTabView.visible)
 }
 
 function loadGui() {
@@ -76,17 +76,17 @@ function openSprout(path) {
         return
     }
 
-    for (var i = 0; i < tabView.count; i++) {
-        if (tabView.getTab(i).item.path === path) {
-            tabView.currentIndex = i
+    for (var i = 0; i < editorTabView.count; i++) {
+        if (editorTabView.getTab(i).item.path === path) {
+            editorTabView.currentIndex = i
             return
         }
     }
 
-    var tab = tabView.addTab("")
+    var tab = editorTabView.addTab("")
     tab.loaded.connect(function() { tab.item.updateTabTitle() })
     tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
-    tabView.currentIndex = tabView.count - 1
+    editorTabView.currentIndex = editorTabView.count - 1
     addRecentPath(path)
 }
 
@@ -96,8 +96,8 @@ function saveAsSprout(path) {
     }
     Core.copyFile(currentTab.path, path)
     currentTab.path = path
-    tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(path)
-    workspace.selectByPath(path)
+    editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(path)
+    toolTabView.selectByPath(path)
     currentTab.reload()
     addRecentPath(path, mainMenu.recentFilesModel)
 }
@@ -107,14 +107,14 @@ function renameSprout(oldPath, newPath) {
         currentTab.sproutDb.close()
         Core.renameFile(oldPath, newPath)
         currentTab.path = newPath
-        tabView.getTab(tabView.currentIndex).title = Core.pathToFileName(newPath)
-        workspace.selectByPath(newPath)
+        editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(newPath)
+        toolTabView.selectByPath(newPath)
         currentTab.reload()
         mainMenu.recentFilesModel.removeByPath(oldPath)
         addRecentPath(newPath, mainMenu.recentFilesModel)
     } else {
         Core.renameFile(oldPath, newPath)
-        workspace.selectByPath(newPath)
+        toolTabView.selectByPath(newPath)
     }
 }
 
@@ -168,8 +168,8 @@ function loadSession() {
                 }
             }
 
-            if (currentIndex !== -1 && currentIndex < tabView.count) {
-                tabView.currentIndex = currentIndex
+            if (currentIndex !== -1 && currentIndex < editorTabView.count) {
+                editorTabView.currentIndex = currentIndex
             }
         }
     }
@@ -178,8 +178,8 @@ function loadSession() {
 function saveSession() {
     if (Settings.getValue("Interface", "restoreLastSession")) {
         var list = []
-        for (var i = 0; i < tabView.count; i++) {
-            var editor = tabView.getTab(i).item
+        for (var i = 0; i < editorTabView.count; i++) {
+            var editor = editorTabView.getTab(i).item
             list.push(editor.path)
         }
 

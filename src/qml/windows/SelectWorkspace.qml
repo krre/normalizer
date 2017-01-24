@@ -15,7 +15,7 @@ WindowDialog {
     onAccepted: {
         Settings.setValue("Path", "workspace", workspacePath.text)
         Core.mkpath(workspacePath.text)
-        workspace.rootDir = workspacePath.text
+        toolTabView.rootDir = workspacePath.text
     }
 
     onRejected: Qt.quit()

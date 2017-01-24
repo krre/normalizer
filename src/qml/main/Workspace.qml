@@ -11,6 +11,7 @@ TreeView {
     property alias rootDir: fileSystemModel.rootDir
     property alias fileSystemModel: fileSystemModel
     frameVisible: false
+    headerVisible: false
     sortIndicatorVisible: true
     model: fileSystemModel
     rootIndex: fileSystemModel.rootIndex
@@ -66,9 +67,9 @@ TreeView {
                     var treeIndex = selection.currentIndex
                     if (fileSystemModel.removeFile(treeIndex)) {
                         var path = fileSystemModel.path(treeIndex)
-                        var tabIndex = tabView.findTab(path)
+                        var tabIndex = editorTabView.findTab(path)
                         if (tabIndex !== -1) {
-                            tabView.removeTab(tabIndex)
+                            editorTabView.removeTab(tabIndex)
                         }
                         mainMenu.recentFilesModel.removeByPath(path)
                     }
@@ -83,7 +84,6 @@ TreeView {
     }
 
     TableViewColumn {
-        title: qsTr("Workspace")
         role: "fileName"
         resizable: true
     }
