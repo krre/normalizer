@@ -10,7 +10,7 @@ public:
     Q_INVOKABLE QVariant getValue(const QString& group, const QString& key, const QVariant& defaultValue = QVariant());
 
     Q_INVOKABLE void setMap(const QString& group, const QVariantMap& map);
-    Q_INVOKABLE QVariantMap map(const QString& group);
+    Q_INVOKABLE QVariantMap getMap(const QString& group);
 
     Q_INVOKABLE void setList(const QString& group, const QStringList& list);
     Q_INVOKABLE QStringList list(const QString& group);

@@ -49,7 +49,7 @@ function saveGeometry(name) {
 }
 
 function loadGeomerty(name) {
-    var geometry = Settings.map(name)
+    var geometry = Settings.getMap(name)
     if (Object.keys(geometry).length) {
         x = geometry.x
         y = geometry.y

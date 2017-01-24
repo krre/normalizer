@@ -28,7 +28,7 @@ void Settings::setMap(const QString& group, const QVariantMap& map) {
     settings->endGroup();
 }
 
-QVariantMap Settings::map(const QString& group) {
+QVariantMap Settings::getMap(const QString& group) {
     settings->beginGroup(group);
     QVariantMap map;
     QStringListIterator i(settings->allKeys());
