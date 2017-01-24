@@ -7,7 +7,6 @@ import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
 
 WindowDialog {
-    property real indent: 10
     id: root
     title: qsTr("Options")
     width: 500
