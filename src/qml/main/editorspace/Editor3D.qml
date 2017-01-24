@@ -18,7 +18,7 @@ QOsg.Viewer {
     property SproutDb sproutDb: SproutDb {}
     property Action spaceAction: Action {
         shortcut: " "
-        enabled: root == editorTabView.currentTab && !panel
+        enabled: root === editorTabView.currentTab && !panel
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
     anchors.fill: parent
