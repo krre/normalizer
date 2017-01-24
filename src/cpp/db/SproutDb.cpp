@@ -1,6 +1,6 @@
 #include <QtCore>
 #include <QtSql>
-#include "sproutdb.h"
+#include "SproutDb.h"
 
 QString SproutDb::create(const QString& path) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {

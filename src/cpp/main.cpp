@@ -6,7 +6,7 @@
 #include "base/FileSystemModel.h"
 #include "base/OperatorModel.h"
 #include "base/OperatorProxyModel.h"
-#include "db/sproutdb.h"
+#include "db/SproutDb.h"
 #include "../gui/MainWindow.h"
 
 int main(int argc, char* argv[]) {
