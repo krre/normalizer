@@ -65,20 +65,10 @@ ApplicationWindow {
                 model: [ qsTr("Workspace") ]
             }
 
-            TabView {
+            ToolTabView {
                 id: toolTabView
-                property Workspace workspace: count > 0 ? getTab(0).item : null
                 Layout.preferredWidth: parent.width
                 Layout.fillHeight: true
-                tabsVisible: false
-
-                Tab {
-                    active: true
-
-                    Workspace {
-
-                    }
-                }
             }
         }
 

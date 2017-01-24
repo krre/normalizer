@@ -79,7 +79,8 @@ DISTFILES += \
     src/qml/windows/Rename.qml \
     src/qml/windows/SelectWorkspace.qml \
     src/qml/Main.qml \
-    src/qml/main/toolspace/Workspace.qml
+    src/qml/main/toolspace/Workspace.qml \
+    src/qml/main/toolspace/ToolTabView.qml
 
 
 RESOURCES += \
