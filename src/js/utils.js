@@ -143,7 +143,7 @@ function saveRecentPaths() {
 
 function loadRecentPaths() {
     var model = mainMenu.recentFilesModel
-    var list = Settings.list("RecentFiles")
+    var list = Settings.getList("RecentFiles")
     for (var i = 0; i < list.length; i++) {
         var path = list[i]
         if (Core.isFileExists(path)) {
@@ -155,7 +155,7 @@ function loadRecentPaths() {
 function loadSession() {
     var restoreLastSession = variantToBool(Settings.getValue("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
-        var openFiles = Settings.list("OpenFiles")
+        var openFiles = Settings.getList("OpenFiles")
         if (openFiles && openFiles.length) {
             var currentFile = Settings.getValue("Path", "currentFile")
             var currentIndex = -1

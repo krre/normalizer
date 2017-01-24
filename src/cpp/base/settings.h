@@ -13,7 +13,7 @@ public:
     Q_INVOKABLE QVariantMap getMap(const QString& group);
 
     Q_INVOKABLE void setList(const QString& group, const QStringList& list);
-    Q_INVOKABLE QStringList list(const QString& group);
+    Q_INVOKABLE QStringList getList(const QString& group);
 
 private:
     QSettings* settings;

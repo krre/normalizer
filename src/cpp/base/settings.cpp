@@ -50,7 +50,7 @@ void Settings::setList(const QString& group, const QStringList& list) {
         settings->endGroup();
 }
 
-QStringList Settings::list(const QString& group) {
+QStringList Settings::getList(const QString& group) {
     settings->beginGroup(group);
         QStringList keys = settings->allKeys();
         QStringList list;
