@@ -76,15 +76,15 @@ MenuBar {
         MenuItem {
             text: qsTr("Save As...")
             shortcut: "Ctrl+Shift+S"
-            enabled: currentTab
+            enabled: editorTabView.currentTab
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/components/filedialog/FileDialogSave.qml")
         }
 
         MenuItem {
             text: qsTr("Reload")
             shortcut: "F5"
-            enabled: currentTab
-            onTriggered: currentTab.reload()
+            enabled: editorTabView.currentTab
+            onTriggered: editorTabView.currentTab.reload()
         }
 
         MenuSeparator {}
@@ -164,13 +164,13 @@ MenuBar {
 
     Menu {
         title: qsTr("Run")
-        visible: currentTab
+        visible: editorTabView.currentTab
 
         MenuItem {
             text: qsTr("Run")
             shortcut: "F9"
-            enabled: currentTab
-            onTriggered: currentTab.process.run(Settings.getValue("Path", "sprout"), currentTab.path)
+            enabled: editorTabView.currentTab
+            onTriggered: editorTabView.currentTab.process.run(Settings.getValue("Path", "sprout"), editorTabView.currentTab.path)
         }
 
         MenuItem {
@@ -182,11 +182,11 @@ MenuBar {
 
     Menu {
         title: qsTr("Camera")
-        visible: currentTab
+        visible: editorTabView.currentTab
 
         MenuItem {
             text: qsTr("Home")
-            onTriggered: currentTab.home()
+            onTriggered: editorTabView.currentTab.home()
             shortcut: "F12"
         }
     }
@@ -202,7 +202,7 @@ MenuBar {
 
     Menu {
         title: qsTr("Window")
-        visible: currentTab
+        visible: editorTabView.currentTab
 
         MenuItem {
            text: qsTr("Full Screen")
@@ -214,21 +214,21 @@ MenuBar {
         MenuItem {
             text: qsTr("Clear Output")
             shortcut: "Shift+Del"
-            onTriggered: currentTab.output.textEdit.text = ""
+            onTriggered: editorTabView.currentTab.output.textEdit.text = ""
         }
 
         MenuItem {
             text: qsTr("Output")
             checkable: true
             checked: true
-            onTriggered: currentTab.output.visible = !currentTab.output.visible
+            onTriggered: editorTabView.currentTab.output.visible = !editorTabView.currentTab.output.visible
         }
 
         MenuItem {
             text: qsTr("Command Sheet")
             checkable: true
             checked: true
-            onTriggered: currentTab.commandSheet.visible = !currentTab.commandSheet.visible
+            onTriggered: editorTabView.currentTab.commandSheet.visible = !editorTabView.currentTab.commandSheet.visible
         }
 
         MenuItem {
@@ -263,7 +263,7 @@ MenuBar {
 
         Menu {
             title: qsTr("Render")
-            enabled: currentTab
+            enabled: editorTabView.currentTab
 
             MenuItem {
                 text: qsTr("Enable")

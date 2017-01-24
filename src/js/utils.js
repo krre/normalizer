@@ -94,22 +94,22 @@ function saveAsSprout(path) {
     if (path.substr(-7) !== ".sprout") {
         path += ".sprout"
     }
-    Core.copyFile(currentTab.path, path)
-    currentTab.path = path
+    Core.copyFile(editorTabView.currentTab.path, path)
+    editorTabView.currentTab.path = path
     editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(path)
     toolTabView.selectByPath(path)
-    currentTab.reload()
+    editorTabView.currentTab.reload()
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
 function renameSprout(oldPath, newPath) {
-    if (currentTab && currentTab.path === oldPath) {
-        currentTab.sproutDb.close()
+    if (editorTabView.currentTab && editorTabView.currentTab.path === oldPath) {
+        editorTabView.currentTab.sproutDb.close()
         Core.renameFile(oldPath, newPath)
-        currentTab.path = newPath
+        editorTabView.currentTab.path = newPath
         editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(newPath)
         toolTabView.selectByPath(newPath)
-        currentTab.reload()
+        editorTabView.currentTab.reload()
         mainMenu.recentFilesModel.removeByPath(oldPath)
         addRecentPath(newPath, mainMenu.recentFilesModel)
     } else {
@@ -184,7 +184,7 @@ function saveSession() {
         }
 
         Settings.setList("OpenFiles", list)
-        Settings.setValue("Path", "currentFile", currentTab ? currentTab.path : "")
+        Settings.setValue("Path", "currentFile", editorTabView.currentTab ? editorTabView.currentTab.path : "")
     }
 }
 

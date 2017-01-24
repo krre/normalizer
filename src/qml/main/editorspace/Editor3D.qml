@@ -12,13 +12,13 @@ QOsg.Viewer {
     property string title: Core.pathToFileName(path)
     property var panel
     property string path
-    property bool isCurrent: root === currentTab
+    property bool isCurrent: root === editorTabView.currentTab
     property bool rendering: true
     property var program: ({})
     property SproutDb sproutDb: SproutDb {}
     property Action spaceAction: Action {
         shortcut: " "
-        enabled: root == currentTab && !panel
+        enabled: root == editorTabView.currentTab && !panel
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
     anchors.fill: parent

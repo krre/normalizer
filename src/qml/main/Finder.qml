@@ -26,7 +26,7 @@ ColumnLayout {
 
         Keys.onReturnPressed: {
             var index = OperatorProxyModel.sourceIndex(tableView.currentRow)
-            currentTab.action(index) // run in context of Editor3D
+            editorTabView.currentTab.action(index) // run in context of Editor3D
             root.destroy()
         }
         Keys.onDownPressed: tableView.incrementRow()

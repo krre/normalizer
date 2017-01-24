@@ -51,7 +51,7 @@ function moduleOp() {
 }
 
 function functionOp() {
-    panel = Utils.createDynamicObject(currentTab, panelPath, { state: "function" })
+    panel = Utils.createDynamicObject(editorTabView.currentTab, panelPath, { state: "function" })
     panel.enter.connect(function(value) {
         var moduleId = scene.currentNode.moduleId
         var records = sproutDb.query("SELECT * FROM Functions WHERE moduleId=%1".arg(moduleId))

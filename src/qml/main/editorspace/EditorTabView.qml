@@ -2,6 +2,7 @@ import QtQuick 2.8
 import QtQuick.Controls 1.5
 
 TabView {
+    property Editor3D currentTab: count > 0 ? getTab(currentIndex).item : null
     frameVisible: false
 
     function nextTab() {

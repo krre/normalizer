@@ -11,10 +11,9 @@ import "../js/operators.js" as Operators
 
 ApplicationWindow {
     id: mainRoot
-    property alias editorTabView: editorTabView
-    property Editor3D currentTab: editorTabView.count > 0 ? editorTabView.getTab(editorTabView.currentIndex).item : null
-    property alias sysPalette: sysPalette
     property alias toolTabView: toolTabView
+    property alias editorTabView: editorTabView
+    property alias sysPalette: sysPalette
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
     title: Qt.application.name
@@ -28,15 +27,6 @@ ApplicationWindow {
         y = Settings.getValue("MainWindow", "y", (Screen.height - height) / 2)
         Utils.loadSettings()
         Operators.add()
-    }
-
-    onCurrentTabChanged: {
-        if (currentTab) {
-            currentTab.forceActiveFocus()
-            toolTabView.workspace.selectByPath(currentTab.path)
-        } else {
-            toolTabView.workspace.selection.clearCurrentIndex()
-        }
     }
 
     onClosing: {
@@ -78,6 +68,15 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.minimumWidth: 50
+
+            onCurrentTabChanged: {
+                if (editorTabView.currentTab) {
+                    editorTabView.currentTab.forceActiveFocus()
+                    toolTabView.workspace.selectByPath(editorTabView.currentTab.path)
+                } else {
+                    toolTabView.workspace.selection.clearCurrentIndex()
+                }
+            }
         }
     }
 }
