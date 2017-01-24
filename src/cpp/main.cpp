@@ -2,7 +2,7 @@
 #include <QtQml>
 #include <registerosgtypes.h>
 #include "base/Core.h"
-#include "base/settings.h"
+#include "base/Settings.h"
 #include "base/FileSystemModel.h"
 #include "base/OperatorModel.h"
 #include "base/OperatorProxyModel.h"
