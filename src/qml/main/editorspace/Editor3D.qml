@@ -2,10 +2,10 @@ import QtQuick 2.8
 import QtQuick.Controls 1.5
 import Greenery 0.1
 import QOsg 0.1 as QOsg
-import "../components"
-import "../../js/utils.js" as Utils
-import "../../js/operators.js" as Operators
-import "../../js/dialog.js" as Dialog
+import "../../components"
+import "../../../js/utils.js" as Utils
+import "../../../js/operators.js" as Operators
+import "../../../js/dialog.js" as Dialog
 
 QOsg.Viewer {
     id: root
@@ -70,4 +70,3 @@ QOsg.Viewer {
         }
     }
 }
-

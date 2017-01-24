@@ -85,7 +85,7 @@ function openSprout(path) {
 
     var tab = editorTabView.addTab("")
     tab.loaded.connect(function() { tab.item.updateTabTitle() })
-    tab.setSource("qrc:/qml/main/Editor3D.qml", { path: path })
+    tab.setSource("qrc:/qml/main/editorspace/Editor3D.qml", { path: path })
     editorTabView.currentIndex = editorTabView.count - 1
     addRecentPath(path)
 }

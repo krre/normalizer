@@ -61,7 +61,6 @@ DISTFILES += \
     src/qml/dialogs/EditUnit.qml \
     src/qml/dialogs/InfoUnit.qml \
     src/qml/main/About.qml \
-    src/qml/main/Editor3D.qml \
     src/qml/main/Finder.qml \
     src/qml/main/MainMenu.qml \
     src/qml/main/Output.qml \
@@ -81,7 +80,8 @@ DISTFILES += \
     src/qml/Main.qml \
     src/qml/main/toolspace/Workspace.qml \
     src/qml/main/toolspace/ToolTabView.qml \
-    src/qml/main/editorspace/EditorTabView.qml
+    src/qml/main/editorspace/EditorTabView.qml \
+    src/qml/main/editorspace/Editor3D.qml
 
 
 RESOURCES += \
