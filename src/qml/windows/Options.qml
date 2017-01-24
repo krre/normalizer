@@ -38,7 +38,7 @@ WindowDialog {
                 TextField {
                     id: workspacePath
                     Layout.fillWidth: true
-                    text: Settings.value("Path", "workspace")
+                    text: Settings.getValue("Path", "workspace")
                     Component.onCompleted: forceActiveFocus()
                 }
 
@@ -60,7 +60,7 @@ WindowDialog {
             CheckBox {
                 id: lastSession
                 text: qsTr("Restore last session")
-                checked: Utils.variantToBool(Settings.value("Interface", "restoreLastSession", false))
+                checked: Utils.variantToBool(Settings.getValue("Interface", "restoreLastSession", false))
             }
         }
     }

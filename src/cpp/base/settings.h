@@ -7,7 +7,7 @@ class Settings : public QObject {
 public:
     explicit Settings();
     Q_INVOKABLE void setValue(const QString& group, const QString& key, const QVariant& value);
-    Q_INVOKABLE QVariant value(const QString& group, const QString& key, const QVariant& defaultValue = QVariant());
+    Q_INVOKABLE QVariant getValue(const QString& group, const QString& key, const QVariant& defaultValue = QVariant());
 
     Q_INVOKABLE void setMap(const QString& group, const QVariantMap& map);
     Q_INVOKABLE QVariantMap map(const QString& group);

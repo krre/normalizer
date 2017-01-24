@@ -29,7 +29,7 @@ TreeView {
 
     FileSystemModel {
         id: fileSystemModel
-        rootDir: Settings.value("Path", "workspace", Core.homePath)
+        rootDir: Settings.getValue("Path", "workspace", Core.homePath)
     }
 
     ItemSelectionModel {

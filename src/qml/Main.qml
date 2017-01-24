@@ -16,14 +16,14 @@ ApplicationWindow {
     property var logger: new Utils.Logger()
     property var parentWindow: mainRoot
     title: Qt.application.name
-    width: Settings.value("MainWindow", "width", 800)
-    height: Settings.value("MainWindow", "height", 600)
+    width: Settings.getValue("MainWindow", "width", 800)
+    height: Settings.getValue("MainWindow", "height", 600)
     visible: true
     menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: {
-        x = Settings.value("MainWindow", "x", (Screen.width - width) / 2)
-        y = Settings.value("MainWindow", "y", (Screen.height - height) / 2)
+        x = Settings.getValue("MainWindow", "x", (Screen.width - width) / 2)
+        y = Settings.getValue("MainWindow", "y", (Screen.height - height) / 2)
         Utils.loadSettings()
         Operators.add()
     }
@@ -47,7 +47,7 @@ ApplicationWindow {
     }
 
     SelectWorkspace {
-        visible: !Settings.value("Path", "workspace")
+        visible: !Settings.getValue("Path", "workspace")
     }
 
     SplitView {
@@ -56,8 +56,8 @@ ApplicationWindow {
         Workspace {
             id: workspace
             Layout.minimumWidth: 50
-            width: Settings.value("Gui", "workspaceWidth", 200)
-            visible: Utils.variantToBool(Settings.value("Gui", "showWorkspace", true))
+            width: Settings.getValue("Gui", "workspaceWidth", 200)
+            visible: Utils.variantToBool(Settings.getValue("Gui", "showWorkspace", true))
         }
 
         TabView {

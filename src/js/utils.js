@@ -153,11 +153,11 @@ function loadRecentPaths() {
 }
 
 function loadSession() {
-    var restoreLastSession = variantToBool(Settings.value("Interface", "restoreLastSession", false))
+    var restoreLastSession = variantToBool(Settings.getValue("Interface", "restoreLastSession", false))
     if (restoreLastSession) {
         var openFiles = Settings.list("OpenFiles")
         if (openFiles && openFiles.length) {
-            var currentFile = Settings.value("Path", "currentFile")
+            var currentFile = Settings.getValue("Path", "currentFile")
             var currentIndex = -1
             for (var i = 0; i < openFiles.length; i++) {
                 var sprotPath = openFiles[i]
@@ -176,7 +176,7 @@ function loadSession() {
 }
 
 function saveSession() {
-    if (Settings.value("Interface", "restoreLastSession")) {
+    if (Settings.getValue("Interface", "restoreLastSession")) {
         var list = []
         for (var i = 0; i < tabView.count; i++) {
             var editor = tabView.getTab(i).item

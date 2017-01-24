@@ -59,7 +59,7 @@ WindowDialog {
 
         Label {
             id: directory
-            text: Settings.value("Path", "workspace")
+            text: Settings.getValue("Path", "workspace")
         }
 
         Label {

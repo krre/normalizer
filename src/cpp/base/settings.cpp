@@ -14,7 +14,7 @@ void Settings::setValue(const QString& group, const QString& key, const QVariant
     settings->endGroup();
 }
 
-QVariant Settings::value(const QString& group, const QString& key, const QVariant& defaultValue) {
+QVariant Settings::getValue(const QString& group, const QString& key, const QVariant& defaultValue) {
     return settings->value(QString("%1/%2").arg(group).arg(key), defaultValue);
 }
 
