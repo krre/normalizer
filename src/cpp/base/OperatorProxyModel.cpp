@@ -1,4 +1,4 @@
-#include "operatorproxymodel.h"
+#include "OperatorProxyModel.h"
 #include <QtCore>
 
 void OperatorProxyModel::setFilterPattern(const QString& pattern) {

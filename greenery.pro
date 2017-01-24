@@ -19,18 +19,17 @@ INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
     src/cpp/base/settings.h \
-    src/cpp/base/operatorproxymodel.h \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
     src/gui/WorkArea.h \
     src/gui/MainWindow.h \
     src/cpp/base/Core.h \
     src/cpp/base/FileSystemModel.h \
-    src/cpp/base/OperatorModel.h
+    src/cpp/base/OperatorModel.h \
+    src/cpp/base/OperatorProxyModel.h
 
 SOURCES += \
     src/cpp/base/settings.cpp \
-    src/cpp/base/operatorproxymodel.cpp \
     src/cpp/base/process.cpp \
     src/cpp/db/sproutdb.cpp \
     src/gui/WorkArea.cpp \
@@ -38,7 +37,8 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/base/Core.cpp \
     src/cpp/base/FileSystemModel.cpp \
-    src/cpp/base/OperatorModel.cpp
+    src/cpp/base/OperatorModel.cpp \
+    src/cpp/base/OperatorProxyModel.cpp
 
 DISTFILES += \
     README.md \

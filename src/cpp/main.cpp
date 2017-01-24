@@ -5,7 +5,7 @@
 #include "base/settings.h"
 #include "base/FileSystemModel.h"
 #include "base/OperatorModel.h"
-#include "base/operatorproxymodel.h"
+#include "base/OperatorProxyModel.h"
 #include "db/sproutdb.h"
 #include "../gui/MainWindow.h"
 
