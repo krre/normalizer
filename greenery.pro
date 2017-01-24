@@ -65,7 +65,6 @@ DISTFILES += \
     src/qml/main/Finder.qml \
     src/qml/main/MainMenu.qml \
     src/qml/main/Output.qml \
-    src/qml/main/Workspace.qml \
     src/qml/sheets/CommandSheet.qml \
     src/qml/units/Argument.qml \
     src/qml/units/Function.qml \
@@ -79,7 +78,8 @@ DISTFILES += \
     src/qml/windows/Options.qml \
     src/qml/windows/Rename.qml \
     src/qml/windows/SelectWorkspace.qml \
-    src/qml/Main.qml
+    src/qml/Main.qml \
+    src/qml/main/toolspace/Workspace.qml
 
 
 RESOURCES += \
