@@ -26,7 +26,7 @@ HEADERS += \
     src/cpp/Base/OperatorProxyModel.h \
     src/cpp/Base/Process.h \
     src/cpp/Base/Settings.h \
-    src/cpp/db/SproutDb.h
+    src/cpp/Db/SproutDb.h
 
 SOURCES += \
     src/gui/WorkArea.cpp \
@@ -38,7 +38,7 @@ SOURCES += \
     src/cpp/Base/OperatorProxyModel.cpp \
     src/cpp/Base/Process.cpp \
     src/cpp/Base/Settings.cpp \
-    src/cpp/db/SproutDb.cpp
+    src/cpp/Db/SproutDb.cpp
 
 DISTFILES += \
     README.md \
