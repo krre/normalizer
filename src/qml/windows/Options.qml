@@ -16,7 +16,7 @@ WindowDialog {
         Settings.setValue("Path", "workspace", workspacePath.text)
         Settings.setValue("Interface", "restoreLastSession", lastSession.checked)
         Core.mkpath(workspacePath.text)
-        workspace.rootDir = workspacePath.text
+        toolTabView.workspace.rootDir = workspacePath.text
     }
 
     ColumnLayout {
