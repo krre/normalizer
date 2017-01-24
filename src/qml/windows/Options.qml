@@ -60,7 +60,7 @@ WindowDialog {
             CheckBox {
                 id: lastSession
                 text: qsTr("Restore last session")
-                checked: Utils.variantToBool(Settings.getValue("Interface", "restoreLastSession", false))
+                checked: Settings.getValue("Interface", "restoreLastSession", false)
             }
         }
     }

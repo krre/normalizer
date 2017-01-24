@@ -153,7 +153,7 @@ function loadRecentPaths() {
 }
 
 function loadSession() {
-    var restoreLastSession = variantToBool(Settings.getValue("Interface", "restoreLastSession", false))
+    var restoreLastSession = Settings.getValue("Interface", "restoreLastSession", false)
     if (restoreLastSession) {
         var openFiles = Settings.getList("OpenFiles")
         if (openFiles && openFiles.length) {
@@ -186,8 +186,4 @@ function saveSession() {
         Settings.setList("OpenFiles", list)
         Settings.setValue("Path", "currentFile", editorTabView.currentTab ? editorTabView.currentTab.path : "")
     }
-}
-
-function variantToBool(value) {
-    return typeof value === "boolean" ? value : value === "true"
 }

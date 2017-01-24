@@ -15,7 +15,12 @@ void Settings::setValue(const QString& group, const QString& key, const QVariant
 }
 
 QVariant Settings::getValue(const QString& group, const QString& key, const QVariant& defaultValue) {
-    return settings->value(QString("%1/%2").arg(group).arg(key), defaultValue);
+    QVariant value = settings->value(QString("%1/%2").arg(group).arg(key), defaultValue);
+    if (value == "true" || value == "false") {
+        return value.toBool();
+    } else {
+        return value;
+    }
 }
 
 void Settings::setMap(const QString& group, const QVariantMap& map) {

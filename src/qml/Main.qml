@@ -49,7 +49,7 @@ ApplicationWindow {
             id: toolspace
             Layout.minimumWidth: 50
             width: Settings.getValue("Gui", "toolspaceWidth", 200)
-            visible: Utils.variantToBool(Settings.getValue("Gui", "showToolspace", true))
+            visible: Settings.getValue("Gui", "showToolspace", true)
 
             ComboBox {
                 Layout.preferredWidth: parent.width
