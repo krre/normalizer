@@ -4,6 +4,7 @@ import QtQuick.Controls 1.5
 TabView {
     property Workspace workspace: count > 0 ? getTab(0).item : null
     tabsVisible: false
+    frameVisible: false
 
     Tab {
         active: true
