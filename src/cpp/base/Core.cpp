@@ -1,4 +1,4 @@
-#include "core.h"
+#include "Core.h"
 #include <QtCore>
 
 QString Core::pathToBaseName(const QString& filePath) {

@@ -18,7 +18,6 @@ CONFIG(debug, debug|release) {
 INCLUDEPATH += $$(OSG_HOME)/include
 
 HEADERS += \
-    src/cpp/base/core.h \
     src/cpp/base/settings.h \
     src/cpp/base/operatormodel.h \
     src/cpp/base/operatorproxymodel.h \
@@ -26,10 +25,10 @@ HEADERS += \
     src/cpp/base/process.h \
     src/cpp/db/sproutdb.h \
     src/gui/WorkArea.h \
-    src/gui/MainWindow.h
+    src/gui/MainWindow.h \
+    src/cpp/base/Core.h
 
 SOURCES += \
-    src/cpp/base/core.cpp \
     src/cpp/base/settings.cpp \
     src/cpp/base/operatormodel.cpp \
     src/cpp/base/operatorproxymodel.cpp \
@@ -38,7 +37,8 @@ SOURCES += \
     src/cpp/db/sproutdb.cpp \
     src/gui/WorkArea.cpp \
     src/gui/MainWindow.cpp \
-    src/cpp/main.cpp
+    src/cpp/main.cpp \
+    src/cpp/base/Core.cpp
 
 DISTFILES += \
     README.md \

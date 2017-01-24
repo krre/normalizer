@@ -1,5 +1,5 @@
 #include "settings.h"
-#include "core.h"
+#include "Core.h"
 #include <QtCore>
 
 Settings::Settings() {

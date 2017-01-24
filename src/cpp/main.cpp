@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include <QtQml>
 #include <registerosgtypes.h>
-#include "base/core.h"
+#include "base/Core.h"
 #include "base/settings.h"
 #include "base/filesystemmodel.h"
 #include "base/operatormodel.h"
