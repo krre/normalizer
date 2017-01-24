@@ -36,6 +36,7 @@ MenuBar {
             title: qsTr("Recent Files")
             enabled: recentFilesModel.count > 0
 
+            //@disable-check M300
             Instantiator {
                 model: recentFilesModel
 
