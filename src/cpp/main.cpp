@@ -1,12 +1,12 @@
 #include <QtWidgets>
 #include <QtQml>
-#include <registerosgtypes.h>
-#include "base/Core.h"
-#include "base/Settings.h"
-#include "base/FileSystemModel.h"
-#include "base/OperatorModel.h"
-#include "base/OperatorProxyModel.h"
-#include "db/SproutDb.h"
+#include <RegisterOsgTypes.h>
+#include "Base/Core.h"
+#include "Base/Settings.h"
+#include "Base/FileSystemModel.h"
+#include "Base/OperatorModel.h"
+#include "Base/OperatorProxyModel.h"
+#include "Db/SproutDb.h"
 #include "../gui/MainWindow.h"
 
 int main(int argc, char* argv[]) {
