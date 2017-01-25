@@ -33,5 +33,6 @@
         <file>qml/windows/SelectWorkspace.qml</file>
         <file>qml/main/toolspace/ToolTabView.qml</file>
         <file>qml/main/editorspace/EditorTabView.qml</file>
+        <file>qml/main/toolspace/Properties.qml</file>
     </qresource>
 </RCC>

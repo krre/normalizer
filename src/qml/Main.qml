@@ -52,14 +52,16 @@ ApplicationWindow {
             visible: Settings.getValue("Gui", "showToolspace", true)
 
             ComboBox {
+                id: toolComboBox
                 Layout.preferredWidth: parent.width
-                model: [ qsTr("Workspace") ]
+                model: [ qsTr("Workspace"), qsTr("Properties") ]
             }
 
             ToolTabView {
                 id: toolTabView
                 Layout.preferredWidth: parent.width
                 Layout.fillHeight: true
+                currentIndex: toolComboBox.currentIndex
             }
         }
 

@@ -81,7 +81,8 @@ DISTFILES += \
     src/qml/main/toolspace/Workspace.qml \
     src/qml/main/toolspace/ToolTabView.qml \
     src/qml/main/editorspace/EditorTabView.qml \
-    src/qml/main/editorspace/Editor3D.qml
+    src/qml/main/editorspace/Editor3D.qml \
+    src/qml/main/toolspace/Properties.qml
 
 
 RESOURCES += \
