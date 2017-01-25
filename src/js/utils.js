@@ -155,6 +155,8 @@ function loadRecentPaths() {
 function loadSession() {
     var restoreLastSession = Settings.getValue("Interface", "restoreLastSession", false)
     if (restoreLastSession) {
+        toolComboBox.currentIndex = Settings.getValue("Common", "currentToolTab", 0)
+
         var openFiles = Settings.getList("OpenFiles")
         if (openFiles && openFiles.length) {
             var currentFile = Settings.getValue("Path", "currentFile")
@@ -177,6 +179,8 @@ function loadSession() {
 
 function saveSession() {
     if (Settings.getValue("Interface", "restoreLastSession")) {
+        Settings.setValue("Common", "currentToolTab", toolComboBox.currentIndex)
+
         var list = []
         for (var i = 0; i < editorTabView.count; i++) {
             var editor = editorTabView.getTab(i).item
