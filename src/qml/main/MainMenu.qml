@@ -164,7 +164,7 @@ MenuBar {
     }
 
     Menu {
-        title: qsTr("Run")
+        title: qsTr("Build")
         visible: editorTabView.currentTab
 
         MenuItem {
