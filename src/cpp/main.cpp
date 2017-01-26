@@ -7,7 +7,7 @@
 #include "Base/OperatorModel.h"
 #include "Base/OperatorProxyModel.h"
 #include "Db/SproutDb.h"
-#include "../gui/MainWindow.h"
+#include "Gui/MainWindow.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);

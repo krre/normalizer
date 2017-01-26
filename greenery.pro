@@ -25,8 +25,8 @@ HEADERS += \
     src/cpp/Base/Process.h \
     src/cpp/Base/Settings.h \
     src/cpp/Db/SproutDb.h \
-    src/gui/MainWindow.h \
-    src/gui/WorkArea.h
+    src/cpp/Gui/MainWindow.h \
+    src/cpp/Gui/WorkArea.h
 
 SOURCES += \
     src/cpp/Base/Core.cpp \
@@ -37,8 +37,8 @@ SOURCES += \
     src/cpp/Base/Settings.cpp \
     src/cpp/Db/SproutDb.cpp \
     src/cpp/main.cpp \
-    src/gui/MainWindow.cpp \
-    src/gui/WorkArea.cpp
+    src/cpp/Gui/MainWindow.cpp \
+    src/cpp/Gui/WorkArea.cpp
 
 DISTFILES += \
     README.md
