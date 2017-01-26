@@ -16,11 +16,6 @@ QOsg.Viewer {
     property bool rendering: true
     property var program: ({})
     property SproutDb sproutDb: SproutDb {}
-    property Action spaceAction: Action {
-        shortcut: " "
-        enabled: root === editorTabView.currentTab && !panel
-        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
-    }
     anchors.fill: parent
     camera {
         clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
@@ -45,6 +40,12 @@ QOsg.Viewer {
     }
 
     onTitleChanged: updateTabTitle()
+
+    Action {
+        shortcut: " "
+        enabled: root === editorTabView.currentTab && !panel
+        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    }
 
     function reload() {
         sproutDb.close()
