@@ -50,8 +50,9 @@ SOURCES += \
     src/cpp/Gui/MainWindow.cpp \
     src/cpp/Gui/WorkArea.cpp
 
-DISTFILES += \
-    README.md
+OTHER_FILES += \
+    README.md \
+    .gitignore \
 
 RESOURCES += \
     src/qml.qrc \
