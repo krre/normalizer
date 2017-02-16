@@ -1,4 +1,4 @@
-# Sprout Engine 0.1.0
+# Sprout Runtime 0.1.0
 Runtime environment for Sprout language
 
 ## Dependencies

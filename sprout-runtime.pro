@@ -3,7 +3,7 @@ QT += core
 CONFIG += c++11
 
 TEMPLATE = app
-TARGET = sproute
+TARGET = sproutr
 
 OTHER_FILES += \
     .gitignore \
