@@ -1,4 +1,4 @@
-# Greenery 0.1.0
+# Sprout Editor 0.1.0
 IDE for [Sprout](https://github.com/krre/sprout) language
 
 ## Dependencies
