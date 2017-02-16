@@ -8,3 +8,6 @@ TARGET = sproutr
 OTHER_FILES += \
     .gitignore \
     README.md
+
+SOURCES += \
+    Source/main.cpp
