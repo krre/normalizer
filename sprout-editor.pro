@@ -17,6 +17,16 @@ CONFIG(debug, debug|release) {
 
 INCLUDEPATH += $$(OSG_HOME)/include
 
+lupdate_only {
+SOURCES = src/qml/*.qml \
+    src/qml/components/*.qml \
+    src/qml/dialogs/*.qml \
+    src/qml/main/*.qml \
+    src/qml/sheets/*.qml \
+    src/qml/units/*.qml \
+    src/qml/windows/*.qml \
+}
+
 HEADERS += \
     src/cpp/Base/Core.h \
     src/cpp/Base/FileSystemModel.h \
