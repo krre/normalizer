@@ -11,8 +11,7 @@
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    app.setOrganizationName("Greenery");
-    app.setApplicationName("Greenery");
+    app.setApplicationName("Sprout Editor");
     app.setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
@@ -29,8 +28,8 @@ int main(int argc, char* argv[]) {
     }
 
     registerOsgTypes();
-    qmlRegisterType<FileSystemModel>("Greenery", 0, 1, "FileSystemModel");
-    qmlRegisterType<SproutDb>("Greenery", 0, 1, "SproutDb");
+    qmlRegisterType<FileSystemModel>("SproutE", 0, 1, "FileSystemModel");
+    qmlRegisterType<SproutDb>("SproutE", 0, 1, "SproutDb");
 
     Core core;
     Settings settings;

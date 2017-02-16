@@ -2,7 +2,7 @@
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    setWindowTitle("Greenery");
+    setWindowTitle("Sprout Editor");
 
     createActions();
 

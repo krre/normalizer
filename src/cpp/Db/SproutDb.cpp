@@ -101,7 +101,7 @@ QSqlError SproutDb::initRecords() {
     QSqlQuery q(db);
     q.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
-    q.bindValue(":name", "GreeneryVersion");
+    q.bindValue(":name", "SproutEVersion");
     q.bindValue(":value", QCoreApplication::applicationVersion());
     q.exec();
 
