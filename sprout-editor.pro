@@ -2,6 +2,7 @@ QT += qml quick widgets opengl sql
 
 CONFIG += c++11
 TEMPLATE = app
+TARGET = sproute
 
 include(../qosg/src/qosg.pri)
 
