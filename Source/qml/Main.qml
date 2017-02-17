@@ -45,23 +45,29 @@ ApplicationWindow {
     SplitView {
         anchors.fill: parent
 
-        ColumnLayout {
+        // Item need because Layout.minimumWidth don't works inside ColumnLayout
+        Item {
             id: toolspace
             Layout.minimumWidth: 50
+            Layout.fillHeight: true
             width: Settings.getValue("Gui", "toolspaceWidth", 200)
             visible: Settings.getValue("Gui", "showToolspace", true)
 
-            ComboBox {
-                id: toolComboBox
-                Layout.preferredWidth: parent.width
-                model: [ qsTr("Workspace"), qsTr("Properties") ]
-            }
+            ColumnLayout {
+                anchors.fill: parent
 
-            ToolTabView {
-                id: toolTabView
-                Layout.preferredWidth: parent.width
-                Layout.fillHeight: true
-                currentIndex: toolComboBox.currentIndex
+                ComboBox {
+                    id: toolComboBox
+                    Layout.preferredWidth: parent.width
+                    model: [ qsTr("Workspace"), qsTr("Properties") ]
+                }
+
+                ToolTabView {
+                    id: toolTabView
+                    Layout.preferredWidth: parent.width
+                    Layout.fillHeight: true
+                    currentIndex: toolComboBox.currentIndex
+                }
             }
         }
 
