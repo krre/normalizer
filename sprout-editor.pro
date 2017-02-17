@@ -4,20 +4,6 @@ CONFIG += c++11
 TEMPLATE = app
 TARGET = sproute
 
-include(../qosg/Source/qosg.pri)
-
-LIBS += \
-    -L$$(OSG_HOME)/lib \
-    -L$$(OSG_HOME)/lib64
-
-CONFIG(debug, debug|release) {
-    LIBS += -losgd -losgViewerd -losgGAd -losgDBd -losgUtild -losgTextd -lOpenThreadsd -losgQtd
-} else {
-    LIBS += -losg -losgViewer -losgGA -losgDB -losgUtil -losgText -lOpenThreads -losgQt
-}
-
-INCLUDEPATH += $$(OSG_HOME)/include
-
 lupdate_only {
 SOURCES = Source/qml/*.qml \
     Source/qml/components/*.qml \
@@ -36,8 +22,6 @@ HEADERS += \
     Source/cpp/Base/Process.h \
     Source/cpp/Base/Settings.h \
     Source/cpp/Db/SproutDb.h \
-    Source/cpp/Gui/MainWindow.h \
-    Source/cpp/Gui/WorkArea.h
 
 SOURCES += \
     Source/cpp/Base/Core.cpp \
@@ -48,8 +32,6 @@ SOURCES += \
     Source/cpp/Base/Settings.cpp \
     Source/cpp/Db/SproutDb.cpp \
     Source/cpp/main.cpp \
-    Source/cpp/Gui/MainWindow.cpp \
-    Source/cpp/Gui/WorkArea.cpp
 
 OTHER_FILES += \
     README.md \

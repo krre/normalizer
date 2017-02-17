@@ -1,12 +1,16 @@
 import QtQuick 2.8
 import QtQuick.Controls 1.5
 import SproutE 0.1
-import QOsg 0.1 as QOsg
 import "../../components"
 import "../../../js/utils.js" as Utils
 import "../../../js/operators.js" as Operators
 import "../../../js/dialog.js" as Dialog
 
+Item {
+
+}
+
+/*
 QOsg.Viewer {
     id: root
     property string title: Core.pathToFileName(path)
@@ -71,3 +75,4 @@ QOsg.Viewer {
         }
     }
 }
+*/
