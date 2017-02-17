@@ -7,11 +7,15 @@ TARGET = sproutr
 
 lupdate_only {
 SOURCES = Source/qml/*.qml \
+    Source/js/*.js \
 }
 
 SOURCES += \
     Source/cpp/main.cpp \
     Source/cpp/Base/Settings.cpp
+
+HEADERS += \
+    Source/cpp/Base/Settings.h
 
 OTHER_FILES += \
     .gitignore \
@@ -19,6 +23,4 @@ OTHER_FILES += \
 
 RESOURCES += \
     Source/qml.qrc \
-
-HEADERS += \
-    Source/cpp/Base/Settings.h
+    Source/js.qrc
