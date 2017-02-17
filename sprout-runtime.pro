@@ -10,7 +10,8 @@ SOURCES = Source/qml/*.qml \
 }
 
 SOURCES += \
-    Source/cpp/main.cpp
+    Source/cpp/main.cpp \
+    Source/cpp/Base/Settings.cpp
 
 OTHER_FILES += \
     .gitignore \
@@ -18,3 +19,6 @@ OTHER_FILES += \
 
 RESOURCES += \
     Source/qml.qrc \
+
+HEADERS += \
+    Source/cpp/Base/Settings.h
