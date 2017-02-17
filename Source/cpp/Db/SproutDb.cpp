@@ -6,7 +6,7 @@ QString SproutDb::create(const QString& path) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         return tr("Unable to load database. Needs the SQLITE driver");
     }
-    connName = "greenery:" + path;
+    connName = "sproute:" + path;
     db = QSqlDatabase::addDatabase("QSQLITE", connName);
     db.setDatabaseName(path);
     if (db.open()) {
@@ -28,7 +28,7 @@ QString SproutDb::open(const QString& path) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         return tr("Unable to load database. Needs the SQLITE driver");
     }
-    connName = "greenery:" + path;
+    connName = "sproute:" + path;
     db = QSqlDatabase::addDatabase("QSQLITE", connName);
     db.setDatabaseName(path);
     if (db.open()) {

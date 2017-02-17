@@ -3,7 +3,7 @@
 #include <QtCore>
 
 Settings::Settings() {
-    QString filePath = qApp->applicationDirPath() + "/greenery.ini";
+    QString filePath = qApp->applicationDirPath() + "/sproute.ini";
     settings = new QSettings(filePath, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
 }
