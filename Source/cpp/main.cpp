@@ -2,15 +2,18 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "Base/Settings.h"
+#include "Base/Core.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
     QApplication::setApplicationName("Sprout Runtime");
     QApplication::setApplicationVersion("0.1.0");
 
+    Core core;
     Settings settings;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("Core", &core);
     engine.rootContext()->setContextProperty("Settings", &settings);
 
 #ifdef QT_DEBUG

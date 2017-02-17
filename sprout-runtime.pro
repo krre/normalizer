@@ -13,10 +13,12 @@ SOURCES = Source/qml/*.qml \
 
 SOURCES += \
     Source/cpp/main.cpp \
-    Source/cpp/Base/Settings.cpp
+    Source/cpp/Base/Settings.cpp \
+    Source/cpp/Base/Core.cpp
 
 HEADERS += \
-    Source/cpp/Base/Settings.h
+    Source/cpp/Base/Settings.h \
+    Source/cpp/Base/Core.h
 
 OTHER_FILES += \
     .gitignore \
