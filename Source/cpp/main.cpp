@@ -1,5 +1,6 @@
-#include <QtWidgets>
-#include <QtQml>
+#include <QApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "Base/Core.h"
 #include "Base/Settings.h"
 #include "Base/FileSystemModel.h"
