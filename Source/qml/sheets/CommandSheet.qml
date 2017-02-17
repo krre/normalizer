@@ -1,5 +1,5 @@
 import QtQuick 2.8
-import QtQuick.Controls 1.4
+import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.2
 import "../../js/command.js" as Command
 
