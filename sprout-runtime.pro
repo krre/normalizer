@@ -10,4 +10,4 @@ OTHER_FILES += \
     README.md
 
 SOURCES += \
-    Source/main.cpp
+    Source/cpp/main.cpp
