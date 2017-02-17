@@ -77,6 +77,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("About %1...".arg(Qt.application.name))
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
         }
     }
 }
