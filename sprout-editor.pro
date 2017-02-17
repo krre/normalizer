@@ -10,6 +10,8 @@ SOURCES = Source/js/*.js \
     Source/qml/components/*.qml \
     Source/qml/dialogs/*.qml \
     Source/qml/main/*.qml \
+    Source/qml/main/editorspace/*.qml \
+    Source/qml/main/toolspace/*.qml \
     Source/qml/sheets/*.qml \
     Source/qml/units/*.qml \
     Source/qml/windows/*.qml \
