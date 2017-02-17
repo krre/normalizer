@@ -8,7 +8,8 @@ TARGET = sproutr
 lupdate_only {
 SOURCES = Source/qml/*.qml \
     Source/js/*.js \
-    Source/qml/main/*.qml
+    Source/qml/main/*.qml \
+    Source/qml/components/*.qml \
 }
 
 SOURCES += \
