@@ -4,7 +4,7 @@ CONFIG += c++11
 TEMPLATE = app
 TARGET = sproute
 
-include(../qosg/src/qosg.pri)
+include(../qosg/Source/qosg.pri)
 
 LIBS += \
     -L$$(OSG_HOME)/lib \
@@ -19,42 +19,42 @@ CONFIG(debug, debug|release) {
 INCLUDEPATH += $$(OSG_HOME)/include
 
 lupdate_only {
-SOURCES = src/qml/*.qml \
-    src/qml/components/*.qml \
-    src/qml/dialogs/*.qml \
-    src/qml/main/*.qml \
-    src/qml/sheets/*.qml \
-    src/qml/units/*.qml \
-    src/qml/windows/*.qml \
+SOURCES = Source/qml/*.qml \
+    Source/qml/components/*.qml \
+    Source/qml/dialogs/*.qml \
+    Source/qml/main/*.qml \
+    Source/qml/sheets/*.qml \
+    Source/qml/units/*.qml \
+    Source/qml/windows/*.qml \
 }
 
 HEADERS += \
-    src/cpp/Base/Core.h \
-    src/cpp/Base/FileSystemModel.h \
-    src/cpp/Base/OperatorModel.h \
-    src/cpp/Base/OperatorProxyModel.h \
-    src/cpp/Base/Process.h \
-    src/cpp/Base/Settings.h \
-    src/cpp/Db/SproutDb.h \
-    src/cpp/Gui/MainWindow.h \
-    src/cpp/Gui/WorkArea.h
+    Source/cpp/Base/Core.h \
+    Source/cpp/Base/FileSystemModel.h \
+    Source/cpp/Base/OperatorModel.h \
+    Source/cpp/Base/OperatorProxyModel.h \
+    Source/cpp/Base/Process.h \
+    Source/cpp/Base/Settings.h \
+    Source/cpp/Db/SproutDb.h \
+    Source/cpp/Gui/MainWindow.h \
+    Source/cpp/Gui/WorkArea.h
 
 SOURCES += \
-    src/cpp/Base/Core.cpp \
-    src/cpp/Base/FileSystemModel.cpp \
-    src/cpp/Base/OperatorModel.cpp \
-    src/cpp/Base/OperatorProxyModel.cpp \
-    src/cpp/Base/Process.cpp \
-    src/cpp/Base/Settings.cpp \
-    src/cpp/Db/SproutDb.cpp \
-    src/cpp/main.cpp \
-    src/cpp/Gui/MainWindow.cpp \
-    src/cpp/Gui/WorkArea.cpp
+    Source/cpp/Base/Core.cpp \
+    Source/cpp/Base/FileSystemModel.cpp \
+    Source/cpp/Base/OperatorModel.cpp \
+    Source/cpp/Base/OperatorProxyModel.cpp \
+    Source/cpp/Base/Process.cpp \
+    Source/cpp/Base/Settings.cpp \
+    Source/cpp/Db/SproutDb.cpp \
+    Source/cpp/main.cpp \
+    Source/cpp/Gui/MainWindow.cpp \
+    Source/cpp/Gui/WorkArea.cpp
 
 OTHER_FILES += \
     README.md \
     .gitignore \
 
 RESOURCES += \
-    src/qml.qrc \
-    src/js.qrc
+    Source/qml.qrc \
+    Source/js.qrc
