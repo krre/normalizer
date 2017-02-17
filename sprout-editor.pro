@@ -6,6 +6,7 @@ TARGET = sproute
 
 lupdate_only {
 SOURCES = Source/qml/*.qml \
+SOURCES = Source/js/*.js \
     Source/qml/components/*.qml \
     Source/qml/dialogs/*.qml \
     Source/qml/main/*.qml \
