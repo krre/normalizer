@@ -7,11 +7,6 @@ import "../../../js/operators.js" as Operators
 import "../../../js/dialog.js" as Dialog
 
 Item {
-
-}
-
-/*
-QOsg.Viewer {
     id: root
     property string title: Core.pathToFileName(path)
     property var panel
@@ -20,24 +15,6 @@ QOsg.Viewer {
     property bool rendering: true
     property var program: ({})
     property SproutDb sproutDb: SproutDb {}
-    anchors.fill: parent
-    camera {
-        clearColor: Qt.rgba(0.19, 0.12, 0.08, 1)
-        fovy: 30
-        aspectRatio: width / height
-        zNear: 0.1
-        zFar: 10000
-    }
-
-    sceneData: QOsg.Geode {
-
-        QOsg.ShapeDrawable {
-            color: "yellow"
-            shape: QOsg.Box {
-                halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-            }
-        }
-    }
 
     Component.onCompleted: {
         reload()
@@ -75,4 +52,3 @@ QOsg.Viewer {
         }
     }
 }
-*/
