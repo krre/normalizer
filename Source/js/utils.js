@@ -9,24 +9,21 @@ function createDynamicObject(parent, url, properties) {
     }
 }
 
-function saveGeometry(name) {
+function saveGeometry(group) {
     var geometry = {}
     geometry.x = x
     geometry.y = y
     geometry.width = width
     geometry.height = height
-    Settings.setMap(name, geometry)
+    Settings.setMap(group, geometry)
 }
 
-function loadGeomerty(name) {
-    var geometry = Settings.getMap(name)
+function loadGeomerty(group) {
+    var geometry = Settings.getMap(group)
     if (Object.keys(geometry).length) {
         x = geometry.x
         y = geometry.y
         width = geometry.width
         height = geometry.height
-    } else if (Screen.width && Screen.height) {
-        x = (Screen.width - width) / 2
-        y = (Screen.height - height) / 2
     }
 }
