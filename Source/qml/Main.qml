@@ -1,6 +1,7 @@
 import QtQuick 2.8
 import QtQuick.Controls 1.5
 import QtQuick.Window 2.2
+import "main"
 import "../js/utils.js" as Utils
 
 ApplicationWindow {
@@ -10,6 +11,7 @@ ApplicationWindow {
     visible: true
     width: Settings.getValue(settingsGroup, "width", 800)
     height: Settings.getValue(settingsGroup, "height", 600)
+    menuBar: MainMenu {}
 
     Component.onCompleted: {
         x = Settings.getValue(settingsGroup, "x", (Screen.width - width) / 2)
