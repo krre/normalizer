@@ -2,13 +2,16 @@ import QtQuick 2.8
 import QtQuick.Controls 1.5
 
 Item {
-    property alias textEdit: textEdit
     height: 120
 
     function append(message) {
         var time = new Date().toLocaleTimeString()
         var finalMessage = time + ": " + message
         textEdit.append(finalMessage)
+    }
+
+    function clear() {
+        textEdit.clear()
     }
 
     Rectangle {

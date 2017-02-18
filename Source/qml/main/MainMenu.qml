@@ -215,7 +215,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Clear Output")
             shortcut: "Shift+Del"
-            onTriggered: editorTabView.currentTab.output.textEdit.text = ""
+            onTriggered: editorTabView.currentTab.output.clear()
         }
 
         MenuSeparator {}
