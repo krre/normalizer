@@ -232,7 +232,7 @@ MenuBar {
             text: qsTr("Output")
             shortcut: "Ctrl+2"
             checkable: true
-            checked: editorTabView.currentTab.output.visible
+            checked: editorTabView.currentTab ? editorTabView.currentTab.output.visible : false
             onTriggered: editorTabView.currentTab.output.visible = !editorTabView.currentTab.output.visible
         }
 
