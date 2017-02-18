@@ -14,6 +14,7 @@ WindowDialog {
 
     onAccepted: {
         Settings.setValue("Path", "workspace", workspacePath.text)
+        Settings.setValue("Path", "compiler", compilerPath.text)
         Settings.setValue("Interface", "restoreLastSession", lastSession.checked)
         Core.mkpath(workspacePath.text)
         toolTabView.workspace.rootDir = workspacePath.text
@@ -46,6 +47,26 @@ WindowDialog {
                         var dialog = Dialog.selectDirectory({ folder: "file://" + workspacePath.text })
                         dialog.accepted.connect(function() {
                             workspacePath.text = Core.urlToPath(dialog.fileUrl)
+                        })
+                    }
+                }
+
+                Label {
+                    text: qsTr("Sprout Compiler:")
+                }
+
+                TextField {
+                    id: compilerPath
+                    Layout.fillWidth: true
+                    text: Settings.getValue("Path", "compiler") || ""
+                    Component.onCompleted: forceActiveFocus()
+                }
+
+                BrowseButton {
+                    onClicked: {
+                        var dialog = Dialog.selectFile({ folder: "file://" + Core.pathToDir(compilerPath.text) })
+                        dialog.accepted.connect(function() {
+                            compilerPath.text = Core.urlToPath(dialog.fileUrl)
                         })
                     }
                 }
