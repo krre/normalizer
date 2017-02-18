@@ -13,19 +13,21 @@ Rectangle {
     property string title: Core.pathToFileName(path)
     property alias process: process
     property alias output: output
+    property alias sproutDb: sproutDb
     property var panel
     property string path
     property bool isCurrent: root === editorTabView.currentTab
     property bool rendering: true
     property var program: ({})
-    property SproutDb sproutDb: SproutDb {}
     color: Qt.rgba(0.19, 0.12, 0.08, 1)
 
     Component.onCompleted: {
-        reload()
+        load()
+        output.textEdit.append(qsTr("Project %1 is loaded").arg(title))
     }
 
     Component.onDestruction: {
+        sproutDb.close()
         Settings.setValue("Gui", "showOutput", output.visible)
         Settings.setValue("Gui", "outputHeight", output.height)
     }
@@ -43,8 +45,17 @@ Rectangle {
         onMessage: output.textEdit.append(message)
     }
 
+    SproutDb {
+        id: sproutDb
+    }
+
     function reload() {
         sproutDb.close()
+        load()
+        output.textEdit.append(qsTr("Project %1 is reloaded").arg(title))
+    }
+
+    function load() {
         var result = sproutDb.open(path)
         if (result) {
             Dialog.error(result)
