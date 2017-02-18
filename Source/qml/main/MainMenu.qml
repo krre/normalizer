@@ -218,10 +218,21 @@ MenuBar {
             onTriggered: editorTabView.currentTab.output.textEdit.text = ""
         }
 
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Show Toolspace")
+            shortcut: "Ctrl+1"
+            checkable: true
+            checked: toolspace.visible
+            onCheckedChanged: toolspace.visible = checked
+        }
+
         MenuItem {
             text: qsTr("Output")
+            shortcut: "Ctrl+2"
             checkable: true
-            checked: true
+            checked: editorTabView.currentTab.output.visible
             onTriggered: editorTabView.currentTab.output.visible = !editorTabView.currentTab.output.visible
         }
 
@@ -230,14 +241,6 @@ MenuBar {
             checkable: true
             checked: true
             onTriggered: editorTabView.currentTab.commandSheet.visible = !editorTabView.currentTab.commandSheet.visible
-        }
-
-        MenuItem {
-            text: qsTr("Show Toolspace")
-            shortcut: "Ctrl+1"
-            checkable: true
-            checked: toolspace.visible
-            onCheckedChanged: toolspace.visible = checked
         }
 
         MenuSeparator {}
