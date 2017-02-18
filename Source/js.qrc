@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>js/utils.js</file>
+        <file>js/dialog.js</file>
     </qresource>
 </RCC>
