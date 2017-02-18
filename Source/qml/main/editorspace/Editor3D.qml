@@ -55,10 +55,8 @@ Rectangle {
 
     function build() {
         var compilerPath = Settings.getValue("Path", "compiler")
-        if (!compilerPath) {
-            Dialog.error("Setup compiler path in Options dialog!")
-        } else if (!Core.isFileExists(compilerPath)) {
-            Dialog.error("Path to compiler is not exists\n" + compilerPath)
+        if (!Core.isFileExists(compilerPath)) {
+            Dialog.error("Path to compiler is wrong\n" + compilerPath)
         } else {
            process.run(compilerPath, path)
         }
