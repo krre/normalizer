@@ -40,6 +40,7 @@ Rectangle {
 
     Process {
         id: process
+        onMessage: output.textEdit.append(message)
     }
 
     function reload() {

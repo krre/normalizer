@@ -15,7 +15,7 @@ void Process::run(const QString& sproutPath, const QString& sourcePath) {
 }
 
 void Process::onStarted() {
-    emit message("Starting run " + arguments().at(0) + "...");
+    emit message("Starting build " + arguments().at(0) + "...");
 }
 
 void Process::onFinished(int exitCode) {
