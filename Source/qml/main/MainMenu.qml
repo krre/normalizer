@@ -168,8 +168,8 @@ MenuBar {
         visible: editorTabView.currentTab
 
         MenuItem {
-            text: qsTr("Run")
-            shortcut: "F9"
+            text: qsTr("Build Project") + " " + editorTabView.currentTab.title
+            shortcut: "Ctrl+B"
             enabled: editorTabView.currentTab
             onTriggered: editorTabView.currentTab.process.run(Settings.getValue("Path", "sprout"), editorTabView.currentTab.path)
         }
