@@ -168,7 +168,7 @@ MenuBar {
         visible: editorTabView.currentTab
 
         MenuItem {
-            text: qsTr("Build Project") + " " + editorTabView.currentTab.title
+            text: qsTr("Build Project") + " " + (editorTabView.currentTab ? editorTabView.currentTab.title : "")
             shortcut: "Ctrl+B"
             enabled: editorTabView.currentTab
             onTriggered: editorTabView.currentTab.build()
