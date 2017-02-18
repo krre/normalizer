@@ -1,20 +1,24 @@
 import QtQuick 2.8
 import QtQuick.Controls 1.5
+import QtQuick.Layouts 1.2
 import SproutE 0.1
+import ".."
 import "../../components"
 import "../../../js/utils.js" as Utils
 import "../../../js/operators.js" as Operators
 import "../../../js/dialog.js" as Dialog
 
-Item {
+Rectangle {
     id: root
     property string title: Core.pathToFileName(path)
+    property alias output: output
     property var panel
     property string path
     property bool isCurrent: root === editorTabView.currentTab
     property bool rendering: true
     property var program: ({})
     property SproutDb sproutDb: SproutDb {}
+    color: Qt.rgba(0.19, 0.12, 0.08, 1)
 
     Component.onCompleted: {
         reload()
@@ -49,6 +53,24 @@ Item {
                 tab.title = title
                 break
             }
+        }
+    }
+
+    SplitView {
+        anchors.fill: parent
+        orientation: Qt.Vertical
+
+        Item {
+            id: editor
+            width: parent.width
+            Layout.fillHeight: true
+            Layout.minimumHeight: 50
+        }
+
+        Output {
+            id: output
+            width: parent.width
+            Layout.minimumHeight: 50
         }
     }
 }
