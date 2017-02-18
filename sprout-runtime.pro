@@ -10,6 +10,7 @@ SOURCES = Source/qml/*.qml \
     Source/js/*.js \
     Source/qml/main/*.qml \
     Source/qml/components/*.qml \
+    Source/qml/components/filedialog/*.qml \
 }
 
 SOURCES += \
