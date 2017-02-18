@@ -236,12 +236,12 @@ MenuBar {
             onTriggered: editorTabView.currentTab.output.visible = !editorTabView.currentTab.output.visible
         }
 
-        MenuItem {
-            text: qsTr("Command Sheet")
-            checkable: true
-            checked: true
-            onTriggered: editorTabView.currentTab.commandSheet.visible = !editorTabView.currentTab.commandSheet.visible
-        }
+//        MenuItem {
+//            text: qsTr("Command Sheet")
+//            checkable: true
+//            checked: true
+//            onTriggered: editorTabView.currentTab.commandSheet.visible = !editorTabView.currentTab.commandSheet.visible
+//        }
 
         MenuSeparator {}
 
