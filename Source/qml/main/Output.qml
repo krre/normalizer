@@ -5,9 +5,17 @@ Item {
     height: 120
 
     function append(message) {
-        var time = new Date().toLocaleTimeString()
-        var finalMessage = time + ": " + message
-        textEdit.append(finalMessage)
+        if (!message) {
+            newLine()
+        } else {
+            var time = new Date().toLocaleTimeString()
+            var finalMessage = time + ": " + message
+            textEdit.append(finalMessage)
+        }
+    }
+
+    function newLine() {
+        textEdit.append("")
     }
 
     function clear() {
