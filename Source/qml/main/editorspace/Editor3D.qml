@@ -7,6 +7,7 @@ import "../../components"
 import "../../../js/utils.js" as Utils
 import "../../../js/operators.js" as Operators
 import "../../../js/dialog.js" as Dialog
+import "../../../js/style.js" as Style
 
 Rectangle {
     id: root
@@ -19,7 +20,7 @@ Rectangle {
     property bool isCurrent: root === editorTabView.currentTab
     property bool rendering: true
     property var program: ({})
-    color: Qt.rgba(0.19, 0.12, 0.08, 1)
+    color: Style.editor3DBackground
 
     Component.onCompleted: {
         load()
