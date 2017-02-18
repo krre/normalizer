@@ -97,8 +97,8 @@ function saveAsSprout(path) {
     Core.copyFile(editorTabView.currentTab.path, path)
     editorTabView.currentTab.path = path
     editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(path)
-    toolTabView.selectByPath(path)
-    editorTabView.currentTab.reload()
+    toolTabView.workspace.selectByPath(path)
+    editorTabView.currentTab.load()
     addRecentPath(path, mainMenu.recentFilesModel)
 }
 
@@ -108,13 +108,13 @@ function renameSprout(oldPath, newPath) {
         Core.renameFile(oldPath, newPath)
         editorTabView.currentTab.path = newPath
         editorTabView.getTab(editorTabView.currentIndex).title = Core.pathToFileName(newPath)
-        toolTabView.selectByPath(newPath)
+        toolTabView.workspace.selectByPath(newPath)
         editorTabView.currentTab.reload()
         mainMenu.recentFilesModel.removeByPath(oldPath)
         addRecentPath(newPath, mainMenu.recentFilesModel)
     } else {
         Core.renameFile(oldPath, newPath)
-        toolTabView.selectByPath(newPath)
+        toolTabView.workspace.selectByPath(newPath)
     }
 }
 

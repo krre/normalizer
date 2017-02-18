@@ -24,7 +24,6 @@ Rectangle {
 
     Component.onCompleted: {
         load()
-        output.appendMessage(qsTr("Project %1 is loaded").arg(title))
     }
 
     Component.onDestruction: {
@@ -53,7 +52,6 @@ Rectangle {
     function reload() {
         sproutDb.close()
         load()
-        output.appendMessage(qsTr("Project %1 is reloaded").arg(title))
     }
 
     function load() {
@@ -62,6 +60,8 @@ Rectangle {
             Dialog.error(result)
         } else {
             // Load scene
+            output.clear()
+            output.appendMessage(qsTr("Project %1 is loaded").arg(title))
         }
     }
 
