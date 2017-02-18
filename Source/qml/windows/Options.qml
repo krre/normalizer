@@ -38,7 +38,7 @@ WindowDialog {
                 TextField {
                     id: workspacePath
                     Layout.fillWidth: true
-                    text: Settings.getValue("Path", "workspace")
+                    text: Settings.getValue("Path", "workspace", "")
                     Component.onCompleted: forceActiveFocus()
                 }
 
@@ -58,7 +58,7 @@ WindowDialog {
                 TextField {
                     id: compilerPath
                     Layout.fillWidth: true
-                    text: Settings.getValue("Path", "compiler") || ""
+                    text: Settings.getValue("Path", "compiler", "")
                     Component.onCompleted: forceActiveFocus()
                 }
 
