@@ -27,3 +27,7 @@ function loadGeomerty(group) {
         height = geometry.height
     }
 }
+
+function openSproutB(path) {
+    print(path)
+}

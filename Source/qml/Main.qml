@@ -7,6 +7,7 @@ import "../js/utils.js" as Utils
 ApplicationWindow {
     id: mainRoot
     property string settingsGroup: "MainWindow"
+    property var parentWindow: mainRoot
     title: Qt.application.name
     visible: true
     width: Settings.getValue(settingsGroup, "width", 800)
