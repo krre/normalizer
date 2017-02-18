@@ -52,6 +52,10 @@ Rectangle {
         }
     }
 
+    function build() {
+        process.run(Settings.getValue("Path", "compiler"), path)
+    }
+
     function home() {
         // TODO
         print("Set camera to home position")

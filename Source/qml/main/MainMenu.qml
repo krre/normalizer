@@ -171,7 +171,7 @@ MenuBar {
             text: qsTr("Build Project") + " " + editorTabView.currentTab.title
             shortcut: "Ctrl+B"
             enabled: editorTabView.currentTab
-            onTriggered: editorTabView.currentTab.process.run(Settings.getValue("Path", "compiler"), editorTabView.currentTab.path)
+            onTriggered: editorTabView.currentTab.build()
         }
 
         MenuItem {
