@@ -11,7 +11,7 @@ import "../../../js/style.js" as Style
 
 Rectangle {
     id: root
-    property string title: Core.pathToFileName(path)
+    readonly property string title: Core.pathToFileName(path)
     property alias process: process
     property alias output: output
     property alias sproutDb: sproutDb
