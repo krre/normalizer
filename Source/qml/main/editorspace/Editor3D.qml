@@ -54,7 +54,14 @@ Rectangle {
     }
 
     function build() {
-        process.run(Settings.getValue("Path", "compiler"), path)
+        var compilerPath = Settings.getValue("Path", "compiler")
+        if (!compilerPath) {
+            Dialog.error("Setup compiler path in Options dialog!")
+        } else if (!Core.isFileExists(compilerPath)) {
+            Dialog.error("Path to compiler is not exists\n" + compilerPath)
+        } else {
+           process.run(compilerPath, path)
+        }
     }
 
     function home() {
