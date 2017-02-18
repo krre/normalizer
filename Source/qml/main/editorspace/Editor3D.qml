@@ -24,6 +24,10 @@ Rectangle {
         reload()
     }
 
+    Component.onDestruction: {
+        Settings.setValue("Gui", "showOutput", output.visible)
+    }
+
     onTitleChanged: updateTabTitle()
 
     Action {
@@ -71,6 +75,7 @@ Rectangle {
             id: output
             width: parent.width
             Layout.minimumHeight: 50
+            visible: Settings.getValue("Gui", "showOutput", true)
         }
     }
 }
