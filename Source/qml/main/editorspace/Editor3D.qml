@@ -47,6 +47,11 @@ Rectangle {
         }
     }
 
+    function home() {
+        // TODO
+        print("Set camera to home position")
+    }
+
     function action(index) {
         Operators.operators[index].action()
     }
