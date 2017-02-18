@@ -1,44 +1,27 @@
 import QtQuick 2.8
 import QtQuick.Controls 1.5
 
-Item {
+TextArea {
     height: 120
+    readOnly: true
+    activeFocusOnPress: false
 
-    function append(message) {
+    function appendMessage(message) {
         if (!message) {
             newLine()
         } else {
             var time = new Date().toLocaleTimeString()
             var finalMessage = time + ": " + message
-            textEdit.append(finalMessage)
+            append(finalMessage)
         }
     }
 
     function newLine() {
-        textEdit.append("")
+       append("")
     }
 
     function clear() {
-        textEdit.clear()
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: "black"
-        opacity: 0.5
-    }
-
-    TextEdit {
-        id: textEdit
-        anchors.fill: parent
-        anchors.margins: 5
-        verticalAlignment: lineCount < 7 ? TextEdit.AlignTop : TextEdit.AlignBottom
-        color: "white"
-        opacity: 0.8
-        clip: true
-        readOnly: true
-        selectByMouse: false
-        activeFocusOnPress: false
+        cursorPosition = 0
+        text = ""
     }
 }
-

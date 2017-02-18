@@ -23,7 +23,7 @@ Rectangle {
 
     Component.onCompleted: {
         load()
-        output.append(qsTr("Project %1 is loaded").arg(title))
+        output.appendMessage(qsTr("Project %1 is loaded").arg(title))
     }
 
     Component.onDestruction: {
@@ -42,7 +42,7 @@ Rectangle {
 
     Process {
         id: process
-        onMessage: output.append(message)
+        onMessage: output.appendMessage(message)
     }
 
     SproutDb {
@@ -52,7 +52,7 @@ Rectangle {
     function reload() {
         sproutDb.close()
         load()
-        output.append(qsTr("Project %1 is reloaded").arg(title))
+        output.appendMessage(qsTr("Project %1 is reloaded").arg(title))
     }
 
     function load() {
