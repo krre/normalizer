@@ -65,12 +65,12 @@ TreeView {
                 var dialog = Dialog.areYouSure(qsTr("Remove File"))
                 dialog.yes.connect(function() {
                     var treeIndex = selection.currentIndex
-                    if (fileSystemModel.removeFile(treeIndex)) {
-                        var path = fileSystemModel.path(treeIndex)
-                        var tabIndex = editorTabView.findTab(path)
-                        if (tabIndex !== -1) {
-                            editorTabView.removeTab(tabIndex)
-                        }
+                    var path = fileSystemModel.path(treeIndex)
+                    var tabIndex = editorTabView.findTab(path)
+                    if (tabIndex >= 0) {
+                        Dialog.error(qsTr("Need close tab with project before deleting"))
+                    } else {
+                        fileSystemModel.removeFile(treeIndex)
                         mainMenu.recentFilesModel.removeByPath(path)
                     }
                 })
