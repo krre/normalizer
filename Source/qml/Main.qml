@@ -15,7 +15,7 @@ ApplicationWindow {
     property alias editorTabView: editorTabView
     property alias sysPalette: sysPalette
     property var logger: new Utils.Logger()
-    property var mainWindow: mainRoot
+    property var parentWindow: mainRoot
     property string settingsGroup: "MainWindow"
     title: Qt.application.name
     width: Settings.getValue(settingsGroup, "width", 800)

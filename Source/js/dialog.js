@@ -7,7 +7,7 @@ function createDialog(text, properties, icon, standardButtons) {
     properties.icon = properties.hasOwnProperty("icon") ? properties.icon : icon
     properties.standardButtons = properties.hasOwnProperty("standardButtons") ? properties.standardButtons : standardButtons || Dialogs.StandardButton.Ok
 
-    return Utils.createDynamicObject(mainWindow, "qrc:/qml/components/MessageDialogBase.qml", properties)
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/MessageDialogBase.qml", properties)
 }
 
 function simple(text, properties) {
@@ -39,9 +39,9 @@ function areYouSure(title) {
 }
 
 function selectFile(properties) {
-    return Utils.createDynamicObject(mainWindow, "qrc:/qml/components/filedialog/FileDialogOpen.qml", properties || {})
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/filedialog/FileDialogOpen.qml", properties || {})
 }
 
 function selectDirectory(properties) {
-    return Utils.createDynamicObject(mainWindow, "qrc:/qml/components/filedialog/FileDialogDirectory.qml", properties || {})
+    return Utils.createDynamicObject(parentWindow, "qrc:/qml/components/filedialog/FileDialogDirectory.qml", properties || {})
 }
