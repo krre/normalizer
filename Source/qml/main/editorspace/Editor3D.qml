@@ -11,6 +11,7 @@ import "../../../js/dialog.js" as Dialog
 Rectangle {
     id: root
     property string title: Core.pathToFileName(path)
+    property alias process: process
     property alias output: output
     property var panel
     property string path
@@ -35,6 +36,10 @@ Rectangle {
         shortcut: " "
         enabled: root === editorTabView.currentTab && !panel
         onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+    }
+
+    Process {
+        id: process
     }
 
     function reload() {

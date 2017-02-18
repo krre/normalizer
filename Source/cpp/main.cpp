@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include "Base/Core.h"
 #include "Base/Settings.h"
+#include "Base/Process.h"
 #include "Base/FileSystemModel.h"
 #include "Base/OperatorModel.h"
 #include "Base/OperatorProxyModel.h"
@@ -15,6 +16,7 @@ int main(int argc, char* argv[]) {
 
     qmlRegisterType<FileSystemModel>("SproutE", 0, 1, "FileSystemModel");
     qmlRegisterType<SproutDb>("SproutE", 0, 1, "SproutDb");
+    qmlRegisterType<Process>("SproutE", 0, 1, "Process");
 
     Core core;
     Settings settings;
