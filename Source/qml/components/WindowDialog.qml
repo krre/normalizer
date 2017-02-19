@@ -40,9 +40,9 @@ Window {
 
     onVisibleChanged: if (!visible) root.destroy()
 
-    Action {
-        shortcut: "Esc"
-        onTriggered: root.destroy()
+    Shortcut {
+        sequence: "Esc"
+        onActivated: root.destroy()
     }
 
     ColumnLayout {
