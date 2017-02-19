@@ -28,4 +28,9 @@ ApplicationWindow {
         id: sysPalette
         colorGroup: SystemPalette.Active
     }
+
+    WorkArea {
+        id: workArea
+        anchors.fill: parent
+    }
 }
