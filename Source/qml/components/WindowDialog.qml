@@ -60,7 +60,6 @@ Window {
 
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
-
             visible: !hideButtons
 
             ButtonBase {
