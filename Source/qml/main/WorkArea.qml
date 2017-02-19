@@ -10,6 +10,22 @@ ColumnLayout {
 
     Component.onCompleted: input.forceActiveFocus()
 
+    ToolBar {
+
+        RowLayout {
+            anchors.fill: parent
+            spacing: 0
+
+            ToolButton {
+                text: qsTr("Clear Output")
+            }
+
+            ToolButton {
+                text: qsTr("Clear Input History")
+            }
+        }
+    }
+
     TextArea {
         id: output
         Layout.preferredWidth: parent.width
