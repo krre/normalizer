@@ -18,14 +18,12 @@ ColumnLayout {
 
             ToolButton {
                 text: qsTr("Clear Output")
-                onClicked: {
-                    output.cursorPosition = 0
-                    output.text = ""
-                }
+                onClicked: output.clear()
             }
 
             ToolButton {
                 text: qsTr("Clear Input History")
+                onClicked: input.clearHistory()
             }
         }
     }
@@ -39,10 +37,17 @@ ColumnLayout {
             textColor: "white"
             backgroundColor: "black"
         }
+
+        function clear() {
+            cursorPosition = 0
+            text = ""
+        }
     }
 
     TextField {
         id: input
+        property var history: []
+        property int historyPos: 0
         Layout.preferredWidth: parent.width
         style: TextFieldStyle {
             textColor: "white"
@@ -53,10 +58,32 @@ ColumnLayout {
 
         function sendCommand() {
             output.append(text)
+            history.push(text)
+            historyPos = history.length
+            text = ""
+        }
+
+        function clearHistory() {
+            history = []
+            historyPos = 0
             text = ""
         }
 
         Keys.onReturnPressed: sendCommand()
         Keys.onEnterPressed: sendCommand()
+
+        Keys.onUpPressed: {
+            if (historyPos - 1 >= 0) {
+                text = history[--historyPos]
+            }
+        }
+
+        Keys.onDownPressed: {
+            if (historyPos + 1 < history.length) {
+                text = history[++historyPos]
+            } else {
+                text = ""
+            }
+        }
     }
 }
