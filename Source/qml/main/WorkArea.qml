@@ -14,6 +14,7 @@ ColumnLayout {
         id: output
         Layout.preferredWidth: parent.width
         Layout.fillHeight: true
+        readOnly: true
         style: TextAreaStyle {
             textColor: "white"
             backgroundColor: "black"
@@ -29,5 +30,13 @@ ColumnLayout {
                 color: "black"
             }
         }
+
+        function sendCommand() {
+            output.append(text)
+            text = ""
+        }
+
+        Keys.onReturnPressed: sendCommand()
+        Keys.onEnterPressed: sendCommand()
     }
 }
