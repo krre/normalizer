@@ -18,6 +18,10 @@ ColumnLayout {
 
             ToolButton {
                 text: qsTr("Clear Output")
+                onClicked: {
+                    output.cursorPosition = 0
+                    output.text = ""
+                }
             }
 
             ToolButton {
