@@ -34,10 +34,10 @@ Rectangle {
 
     onTitleChanged: updateTabTitle()
 
-    Action {
-        shortcut: " "
+    Shortcut {
+        sequence: " "
         enabled: root === editorTabView.currentTab && !panel
-        onTriggered: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
+        onActivated: Utils.createDynamicObject(root, "qrc:/qml/main/Finder.qml")
     }
 
     Process {
