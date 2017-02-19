@@ -6,15 +6,15 @@ Button {
     activeFocusOnPress: true
     isDefault: activeFocus
 
-    Action {
-        shortcut: "Return"
+    Shortcut {
+        sequence: "Return"
         enabled: isDefault
-        onTriggered: clicked()
+        onActivated: clicked()
     }
 
-    Action {
-        shortcut: "Enter"
+    Shortcut {
+        sequence: "Enter"
         enabled: isDefault
-        onTriggered: clicked()
+        onActivated: clicked()
     }
 }
