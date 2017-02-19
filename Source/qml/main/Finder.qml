@@ -14,9 +14,9 @@ ColumnLayout {
         finderTextField.forceActiveFocus()
     }
 
-    Action {
-        shortcut: "Esc"
-        onTriggered: root.destroy()
+    Shortcut {
+        sequence: "Esc"
+        onActivated: root.destroy()
     }
 
     TextField {
