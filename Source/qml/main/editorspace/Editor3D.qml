@@ -97,7 +97,7 @@ Rectangle {
         anchors.fill: parent
         orientation: Qt.Vertical
 
-        Item {
+        Editor3DScene {
             id: editor
             width: parent.width
             Layout.fillHeight: true

@@ -7,5 +7,6 @@
         <file>js/style.js</file>
         <file>js/utils.js</file>
         <file>js/world.js</file>
+        <file>qml/main/editorspace/Editor3DScene.qml</file>
     </qresource>
 </RCC>
