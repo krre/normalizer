@@ -134,6 +134,7 @@ MenuBar {
 
     Menu {
         title: qsTr("Edit")
+        visible: editorTabView.currentTab
 
         MenuItem {
             text: qsTr("Undo")
