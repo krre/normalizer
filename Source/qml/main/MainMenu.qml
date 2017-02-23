@@ -132,37 +132,37 @@ MenuBar {
         }
     }
 
-    Menu {
-        title: qsTr("Edit")
-        visible: editorTabView.currentTab
+//    Menu {
+//        title: qsTr("Edit")
+//        visible: editorTabView.currentTab
 
-        MenuItem {
-            text: qsTr("Undo")
-            shortcut: "Ctrl+Z"
-        }
+//        MenuItem {
+//            text: qsTr("Undo")
+//            shortcut: "Ctrl+Z"
+//        }
 
-        MenuItem {
-            text: qsTr("Redo")
-            shortcut: "Ctrl+Shift+Z"
-        }
+//        MenuItem {
+//            text: qsTr("Redo")
+//            shortcut: "Ctrl+Shift+Z"
+//        }
 
-        MenuSeparator {}
+//        MenuSeparator {}
 
-        MenuItem {
-            text: qsTr("Cut")
-            shortcut: "Ctrl+X"
-        }
+//        MenuItem {
+//            text: qsTr("Cut")
+//            shortcut: "Ctrl+X"
+//        }
 
-        MenuItem {
-            text: qsTr("Copy")
-            shortcut: "Ctrl+C"
-        }
+//        MenuItem {
+//            text: qsTr("Copy")
+//            shortcut: "Ctrl+C"
+//        }
 
-        MenuItem {
-            text: qsTr("Paste")
-            shortcut: "Ctrl+V"
-        }
-    }
+//        MenuItem {
+//            text: qsTr("Paste")
+//            shortcut: "Ctrl+V"
+//        }
+//    }
 
     Menu {
         title: qsTr("Build")
