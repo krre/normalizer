@@ -11,3 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow() {
     delete ui;
 }
+
+void MainWindow::on_actionExit_triggered(bool checked) {
+    Q_UNUSED(checked)
+    QApplication::quit();
+}
