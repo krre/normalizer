@@ -1,6 +1,8 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QCommandLineParser>
+#include <QDebug>
 #include "Base/Core.h"
 #include "Base/Settings.h"
 #include "Base/Process.h"
@@ -14,33 +16,44 @@ int main(int argc, char* argv[]) {
     app.setApplicationName("Sprout Editor");
     app.setApplicationVersion("0.1.0");
 
-    qmlRegisterType<FileSystemModel>("SproutE", 0, 1, "FileSystemModel");
-    qmlRegisterType<SproutDb>("SproutE", 0, 1, "SproutDb");
-    qmlRegisterType<Process>("SproutE", 0, 1, "Process");
+    QCommandLineParser parser;
+    parser.addOptions({
+        {{"q", "qml"}, QCoreApplication::translate("main", "QML mode")},
+    });
+    parser.process(app);
+    bool isQmlMode = parser.isSet("qml");
 
-    Core core;
-    Settings settings;
+    if (isQmlMode) {
+        qmlRegisterType<FileSystemModel>("SproutE", 0, 1, "FileSystemModel");
+        qmlRegisterType<SproutDb>("SproutE", 0, 1, "SproutDb");
+        qmlRegisterType<Process>("SproutE", 0, 1, "Process");
 
-    OperatorModel operatorModel;
-    OperatorProxyModel operatorProxyModel;
-    operatorProxyModel.setSourceModel(&operatorModel);
-    operatorProxyModel.setFilterRole(operatorModel.firstRole());
+        Core core;
+        Settings settings;
 
-    QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("Core", &core);
-    engine.rootContext()->setContextProperty("Settings", &settings);
-    engine.rootContext()->setContextProperty("OperatorModel", &operatorModel);
-    engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
+        OperatorModel operatorModel;
+        OperatorProxyModel operatorProxyModel;
+        operatorProxyModel.setSourceModel(&operatorModel);
+        operatorProxyModel.setFilterRole(operatorModel.firstRole());
 
-#ifdef QT_DEBUG
-    engine.rootContext()->setContextProperty("debugMode", QVariant(true));
-#else
-    engine.rootContext()->setContextProperty("debugMode", QVariant(false));
-#endif
+        QQmlApplicationEngine engine;
+        engine.rootContext()->setContextProperty("Core", &core);
+        engine.rootContext()->setContextProperty("Settings", &settings);
+        engine.rootContext()->setContextProperty("OperatorModel", &operatorModel);
+        engine.rootContext()->setContextProperty("OperatorProxyModel", &operatorProxyModel);
 
-    engine.load(QUrl("qrc:/qml/Main.qml"));
+    #ifdef QT_DEBUG
+        engine.rootContext()->setContextProperty("debugMode", QVariant(true));
+    #else
+        engine.rootContext()->setContextProperty("debugMode", QVariant(false));
+    #endif
 
-    if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;
+        engine.load(QUrl("qrc:/qml/Main.qml"));
+
+        if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;
+    } else {
+        // QWidget mode
+    }
 
     return app.exec();
 }
