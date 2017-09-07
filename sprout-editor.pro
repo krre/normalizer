@@ -25,6 +25,7 @@ HEADERS += \
     Source/cpp/Base/Process.h \
     Source/cpp/Base/Settings.h \
     Source/cpp/Db/SproutDb.h \
+    Source/cpp/UI/MainWindow.h
 
 SOURCES += \
     Source/cpp/Base/Core.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     Source/cpp/Base/Settings.cpp \
     Source/cpp/Db/SproutDb.cpp \
     Source/cpp/main.cpp \
+    Source/cpp/UI/MainWindow.cpp
 
 OTHER_FILES += \
     README.md \
@@ -43,3 +45,6 @@ OTHER_FILES += \
 RESOURCES += \
     Source/qml.qrc \
     Source/js.qrc
+
+FORMS += \
+    Source/cpp/UI/MainWindow.ui

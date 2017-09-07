@@ -10,6 +10,7 @@
 #include "Base/OperatorModel.h"
 #include "Base/OperatorProxyModel.h"
 #include "Db/SproutDb.h"
+#include "UI/MainWindow.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
@@ -51,9 +52,11 @@ int main(int argc, char* argv[]) {
         engine.load(QUrl("qrc:/qml/Main.qml"));
 
         if (engine.rootObjects().isEmpty()) return EXIT_FAILURE;
-    } else {
-        // QWidget mode
-    }
 
-    return app.exec();
+        return app.exec();
+    } else {
+        MainWindow mainWindow;
+        mainWindow.show();
+        return app.exec();
+    }
 }
