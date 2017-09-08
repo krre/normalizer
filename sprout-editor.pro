@@ -25,7 +25,8 @@ HEADERS += \
     Source/cpp/Base/Process.h \
     Source/cpp/Base/Settings.h \
     Source/cpp/Db/SproutDb.h \
-    Source/cpp/UI/MainWindow.h
+    Source/cpp/UI/MainWindow.h \
+    Source/cpp/Defines.h
 
 SOURCES += \
     Source/cpp/Base/Core.cpp \

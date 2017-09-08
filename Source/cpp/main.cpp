@@ -11,11 +11,12 @@
 #include "Base/OperatorProxyModel.h"
 #include "Db/SproutDb.h"
 #include "UI/MainWindow.h"
+#include "Defines.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    app.setApplicationName("Sprout Editor");
-    app.setApplicationVersion("0.1.0");
+    app.setApplicationName(APP_NAME);
+    app.setApplicationVersion(APP_VERSION_STR);
 
     QCommandLineParser parser;
     parser.addOptions({
