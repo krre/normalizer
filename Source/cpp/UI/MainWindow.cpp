@@ -6,6 +6,7 @@
 MainWindow::MainWindow() : ui(new Ui::MainWindow) {
     ui->setupUi(this);
     setWindowTitle(QApplication::applicationName());
+    ui->splitter->setSizes({ 100, 500 });
 }
 
 MainWindow::~MainWindow() {
