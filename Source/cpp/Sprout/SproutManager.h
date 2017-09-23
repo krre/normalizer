@@ -18,4 +18,5 @@ private:
     void openDb();
     void closeDb();
     void initTables();
+    void initRecords();
 };

@@ -19,6 +19,7 @@ void SproutManager::create() {
     qDebug() << "Create Sprout Manager" << filePath;
     openDb();
     initTables();
+    initRecords();
 }
 
 void SproutManager::open() {
@@ -47,6 +48,19 @@ void SproutManager::initTables() {
                "name,"
                "value"
                ")");
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+}
+
+void SproutManager::initRecords() {
+    QSqlQuery q(db);
+    q.prepare("INSERT INTO Defs (name, value) "
+                  "VALUES (:name, :value)");
+    q.bindValue(":name", "SproutEVersion");
+    q.bindValue(":value", QCoreApplication::applicationVersion());
+    q.exec();
+
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
