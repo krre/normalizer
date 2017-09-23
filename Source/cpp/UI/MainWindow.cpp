@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 #include "../Defines.h"
 #include <QMessageBox>
+#include <QDebug>
 
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
@@ -32,6 +33,14 @@ void MainWindow::on_actionAbout_triggered(bool checked) {
            arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
 }
 
+void MainWindow::on_actionShow_left_sidebar_toggled(bool checked) {
+    if (checked) {
+        ui->listView->show();
+    } else {
+        ui->listView->hide();
+    }
+}
+
 void MainWindow::readSettings() {
     settings.beginGroup("MainWindow");
     resize(settings.value("size", QSize(1000, 600)).toSize());
@@ -42,6 +51,7 @@ void MainWindow::readSettings() {
     } else {
         ui->splitter->restoreState(splitterSize.toByteArray());
     }
+    ui->actionShow_left_sidebar->setChecked(settings.value("showLeftSidebar").toBool());
     settings.endGroup();
 }
 
@@ -50,5 +60,6 @@ void MainWindow::writeSettings() {
     settings.setValue("size", size());
     settings.setValue("pos", pos());
     settings.setValue("splitter", ui->splitter->saveState());
+    settings.setValue("showLeftSidebar", ui->actionShow_left_sidebar->isChecked());
     settings.endGroup();
 }
