@@ -28,7 +28,8 @@ HEADERS += \
     Source/cpp/UI/MainWindow.h \
     Source/cpp/Defines.h \
     Source/cpp/UI/Editor3D.h \
-    Source/cpp/Sprout/SproutManager.h
+    Source/cpp/Sprout/SproutManager.h \
+    Source/cpp/UI/Options.h
 
 SOURCES += \
     Source/cpp/Base/Core.cpp \
@@ -41,7 +42,8 @@ SOURCES += \
     Source/cpp/main.cpp \
     Source/cpp/UI/MainWindow.cpp \
     Source/cpp/UI/Editor3D.cpp \
-    Source/cpp/Sprout/SproutManager.cpp
+    Source/cpp/Sprout/SproutManager.cpp \
+    Source/cpp/UI/Options.cpp
 
 OTHER_FILES += \
     README.md \
@@ -52,4 +54,5 @@ RESOURCES += \
     Source/js.qrc
 
 FORMS += \
-    Source/cpp/UI/MainWindow.ui
+    Source/cpp/UI/MainWindow.ui \
+    Source/cpp/UI/Options.ui

@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 #include "../Defines.h"
 #include "Editor3D.h"
+#include "Options.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow() :
@@ -55,7 +56,8 @@ void MainWindow::on_actionBuild_triggered() {
 }
 
 void MainWindow::on_actionOptions_triggered() {
-    qDebug() << "Options";
+    Options options(this);
+    options.exec();
 }
 
 void MainWindow::on_tabWidget_tabCloseRequested(int index) {
