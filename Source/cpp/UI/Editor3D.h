@@ -1,5 +1,8 @@
 #pragma once
+#include "../Sprout/SproutManager.h"
 #include <QWidget>
+
+class SproutManager;
 
 class Editor3D : public QWidget {
     Q_OBJECT
@@ -13,4 +16,5 @@ public slots:
 
 private:
     QString filePath;
+    SproutManager* sproutManager;
 };

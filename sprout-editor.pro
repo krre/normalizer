@@ -27,7 +27,8 @@ HEADERS += \
     Source/cpp/Db/SproutDb.h \
     Source/cpp/UI/MainWindow.h \
     Source/cpp/Defines.h \
-    Source/cpp/UI/Editor3D.h
+    Source/cpp/UI/Editor3D.h \
+    Source/cpp/Sprout/SproutManager.h
 
 SOURCES += \
     Source/cpp/Base/Core.cpp \
@@ -39,7 +40,8 @@ SOURCES += \
     Source/cpp/Db/SproutDb.cpp \
     Source/cpp/main.cpp \
     Source/cpp/UI/MainWindow.cpp \
-    Source/cpp/UI/Editor3D.cpp
+    Source/cpp/UI/Editor3D.cpp \
+    Source/cpp/Sprout/SproutManager.cpp
 
 OTHER_FILES += \
     README.md \
