@@ -19,22 +19,12 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionNew_triggered() {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
-    if (!filePath.isEmpty()) {
-        QFileInfo fi(filePath);
-        int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
-        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
-        editor->getSproutManager()->create();
-    }
+    createEditor3D(filePath, true);
 }
 
 void MainWindow::on_actionOpen_triggered() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
-    if (!filePath.isEmpty()) {
-        QFileInfo fi(filePath);
-        int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
-        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
-        editor->getSproutManager()->open();
-    }
+    createEditor3D(filePath, false);
 }
 
 void MainWindow::on_actionExit_triggered() {
@@ -85,4 +75,17 @@ void MainWindow::writeSettings() {
     settings.setValue("splitter", ui->splitter->saveState());
     settings.setValue("showLeftSidebar", ui->actionShow_left_sidebar->isChecked());
     settings.endGroup();
+}
+
+void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
+    if (!filePath.isEmpty()) {
+        QFileInfo fi(filePath);
+        int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
+        if (isNew) {
+            editor->getSproutManager()->create();
+        } else {
+            editor->getSproutManager()->open();
+        }
+    }
 }

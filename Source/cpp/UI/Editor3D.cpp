@@ -7,5 +7,5 @@ Editor3D::Editor3D(const QString& filePath) :
 }
 
 Editor3D::~Editor3D() {
-    qDebug() << "Destroy" << filePath;
+
 }

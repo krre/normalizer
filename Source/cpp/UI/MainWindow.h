@@ -27,4 +27,5 @@ private:
 
     void readSettings();
     void writeSettings();
+    void createEditor3D(const QString& filePath, bool isNew);
 };
