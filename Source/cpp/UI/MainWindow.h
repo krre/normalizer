@@ -14,8 +14,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionExit_triggered(bool checked=false);
-    void on_actionAbout_triggered(bool checked=false);
+    void on_actionExit_triggered();
+    void on_actionAbout_triggered();
     void on_actionShow_left_sidebar_toggled(bool checked=false);
 
 private:

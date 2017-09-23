@@ -17,13 +17,11 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::on_actionExit_triggered(bool checked) {
-    Q_UNUSED(checked)
+void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
 
-void MainWindow::on_actionAbout_triggered(bool checked) {
-    Q_UNUSED(checked)
+void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("About %1").arg(APP_NAME),
         tr("<h3>%1 %2</h3> \
            Based on Qt %3<br> \
