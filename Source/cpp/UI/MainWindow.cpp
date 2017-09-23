@@ -66,6 +66,14 @@ void MainWindow::readSettings() {
     }
     ui->actionShow_left_sidebar->setChecked(settings.value("showLeftSidebar").toBool());
     settings.endGroup();
+
+    settings.beginGroup("Path");
+    QString lastFilePath = settings.value("lastSproutPath").toString();
+    if (QFile::exists(lastFilePath)) {
+        createEditor3D(lastFilePath, false);
+    }
+
+    settings.endGroup();
 }
 
 void MainWindow::writeSettings() {
@@ -75,6 +83,13 @@ void MainWindow::writeSettings() {
     settings.setValue("splitter", ui->splitter->saveState());
     settings.setValue("showLeftSidebar", ui->actionShow_left_sidebar->isChecked());
     settings.endGroup();
+
+    if (ui->tabWidget->count()) {
+        settings.beginGroup("Path");
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(0));
+        settings.setValue("lastSproutPath", editor->getFilePath());
+        settings.endGroup();
+    }
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {

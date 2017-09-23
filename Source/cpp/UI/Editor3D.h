@@ -10,6 +10,7 @@ public:
     explicit Editor3D(const QString& filePath);
     ~Editor3D();
     SproutManager* getSproutManager() const { return sproutManager; }
+    const QString& getFilePath() const { return filePath; }
     void load();
 
 private:
