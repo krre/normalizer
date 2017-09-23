@@ -89,12 +89,14 @@ void MainWindow::writeSettings() {
     settings.setValue("showLeftSidebar", ui->actionShow_left_sidebar->isChecked());
     settings.endGroup();
 
+    settings.beginGroup("Path");
     if (ui->tabWidget->count()) {
-        settings.beginGroup("Path");
         Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(0));
         settings.setValue("lastSproutPath", editor->getFilePath());
-        settings.endGroup();
+    } else {
+        settings.remove("lastSproutPath");
     }
+    settings.endGroup();
 }
 
 void MainWindow::toggleMenusVisible(bool visible) {
