@@ -2,9 +2,7 @@
 #include "ui_MainWindow.h"
 #include "../Defines.h"
 #include "Editor3D.h"
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QDebug>
+#include <QtWidgets>
 
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
@@ -28,9 +26,10 @@ void MainWindow::on_actionNew_triggered() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
-    if (!fileName.isEmpty()) {
-        qDebug() << fileName;
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
+    if (!filePath.isEmpty()) {
+        QFileInfo fi(filePath);
+        ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
     }
 }
 
