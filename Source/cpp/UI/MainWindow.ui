@@ -32,6 +32,9 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
+      <property name="handleWidth">
+       <number>1</number>
+      </property>
       <widget class="QListView" name="listView"/>
       <widget class="QTabWidget" name="tabWidget">
        <property name="tabsClosable">
