@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "../Defines.h"
+#include "Editor3D.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
@@ -19,9 +20,10 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
-    if (!fileName.isEmpty()) {
-        qDebug() << fileName;
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
+    if (!filePath.isEmpty()) {
+        QFileInfo fi(filePath);
+        ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
     }
 }
 
@@ -52,6 +54,11 @@ void MainWindow::on_actionShow_left_sidebar_toggled(bool checked) {
     } else {
         ui->listView->hide();
     }
+}
+
+void MainWindow::on_tabWidget_tabCloseRequested(int index) {
+    delete ui->tabWidget->widget(index);
+    ui->tabWidget->removeTab(index);
 }
 
 void MainWindow::readSettings() {

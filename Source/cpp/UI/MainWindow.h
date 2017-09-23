@@ -19,6 +19,7 @@ private slots:
     void on_actionExit_triggered();
     void on_actionAbout_triggered();
     void on_actionShow_left_sidebar_toggled(bool checked=false);
+    void on_tabWidget_tabCloseRequested(int index);
 
 private:
     Ui::MainWindow* ui;
