@@ -9,10 +9,7 @@ class Editor3D : public QWidget {
 public:
     explicit Editor3D(const QString& filePath);
     ~Editor3D();
-
-signals:
-
-public slots:
+    SproutManager* getSproutManager() const { return sproutManager; }
 
 private:
     QString filePath;

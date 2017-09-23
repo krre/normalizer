@@ -21,7 +21,9 @@ void MainWindow::on_actionNew_triggered() {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
     if (!filePath.isEmpty()) {
         QFileInfo fi(filePath);
-        ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
+        editor->getSproutManager()->create();
     }
 }
 

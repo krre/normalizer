@@ -7,4 +7,8 @@ class SproutManager : public QObject {
 public:
     explicit SproutManager(const QString& filePath, QObject* parent = nullptr);
     ~SproutManager();
+    void create();
+
+private:
+    QString filePath;
 };
