@@ -9,3 +9,7 @@ Editor3D::Editor3D(const QString& filePath) :
 Editor3D::~Editor3D() {
 
 }
+
+void Editor3D::load() {
+
+}

@@ -87,5 +87,6 @@ void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
         } else {
             editor->getSproutManager()->open();
         }
+        editor->load();
     }
 }
