@@ -31,7 +31,9 @@ void MainWindow::on_actionOpen_triggered() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo fi(filePath);
-        ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
+        editor->getSproutManager()->open();
     }
 }
 

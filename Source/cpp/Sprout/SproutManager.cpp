@@ -12,5 +12,9 @@ SproutManager::~SproutManager() {
 }
 
 void SproutManager::create() {
-    qDebug() << "Create Sprout DB" << filePath;
+    qDebug() << "Create Sprout Manager" << filePath;
+}
+
+void SproutManager::open() {
+    qDebug() << "Open Sprout Mananger" << filePath;
 }

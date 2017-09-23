@@ -8,6 +8,7 @@ public:
     explicit SproutManager(const QString& filePath, QObject* parent = nullptr);
     ~SproutManager();
     void create();
+    void open();
 
 private:
     QString filePath;
