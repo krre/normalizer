@@ -25,6 +25,13 @@ void MainWindow::on_actionNew_triggered() {
     }
 }
 
+void MainWindow::on_actionOpen_triggered() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
+    if (!fileName.isEmpty()) {
+        qDebug() << fileName;
+    }
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
