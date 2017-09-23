@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include <QSettings>
 
 namespace Ui {
     class MainWindow;
@@ -18,4 +19,8 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
+    QSettings settings;
+
+    void readSettings();
+    void writeSettings();
 };
