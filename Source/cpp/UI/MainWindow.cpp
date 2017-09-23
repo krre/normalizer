@@ -50,6 +50,10 @@ void MainWindow::on_actionShow_left_sidebar_toggled(bool checked) {
     }
 }
 
+void MainWindow::on_actionBuild_triggered() {
+    qDebug() << "Build" << currentEditor3D->getFilePath();
+}
+
 void MainWindow::on_tabWidget_tabCloseRequested(int index) {
     delete ui->tabWidget->widget(index);
     ui->tabWidget->removeTab(index);
@@ -57,6 +61,7 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index) {
 
 void MainWindow::on_tabWidget_currentChanged(int index) {
     toggleMenusVisible(index >= 0);
+    currentEditor3D = index >= 0 ? static_cast<Editor3D*>(ui->tabWidget->widget(index)) : nullptr;
 }
 
 void MainWindow::readSettings() {
@@ -101,18 +106,19 @@ void MainWindow::writeSettings() {
 
 void MainWindow::toggleMenusVisible(bool visible) {
     ui->menuBuild->menuAction()->setVisible(visible);
+    ui->actionBuild->setEnabled(visible);
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
     if (!filePath.isEmpty()) {
         QFileInfo fi(filePath);
         int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
-        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(index));
+        ui->tabWidget->setCurrentIndex(index);
         if (isNew) {
-            editor->getSproutManager()->create();
+            currentEditor3D->getSproutManager()->create();
         } else {
-            editor->getSproutManager()->open();
+            currentEditor3D->getSproutManager()->open();
         }
-        editor->load();
+        currentEditor3D->load();
     }
 }
