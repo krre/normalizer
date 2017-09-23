@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 #include "../Defines.h"
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QDebug>
 
 MainWindow::MainWindow() :
@@ -15,6 +16,13 @@ MainWindow::MainWindow() :
 MainWindow::~MainWindow() {
     writeSettings();
     delete ui;
+}
+
+void MainWindow::on_actionNew_triggered() {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
+    if (!fileName.isEmpty()) {
+        qDebug() << fileName;
+    }
 }
 
 void MainWindow::on_actionExit_triggered() {
