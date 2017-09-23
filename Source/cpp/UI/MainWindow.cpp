@@ -7,8 +7,9 @@
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
         settings(QCoreApplication::applicationDirPath() + "/" + "sproute.ini", QSettings::IniFormat) {
-    ui->setupUi(this);
     setWindowTitle(QApplication::applicationName());
+    ui->setupUi(this);
+    toggleMenusVisible(false);
     readSettings();
 }
 
@@ -54,6 +55,10 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index) {
     ui->tabWidget->removeTab(index);
 }
 
+void MainWindow::on_tabWidget_currentChanged(int index) {
+    toggleMenusVisible(index >= 0);
+}
+
 void MainWindow::readSettings() {
     settings.beginGroup("MainWindow");
     resize(settings.value("size", QSize(1000, 600)).toSize());
@@ -90,6 +95,10 @@ void MainWindow::writeSettings() {
         settings.setValue("lastSproutPath", editor->getFilePath());
         settings.endGroup();
     }
+}
+
+void MainWindow::toggleMenusVisible(bool visible) {
+    ui->menuBuild->menuAction()->setVisible(visible);
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
