@@ -22,6 +22,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionShow_left_sidebar_toggled(bool checked=false);
     void on_actionBuild_triggered();
+    void on_actionOptions_triggered();
     void on_tabWidget_tabCloseRequested(int index);
     void on_tabWidget_currentChanged(int index);
 

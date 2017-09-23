@@ -54,6 +54,10 @@ void MainWindow::on_actionBuild_triggered() {
     qDebug() << "Build" << currentEditor3D->getFilePath();
 }
 
+void MainWindow::on_actionOptions_triggered() {
+    qDebug() << "Options";
+}
+
 void MainWindow::on_tabWidget_tabCloseRequested(int index) {
     delete ui->tabWidget->widget(index);
     ui->tabWidget->removeTab(index);
