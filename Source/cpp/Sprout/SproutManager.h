@@ -1,6 +1,6 @@
 #pragma once
 #include <QObject>
-#include <QString>
+#include <QSqlDatabase>
 
 class SproutManager : public QObject {
     Q_OBJECT
@@ -12,4 +12,10 @@ public:
 
 private:
     QString filePath;
+    QSqlDatabase db;
+    QString connection;
+
+    void openDb();
+    void closeDb();
+    void initTables();
 };
