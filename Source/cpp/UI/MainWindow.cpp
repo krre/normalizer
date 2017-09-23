@@ -8,8 +8,8 @@
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
         settings(QCoreApplication::applicationDirPath() + "/" + "sproute.ini", QSettings::IniFormat) {
-    setWindowTitle(QApplication::applicationName());
     ui->setupUi(this);
+    setWindowTitle(QApplication::applicationName());
     toggleMenusVisible(false);
     readSettings();
 }
