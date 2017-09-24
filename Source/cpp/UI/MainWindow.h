@@ -39,5 +39,6 @@ private:
     void toggleMenusVisible(bool visible);
     void toggleActionEnable(bool enable);
     void tabCountChanged(int count);
+    int findSproutFile(const QString& filePath);
     void createEditor3D(const QString& filePath, bool isNew);
 };

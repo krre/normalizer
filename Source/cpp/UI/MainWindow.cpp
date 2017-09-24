@@ -28,7 +28,12 @@ void MainWindow::on_actionNew_triggered() {
 void MainWindow::on_actionOpen_triggered() {
     const QString workspace = settings.value("Path/workspace").toString();
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), workspace, "Sprout (*.sprout);;All Files(*.*)");
-    createEditor3D(filePath, false);
+    int index = findSproutFile(filePath);
+    if (index >= 0) {
+        ui->tabWidget->setCurrentIndex(index);
+    } else {
+        createEditor3D(filePath, false);
+    }
 }
 
 void MainWindow::on_actionClose_triggered() {
@@ -123,12 +128,9 @@ void MainWindow::readSettings() {
     }
 
     QString currentSproutPath = settings.value("Path/currentSproutPath").toString();
-    for (int i = 0; i < ui->tabWidget->count(); i++) {
-        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(i));
-        if (editor->getFilePath() == currentSproutPath) {
-            ui->tabWidget->setCurrentIndex(i);
-            break;
-        }
+    int index = findSproutFile(currentSproutPath);
+    if (index >= 0) {
+        ui->tabWidget->setCurrentIndex(index);
     }
 }
 
@@ -172,6 +174,17 @@ void MainWindow::toggleActionEnable(bool enable) {
 
 void MainWindow::tabCountChanged(int count) {
     ui->actionClose_Other->setEnabled(count > 1);
+}
+
+int MainWindow::findSproutFile(const QString& filePath) {
+    for (int i = 0; i < ui->tabWidget->count(); i++) {
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(i));
+        if (editor->getFilePath() == filePath) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
