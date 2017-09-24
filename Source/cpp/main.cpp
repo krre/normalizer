@@ -58,6 +58,6 @@ int main(int argc, char* argv[]) {
     } else {
         MainWindow mainWindow;
         mainWindow.show();
-        return app.exec();
+        return mainWindow.selectWorkspace() ? app.exec() : EXIT_SUCCESS;
     }
 }

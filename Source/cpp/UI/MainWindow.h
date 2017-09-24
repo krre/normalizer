@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow();
     ~MainWindow();
+    bool selectWorkspace();
 
 private slots:
     void on_actionNew_triggered();

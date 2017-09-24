@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "../Defines.h"
+#include "SelectWorkspace.h"
 #include "Editor3D.h"
 #include "Options.h"
 #include <QtWidgets>
@@ -17,6 +18,19 @@ MainWindow::MainWindow() :
 MainWindow::~MainWindow() {
     writeSettings();
     delete ui;
+}
+
+bool MainWindow::selectWorkspace() {
+    bool result = true;
+    if (!settings.contains("Path/workspace")) {
+        SelectWorkspace dialog(this);
+        connect(&dialog, &QDialog::rejected, this, [&] () {
+            result = false;
+        });
+        dialog.exec();
+    }
+
+    return result;
 }
 
 void MainWindow::on_actionNew_triggered() {
