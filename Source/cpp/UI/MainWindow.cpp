@@ -31,6 +31,10 @@ void MainWindow::on_actionOpen_triggered() {
     createEditor3D(filePath, false);
 }
 
+void MainWindow::on_actionClose_triggered() {
+    ui->tabWidget->removeTab(ui->tabWidget->currentIndex());
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }

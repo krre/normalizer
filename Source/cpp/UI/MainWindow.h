@@ -18,6 +18,7 @@ public:
 private slots:
     void on_actionNew_triggered();
     void on_actionOpen_triggered();
+    void on_actionClose_triggered();
     void on_actionExit_triggered();
     void on_actionAbout_triggered();
     void on_actionShow_left_sidebar_toggled(bool checked=false);
