@@ -7,7 +7,7 @@
 
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
-        settings(QCoreApplication::applicationDirPath() + "/" + "sproute.ini", QSettings::IniFormat) {
+        settings(QCoreApplication::applicationDirPath() + "/" + SETTINGS_NAME, QSettings::IniFormat) {
     ui->setupUi(this);
     setWindowTitle(QApplication::applicationName());
     toggleMenusVisible(false);
