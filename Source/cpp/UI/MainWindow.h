@@ -20,6 +20,7 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionClose_triggered();
     void on_actionClose_All_triggered();
+    void on_actionClose_Other_triggered();
     void on_actionExit_triggered();
     void on_actionAbout_triggered();
     void on_actionShow_left_sidebar_toggled(bool checked=false);
@@ -36,6 +37,7 @@ private:
     void readSettings();
     void writeSettings();
     void toggleMenusVisible(bool visible);
-    void toggleActionEnable(bool enable, int index);
+    void toggleActionEnable(bool enable);
+    void tabCountChanged(int count);
     void createEditor3D(const QString& filePath, bool isNew);
 };

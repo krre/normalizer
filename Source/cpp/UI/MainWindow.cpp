@@ -32,12 +32,23 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionClose_triggered() {
-    ui->tabWidget->removeTab(ui->tabWidget->currentIndex());
+    on_tabWidget_tabCloseRequested(ui->tabWidget->currentIndex());
 }
 
 void MainWindow::on_actionClose_All_triggered() {
-    for (int i = ui->tabWidget->count() - 1; i >= 0; i--) {
-        on_tabWidget_tabCloseRequested(i);
+    while (ui->tabWidget->count()) {
+        on_tabWidget_tabCloseRequested(0);
+    }
+}
+
+void MainWindow::on_actionClose_Other_triggered() {
+    int i = 0;
+    while (ui->tabWidget->count() > 1) {
+        if (i != ui->tabWidget->currentIndex()) {
+            on_tabWidget_tabCloseRequested(i);
+        } else {
+            i++;
+        }
     }
 }
 
@@ -73,13 +84,15 @@ void MainWindow::on_actionOptions_triggered() {
 }
 
 void MainWindow::on_tabWidget_tabCloseRequested(int index) {
-    delete ui->tabWidget->widget(index);
+    QWidget* widget = ui->tabWidget->widget(index);
     ui->tabWidget->removeTab(index);
+    delete widget;
+    tabCountChanged(ui->tabWidget->count());
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index) {
     toggleMenusVisible(index >= 0);
-    toggleActionEnable(index >= 0, index);
+    toggleActionEnable(index >= 0);
     currentEditor3D = index >= 0 ? static_cast<Editor3D*>(ui->tabWidget->widget(index)) : nullptr;
 }
 
@@ -151,17 +164,21 @@ void MainWindow::toggleMenusVisible(bool visible) {
     ui->actionBuild->setEnabled(visible);
 }
 
-void MainWindow::toggleActionEnable(bool enable, int index) {
+void MainWindow::toggleActionEnable(bool enable) {
     ui->actionSave_as->setEnabled(enable);
     ui->actionClose->setEnabled(enable);
     ui->actionClose_All->setEnabled(enable);
-    ui->actionClose_Other->setEnabled(index > 1);
+}
+
+void MainWindow::tabCountChanged(int count) {
+    ui->actionClose_Other->setEnabled(count > 1);
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
     if (!filePath.isEmpty()) {
         QFileInfo fi(filePath);
         int index = ui->tabWidget->addTab(new Editor3D(filePath), fi.fileName());
+        tabCountChanged(ui->tabWidget->count());
         ui->tabWidget->setCurrentIndex(index);
         if (isNew) {
             currentEditor3D->getSproutManager()->create();
