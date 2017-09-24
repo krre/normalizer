@@ -20,12 +20,14 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), QString(), "Sprout (*.sprout)");
+    const QString workspace = settings.value("Path/workspace").toString();
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Create new Sprout file"), workspace, "Sprout (*.sprout)");
     createEditor3D(filePath, true);
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), QString(), "Sprout (*.sprout);;All Files(*.*)");
+    const QString workspace = settings.value("Path/workspace").toString();
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Sprout file"), workspace, "Sprout (*.sprout);;All Files(*.*)");
     createEditor3D(filePath, false);
 }
 
