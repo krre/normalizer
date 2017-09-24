@@ -83,15 +83,29 @@ void MainWindow::readSettings() {
         ui->splitter->restoreState(splitterSize.toByteArray());
     }
     ui->actionShow_left_sidebar->setChecked(settings.value("showLeftSidebar").toBool());
+    bool resoreSession = settings.value("restoreSession").toBool();
     settings.endGroup();
 
-    settings.beginGroup("Path");
-    QString lastFilePath = settings.value("lastSproutPath").toString();
-    if (QFile::exists(lastFilePath)) {
-        createEditor3D(lastFilePath, false);
+    if (resoreSession) {
+        int size = settings.beginReadArray("OpenFiles");
+        for (int i = 0; i < size; ++i) {
+            settings.setArrayIndex(i);
+            const QString path = settings.value("path").toString();
+            if (QFile::exists(path)) {
+                createEditor3D(path, false);
+            }
+        }
+        settings.endArray();
     }
 
-    settings.endGroup();
+    QString currentSproutPath = settings.value("Path/currentSproutPath").toString();
+    for (int i = 0; i < ui->tabWidget->count(); i++) {
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(i));
+        if (editor->getFilePath() == currentSproutPath) {
+            ui->tabWidget->setCurrentIndex(i);
+            break;
+        }
+    }
 }
 
 void MainWindow::writeSettings() {
@@ -104,12 +118,21 @@ void MainWindow::writeSettings() {
 
     settings.beginGroup("Path");
     if (ui->tabWidget->count()) {
-        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(0));
-        settings.setValue("lastSproutPath", editor->getFilePath());
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->currentWidget());
+        settings.setValue("currentSproutPath", editor->getFilePath());
     } else {
-        settings.remove("lastSproutPath");
+        settings.remove("currentSproutPath");
     }
     settings.endGroup();
+
+    settings.remove("OpenFiles");
+    settings.beginWriteArray("OpenFiles");
+    for (int i = 0; i < ui->tabWidget->count(); i++) {
+        settings.setArrayIndex(i);
+        Editor3D* editor = static_cast<Editor3D*>(ui->tabWidget->widget(i));
+        settings.setValue("path", editor->getFilePath());
+    }
+    settings.endArray();
 }
 
 void MainWindow::toggleMenusVisible(bool visible) {
