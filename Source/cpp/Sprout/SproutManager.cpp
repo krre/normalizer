@@ -12,18 +12,15 @@ SproutManager::SproutManager(const QString& filePath, QObject* parent) :
 
 SproutManager::~SproutManager() {
     closeDb();
-    qDebug() << "Destroy Sprout Manager" << filePath;
 }
 
 void SproutManager::create() {
-    qDebug() << "Create Sprout Manager" << filePath;
     openDb();
     initTables();
     initRecords();
 }
 
 void SproutManager::open() {
-    qDebug() << "Open Sprout Mananger" << filePath;
     openDb();
 }
 
