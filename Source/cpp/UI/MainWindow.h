@@ -35,5 +35,6 @@ private:
     void readSettings();
     void writeSettings();
     void toggleMenusVisible(bool visible);
+    void toggleActionEnable(bool enable, int index);
     void createEditor3D(const QString& filePath, bool isNew);
 };

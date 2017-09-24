@@ -73,6 +73,7 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index) {
 
 void MainWindow::on_tabWidget_currentChanged(int index) {
     toggleMenusVisible(index >= 0);
+    toggleActionEnable(index >= 0, index);
     currentEditor3D = index >= 0 ? static_cast<Editor3D*>(ui->tabWidget->widget(index)) : nullptr;
 }
 
@@ -142,6 +143,13 @@ void MainWindow::writeSettings() {
 void MainWindow::toggleMenusVisible(bool visible) {
     ui->menuBuild->menuAction()->setVisible(visible);
     ui->actionBuild->setEnabled(visible);
+}
+
+void MainWindow::toggleActionEnable(bool enable, int index) {
+    ui->actionSave_as->setEnabled(enable);
+    ui->actionClose->setEnabled(enable);
+    ui->actionClose_All->setEnabled(enable);
+    ui->actionClose_Other->setEnabled(index > 1);
 }
 
 void MainWindow::createEditor3D(const QString& filePath, bool isNew) {
