@@ -35,6 +35,12 @@ void MainWindow::on_actionClose_triggered() {
     ui->tabWidget->removeTab(ui->tabWidget->currentIndex());
 }
 
+void MainWindow::on_actionClose_All_triggered() {
+    for (int i = ui->tabWidget->count() - 1; i >= 0; i--) {
+        on_tabWidget_tabCloseRequested(i);
+    }
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
