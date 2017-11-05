@@ -8,7 +8,8 @@ SOURCES += \
         UI\MainWindow.cpp
 
 HEADERS += \
-        UI\MainWindow.h
+        UI\MainWindow.h \
+    Core/Defines.h
 
 FORMS += \
         UI\MainWindow.ui
