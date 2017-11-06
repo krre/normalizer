@@ -5,11 +5,11 @@ TEMPLATE = app
 
 SOURCES += \
         main.cpp \
-        UI\MainWindow.cpp
+        UI/MainWindow.cpp
 
 HEADERS += \
-        UI\MainWindow.h \
-    Core/Defines.h
+        UI/MainWindow.h \
+        Core/Defines.h
 
 FORMS += \
-        UI\MainWindow.ui
+        UI/MainWindow.ui
