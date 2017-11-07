@@ -7,6 +7,7 @@ MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
         settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     ui->setupUi(this);
+    removeToolBar(ui->mainToolBar);
     setWindowTitle(QApplication::applicationName());
     readSettings();
 }
