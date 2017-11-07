@@ -6,10 +6,10 @@
 
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
-        settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
+        m_settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     ui->setupUi(this);
-    cave = new Cave;
-    setCentralWidget(cave);
+    m_cave = new Cave;
+    setCentralWidget(m_cave);
     removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
     setWindowTitle(QApplication::applicationName());
     readSettings();
@@ -46,17 +46,17 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::readSettings() {
-    settings.beginGroup("MainWindow");
-    resize(settings.value("size", QSize(1000, 600)).toSize());
-    move(settings.value("pos", QPoint(200, 200)).toPoint());
-    settings.endGroup();
+    m_settings.beginGroup("MainWindow");
+    resize(m_settings.value("size", QSize(1000, 600)).toSize());
+    move(m_settings.value("pos", QPoint(200, 200)).toPoint());
+    m_settings.endGroup();
 }
 
 void MainWindow::writeSettings() {
-    settings.beginGroup("MainWindow");
-    settings.setValue("size", size());
-    settings.setValue("pos", pos());
-    settings.endGroup();
+    m_settings.beginGroup("MainWindow");
+    m_settings.setValue("size", size());
+    m_settings.setValue("pos", pos());
+    m_settings.endGroup();
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
