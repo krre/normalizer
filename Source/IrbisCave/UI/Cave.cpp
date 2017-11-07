@@ -11,6 +11,7 @@ Cave::~Cave() {
 
 void Cave::newIrbis(const QString& path) {
     m_filePath = path;
+    qDebug() << m_filePath;
 }
 
 void Cave::openIrbis(const QString& path) {
