@@ -61,12 +61,23 @@ void MainWindow::readSettings() {
     resize(m_settings.value("size", QSize(1000, 600)).toSize());
     move(m_settings.value("pos", QPoint(200, 200)).toPoint());
     m_settings.endGroup();
+
+    m_settings.beginGroup("Cave");
+    QString filePath = m_settings.value("filePath").toString();
+    if (!filePath.isEmpty()) {
+        m_cave->openIrbis(filePath);
+    }
+    m_settings.endGroup();
 }
 
 void MainWindow::writeSettings() {
     m_settings.beginGroup("MainWindow");
     m_settings.setValue("size", size());
     m_settings.setValue("pos", pos());
+    m_settings.endGroup();
+
+    m_settings.beginGroup("Cave");
+    m_settings.setValue("filePath", m_cave->filePath());
     m_settings.endGroup();
 }
 
