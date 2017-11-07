@@ -43,6 +43,11 @@ void MainWindow::on_actionSave_As_triggered() {
 
 }
 
+void MainWindow::on_actionClose_triggered() {
+    m_cave->closeIrbis();
+    changeWindowTitle();
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }

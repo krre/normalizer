@@ -12,6 +12,7 @@ public:
     void newIrbis(const QString& path);
     void openIrbis(const QString& path);
     void copyIrbis(const QString& path);
+    void closeIrbis();
 
     QString filePath() const;
 
