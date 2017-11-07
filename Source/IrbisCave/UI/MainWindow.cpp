@@ -29,7 +29,7 @@ void MainWindow::on_actionSave_As_triggered() {
 }
 
 void MainWindow::on_actionExit_triggered() {
-
+    QApplication::quit();
 }
 
 void MainWindow::on_actionAbout_triggered() {
