@@ -1,4 +1,5 @@
 QT += core gui widgets
+QT += 3dcore 3drender 3dinput 3dextras
 
 TARGET = irbiscave
 TEMPLATE = app
