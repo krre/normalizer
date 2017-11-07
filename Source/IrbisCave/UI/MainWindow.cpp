@@ -12,7 +12,6 @@ MainWindow::MainWindow() :
     setCentralWidget(m_cave);
     removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
     ui->statusBar->hide(); // TODO: Temporaty hide.
-    setWindowTitle(QApplication::applicationName());
     readSettings();
 }
 
@@ -27,6 +26,7 @@ void MainWindow::on_actionNew_triggered() {
         if (info.suffix() != "irbis") {
             filePath += ".irbis";
         }
+        changeWindowTitle(filePath);
         m_cave->newIrbis(filePath);
     }
 }
@@ -34,6 +34,7 @@ void MainWindow::on_actionNew_triggered() {
 void MainWindow::on_actionOpen_triggered() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
+        changeWindowTitle(filePath);
         m_cave->openIrbis(filePath);
     }
 }
@@ -65,7 +66,10 @@ void MainWindow::readSettings() {
     m_settings.beginGroup("Cave");
     QString filePath = m_settings.value("filePath").toString();
     if (!filePath.isEmpty()) {
+        changeWindowTitle(filePath);
         m_cave->openIrbis(filePath);
+    } else {
+        changeWindowTitle();
     }
     m_settings.endGroup();
 }
@@ -79,6 +83,15 @@ void MainWindow::writeSettings() {
     m_settings.beginGroup("Cave");
     m_settings.setValue("filePath", m_cave->filePath());
     m_settings.endGroup();
+}
+
+void MainWindow::changeWindowTitle(const QString& filePath) {
+    QString title = QApplication::applicationName();
+    if (!filePath.isEmpty()) {
+        QFileInfo info(filePath);
+        title += " - " + info.fileName();
+    }
+    setWindowTitle(title);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

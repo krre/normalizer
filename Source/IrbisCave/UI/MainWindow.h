@@ -25,6 +25,7 @@ private slots:
 private:
     void readSettings();
     void writeSettings();
+    void changeWindowTitle(const QString& filePath = QString());
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* ui;
