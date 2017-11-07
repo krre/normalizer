@@ -12,7 +12,6 @@ MainWindow::MainWindow() :
 }
 
 MainWindow::~MainWindow() {
-    writeSettings();
     delete ui;
 }
 
@@ -54,4 +53,9 @@ void MainWindow::writeSettings() {
     settings.setValue("size", size());
     settings.setValue("pos", pos());
     settings.endGroup();
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    writeSettings();
+    event->accept();
 }

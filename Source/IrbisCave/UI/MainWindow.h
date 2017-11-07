@@ -23,6 +23,7 @@ private slots:
 private:
     void readSettings();
     void writeSettings();
+    void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* ui;
     QSettings settings;
