@@ -9,7 +9,15 @@ Cave::~Cave() {
 
 }
 
-void Cave::setFilePath(const QString& path) {
+void Cave::newIrbis(const QString& path) {
+    m_filePath = path;
+}
+
+void Cave::openIrbis(const QString& path) {
+    m_filePath = path;
+}
+
+void Cave::copyIrbis(const QString& path) {
     m_filePath = path;
 }
 

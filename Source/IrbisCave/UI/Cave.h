@@ -8,7 +8,11 @@ class Cave : public QWidget {
 public:
     Cave();
     ~Cave();
-    void setFilePath(const QString& path);
+
+    void newIrbis(const QString& path);
+    void openIrbis(const QString& path);
+    void copyIrbis(const QString& path);
+
     QString filePath() const;
 
 private:
