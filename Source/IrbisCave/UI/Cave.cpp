@@ -16,6 +16,7 @@ void Cave::newIrbis(const QString& path) {
 
 void Cave::openIrbis(const QString& path) {
     m_filePath = path;
+    qDebug() << m_filePath;
 }
 
 void Cave::copyIrbis(const QString& path) {

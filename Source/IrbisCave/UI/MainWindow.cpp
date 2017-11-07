@@ -20,7 +20,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Sprout File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
         if (info.suffix() != "irbis") {
@@ -31,7 +31,10 @@ void MainWindow::on_actionNew_triggered() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
+    if (!filePath.isEmpty()) {
+        m_cave->openIrbis(filePath);
+    }
 }
 
 void MainWindow::on_actionSave_As_triggered() {
