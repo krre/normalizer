@@ -11,6 +11,7 @@ MainWindow::MainWindow() :
     m_cave = new Cave;
     setCentralWidget(m_cave);
     removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
+    ui->statusBar->hide(); // TODO: Temporaty hide.
     setWindowTitle(QApplication::applicationName());
     readSettings();
 }
