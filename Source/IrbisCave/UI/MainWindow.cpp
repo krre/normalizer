@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "Cave.h"
 #include "Core/Defines.h"
 #include <QtWidgets>
 
@@ -7,6 +8,8 @@ MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
         settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     ui->setupUi(this);
+    cave = new Cave;
+    setCentralWidget(cave);
     removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
     setWindowTitle(QApplication::applicationName());
     readSettings();

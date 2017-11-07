@@ -6,6 +6,8 @@ namespace Ui {
     class MainWindow;
 }
 
+class Cave;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -27,4 +29,5 @@ private:
 
     Ui::MainWindow* ui;
     QSettings settings;
+    Cave* cave;
 };
