@@ -13,6 +13,13 @@ public:
     explicit MainWindow();
     ~MainWindow();
 
+private slots:
+    void on_actionNew_triggered();
+    void on_actionOpen_triggered();
+    void on_actionOpen_As_triggered();
+    void on_actionExit_triggered();
+    void on_actionAbout_triggered();
+
 private:
     void readSettings();
     void writeSettings();
