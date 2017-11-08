@@ -1,4 +1,5 @@
 #include "Cave.h"
+#include "Db/DatabaseManager.h"
 #include <QtCore>
 #include <QtWidgets>
 #include <Qt3DExtras/Qt3DWindow>
@@ -11,6 +12,8 @@ Cave::Cave() {
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(container);
+
+    m_dbm = new DatabaseManager(this);
 }
 
 Cave::~Cave() {

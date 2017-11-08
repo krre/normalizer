@@ -8,12 +8,14 @@ TEMPLATE = app
 SOURCES += \
         main.cpp \
         UI/MainWindow.cpp \
-    UI/Cave.cpp
+    UI/Cave.cpp \
+    Db/DatabaseManager.cpp
 
 HEADERS += \
         UI/MainWindow.h \
         Core/Defines.h \
-    UI/Cave.h
+    UI/Cave.h \
+    Db/DatabaseManager.h
 
 FORMS += \
         UI/MainWindow.ui

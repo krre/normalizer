@@ -2,6 +2,8 @@
 #include <QWidget>
 #include <QString>
 
+class DatabaseManager;
+
 class Cave : public QWidget {
     Q_OBJECT
 
@@ -18,4 +20,5 @@ public:
 
 private:
     QString m_filePath;
+    DatabaseManager* m_dbm;
 };
