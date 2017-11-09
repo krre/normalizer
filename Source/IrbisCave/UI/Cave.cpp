@@ -13,7 +13,7 @@ Cave::Cave() {
     layout->setMargin(0);
     layout->addWidget(container);
 
-    m_dbm = new DatabaseManager(this);
+    _dbm = new DatabaseManager(this);
 }
 
 Cave::~Cave() {
@@ -21,25 +21,25 @@ Cave::~Cave() {
 }
 
 void Cave::newIrbis(const QString& path) {
-    m_filePath = path;
-    qDebug() << "New Irbis:" << m_filePath;
+    _filePath = path;
+    qDebug() << "New Irbis:" << _filePath;
 }
 
 void Cave::openIrbis(const QString& path) {
-    m_filePath = path;
-    qDebug() << "Open Irbis:" << m_filePath;
+    _filePath = path;
+    qDebug() << "Open Irbis:" << _filePath;
 }
 
 void Cave::copyIrbis(const QString& path) {
-    m_filePath = path;
-    qDebug() << "Copy Irbis:" << m_filePath;
+    _filePath = path;
+    qDebug() << "Copy Irbis:" << _filePath;
 }
 
 void Cave::closeIrbis() {
-    qDebug() << "Close Irbis:" << m_filePath;
-    m_filePath = "";
+    qDebug() << "Close Irbis:" << _filePath;
+    _filePath = "";
 }
 
 QString Cave::filePath() const {
-    return m_filePath;
+    return _filePath;
 }

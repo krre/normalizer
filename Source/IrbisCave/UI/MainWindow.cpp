@@ -6,10 +6,10 @@
 
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow),
-        m_settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
+        _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     ui->setupUi(this);
-    m_cave = new Cave;
-    setCentralWidget(m_cave);
+    _cave = new Cave;
+    setCentralWidget(_cave);
     removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
     ui->statusBar->hide(); // TODO: Temporaty hide.
     readSettings();
@@ -27,7 +27,7 @@ void MainWindow::on_actionNew_triggered() {
             filePath += ".irbis";
         }
         changeWindowTitle(filePath);
-        m_cave->newIrbis(filePath);
+        _cave->newIrbis(filePath);
     }
 }
 
@@ -35,7 +35,7 @@ void MainWindow::on_actionOpen_triggered() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
-        m_cave->openIrbis(filePath);
+        _cave->openIrbis(filePath);
     }
 }
 
@@ -47,12 +47,12 @@ void MainWindow::on_actionSave_As_triggered() {
             filePath += ".irbis";
         }
         changeWindowTitle(filePath);
-        m_cave->copyIrbis(filePath);
+        _cave->copyIrbis(filePath);
     }
 }
 
 void MainWindow::on_actionClose_triggered() {
-    m_cave->closeIrbis();
+    _cave->closeIrbis();
     changeWindowTitle();
 }
 
@@ -71,31 +71,31 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::readSettings() {
-    m_settings.beginGroup("MainWindow");
-    resize(m_settings.value("size", QSize(1000, 600)).toSize());
-    move(m_settings.value("pos", QPoint(200, 200)).toPoint());
-    m_settings.endGroup();
+    _settings.beginGroup("MainWindow");
+    resize(_settings.value("size", QSize(1000, 600)).toSize());
+    move(_settings.value("pos", QPoint(200, 200)).toPoint());
+    _settings.endGroup();
 
-    m_settings.beginGroup("Cave");
-    QString filePath = m_settings.value("filePath").toString();
+    _settings.beginGroup("Cave");
+    QString filePath = _settings.value("filePath").toString();
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
-        m_cave->openIrbis(filePath);
+        _cave->openIrbis(filePath);
     } else {
         changeWindowTitle();
     }
-    m_settings.endGroup();
+    _settings.endGroup();
 }
 
 void MainWindow::writeSettings() {
-    m_settings.beginGroup("MainWindow");
-    m_settings.setValue("size", size());
-    m_settings.setValue("pos", pos());
-    m_settings.endGroup();
+    _settings.beginGroup("MainWindow");
+    _settings.setValue("size", size());
+    _settings.setValue("pos", pos());
+    _settings.endGroup();
 
-    m_settings.beginGroup("Cave");
-    m_settings.setValue("filePath", m_cave->filePath());
-    m_settings.endGroup();
+    _settings.beginGroup("Cave");
+    _settings.setValue("filePath", _cave->filePath());
+    _settings.endGroup();
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {

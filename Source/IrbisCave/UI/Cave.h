@@ -19,6 +19,6 @@ public:
     QString filePath() const;
 
 private:
-    QString m_filePath;
-    DatabaseManager* m_dbm;
+    QString _filePath;
+    DatabaseManager* _dbm;
 };

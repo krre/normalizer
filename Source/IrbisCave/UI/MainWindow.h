@@ -30,6 +30,6 @@ private:
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* ui;
-    QSettings m_settings;
-    Cave* m_cave;
+    QSettings _settings;
+    Cave* _cave;
 };
