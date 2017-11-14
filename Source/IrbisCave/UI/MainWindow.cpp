@@ -10,8 +10,6 @@ MainWindow::MainWindow() :
     _ui->setupUi(this);
     _cave = new Cave;
     setCentralWidget(_cave);
-    removeToolBar(_ui->mainToolBar); // TODO: Temporary hide.
-    _ui->statusBar->hide(); // TODO: Temporaty hide.
     readSettings();
 }
 
