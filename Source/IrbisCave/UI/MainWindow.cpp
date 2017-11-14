@@ -9,7 +9,7 @@ MainWindow::MainWindow() :
         _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     _ui->setupUi(this);
     _cave = new Cave;
-    setCentralWidget(_cave);
+//    setCentralWidget(_cave);
     readSettings();
 }
 
