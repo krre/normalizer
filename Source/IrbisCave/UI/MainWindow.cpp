@@ -5,18 +5,18 @@
 #include <QtWidgets>
 
 MainWindow::MainWindow() :
-        ui(new Ui::MainWindow),
+        _ui(new Ui::MainWindow),
         _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
-    ui->setupUi(this);
+    _ui->setupUi(this);
     _cave = new Cave;
     setCentralWidget(_cave);
-    removeToolBar(ui->mainToolBar); // TODO: Temporary hide.
-    ui->statusBar->hide(); // TODO: Temporaty hide.
+    removeToolBar(_ui->mainToolBar); // TODO: Temporary hide.
+    _ui->statusBar->hide(); // TODO: Temporaty hide.
     readSettings();
 }
 
 MainWindow::~MainWindow() {
-    delete ui;
+    delete _ui;
 }
 
 void MainWindow::on_actionNew_triggered() {

@@ -29,7 +29,7 @@ private:
     void changeWindowTitle(const QString& filePath = QString());
     void closeEvent(QCloseEvent* event);
 
-    Ui::MainWindow* ui;
+    Ui::MainWindow* _ui;
     QSettings _settings;
     Cave* _cave;
 };
