@@ -8,10 +8,22 @@ MainWindow::MainWindow() :
         _ui(new Ui::MainWindow),
         _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     _ui->setupUi(this);
-    _ui->tabWidget_left_sideBar->setTabText(0, tr("File Browser"));
-    _ui->tabWidget_left_sideBar->setTabText(1, tr("Properties"));
+
+    _treeView = new QTreeView;
+    _treeView->setFrameShape(QFrame::NoFrame);
+    _treeView->setHeaderHidden(true);
+    QFileSystemModel* fsModel = new QFileSystemModel;
+    _treeView->setModel(fsModel);
+    QModelIndex index = fsModel->setRootPath(QDir::homePath());
+    _treeView->setRootIndex(index);
+    for (int i = 1; i < fsModel->columnCount(); ++i) {
+        _treeView->hideColumn(i);
+    }
+
+    _ui->tabWidget_left_sideBar->addTab(_treeView, tr("File Browser"));
+    _ui->tabWidget_left_sideBar->addTab(new QWidget, tr("Properties"));
+
     _cave = new Cave;
-//    setCentralWidget(_cave);
     readSettings();
 }
 

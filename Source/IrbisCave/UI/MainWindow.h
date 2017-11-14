@@ -7,6 +7,7 @@ namespace Ui {
 }
 
 class Cave;
+class QTreeView;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -32,5 +33,6 @@ private:
 
     Ui::MainWindow* _ui;
     QSettings _settings;
+    QTreeView* _treeView;
     Cave* _cave;
 };
