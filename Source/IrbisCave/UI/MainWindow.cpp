@@ -8,6 +8,8 @@ MainWindow::MainWindow() :
         _ui(new Ui::MainWindow),
         _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
     _ui->setupUi(this);
+    _ui->tabWidget_left_sideBar->setTabText(0, tr("File Browser"));
+    _ui->tabWidget_left_sideBar->setTabText(1, tr("Properties"));
     _cave = new Cave;
 //    setCentralWidget(_cave);
     readSettings();
