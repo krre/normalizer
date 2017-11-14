@@ -72,8 +72,17 @@ void MainWindow::on_actionAbout_triggered() {
 
 void MainWindow::readSettings() {
     _settings.beginGroup("MainWindow");
+
     resize(_settings.value("size", QSize(1000, 600)).toSize());
     move(_settings.value("pos", QPoint(200, 200)).toPoint());
+
+    QVariant splitterSize = _settings.value("splitter");
+    if (splitterSize == QVariant()) {
+        _ui->splitter->setSizes({ 100, 500 });
+    } else {
+        _ui->splitter->restoreState(splitterSize.toByteArray());
+    }
+
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
@@ -91,6 +100,7 @@ void MainWindow::writeSettings() {
     _settings.beginGroup("MainWindow");
     _settings.setValue("size", size());
     _settings.setValue("pos", pos());
+    _settings.setValue("splitter", _ui->splitter->saveState());
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
