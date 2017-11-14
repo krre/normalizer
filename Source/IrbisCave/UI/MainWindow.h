@@ -21,6 +21,7 @@ private slots:
     void on_actionSave_As_triggered();
     void on_actionClose_triggered();
     void on_actionExit_triggered();
+    void on_actionShow_Left_Sidebar_toggled(bool checked=false);
     void on_actionAbout_triggered();
 
 private:

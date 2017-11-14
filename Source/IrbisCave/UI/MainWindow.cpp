@@ -60,6 +60,14 @@ void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
 
+void MainWindow::on_actionShow_Left_Sidebar_toggled(bool checked) {
+    if (checked) {
+        _ui->tabWidget_left_sideBar->show();
+    } else {
+        _ui->tabWidget_left_sideBar->hide();
+    }
+}
+
 void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("About %1").arg(APP_NAME),
         tr("<h3>%1 %2</h3> \
@@ -83,6 +91,8 @@ void MainWindow::readSettings() {
         _ui->splitter->restoreState(splitterSize.toByteArray());
     }
 
+    _ui->actionShow_Left_Sidebar->setChecked(_settings.value("showLeftSidebar", true).toBool());
+
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
@@ -101,6 +111,7 @@ void MainWindow::writeSettings() {
     _settings.setValue("size", size());
     _settings.setValue("pos", pos());
     _settings.setValue("splitter", _ui->splitter->saveState());
+    _settings.setValue("showLeftSidebar", _ui->actionShow_Left_Sidebar->isChecked());
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
