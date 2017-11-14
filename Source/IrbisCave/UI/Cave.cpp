@@ -13,7 +13,7 @@ Cave::Cave() {
     layout->setMargin(0);
     layout->addWidget(container);
 
-    _dbm = new DatabaseManager(this);
+    _databaseManager = new DatabaseManager(this);
 }
 
 Cave::~Cave() {

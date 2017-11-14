@@ -20,5 +20,5 @@ public:
 
 private:
     QString _filePath;
-    DatabaseManager* _dbm;
+    DatabaseManager* _databaseManager;
 };
