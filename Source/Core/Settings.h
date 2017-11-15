@@ -9,4 +9,5 @@ public:
     ~Settings();
 
     QString readWorkspace();
+    bool readRestoreSession();
 };

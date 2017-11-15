@@ -29,7 +29,7 @@ void Options::on_buttonBox_accepted() {
 
 void Options::readSettings() {
     _ui->lineEditWorkspace->setText(Settings::instance()->readWorkspace());
-    _ui->checkBoxSession->setChecked(Settings::instance()->value("MainWindow/restoreSession", true).toBool());
+    _ui->checkBoxSession->setChecked(Settings::instance()->readRestoreSession());
 }
 
 void Options::writeSettings() {
