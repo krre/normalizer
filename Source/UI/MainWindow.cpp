@@ -17,14 +17,11 @@ MainWindow::MainWindow() :
     _treeView->setHeaderHidden(true);
     _fsModel = new QFileSystemModel;
     _treeView->setModel(_fsModel);
-    QString workspaceDir = _settings->readWorkspace();
-    QDir dir;
-    dir.mkpath(workspaceDir);
-    QModelIndex index = _fsModel->setRootPath(workspaceDir);
-    _treeView->setRootIndex(index);
     for (int i = 1; i < _fsModel->columnCount(); ++i) {
         _treeView->hideColumn(i);
     }
+
+    changeWorkspace();
 
     connect(_treeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
 
@@ -90,6 +87,7 @@ void MainWindow::on_actionExit_triggered() {
 void MainWindow::on_actionOptions_triggered() {
     Options options(this);
     options.exec();
+    changeWorkspace();
 }
 
 void MainWindow::on_actionShowSidebar_toggled(bool checked) {
@@ -197,6 +195,14 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
         title += " - " + info.fileName();
     }
     setWindowTitle(title);
+}
+
+void MainWindow::changeWorkspace() {
+    QString workspaceDir = _settings->readWorkspace();
+    QDir dir;
+    dir.mkpath(workspaceDir);
+    QModelIndex index = _fsModel->setRootPath(workspaceDir);
+    _treeView->setRootIndex(index);
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {

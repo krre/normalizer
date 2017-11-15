@@ -38,6 +38,7 @@ private:
     void readSettings();
     void writeSettings();
     void changeWindowTitle(const QString& filePath = QString());
+    void changeWorkspace();
     void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
     void closeEvent(QCloseEvent* event);
