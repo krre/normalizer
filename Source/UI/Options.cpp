@@ -28,10 +28,7 @@ void Options::on_buttonBox_accepted() {
 }
 
 void Options::readSettings() {
-    Settings::instance()->beginGroup("Path");
-    _ui->lineEditWorkspace->setText(Settings::instance()->value("workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString());
-    Settings::instance()->endGroup();
-
+    _ui->lineEditWorkspace->setText(Settings::instance()->readWorkspace());
     _ui->checkBoxSession->setChecked(Settings::instance()->value("MainWindow/restoreSession", true).toBool());
 }
 
