@@ -27,7 +27,6 @@ MainWindow::MainWindow() :
     _ui->tabWidget_left_sideBar->addTab(_treeView, tr("Workspace"));
     _ui->tabWidget_left_sideBar->addTab(new QWidget, tr("Properties"));
 
-    _cave = new Cave;
     readSettings();
 }
 
@@ -44,7 +43,10 @@ void MainWindow::on_actionNew_triggered() {
             filePath += ".irbis";
         }
         changeWindowTitle(filePath);
-        _cave->newIrbis(filePath);
+        QFileInfo fi(filePath);
+        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidget_editor->setTabToolTip(index, filePath);
+        _ui->tabWidget_editor->setCurrentIndex(index);
     }
 }
 
@@ -53,7 +55,9 @@ void MainWindow::on_actionOpen_triggered() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
-        _cave->openIrbis(filePath);
+        QFileInfo fi(filePath);
+        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidget_editor->setCurrentIndex(index);
     }
 }
 
@@ -66,12 +70,14 @@ void MainWindow::on_actionSave_As_triggered() {
             filePath += ".irbis";
         }
         changeWindowTitle(filePath);
-        _cave->copyIrbis(filePath);
+        QFileInfo fi(filePath);
+        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidget_editor->setCurrentIndex(index);
     }
 }
 
 void MainWindow::on_actionClose_triggered() {
-    _cave->closeIrbis();
+//    _cave->closeIrbis();
     changeWindowTitle();
 }
 
@@ -102,6 +108,12 @@ void MainWindow::on_actionAbout_triggered() {
            arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
 }
 
+void MainWindow::on_tabWidget_editor_tabCloseRequested(int index) {
+    QWidget* widget = _ui->tabWidget_editor->widget(index);
+    _ui->tabWidget_editor->removeTab(index);
+    delete widget;
+}
+
 void MainWindow::readSettings() {
     _settings.beginGroup("MainWindow");
 
@@ -120,13 +132,15 @@ void MainWindow::readSettings() {
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
-    QString filePath = _settings.value("filePath").toString();
-    if (!filePath.isEmpty()) {
-        changeWindowTitle(filePath);
-        _cave->openIrbis(filePath);
-    } else {
-        changeWindowTitle();
-    }
+//    QString filePath = _settings.value("filePath").toString();
+//    if (!filePath.isEmpty()) {
+//        changeWindowTitle(filePath);
+//        QFileInfo fi(filePath);
+//        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
+//        _ui->tabWidget_editor->setCurrentIndex(index);
+//    } else {
+//        changeWindowTitle();
+//    }
     _settings.endGroup();
 }
 
@@ -139,7 +153,7 @@ void MainWindow::writeSettings() {
     _settings.endGroup();
 
     _settings.beginGroup("Cave");
-    _settings.setValue("filePath", _cave->filePath());
+//    _settings.setValue("filePath", _cave->filePath());
     _settings.endGroup();
 }
 

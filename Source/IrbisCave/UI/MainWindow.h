@@ -26,6 +26,8 @@ private slots:
     void on_actionShow_Left_Sidebar_toggled(bool checked=false);
     void on_actionAbout_triggered();
 
+    void on_tabWidget_editor_tabCloseRequested(int index);
+
 private:
     void readSettings();
     void writeSettings();
@@ -35,5 +37,5 @@ private:
     Ui::MainWindow* _ui;
     QSettings _settings;
     QTreeView* _treeView;
-    Cave* _cave;
+    Cave* _currentCave = nullptr;
 };

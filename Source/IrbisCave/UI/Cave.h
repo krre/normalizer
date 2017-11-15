@@ -8,7 +8,7 @@ class Cave : public QWidget {
     Q_OBJECT
 
 public:
-    Cave();
+    Cave(const QString& filePath);
     ~Cave();
 
     void newIrbis(const QString& path);
