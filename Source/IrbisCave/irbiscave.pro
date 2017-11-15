@@ -18,4 +18,5 @@ HEADERS += \
     Db/DatabaseManager.h
 
 FORMS += \
-    UI/MainWindow.ui
+    UI/MainWindow.ui \
+    UI/Options.ui
