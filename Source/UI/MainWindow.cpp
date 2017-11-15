@@ -150,16 +150,23 @@ void MainWindow::readSettings() {
     _settings->endGroup();
 
     if (_settings->readRestoreSession()) {
+        QString selectedFilePath;
         _settings->beginGroup("Session");
+        int selectedIndex = _settings->value("selected", -1).toInt();
         QStringList keys = _settings->allKeys();
         for (int i = 0; i < keys.count(); i++) {
             QString filePath = _settings->value(keys.at(i)).toString();
             QFileInfo fi(filePath);
             if (fi.exists()) {
                 addCaveTab(filePath);
+                if (selectedIndex == i) {
+                    selectedFilePath = filePath;
+                }
             }
         }
         _settings->endGroup();
+
+        _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
     }
 }
 
@@ -178,6 +185,7 @@ void MainWindow::writeSettings() {
             Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
             _settings->setValue(QString::number(i), cave->filePath());
         }
+        _settings->setValue("selected", _ui->tabWidgetCave->currentIndex());
         _settings->endGroup();
     }
 }
@@ -207,8 +215,6 @@ void MainWindow::addCaveTab(const QString& filePath) {
         _ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
         _ui->tabWidgetCave->setCurrentIndex(index);
     }
-
-    changeWindowTitle(fullIrbisPath);
 }
 
 int MainWindow::findCave(const QString& filePath) {
