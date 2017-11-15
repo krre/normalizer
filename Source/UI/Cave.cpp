@@ -13,7 +13,7 @@ Cave::Cave(const QString& filePath) : _filePath(filePath) {
     layout->setMargin(0);
     layout->addWidget(container);
 
-    _databaseManager = new DatabaseManager(this);
+    _databaseManager = new DatabaseManager(filePath, this);
 }
 
 Cave::~Cave() {
