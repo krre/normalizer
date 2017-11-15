@@ -117,8 +117,11 @@ void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
 void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     if (index >= 0) {
         QString filePath = static_cast<Cave*>(_ui->tabWidgetCave->widget(index))->filePath();
+        QModelIndex modelIndex = _fsModel->index(filePath);
+        _treeView->setCurrentIndex(modelIndex);
         changeWindowTitle(filePath);
     } else {
+        _treeView->setCurrentIndex(QModelIndex());
         changeWindowTitle();
     }
 }
