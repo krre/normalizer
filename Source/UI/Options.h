@@ -1,6 +1,5 @@
 #pragma once
 #include <QDialog>
-#include <QSettings>
 
 namespace Ui {
     class Options;
@@ -22,5 +21,4 @@ private:
     void writeSettings();
 
     Ui::Options* _ui;
-    QSettings _settings;
 };

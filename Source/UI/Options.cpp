@@ -1,13 +1,13 @@
 #include "Options.h"
 #include "ui_Options.h"
 #include "Core/Defines.h"
+#include "Core/Settings.h"
 #include <QtCore>
 #include <QtWidgets>
 
 Options::Options(QWidget* parent) :
         QDialog(parent),
-        _ui(new Ui::Options),
-        _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
+        _ui(new Ui::Options) {
     _ui->setupUi(this);
     adjustSize();
     resize(500, height());
@@ -28,17 +28,17 @@ void Options::on_buttonBox_accepted() {
 }
 
 void Options::readSettings() {
-    _settings.beginGroup("Path");
-    _ui->lineEditWorkspace->setText(_settings.value("workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString());
-    _settings.endGroup();
+    Settings::instance()->beginGroup("Path");
+    _ui->lineEditWorkspace->setText(Settings::instance()->value("workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString());
+    Settings::instance()->endGroup();
 
-    _ui->checkBoxSession->setChecked(_settings.value("MainWindow/restoreSession", true).toBool());
+    _ui->checkBoxSession->setChecked(Settings::instance()->value("MainWindow/restoreSession", true).toBool());
 }
 
 void Options::writeSettings() {
-    _settings.beginGroup("Path");
-    _settings.setValue("workspace", _ui->lineEditWorkspace->text());
-    _settings.endGroup();
+    Settings::instance()->beginGroup("Path");
+    Settings::instance()->setValue("workspace", _ui->lineEditWorkspace->text());
+    Settings::instance()->endGroup();
 
-    _settings.setValue("MainWindow/restoreSession", _ui->checkBoxSession->isChecked());
+    Settings::instance()->setValue("MainWindow/restoreSession", _ui->checkBoxSession->isChecked());
 }
