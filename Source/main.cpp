@@ -1,5 +1,6 @@
 #include "UI/MainWindow.h"
 #include "Core/Defines.h"
+#include "Core/Settings.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -7,8 +8,14 @@ int main(int argc, char *argv[]) {
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
 
+    new Settings;
+
     MainWindow mainWindow;
     mainWindow.show();
 
-    return app.exec();
+    int errCode = app.exec();
+
+    Settings::release();
+
+    return errCode;
 }
