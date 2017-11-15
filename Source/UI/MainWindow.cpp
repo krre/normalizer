@@ -8,6 +8,8 @@
 
 MainWindow::MainWindow() :
         _ui(new Ui::MainWindow) {
+    _settings = Settings::instance();
+
     _ui->setupUi(this);
 
     _treeView = new QTreeView;
@@ -15,7 +17,7 @@ MainWindow::MainWindow() :
     _treeView->setHeaderHidden(true);
     _fsModel = new QFileSystemModel;
     _treeView->setModel(_fsModel);
-    QString workspaceDir = Settings::instance()->readWorkspace();
+    QString workspaceDir = _settings->readWorkspace();
     QDir dir;
     dir.mkpath(workspaceDir);
     QModelIndex index = _fsModel->setRootPath(workspaceDir);
@@ -37,7 +39,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString workspaceDir = Settings::instance()->readWorkspace();
+    QString workspaceDir = _settings->readWorkspace();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
@@ -45,7 +47,7 @@ void MainWindow::on_actionNew_triggered() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString workspaceDir = Settings::instance()->readWorkspace();
+    QString workspaceDir = _settings->readWorkspace();
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
@@ -53,7 +55,7 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionSaveAs_triggered() {
-    QString workspaceDir = Settings::instance()->readWorkspace();
+    QString workspaceDir = _settings->readWorkspace();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
@@ -131,52 +133,52 @@ void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
 }
 
 void MainWindow::readSettings() {
-    Settings::instance()->beginGroup("MainWindow");
+    _settings->beginGroup("MainWindow");
 
-    resize(Settings::instance()->value("size", QSize(1000, 600)).toSize());
-    move(Settings::instance()->value("pos", QPoint(200, 200)).toPoint());
+    resize(_settings->value("size", QSize(1000, 600)).toSize());
+    move(_settings->value("pos", QPoint(200, 200)).toPoint());
 
-    QVariant splitterSize = Settings::instance()->value("splitter");
+    QVariant splitterSize = _settings->value("splitter");
     if (splitterSize == QVariant()) {
         _ui->splitter->setSizes({ 100, 500 });
     } else {
         _ui->splitter->restoreState(splitterSize.toByteArray());
     }
 
-    _ui->actionShowSidebar->setChecked(Settings::instance()->value("showSidebar", true).toBool());
+    _ui->actionShowSidebar->setChecked(_settings->value("showSidebar", true).toBool());
 
-    Settings::instance()->endGroup();
+    _settings->endGroup();
 
-    if (Settings::instance()->readRestoreSession()) {
-        Settings::instance()->beginGroup("Session");
-        QStringList keys = Settings::instance()->allKeys();
+    if (_settings->readRestoreSession()) {
+        _settings->beginGroup("Session");
+        QStringList keys = _settings->allKeys();
         for (int i = 0; i < keys.count(); i++) {
-            QString filePath = Settings::instance()->value(keys.at(i)).toString();
+            QString filePath = _settings->value(keys.at(i)).toString();
             QFileInfo fi(filePath);
             if (fi.exists()) {
                 addCaveTab(filePath);
             }
         }
-        Settings::instance()->endGroup();
+        _settings->endGroup();
     }
 }
 
 void MainWindow::writeSettings() {
-    Settings::instance()->beginGroup("MainWindow");
-    Settings::instance()->setValue("size", size());
-    Settings::instance()->setValue("pos", pos());
-    Settings::instance()->setValue("splitter", _ui->splitter->saveState());
-    Settings::instance()->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
-    Settings::instance()->endGroup();
+    _settings->beginGroup("MainWindow");
+    _settings->setValue("size", size());
+    _settings->setValue("pos", pos());
+    _settings->setValue("splitter", _ui->splitter->saveState());
+    _settings->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
+    _settings->endGroup();
 
-    if (Settings::instance()->readRestoreSession()) {
-        Settings::instance()->remove("Session");
-        Settings::instance()->beginGroup("Session");
+    if (_settings->readRestoreSession()) {
+        _settings->remove("Session");
+        _settings->beginGroup("Session");
         for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
             Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
-            Settings::instance()->setValue(QString::number(i), cave->filePath());
+            _settings->setValue(QString::number(i), cave->filePath());
         }
-        Settings::instance()->endGroup();
+        _settings->endGroup();
     }
 }
 

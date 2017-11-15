@@ -6,6 +6,7 @@ namespace Ui {
 }
 
 class Cave;
+class Settings;
 class QTreeView;
 class QFileSystemModel;
 
@@ -42,6 +43,7 @@ private:
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;
+    Settings* _settings;
     QTreeView* _treeView;
     QFileSystemModel* _fsModel;
     Cave* _currentCave = nullptr;
