@@ -38,15 +38,7 @@ void MainWindow::on_actionNew_triggered() {
     QString workspaceDir = Settings::instance()->readWorkspace();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
-        QFileInfo info(filePath);
-        if (info.suffix() != "irbis") {
-            filePath += ".irbis";
-        }
-        changeWindowTitle(filePath);
-        QFileInfo fi(filePath);
-        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidgetCave->setTabToolTip(index, filePath);
-        _ui->tabWidgetCave->setCurrentIndex(index);
+        addCaveTab(filePath);
     }
 }
 
@@ -54,10 +46,7 @@ void MainWindow::on_actionOpen_triggered() {
     QString workspaceDir = Settings::instance()->readWorkspace();
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
-        changeWindowTitle(filePath);
-        QFileInfo fi(filePath);
-        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidgetCave->setCurrentIndex(index);
+        addCaveTab(filePath);
     }
 }
 
@@ -65,14 +54,7 @@ void MainWindow::on_actionSaveAs_triggered() {
     QString workspaceDir = Settings::instance()->readWorkspace();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
-        QFileInfo info(filePath);
-        if (info.suffix() != "irbis") {
-            filePath += ".irbis";
-        }
-        changeWindowTitle(filePath);
-        QFileInfo fi(filePath);
-        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidgetCave->setCurrentIndex(index);
+        addCaveTab(filePath);
     }
 }
 
@@ -164,6 +146,19 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
         title += " - " + info.fileName();
     }
     setWindowTitle(title);
+}
+
+void MainWindow::addCaveTab(const QString& filePath) {
+    QString fullIrbisPath = filePath;
+    QFileInfo info(fullIrbisPath);
+    if (info.suffix() != "irbis") {
+        fullIrbisPath += ".irbis";
+    }
+    changeWindowTitle(fullIrbisPath);
+    QFileInfo fi(fullIrbisPath);
+    int index = _ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
+    _ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
+    _ui->tabWidgetCave->setCurrentIndex(index);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

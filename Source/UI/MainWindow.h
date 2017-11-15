@@ -31,6 +31,7 @@ private:
     void readSettings();
     void writeSettings();
     void changeWindowTitle(const QString& filePath = QString());
+    void addCaveTab(const QString& filePath);
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;
