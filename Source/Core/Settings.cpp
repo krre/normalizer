@@ -1,7 +1,7 @@
 #include "Settings.h"
 #include <QtCore>
 
-Settings::Settings() {
+Settings::Settings(const QString& fileName, Format format) : QSettings(fileName, format) {
 
 }
 

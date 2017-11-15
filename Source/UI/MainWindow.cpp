@@ -3,11 +3,11 @@
 #include "Options.h"
 #include "Cave.h"
 #include "Core/Defines.h"
+#include "Core/Settings.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow() :
-        _ui(new Ui::MainWindow),
-        _settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat) {
+        _ui(new Ui::MainWindow) {
     _ui->setupUi(this);
 
     _treeView = new QTreeView;
@@ -15,7 +15,7 @@ MainWindow::MainWindow() :
     _treeView->setHeaderHidden(true);
     QFileSystemModel* fsModel = new QFileSystemModel;
     _treeView->setModel(fsModel);
-    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString workspaceDir = Settings::instance()->value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
     QDir dir;
     dir.mkpath(workspaceDir);
     QModelIndex index = fsModel->setRootPath(workspaceDir);
@@ -35,7 +35,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString workspaceDir = Settings::instance()->value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
@@ -51,7 +51,7 @@ void MainWindow::on_actionNew_triggered() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString workspaceDir = Settings::instance()->value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
@@ -62,7 +62,7 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionSaveAs_triggered() {
-    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString workspaceDir = Settings::instance()->value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
@@ -115,24 +115,24 @@ void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
 }
 
 void MainWindow::readSettings() {
-    _settings.beginGroup("MainWindow");
+    Settings::instance()->beginGroup("MainWindow");
 
-    resize(_settings.value("size", QSize(1000, 600)).toSize());
-    move(_settings.value("pos", QPoint(200, 200)).toPoint());
+    resize(Settings::instance()->value("size", QSize(1000, 600)).toSize());
+    move(Settings::instance()->value("pos", QPoint(200, 200)).toPoint());
 
-    QVariant splitterSize = _settings.value("splitter");
+    QVariant splitterSize = Settings::instance()->value("splitter");
     if (splitterSize == QVariant()) {
         _ui->splitter->setSizes({ 100, 500 });
     } else {
         _ui->splitter->restoreState(splitterSize.toByteArray());
     }
 
-    _ui->actionShowSidebar->setChecked(_settings.value("showSidebar", true).toBool());
+    _ui->actionShowSidebar->setChecked(Settings::instance()->value("showSidebar", true).toBool());
 
-    _settings.endGroup();
+    Settings::instance()->endGroup();
 
-    _settings.beginGroup("Cave");
-//    QString filePath = _settings.value("filePath").toString();
+    Settings::instance()->beginGroup("Cave");
+//    QString filePath = Settings::instance()->value("filePath").toString();
 //    if (!filePath.isEmpty()) {
 //        changeWindowTitle(filePath);
 //        QFileInfo fi(filePath);
@@ -141,20 +141,20 @@ void MainWindow::readSettings() {
 //    } else {
 //        changeWindowTitle();
 //    }
-    _settings.endGroup();
+    Settings::instance()->endGroup();
 }
 
 void MainWindow::writeSettings() {
-    _settings.beginGroup("MainWindow");
-    _settings.setValue("size", size());
-    _settings.setValue("pos", pos());
-    _settings.setValue("splitter", _ui->splitter->saveState());
-    _settings.setValue("showSidebar", _ui->actionShowSidebar->isChecked());
-    _settings.endGroup();
+    Settings::instance()->beginGroup("MainWindow");
+    Settings::instance()->setValue("size", size());
+    Settings::instance()->setValue("pos", pos());
+    Settings::instance()->setValue("splitter", _ui->splitter->saveState());
+    Settings::instance()->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
+    Settings::instance()->endGroup();
 
-    _settings.beginGroup("Cave");
-//    _settings.setValue("filePath", _cave->filePath());
-    _settings.endGroup();
+    Settings::instance()->beginGroup("Cave");
+//    Settings::instance()->setValue("filePath", _cave->filePath());
+    Settings::instance()->endGroup();
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {

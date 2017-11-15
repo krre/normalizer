@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
 
-    new Settings;
+    new Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
 
     MainWindow mainWindow;
     mainWindow.show();

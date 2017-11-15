@@ -1,6 +1,5 @@
 #pragma once
 #include <QMainWindow>
-#include <QSettings>
 
 namespace Ui {
     class MainWindow;
@@ -35,7 +34,6 @@ private:
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;
-    QSettings _settings;
     QTreeView* _treeView;
     Cave* _currentCave = nullptr;
 };
