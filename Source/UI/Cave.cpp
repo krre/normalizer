@@ -20,26 +20,6 @@ Cave::~Cave() {
 
 }
 
-void Cave::newIrbis(const QString& path) {
-    _filePath = path;
-    qDebug() << "New Irbis:" << _filePath;
-}
-
-void Cave::openIrbis(const QString& path) {
-    _filePath = path;
-    qDebug() << "Open Irbis:" << _filePath;
-}
-
-void Cave::copyIrbis(const QString& path) {
-    _filePath = path;
-    qDebug() << "Copy Irbis:" << _filePath;
-}
-
-void Cave::closeIrbis() {
-    qDebug() << "Close Irbis:" << _filePath;
-    _filePath = "";
-}
-
 QString Cave::filePath() const {
     return _filePath;
 }

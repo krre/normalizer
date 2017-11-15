@@ -11,11 +11,6 @@ public:
     Cave(const QString& filePath);
     ~Cave();
 
-    void newIrbis(const QString& path);
-    void openIrbis(const QString& path);
-    void copyIrbis(const QString& path);
-    void closeIrbis();
-
     QString filePath() const;
 
 private:
