@@ -64,7 +64,7 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -126,6 +126,9 @@
    </property>
   </action>
   <action name="actionSaveAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save As...</string>
    </property>
@@ -142,6 +145,9 @@
    </property>
   </action>
   <action name="actionClose">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
@@ -169,11 +175,17 @@
    </property>
   </action>
   <action name="actionCloseAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Close All</string>
    </property>
   </action>
   <action name="actionCloseOther">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Close Other</string>
    </property>

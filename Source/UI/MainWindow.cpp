@@ -124,6 +124,11 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
         _treeView->setCurrentIndex(QModelIndex());
         changeWindowTitle();
     }
+
+    _ui->actionSaveAs->setEnabled(index >= 0);
+    _ui->actionClose->setEnabled(index >= 0);
+    _ui->actionCloseOther->setEnabled(index >= 0);
+    _ui->actionCloseAll->setEnabled(index >= 0);
 }
 
 void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
