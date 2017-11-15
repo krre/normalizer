@@ -33,9 +33,6 @@ void Options::readSettings() {
 }
 
 void Options::writeSettings() {
-    Settings::instance()->beginGroup("Path");
-    Settings::instance()->setValue("workspace", _ui->lineEditWorkspace->text());
-    Settings::instance()->endGroup();
-
+    Settings::instance()->setValue("Path/workspace", _ui->lineEditWorkspace->text());
     Settings::instance()->setValue("MainWindow/restoreSession", _ui->checkBoxSession->isChecked());
 }
