@@ -59,8 +59,24 @@ void MainWindow::on_actionSaveAs_triggered() {
 }
 
 void MainWindow::on_actionClose_triggered() {
-//    _cave->closeIrbis();
-    changeWindowTitle();
+    on_tabWidgetCave_tabCloseRequested(_ui->tabWidgetCave->currentIndex());
+}
+
+void MainWindow::on_actionCloseAll_triggered() {
+    while (_ui->tabWidgetCave->count()) {
+        on_tabWidgetCave_tabCloseRequested(0);
+    }
+}
+
+void MainWindow::on_actionCloseOther_triggered() {
+    int i = 0;
+    while (_ui->tabWidgetCave->count() > 1) {
+        if (i != _ui->tabWidgetCave->currentIndex()) {
+            on_tabWidgetCave_tabCloseRequested(i);
+        } else {
+            i++;
+        }
+    }
 }
 
 void MainWindow::on_actionExit_triggered() {
@@ -94,6 +110,15 @@ void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
     QWidget* widget = _ui->tabWidgetCave->widget(index);
     _ui->tabWidgetCave->removeTab(index);
     delete widget;
+}
+
+void MainWindow::on_tabWidgetCave_currentChanged(int index) {
+    if (index >= 0) {
+        QString filePath = static_cast<Cave*>(_ui->tabWidgetCave->widget(index))->filePath();
+        changeWindowTitle(filePath);
+    } else {
+        changeWindowTitle();
+    }
 }
 
 void MainWindow::readSettings() {
