@@ -24,8 +24,8 @@ MainWindow::MainWindow() :
         _treeView->hideColumn(i);
     }
 
-    _ui->tabWidget_left_sideBar->addTab(_treeView, tr("Workspace"));
-    _ui->tabWidget_left_sideBar->addTab(new QWidget, tr("Properties"));
+    _ui->tabWidgetSideBar->addTab(_treeView, tr("Workspace"));
+    _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
     readSettings();
 }
@@ -44,9 +44,9 @@ void MainWindow::on_actionNew_triggered() {
         }
         changeWindowTitle(filePath);
         QFileInfo fi(filePath);
-        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidget_editor->setTabToolTip(index, filePath);
-        _ui->tabWidget_editor->setCurrentIndex(index);
+        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidgetCave->setTabToolTip(index, filePath);
+        _ui->tabWidgetCave->setCurrentIndex(index);
     }
 }
 
@@ -56,12 +56,12 @@ void MainWindow::on_actionOpen_triggered() {
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
         QFileInfo fi(filePath);
-        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidget_editor->setCurrentIndex(index);
+        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidgetCave->setCurrentIndex(index);
     }
 }
 
-void MainWindow::on_actionSave_As_triggered() {
+void MainWindow::on_actionSaveAs_triggered() {
     QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
@@ -71,8 +71,8 @@ void MainWindow::on_actionSave_As_triggered() {
         }
         changeWindowTitle(filePath);
         QFileInfo fi(filePath);
-        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
-        _ui->tabWidget_editor->setCurrentIndex(index);
+        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
+        _ui->tabWidgetCave->setCurrentIndex(index);
     }
 }
 
@@ -90,11 +90,11 @@ void MainWindow::on_actionOptions_triggered() {
     options.exec();
 }
 
-void MainWindow::on_actionShow_Left_Sidebar_toggled(bool checked) {
+void MainWindow::on_actionShowSidebar_toggled(bool checked) {
     if (checked) {
-        _ui->tabWidget_left_sideBar->show();
+        _ui->tabWidgetSideBar->show();
     } else {
-        _ui->tabWidget_left_sideBar->hide();
+        _ui->tabWidgetSideBar->hide();
     }
 }
 
@@ -108,9 +108,10 @@ void MainWindow::on_actionAbout_triggered() {
            arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
 }
 
-void MainWindow::on_tabWidget_editor_tabCloseRequested(int index) {
-    QWidget* widget = _ui->tabWidget_editor->widget(index);
-    _ui->tabWidget_editor->removeTab(index);
+void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
+    qDebug() << index;
+    QWidget* widget = _ui->tabWidgetCave->widget(index);
+    _ui->tabWidgetCave->removeTab(index);
     delete widget;
 }
 
@@ -127,7 +128,7 @@ void MainWindow::readSettings() {
         _ui->splitter->restoreState(splitterSize.toByteArray());
     }
 
-    _ui->actionShow_Left_Sidebar->setChecked(_settings.value("showLeftSidebar", true).toBool());
+    _ui->actionShowSidebar->setChecked(_settings.value("showSidebar", true).toBool());
 
     _settings.endGroup();
 
@@ -136,8 +137,8 @@ void MainWindow::readSettings() {
 //    if (!filePath.isEmpty()) {
 //        changeWindowTitle(filePath);
 //        QFileInfo fi(filePath);
-//        int index = _ui->tabWidget_editor->addTab(new Cave(filePath), fi.fileName());
-//        _ui->tabWidget_editor->setCurrentIndex(index);
+//        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
+//        _ui->tabWidgetCave->setCurrentIndex(index);
 //    } else {
 //        changeWindowTitle();
 //    }
@@ -149,7 +150,7 @@ void MainWindow::writeSettings() {
     _settings.setValue("size", size());
     _settings.setValue("pos", pos());
     _settings.setValue("splitter", _ui->splitter->saveState());
-    _settings.setValue("showLeftSidebar", _ui->actionShow_Left_Sidebar->isChecked());
+    _settings.setValue("showSidebar", _ui->actionShowSidebar->isChecked());
     _settings.endGroup();
 
     _settings.beginGroup("Cave");

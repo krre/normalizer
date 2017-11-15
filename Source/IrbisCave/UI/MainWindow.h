@@ -19,14 +19,14 @@ public:
 private slots:
     void on_actionNew_triggered();
     void on_actionOpen_triggered();
-    void on_actionSave_As_triggered();
+    void on_actionSaveAs_triggered();
     void on_actionClose_triggered();
     void on_actionExit_triggered();
     void on_actionOptions_triggered();
-    void on_actionShow_Left_Sidebar_toggled(bool checked=false);
+    void on_actionShowSidebar_toggled(bool checked=false);
     void on_actionAbout_triggered();
 
-    void on_tabWidget_editor_tabCloseRequested(int index);
+    void on_tabWidgetCave_tabCloseRequested(int index);
 
 private:
     void readSettings();
