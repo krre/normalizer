@@ -109,7 +109,6 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
-    qDebug() << index;
     QWidget* widget = _ui->tabWidgetCave->widget(index);
     _ui->tabWidgetCave->removeTab(index);
     delete widget;
