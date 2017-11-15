@@ -24,7 +24,7 @@ MainWindow::MainWindow() :
         _treeView->hideColumn(i);
     }
 
-    _ui->tabWidget_left_sideBar->addTab(_treeView, tr("File Browser"));
+    _ui->tabWidget_left_sideBar->addTab(_treeView, tr("Workspace"));
     _ui->tabWidget_left_sideBar->addTab(new QWidget, tr("Properties"));
 
     _cave = new Cave;
