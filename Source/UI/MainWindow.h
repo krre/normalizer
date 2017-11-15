@@ -7,6 +7,7 @@ namespace Ui {
 
 class Cave;
 class QTreeView;
+class QFileSystemModel;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -39,5 +40,6 @@ private:
 
     Ui::MainWindow* _ui;
     QTreeView* _treeView;
+    QFileSystemModel* _fsModel;
     Cave* _currentCave = nullptr;
 };

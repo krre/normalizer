@@ -13,14 +13,14 @@ MainWindow::MainWindow() :
     _treeView = new QTreeView;
     _treeView->setFrameShape(QFrame::NoFrame);
     _treeView->setHeaderHidden(true);
-    QFileSystemModel* fsModel = new QFileSystemModel;
-    _treeView->setModel(fsModel);
+    _fsModel = new QFileSystemModel;
+    _treeView->setModel(_fsModel);
     QString workspaceDir = Settings::instance()->readWorkspace();
     QDir dir;
     dir.mkpath(workspaceDir);
-    QModelIndex index = fsModel->setRootPath(workspaceDir);
+    QModelIndex index = _fsModel->setRootPath(workspaceDir);
     _treeView->setRootIndex(index);
-    for (int i = 1; i < fsModel->columnCount(); ++i) {
+    for (int i = 1; i < _fsModel->columnCount(); ++i) {
         _treeView->hideColumn(i);
     }
 
