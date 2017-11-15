@@ -31,11 +31,14 @@ private slots:
     void on_tabWidgetCave_tabCloseRequested(int index);
     void on_tabWidgetCave_currentChanged(int index);
 
+    void onFileDoubleClicked(const QModelIndex& index);
+
 private:
     void readSettings();
     void writeSettings();
     void changeWindowTitle(const QString& filePath = QString());
     void addCaveTab(const QString& filePath);
+    int findCave(const QString& filePath);
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;

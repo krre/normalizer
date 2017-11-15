@@ -24,6 +24,8 @@ MainWindow::MainWindow() :
         _treeView->hideColumn(i);
     }
 
+    connect(_treeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
+
     _ui->tabWidgetSideBar->addTab(_treeView, tr("Workspace"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
@@ -121,6 +123,10 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     }
 }
 
+void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
+    addCaveTab(_fsModel->filePath(index));
+}
+
 void MainWindow::readSettings() {
     Settings::instance()->beginGroup("MainWindow");
 
@@ -179,11 +185,29 @@ void MainWindow::addCaveTab(const QString& filePath) {
     if (info.suffix() != "irbis") {
         fullIrbisPath += ".irbis";
     }
+
+    int tabIndex = findCave(fullIrbisPath);
+    if (tabIndex != -1) {
+        _ui->tabWidgetCave->setCurrentIndex(tabIndex);
+    } else {
+        QFileInfo fi(fullIrbisPath);
+        int index = _ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
+        _ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
+        _ui->tabWidgetCave->setCurrentIndex(index);
+    }
+
     changeWindowTitle(fullIrbisPath);
-    QFileInfo fi(fullIrbisPath);
-    int index = _ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
-    _ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
-    _ui->tabWidgetCave->setCurrentIndex(index);
+}
+
+int MainWindow::findCave(const QString& filePath) {
+    for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
+        Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+        if (cave->filePath() == filePath) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
