@@ -147,17 +147,18 @@ void MainWindow::readSettings() {
 
     Settings::instance()->endGroup();
 
-    Settings::instance()->beginGroup("Cave");
-//    QString filePath = Settings::instance()->value("filePath").toString();
-//    if (!filePath.isEmpty()) {
-//        changeWindowTitle(filePath);
-//        QFileInfo fi(filePath);
-//        int index = _ui->tabWidgetCave->addTab(new Cave(filePath), fi.fileName());
-//        _ui->tabWidgetCave->setCurrentIndex(index);
-//    } else {
-//        changeWindowTitle();
-//    }
-    Settings::instance()->endGroup();
+    if (Settings::instance()->readRestoreSession()) {
+        Settings::instance()->beginGroup("Session");
+        QStringList keys = Settings::instance()->allKeys();
+        for (int i = 0; i < keys.count(); i++) {
+            QString filePath = Settings::instance()->value(keys.at(i)).toString();
+            QFileInfo fi(filePath);
+            if (fi.exists()) {
+                addCaveTab(filePath);
+            }
+        }
+        Settings::instance()->endGroup();
+    }
 }
 
 void MainWindow::writeSettings() {
@@ -168,9 +169,15 @@ void MainWindow::writeSettings() {
     Settings::instance()->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
     Settings::instance()->endGroup();
 
-    Settings::instance()->beginGroup("Cave");
-//    Settings::instance()->setValue("filePath", _cave->filePath());
-    Settings::instance()->endGroup();
+    if (Settings::instance()->readRestoreSession()) {
+        Settings::instance()->remove("Session");
+        Settings::instance()->beginGroup("Session");
+        for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
+            Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+            Settings::instance()->setValue(QString::number(i), cave->filePath());
+        }
+        Settings::instance()->endGroup();
+    }
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
