@@ -15,7 +15,10 @@ MainWindow::MainWindow() :
     _treeView->setHeaderHidden(true);
     QFileSystemModel* fsModel = new QFileSystemModel;
     _treeView->setModel(fsModel);
-    QModelIndex index = fsModel->setRootPath(QDir::homePath());
+    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QDir dir;
+    dir.mkpath(workspaceDir);
+    QModelIndex index = fsModel->setRootPath(workspaceDir);
     _treeView->setRootIndex(index);
     for (int i = 1; i < fsModel->columnCount(); ++i) {
         _treeView->hideColumn(i);
@@ -33,7 +36,8 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNew_triggered() {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
+    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
         if (info.suffix() != "irbis") {
@@ -45,7 +49,8 @@ void MainWindow::on_actionNew_triggered() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
+    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         changeWindowTitle(filePath);
         _cave->openIrbis(filePath);
@@ -53,7 +58,8 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionSave_As_triggered() {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
+    QString workspaceDir = _settings.value("Path/workspace", QDir::homePath() + "/" + WORKSPACE_DIRECTORY).toString();
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
         if (info.suffix() != "irbis") {
