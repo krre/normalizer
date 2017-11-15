@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>options</class>
- <widget class="QDialog" name="options">
+ <class>Options</class>
+ <widget class="QDialog" name="Options">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -28,10 +28,10 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="lineEditWorkspace"/>
       </item>
       <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pushButtonWorkspace">
         <property name="text">
          <string>Browse...</string>
         </property>
@@ -76,7 +76,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>options</receiver>
+   <receiver>Options</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -92,7 +92,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>options</receiver>
+   <receiver>Options</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

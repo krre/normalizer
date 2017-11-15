@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "Options.h"
 #include "Cave.h"
 #include "Core/Defines.h"
 #include <QtWidgets>
@@ -70,6 +71,11 @@ void MainWindow::on_actionClose_triggered() {
 
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
+}
+
+void MainWindow::on_actionOptions_triggered() {
+    Options options(this);
+    options.exec();
 }
 
 void MainWindow::on_actionShow_Left_Sidebar_toggled(bool checked) {

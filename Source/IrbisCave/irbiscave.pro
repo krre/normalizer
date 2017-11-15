@@ -9,13 +9,15 @@ SOURCES += \
     main.cpp \
     UI/MainWindow.cpp \
     UI/Cave.cpp \
-    Db/DatabaseManager.cpp
+    Db/DatabaseManager.cpp \
+    UI/Options.cpp
 
 HEADERS += \
     UI/MainWindow.h \
     Core/Defines.h \
     UI/Cave.h \
-    Db/DatabaseManager.h
+    Db/DatabaseManager.h \
+    UI/Options.h
 
 FORMS += \
     UI/MainWindow.ui \
