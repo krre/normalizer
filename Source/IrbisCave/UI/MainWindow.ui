@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1160</width>
-    <height>659</height>
+    <width>1033</width>
+    <height>566</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,8 +63,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1160</width>
-     <height>21</height>
+     <width>1033</width>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -91,7 +91,14 @@
     </property>
     <addaction name="actionShow_Left_Sidebar"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionOptions"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -152,6 +159,11 @@
    </property>
    <property name="shortcut">
     <string>Alt+0</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options...</string>
    </property>
   </action>
  </widget>
