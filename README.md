@@ -1,4 +1,4 @@
-# IrbisBuilder
+# Irbis UnitBuilder
 Builder of units for IrbisCave
 
 ## Dependencies
