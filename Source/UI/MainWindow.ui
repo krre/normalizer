@@ -97,6 +97,8 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionUnitBuilder"/>
+    <addaction name="separator"/>
     <addaction name="actionOptions"/>
    </widget>
    <addaction name="menuFile"/>
@@ -188,6 +190,11 @@
    </property>
    <property name="text">
     <string>Close Other</string>
+   </property>
+  </action>
+  <action name="actionUnitBuilder">
+   <property name="text">
+    <string>UnitBuilder...</string>
    </property>
   </action>
  </widget>

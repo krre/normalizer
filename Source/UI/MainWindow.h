@@ -9,6 +9,7 @@ class Cave;
 class Settings;
 class QTreeView;
 class QFileSystemModel;
+class QProcess;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -25,6 +26,7 @@ private slots:
     void on_actionCloseAll_triggered();
     void on_actionCloseOther_triggered();
     void on_actionExit_triggered();
+    void on_actionUnitBuilder_triggered();
     void on_actionOptions_triggered();
     void on_actionShowSidebar_toggled(bool checked=false);
     void on_actionAbout_triggered();
@@ -48,4 +50,5 @@ private:
     QTreeView* _treeView;
     QFileSystemModel* _fsModel;
     Cave* _currentCave = nullptr;
+    QProcess* _process;
 };

@@ -9,6 +9,7 @@
 MainWindow::MainWindow() :
         _ui(new Ui::MainWindow) {
     _settings = Settings::instance();
+    _process = new QProcess(this);
 
     _ui->setupUi(this);
 
@@ -82,6 +83,11 @@ void MainWindow::on_actionCloseOther_triggered() {
 
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
+}
+
+void MainWindow::on_actionUnitBuilder_triggered() {
+    _process->setProgram("unitbuilder");
+    _process->start();
 }
 
 void MainWindow::on_actionOptions_triggered() {
