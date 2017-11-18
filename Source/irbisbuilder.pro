@@ -6,4 +6,11 @@ TARGET = ../../../build/unitbuilder
 TEMPLATE = app
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    UI/MainWindow.cpp
+
+FORMS += \
+    UI/MainWindow.ui
+
+HEADERS += \
+    UI/MainWindow.h
