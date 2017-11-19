@@ -61,7 +61,8 @@ private:
 
     Ui::MainWindow* _ui;
     Settings* _settings;
-    QTreeView* _treeView;
+    QTreeView* _workspaceTreeView;
+    QTreeView* _projectTreeView;
     QFileSystemModel* _fsModel;
     QProcess* _process;
 };

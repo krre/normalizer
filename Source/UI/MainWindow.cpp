@@ -13,18 +13,28 @@ MainWindow::MainWindow() :
 
     _ui->setupUi(this);
 
-    _treeView = new QTreeView;
-    _treeView->setFrameShape(QFrame::NoFrame);
-    _treeView->setHeaderHidden(true);
+    _workspaceTreeView = new QTreeView;
+    _workspaceTreeView->setFrameShape(QFrame::NoFrame);
+    _workspaceTreeView->setHeaderHidden(true);
     _fsModel = new QFileSystemModel;
-    _treeView->setModel(_fsModel);
+    _workspaceTreeView->setModel(_fsModel);
     for (int i = 1; i < _fsModel->columnCount(); ++i) {
-        _treeView->hideColumn(i);
+        _workspaceTreeView->hideColumn(i);
     }
 
-    connect(_treeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
+    _projectTreeView = new QTreeView;
+    _projectTreeView->setFrameShape(QFrame::NoFrame);
+    _projectTreeView->setHeaderHidden(true);
+    _fsModel = new QFileSystemModel;
+    _projectTreeView->setModel(_fsModel);
+    for (int i = 1; i < _fsModel->columnCount(); ++i) {
+        _projectTreeView->hideColumn(i);
+    }
 
-    _ui->tabWidgetSideBar->addTab(_treeView, tr("Workspace"));
+    connect(_projectTreeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
+
+    _ui->tabWidgetSideBar->addTab(_workspaceTreeView, tr("Workspace"));
+    _ui->tabWidgetSideBar->addTab(_projectTreeView, tr("Project"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
     changeWorkspace();
@@ -140,10 +150,10 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     if (index >= 0) {
         QString filePath = static_cast<Cave*>(_ui->tabWidgetCave->widget(index))->filePath();
         QModelIndex modelIndex = _fsModel->index(filePath);
-        _treeView->setCurrentIndex(modelIndex);
+        _projectTreeView->setCurrentIndex(modelIndex);
         changeWindowTitle(filePath);
     } else {
-        _treeView->setCurrentIndex(QModelIndex());
+        _projectTreeView->setCurrentIndex(QModelIndex());
         changeWindowTitle();
     }
 
@@ -229,7 +239,7 @@ void MainWindow::changeWorkspace() {
     QDir dir;
     dir.mkpath(workspaceDir);
     QModelIndex index = _fsModel->setRootPath(workspaceDir);
-    _treeView->setRootIndex(index);
+    _projectTreeView->setRootIndex(index);
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {
