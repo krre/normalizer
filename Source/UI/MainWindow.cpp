@@ -86,8 +86,7 @@ void MainWindow::on_actionExit_triggered() {
 }
 
 void MainWindow::on_actionUnitBuilder_triggered() {
-    _process->setProgram("unitbuilder");
-    _process->start();
+    _process->startDetached("unitbuilder");
 }
 
 void MainWindow::on_actionOptions_triggered() {
