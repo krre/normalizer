@@ -1,5 +1,5 @@
 #pragma once
-#include "Singleton.h"
+#include <Irbis/Core/Singleton.h>
 #include <QSettings>
 
 class Settings : public QSettings, public Singleton<Settings> {

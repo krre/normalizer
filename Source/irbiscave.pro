@@ -2,13 +2,16 @@ QT += core gui widgets sql
 QT += 3dcore 3drender 3dinput 3dextras
 
 CONFIG += c++11
-TARGET = ../../../build/irbiscave
+TARGET = irbiscave
 TEMPLATE = app
+DESTDIR = $$(IRBIS_HOME)/build
 
 VERSION_MAJOR = 0
 VERSION_MINOR = 1
 VERSION_PATCH = 0
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_PATCH}
+
+INCLUDEPATH += $$(IRBIS_HOME)/irbislib/Source
 
 DEFINES += VERSION_MAJOR=$$VERSION_MAJOR \
     VERSION_MINOR=$$VERSION_MINOR \
