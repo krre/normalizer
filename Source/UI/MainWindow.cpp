@@ -36,12 +36,17 @@ MainWindow::~MainWindow() {
     delete _ui;
 }
 
-void MainWindow::on_actionNew_triggered() {
-    QString workspaceDir = _settings->readWorkspace();
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
-    if (!filePath.isEmpty()) {
-        addCaveTab(filePath);
-    }
+void MainWindow::on_actionNewProject_triggered() {
+//    QString workspaceDir = _settings->readWorkspace();
+//    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
+//    if (!filePath.isEmpty()) {
+//        addCaveTab(filePath);
+//    }
+    qDebug() << "New Project";
+}
+
+void MainWindow::on_actionNewIrbis_triggered() {
+    qDebug() << "New Irbis";
 }
 
 void MainWindow::on_actionOpen_triggered() {
@@ -58,6 +63,10 @@ void MainWindow::on_actionSaveAs_triggered() {
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
     }
+}
+
+void MainWindow::on_actionCloseProject_triggered() {
+    qDebug() << "Close Project";
 }
 
 void MainWindow::on_actionClose_triggered() {

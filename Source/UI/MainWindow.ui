@@ -68,9 +68,20 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
+    <widget class="QMenu" name="menuNew">
+     <property name="title">
+      <string>New</string>
+     </property>
+     <addaction name="actionNewProject"/>
+     <addaction name="actionNewIrbis"/>
+    </widget>
+    <addaction name="menuNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionRecentProjects"/>
+    <addaction name="separator"/>
     <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionCloseProject"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
     <addaction name="actionCloseAll"/>
@@ -116,14 +127,6 @@
     <string>About...</string>
    </property>
   </action>
-  <action name="actionNew">
-   <property name="text">
-    <string>New...</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
@@ -156,7 +159,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Close</string>
+    <string>Close File</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -213,6 +216,41 @@
   <action name="actionStop">
    <property name="text">
     <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionNew_Irbis_File">
+   <property name="text">
+    <string>New Irbis File...</string>
+   </property>
+  </action>
+  <action name="actionCloseProject">
+   <property name="text">
+    <string>Close Project</string>
+   </property>
+  </action>
+  <action name="actionOpen_Irbis_File">
+   <property name="text">
+    <string>Open Irbis File...</string>
+   </property>
+  </action>
+  <action name="actionRecentProjects">
+   <property name="text">
+    <string>Recent Projects</string>
+   </property>
+  </action>
+  <action name="actionNewProject">
+   <property name="text">
+    <string>Project...</string>
+   </property>
+  </action>
+  <action name="actionNewIrbis">
+   <property name="text">
+    <string>Irbis File...</string>
+   </property>
+  </action>
+  <action name="actionIrbis_Library">
+   <property name="text">
+    <string>Irbis Library...</string>
    </property>
   </action>
  </widget>

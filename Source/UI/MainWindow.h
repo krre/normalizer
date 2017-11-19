@@ -20,9 +20,11 @@ public:
 
 private slots:
     // File
-    void on_actionNew_triggered();
+    void on_actionNewProject_triggered();
+    void on_actionNewIrbis_triggered();
     void on_actionOpen_triggered();
     void on_actionSaveAs_triggered();
+    void on_actionCloseProject_triggered();
     void on_actionClose_triggered();
     void on_actionCloseAll_triggered();
     void on_actionCloseOther_triggered();
