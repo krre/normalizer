@@ -20,7 +20,9 @@ Options::~Options() {
 
 void Options::on_pushButtonWorkspace_clicked() {
     QString dirPath = QFileDialog::getExistingDirectory(this);
-    _ui->lineEditWorkspace->setText(dirPath);
+    if (!dirPath.isEmpty()) {
+        _ui->lineEditWorkspace->setText(dirPath);
+    }
 }
 
 void Options::on_buttonBox_accepted() {
