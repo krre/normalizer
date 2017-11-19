@@ -19,6 +19,7 @@ public:
     ~MainWindow();
 
 private slots:
+    // File
     void on_actionNew_triggered();
     void on_actionOpen_triggered();
     void on_actionSaveAs_triggered();
@@ -26,12 +27,21 @@ private slots:
     void on_actionCloseAll_triggered();
     void on_actionCloseOther_triggered();
     void on_actionExit_triggered();
+
+    // Build
     void on_actionBuild_triggered();
+
+    // Tools
     void on_actionUnitBuilder_triggered();
     void on_actionOptions_triggered();
+
+    // View
     void on_actionShowSidebar_toggled(bool checked=false);
+
+    // Help
     void on_actionAbout_triggered();
 
+    // TabView
     void on_tabWidgetCave_tabCloseRequested(int index);
     void on_tabWidgetCave_currentChanged(int index);
 
