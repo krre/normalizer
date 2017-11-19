@@ -49,6 +49,5 @@ private:
     Settings* _settings;
     QTreeView* _treeView;
     QFileSystemModel* _fsModel;
-    Cave* _currentCave = nullptr;
     QProcess* _process;
 };
