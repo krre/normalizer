@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "Options.h"
+#include "NewProject.h"
 #include "Cave.h"
 #include "Core/Defines.h"
 #include "Core/Settings.h"
@@ -52,7 +53,8 @@ void MainWindow::on_actionNewProject_triggered() {
 //    if (!filePath.isEmpty()) {
 //        addCaveTab(filePath);
 //    }
-    qDebug() << "New Project";
+    NewProject newProject(this);
+    newProject.exec();
 }
 
 void MainWindow::on_actionNewIrbis_triggered() {
