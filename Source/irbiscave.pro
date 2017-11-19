@@ -38,3 +38,7 @@ HEADERS += \
 FORMS += \
     UI/MainWindow.ui \
     UI/Options.ui
+
+DISTFILES += \
+    ../README.md \
+    ../.gitignore
