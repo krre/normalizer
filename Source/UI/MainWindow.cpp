@@ -13,6 +13,14 @@ MainWindow::~MainWindow() {
     delete _ui;
 }
 
+void MainWindow::on_actionOpen_triggered() {
+    QString workspaceDir = QString(); // TODO: Set workspace
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
+    if (!filePath.isEmpty()) {
+        qDebug() << "open" << filePath;
+    }
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
