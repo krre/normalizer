@@ -18,3 +18,7 @@ FORMS += \
 HEADERS += \
     UI/MainWindow.h \
     Core/Defines.h
+
+DISTFILES += \
+    ../README.md \
+    ../.gitignore
