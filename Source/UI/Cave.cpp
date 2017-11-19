@@ -25,6 +25,10 @@ void Cave::build() {
     _process->startDetached("irbis");
 }
 
+void Cave::stop() {
+    qDebug() << "Stop build";
+}
+
 QString Cave::filePath() const {
     return _filePath;
 }

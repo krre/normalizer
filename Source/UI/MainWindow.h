@@ -30,6 +30,7 @@ private slots:
 
     // Build
     void on_actionBuild_triggered();
+    void on_actionStop_triggered();
 
     // Tools
     void on_actionUnitBuilder_triggered();

@@ -13,6 +13,7 @@ public:
     ~Cave();
 
     void build();
+    void stop();
 
     QString filePath() const;
 
