@@ -24,7 +24,8 @@ SOURCES += \
     UI/Cave.cpp \
     Db/DatabaseManager.cpp \
     UI/Options.cpp \
-    Core/Settings.cpp
+    Core/Settings.cpp \
+    UI/SelectWorkspace.cpp
 
 HEADERS += \
     UI/MainWindow.h \
@@ -33,11 +34,13 @@ HEADERS += \
     Db/DatabaseManager.h \
     UI/Options.h \
     Core/Singleton.h \
-    Core/Settings.h
+    Core/Settings.h \
+    UI/SelectWorkspace.h
 
 FORMS += \
     UI/MainWindow.ui \
-    UI/Options.ui
+    UI/Options.ui \
+    UI/SelectWorkspace.ui
 
 DISTFILES += \
     ../README.md \

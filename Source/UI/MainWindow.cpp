@@ -22,12 +22,12 @@ MainWindow::MainWindow() :
         _treeView->hideColumn(i);
     }
 
-    changeWorkspace();
-
     connect(_treeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
 
     _ui->tabWidgetSideBar->addTab(_treeView, tr("Workspace"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
+
+    changeWorkspace();
 
     readSettings();
 }
