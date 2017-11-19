@@ -14,10 +14,15 @@ Cave::Cave(const QString& filePath) : _filePath(filePath) {
     layout->addWidget(container);
 
     _databaseManager = new DatabaseManager(filePath, this);
+    _process = new QProcess(this);
 }
 
 Cave::~Cave() {
 
+}
+
+void Cave::build() {
+    _process->startDetached("irbis");
 }
 
 QString Cave::filePath() const {

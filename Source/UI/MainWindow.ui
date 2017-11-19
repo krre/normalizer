@@ -98,7 +98,15 @@
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
    </widget>
+   <widget class="QMenu" name="menuBuild">
+    <property name="title">
+     <string>Build</string>
+    </property>
+    <addaction name="actionBuild"/>
+    <addaction name="actionStop"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuBuild"/>
    <addaction name="menuTools"/>
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
@@ -192,6 +200,19 @@
   <action name="actionUnitBuilder">
    <property name="text">
     <string>UnitBuilder...</string>
+   </property>
+  </action>
+  <action name="actionBuild">
+   <property name="text">
+    <string>Build</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Stop</string>
    </property>
   </action>
  </widget>

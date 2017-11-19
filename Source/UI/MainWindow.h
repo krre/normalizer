@@ -26,6 +26,7 @@ private slots:
     void on_actionCloseAll_triggered();
     void on_actionCloseOther_triggered();
     void on_actionExit_triggered();
+    void on_actionBuild_triggered();
     void on_actionUnitBuilder_triggered();
     void on_actionOptions_triggered();
     void on_actionShowSidebar_toggled(bool checked=false);

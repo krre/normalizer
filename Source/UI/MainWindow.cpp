@@ -85,6 +85,10 @@ void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
 
+void MainWindow::on_actionBuild_triggered() {
+    static_cast<Cave*>(_ui->tabWidgetCave->currentWidget())->build();
+}
+
 void MainWindow::on_actionUnitBuilder_triggered() {
     _process->startDetached("unitbuilder");
 }
