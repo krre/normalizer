@@ -13,4 +13,5 @@ FORMS += \
     UI/MainWindow.ui
 
 HEADERS += \
-    UI/MainWindow.h
+    UI/MainWindow.h \
+    Core/Defines.h

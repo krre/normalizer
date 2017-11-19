@@ -1,10 +1,11 @@
 #include <QApplication>
 #include "UI/MainWindow.h"
+#include "Core/Defines.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    app.setApplicationName("Irbis UnitBuilder");
-    app.setApplicationVersion("0.1.0");
+    app.setApplicationName(APP_NAME);
+    app.setApplicationVersion(APP_VERSION_STR);
 
     MainWindow mainWindow;
     mainWindow.show();
