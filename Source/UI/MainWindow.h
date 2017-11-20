@@ -57,7 +57,8 @@ private:
     void saveSession();
     void restoreSession();
     void changeWindowTitle(const QString& filePath = QString());
-    void changeProject(const QString& projectPath = QString());
+    void openProject(const QString& projectPath);
+    void closeProject();
     void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
     void closeEvent(QCloseEvent* event);

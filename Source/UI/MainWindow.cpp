@@ -23,9 +23,6 @@ MainWindow::MainWindow() :
     _projectTreeView = new QTreeView;
     _projectTreeView->setFrameShape(QFrame::NoFrame);
     _projectTreeView->setHeaderHidden(true);
-    for (int i = 1; i < _fsModel->columnCount(); ++i) {
-        _projectTreeView->hideColumn(i);
-    }
 
     connect(_projectTreeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
 
@@ -44,7 +41,7 @@ void MainWindow::on_actionNewProject_triggered() {
     NewProject newProject(this);
     newProject.exec();
     if (!newProject.projectPath().isEmpty()) {
-        changeProject(newProject.projectPath());
+        openProject(newProject.projectPath());
     }
 }
 
@@ -57,12 +54,14 @@ void MainWindow::on_actionNewIrbis_triggered() {
 }
 
 void MainWindow::on_actionOpenProject_triggered() {
-
+    QString dirPath = QFileDialog::getExistingDirectory(this, QString(), _settings->readWorkspace());
+    if (!dirPath.isEmpty()) {
+        openProject(dirPath);
+    }
 }
 
 void MainWindow::on_actionOpenFile_triggered() {
-    QString workspaceDir = _settings->readWorkspace();
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), _projectPath, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
     }
@@ -78,9 +77,7 @@ void MainWindow::on_actionSaveFileAs_triggered() {
 }
 
 void MainWindow::on_actionCloseProject_triggered() {
-    saveSession();
-    on_actionCloseAll_triggered();
-    changeProject();
+    closeProject();
 }
 
 void MainWindow::on_actionClose_triggered() {
@@ -187,8 +184,7 @@ void MainWindow::readSettings() {
 
     _settings->endGroup();
 
-    changeProject(_settings->value("Path/lastProject").toString());
-    restoreSession();
+    openProject(_settings->value("Path/lastProject").toString());
 }
 
 void MainWindow::writeSettings() {
@@ -229,7 +225,7 @@ void MainWindow::saveSession() {
 }
 
 void MainWindow::restoreSession() {
-    if (!_settings->readRestoreSession() || !_projectPath.isEmpty()) {
+    if (!_settings->readRestoreSession() || _projectPath.isEmpty()) {
         return;
     }
 
@@ -271,14 +267,24 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
     setWindowTitle(title);
 }
 
-void MainWindow::changeProject(const QString& projectPath) {
+void MainWindow::openProject(const QString& projectPath) {
+    closeProject();
     _projectPath = projectPath;
-    if (projectPath.isEmpty()) {
-        _projectTreeView->setModel(nullptr);
-    } else {
-        _projectTreeView->setModel(_fsModel);
-        _projectTreeView->setRootIndex(_fsModel->setRootPath(projectPath));
+    _projectTreeView->setModel(_fsModel);
+    _projectTreeView->setRootIndex(_fsModel->setRootPath(projectPath));
+
+    for (int i = 1; i < _fsModel->columnCount(); ++i) {
+        _projectTreeView->hideColumn(i);
     }
+
+    restoreSession();
+}
+
+void MainWindow::closeProject() {
+    saveSession();
+    on_actionCloseAll_triggered();
+    _projectPath = QString();
+    _projectTreeView->setModel(nullptr);
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {
