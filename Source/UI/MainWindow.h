@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include <QScopedPointer>
 
 namespace Ui {
     class MainWindow;
@@ -66,7 +67,7 @@ private:
     Ui::MainWindow* _ui;
     Settings* _settings;
     QTreeView* _projectTreeView;
-    QFileSystemModel* _fsModel;
+    QScopedPointer<QFileSystemModel> _fsModel;
     QProcess* _process;
     QString _projectPath;
 };

@@ -16,7 +16,7 @@ MainWindow::MainWindow() :
         _ui(new Ui::MainWindow) {
     _settings = Settings::instance();
     _process = new QProcess(this);
-    _fsModel = new QFileSystemModel;
+    _fsModel.reset(new QFileSystemModel);
 
     _ui->setupUi(this);
 
@@ -34,7 +34,6 @@ MainWindow::MainWindow() :
 
 MainWindow::~MainWindow() {
     delete _ui;
-    delete _fsModel;
 }
 
 void MainWindow::on_actionNewProject_triggered() {
@@ -276,7 +275,7 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
 void MainWindow::openProject(const QString& projectPath) {
     closeProject();
     _projectPath = projectPath;
-    _projectTreeView->setModel(_fsModel);
+    _projectTreeView->setModel(_fsModel.data());
     _projectTreeView->setRootIndex(_fsModel->setRootPath(projectPath));
 
     for (int i = 1; i < _fsModel->columnCount(); ++i) {
