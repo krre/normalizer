@@ -35,6 +35,7 @@ void NewProject::on_buttonBox_accepted() {
         _projectPath = projectPath;
         dir.cd(projectPath);
         dir.mkdir(PROJECT_DIRECTORY);
+        dir.mkdir(PROJECT_BUILD_DIRECTORY);
     } else {
         qDebug() << "Error creating project directory" << projectPath; // TODO: Make message dialog
     }

@@ -6,3 +6,4 @@
 #define APP_SETTINGS_NAME "irbiscave.ini"
 #define WORKSPACE_DIRECTORY "IrbisProjects"
 #define PROJECT_DIRECTORY ".irbis"
+#define PROJECT_BUILD_DIRECTORY "build"
