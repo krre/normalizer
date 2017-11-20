@@ -76,12 +76,14 @@
      <addaction name="actionNewIrbis"/>
     </widget>
     <addaction name="menuNew"/>
-    <addaction name="actionOpen"/>
+    <addaction name="actionOpenProject"/>
     <addaction name="actionRecentProjects"/>
-    <addaction name="separator"/>
     <addaction name="actionCloseProject"/>
     <addaction name="separator"/>
-    <addaction name="actionSaveAs"/>
+    <addaction name="actionOpenFile"/>
+    <addaction name="actionRecentFiles"/>
+    <addaction name="separator"/>
+    <addaction name="actionSaveFileAs"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
     <addaction name="actionCloseAll"/>
@@ -127,20 +129,17 @@
     <string>About...</string>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="actionOpenProject">
    <property name="text">
-    <string>Open...</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string>Open Project...</string>
    </property>
   </action>
-  <action name="actionSaveAs">
+  <action name="actionSaveFileAs">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Save As...</string>
+    <string>Save File As...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -251,6 +250,19 @@
   <action name="actionIrbis_Library">
    <property name="text">
     <string>Irbis Library...</string>
+   </property>
+  </action>
+  <action name="actionOpenFile">
+   <property name="text">
+    <string>Open File...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionRecentFiles">
+   <property name="text">
+    <string>Recent Files</string>
    </property>
   </action>
  </widget>

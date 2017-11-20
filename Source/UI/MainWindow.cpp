@@ -56,7 +56,11 @@ void MainWindow::on_actionNewIrbis_triggered() {
     }
 }
 
-void MainWindow::on_actionOpen_triggered() {
+void MainWindow::on_actionOpenProject_triggered() {
+
+}
+
+void MainWindow::on_actionOpenFile_triggered() {
     QString workspaceDir = _settings->readWorkspace();
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
@@ -64,7 +68,8 @@ void MainWindow::on_actionOpen_triggered() {
     }
 }
 
-void MainWindow::on_actionSaveAs_triggered() {
+
+void MainWindow::on_actionSaveFileAs_triggered() {
     QString workspaceDir = _settings->readWorkspace();
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
@@ -155,7 +160,7 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
         changeWindowTitle();
     }
 
-    _ui->actionSaveAs->setEnabled(index >= 0);
+    _ui->actionSaveFileAs->setEnabled(index >= 0);
     _ui->actionClose->setEnabled(index >= 0);
     _ui->actionCloseOther->setEnabled(index >= 0);
     _ui->actionCloseAll->setEnabled(index >= 0);

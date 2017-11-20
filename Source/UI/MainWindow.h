@@ -22,8 +22,9 @@ private slots:
     // File
     void on_actionNewProject_triggered();
     void on_actionNewIrbis_triggered();
-    void on_actionOpen_triggered();
-    void on_actionSaveAs_triggered();
+    void on_actionOpenProject_triggered();
+    void on_actionOpenFile_triggered();
+    void on_actionSaveFileAs_triggered();
     void on_actionCloseProject_triggered();
     void on_actionClose_triggered();
     void on_actionCloseAll_triggered();
