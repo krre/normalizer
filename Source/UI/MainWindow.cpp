@@ -45,13 +45,11 @@ void MainWindow::on_actionNewProject_triggered() {
 }
 
 void MainWindow::on_actionNewIrbis_triggered() {
-    NewFile newFile;
+    NewFile newFile(_projectPath);
     newFile.exec();
-//    QString workspaceDir = _settings->readWorkspace();
-//    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
-//    if (!filePath.isEmpty()) {
-//        addCaveTab(filePath);
-//    }
+    if (!newFile.filePath().isEmpty()) {
+        addCaveTab(newFile.filePath());
+    }
 }
 
 void MainWindow::on_actionOpen_triggered() {
