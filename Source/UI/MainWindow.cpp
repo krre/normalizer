@@ -7,6 +7,10 @@
 #include "Core/Defines.h"
 #include "Core/Settings.h"
 #include <QtWidgets>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 MainWindow::MainWindow() :
         _ui(new Ui::MainWindow) {
@@ -178,24 +182,8 @@ void MainWindow::readSettings() {
 
     changeProject(_settings->value("Path/lastProject").toString());
 
-    if (_settings->readRestoreSession()) {
-//        QString selectedFilePath;
-//        _settings->beginGroup("Session");
-//        int selectedIndex = _settings->value("selected", -1).toInt();
-//        QStringList keys = _settings->allKeys();
-//        for (int i = 0; i < keys.count(); i++) {
-//            QString filePath = _settings->value(keys.at(i)).toString();
-//            QFileInfo fi(filePath);
-//            if (fi.exists()) {
-//                addCaveTab(filePath);
-//                if (selectedIndex == i) {
-//                    selectedFilePath = filePath;
-//                }
-//            }
-//        }
-//        _settings->endGroup();
-
-//        _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
+    if (_settings->readRestoreSession() && !_projectPath.isEmpty()) {
+        restoreSession();
     }
 }
 
@@ -209,16 +197,61 @@ void MainWindow::writeSettings() {
 
     _settings->setValue("Path/lastProject", _projectPath);
 
-//    if (_settings->readRestoreSession()) {
-//        _settings->remove("Session");
-//        _settings->beginGroup("Session");
-//        for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
-//            Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
-//            _settings->setValue(QString::number(i), cave->filePath());
-//        }
-//        _settings->setValue("selected", _ui->tabWidgetCave->currentIndex());
-//        _settings->endGroup();
-//    }
+    if (_settings->readRestoreSession() && !_projectPath.isEmpty()) {
+        saveSession();
+    }
+}
+
+void MainWindow::saveSession() {
+    QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
+    QFile saveFile(sessionPath);
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+        qWarning() << "Couldn't open session file" << sessionPath;
+        return;
+    }
+
+    QJsonArray openFiles;
+    for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
+        Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+        openFiles.append(QJsonValue(cave->filePath()));
+    }
+
+    QJsonObject obj;
+    obj["openFiles"] = openFiles;
+    obj["selectedTab"] = _ui->tabWidgetCave->currentIndex();
+
+    QJsonDocument saveDoc(obj);
+    saveFile.write(saveDoc.toJson());
+}
+
+void MainWindow::restoreSession() {
+    QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
+    QFileInfo fi(sessionPath);
+    if (!fi.exists()) {
+        return;
+    }
+
+    QFile loadFile(sessionPath);
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning() << "Couldn't open session file" << sessionPath;
+        return;
+    }
+
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+    QJsonArray array = loadDoc.object()["openFiles"].toArray();
+    int selectedTab = loadDoc.object()["selectedTab"].toInt();
+    QString selectedFilePath = array.at(selectedTab).toString();
+
+    for (int i = 0; i < array.count(); i++) {
+        QString filePath = array.at(i).toString();
+        QFileInfo fi(filePath);
+        if (fi.exists()) {
+            addCaveTab(filePath);
+        }
+    }
+
+    _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {

@@ -53,6 +53,8 @@ private slots:
 private:
     void readSettings();
     void writeSettings();
+    void saveSession();
+    void restoreSession();
     void changeWindowTitle(const QString& filePath = QString());
     void changeProject(const QString& projectPath);
     void addCaveTab(const QString& filePath);

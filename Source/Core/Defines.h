@@ -7,3 +7,4 @@
 #define WORKSPACE_DIRECTORY "IrbisProjects"
 #define PROJECT_DIRECTORY ".irbis"
 #define PROJECT_BUILD_DIRECTORY "build"
+#define PROJECT_SESSION_FILE "session.json"
