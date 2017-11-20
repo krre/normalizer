@@ -69,8 +69,7 @@ void MainWindow::on_actionOpenFile_triggered() {
 
 
 void MainWindow::on_actionSaveFileAs_triggered() {
-    QString workspaceDir = _settings->readWorkspace();
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), _projectPath, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
     }
