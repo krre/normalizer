@@ -48,17 +48,21 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionNewProject_triggered() {
+    NewProject newProject(this);
+    newProject.exec();
+    if (!newProject.projectPath().isEmpty()) {
+        QModelIndex index = _fsModel->setRootPath(newProject.projectPath());
+        _projectTreeView->setRootIndex(index);
+    }
+}
+
+void MainWindow::on_actionNewIrbis_triggered() {
+    qDebug() << "New Irbis";
 //    QString workspaceDir = _settings->readWorkspace();
 //    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
 //    if (!filePath.isEmpty()) {
 //        addCaveTab(filePath);
 //    }
-    NewProject newProject(this);
-    newProject.exec();
-}
-
-void MainWindow::on_actionNewIrbis_triggered() {
-    qDebug() << "New Irbis";
 }
 
 void MainWindow::on_actionOpen_triggered() {
