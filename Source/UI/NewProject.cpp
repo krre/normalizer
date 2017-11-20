@@ -8,7 +8,7 @@ NewProject::NewProject(QWidget *parent) :
         _ui(new Ui::NewProject) {
     _ui->setupUi(this);
     adjustSize();
-    resize(400, height());
+    resize(500, height());
     _ui->lineEditLocation->setText(Settings::instance()->readWorkspace());
 }
 
