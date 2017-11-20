@@ -16,14 +16,13 @@ MainWindow::MainWindow() :
         _ui(new Ui::MainWindow) {
     _settings = Settings::instance();
     _process = new QProcess(this);
+    _fsModel = new QFileSystemModel;
 
     _ui->setupUi(this);
 
     _projectTreeView = new QTreeView;
     _projectTreeView->setFrameShape(QFrame::NoFrame);
     _projectTreeView->setHeaderHidden(true);
-    _fsModel = new QFileSystemModel;
-    _projectTreeView->setModel(_fsModel);
     for (int i = 1; i < _fsModel->columnCount(); ++i) {
         _projectTreeView->hideColumn(i);
     }
@@ -38,6 +37,7 @@ MainWindow::MainWindow() :
 
 MainWindow::~MainWindow() {
     delete _ui;
+    delete _fsModel;
 }
 
 void MainWindow::on_actionNewProject_triggered() {
@@ -73,7 +73,9 @@ void MainWindow::on_actionSaveAs_triggered() {
 }
 
 void MainWindow::on_actionCloseProject_triggered() {
-    qDebug() << "Close Project";
+    saveSession();
+    on_actionCloseAll_triggered();
+    changeProject();
 }
 
 void MainWindow::on_actionClose_triggered() {
@@ -181,10 +183,7 @@ void MainWindow::readSettings() {
     _settings->endGroup();
 
     changeProject(_settings->value("Path/lastProject").toString());
-
-    if (_settings->readRestoreSession() && !_projectPath.isEmpty()) {
-        restoreSession();
-    }
+    restoreSession();
 }
 
 void MainWindow::writeSettings() {
@@ -196,13 +195,13 @@ void MainWindow::writeSettings() {
     _settings->endGroup();
 
     _settings->setValue("Path/lastProject", _projectPath);
-
-    if (_settings->readRestoreSession() && !_projectPath.isEmpty()) {
-        saveSession();
-    }
 }
 
 void MainWindow::saveSession() {
+    if (!_settings->readRestoreSession() || _projectPath.isEmpty()) {
+        return;
+    }
+
     QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
     QFile saveFile(sessionPath);
     if (!saveFile.open(QIODevice::WriteOnly)) {
@@ -225,6 +224,10 @@ void MainWindow::saveSession() {
 }
 
 void MainWindow::restoreSession() {
+    if (!_settings->readRestoreSession() || !_projectPath.isEmpty()) {
+        return;
+    }
+
     QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
     QFileInfo fi(sessionPath);
     if (!fi.exists()) {
@@ -264,10 +267,12 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
 }
 
 void MainWindow::changeProject(const QString& projectPath) {
-    if (!projectPath.isEmpty()) {
-        _projectPath = projectPath;
-        QModelIndex index = _fsModel->setRootPath(_projectPath);
-        _projectTreeView->setRootIndex(index);
+    _projectPath = projectPath;
+    if (projectPath.isEmpty()) {
+        _projectTreeView->setModel(nullptr);
+    } else {
+        _projectTreeView->setModel(_fsModel);
+        _projectTreeView->setRootIndex(_fsModel->setRootPath(projectPath));
     }
 }
 
@@ -302,5 +307,6 @@ int MainWindow::findCave(const QString& filePath) {
 
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
+    saveSession();
     event->accept();
 }
