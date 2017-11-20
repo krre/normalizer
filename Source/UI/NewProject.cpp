@@ -11,6 +11,7 @@ NewProject::NewProject(QWidget *parent) :
     adjustSize();
     resize(500, height());
     _ui->lineEditLocation->setText(Settings::instance()->readWorkspace());
+    _ui->lineEditName->setFocus();
 }
 
 NewProject::~NewProject() {
