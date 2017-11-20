@@ -39,8 +39,7 @@ void MainWindow::on_actionNewProject_triggered() {
     NewProject newProject(this);
     newProject.exec();
     if (!newProject.projectPath().isEmpty()) {
-        QModelIndex index = _fsModel->setRootPath(newProject.projectPath());
-        _projectTreeView->setRootIndex(index);
+        changeProject(newProject.projectPath());
     }
 }
 
@@ -177,24 +176,26 @@ void MainWindow::readSettings() {
 
     _settings->endGroup();
 
-    if (_settings->readRestoreSession()) {
-        QString selectedFilePath;
-        _settings->beginGroup("Session");
-        int selectedIndex = _settings->value("selected", -1).toInt();
-        QStringList keys = _settings->allKeys();
-        for (int i = 0; i < keys.count(); i++) {
-            QString filePath = _settings->value(keys.at(i)).toString();
-            QFileInfo fi(filePath);
-            if (fi.exists()) {
-                addCaveTab(filePath);
-                if (selectedIndex == i) {
-                    selectedFilePath = filePath;
-                }
-            }
-        }
-        _settings->endGroup();
+    changeProject(_settings->value("Path/lastProject").toString());
 
-        _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
+    if (_settings->readRestoreSession()) {
+//        QString selectedFilePath;
+//        _settings->beginGroup("Session");
+//        int selectedIndex = _settings->value("selected", -1).toInt();
+//        QStringList keys = _settings->allKeys();
+//        for (int i = 0; i < keys.count(); i++) {
+//            QString filePath = _settings->value(keys.at(i)).toString();
+//            QFileInfo fi(filePath);
+//            if (fi.exists()) {
+//                addCaveTab(filePath);
+//                if (selectedIndex == i) {
+//                    selectedFilePath = filePath;
+//                }
+//            }
+//        }
+//        _settings->endGroup();
+
+//        _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
     }
 }
 
@@ -206,16 +207,18 @@ void MainWindow::writeSettings() {
     _settings->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
     _settings->endGroup();
 
-    if (_settings->readRestoreSession()) {
-        _settings->remove("Session");
-        _settings->beginGroup("Session");
-        for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
-            Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
-            _settings->setValue(QString::number(i), cave->filePath());
-        }
-        _settings->setValue("selected", _ui->tabWidgetCave->currentIndex());
-        _settings->endGroup();
-    }
+    _settings->setValue("Path/lastProject", _projectPath);
+
+//    if (_settings->readRestoreSession()) {
+//        _settings->remove("Session");
+//        _settings->beginGroup("Session");
+//        for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
+//            Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+//            _settings->setValue(QString::number(i), cave->filePath());
+//        }
+//        _settings->setValue("selected", _ui->tabWidgetCave->currentIndex());
+//        _settings->endGroup();
+//    }
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
@@ -225,6 +228,14 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
         title += " - " + info.fileName();
     }
     setWindowTitle(title);
+}
+
+void MainWindow::changeProject(const QString& projectPath) {
+    if (!projectPath.isEmpty()) {
+        _projectPath = projectPath;
+        QModelIndex index = _fsModel->setRootPath(_projectPath);
+        _projectTreeView->setRootIndex(index);
+    }
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {

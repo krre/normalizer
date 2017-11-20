@@ -54,6 +54,7 @@ private:
     void readSettings();
     void writeSettings();
     void changeWindowTitle(const QString& filePath = QString());
+    void changeProject(const QString& projectPath);
     void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
     void closeEvent(QCloseEvent* event);
@@ -63,4 +64,5 @@ private:
     QTreeView* _projectTreeView;
     QFileSystemModel* _fsModel;
     QProcess* _process;
+    QString _projectPath;
 };
