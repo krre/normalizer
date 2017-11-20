@@ -113,7 +113,11 @@ void MainWindow::on_actionStop_triggered() {
 }
 
 void MainWindow::on_actionUnitBuilder_triggered() {
-    _process->startDetached("unitbuilder");
+    QStringList arguments;
+    if (_ui->tabWidgetCave->count()) {
+        arguments << static_cast<Cave*>(_ui->tabWidgetCave->currentWidget())->filePath();
+    }
+    _process->startDetached("unitbuilder", arguments);
 }
 
 void MainWindow::on_actionOptions_triggered() {
