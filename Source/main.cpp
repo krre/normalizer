@@ -7,7 +7,12 @@ int main(int argc, char *argv[]) {
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
 
-    MainWindow mainWindow;
+    QString filePath;
+    if (argc > 1) {
+        filePath = QString(argv[1]);
+    }
+
+    MainWindow mainWindow(filePath);
     mainWindow.show();
 
     return app.exec();

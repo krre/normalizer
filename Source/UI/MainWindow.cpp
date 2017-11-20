@@ -3,9 +3,9 @@
 #include "Core/Defines.h"
 #include <QtWidgets>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    _ui(new Ui::MainWindow) {
+MainWindow::MainWindow(const QString& filePath) :
+        _filePath(filePath),
+        _ui(new Ui::MainWindow) {
     _ui->setupUi(this);
 }
 
