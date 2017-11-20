@@ -49,7 +49,7 @@
       <item>
        <widget class="QCheckBox" name="checkBoxSession">
         <property name="text">
-         <string>Restore session</string>
+         <string>Restore project session</string>
         </property>
         <property name="checked">
          <bool>true</bool>
