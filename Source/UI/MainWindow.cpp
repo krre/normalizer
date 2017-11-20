@@ -14,15 +14,6 @@ MainWindow::MainWindow() :
 
     _ui->setupUi(this);
 
-    _workspaceTreeView = new QTreeView;
-    _workspaceTreeView->setFrameShape(QFrame::NoFrame);
-    _workspaceTreeView->setHeaderHidden(true);
-    _fsModel = new QFileSystemModel;
-    _workspaceTreeView->setModel(_fsModel);
-    for (int i = 1; i < _fsModel->columnCount(); ++i) {
-        _workspaceTreeView->hideColumn(i);
-    }
-
     _projectTreeView = new QTreeView;
     _projectTreeView->setFrameShape(QFrame::NoFrame);
     _projectTreeView->setHeaderHidden(true);
@@ -34,11 +25,8 @@ MainWindow::MainWindow() :
 
     connect(_projectTreeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
 
-    _ui->tabWidgetSideBar->addTab(_workspaceTreeView, tr("Workspace"));
     _ui->tabWidgetSideBar->addTab(_projectTreeView, tr("Project"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
-
-    changeWorkspace();
 
     readSettings();
 }
@@ -125,7 +113,6 @@ void MainWindow::on_actionUnitBuilder_triggered() {
 void MainWindow::on_actionOptions_triggered() {
     Options options(this);
     options.exec();
-    changeWorkspace();
 }
 
 void MainWindow::on_actionShowSidebar_toggled(bool checked) {
@@ -238,14 +225,6 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
         title += " - " + info.fileName();
     }
     setWindowTitle(title);
-}
-
-void MainWindow::changeWorkspace() {
-    QString workspaceDir = _settings->readWorkspace();
-    QDir dir;
-    dir.mkpath(workspaceDir);
-    QModelIndex index = _fsModel->setRootPath(workspaceDir);
-    _projectTreeView->setRootIndex(index);
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {

@@ -54,14 +54,12 @@ private:
     void readSettings();
     void writeSettings();
     void changeWindowTitle(const QString& filePath = QString());
-    void changeWorkspace();
     void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
     void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;
     Settings* _settings;
-    QTreeView* _workspaceTreeView;
     QTreeView* _projectTreeView;
     QFileSystemModel* _fsModel;
     QProcess* _process;
