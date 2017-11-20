@@ -183,7 +183,10 @@ void MainWindow::readSettings() {
 
     _settings->endGroup();
 
-    openProject(_settings->value("Path/lastProject").toString());
+    QString lastProject = _settings->value("Path/lastProject").toString();
+    if (!lastProject.isEmpty()) {
+        openProject(lastProject);
+    }
 }
 
 void MainWindow::writeSettings() {
