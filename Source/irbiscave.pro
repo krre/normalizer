@@ -26,7 +26,8 @@ SOURCES += \
     UI/Options.cpp \
     Core/Settings.cpp \
     UI/SelectWorkspace.cpp \
-    UI/NewProject.cpp
+    UI/NewProject.cpp \
+    UI/NewFile.cpp
 
 HEADERS += \
     UI/MainWindow.h \
@@ -37,13 +38,15 @@ HEADERS += \
     Core/Singleton.h \
     Core/Settings.h \
     UI/SelectWorkspace.h \
-    UI/NewProject.h
+    UI/NewProject.h \
+    UI/NewFile.h
 
 FORMS += \
     UI/MainWindow.ui \
     UI/Options.ui \
     UI/SelectWorkspace.ui \
-    UI/NewProject.ui
+    UI/NewProject.ui \
+    UI/NewFile.ui
 
 DISTFILES += \
     ../README.md \

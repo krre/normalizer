@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 #include "Options.h"
 #include "NewProject.h"
+#include "NewFile.h"
 #include "Cave.h"
 #include "Core/Defines.h"
 #include "Core/Settings.h"
@@ -44,7 +45,8 @@ void MainWindow::on_actionNewProject_triggered() {
 }
 
 void MainWindow::on_actionNewIrbis_triggered() {
-    qDebug() << "New Irbis";
+    NewFile newFile;
+    newFile.exec();
 //    QString workspaceDir = _settings->readWorkspace();
 //    QString filePath = QFileDialog::getSaveFileName(this, tr("Create Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
 //    if (!filePath.isEmpty()) {
