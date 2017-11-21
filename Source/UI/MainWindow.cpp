@@ -7,6 +7,9 @@ MainWindow::MainWindow(const QString& filePath) :
         _filePath(filePath),
         _ui(new Ui::MainWindow) {
     _ui->setupUi(this);
+    if (!filePath.isEmpty()) {
+        openFile(filePath);
+    }
 }
 
 MainWindow::~MainWindow() {
@@ -14,10 +17,9 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString workspaceDir = QString(); // TODO: Set workspace
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), workspaceDir, "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), QString(), "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
-        qDebug() << "open" << filePath;
+        openFile(filePath);
     }
 }
 
@@ -33,4 +35,17 @@ void MainWindow::on_actionAbout_triggered() {
            <a href=%5>%5</a><br><br> \
            Copyright © 2017, Vladimir Zarypov").
            arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
+}
+
+void MainWindow::openFile(const QString& filePath) {
+    changeWindowTitle(filePath);
+}
+
+void MainWindow::changeWindowTitle(const QString& filePath) {
+    QString title = QApplication::applicationName();
+    if (!filePath.isEmpty()) {
+        QFileInfo info(filePath);
+        title += " - " + info.fileName();
+    }
+    setWindowTitle(title);
 }

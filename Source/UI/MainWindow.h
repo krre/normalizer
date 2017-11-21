@@ -19,6 +19,9 @@ private slots:
     void on_actionAbout_triggered();
 
 private:
+    void openFile(const QString& filePath);
+    void changeWindowTitle(const QString& filePath = QString());
+
     QString _filePath;
     Ui::MainWindow* _ui;
 };
