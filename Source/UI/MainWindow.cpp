@@ -265,10 +265,17 @@ void MainWindow::restoreSession() {
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
     QString title = QApplication::applicationName();
-    if (!filePath.isEmpty()) {
-        QFileInfo info(filePath);
-        title += " - " + info.fileName();
+
+    if (!_projectPath.isEmpty()) {
+        QFileInfo fi(_projectPath);
+        title = fi.baseName() + " - " + title;
     }
+
+    if (!filePath.isEmpty()) {
+        QFileInfo fi(filePath);
+        title = fi.fileName() + " - " + title;
+    }
+
     setWindowTitle(title);
 }
 
@@ -283,6 +290,10 @@ void MainWindow::openProject(const QString& projectPath) {
     }
 
     restoreSession();
+
+    if (!_ui->tabWidgetCave->count()) {
+        changeWindowTitle();
+    }
 }
 
 void MainWindow::closeProject() {
@@ -290,6 +301,7 @@ void MainWindow::closeProject() {
     on_actionCloseAll_triggered();
     _projectPath = QString();
     _projectTreeView->setModel(nullptr);
+    changeWindowTitle();
 }
 
 void MainWindow::addCaveTab(const QString& filePath) {
