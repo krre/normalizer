@@ -10,10 +10,15 @@ public:
     explicit ProjectTreeView(QWidget* parent = nullptr);
     ~ProjectTreeView();
 
-protected:
-    void onMousePressed(const QModelIndex& index);
+signals:
+    void openActivated(const QString& filePath);
 
 private:
-    QMenu* contextMenu;
+    void onMousePressed(const QModelIndex& index);
+    void onDoubleClicked(const QModelIndex& index);
+
+private:
+    QMenu* _contextMenu;
+    QString _selectedFile;
 
 };

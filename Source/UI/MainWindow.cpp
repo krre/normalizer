@@ -25,7 +25,7 @@ MainWindow::MainWindow() :
     _projectTreeView->setFrameShape(QFrame::NoFrame);
     _projectTreeView->setHeaderHidden(true);
 
-    connect(_projectTreeView, &QTreeView::doubleClicked, this, &MainWindow::onFileDoubleClicked);
+    connect(_projectTreeView, &ProjectTreeView::openActivated, this, &MainWindow::addCaveTab);
 
     _ui->tabWidgetSideBar->addTab(_projectTreeView, tr("Project"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));

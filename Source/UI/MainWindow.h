@@ -55,6 +55,9 @@ private slots:
 protected:
     void closeEvent(QCloseEvent* event);
 
+private slots:
+    void addCaveTab(const QString& filePath);
+
 private:
     void readSettings();
     void writeSettings();
@@ -63,7 +66,6 @@ private:
     void changeWindowTitle(const QString& filePath = QString());
     void openProject(const QString& projectPath);
     void closeProject();
-    void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
 
     Ui::MainWindow* _ui;
