@@ -4,6 +4,7 @@
 #include "NewProject.h"
 #include "NewFile.h"
 #include "Cave.h"
+#include "ProjectTreeView.h"
 #include "Core/Defines.h"
 #include "Core/Settings.h"
 #include <QtWidgets>
@@ -20,7 +21,7 @@ MainWindow::MainWindow() :
 
     _ui->setupUi(this);
 
-    _projectTreeView = new QTreeView;
+    _projectTreeView = new ProjectTreeView;
     _projectTreeView->setFrameShape(QFrame::NoFrame);
     _projectTreeView->setHeaderHidden(true);
 

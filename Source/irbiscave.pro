@@ -27,7 +27,8 @@ SOURCES += \
     Core/Settings.cpp \
     UI/SelectWorkspace.cpp \
     UI/NewProject.cpp \
-    UI/NewFile.cpp
+    UI/NewFile.cpp \
+    UI/ProjectTreeView.cpp
 
 HEADERS += \
     UI/MainWindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     Core/Settings.h \
     UI/SelectWorkspace.h \
     UI/NewProject.h \
-    UI/NewFile.h
+    UI/NewFile.h \
+    UI/ProjectTreeView.h
 
 FORMS += \
     UI/MainWindow.ui \

@@ -8,7 +8,7 @@ namespace Ui {
 
 class Cave;
 class Settings;
-class QTreeView;
+class ProjectTreeView;
 class QFileSystemModel;
 class QProcess;
 
@@ -68,7 +68,7 @@ private:
 
     Ui::MainWindow* _ui;
     Settings* _settings;
-    QTreeView* _projectTreeView;
+    ProjectTreeView* _projectTreeView;
     QScopedPointer<QFileSystemModel> _fsModel;
     QProcess* _process;
     QString _projectPath;
