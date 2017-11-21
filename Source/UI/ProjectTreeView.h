@@ -13,9 +13,11 @@ public:
 signals:
     void openActivated(const QString& filePath);
 
-private:
+private slots:
     void onMousePressed(const QModelIndex& index);
     void onDoubleClicked(const QModelIndex& index);
+    void onFileRemove();
+    void onFileRename();
 
 private:
     QMenu* _contextMenu;

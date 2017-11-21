@@ -9,7 +9,9 @@ ProjectTreeView::ProjectTreeView(QWidget* parent) : QTreeView(parent) {
     QAction* openAction = _contextMenu->addAction(tr("Open"));
     connect(openAction, &QAction::triggered, [=]() { openActivated(_selectedFile); });
     QAction* removeAction = _contextMenu->addAction(tr("Remove..."));
+    connect(removeAction, &QAction::triggered, this, &ProjectTreeView::onFileRemove);
     QAction* renameAction = _contextMenu->addAction(tr("Rename..."));
+    connect(renameAction, &QAction::triggered, this, &ProjectTreeView::onFileRename);
 }
 
 ProjectTreeView::~ProjectTreeView() {
@@ -30,4 +32,12 @@ void ProjectTreeView::onDoubleClicked(const QModelIndex& index) {
     if (!fi.isDir() && fi.suffix() == "irbis") {
         openActivated(fi.absoluteFilePath());
     }
+}
+
+void ProjectTreeView::onFileRemove() {
+    qDebug() << "Remove" << _selectedFile;
+}
+
+void ProjectTreeView::onFileRename() {
+    qDebug() << "Rename" << _selectedFile;
 }
