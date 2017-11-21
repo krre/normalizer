@@ -6,11 +6,11 @@
 #include <QtWidgets>
 
 MainWindow::MainWindow(const QString& filePath) :
-        _filePath(filePath),
-        _ui(new Ui::MainWindow) {
-    _settings = Settings::instance();
+        m_filePath(filePath),
+        ui(new Ui::MainWindow) {
+    settings = Settings::instance();
 
-    _ui->setupUi(this);
+    ui->setupUi(this);
 
     readSettings();
 
@@ -20,7 +20,7 @@ MainWindow::MainWindow(const QString& filePath) :
 }
 
 MainWindow::~MainWindow() {
-    delete _ui;
+    delete ui;
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
@@ -54,29 +54,29 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::readSettings() {
-    _settings->beginGroup("MainWindow");
-    resize(_settings->value("size", QSize(800, 600)).toSize());
-    move(_settings->value("pos", QPoint(200, 200)).toPoint());
-    _settings->endGroup();
+    settings->beginGroup("MainWindow");
+    resize(settings->value("size", QSize(800, 600)).toSize());
+    move(settings->value("pos", QPoint(200, 200)).toPoint());
+    settings->endGroup();
 }
 
 void MainWindow::writeSettings() {
-    _settings->beginGroup("MainWindow");
-    _settings->setValue("size", size());
-    _settings->setValue("pos", pos());
-    _settings->endGroup();
+    settings->beginGroup("MainWindow");
+    settings->setValue("size", size());
+    settings->setValue("pos", pos());
+    settings->endGroup();
 }
 
 void MainWindow::openFile(const QString& filePath) {
     closeFile();
-    _filePath = filePath;
+    m_filePath = filePath;
     editor3d.reset(new Editor3D(filePath));
     setCentralWidget(editor3d.data());
     changeWindowTitle(filePath);
 }
 
 void MainWindow::closeFile() {
-    _filePath = QString();
+    m_filePath = QString();
     editor3d.reset();
     changeWindowTitle();
 }

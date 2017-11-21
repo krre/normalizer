@@ -32,9 +32,9 @@ private:
     void closeFile();
     void changeWindowTitle(const QString& filePath = QString());
 
-    QString _filePath;
-    Ui::MainWindow* _ui;
-    Settings* _settings;
+    QString m_filePath;
+    Ui::MainWindow* ui;
+    Settings* settings;
     QScopedPointer<Editor3D> editor3d;
 };
 
