@@ -52,6 +52,9 @@ private slots:
 
     void onFileDoubleClicked(const QModelIndex& index);
 
+protected:
+    void closeEvent(QCloseEvent* event);
+
 private:
     void readSettings();
     void writeSettings();
@@ -62,7 +65,6 @@ private:
     void closeProject();
     void addCaveTab(const QString& filePath);
     int findCave(const QString& filePath);
-    void closeEvent(QCloseEvent* event);
 
     Ui::MainWindow* _ui;
     Settings* _settings;
