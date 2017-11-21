@@ -2,12 +2,18 @@
 #include "ui_MainWindow.h"
 #include "Editor3D.h"
 #include "Core/Defines.h"
+#include "Core/Settings.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(const QString& filePath) :
         _filePath(filePath),
         _ui(new Ui::MainWindow) {
+    _settings = Settings::instance();
+
     _ui->setupUi(this);
+
+    readSettings();
+
     if (!filePath.isEmpty()) {
         openFile(filePath);
     }
@@ -15,6 +21,11 @@ MainWindow::MainWindow(const QString& filePath) :
 
 MainWindow::~MainWindow() {
     delete _ui;
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    writeSettings();
+    event->accept();
 }
 
 void MainWindow::on_actionOpen_triggered() {
@@ -40,6 +51,20 @@ void MainWindow::on_actionAbout_triggered() {
            <a href=%5>%5</a><br><br> \
            Copyright © 2017, Vladimir Zarypov").
            arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
+}
+
+void MainWindow::readSettings() {
+    _settings->beginGroup("MainWindow");
+    resize(_settings->value("size", QSize(800, 600)).toSize());
+    move(_settings->value("pos", QPoint(200, 200)).toPoint());
+    _settings->endGroup();
+}
+
+void MainWindow::writeSettings() {
+    _settings->beginGroup("MainWindow");
+    _settings->setValue("size", size());
+    _settings->setValue("pos", pos());
+    _settings->endGroup();
 }
 
 void MainWindow::openFile(const QString& filePath) {

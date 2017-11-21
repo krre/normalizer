@@ -1,11 +1,14 @@
 #include <QApplication>
 #include "UI/MainWindow.h"
 #include "Core/Defines.h"
+#include "Core/Settings.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
+
+    new Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
 
     QString filePath;
     if (argc > 1) {
@@ -15,5 +18,9 @@ int main(int argc, char *argv[]) {
     MainWindow mainWindow(filePath);
     mainWindow.show();
 
-    return app.exec();
+    int errCode = app.exec();
+
+    Settings::release();
+
+    return errCode;
 }
