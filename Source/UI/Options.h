@@ -13,6 +13,8 @@ public:
     ~Options();
 
 private slots:
+    void on_pushButtonCore_clicked();
+    void on_pushButtonStandard_clicked();
     void on_pushButtonWorkspace_clicked();
     void on_buttonBox_accepted();
 
