@@ -30,12 +30,15 @@ void ProjectTreeView::onMousePressed(const QModelIndex& index) {
 void ProjectTreeView::onDoubleClicked(const QModelIndex& index) {
     QFileInfo fi = qobject_cast<QFileSystemModel*>(model())->fileInfo(index);
     if (!fi.isDir() && fi.suffix() == "irbis") {
-        openActivated(fi.absoluteFilePath());
+        emit openActivated(fi.absoluteFilePath());
     }
 }
 
 void ProjectTreeView::onFileRemove() {
-    qDebug() << "Remove" << _selectedFile;
+    int result = QMessageBox::question(this, tr("Remove File"), tr("Are you sure?"));
+    if (result == QMessageBox::Yes) {
+        emit removeActivated(_selectedFile);
+    }
 }
 
 void ProjectTreeView::onFileRename() {

@@ -51,12 +51,12 @@ private slots:
     void on_tabWidgetCave_currentChanged(int index);
 
     void onFileDoubleClicked(const QModelIndex& index);
+    void onFileRemoved(const QString& filePath);
+
+    void addCaveTab(const QString& filePath);
 
 protected:
     void closeEvent(QCloseEvent* event);
-
-private slots:
-    void addCaveTab(const QString& filePath);
 
 private:
     void readSettings();

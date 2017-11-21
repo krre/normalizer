@@ -26,6 +26,7 @@ MainWindow::MainWindow() :
     _projectTreeView->setHeaderHidden(true);
 
     connect(_projectTreeView, &ProjectTreeView::openActivated, this, &MainWindow::addCaveTab);
+    connect(_projectTreeView, &ProjectTreeView::removeActivated, this, &MainWindow::onFileRemoved);
 
     _ui->tabWidgetSideBar->addTab(_projectTreeView, tr("Project"));
     _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
@@ -168,6 +169,12 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
 
 void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
     addCaveTab(_fsModel->filePath(index));
+}
+
+void MainWindow::onFileRemoved(const QString& filePath) {
+    on_tabWidgetCave_tabCloseRequested(findCave(filePath));
+    QDir dir;
+    dir.remove(filePath);
 }
 
 void MainWindow::readSettings() {

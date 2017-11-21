@@ -12,6 +12,7 @@ public:
 
 signals:
     void openActivated(const QString& filePath);
+    void removeActivated(const QString& filePath);
 
 private slots:
     void onMousePressed(const QModelIndex& index);
