@@ -22,6 +22,6 @@ private slots:
 private:
     void changeOkButtonState();
 
-    Ui::NewProject* _ui;
-    QString _projectPath;
+    Ui::NewProject* ui;
+    QString m_projectPath;
 };

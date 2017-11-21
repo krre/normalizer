@@ -11,11 +11,11 @@ DatabaseManager::DatabaseManager(const QString& filePath, QObject* parent) :
     QFileInfo fi(filePath);
     bool dbExists = fi.exists();
 
-    _connection = "irbis:" + filePath;
-    _db = QSqlDatabase::addDatabase("QSQLITE", _connection);
-    _db.setDatabaseName(filePath);
-    if (!_db.open()) {
-        throw std::runtime_error(_db.lastError().text().toStdString());
+    connection = "irbis:" + filePath;
+    db = QSqlDatabase::addDatabase("QSQLITE", connection);
+    db.setDatabaseName(filePath);
+    if (!db.open()) {
+        throw std::runtime_error(db.lastError().text().toStdString());
     }
 
     if (!dbExists) {
@@ -25,13 +25,13 @@ DatabaseManager::DatabaseManager(const QString& filePath, QObject* parent) :
 }
 
 DatabaseManager::~DatabaseManager() {
-    _db.close();
-    _db = QSqlDatabase();
-    QSqlDatabase::removeDatabase(_connection);
+    db.close();
+    db = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
 }
 
 void DatabaseManager::initTables() {
-    QSqlQuery q(_db);
+    QSqlQuery q(db);
     q.exec("CREATE TABLE Defs(name, value)");
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
@@ -39,7 +39,7 @@ void DatabaseManager::initTables() {
 }
 
 void DatabaseManager::initRecords() {
-    QSqlQuery q(_db);
+    QSqlQuery q(db);
     q.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
     q.bindValue(":name", "IrbisCaveVersion");

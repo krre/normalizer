@@ -64,14 +64,14 @@ private:
     void saveSession();
     void restoreSession();
     void changeWindowTitle(const QString& filePath = QString());
-    void openProject(const QString& projectPath);
+    void openProject(const QString& filePath);
     void closeProject();
     int findCave(const QString& filePath);
 
-    Ui::MainWindow* _ui;
-    Settings* _settings;
-    ProjectTreeView* _projectTreeView;
-    QScopedPointer<QFileSystemModel> _fsModel;
-    QProcess* _process;
-    QString _projectPath;
+    Ui::MainWindow* ui;
+    Settings* settings;
+    ProjectTreeView* projectTreeView;
+    QScopedPointer<QFileSystemModel> fsModel;
+    QProcess* process;
+    QString projectPath;
 };

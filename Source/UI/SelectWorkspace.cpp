@@ -6,37 +6,37 @@
 
 SelectWorkspace::SelectWorkspace(QWidget *parent) :
         QDialog(parent),
-        _ui(new Ui::SelectWorkspace) {
-    _ui->setupUi(this);
+        ui(new Ui::SelectWorkspace) {
+    ui->setupUi(this);
     setWindowTitle(APP_NAME);
     adjustSize();
     resize(400, height());
-    _ui->lineEdit->setText(QDir::homePath() + "/" + WORKSPACE_DIRECTORY);
+    ui->lineEdit->setText(QDir::homePath() + "/" + WORKSPACE_DIRECTORY);
 }
 
 SelectWorkspace::~SelectWorkspace() {
-    delete _ui;
+    delete ui;
 }
 
 bool SelectWorkspace::isRejected() const {
-    return _isRejected;
+    return m_isRejected;
 }
 
 void SelectWorkspace::on_pushButtonBrowse_clicked() {
     QString dirPath = QFileDialog::getExistingDirectory(this);
     if (!dirPath.isEmpty()) {
-        _ui->lineEdit->setText(dirPath);
+        ui->lineEdit->setText(dirPath);
     }
 }
 
 void SelectWorkspace::on_buttonBox_accepted() {
-    Settings::instance()->setValue("Path/workspace", _ui->lineEdit->text());
+    Settings::instance()->setValue("Path/workspace", ui->lineEdit->text());
 }
 
 void SelectWorkspace::on_buttonBox_rejected() {
-    _isRejected = true;
+    m_isRejected = true;
 }
 
 void SelectWorkspace::on_lineEdit_textChanged(const QString& text) {
-    _ui->buttonBox->buttons().at(0)->setEnabled(!text.isEmpty());
+    ui->buttonBox->buttons().at(0)->setEnabled(!text.isEmpty());
 }

@@ -13,6 +13,6 @@ private:
     void initTables();
     void initRecords();
 
-    QSqlDatabase _db;
-    QString _connection;
+    QSqlDatabase db;
+    QString connection;
 };

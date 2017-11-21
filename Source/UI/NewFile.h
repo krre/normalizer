@@ -23,7 +23,6 @@ private:
     void changeOkButtonState();
 
 private:
-    Ui::NewFile* _ui;
-    QString _filePath;
+    Ui::NewFile* ui;
+    QString m_filePath;
 };
-

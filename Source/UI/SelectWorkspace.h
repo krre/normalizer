@@ -20,6 +20,6 @@ private slots:
     void on_lineEdit_textChanged(const QString& text);
 
 private:
-    Ui::SelectWorkspace* _ui;
-    bool _isRejected = false;
+    Ui::SelectWorkspace* ui;
+    bool m_isRejected = false;
 };

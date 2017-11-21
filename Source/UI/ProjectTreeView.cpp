@@ -5,12 +5,12 @@ ProjectTreeView::ProjectTreeView(QWidget* parent) : QTreeView(parent) {
     connect(this, &QTreeView::doubleClicked, this, &ProjectTreeView::onDoubleClicked);
     connect(this, &QTreeView::pressed, this, &ProjectTreeView::onMousePressed);
 
-    _contextMenu = new QMenu(this);
-    QAction* openAction = _contextMenu->addAction(tr("Open"));
-    connect(openAction, &QAction::triggered, [=]() { openActivated(_selectedFile); });
-    QAction* removeAction = _contextMenu->addAction(tr("Remove..."));
+    contextMenu = new QMenu(this);
+    QAction* openAction = contextMenu->addAction(tr("Open"));
+    connect(openAction, &QAction::triggered, [=]() { openActivated(selectedFile); });
+    QAction* removeAction = contextMenu->addAction(tr("Remove..."));
     connect(removeAction, &QAction::triggered, this, &ProjectTreeView::onFileRemove);
-    QAction* renameAction = _contextMenu->addAction(tr("Rename..."));
+    QAction* renameAction = contextMenu->addAction(tr("Rename..."));
     connect(renameAction, &QAction::triggered, this, &ProjectTreeView::onFileRename);
 }
 
@@ -21,8 +21,8 @@ void ProjectTreeView::onMousePressed(const QModelIndex& index) {
     if (QApplication::mouseButtons() == Qt::RightButton) {
         QFileInfo fi = qobject_cast<QFileSystemModel*>(model())->fileInfo(index);
         if (!fi.isDir()) {
-            _selectedFile = fi.absoluteFilePath();
-            _contextMenu->exec(QCursor::pos());
+            selectedFile = fi.absoluteFilePath();
+            contextMenu->exec(QCursor::pos());
         }
     }
 }
@@ -37,10 +37,10 @@ void ProjectTreeView::onDoubleClicked(const QModelIndex& index) {
 void ProjectTreeView::onFileRemove() {
     int result = QMessageBox::question(this, tr("Remove File"), tr("Are you sure?"));
     if (result == QMessageBox::Yes) {
-        emit removeActivated(_selectedFile);
+        emit removeActivated(selectedFile);
     }
 }
 
 void ProjectTreeView::onFileRename() {
-    qDebug() << "Rename" << _selectedFile;
+    qDebug() << "Rename" << selectedFile;
 }

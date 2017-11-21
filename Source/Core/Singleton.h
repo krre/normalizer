@@ -5,28 +5,28 @@ template <class T> class Singleton {
 
 public:
     Singleton() {
-        Q_ASSERT(_instance == nullptr && "Singleton instance already exists!");
-        _instance = static_cast<T*>(this);
+        Q_ASSERT(m_instance == nullptr && "Singleton instance already exists!");
+        m_instance = static_cast<T*>(this);
     }
 
     virtual ~Singleton() {
-        _instance = nullptr;
+        m_instance = nullptr;
     }
 
     static T* instance() {
-        Q_ASSERT(_instance != nullptr && "Singleton instance is not initialized");
-        return _instance;
+        Q_ASSERT(m_instance != nullptr && "Singleton instance is not initialized");
+        return m_instance;
     }
 
     static void release() {
-        if (_instance != nullptr) {
-            delete _instance;
-            _instance = nullptr;
+        if (m_instance != nullptr) {
+            delete m_instance;
+            m_instance = nullptr;
         }
     }
 
 private:
-    static T* _instance;
+    static T* m_instance;
 };
 
-template <class T> T* Singleton<T>::_instance = nullptr;
+template <class T> T* Singleton<T>::m_instance = nullptr;

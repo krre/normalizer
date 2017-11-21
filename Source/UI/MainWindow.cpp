@@ -14,28 +14,28 @@
 #include <QJsonValue>
 
 MainWindow::MainWindow() :
-        _ui(new Ui::MainWindow) {
-    _settings = Settings::instance();
-    _process = new QProcess(this);
-    _fsModel.reset(new QFileSystemModel);
+        ui(new Ui::MainWindow) {
+    settings = Settings::instance();
+    process = new QProcess(this);
+    fsModel.reset(new QFileSystemModel);
 
-    _ui->setupUi(this);
+    ui->setupUi(this);
 
-    _projectTreeView = new ProjectTreeView;
-    _projectTreeView->setFrameShape(QFrame::NoFrame);
-    _projectTreeView->setHeaderHidden(true);
+    projectTreeView = new ProjectTreeView;
+    projectTreeView->setFrameShape(QFrame::NoFrame);
+    projectTreeView->setHeaderHidden(true);
 
-    connect(_projectTreeView, &ProjectTreeView::openActivated, this, &MainWindow::addCaveTab);
-    connect(_projectTreeView, &ProjectTreeView::removeActivated, this, &MainWindow::onFileRemoved);
+    connect(projectTreeView, &ProjectTreeView::openActivated, this, &MainWindow::addCaveTab);
+    connect(projectTreeView, &ProjectTreeView::removeActivated, this, &MainWindow::onFileRemoved);
 
-    _ui->tabWidgetSideBar->addTab(_projectTreeView, tr("Project"));
-    _ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
+    ui->tabWidgetSideBar->addTab(projectTreeView, tr("Project"));
+    ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
     readSettings();
 }
 
 MainWindow::~MainWindow() {
-    delete _ui;
+    delete ui;
 }
 
 void MainWindow::on_actionNewProject_triggered() {
@@ -47,7 +47,7 @@ void MainWindow::on_actionNewProject_triggered() {
 }
 
 void MainWindow::on_actionNewIrbis_triggered() {
-    NewFile newFile(_projectPath);
+    NewFile newFile(projectPath);
     newFile.exec();
     if (!newFile.filePath().isEmpty()) {
         addCaveTab(newFile.filePath());
@@ -55,14 +55,14 @@ void MainWindow::on_actionNewIrbis_triggered() {
 }
 
 void MainWindow::on_actionOpenProject_triggered() {
-    QString dirPath = QFileDialog::getExistingDirectory(this, QString(), _settings->readWorkspace());
+    QString dirPath = QFileDialog::getExistingDirectory(this, QString(), settings->readWorkspace());
     if (!dirPath.isEmpty()) {
         openProject(dirPath);
     }
 }
 
 void MainWindow::on_actionOpenFile_triggered() {
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), _projectPath, "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Irbis File"), projectPath, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
     }
@@ -70,7 +70,7 @@ void MainWindow::on_actionOpenFile_triggered() {
 
 
 void MainWindow::on_actionSaveFileAs_triggered() {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), _projectPath, "Irbis (*.irbis);;All Files(*.*)");
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Irbis File"), projectPath, "Irbis (*.irbis);;All Files(*.*)");
     if (!filePath.isEmpty()) {
         addCaveTab(filePath);
     }
@@ -81,19 +81,19 @@ void MainWindow::on_actionCloseProject_triggered() {
 }
 
 void MainWindow::on_actionClose_triggered() {
-    on_tabWidgetCave_tabCloseRequested(_ui->tabWidgetCave->currentIndex());
+    on_tabWidgetCave_tabCloseRequested(ui->tabWidgetCave->currentIndex());
 }
 
 void MainWindow::on_actionCloseAll_triggered() {
-    while (_ui->tabWidgetCave->count()) {
+    while (ui->tabWidgetCave->count()) {
         on_tabWidgetCave_tabCloseRequested(0);
     }
 }
 
 void MainWindow::on_actionCloseOther_triggered() {
     int i = 0;
-    while (_ui->tabWidgetCave->count() > 1) {
-        if (i != _ui->tabWidgetCave->currentIndex()) {
+    while (ui->tabWidgetCave->count() > 1) {
+        if (i != ui->tabWidgetCave->currentIndex()) {
             on_tabWidgetCave_tabCloseRequested(i);
         } else {
             i++;
@@ -106,19 +106,19 @@ void MainWindow::on_actionExit_triggered() {
 }
 
 void MainWindow::on_actionBuild_triggered() {
-    static_cast<Cave*>(_ui->tabWidgetCave->currentWidget())->build();
+    static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->build();
 }
 
 void MainWindow::on_actionStop_triggered() {
-    static_cast<Cave*>(_ui->tabWidgetCave->currentWidget())->stop();
+    static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->stop();
 }
 
 void MainWindow::on_actionUnitBuilder_triggered() {
     QStringList arguments;
-    if (_ui->tabWidgetCave->count()) {
-        arguments << static_cast<Cave*>(_ui->tabWidgetCave->currentWidget())->filePath();
+    if (ui->tabWidgetCave->count()) {
+        arguments << static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->filePath();
     }
-    _process->startDetached("unitbuilder", arguments);
+    process->startDetached("unitbuilder", arguments);
 }
 
 void MainWindow::on_actionOptions_triggered() {
@@ -128,9 +128,9 @@ void MainWindow::on_actionOptions_triggered() {
 
 void MainWindow::on_actionShowSidebar_toggled(bool checked) {
     if (checked) {
-        _ui->tabWidgetSideBar->show();
+        ui->tabWidgetSideBar->show();
     } else {
-        _ui->tabWidgetSideBar->hide();
+        ui->tabWidgetSideBar->hide();
     }
 }
 
@@ -145,30 +145,30 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
-    QWidget* widget = _ui->tabWidgetCave->widget(index);
-    _ui->tabWidgetCave->removeTab(index);
+    QWidget* widget = ui->tabWidgetCave->widget(index);
+    ui->tabWidgetCave->removeTab(index);
     delete widget;
 }
 
 void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     if (index >= 0) {
-        QString filePath = static_cast<Cave*>(_ui->tabWidgetCave->widget(index))->filePath();
-        QModelIndex modelIndex = _fsModel->index(filePath);
-        _projectTreeView->setCurrentIndex(modelIndex);
+        QString filePath = static_cast<Cave*>(ui->tabWidgetCave->widget(index))->filePath();
+        QModelIndex modelIndex = fsModel->index(filePath);
+        projectTreeView->setCurrentIndex(modelIndex);
         changeWindowTitle(filePath);
     } else {
-        _projectTreeView->setCurrentIndex(QModelIndex());
+        projectTreeView->setCurrentIndex(QModelIndex());
         changeWindowTitle();
     }
 
-    _ui->actionSaveFileAs->setEnabled(index >= 0);
-    _ui->actionClose->setEnabled(index >= 0);
-    _ui->actionCloseOther->setEnabled(index >= 0);
-    _ui->actionCloseAll->setEnabled(index >= 0);
+    ui->actionSaveFileAs->setEnabled(index >= 0);
+    ui->actionClose->setEnabled(index >= 0);
+    ui->actionCloseOther->setEnabled(index >= 0);
+    ui->actionCloseAll->setEnabled(index >= 0);
 }
 
 void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
-    addCaveTab(_fsModel->filePath(index));
+    addCaveTab(fsModel->filePath(index));
 }
 
 void MainWindow::onFileRemoved(const QString& filePath) {
@@ -178,45 +178,45 @@ void MainWindow::onFileRemoved(const QString& filePath) {
 }
 
 void MainWindow::readSettings() {
-    _settings->beginGroup("MainWindow");
+    settings->beginGroup("MainWindow");
 
-    resize(_settings->value("size", QSize(1000, 600)).toSize());
-    move(_settings->value("pos", QPoint(200, 200)).toPoint());
+    resize(settings->value("size", QSize(1000, 600)).toSize());
+    move(settings->value("pos", QPoint(200, 200)).toPoint());
 
-    QVariant splitterSize = _settings->value("splitter");
+    QVariant splitterSize = settings->value("splitter");
     if (splitterSize == QVariant()) {
-        _ui->splitter->setSizes({ 100, 500 });
+        ui->splitter->setSizes({ 100, 500 });
     } else {
-        _ui->splitter->restoreState(splitterSize.toByteArray());
+        ui->splitter->restoreState(splitterSize.toByteArray());
     }
 
-    _ui->actionShowSidebar->setChecked(_settings->value("showSidebar", true).toBool());
+    ui->actionShowSidebar->setChecked(settings->value("showSidebar", true).toBool());
 
-    _settings->endGroup();
+    settings->endGroup();
 
-    QString lastProject = _settings->value("Path/lastProject").toString();
+    QString lastProject = settings->value("Path/lastProject").toString();
     if (!lastProject.isEmpty()) {
         openProject(lastProject);
     }
 }
 
 void MainWindow::writeSettings() {
-    _settings->beginGroup("MainWindow");
-    _settings->setValue("size", size());
-    _settings->setValue("pos", pos());
-    _settings->setValue("splitter", _ui->splitter->saveState());
-    _settings->setValue("showSidebar", _ui->actionShowSidebar->isChecked());
-    _settings->endGroup();
+    settings->beginGroup("MainWindow");
+    settings->setValue("size", size());
+    settings->setValue("pos", pos());
+    settings->setValue("splitter", ui->splitter->saveState());
+    settings->setValue("showSidebar", ui->actionShowSidebar->isChecked());
+    settings->endGroup();
 
-    _settings->setValue("Path/lastProject", _projectPath);
+    settings->setValue("Path/lastProject", projectPath);
 }
 
 void MainWindow::saveSession() {
-    if (!_settings->readRestoreSession() || _projectPath.isEmpty()) {
+    if (!settings->readRestoreSession() || projectPath.isEmpty()) {
         return;
     }
 
-    QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
+    QString sessionPath = projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
     QFile saveFile(sessionPath);
     if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning() << "Couldn't open session file" << sessionPath;
@@ -224,25 +224,25 @@ void MainWindow::saveSession() {
     }
 
     QJsonArray openFiles;
-    for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
-        Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+    for (int i = 0; i < ui->tabWidgetCave->count(); i++) {
+        Cave* cave = static_cast<Cave*>(ui->tabWidgetCave->widget(i));
         openFiles.append(QJsonValue(cave->filePath()));
     }
 
     QJsonObject obj;
     obj["openFiles"] = openFiles;
-    obj["selectedTab"] = _ui->tabWidgetCave->currentIndex();
+    obj["selectedTab"] = ui->tabWidgetCave->currentIndex();
 
     QJsonDocument saveDoc(obj);
     saveFile.write(saveDoc.toJson());
 }
 
 void MainWindow::restoreSession() {
-    if (!_settings->readRestoreSession() || _projectPath.isEmpty()) {
+    if (!settings->readRestoreSession() || projectPath.isEmpty()) {
         return;
     }
 
-    QString sessionPath = _projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
+    QString sessionPath = projectPath + "/" + PROJECT_DIRECTORY + "/" + PROJECT_SESSION_FILE;
     QFileInfo fi(sessionPath);
     if (!fi.exists()) {
         return;
@@ -268,14 +268,14 @@ void MainWindow::restoreSession() {
         }
     }
 
-    _ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
+    ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
     QString title = QApplication::applicationName();
 
-    if (!_projectPath.isEmpty()) {
-        QFileInfo fi(_projectPath);
+    if (!projectPath.isEmpty()) {
+        QFileInfo fi(projectPath);
         title = fi.baseName() + " - " + title;
     }
 
@@ -287,19 +287,19 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
     setWindowTitle(title);
 }
 
-void MainWindow::openProject(const QString& projectPath) {
+void MainWindow::openProject(const QString& filePath) {
     closeProject();
-    _projectPath = projectPath;
-    _projectTreeView->setModel(_fsModel.data());
-    _projectTreeView->setRootIndex(_fsModel->setRootPath(projectPath));
+    projectPath = filePath;
+    projectTreeView->setModel(fsModel.data());
+    projectTreeView->setRootIndex(fsModel->setRootPath(filePath));
 
-    for (int i = 1; i < _fsModel->columnCount(); ++i) {
-        _projectTreeView->hideColumn(i);
+    for (int i = 1; i < fsModel->columnCount(); ++i) {
+        projectTreeView->hideColumn(i);
     }
 
     restoreSession();
 
-    if (!_ui->tabWidgetCave->count()) {
+    if (!ui->tabWidgetCave->count()) {
         changeWindowTitle();
     }
 }
@@ -307,8 +307,8 @@ void MainWindow::openProject(const QString& projectPath) {
 void MainWindow::closeProject() {
     saveSession();
     on_actionCloseAll_triggered();
-    _projectPath = QString();
-    _projectTreeView->setModel(nullptr);
+    projectPath = QString();
+    projectTreeView->setModel(nullptr);
     changeWindowTitle();
 }
 
@@ -321,18 +321,18 @@ void MainWindow::addCaveTab(const QString& filePath) {
 
     int tabIndex = findCave(fullIrbisPath);
     if (tabIndex != -1) {
-        _ui->tabWidgetCave->setCurrentIndex(tabIndex);
+        ui->tabWidgetCave->setCurrentIndex(tabIndex);
     } else {
         QFileInfo fi(fullIrbisPath);
-        int index = _ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
-        _ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
-        _ui->tabWidgetCave->setCurrentIndex(index);
+        int index = ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
+        ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
+        ui->tabWidgetCave->setCurrentIndex(index);
     }
 }
 
 int MainWindow::findCave(const QString& filePath) {
-    for (int i = 0; i < _ui->tabWidgetCave->count(); i++) {
-        Cave* cave = static_cast<Cave*>(_ui->tabWidgetCave->widget(i));
+    for (int i = 0; i < ui->tabWidgetCave->count(); i++) {
+        Cave* cave = static_cast<Cave*>(ui->tabWidgetCave->widget(i));
         if (cave->filePath() == filePath) {
             return i;
         }

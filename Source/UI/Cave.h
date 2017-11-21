@@ -18,7 +18,7 @@ public:
     QString filePath() const;
 
 private:
-    QString _filePath;
-    DatabaseManager* _databaseManager;
-    QProcess* _process;
+    QString m_filePath;
+    DatabaseManager* databaseManager;
+    QProcess* process;
 };

@@ -22,5 +22,5 @@ private:
     void readSettings();
     void writeSettings();
 
-    Ui::Options* _ui;
+    Ui::Options* ui;
 };

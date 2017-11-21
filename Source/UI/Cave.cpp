@@ -5,7 +5,7 @@
 #include <Qt3DExtras/Qt3DWindow>
 #include <Qt3DExtras/QForwardRenderer>
 
-Cave::Cave(const QString& filePath) : _filePath(filePath) {
+Cave::Cave(const QString& filePath) : m_filePath(filePath) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     QWidget* container = QWidget::createWindowContainer(view);
@@ -13,8 +13,8 @@ Cave::Cave(const QString& filePath) : _filePath(filePath) {
     layout->setMargin(0);
     layout->addWidget(container);
 
-    _databaseManager = new DatabaseManager(filePath, this);
-    _process = new QProcess(this);
+    databaseManager = new DatabaseManager(filePath, this);
+    process = new QProcess(this);
 }
 
 Cave::~Cave() {
@@ -22,7 +22,7 @@ Cave::~Cave() {
 }
 
 void Cave::build() {
-    _process->startDetached("irbis");
+    process->startDetached("irbis");
 }
 
 void Cave::stop() {
@@ -30,5 +30,5 @@ void Cave::stop() {
 }
 
 QString Cave::filePath() const {
-    return _filePath;
+    return m_filePath;
 }

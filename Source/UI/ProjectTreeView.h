@@ -21,7 +21,7 @@ private slots:
     void onFileRename();
 
 private:
-    QMenu* _contextMenu;
-    QString _selectedFile;
+    QMenu* contextMenu;
+    QString selectedFile;
 
 };
