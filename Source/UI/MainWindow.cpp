@@ -56,7 +56,7 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
     QString title = QApplication::applicationName();
     if (!filePath.isEmpty()) {
         QFileInfo info(filePath);
-        title += " - " + info.fileName();
+        title = info.fileName() + " - " + title;
     }
     setWindowTitle(title);
 }
