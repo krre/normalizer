@@ -23,6 +23,10 @@ void MainWindow::on_actionOpen_triggered() {
     }
 }
 
+void MainWindow::on_actionClose_triggered() {
+    closeFile();
+}
+
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
@@ -38,7 +42,14 @@ void MainWindow::on_actionAbout_triggered() {
 }
 
 void MainWindow::openFile(const QString& filePath) {
+    closeFile();
+    _filePath = filePath;
     changeWindowTitle(filePath);
+}
+
+void MainWindow::closeFile() {
+    _filePath = QString();
+    changeWindowTitle();
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
