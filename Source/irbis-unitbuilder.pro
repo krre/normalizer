@@ -10,14 +10,16 @@ INCLUDEPATH += $$(IRBIS_HOME)/irbislib/Source
 
 SOURCES += \
     main.cpp \
-    UI/MainWindow.cpp
+    UI/MainWindow.cpp \
+    UI/Editor3D.cpp
 
 FORMS += \
     UI/MainWindow.ui
 
 HEADERS += \
     UI/MainWindow.h \
-    Core/Defines.h
+    Core/Defines.h \
+    UI/Editor3D.h
 
 DISTFILES += \
     ../README.md \

@@ -1,12 +1,14 @@
 #pragma once
 #include <QMainWindow>
+#include <QScopedPointer>
 
 namespace Ui {
     class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class Editor3D;
+
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -26,5 +28,6 @@ private:
 
     QString _filePath;
     Ui::MainWindow* _ui;
+    QScopedPointer<Editor3D> editor3d;
 };
 

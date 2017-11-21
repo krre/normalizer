@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "Editor3D.h"
 #include "Core/Defines.h"
 #include <QtWidgets>
 
@@ -44,11 +45,14 @@ void MainWindow::on_actionAbout_triggered() {
 void MainWindow::openFile(const QString& filePath) {
     closeFile();
     _filePath = filePath;
+    editor3d.reset(new Editor3D(filePath));
+    setCentralWidget(editor3d.data());
     changeWindowTitle(filePath);
 }
 
 void MainWindow::closeFile() {
     _filePath = QString();
+    editor3d.reset();
     changeWindowTitle();
 }
 
