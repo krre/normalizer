@@ -1,14 +1,14 @@
-#include "MeshBuilder.h"
+#include "ComponentBuilder.h"
 #include <Qt3DRender/QGeometryRenderer>
 #include <Qt3DRender/QBuffer>
 #include <Qt3DRender/QAttribute>
 #include <QVector3D>
 
-MeshBuilder::MeshBuilder() {
+ComponentBuilder::ComponentBuilder() {
 
 }
 
-Qt3DRender::QGeometryRenderer* MeshBuilder::createGridPlane(int lineCount) {
+Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlane(int lineCount) {
     Qt3DRender::QGeometryRenderer* planeMesh = new Qt3DRender::QGeometryRenderer();
     Qt3DRender::QGeometry* planeGeometry = new Qt3DRender::QGeometry(planeMesh);
     Qt3DRender::QBuffer* planeDataBuffer = new Qt3DRender::QBuffer(Qt3DRender::QBuffer::VertexBuffer, planeGeometry);
@@ -49,7 +49,7 @@ Qt3DRender::QGeometryRenderer* MeshBuilder::createGridPlane(int lineCount) {
     return planeMesh;
 }
 
-void MeshBuilder::addPositionAttributeToGeometry(Qt3DRender::QGeometry* geometry, Qt3DRender::QBuffer* buffer, int count) {
+void ComponentBuilder::addPositionAttributeToGeometry(Qt3DRender::QGeometry* geometry, Qt3DRender::QBuffer* buffer, int count) {
     Qt3DRender::QAttribute* posAttribute = new Qt3DRender::QAttribute();
     posAttribute->setAttributeType(Qt3DRender::QAttribute::VertexAttribute);
     posAttribute->setBuffer(buffer);

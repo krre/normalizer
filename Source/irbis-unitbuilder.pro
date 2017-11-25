@@ -13,7 +13,7 @@ SOURCES += \
     UI/MainWindow.cpp \
     UI/Editor3D.cpp \
     Core/Settings.cpp \
-    Graphics/MeshBuilder.cpp
+    Graphics/ComponentBuilder.cpp
 
 FORMS += \
     UI/MainWindow.ui
@@ -23,7 +23,7 @@ HEADERS += \
     Core/Defines.h \
     UI/Editor3D.h \
     Core/Settings.h \
-    Graphics/MeshBuilder.h
+    Graphics/ComponentBuilder.h
 
 DISTFILES += \
     ../README.md \

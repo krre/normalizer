@@ -1,5 +1,5 @@
 #include "Editor3D.h"
-#include "Graphics/MeshBuilder.h"
+#include "Graphics/ComponentBuilder.h"
 #include <QtWidgets>
 #include <Qt3DExtras/Qt3DWindow>
 #include <Qt3DExtras/QForwardRenderer>
@@ -50,7 +50,7 @@ Qt3DCore::QEntity* Editor3D::createScene() {
     Qt3DCore::QEntity* rootEntity = new Qt3DCore::QEntity;
     Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial(rootEntity);
     Qt3DCore::QEntity* planeEntity = new Qt3DCore::QEntity(rootEntity);
-    Qt3DRender::QGeometryRenderer* planeMesh = MeshBuilder::createGridPlane(11);
+    Qt3DRender::QGeometryRenderer* planeMesh = ComponentBuilder::createGridPlane(11);
     Qt3DCore::QTransform* planeTransform = new Qt3DCore::QTransform;
 
     planeEntity->addComponent(planeMesh);
