@@ -29,7 +29,7 @@ Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlaneMesh(int lineCou
 
     float* rawVertexArray = reinterpret_cast<float*>(vertexBufferData.data());
     int idx = 0;
-    Q_FOREACH (const QVector3D &v, vertices) {
+    for (const QVector3D &v : vertices) {
         rawVertexArray[idx++] = v.x();
         rawVertexArray[idx++] = v.y();
         rawVertexArray[idx++] = v.z();
