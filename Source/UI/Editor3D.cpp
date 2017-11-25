@@ -26,8 +26,13 @@ Editor3D::Editor3D(const QString& filePath) {
     camera->lens()->setPerspectiveProjection(45.0f, 16.0f / 9.0f, 0.1f, 1000.0f);
 
     Qt3DExtras::QOrbitCameraController* cameraController = new Qt3DExtras::QOrbitCameraController(scene);
+#ifdef Q_OS_WIN
+    cameraController->setLinearSpeed(50.0f);
+    cameraController->setLookSpeed(180.0f);
+#else
     cameraController->setLinearSpeed(500.0f);
     cameraController->setLookSpeed(1800.0f);
+#endif
     cameraController->setCamera(camera);
 
     view->setRootEntity(scene);
