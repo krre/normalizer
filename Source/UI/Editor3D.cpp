@@ -22,10 +22,8 @@ Editor3D::Editor3D(const QString& filePath) {
 
     Qt3DCore::QEntity* scene = createScene();
 
-    Qt3DRender::QCamera* camera = view->camera();
+    camera = view->camera();
     camera->lens()->setPerspectiveProjection(45.0f, 16.0f / 9.0f, 0.1f, 1000.0f);
-    camera->setPosition(QVector3D(0, -2, 2));
-    camera->setViewCenter(QVector3D(0, 0 ,0));
 
     Qt3DExtras::QOrbitCameraController* cameraController = new Qt3DExtras::QOrbitCameraController(scene);
     cameraController->setLinearSpeed(500.0f);
@@ -33,6 +31,14 @@ Editor3D::Editor3D(const QString& filePath) {
     cameraController->setCamera(camera);
 
     view->setRootEntity(scene);
+
+    resetViewport();
+}
+
+void Editor3D::resetViewport() {
+    camera->setPosition(QVector3D(0, -2, 2));
+    camera->setViewCenter(QVector3D(0, 0 ,0));
+    camera->setUpVector(QVector3D(0, 1, 0));
 }
 
 Qt3DCore::QEntity* Editor3D::createScene() {
