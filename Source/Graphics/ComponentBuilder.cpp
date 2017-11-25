@@ -49,6 +49,39 @@ Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlaneMesh(int lineCou
     return planeMesh;
 }
 
+Qt3DRender::QGeometryRenderer*ComponentBuilder::createLineMesh(const QVector3D& pos1, const QVector3D& pos2) {
+    Qt3DRender::QGeometryRenderer* lineMesh = new Qt3DRender::QGeometryRenderer();
+    Qt3DRender::QGeometry* lineGeometry = new Qt3DRender::QGeometry(lineMesh);
+    Qt3DRender::QBuffer* lineDataBuffer = new Qt3DRender::QBuffer(Qt3DRender::QBuffer::VertexBuffer, lineGeometry);
+    QByteArray vertexBufferData;
+    QVector<QVector3D> vertices(2);
+    vertexBufferData.resize(vertices.size() * 3 * sizeof(float));
+
+    vertices[0] = pos1;
+    vertices[1] = pos2;
+
+    float* rawVertexArray = reinterpret_cast<float*>(vertexBufferData.data());
+    int idx = 0;
+    for (const auto& v : vertices) {
+        rawVertexArray[idx++] = v.x();
+        rawVertexArray[idx++] = v.y();
+        rawVertexArray[idx++] = v.z();
+    }
+
+    lineDataBuffer->setData(vertexBufferData);
+
+    addPositionAttributeToGeometry(lineGeometry, lineDataBuffer, 2);
+
+    lineMesh->setInstanceCount(1);
+    lineMesh->setIndexOffset(0);
+    lineMesh->setFirstInstance(0);
+    lineMesh->setVertexCount(2);
+    lineMesh->setPrimitiveType(Qt3DRender::QGeometryRenderer::Lines);
+    lineMesh->setGeometry(lineGeometry);
+
+    return lineMesh;
+}
+
 void ComponentBuilder::addPositionAttributeToGeometry(Qt3DRender::QGeometry* geometry, Qt3DRender::QBuffer* buffer, int count) {
     Qt3DRender::QAttribute* posAttribute = new Qt3DRender::QAttribute();
     posAttribute->setAttributeType(Qt3DRender::QAttribute::VertexAttribute);
