@@ -10,7 +10,7 @@ class ComponentBuilder {
 
 public:
     ComponentBuilder();
-    static Qt3DRender::QGeometryRenderer* createGridPlane(int lineCount);
+    static Qt3DRender::QGeometryRenderer* createGridPlaneMesh(int lineCount);
     static void addPositionAttributeToGeometry(Qt3DRender::QGeometry *geometry, Qt3DRender::QBuffer *buffer, int count);
 
 };

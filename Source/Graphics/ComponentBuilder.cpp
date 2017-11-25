@@ -8,7 +8,7 @@ ComponentBuilder::ComponentBuilder() {
 
 }
 
-Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlane(int lineCount) {
+Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlaneMesh(int lineCount) {
     Qt3DRender::QGeometryRenderer* planeMesh = new Qt3DRender::QGeometryRenderer();
     Qt3DRender::QGeometry* planeGeometry = new Qt3DRender::QGeometry(planeMesh);
     Qt3DRender::QBuffer* planeDataBuffer = new Qt3DRender::QBuffer(Qt3DRender::QBuffer::VertexBuffer, planeGeometry);
