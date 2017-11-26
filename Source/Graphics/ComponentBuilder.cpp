@@ -49,7 +49,7 @@ Qt3DRender::QGeometryRenderer* ComponentBuilder::createGridPlaneMesh(int lineCou
     return planeMesh;
 }
 
-Qt3DRender::QGeometryRenderer*ComponentBuilder::createLineMesh(const QVector3D& pos1, const QVector3D& pos2) {
+Qt3DRender::QGeometryRenderer* ComponentBuilder::createLineMesh(const QVector3D& pos1, const QVector3D& pos2) {
     Qt3DRender::QGeometryRenderer* lineMesh = new Qt3DRender::QGeometryRenderer();
     Qt3DRender::QGeometry* lineGeometry = new Qt3DRender::QGeometry(lineMesh);
     Qt3DRender::QBuffer* lineDataBuffer = new Qt3DRender::QBuffer(Qt3DRender::QBuffer::VertexBuffer, lineGeometry);
