@@ -50,12 +50,11 @@ Qt3DCore::QEntity* Editor3D::createScene() {
     Qt3DCore::QEntity* rootEntity = new Qt3DCore::QEntity;
 
     Qt3DCore::QEntity* planeEntity = new Qt3DCore::QEntity(rootEntity);
-    Qt3DRender::QGeometryRenderer* planeMesh = ComponentBuilder::createGridPlaneMesh(11);
-    Qt3DCore::QTransform* planeTransform = new Qt3DCore::QTransform;
-    Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial;
 
+    Qt3DRender::QGeometryRenderer* planeMesh = ComponentBuilder::createGridPlaneMesh(11);
     planeEntity->addComponent(planeMesh);
-    planeEntity->addComponent(planeTransform);
+
+    Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial;
     planeEntity->addComponent(material);
 
     return rootEntity;
