@@ -13,7 +13,8 @@ SOURCES += \
     UI/MainWindow.cpp \
     UI/Editor3D.cpp \
     Core/Settings.cpp \
-    Graphics/ComponentBuilder.cpp
+    Graphics/ComponentBuilder.cpp \
+    Graphics/OnTopEffect.cpp
 
 FORMS += \
     UI/MainWindow.ui
@@ -23,8 +24,12 @@ HEADERS += \
     Core/Defines.h \
     UI/Editor3D.h \
     Core/Settings.h \
-    Graphics/ComponentBuilder.h
+    Graphics/ComponentBuilder.h \
+    Graphics/OnTopEffect.h
 
 DISTFILES += \
     ../README.md \
     ../.gitignore
+
+RESOURCES += \
+    resources.qrc
