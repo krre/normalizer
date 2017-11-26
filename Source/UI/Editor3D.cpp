@@ -48,10 +48,11 @@ void Editor3D::resetViewport() {
 
 Qt3DCore::QEntity* Editor3D::createScene() {
     Qt3DCore::QEntity* rootEntity = new Qt3DCore::QEntity;
-    Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial(rootEntity);
+
     Qt3DCore::QEntity* planeEntity = new Qt3DCore::QEntity(rootEntity);
     Qt3DRender::QGeometryRenderer* planeMesh = ComponentBuilder::createGridPlaneMesh(11);
     Qt3DCore::QTransform* planeTransform = new Qt3DCore::QTransform(rootEntity);
+    Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial(rootEntity);
 
     planeEntity->addComponent(planeMesh);
     planeEntity->addComponent(planeTransform);
