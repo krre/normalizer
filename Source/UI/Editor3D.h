@@ -18,5 +18,7 @@ public:
 
 private:
     Qt3DCore::QEntity* createScene();
+    Qt3DCore::QEntity* createGridPlane(Qt3DCore::QEntity* parent);
     Qt3DRender::QCamera* camera;
+    Qt3DCore::QEntity* gridPlane;
 };
