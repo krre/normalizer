@@ -118,7 +118,7 @@ void MainWindow::on_actionUnitBuilder_triggered() {
     if (ui->tabWidgetCave->count()) {
         arguments << static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->filePath();
     }
-    process->startDetached("unitbuilder", arguments);
+    process->startDetached(QCoreApplication::applicationDirPath() + "/unitbuilder", arguments);
 }
 
 void MainWindow::on_actionOptions_triggered() {
