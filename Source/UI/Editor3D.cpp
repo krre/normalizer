@@ -79,31 +79,35 @@ Qt3DCore::QEntity* Editor3D::createOriginAxises(Qt3DCore::QEntity* parent) {
     Qt3DRender::QGeometryRenderer* axisXMesh = ComponentBuilder::createLineMesh(QVector3D(0, 0, 0), QVector3D(1, 0, 0));
     axisXEntity->addComponent(axisXMesh);
 
-    Qt3DRender::QMaterial* materialX = new Qt3DRender::QMaterial;
-    materialX->setEffect(new OnTopEffect());
-    materialX->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::red)));
+    Qt3DExtras::QPhongMaterial* materialX = new Qt3DExtras::QPhongMaterial;
+    materialX->setDiffuse(QColor(Qt::red));
+//    materialX->setEffect(new OnTopEffect());
+//    materialX->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::red)));
     axisXEntity->addComponent(materialX);
 
     // Y axis
     Qt3DCore::QEntity* axisYEntity = new Qt3DCore::QEntity(axisesEntity);
 
     Qt3DRender::QGeometryRenderer* axisYMesh = ComponentBuilder::createLineMesh(QVector3D(0, 0, 0), QVector3D(0, 1, 0));
-    axisXEntity->addComponent(axisYMesh);
+    axisYEntity->addComponent(axisYMesh);
 
-    Qt3DRender::QMaterial* materialY = new Qt3DRender::QMaterial;
-    materialY->setEffect(new OnTopEffect());
-    materialY->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::green)));
+    Qt3DExtras::QPhongMaterial* materialY = new Qt3DExtras::QPhongMaterial;
+    materialY->setDiffuse(QColor(Qt::green));
+//    materialY->setEffect(new OnTopEffect());
+//    materialY->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::green)));
     axisYEntity->addComponent(materialY);
+
 
     // Z axis
     Qt3DCore::QEntity* axisZEntity = new Qt3DCore::QEntity(axisesEntity);
 
     Qt3DRender::QGeometryRenderer* axisZMesh = ComponentBuilder::createLineMesh(QVector3D(0, 0, 0), QVector3D(0, 0, 1));
-    axisXEntity->addComponent(axisZMesh);
+    axisZEntity->addComponent(axisZMesh);
 
-    Qt3DRender::QMaterial* materialZ = new Qt3DRender::QMaterial;
-    materialZ->setEffect(new OnTopEffect());
-    materialZ->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::green)));
+    Qt3DExtras::QPhongMaterial* materialZ = new Qt3DExtras::QPhongMaterial;
+    materialZ->setDiffuse(QColor(Qt::blue));
+//    materialZ->setEffect(new OnTopEffect());
+//    materialZ->addParameter(new Qt3DRender::QParameter(QStringLiteral("handleColor"), QColor(Qt::green)));
     axisZEntity->addComponent(materialZ);
 
     return axisesEntity;
