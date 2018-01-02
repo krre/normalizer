@@ -14,7 +14,13 @@ Cave::Cave(const QString& filePath) : m_filePath(filePath) {
     layout->addWidget(container);
 
     databaseManager = new DatabaseManager(filePath, this);
+
     process = new QProcess(this);
+    process->setProgram(QCoreApplication::applicationDirPath() + "/irbis");
+    QStringList arguments;
+    arguments << m_filePath;
+    process->setArguments(arguments);
+    connect(process, &QProcess::readyRead, this, &Cave::onReadyRead);
 }
 
 Cave::~Cave() {
@@ -22,7 +28,7 @@ Cave::~Cave() {
 }
 
 void Cave::build() {
-    process->startDetached("irbis");
+    process->start();
 }
 
 void Cave::stop() {
@@ -31,4 +37,12 @@ void Cave::stop() {
 
 QString Cave::filePath() const {
     return m_filePath;
+}
+
+void Cave::onReadyRead() {
+    QTextStream in(process->readAll());
+    while (!in.atEnd()) {
+        const QString line = in.readLine();
+        qDebug().noquote() << line;
+    }
 }

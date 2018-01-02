@@ -17,6 +17,9 @@ public:
 
     QString filePath() const;
 
+private slots:
+    void onReadyRead();
+
 private:
     QString m_filePath;
     DatabaseManager* databaseManager;
