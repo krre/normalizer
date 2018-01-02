@@ -22,8 +22,6 @@ MainWindow::MainWindow() :
     ui->setupUi(this);
 
     projectTreeView = new ProjectTreeView;
-    projectTreeView->setFrameShape(QFrame::NoFrame);
-    projectTreeView->setHeaderHidden(true);
 
     connect(projectTreeView, &ProjectTreeView::openActivated, this, &MainWindow::addCaveTab);
     connect(projectTreeView, &ProjectTreeView::removeActivated, this, &MainWindow::onFileRemoved);
@@ -183,11 +181,18 @@ void MainWindow::readSettings() {
     resize(settings->value("size", QSize(WINDOW_WIDTH, WINDOW_HEIGHT)).toSize());
     move(settings->value("pos", QPoint(WINDOW_X, WINDOW_Y)).toPoint());
 
-    QVariant splitterSize = settings->value("splitter");
-    if (splitterSize == QVariant()) {
-        ui->splitter->setSizes({ 100, 500 });
+    QVariant splitterMainSize = settings->value("splitterMain");
+    if (splitterMainSize == QVariant()) {
+        ui->splitterMain->setSizes({ 100, 500 });
     } else {
-        ui->splitter->restoreState(splitterSize.toByteArray());
+        ui->splitterMain->restoreState(splitterMainSize.toByteArray());
+    }
+
+    QVariant splitterRightSize = settings->value("splitterRight");
+    if (splitterRightSize == QVariant()) {
+        ui->splitterRight->setSizes({ 500, 100 });
+    } else {
+        ui->splitterRight->restoreState(splitterRightSize.toByteArray());
     }
 
     ui->actionShowSidebar->setChecked(settings->value("showSidebar", true).toBool());
@@ -204,7 +209,8 @@ void MainWindow::writeSettings() {
     settings->beginGroup("MainWindow");
     settings->setValue("size", size());
     settings->setValue("pos", pos());
-    settings->setValue("splitter", ui->splitter->saveState());
+    settings->setValue("splitterMain", ui->splitterMain->saveState());
+    settings->setValue("splitterRight", ui->splitterRight->saveState());
     settings->setValue("showSidebar", ui->actionShowSidebar->isChecked());
     settings->endGroup();
 

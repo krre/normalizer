@@ -12,6 +12,9 @@ ProjectTreeView::ProjectTreeView(QWidget* parent) : QTreeView(parent) {
     connect(removeAction, &QAction::triggered, this, &ProjectTreeView::onFileRemove);
     QAction* renameAction = contextMenu->addAction(tr("Rename..."));
     connect(renameAction, &QAction::triggered, this, &ProjectTreeView::onFileRename);
+
+    setFrameShape(QFrame::NoFrame);
+    setHeaderHidden(true);
 }
 
 ProjectTreeView::~ProjectTreeView() {
