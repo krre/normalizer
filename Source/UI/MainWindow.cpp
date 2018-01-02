@@ -52,9 +52,9 @@ void MainWindow::on_actionAbout_triggered() {
         tr("<h3>%1 %2</h3> \
            Based on Qt %3<br> \
            Build on %4<br><br> \
-           <a href=%5>%5</a><br><br> \
-           Copyright © 2017, Vladimir Zarypov").
-           arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).arg(__DATE__).arg(APP_URL));
+           <a href=%5>%5</a><br><br>%6").
+           arg(APP_NAME).arg(APP_VERSION_STR).arg(QT_VERSION_STR).
+           arg(__DATE__).arg(APP_URL).arg(APP_COPYRIGHT));
 }
 
 void MainWindow::readSettings() {
