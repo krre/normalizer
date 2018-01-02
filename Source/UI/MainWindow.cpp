@@ -180,8 +180,8 @@ void MainWindow::onFileRemoved(const QString& filePath) {
 void MainWindow::readSettings() {
     settings->beginGroup("MainWindow");
 
-    resize(settings->value("size", QSize(1000, 600)).toSize());
-    move(settings->value("pos", QPoint(200, 200)).toPoint());
+    resize(settings->value("size", QSize(WINDOW_WIDTH, WINDOW_HEIGHT)).toSize());
+    move(settings->value("pos", QPoint(WINDOW_X, WINDOW_Y)).toPoint());
 
     QVariant splitterSize = settings->value("splitter");
     if (splitterSize == QVariant()) {

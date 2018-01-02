@@ -9,3 +9,7 @@
 #define PROJECT_DIRECTORY ".irbis"
 #define PROJECT_BUILD_DIRECTORY "build"
 #define PROJECT_SESSION_FILE "session.json"
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 600
+#define WINDOW_X 200
+#define WINDOW_Y 200
