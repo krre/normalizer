@@ -9,3 +9,4 @@
 #define WINDOW_HEIGHT 600
 #define WINDOW_X 200
 #define WINDOW_Y 200
+#define BACKGROUND_COLOR 0x4d4d4f

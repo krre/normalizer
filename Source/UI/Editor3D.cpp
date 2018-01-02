@@ -1,4 +1,5 @@
 #include "Editor3D.h"
+#include "Core/Defines.h"
 #include "Graphics/ComponentBuilder.h"
 #include "Graphics/OnTopEffect.h"
 #include <QtWidgets>
@@ -16,7 +17,7 @@
 
 Editor3D::Editor3D(const QString& filePath) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
-    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
+    view->defaultFrameGraph()->setClearColor(QColor(QRgb(BACKGROUND_COLOR)));
     QWidget* container = QWidget::createWindowContainer(view);
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setMargin(0);
