@@ -21,6 +21,8 @@ Cave::Cave(const QString& filePath) : m_filePath(filePath) {
     arguments << m_filePath;
     process->setArguments(arguments);
     connect(process, &QProcess::readyRead, this, &Cave::onReadyRead);
+    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+        [=](int exitCode, QProcess::ExitStatus exitStatus) { onFinished(exitCode, exitStatus); });
 }
 
 Cave::~Cave() {
@@ -28,6 +30,9 @@ Cave::~Cave() {
 }
 
 void Cave::build() {
+    outputMessage("");
+    QString startMessage = "Starting: " + process->program() + " " + process->arguments().at(0);
+    timedOutputMessage(startMessage);
     process->start();
 }
 
@@ -44,4 +49,16 @@ void Cave::onReadyRead() {
     while (!in.atEnd()) {
         outputMessage(in.readLine());
     }
+}
+
+void Cave::onFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+    Q_UNUSED(exitCode)
+    QString finishedMessage = "The process " + process->program() +
+        (exitStatus == QProcess::NormalExit ? " finished normally" : " crashed");
+    timedOutputMessage(finishedMessage);
+}
+
+void Cave::timedOutputMessage(const QString& message) {
+    QString timedMessage = QTime::currentTime().toString("hh:mm:ss: ") + message;
+    outputMessage(timedMessage);
 }

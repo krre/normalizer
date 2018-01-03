@@ -1,6 +1,7 @@
 #pragma once
 #include <QWidget>
 #include <QString>
+#include <QProcess>
 
 class DatabaseManager;
 class QProcess;
@@ -22,8 +23,11 @@ signals:
 
 private slots:
     void onReadyRead();
+    void onFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 private:
+    void timedOutputMessage(const QString& message);
+
     QString m_filePath;
     DatabaseManager* databaseManager;
     QProcess* process;
