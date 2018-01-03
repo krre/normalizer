@@ -2,15 +2,18 @@
 #include <QMainWindow>
 #include <QScopedPointer>
 
+class QProcess;
+class QFileSystemModel;
+
 namespace Ui {
     class MainWindow;
 }
 
+namespace IrbisCave {
+
 class Cave;
 class Settings;
 class ProjectTreeView;
-class QFileSystemModel;
-class QProcess;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -77,3 +80,5 @@ private:
     QProcess* process;
     QString projectPath;
 };
+
+} // IrbisCave

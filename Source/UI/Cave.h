@@ -4,8 +4,9 @@
 #include <QProcess>
 #include <QTime>
 
+namespace IrbisCave {
+
 class DatabaseManager;
-class QProcess;
 
 class Cave : public QWidget {
     Q_OBJECT
@@ -34,3 +35,5 @@ private:
     QProcess* process;
     QTime measureTime;
 };
+
+} // IrbisCave

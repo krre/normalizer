@@ -4,6 +4,8 @@
 #include "Core/Defines.h"
 #include <QtWidgets>
 
+namespace IrbisCave {
+
 NewProject::NewProject(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::NewProject) {
@@ -56,3 +58,5 @@ void NewProject::changeOkButtonState() {
     ui->buttonBox->buttons().at(0)->setEnabled(!(ui->lineEditName->text().isEmpty()
                                                   || ui->lineEditLocation->text().isEmpty()));
 }
+
+} // IrbisCave

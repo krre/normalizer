@@ -1,6 +1,8 @@
 #include "ProjectTreeView.h"
 #include <QtWidgets>
 
+namespace IrbisCave {
+
 ProjectTreeView::ProjectTreeView(QWidget* parent) : QTreeView(parent) {
     connect(this, &QTreeView::doubleClicked, this, &ProjectTreeView::onDoubleClicked);
     connect(this, &QTreeView::pressed, this, &ProjectTreeView::onMousePressed);
@@ -47,3 +49,5 @@ void ProjectTreeView::onFileRemove() {
 void ProjectTreeView::onFileRename() {
     qDebug() << "Rename" << selectedFile;
 }
+
+} // IrbisCave

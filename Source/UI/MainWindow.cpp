@@ -13,6 +13,8 @@
 #include <QJsonArray>
 #include <QJsonValue>
 
+namespace IrbisCave {
+
 MainWindow::MainWindow() :
         ui(new Ui::MainWindow) {
     settings = Settings::instance();
@@ -387,3 +389,5 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     saveSession();
     event->accept();
 }
+
+} // IrbisCave

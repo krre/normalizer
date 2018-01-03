@@ -2,6 +2,8 @@
 #include <QObject>
 #include <QSqlDatabase>
 
+namespace IrbisCave {
+
 class DatabaseManager : public QObject {
     Q_OBJECT
 
@@ -16,3 +18,5 @@ private:
     QSqlDatabase db;
     QString connection;
 };
+
+} // IrbisCave

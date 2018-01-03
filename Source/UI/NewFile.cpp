@@ -2,6 +2,8 @@
 #include "ui_NewFile.h"
 #include <QtWidgets>
 
+namespace IrbisCave {
+
 NewFile::NewFile(const QString& projectPath, QWidget* parent) :
         QDialog(parent),
         ui(new Ui::NewFile) {
@@ -45,3 +47,5 @@ void NewFile::changeOkButtonState() {
     ui->buttonBox->buttons().at(0)->setEnabled(!(ui->lineEditName->text().isEmpty()
                                                   || ui->lineEditLocation->text().isEmpty()));
 }
+
+} // IrbisCave

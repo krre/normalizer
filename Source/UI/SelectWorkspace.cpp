@@ -4,6 +4,8 @@
 #include "Core/Settings.h"
 #include <QtWidgets>
 
+namespace IrbisCave {
+
 SelectWorkspace::SelectWorkspace(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::SelectWorkspace) {
@@ -40,3 +42,5 @@ void SelectWorkspace::on_buttonBox_rejected() {
 void SelectWorkspace::on_lineEdit_textChanged(const QString& text) {
     ui->buttonBox->buttons().at(0)->setEnabled(!text.isEmpty());
 }
+
+} // IrbisCave

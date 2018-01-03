@@ -9,23 +9,23 @@ int main(int argc, char *argv[]) {
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
 
-    new Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
+    new IrbisCave::Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
 
-    if (Settings::instance()->value("Path/workspace").toString().isEmpty()) {
-        SelectWorkspace selectWorkspace;
+    if (IrbisCave::Settings::instance()->value("Path/workspace").toString().isEmpty()) {
+        IrbisCave::SelectWorkspace selectWorkspace;
         selectWorkspace.exec();
         if (selectWorkspace.isRejected()) {
-            Settings::release();
+            IrbisCave::Settings::release();
             return EXIT_SUCCESS;
         }
     }
 
-    MainWindow mainWindow;
+    IrbisCave::MainWindow mainWindow;
     mainWindow.show();
 
     int errCode = app.exec();
 
-    Settings::release();
+    IrbisCave::Settings::release();
 
     return errCode;
 }

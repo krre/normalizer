@@ -2,6 +2,8 @@
 #include <QtCore>
 #include <QtSql>
 
+namespace IrbisCave {
+
 DatabaseManager::DatabaseManager(const QString& filePath, QObject* parent) :
         QObject(parent) {
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
@@ -50,3 +52,5 @@ void DatabaseManager::initRecords() {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
 }
+
+} // IrbisCave

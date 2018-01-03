@@ -3,6 +3,8 @@
 
 class QMenu;
 
+namespace IrbisCave {
+
 class ProjectTreeView : public QTreeView {
     Q_OBJECT
 
@@ -25,3 +27,5 @@ private:
     QString selectedFile;
 
 };
+
+} // IrbisCave

@@ -36,7 +36,6 @@ HEADERS += \
     UI/Cave.h \
     Db/DatabaseManager.h \
     UI/Options.h \
-    Core/Singleton.h \
     Core/Settings.h \
     UI/SelectWorkspace.h \
     UI/NewProject.h \

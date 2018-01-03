@@ -5,6 +5,8 @@
 #include <QtCore>
 #include <QtWidgets>
 
+namespace IrbisCave {
+
 Options::Options(QWidget* parent) :
         QDialog(parent),
         ui(new Ui::Options) {
@@ -56,3 +58,5 @@ void Options::writeSettings() {
     Settings::instance()->setValue("Path/workspace", ui->lineEditWorkspace->text());
     Settings::instance()->setValue("MainWindow/restoreSession", ui->checkBoxSession->isChecked());
 }
+
+} // IrbisCave

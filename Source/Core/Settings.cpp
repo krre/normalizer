@@ -2,6 +2,8 @@
 #include "Defines.h"
 #include <QtCore>
 
+namespace IrbisCave {
+
 Settings::Settings(const QString& fileName, Format format) : QSettings(fileName, format) {
 
 }
@@ -17,3 +19,6 @@ QString Settings::readWorkspace() {
 bool Settings::readRestoreSession() {
     return value("MainWindow/restoreSession", true).toBool();
 }
+
+} // IrbisCave
+

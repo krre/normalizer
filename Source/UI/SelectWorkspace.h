@@ -5,6 +5,8 @@ namespace Ui {
     class SelectWorkspace;
 }
 
+namespace IrbisCave {
+
 class SelectWorkspace : public QDialog {
     Q_OBJECT
 
@@ -23,3 +25,5 @@ private:
     Ui::SelectWorkspace* ui;
     bool m_isRejected = false;
 };
+
+} // IrbisCave

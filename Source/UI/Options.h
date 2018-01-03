@@ -5,6 +5,8 @@ namespace Ui {
     class Options;
 }
 
+namespace IrbisCave {
+
 class Options : public QDialog {
     Q_OBJECT
 
@@ -24,3 +26,5 @@ private:
 
     Ui::Options* ui;
 };
+
+} // IrbisCave

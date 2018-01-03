@@ -5,6 +5,8 @@ namespace Ui {
     class NewProject;
 }
 
+namespace IrbisCave {
+
 class NewProject : public QDialog {
     Q_OBJECT
 
@@ -25,3 +27,5 @@ private:
     Ui::NewProject* ui;
     QString m_projectPath;
 };
+
+} // IrbisCave

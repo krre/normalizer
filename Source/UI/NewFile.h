@@ -5,6 +5,8 @@ namespace Ui {
     class NewFile;
 }
 
+namespace IrbisCave {
+
 class NewFile : public QDialog {
     Q_OBJECT
 
@@ -26,3 +28,5 @@ private:
     Ui::NewFile* ui;
     QString m_filePath;
 };
+
+} // IrbisCave
