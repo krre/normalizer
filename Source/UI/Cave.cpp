@@ -34,6 +34,7 @@ void Cave::build() {
     QString startMessage = "Starting: " + process->program() + " " + process->arguments().at(0);
     timedOutputMessage(startMessage);
     process->start();
+    measureTime.start();
 }
 
 void Cave::stop() {
@@ -56,6 +57,7 @@ void Cave::onFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     QString finishedMessage = "The process " + process->program() +
         (exitStatus == QProcess::NormalExit ? " finished normally" : " crashed");
     timedOutputMessage(finishedMessage);
+    timedOutputMessage(QString("Elapsed time: %1 ms").arg(measureTime.elapsed()));
 }
 
 void Cave::timedOutputMessage(const QString& message) {

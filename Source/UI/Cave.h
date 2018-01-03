@@ -2,6 +2,7 @@
 #include <QWidget>
 #include <QString>
 #include <QProcess>
+#include <QTime>
 
 class DatabaseManager;
 class QProcess;
@@ -31,4 +32,5 @@ private:
     QString m_filePath;
     DatabaseManager* databaseManager;
     QProcess* process;
+    QTime measureTime;
 };
