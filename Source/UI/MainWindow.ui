@@ -95,7 +95,7 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -137,6 +137,7 @@
     </property>
     <addaction name="actionShowSidebar"/>
     <addaction name="actionShowOutput"/>
+    <addaction name="actionClearOutput"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -309,6 +310,14 @@
    </property>
    <property name="text">
     <string>Show Output</string>
+   </property>
+  </action>
+  <action name="actionClearOutput">
+   <property name="text">
+    <string>Clear Output</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Del</string>
    </property>
   </action>
  </widget>

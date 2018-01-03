@@ -142,6 +142,11 @@ void MainWindow::on_actionShowOutput_toggled(bool checked) {
     }
 }
 
+void MainWindow::on_actionClearOutput_triggered(bool checked) {
+    Q_UNUSED(checked)
+    static_cast<QTextEdit*>(ui->tabWidgetOutput->currentWidget())->clear();
+}
+
 void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("About %1").arg(APP_NAME),
         tr("<h3>%1 %2</h3> \
