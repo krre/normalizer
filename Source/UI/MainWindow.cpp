@@ -29,6 +29,7 @@ MainWindow::MainWindow() :
     ui->tabWidgetSideBar->addTab(projectTreeView, tr("Project"));
     ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
+    ui->menuBuild->menuAction()->setVisible(false);
     ui->tabWidgetOutput->tabBar()->setVisible(false);
 
     readSettings();
@@ -183,6 +184,8 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     ui->actionClose->setEnabled(index >= 0);
     ui->actionCloseOther->setEnabled(index >= 0);
     ui->actionCloseAll->setEnabled(index >= 0);
+    ui->actionClearOutput->setEnabled(index >= 0);
+    ui->menuBuild->menuAction()->setVisible(index >= 0);
 }
 
 void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
