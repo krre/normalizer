@@ -29,6 +29,8 @@ MainWindow::MainWindow() :
     ui->tabWidgetSideBar->addTab(projectTreeView, tr("Project"));
     ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
+    ui->tabWidgetOutput->tabBar()->setVisible(false);
+
     readSettings();
 }
 
@@ -146,6 +148,10 @@ void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
     QWidget* widget = ui->tabWidgetCave->widget(index);
     ui->tabWidgetCave->removeTab(index);
     delete widget;
+
+    widget = ui->tabWidgetOutput->widget(index);
+    ui->tabWidgetOutput->removeTab(index);
+    delete widget;
 }
 
 void MainWindow::on_tabWidgetCave_currentChanged(int index) {
@@ -153,6 +159,7 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
         QString filePath = static_cast<Cave*>(ui->tabWidgetCave->widget(index))->filePath();
         QModelIndex modelIndex = fsModel->index(filePath);
         projectTreeView->setCurrentIndex(modelIndex);
+        ui->tabWidgetOutput->setCurrentIndex(index);
         changeWindowTitle(filePath);
     } else {
         projectTreeView->setCurrentIndex(QModelIndex());
@@ -328,11 +335,17 @@ void MainWindow::addCaveTab(const QString& filePath) {
     int tabIndex = findCave(fullIrbisPath);
     if (tabIndex != -1) {
         ui->tabWidgetCave->setCurrentIndex(tabIndex);
+        ui->tabWidgetOutput->setCurrentIndex(tabIndex);
     } else {
         QFileInfo fi(fullIrbisPath);
         int index = ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
         ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
         ui->tabWidgetCave->setCurrentIndex(index);
+
+        QTextEdit* textEdit = new QTextEdit;
+        textEdit->setReadOnly(true);
+        textEdit->setFrameStyle(QFrame::NoFrame);
+        ui->tabWidgetOutput->addTab(textEdit, fi.fileName());
     }
 }
 
