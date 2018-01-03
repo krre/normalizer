@@ -134,6 +134,14 @@ void MainWindow::on_actionShowSidebar_toggled(bool checked) {
     }
 }
 
+void MainWindow::on_actionShowOutput_toggled(bool checked) {
+    if (checked) {
+        ui->tabWidgetOutput->show();
+    } else {
+        ui->tabWidgetOutput->hide();
+    }
+}
+
 void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("About %1").arg(APP_NAME),
         tr("<h3>%1 %2</h3> \
@@ -203,6 +211,7 @@ void MainWindow::readSettings() {
     }
 
     ui->actionShowSidebar->setChecked(settings->value("showSidebar", true).toBool());
+    ui->actionShowOutput->setChecked(settings->value("showOutput", true).toBool());
 
     settings->endGroup();
 
@@ -219,6 +228,7 @@ void MainWindow::writeSettings() {
     settings->setValue("splitterMain", ui->splitterMain->saveState());
     settings->setValue("splitterRight", ui->splitterRight->saveState());
     settings->setValue("showSidebar", ui->actionShowSidebar->isChecked());
+    settings->setValue("showOutput", ui->actionShowOutput->isChecked());
     settings->endGroup();
 
     settings->setValue("Path/lastProject", projectPath);
