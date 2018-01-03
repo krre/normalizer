@@ -291,7 +291,9 @@ void MainWindow::restoreSession() {
         }
     }
 
-    ui->tabWidgetCave->setCurrentIndex(findCave(selectedFilePath));
+    int index = findCave(selectedFilePath);
+    ui->tabWidgetCave->setCurrentIndex(index);
+    ui->tabWidgetOutput->setCurrentIndex(index);
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
