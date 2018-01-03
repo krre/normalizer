@@ -1,5 +1,5 @@
 #pragma once
-#include <Irbis/Core/Singleton.h>
+#include <IrbisLib/Core/Singleton.h>
 #include <QSettings>
 
 namespace IrbisCave {
