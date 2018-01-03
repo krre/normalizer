@@ -348,7 +348,8 @@ void MainWindow::addCaveTab(const QString& filePath) {
         ui->tabWidgetOutput->setCurrentIndex(tabIndex);
     } else {
         QFileInfo fi(fullIrbisPath);
-        int index = ui->tabWidgetCave->addTab(new Cave(fullIrbisPath), fi.fileName());
+        Cave* cave = new Cave(fullIrbisPath);
+        int index = ui->tabWidgetCave->addTab(cave, fi.fileName());
         ui->tabWidgetCave->setTabToolTip(index, fullIrbisPath);
         ui->tabWidgetCave->setCurrentIndex(index);
 
@@ -356,6 +357,10 @@ void MainWindow::addCaveTab(const QString& filePath) {
         textEdit->setReadOnly(true);
         textEdit->setFrameStyle(QFrame::NoFrame);
         ui->tabWidgetOutput->addTab(textEdit, fi.fileName());
+        connect(cave, &Cave::consoleMessage, [=](const QString& message) {
+            QString timedMessage = QTime::currentTime().toString("hh:mm:ss: ") + message;
+            textEdit->append(timedMessage);
+        });
     }
 }
 

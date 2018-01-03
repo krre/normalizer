@@ -42,7 +42,6 @@ QString Cave::filePath() const {
 void Cave::onReadyRead() {
     QTextStream in(process->readAll());
     while (!in.atEnd()) {
-        const QString line = in.readLine();
-        qDebug().noquote() << line;
+        consoleMessage(in.readLine());
     }
 }
