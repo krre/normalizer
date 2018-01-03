@@ -6,6 +6,8 @@ namespace Ui {
     class MainWindow;
 }
 
+namespace IrbisUnitBuilder {
+
 class Settings;
 class Editor3D;
 
@@ -38,4 +40,6 @@ private:
     Settings* settings;
     QScopedPointer<Editor3D> editor3d;
 };
+
+} // IrbisUnitBuilder
 

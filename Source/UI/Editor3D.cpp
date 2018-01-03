@@ -15,6 +15,8 @@
 #include <Qt3DCore/QEntity>
 #include <Qt3DCore/QTransform>
 
+namespace IrbisUnitBuilder {
+
 Editor3D::Editor3D(const QString& filePath) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(BACKGROUND_COLOR)));
@@ -112,3 +114,5 @@ Qt3DCore::QEntity* Editor3D::createOriginAxises(Qt3DCore::QEntity* parent) {
 
     return axisesEntity;
 }
+
+} // IrbisUnitBuilder

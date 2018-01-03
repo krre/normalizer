@@ -8,19 +8,19 @@ int main(int argc, char *argv[]) {
     app.setApplicationName(APP_NAME);
     app.setApplicationVersion(APP_VERSION_STR);
 
-    new Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
+    new IrbisUnitBuilder::Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
 
     QString filePath;
     if (argc > 1) {
         filePath = QString(argv[1]);
     }
 
-    MainWindow mainWindow(filePath);
+    IrbisUnitBuilder::MainWindow mainWindow(filePath);
     mainWindow.show();
 
     int errCode = app.exec();
 
-    Settings::release();
+    IrbisUnitBuilder::Settings::release();
 
     return errCode;
 }

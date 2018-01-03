@@ -8,6 +8,8 @@ namespace Qt3DRender {
 
 class QVector3D;
 
+namespace IrbisUnitBuilder {
+
 class ComponentBuilder {
 
 public:
@@ -17,3 +19,5 @@ public:
     static void addPositionAttributeToGeometry(Qt3DRender::QGeometry *geometry, Qt3DRender::QBuffer *buffer, int count);
 
 };
+
+} // IrbisUnitBuilder

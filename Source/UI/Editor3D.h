@@ -9,6 +9,8 @@ namespace Qt3DRender {
     class QCamera;
 }
 
+namespace IrbisUnitBuilder {
+
 class Editor3D : public QWidget {
     Q_OBJECT
 
@@ -24,3 +26,5 @@ private:
     Qt3DCore::QEntity* gridPlane;
     Qt3DCore::QEntity* axises;
 };
+
+} // IrbisUnitBuilder

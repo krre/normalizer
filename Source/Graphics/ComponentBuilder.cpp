@@ -4,6 +4,8 @@
 #include <Qt3DRender/QAttribute>
 #include <QVector3D>
 
+namespace IrbisUnitBuilder {
+
 ComponentBuilder::ComponentBuilder() {
 
 }
@@ -95,3 +97,5 @@ void ComponentBuilder::addPositionAttributeToGeometry(Qt3DRender::QGeometry* geo
 
     geometry->addAttribute(posAttribute);
 }
+
+} // IrbisUnitBuilder

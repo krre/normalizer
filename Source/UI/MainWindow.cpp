@@ -5,6 +5,8 @@
 #include "Core/Settings.h"
 #include <QtWidgets>
 
+namespace IrbisUnitBuilder {
+
 MainWindow::MainWindow(const QString& filePath) :
         m_filePath(filePath),
         ui(new Ui::MainWindow) {
@@ -93,3 +95,5 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
     }
     setWindowTitle(title);
 }
+
+} // IrbisUnitBuilder

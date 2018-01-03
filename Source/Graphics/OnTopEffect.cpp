@@ -5,6 +5,8 @@
 #include <Qt3DRender/QRenderPass>
 #include <QtCore/QUrl>
 
+namespace IrbisUnitBuilder {
+
 OnTopEffect::OnTopEffect(Qt3DCore::QNode* parent) : Qt3DRender::QEffect(parent) {
     Qt3DRender::QTechnique* technique = new Qt3DRender::QTechnique();
     technique->graphicsApiFilter()->setProfile(Qt3DRender::QGraphicsApiFilter::NoProfile);
@@ -28,3 +30,5 @@ OnTopEffect::OnTopEffect(Qt3DCore::QNode* parent) : Qt3DRender::QEffect(parent) 
 
     addTechnique(technique);
 }
+
+} // IrbisUnitBuilder
