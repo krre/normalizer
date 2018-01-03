@@ -4,7 +4,7 @@
 
 namespace IrbisCave {
 
-class Settings : public QSettings, public Singleton<Settings> {
+class Settings : public QSettings, public IrbisLib::Singleton<Settings> {
 
 public:
     Settings(const QString& fileName, Format format);
