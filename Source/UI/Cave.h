@@ -18,7 +18,7 @@ public:
     QString filePath() const;
 
 signals:
-    void consoleMessage(const QString& message);
+    void outputMessage(const QString& message);
 
 private slots:
     void onReadyRead();

@@ -42,6 +42,6 @@ QString Cave::filePath() const {
 void Cave::onReadyRead() {
     QTextStream in(process->readAll());
     while (!in.atEnd()) {
-        consoleMessage(in.readLine());
+        outputMessage(in.readLine());
     }
 }

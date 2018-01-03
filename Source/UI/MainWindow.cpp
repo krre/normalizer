@@ -357,7 +357,7 @@ void MainWindow::addCaveTab(const QString& filePath) {
         textEdit->setReadOnly(true);
         textEdit->setFrameStyle(QFrame::NoFrame);
         ui->tabWidgetOutput->addTab(textEdit, fi.fileName());
-        connect(cave, &Cave::consoleMessage, [=](const QString& message) {
+        connect(cave, &Cave::outputMessage, [=](const QString& message) {
             QString timedMessage = QTime::currentTime().toString("hh:mm:ss: ") + message;
             textEdit->append(timedMessage);
         });
