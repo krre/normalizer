@@ -31,6 +31,7 @@ MainWindow::MainWindow() :
     ui->tabWidgetSideBar->addTab(projectTreeView, tr("Project"));
     ui->tabWidgetSideBar->addTab(new QWidget, tr("Properties"));
 
+    ui->menuAdd->menuAction()->setVisible(false);
     ui->menuBuild->menuAction()->setVisible(false);
     ui->tabWidgetOutput->tabBar()->setVisible(false);
 
@@ -106,6 +107,18 @@ void MainWindow::on_actionCloseOther_triggered() {
 
 void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
+}
+
+void MainWindow::on_actionExpression_triggered() {
+
+}
+
+void MainWindow::on_actionFunction_triggered() {
+
+}
+
+void MainWindow::on_actionModule_triggered() {
+
 }
 
 void MainWindow::on_actionBuild_triggered() {
@@ -187,6 +200,7 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     ui->actionCloseOther->setEnabled(index >= 0);
     ui->actionCloseAll->setEnabled(index >= 0);
     ui->actionClearOutput->setEnabled(index >= 0);
+    ui->menuAdd->menuAction()->setVisible(index >= 0);
     ui->menuBuild->menuAction()->setVisible(index >= 0);
 }
 

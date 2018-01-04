@@ -154,7 +154,16 @@
     <addaction name="actionBuild"/>
     <addaction name="actionStop"/>
    </widget>
+   <widget class="QMenu" name="menuAdd">
+    <property name="title">
+     <string>Add</string>
+    </property>
+    <addaction name="actionExpression"/>
+    <addaction name="actionFunction"/>
+    <addaction name="actionModule"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuAdd"/>
    <addaction name="menuBuild"/>
    <addaction name="menuTools"/>
    <addaction name="menuView"/>
@@ -318,6 +327,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Del</string>
+   </property>
+  </action>
+  <action name="actionExpression">
+   <property name="text">
+    <string>Expression</string>
+   </property>
+  </action>
+  <action name="actionFunction">
+   <property name="text">
+    <string>Function</string>
+   </property>
+  </action>
+  <action name="actionModule">
+   <property name="text">
+    <string>Module</string>
    </property>
   </action>
  </widget>

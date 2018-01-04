@@ -35,6 +35,11 @@ private slots:
     void on_actionCloseOther_triggered();
     void on_actionExit_triggered();
 
+    // Add
+    void on_actionExpression_triggered();
+    void on_actionFunction_triggered();
+    void on_actionModule_triggered();
+
     // Build
     void on_actionBuild_triggered();
     void on_actionStop_triggered();
