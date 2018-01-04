@@ -8,6 +8,9 @@ DESTDIR = $$(IRBIS_HOME)/build
 
 INCLUDEPATH += $$(IRBIS_HOME)/irbislib/Source
 
+LIBS += -L$$(IRBIS_HOME)/build
+LIBS += -lirbis
+
 SOURCES += \
     main.cpp \
     UI/MainWindow.cpp \

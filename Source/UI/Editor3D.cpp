@@ -14,6 +14,7 @@
 #include <Qt3DRender/QParameter>
 #include <Qt3DCore/QEntity>
 #include <Qt3DCore/QTransform>
+#include <IrbisLib/Graphics/Material/ShadelessMaterial.h>
 
 namespace IrbisUnitBuilder {
 
@@ -66,7 +67,8 @@ Qt3DCore::QEntity* Editor3D::createGridPlane(Qt3DCore::QEntity* parent) {
     Qt3DRender::QGeometryRenderer* planeMesh = ComponentBuilder::createGridPlaneMesh(11);
     planeEntity->addComponent(planeMesh);
 
-    Qt3DRender::QMaterial* material = new Qt3DExtras::QPhongMaterial;
+    IrbisLib::ShadelessMaterial* material = new IrbisLib::ShadelessMaterial;
+    material->setColor(QColor::fromRgbF(0.7, 1.0, 1.0, 1.0));
     planeEntity->addComponent(material);
 
     return planeEntity;
