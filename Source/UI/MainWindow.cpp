@@ -8,7 +8,7 @@
 namespace IrbisUnitBuilder {
 
 MainWindow::MainWindow(const QString& filePath) :
-        m_filePath(filePath),
+        filePath(filePath),
         ui(new Ui::MainWindow) {
     settings = Settings::instance();
 
@@ -75,14 +75,14 @@ void MainWindow::writeSettings() {
 
 void MainWindow::openFile(const QString& filePath) {
     closeFile();
-    m_filePath = filePath;
+    this->filePath = filePath;
     editor3d.reset(new Editor3D(filePath));
     setCentralWidget(editor3d.data());
     changeWindowTitle(filePath);
 }
 
 void MainWindow::closeFile() {
-    m_filePath = QString();
+    filePath = QString();
     editor3d.reset();
     changeWindowTitle();
 }
