@@ -13,7 +13,7 @@ class SelectWorkspace : public QDialog {
 public:
     explicit SelectWorkspace(QWidget* parent = 0);
     ~SelectWorkspace();
-    bool isRejected() const;
+    bool getIsRejected() const;
 
 private slots:
     void on_pushButtonBrowse_clicked();
@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::SelectWorkspace* ui;
-    bool m_isRejected = false;
+    bool isRejected = false;
 };
 
 } // IrbisCave

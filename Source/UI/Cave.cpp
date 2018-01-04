@@ -7,7 +7,7 @@
 
 namespace IrbisCave {
 
-Cave::Cave(const QString& filePath) : m_filePath(filePath) {
+Cave::Cave(const QString& filePath) : filePath(filePath) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     QWidget* container = QWidget::createWindowContainer(view);
@@ -20,7 +20,7 @@ Cave::Cave(const QString& filePath) : m_filePath(filePath) {
     process = new QProcess(this);
     process->setProgram(QCoreApplication::applicationDirPath() + "/irbis");
     QStringList arguments;
-    arguments << m_filePath;
+    arguments << filePath;
     process->setArguments(arguments);
     connect(process, &QProcess::readyRead, this, &Cave::onReadyRead);
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
@@ -43,8 +43,8 @@ void Cave::stop() {
     qDebug() << "Stop build";
 }
 
-QString Cave::filePath() const {
-    return m_filePath;
+QString Cave::getFilePath() const {
+    return filePath;
 }
 
 void Cave::onReadyRead() {

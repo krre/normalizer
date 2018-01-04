@@ -13,7 +13,7 @@ class NewFile : public QDialog {
 public:
     explicit NewFile(const QString& projectPath, QWidget* parent = 0);
     ~NewFile();
-    QString filePath() const;
+    QString getFilePath() const;
 
 private slots:
     void on_pushButtonBrowse_clicked();
@@ -26,7 +26,7 @@ private:
 
 private:
     Ui::NewFile* ui;
-    QString m_filePath;
+    QString filePath;
 };
 
 } // IrbisCave

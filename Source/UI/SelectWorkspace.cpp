@@ -20,8 +20,8 @@ SelectWorkspace::~SelectWorkspace() {
     delete ui;
 }
 
-bool SelectWorkspace::isRejected() const {
-    return m_isRejected;
+bool SelectWorkspace::getIsRejected() const {
+    return isRejected;
 }
 
 void SelectWorkspace::on_pushButtonBrowse_clicked() {
@@ -36,7 +36,7 @@ void SelectWorkspace::on_buttonBox_accepted() {
 }
 
 void SelectWorkspace::on_buttonBox_rejected() {
-    m_isRejected = true;
+    isRejected = true;
 }
 
 void SelectWorkspace::on_lineEdit_textChanged(const QString& text) {

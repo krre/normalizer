@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     if (IrbisCave::Settings::instance()->value("Path/workspace").toString().isEmpty()) {
         IrbisCave::SelectWorkspace selectWorkspace;
         selectWorkspace.exec();
-        if (selectWorkspace.isRejected()) {
+        if (selectWorkspace.getIsRejected()) {
             IrbisCave::Settings::release();
             return EXIT_SUCCESS;
         }

@@ -13,7 +13,7 @@ class NewProject : public QDialog {
 public:
     explicit NewProject(QWidget* parent = 0);
     ~NewProject();
-    QString projectPath() const;
+    QString getProjectPath() const;
 
 private slots:
     void on_pushButtonBrowse_clicked();
@@ -25,7 +25,7 @@ private:
     void changeOkButtonState();
 
     Ui::NewProject* ui;
-    QString m_projectPath;
+    QString projectPath;
 };
 
 } // IrbisCave

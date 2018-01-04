@@ -18,7 +18,7 @@ public:
     void build();
     void stop();
 
-    QString filePath() const;
+    QString getFilePath() const;
 
 signals:
     void outputMessage(const QString& message);
@@ -30,7 +30,7 @@ private slots:
 private:
     void timedOutputMessage(const QString& message);
 
-    QString m_filePath;
+    QString filePath;
     DatabaseManager* databaseManager;
     QProcess* process;
     QTime measureTime;

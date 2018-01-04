@@ -18,8 +18,8 @@ NewFile::~NewFile() {
     delete ui;
 }
 
-QString NewFile::filePath() const {
-    return m_filePath;
+QString NewFile::getFilePath() const {
+    return filePath;
 }
 
 void NewFile::on_pushButtonBrowse_clicked() {
@@ -30,7 +30,7 @@ void NewFile::on_pushButtonBrowse_clicked() {
 }
 
 void NewFile::on_buttonBox_accepted() {
-    m_filePath = ui->lineEditLocation->text() + "/" + ui->lineEditName->text();
+    filePath = ui->lineEditLocation->text() + "/" + ui->lineEditName->text();
 }
 
 void NewFile::on_lineEditName_textChanged(const QString& text) {

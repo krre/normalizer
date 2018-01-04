@@ -45,16 +45,16 @@ MainWindow::~MainWindow() {
 void MainWindow::on_actionNewProject_triggered() {
     NewProject newProject(this);
     newProject.exec();
-    if (!newProject.projectPath().isEmpty()) {
-        openProject(newProject.projectPath());
+    if (!newProject.getProjectPath().isEmpty()) {
+        openProject(newProject.getProjectPath());
     }
 }
 
 void MainWindow::on_actionNewIrbis_triggered() {
     NewFile newFile(projectPath);
     newFile.exec();
-    if (!newFile.filePath().isEmpty()) {
-        addCaveTab(newFile.filePath());
+    if (!newFile.getFilePath().isEmpty()) {
+        addCaveTab(newFile.getFilePath());
     }
 }
 
@@ -132,7 +132,7 @@ void MainWindow::on_actionStop_triggered() {
 void MainWindow::on_actionUnitBuilder_triggered() {
     QStringList arguments;
     if (ui->tabWidgetCave->count()) {
-        arguments << static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->filePath();
+        arguments << static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->getFilePath();
     }
     process->startDetached(QCoreApplication::applicationDirPath() + "/unitbuilder", arguments);
 }
@@ -185,7 +185,7 @@ void MainWindow::on_tabWidgetCave_tabCloseRequested(int index) {
 
 void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     if (index >= 0) {
-        QString filePath = static_cast<Cave*>(ui->tabWidgetCave->widget(index))->filePath();
+        QString filePath = static_cast<Cave*>(ui->tabWidgetCave->widget(index))->getFilePath();
         QModelIndex modelIndex = fsModel->index(filePath);
         projectTreeView->setCurrentIndex(modelIndex);
         ui->tabWidgetOutput->setCurrentIndex(index);
@@ -273,7 +273,7 @@ void MainWindow::saveSession() {
     QJsonArray openFiles;
     for (int i = 0; i < ui->tabWidgetCave->count(); i++) {
         Cave* cave = static_cast<Cave*>(ui->tabWidgetCave->widget(i));
-        openFiles.append(QJsonValue(cave->filePath()));
+        openFiles.append(QJsonValue(cave->getFilePath()));
     }
 
     QJsonObject obj;
@@ -390,7 +390,7 @@ void MainWindow::addCaveTab(const QString& filePath) {
 int MainWindow::findCave(const QString& filePath) {
     for (int i = 0; i < ui->tabWidgetCave->count(); i++) {
         Cave* cave = static_cast<Cave*>(ui->tabWidgetCave->widget(i));
-        if (cave->filePath() == filePath) {
+        if (cave->getFilePath() == filePath) {
             return i;
         }
     }

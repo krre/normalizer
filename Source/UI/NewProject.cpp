@@ -20,8 +20,8 @@ NewProject::~NewProject() {
     delete ui;
 }
 
-QString NewProject::projectPath() const {
-    return m_projectPath;
+QString NewProject::getProjectPath() const {
+    return projectPath;
 }
 
 void NewProject::on_pushButtonBrowse_clicked() {
@@ -35,7 +35,7 @@ void NewProject::on_buttonBox_accepted() {
     QString projectPath = ui->lineEditLocation->text() + "/" + ui->lineEditName->text();
     QDir dir;
     if (dir.mkpath(projectPath)) {
-        m_projectPath = projectPath;
+        projectPath = projectPath;
         dir.cd(projectPath);
         dir.mkdir(PROJECT_DIRECTORY);
         dir.mkdir(PROJECT_BUILD_DIRECTORY);
