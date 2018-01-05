@@ -35,27 +35,25 @@ DatabaseManager::~DatabaseManager() {
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
     q.exec("CREATE TABLE IF NOT EXISTS Defs(name, value)");
-    if (q.lastError().type() != QSqlError::NoError) {
-        throw std::runtime_error(q.lastError().text().toStdString());
-    }
 
-    q.exec("CREATE TABLE IF NOT EXISTS Modules(id, name)");
-    if (q.lastError().type() != QSqlError::NoError) {
-        throw std::runtime_error(q.lastError().text().toStdString());
-    }
+    q.exec("CREATE TABLE IF NOT EXISTS Modules("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name)");
 
-    q.exec("CREATE TABLE IF NOT EXISTS Functions(id, name, module_id)");
-    if (q.lastError().type() != QSqlError::NoError) {
-        throw std::runtime_error(q.lastError().text().toStdString());
-    }
+    q.exec("CREATE TABLE IF NOT EXISTS Functions("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name,"
+           "module_id)");
 
-    q.exec("CREATE TABLE IF NOT EXISTS Expressions(id, name, function_id)");
+    q.exec("CREATE TABLE IF NOT EXISTS Expressions("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name,"
+           "function_id)");
+
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
 }
-
-
 
 void DatabaseManager::initRecords() {
     QSqlQuery q(db);
