@@ -34,11 +34,28 @@ DatabaseManager::~DatabaseManager() {
 
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
-    q.exec("CREATE TABLE Defs(name, value)");
+    q.exec("CREATE TABLE IF NOT EXISTS Defs(name, value)");
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+
+    q.exec("CREATE TABLE IF NOT EXISTS Modules(id, name)");
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+
+    q.exec("CREATE TABLE IF NOT EXISTS Functions(id, name, module_id)");
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+
+    q.exec("CREATE TABLE IF NOT EXISTS Expressions(id, name, function_id)");
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
 }
+
+
 
 void DatabaseManager::initRecords() {
     QSqlQuery q(db);
