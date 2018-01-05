@@ -118,7 +118,7 @@ void MainWindow::on_actionFunction_triggered() {
 }
 
 void MainWindow::on_actionModule_triggered() {
-
+    static_cast<Cave*>(ui->tabWidgetCave->currentWidget())->addModule();
 }
 
 void MainWindow::on_actionBuild_triggered() {

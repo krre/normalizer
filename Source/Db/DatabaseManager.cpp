@@ -32,6 +32,16 @@ DatabaseManager::~DatabaseManager() {
     QSqlDatabase::removeDatabase(connection);
 }
 
+void DatabaseManager::addModule(const QString& name) {
+    QString value = name.isEmpty() ? "Module.000" : name;
+    QSqlQuery q(db);
+    q.exec(QString("INSERT INTO Modules (name) VALUES ('%1')").arg(value));
+
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+}
+
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
     q.exec("CREATE TABLE IF NOT EXISTS Defs(name, value)");

@@ -20,6 +20,9 @@ public:
 
     QString getFilePath() const;
 
+    // Commands
+    void addModule();
+
 signals:
     void outputMessage(const QString& message);
 

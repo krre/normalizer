@@ -10,6 +10,7 @@ class DatabaseManager : public QObject {
 public:
     DatabaseManager(const QString& filePath, QObject* parent = nullptr);
     ~DatabaseManager();
+    void addModule(const QString& name = QString());
 
 private:
     void initTables();

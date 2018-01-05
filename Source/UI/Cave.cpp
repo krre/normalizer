@@ -47,6 +47,10 @@ QString Cave::getFilePath() const {
     return filePath;
 }
 
+void Cave::addModule() {
+    databaseManager->addModule();
+}
+
 void Cave::onReadyRead() {
     QTextStream in(process->readAll());
     while (!in.atEnd()) {
