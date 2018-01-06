@@ -33,7 +33,10 @@ DatabaseManager::~DatabaseManager() {
 }
 
 void DatabaseManager::addModule(const QString& name) {
-    QString value = name.isEmpty() ? "Module.000" : name;
+    QString value = name;
+    if (value.isEmpty()) {
+        value = createNumeredName("Modules", "Module");
+    }
     QSqlQuery q(db);
     q.exec(QString("INSERT INTO Modules (name) VALUES ('%1')").arg(value));
 
@@ -76,6 +79,20 @@ void DatabaseManager::initRecords() {
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
+}
+
+int DatabaseManager::getNextId(const QString& table) {
+    QSqlQuery q(db);
+    q.exec(QString("SELECT * FROM SQLITE_SEQUENCE WHERE name='%1'").arg(table));
+    q.last();
+    return q.value(1).toInt() + 1; // get seq value and return next
+}
+
+// Create numered name from name and its record id
+QString DatabaseManager::createNumeredName(const QString& table, const QString& name) {
+    int dimension = 3; // eg Module.004
+    QString zeroPaddingValue = QString("%1").arg(getNextId(table), dimension, 10, QChar('0'));
+    return QString("%1.%2").arg(name).arg(zeroPaddingValue);
 }
 
 } // IrbisCave

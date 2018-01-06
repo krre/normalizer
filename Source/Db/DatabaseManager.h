@@ -15,6 +15,8 @@ public:
 private:
     void initTables();
     void initRecords();
+    int getNextId(const QString& table);
+    QString createNumeredName(const QString& table, const QString& name);
 
     QSqlDatabase db;
     QString connection;
