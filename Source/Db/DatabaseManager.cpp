@@ -91,6 +91,12 @@ bool DatabaseManager::checkStorageOutOfDate() {
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
 
+    q.exec("CREATE TABLE IF NOT EXISTS Units("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name,"
+           "model,"
+           "description)");
+
     q.exec("CREATE TABLE IF NOT EXISTS Modules("
            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
            "name)");
