@@ -34,6 +34,7 @@ private:
     void openFile(const QString& filePath);
     void closeFile();
     void changeWindowTitle(const QString& filePath = QString());
+    void updateActions();
 
     QString filePath;
     Ui::MainWindow* ui;

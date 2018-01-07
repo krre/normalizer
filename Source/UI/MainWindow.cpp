@@ -19,6 +19,8 @@ MainWindow::MainWindow(const QString& filePath) :
     if (!filePath.isEmpty()) {
         openFile(filePath);
     }
+
+    updateActions();
 }
 
 MainWindow::~MainWindow() {
@@ -89,12 +91,14 @@ void MainWindow::openFile(const QString& filePath) {
     editor3d.reset(new Editor3D(filePath));
     ui->splitter->widget(0)->layout()->addWidget(editor3d.data());
     changeWindowTitle(filePath);
+    updateActions();
 }
 
 void MainWindow::closeFile() {
     filePath = QString();
     editor3d.reset();
     changeWindowTitle();
+    updateActions();
 }
 
 void MainWindow::changeWindowTitle(const QString& filePath) {
@@ -104,6 +108,12 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
         title = info.fileName() + " - " + title;
     }
     setWindowTitle(title);
+}
+
+void MainWindow::updateActions() {
+    bool isFileOpened = !editor3d.isNull();
+    ui->menuView->menuAction()->setVisible(isFileOpened);
+    ui->actionClose->setEnabled(isFileOpened);
 }
 
 } // IrbisUnitBuilder
