@@ -10,7 +10,8 @@ class DatabaseManager : public QObject {
 public:
     DatabaseManager(const QString& filePath, QObject* parent = nullptr);
     ~DatabaseManager();
-    void addUnit(const QString& name = QString());
+    QString addUnit();
+    QSqlDatabase& getDb();
 
 private:
     int getNextId(const QString& table);

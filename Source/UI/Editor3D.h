@@ -20,6 +20,7 @@ public:
     explicit Editor3D(const QString& filePath);
     void resetViewport();
     void addUnit();
+    DatabaseManager* getDbManager() const;
 
 private:
     Qt3DCore::QEntity* createScene();

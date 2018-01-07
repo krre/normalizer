@@ -2,6 +2,8 @@
 #include <QMainWindow>
 #include <QScopedPointer>
 
+class QSqlTableModel;
+
 namespace Ui {
     class MainWindow;
 }
@@ -49,6 +51,7 @@ private:
     Ui::MainWindow* ui;
     Settings* settings;
     QScopedPointer<Editor3D> editor3d;
+    QScopedPointer<QSqlTableModel> sqlModel;
 };
 
 } // IrbisUnitBuilder

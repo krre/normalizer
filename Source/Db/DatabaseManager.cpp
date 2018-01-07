@@ -25,17 +25,21 @@ DatabaseManager::~DatabaseManager() {
     QSqlDatabase::removeDatabase(connection);
 }
 
-void DatabaseManager::addUnit(const QString& name) {
-    QString value = name;
-    if (value.isEmpty()) {
-        value = createNumeredName("Units", "Unit");
-    }
+QString DatabaseManager::addUnit() {
+    QString name = createNumeredName("Units", "Unit");
+
     QSqlQuery q(db);
-    q.exec(QString("INSERT INTO Units (name) VALUES ('%1')").arg(value));
+    q.exec(QString("INSERT INTO Units (name) VALUES ('%1')").arg(name));
 
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
+
+    return name;
+}
+
+QSqlDatabase& DatabaseManager::getDb() {
+    return db;
 }
 
 int DatabaseManager::getNextId(const QString& table) {

@@ -3,7 +3,9 @@
 #include "Editor3D.h"
 #include "Core/Defines.h"
 #include "Core/Settings.h"
+#include "Db/DatabaseManager.h"
 #include <QtWidgets>
+#include <QtSql>
 
 namespace IrbisUnitBuilder {
 
@@ -13,6 +15,7 @@ MainWindow::MainWindow(const QString& filePath) :
     settings = Settings::instance();
 
     ui->setupUi(this);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
     readSettings();
 
@@ -49,6 +52,7 @@ void MainWindow::on_actionExit_triggered() {
 
 void MainWindow::on_actionAdd_triggered() {
     editor3d->addUnit();
+    sqlModel->select();
 }
 
 void MainWindow::on_actionRemove_triggered() {
@@ -98,12 +102,24 @@ void MainWindow::openFile(const QString& filePath) {
     this->filePath = filePath;
     editor3d.reset(new Editor3D(filePath));
     ui->splitter->widget(0)->layout()->addWidget(editor3d.data());
+
+    sqlModel.reset(new QSqlTableModel(this, editor3d->getDbManager()->getDb()));
+    sqlModel->setTable("Units");
+    sqlModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    sqlModel->select();
+
+    ui->tableView->setModel(sqlModel.data());
+    ui->tableView->hideColumn(0);
+    ui->tableView->hideColumn(2);
+    ui->tableView->hideColumn(3);
+
     changeWindowTitle(filePath);
     updateActions();
 }
 
 void MainWindow::closeFile() {
     filePath = QString();
+    sqlModel.reset();
     editor3d.reset();
     changeWindowTitle();
     updateActions();

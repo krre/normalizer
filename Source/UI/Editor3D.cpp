@@ -59,6 +59,10 @@ void Editor3D::addUnit() {
     databaseManager->addUnit();
 }
 
+DatabaseManager*Editor3D::getDbManager() const {
+    return databaseManager;
+}
+
 Qt3DCore::QEntity* Editor3D::createScene() {
     Qt3DCore::QEntity* rootEntity = new Qt3DCore::QEntity;
 
