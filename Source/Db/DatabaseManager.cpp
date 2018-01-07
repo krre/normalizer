@@ -1,6 +1,7 @@
 #include "DatabaseManager.h"
 #include <QtCore>
 #include <QtSql>
+#include <IrbisLib/Core/Utils.h>
 
 namespace IrbisCave {
 
@@ -47,9 +48,11 @@ void DatabaseManager::addModule(const QString& name) {
 
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
-    q.exec("CREATE TABLE IF NOT EXISTS Defs("
+
+    q.exec("CREATE TABLE IF NOT EXISTS Versions("
            "name,"
-           "value)");
+           "version,"
+           "api)");
 
     q.exec("CREATE TABLE IF NOT EXISTS Modules("
            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -72,10 +75,10 @@ void DatabaseManager::initTables() {
 
 void DatabaseManager::initRecords() {
     QSqlQuery q(db);
-    q.prepare("INSERT INTO Defs (name, value) "
-                  "VALUES (:name, :value)");
-    q.bindValue(":name", "IrbisCaveVersion");
-    q.bindValue(":value", QCoreApplication::applicationVersion());
+    q.prepare("INSERT INTO Versions VALUES (:name, :version, :api)");
+    q.bindValue(":name", "IrbisCave");
+    q.bindValue(":version", QCoreApplication::applicationVersion());
+    q.bindValue(":api", IrbisLib::Utils::versionToApi(QCoreApplication::applicationVersion()));
     q.exec();
 
     if (q.lastError().type() != QSqlError::NoError) {
