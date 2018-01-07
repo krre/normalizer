@@ -61,8 +61,17 @@ void MainWindow::on_actionAbout_triggered() {
 
 void MainWindow::readSettings() {
     settings->beginGroup("MainWindow");
+
     resize(settings->value("size", QSize(WINDOW_WIDTH, WINDOW_HEIGHT)).toSize());
     move(settings->value("pos", QPoint(WINDOW_X, WINDOW_Y)).toPoint());
+
+    QVariant splitterSize = settings->value("splitter");
+    if (splitterSize == QVariant()) {
+        ui->splitter->setSizes({ 500, 100 });
+    } else {
+        ui->splitter->restoreState(splitterSize.toByteArray());
+    }
+
     settings->endGroup();
 }
 
@@ -70,6 +79,7 @@ void MainWindow::writeSettings() {
     settings->beginGroup("MainWindow");
     settings->setValue("size", size());
     settings->setValue("pos", pos());
+    settings->setValue("splitter", ui->splitter->saveState());
     settings->endGroup();
 }
 
@@ -77,7 +87,7 @@ void MainWindow::openFile(const QString& filePath) {
     closeFile();
     this->filePath = filePath;
     editor3d.reset(new Editor3D(filePath));
-    setCentralWidget(editor3d.data());
+    ui->splitter->widget(0)->layout()->addWidget(editor3d.data());
     changeWindowTitle(filePath);
 }
 
