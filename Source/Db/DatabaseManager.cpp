@@ -87,6 +87,11 @@ void DatabaseManager::initRecords() {
     q.bindValue(":api", IrbisLib::Utils::versionToApi(IBRIS_VERSION));
     q.exec();
 
+    q.bindValue(":name", "Storage");
+    q.bindValue(":version", IBRIS_STORAGE_VERSION);
+    q.bindValue(":api", IrbisLib::Utils::versionToApi(IBRIS_STORAGE_VERSION));
+    q.exec();
+
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
