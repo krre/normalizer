@@ -1,4 +1,5 @@
 #include "DatabaseManager.h"
+#include "Core/Defines.h"
 #include <QtCore>
 #include <QtSql>
 #include <IrbisLib/Core/Utils.h>
@@ -79,6 +80,11 @@ void DatabaseManager::initRecords() {
     q.bindValue(":name", "IrbisCave");
     q.bindValue(":version", QCoreApplication::applicationVersion());
     q.bindValue(":api", IrbisLib::Utils::versionToApi(QCoreApplication::applicationVersion()));
+    q.exec();
+
+    q.bindValue(":name", "Irbis");
+    q.bindValue(":version", IBRIS_VERSION);
+    q.bindValue(":api", IrbisLib::Utils::versionToApi(IBRIS_VERSION));
     q.exec();
 
     if (q.lastError().type() != QSqlError::NoError) {
