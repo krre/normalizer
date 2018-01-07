@@ -105,9 +105,8 @@ void MainWindow::openFile(const QString& filePath) {
 
     sqlModel.reset(new QSqlTableModel(this, editor3d->getDbManager()->getDb()));
     sqlModel->setTable("Units");
-    sqlModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    sqlModel->setEditStrategy(QSqlTableModel::OnFieldChange);
     sqlModel->select();
-
     ui->tableView->setModel(sqlModel.data());
     ui->tableView->hideColumn(0);
     ui->tableView->hideColumn(2);
