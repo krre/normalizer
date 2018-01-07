@@ -23,6 +23,11 @@ DatabaseManager::DatabaseManager(const QString& filePath, QObject* parent) :
     }
 
     if (!dbExists) {
+        createPrimaryTables();
+    }
+
+    if (checkStorageOutOfDate()) {
+        qDebug() << "Storage version out of date. Update tables";
         initTables();
         initRecords();
     }
@@ -47,35 +52,14 @@ void DatabaseManager::addModule(const QString& name) {
     }
 }
 
-void DatabaseManager::initTables() {
+void DatabaseManager::createPrimaryTables() {
     QSqlQuery q(db);
 
-    q.exec("CREATE TABLE IF NOT EXISTS Versions("
+    q.exec("CREATE TABLE Versions("
            "name,"
            "version,"
            "api)");
 
-    q.exec("CREATE TABLE IF NOT EXISTS Modules("
-           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-           "name)");
-
-    q.exec("CREATE TABLE IF NOT EXISTS Functions("
-           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-           "name,"
-           "module_id)");
-
-    q.exec("CREATE TABLE IF NOT EXISTS Expressions("
-           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-           "name,"
-           "function_id)");
-
-    if (q.lastError().type() != QSqlError::NoError) {
-        throw std::runtime_error(q.lastError().text().toStdString());
-    }
-}
-
-void DatabaseManager::initRecords() {
-    QSqlQuery q(db);
     q.prepare("INSERT INTO Versions VALUES (:name, :version, :api)");
     q.bindValue(":name", "IrbisCave");
     q.bindValue(":version", IBRISCAVE_VERSION);
@@ -95,6 +79,41 @@ void DatabaseManager::initRecords() {
     if (q.lastError().type() != QSqlError::NoError) {
         throw std::runtime_error(q.lastError().text().toStdString());
     }
+}
+
+bool DatabaseManager::checkStorageOutOfDate() {
+    QSqlQuery q(db);
+    q.exec("SELECT api FROM Versions WHERE name='Storage'");
+    q.last();
+    return IrbisLib::Utils::versionToApi(IBRIS_STORAGE_VERSION) > q.value("api").toInt();
+}
+
+void DatabaseManager::initTables() {
+    QSqlQuery q(db);
+
+    q.exec("CREATE TABLE IF NOT EXISTS Modules("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name)");
+
+    q.exec("CREATE TABLE IF NOT EXISTS Functions("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name,"
+           "module_id)");
+
+    q.exec("CREATE TABLE IF NOT EXISTS Expressions("
+           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+           "name,"
+           "function_id)");
+
+    q.exec(QString("UPDATE Versions SET api='%1' WHERE name='Storage'").arg(IrbisLib::Utils::versionToApi(IBRIS_STORAGE_VERSION)));
+
+    if (q.lastError().type() != QSqlError::NoError) {
+        throw std::runtime_error(q.lastError().text().toStdString());
+    }
+}
+
+void DatabaseManager::initRecords() {
+
 }
 
 int DatabaseManager::getNextId(const QString& table) {

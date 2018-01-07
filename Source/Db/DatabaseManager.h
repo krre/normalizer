@@ -13,6 +13,8 @@ public:
     void addModule(const QString& name = QString());
 
 private:
+    void createPrimaryTables();
+    bool checkStorageOutOfDate();
     void initTables();
     void initRecords();
     int getNextId(const QString& table);
