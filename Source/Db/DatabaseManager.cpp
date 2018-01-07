@@ -47,7 +47,9 @@ void DatabaseManager::addModule(const QString& name) {
 
 void DatabaseManager::initTables() {
     QSqlQuery q(db);
-    q.exec("CREATE TABLE IF NOT EXISTS Defs(name, value)");
+    q.exec("CREATE TABLE IF NOT EXISTS Defs("
+           "name,"
+           "value)");
 
     q.exec("CREATE TABLE IF NOT EXISTS Modules("
            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
