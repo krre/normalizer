@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     app.setApplicationName(APP_NAME);
-    app.setApplicationVersion(APP_VERSION_STR);
+    app.setApplicationVersion(APP_VERSION);
 
     new IrbisCave::Settings(QCoreApplication::applicationDirPath() + "/" + APP_SETTINGS_NAME, QSettings::IniFormat);
 

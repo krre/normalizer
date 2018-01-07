@@ -78,8 +78,8 @@ void DatabaseManager::initRecords() {
     QSqlQuery q(db);
     q.prepare("INSERT INTO Versions VALUES (:name, :version, :api)");
     q.bindValue(":name", "IrbisCave");
-    q.bindValue(":version", QCoreApplication::applicationVersion());
-    q.bindValue(":api", IrbisLib::Utils::versionToApi(QCoreApplication::applicationVersion()));
+    q.bindValue(":version", IBRISCAVE_VERSION);
+    q.bindValue(":api", IrbisLib::Utils::versionToApi(IBRISCAVE_VERSION));
     q.exec();
 
     q.bindValue(":name", "Irbis");
