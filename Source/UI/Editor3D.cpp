@@ -1,5 +1,6 @@
 #include "Editor3D.h"
 #include "Core/Defines.h"
+#include "Db/DatabaseManager.h"
 #include "Graphics/ComponentBuilder.h"
 #include "Graphics/OnTopEffect.h"
 #include <QtWidgets>
@@ -19,6 +20,8 @@
 namespace IrbisUnitBuilder {
 
 Editor3D::Editor3D(const QString& filePath) {
+    databaseManager = new DatabaseManager(filePath, this);
+
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(BACKGROUND_COLOR)));
     QWidget* container = QWidget::createWindowContainer(view);
@@ -50,6 +53,10 @@ void Editor3D::resetViewport() {
     camera->setPosition(QVector3D(0, -2, 2));
     camera->setViewCenter(QVector3D(0, 0 ,0));
     camera->setUpVector(QVector3D(0, 1, 0));
+}
+
+void Editor3D::addUnit() {
+    databaseManager->addUnit();
 }
 
 Qt3DCore::QEntity* Editor3D::createScene() {

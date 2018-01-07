@@ -11,12 +11,15 @@ namespace Qt3DRender {
 
 namespace IrbisUnitBuilder {
 
+class DatabaseManager;
+
 class Editor3D : public QWidget {
     Q_OBJECT
 
 public:
     explicit Editor3D(const QString& filePath);
     void resetViewport();
+    void addUnit();
 
 private:
     Qt3DCore::QEntity* createScene();
@@ -25,6 +28,7 @@ private:
     Qt3DRender::QCamera* camera;
     Qt3DCore::QEntity* gridPlane;
     Qt3DCore::QEntity* axises;
+    DatabaseManager* databaseManager;
 };
 
 } // IrbisUnitBuilder

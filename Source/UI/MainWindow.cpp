@@ -48,7 +48,7 @@ void MainWindow::on_actionExit_triggered() {
 }
 
 void MainWindow::on_actionAdd_triggered() {
-    qDebug() << "add";
+    editor3d->addUnit();
 }
 
 void MainWindow::on_actionRemove_triggered() {

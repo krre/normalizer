@@ -17,7 +17,8 @@ SOURCES += \
     UI/Editor3D.cpp \
     Core/Settings.cpp \
     Graphics/ComponentBuilder.cpp \
-    Graphics/OnTopEffect.cpp
+    Graphics/OnTopEffect.cpp \
+    Db/DatabaseManager.cpp
 
 FORMS += \
     UI/MainWindow.ui
@@ -28,7 +29,8 @@ HEADERS += \
     UI/Editor3D.h \
     Core/Settings.h \
     Graphics/ComponentBuilder.h \
-    Graphics/OnTopEffect.h
+    Graphics/OnTopEffect.h \
+    Db/DatabaseManager.h
 
 DISTFILES += \
     ../README.md \
