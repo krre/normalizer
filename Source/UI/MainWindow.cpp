@@ -47,6 +47,14 @@ void MainWindow::on_actionExit_triggered() {
     QApplication::quit();
 }
 
+void MainWindow::on_actionAdd_triggered() {
+    qDebug() << "add";
+}
+
+void MainWindow::on_actionRemove_triggered() {
+    qDebug() << "remove";
+}
+
 void MainWindow::on_actionResetView_triggered() {
     editor3d->resetViewport();
 }
@@ -113,6 +121,7 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
 void MainWindow::updateActions() {
     bool isFileOpened = !editor3d.isNull();
     ui->menuView->menuAction()->setVisible(isFileOpened);
+    ui->menuUnit->menuAction()->setVisible(isFileOpened);
     ui->actionClose->setEnabled(isFileOpened);
 }
 

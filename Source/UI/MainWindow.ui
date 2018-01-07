@@ -187,7 +187,15 @@
     </property>
     <addaction name="actionResetView"/>
    </widget>
+   <widget class="QMenu" name="menuUnit">
+    <property name="title">
+     <string>Unit</string>
+    </property>
+    <addaction name="actionAdd"/>
+    <addaction name="actionRemove"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuUnit"/>
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -226,6 +234,16 @@
    </property>
    <property name="shortcut">
     <string>F12</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="text">
+    <string>Remove...</string>
    </property>
   </action>
  </widget>

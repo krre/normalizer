@@ -22,10 +22,19 @@ protected:
     void closeEvent(QCloseEvent* event);
 
 private slots:
+    // File
     void on_actionOpen_triggered();
     void on_actionClose_triggered();
     void on_actionExit_triggered();
+
+    // Unit
+    void on_actionAdd_triggered();
+    void on_actionRemove_triggered();
+
+    // View
     void on_actionResetView_triggered();
+
+    // Help
     void on_actionAbout_triggered();
 
 private:
