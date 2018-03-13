@@ -143,19 +143,11 @@ void MainWindow::on_actionOptions_triggered() {
 }
 
 void MainWindow::on_actionShowSidebar_toggled(bool checked) {
-    if (checked) {
-        ui->tabWidgetSideBar->show();
-    } else {
-        ui->tabWidgetSideBar->hide();
-    }
+    ui->tabWidgetSideBar->setVisible(checked);
 }
 
 void MainWindow::on_actionShowOutput_toggled(bool checked) {
-    if (checked) {
-        ui->tabWidgetOutput->show();
-    } else {
-        ui->tabWidgetOutput->hide();
-    }
+    ui->tabWidgetOutput->setVisible(checked);
 }
 
 void MainWindow::on_actionClearOutput_triggered(bool checked) {
