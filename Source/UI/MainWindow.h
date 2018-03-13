@@ -81,7 +81,7 @@ private:
     Ui::MainWindow* ui;
     Settings* settings;
     ProjectTreeView* projectTreeView;
-    QScopedPointer<QFileSystemModel> fsModel;
+    QFileSystemModel* fsModel;
     QProcess* process;
     QString projectPath;
 };

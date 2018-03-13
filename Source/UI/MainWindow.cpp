@@ -19,7 +19,7 @@ MainWindow::MainWindow() :
         ui(new Ui::MainWindow) {
     settings = Settings::instance();
     process = new QProcess(this);
-    fsModel.reset(new QFileSystemModel);
+    fsModel = new QFileSystemModel(this);
 
     ui->setupUi(this);
 
@@ -339,7 +339,7 @@ void MainWindow::changeWindowTitle(const QString& filePath) {
 void MainWindow::openProject(const QString& filePath) {
     closeProject();
     projectPath = filePath;
-    projectTreeView->setModel(fsModel.data());
+    projectTreeView->setModel(fsModel);
     projectTreeView->setRootIndex(fsModel->setRootPath(filePath));
 
     for (int i = 1; i < fsModel->columnCount(); ++i) {
