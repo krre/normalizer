@@ -60,7 +60,6 @@ private slots:
     void on_tabWidgetCave_tabCloseRequested(int index);
     void on_tabWidgetCave_currentChanged(int index);
 
-    void onFileDoubleClicked(const QModelIndex& index);
     void onFileRemoved(const QString& filePath);
 
     void addCaveTab(const QString& filePath);

@@ -204,10 +204,6 @@ void MainWindow::on_tabWidgetCave_currentChanged(int index) {
     ui->menuBuild->menuAction()->setVisible(index >= 0);
 }
 
-void MainWindow::onFileDoubleClicked(const QModelIndex& index) {
-    addCaveTab(fsModel->filePath(index));
-}
-
 void MainWindow::onFileRemoved(const QString& filePath) {
     on_tabWidgetCave_tabCloseRequested(findCave(filePath));
     QDir dir;
