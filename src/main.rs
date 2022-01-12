@@ -1,6 +1,6 @@
-mod core;
+use normalizer::core::app::App;
 
 fn main() {
-    let app = core::app::App {};
+    let app = App {};
     app.run();
 }

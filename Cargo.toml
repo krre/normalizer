@@ -3,6 +3,10 @@ name = "normalizer"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "normalizer"
+path = "src/normalizer/lib.rs"
+
 [dependencies]
 winit = "0.26.1"
 wgpu = "0.12.0"
