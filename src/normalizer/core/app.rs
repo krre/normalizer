@@ -4,9 +4,13 @@ use winit::{
     window::WindowBuilder,
 };
 
-pub struct App {}
+pub struct App;
 
 impl App {
+    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
+        Ok(Self)
+    }
+
     pub fn run(self) {
         let event_loop = EventLoop::new();
         let window = WindowBuilder::new()
