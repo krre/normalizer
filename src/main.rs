@@ -1,7 +1,12 @@
-use normalizer::core::app::App;
+use antiq::entity::Application;
+use antiq::widget::ApplicationWindow;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let app = App::new()?;
-    app.run();
-    Ok(())
+    let mut app_window = ApplicationWindow::new();
+    app_window.set_title("Normalizer");
+
+    let mut app = Application::new();
+    app.add_window(app_window);
+
+    app.run()
 }

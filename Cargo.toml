@@ -8,5 +8,5 @@ name = "normalizer"
 path = "src/normalizer/lib.rs"
 
 [dependencies]
+antiq = { path = "../antiq" }
 winit = "0.26.1"
-wgpu = "0.12.0"
