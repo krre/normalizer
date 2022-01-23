@@ -2,11 +2,10 @@ use antiq::entity::Application;
 use antiq::widget::ApplicationWindow;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut app_window = ApplicationWindow::new();
-    app_window.set_title("Normalizer");
+    let app = Application::new();
 
-    let mut app = Application::new();
-    app.add_window(app_window);
+    let mut app_window = ApplicationWindow::new(&app)?;
+    app_window.set_title("Normalizer");
 
     app.run()
 }
