@@ -6,6 +6,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut app_window = ApplicationWindow::new(&app)?;
     app_window.set_title("Normalizer");
+    app_window.set_visible(true);
 
     app.run()
 }
