@@ -35,6 +35,15 @@ impl App {
                     event: WindowEvent::CloseRequested,
                     window_id,
                 } if window_id == self.window.id() => *control_flow = ControlFlow::Exit,
+                Event::WindowEvent {
+                    event: WindowEvent::Resized(size),
+                    ..
+                } => {
+                    self.gfx_engine.resize(size.width, size.height);
+                }
+                Event::RedrawRequested(_) => {
+                    self.gfx_engine.render();
+                }
                 _ => (),
             }
         });
