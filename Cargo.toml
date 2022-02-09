@@ -10,3 +10,4 @@ path = "src/normalizer/lib.rs"
 [dependencies]
 winit = "0.26.1"
 wgpu = "0.12.0"
+pollster = "0.2.5"
