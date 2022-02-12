@@ -1,3 +1,4 @@
+use crate::core::config;
 use crate::gfx::engine::Engine;
 use winit::{
     event::{Event, WindowEvent},
@@ -14,9 +15,10 @@ pub struct App {
 impl App {
     pub async fn new() -> Result<Self, Box<dyn std::error::Error>> {
         let event_loop = EventLoop::new();
-        let window = WindowBuilder::new()
+        let mut window = WindowBuilder::new()
             .with_title("Normalizer")
             .build(&event_loop)?;
+        config::restore_window(&mut window);
         let gfx_engine = Engine::new(&window).await;
 
         Ok(Self {
@@ -34,7 +36,10 @@ impl App {
                 Event::WindowEvent {
                     event: WindowEvent::CloseRequested,
                     window_id,
-                } if window_id == self.window.id() => *control_flow = ControlFlow::Exit,
+                } if window_id == self.window.id() => {
+                    config::save_window(&self.window);
+                    *control_flow = ControlFlow::Exit
+                }
                 Event::WindowEvent {
                     event: WindowEvent::Resized(size),
                     ..
