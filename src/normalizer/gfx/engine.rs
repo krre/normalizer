@@ -87,8 +87,8 @@ impl Engine {
         let config = wgpu::SurfaceConfiguration {
             usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
             format: swapchain_format,
-            width: width,
-            height: height,
+            width,
+            height,
             present_mode: wgpu::PresentMode::Mailbox,
         };
 
