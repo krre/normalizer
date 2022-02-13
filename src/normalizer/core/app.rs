@@ -17,6 +17,7 @@ impl App {
         let event_loop = EventLoop::new();
         let mut window = WindowBuilder::new()
             .with_title("Normalizer")
+            .with_visible(false)
             .build(&event_loop)?;
         config::restore_window(&mut window);
         let gfx_engine = Engine::new(&window).await;
@@ -45,6 +46,7 @@ impl App {
                     ..
                 } => {
                     self.gfx_engine.resize(size.width, size.height);
+                    self.window.set_visible(true);
                 }
                 Event::RedrawRequested(_) => {
                     self.gfx_engine.render();
