@@ -1,3 +1,4 @@
+use super::renderer::{Renderer, SceneRenderer, UiRenderer};
 use std::borrow::Cow;
 use winit::window::Window;
 pub struct Engine {
@@ -7,6 +8,7 @@ pub struct Engine {
     device: wgpu::Device,
     queue: wgpu::Queue,
     render_pipeline: wgpu::RenderPipeline,
+    renderers: Vec<Box<dyn Renderer>>,
 }
 
 impl Engine {
@@ -75,6 +77,7 @@ impl Engine {
             device,
             queue,
             render_pipeline,
+            renderers: vec![Box::new(SceneRenderer {}), Box::new(UiRenderer {})],
         }
     }
 
@@ -125,6 +128,14 @@ impl Engine {
             });
             rpass.set_pipeline(&self.render_pipeline);
             rpass.draw(0..3, 0..1);
+        }
+
+        for renderer in self.renderers.iter() {
+            if renderer.is_dirty() {
+                renderer.draw();
+            }
+
+            renderer.render();
         }
 
         self.queue.submit(Some(encoder.finish()));
