@@ -1,5 +1,4 @@
 use super::renderer::{Renderer, SceneRenderer, UiRenderer};
-use std::borrow::Cow;
 use winit::window::Window;
 pub struct Engine {
     _instance: wgpu::Instance,
@@ -7,7 +6,6 @@ pub struct Engine {
     adapter: wgpu::Adapter,
     device: wgpu::Device,
     queue: wgpu::Queue,
-    render_pipeline: wgpu::RenderPipeline,
     renderers: Vec<Box<dyn Renderer>>,
 }
 
@@ -38,37 +36,11 @@ impl Engine {
             .await
             .expect("Failed to create device");
 
-        let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
-            label: None,
-            bind_group_layouts: &[],
-            push_constant_ranges: &[],
-        });
-
         let swapchain_format = surface.get_preferred_format(&adapter).unwrap();
-
-        let shader = device.create_shader_module(&wgpu::ShaderModuleDescriptor {
-            label: None,
-            source: wgpu::ShaderSource::Wgsl(Cow::Borrowed(include_str!("shaders/shader.wgsl"))),
-        });
-
-        let render_pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-            label: None,
-            layout: Some(&pipeline_layout),
-            vertex: wgpu::VertexState {
-                module: &shader,
-                entry_point: "vs_main",
-                buffers: &[],
-            },
-            fragment: Some(wgpu::FragmentState {
-                module: &shader,
-                entry_point: "fs_main",
-                targets: &[swapchain_format.into()],
-            }),
-            primitive: wgpu::PrimitiveState::default(),
-            depth_stencil: None,
-            multisample: wgpu::MultisampleState::default(),
-            multiview: None,
-        });
+        let renderers: Vec<Box<dyn Renderer>> = vec![
+            Box::new(SceneRenderer::new(&device, &swapchain_format)),
+            Box::new(UiRenderer::new()),
+        ];
 
         Self {
             _instance: instance,
@@ -76,8 +48,7 @@ impl Engine {
             adapter,
             device,
             queue,
-            render_pipeline,
-            renderers: vec![Box::new(SceneRenderer {}), Box::new(UiRenderer {})],
+            renderers,
         }
     }
 
@@ -126,8 +97,8 @@ impl Engine {
                 }],
                 depth_stencil_attachment: None,
             });
-            rpass.set_pipeline(&self.render_pipeline);
-            rpass.draw(0..0, 0..0);
+            // rpass.set_pipeline(&self.render_pipeline);
+            // rpass.draw(0..0, 0..0);
         }
 
         for renderer in self.renderers.iter() {
