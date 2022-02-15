@@ -67,8 +67,6 @@ impl Engine {
     }
 
     pub fn render(&self) {
-        println!("render");
-
         let frame = self
             .surface
             .get_current_texture()

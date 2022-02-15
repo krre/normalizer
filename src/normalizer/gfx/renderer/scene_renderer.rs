@@ -44,7 +44,6 @@ impl SceneRenderer {
 
 impl Renderer for SceneRenderer {
     fn draw(&self, encoder: &mut CommandEncoder, view: &TextureView) {
-        println!("SceneRenderer draw");
         let mut rpass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
             label: None,
             color_attachments: &[wgpu::RenderPassColorAttachment {
