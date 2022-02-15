@@ -1,5 +1,5 @@
 use super::renderer::{Renderer, SceneRenderer, UiRenderer};
-use winit::window::Window;
+use winit::{platform::unix::x11::util::VIRTUAL_CORE_POINTER, window::Window};
 pub struct Engine {
     _instance: wgpu::Instance,
     surface: wgpu::Surface,
@@ -79,31 +79,10 @@ impl Engine {
         let mut encoder = self
             .device
             .create_command_encoder(&wgpu::CommandEncoderDescriptor { label: None });
-        {
-            let mut rpass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
-                label: None,
-                color_attachments: &[wgpu::RenderPassColorAttachment {
-                    view: &view,
-                    resolve_target: None,
-                    ops: wgpu::Operations {
-                        load: wgpu::LoadOp::Clear(wgpu::Color {
-                            r: 0.1,
-                            g: 0.1,
-                            b: 0.1,
-                            a: 1.0,
-                        }),
-                        store: true,
-                    },
-                }],
-                depth_stencil_attachment: None,
-            });
-            // rpass.set_pipeline(&self.render_pipeline);
-            // rpass.draw(0..0, 0..0);
-        }
 
         for renderer in self.renderers.iter() {
             if renderer.is_dirty() {
-                renderer.draw();
+                renderer.draw(&mut encoder, &view);
             }
 
             renderer.render();

@@ -1,6 +1,6 @@
 use super::Renderer;
 use std::borrow::Cow;
-use wgpu::{Device, RenderPipeline, TextureFormat};
+use wgpu::{CommandEncoder, Device, RenderPipeline, TextureFormat, TextureView};
 
 pub struct SceneRenderer {
     render_pipeline: RenderPipeline,
@@ -43,8 +43,27 @@ impl SceneRenderer {
 }
 
 impl Renderer for SceneRenderer {
-    fn draw(&self) {
-        println!("SceneRenderer draw")
+    fn draw(&self, encoder: &mut CommandEncoder, view: &TextureView) {
+        println!("SceneRenderer draw");
+        let mut rpass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+            label: None,
+            color_attachments: &[wgpu::RenderPassColorAttachment {
+                view: &view,
+                resolve_target: None,
+                ops: wgpu::Operations {
+                    load: wgpu::LoadOp::Clear(wgpu::Color {
+                        r: 0.1,
+                        g: 0.1,
+                        b: 0.1,
+                        a: 1.0,
+                    }),
+                    store: true,
+                },
+            }],
+            depth_stencil_attachment: None,
+        });
+        rpass.set_pipeline(&self.render_pipeline);
+        rpass.draw(0..0, 0..0);
     }
 
     fn render(&self) {
@@ -52,6 +71,6 @@ impl Renderer for SceneRenderer {
     }
 
     fn is_dirty(&self) -> bool {
-        return false;
+        return true;
     }
 }

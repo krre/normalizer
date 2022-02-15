@@ -1,4 +1,5 @@
 use super::Renderer;
+use wgpu::{CommandEncoder, TextureView};
 
 pub struct UiRenderer {}
 
@@ -9,7 +10,7 @@ impl UiRenderer {
 }
 
 impl Renderer for UiRenderer {
-    fn draw(&self) {
+    fn draw(&self, encoder: &mut CommandEncoder, view: &TextureView) {
         println!("UiRenderer draw")
     }
 
