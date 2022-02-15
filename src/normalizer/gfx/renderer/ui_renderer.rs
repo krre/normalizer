@@ -14,10 +14,6 @@ impl Renderer for UiRenderer {
         println!("UiRenderer draw")
     }
 
-    fn render(&self) {
-        println!("UiRenderer render")
-    }
-
     fn is_dirty(&self) -> bool {
         return false;
     }

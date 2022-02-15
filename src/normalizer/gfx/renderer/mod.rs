@@ -8,6 +8,5 @@ pub use ui_renderer::UiRenderer;
 
 pub trait Renderer {
     fn draw(&self, encoder: &mut CommandEncoder, view: &TextureView);
-    fn render(&self);
     fn is_dirty(&self) -> bool;
 }

@@ -66,10 +66,6 @@ impl Renderer for SceneRenderer {
         rpass.draw(0..0, 0..0);
     }
 
-    fn render(&self) {
-        println!("SceneRenderer render")
-    }
-
     fn is_dirty(&self) -> bool {
         return true;
     }

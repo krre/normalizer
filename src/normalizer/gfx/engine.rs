@@ -84,8 +84,6 @@ impl Engine {
             if renderer.is_dirty() {
                 renderer.draw(&mut encoder, &view);
             }
-
-            renderer.render();
         }
 
         self.queue.submit(Some(encoder.finish()));
