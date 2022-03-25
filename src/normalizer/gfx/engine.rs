@@ -1,5 +1,5 @@
 use super::renderer::{Renderer, SceneRenderer, UiRenderer};
-use winit::{platform::unix::x11::util::VIRTUAL_CORE_POINTER, window::Window};
+use winit::window::Window;
 pub struct Engine {
     _instance: wgpu::Instance,
     surface: wgpu::Surface,
