@@ -10,6 +10,7 @@ SOURCES += \
     ui/MainWindow.cpp
 
 HEADERS += \
+    core/Constants.h \
     ui/MainWindow.h
 
 DISTFILES += \
