@@ -6,4 +6,16 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void onNew();
+    void onOpen();
+    void onQuit();
+    void onAbout();
+
+private:
+    void createActions();
+
+    void readSettings();
+    void writeSettings();
 };
