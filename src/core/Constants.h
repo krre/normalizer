@@ -13,4 +13,9 @@ namespace App {
     constexpr auto BuildTime = __TIME__;
 }
 
-} // namespace Const
+namespace Norm {
+    constexpr auto Name = "Norm";
+    constexpr auto Extension = ".norm";
+}
+
+}

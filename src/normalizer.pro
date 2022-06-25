@@ -7,11 +7,15 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 SOURCES += \
     main.cpp \
-    ui/MainWindow.cpp
+    ui/MainWindow.cpp \
+    ui/dialog/NewProject.cpp \
+    ui/dialog/StandardDialog.cpp
 
 HEADERS += \
     core/Constants.h \
-    ui/MainWindow.h
+    ui/MainWindow.h \
+    ui/dialog/NewProject.h \
+    ui/dialog/StandardDialog.h
 
 DISTFILES += \
     ../README.md
