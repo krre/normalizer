@@ -16,9 +16,15 @@ private slots:
     void onQuit();
     void onAbout();
 
+    void onTabClosed(int index);
+    void onTabClicked(int index);
+
 private:
     void createActions();
+    void createWidgets();
 
     void readSettings();
     void writeSettings();
+
+    QTabWidget* tabWidget = nullptr;
 };

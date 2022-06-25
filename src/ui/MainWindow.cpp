@@ -4,6 +4,7 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
+    createWidgets();
     createActions();
     readSettings();
 }
@@ -38,7 +39,15 @@ void MainWindow::onAbout() {
            Based on Qt %4<br> \
            Build on %5 %6<br><br> \
            <a href=%7>%7</a><br><br>Copyright © %8, Vladimir Zarypov")
-            .arg(Name, Version, Status, QT_VERSION_STR, BuildDate, BuildTime, Url, CopyrightYear));
+           .arg(Name, Version, Status, QT_VERSION_STR, BuildDate, BuildTime, Url, CopyrightYear));
+}
+
+void MainWindow::onTabClosed(int index) {
+
+}
+
+void MainWindow::onTabClicked(int index) {
+
 }
 
 void MainWindow::createActions() {
@@ -50,6 +59,18 @@ void MainWindow::createActions() {
 
     QMenu* helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &MainWindow::onAbout);
+}
+
+void MainWindow::createWidgets() {
+    tabWidget = new QTabWidget;
+    tabWidget->setMinimumSize(QSize(0, 50));
+    tabWidget->setTabsClosable(true);
+    tabWidget->setMovable(true);
+
+    connect(tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::onTabClosed);
+    connect(tabWidget, &QTabWidget::tabBarClicked, this, &MainWindow::onTabClicked);
+
+    setCentralWidget(tabWidget);
 }
 
 void MainWindow::readSettings() {
