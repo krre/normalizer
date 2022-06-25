@@ -50,6 +50,10 @@ QString NewProject::path() const {
     return result;
 }
 
+NormCore::Project::Template NewProject::projectTemplate() const {
+    return static_cast<NormCore::Project::Template>(templateComboBox->currentIndex());
+}
+
 void NewProject::onBrowseButtonClicked() {
     QString dirPath = QFileDialog::getExistingDirectory(this);
 

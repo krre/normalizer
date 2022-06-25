@@ -1,5 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
+#include <NormCore/Global.h>
 
 class QLineEdit;
 class QComboBox;
@@ -9,6 +10,7 @@ class NewProject : public StandardDialog {
 public:
     explicit NewProject();
     QString path() const;
+    NormCore::Project::Template projectTemplate() const;
 
 private slots:
     void onBrowseButtonClicked();
