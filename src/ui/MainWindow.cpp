@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
 #include "dialog/NewProject.h"
+#include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -20,9 +21,11 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 
 void MainWindow::onNew() {
     NewProject newProject;
+
     if (newProject.exec() == QDialog::Rejected) return;
-    QString path = newProject.path();
-    qDebug() << path;
+
+    Project project;
+    project.create(newProject.path(), newProject.projectTemplate());
 }
 
 void MainWindow::onOpen() {
