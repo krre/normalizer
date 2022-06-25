@@ -3,7 +3,7 @@
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    setWindowTitle("Normalizer");
+    setWindowTitle(Const::App::Name);
     createActions();
     resize(800, 600);
 }
