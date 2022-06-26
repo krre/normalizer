@@ -1,5 +1,6 @@
 #include "NewProject.h"
 #include "core/Constants.h"
+#include "core/Global.h"
 #include <QtWidgets>
 
 NewProject::NewProject() {
@@ -14,7 +15,7 @@ NewProject::NewProject() {
 
     auto horizontalLayout = new QHBoxLayout;
 
-    directoryLineEdit = new QLineEdit(QDir::homePath() + "/" + Const::Norm::Name);
+    directoryLineEdit = new QLineEdit(Global::workspacePath());
     horizontalLayout->addWidget(directoryLineEdit);
 
     auto browsePushButton = new QPushButton(tr("Browse..."));
