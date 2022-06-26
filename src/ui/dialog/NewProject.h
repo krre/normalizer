@@ -1,5 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
+#include <NormCore/Project.h>
 #include <NormCore/Global.h>
 
 class QLineEdit;

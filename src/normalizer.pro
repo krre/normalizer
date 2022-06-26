@@ -7,10 +7,13 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 INCLUDEPATH +=../../norm-core/src
 
+LIBS += -L../../norm-core/lib -lnorm-core
+
+unix: PRE_TARGETDEPS += $$PWD/../../norm-core/lib/libnorm-core.a
+
 SOURCES += \
     core/Global.cpp \
     main.cpp \
-    project/Project.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
     ui/dialog/NewProject.cpp \
@@ -21,7 +24,6 @@ SOURCES += \
 HEADERS += \
     core/Constants.h \
     core/Global.h \
-    project/Project.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/dialog/NewProject.h \

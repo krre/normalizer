@@ -3,7 +3,6 @@
 #include "core/Constants.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
-#include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -26,8 +25,17 @@ void MainWindow::onNew() {
 
     if (newProject.exec() == QDialog::Rejected) return;
 
-    Project project;
-    project.create(newProject.path(), newProject.projectTemplate());
+    QDir dir;
+    dir.mkpath(newProject.path());
+
+    QFileInfo fi(newProject.path());
+    QString filePath = newProject.path() + "/" + fi.baseName() + ".norm";
+
+    NormCore::Project project;
+    project.create(newProject.projectTemplate());
+    project.write(filePath, NormCore::Project::FileFormat::Json);
+
+    qInfo().noquote() << "Project created:" << newProject.path() ;
 
     addSourceTab(newProject.path());
 }
