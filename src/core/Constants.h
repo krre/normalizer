@@ -28,7 +28,13 @@ namespace Settings {
     }
 
     namespace Session {
+        constexpr auto Group = "Session";
         constexpr auto Restore = "Session/restore";
+    }
+
+    namespace SessionList {
+        constexpr auto Group = "SessionList";
+        constexpr auto Path = "path";
     }
 }
 

@@ -12,5 +12,6 @@ QString Global::workspacePath() {
 }
 
 bool Global::restoreSession() {
-    return true;
+    QSettings settings;
+    return settings.value(Const::Settings::Session::Restore, true).toBool();
 }

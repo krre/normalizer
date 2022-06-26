@@ -31,6 +31,9 @@ private:
     void readSettings();
     void writeSettings();
 
+    void readSession();
+    void writeSession();
+
     int findSource(const QString& filePath);
 
     QTabWidget* tabWidget = nullptr;

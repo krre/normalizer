@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "SourceEditor.h"
 #include "core/Constants.h"
+#include "core/Global.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
 #include <QtWidgets>
@@ -136,11 +137,47 @@ void MainWindow::readSettings() {
     } else {
         restoreGeometry(geometry);
     }
+
+    readSession();
 }
 
 void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue(Const::Settings::MainWindow::Geometry, saveGeometry());
+
+    writeSession();
+}
+
+void MainWindow::readSession() {
+    if (!Global::restoreSession()) return;
+
+    QSettings settings;
+    int size = settings.beginReadArray(Const::Settings::SessionList::Group);
+
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        QString path = settings.value(Const::Settings::SessionList::Path).toString();
+        addSourceTab(path);
+    }
+
+    settings.endArray();
+
+}
+
+void MainWindow::writeSession() {
+    if (!Global::restoreSession()) return;
+
+    QSettings settings;
+    settings.beginWriteArray(Const::Settings::SessionList::Group);
+
+    for (int i = 0; i < tabWidget->count(); i++) {
+        auto editor = static_cast<SourceEditor*>(tabWidget->widget(i));
+
+        settings.setArrayIndex(i);
+        settings.setValue(Const::Settings::SessionList::Path, editor->filePath());
+    }
+
+    settings.endArray();
 }
 
 int MainWindow::findSource(const QString& filePath) {
