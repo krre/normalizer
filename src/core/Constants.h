@@ -18,4 +18,20 @@ namespace Norm {
     constexpr auto Extension = ".norm";
 }
 
+namespace Settings {
+    namespace MainWindow {
+        constexpr auto Geometry = "MainWindow/geometry";
+    }
+
+    namespace Project {
+        constexpr auto Workspace = "Project/workspace";
+    }
+}
+
+namespace Project {
+    constexpr auto WorkspaceDir = "NormProjects";
+    constexpr auto DataDir = ".norm";
+    constexpr auto SessionFile = "session.json";
+}
+
 }

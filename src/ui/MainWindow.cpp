@@ -110,7 +110,7 @@ void MainWindow::createWidgets() {
 void MainWindow::readSettings() {
     QSettings settings;
 
-    QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
+    QByteArray geometry = settings.value(Const::Settings::MainWindow::Geometry, QByteArray()).toByteArray();
 
     if (geometry.isEmpty()) {
         const QRect availableGeometry = QGuiApplication::screens().first()->availableGeometry();
@@ -123,7 +123,7 @@ void MainWindow::readSettings() {
 
 void MainWindow::writeSettings() {
     QSettings settings;
-    settings.setValue("geometry", saveGeometry());
+    settings.setValue(Const::Settings::MainWindow::Geometry, saveGeometry());
 }
 
 int MainWindow::findSource(const QString& filePath) {
