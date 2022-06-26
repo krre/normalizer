@@ -13,6 +13,7 @@ public:
     NormCore::Project::Template projectTemplate() const;
 
 private slots:
+    void accept() override;
     void onBrowseButtonClicked();
     void adjustAcceptedButton();
 

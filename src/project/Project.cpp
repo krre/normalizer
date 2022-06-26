@@ -6,5 +6,8 @@ Project::Project() {
 }
 
 void Project::create(const QString& path, NormCore::Project::Template projectTemplate) {
-    qDebug() << path;
+    QDir dir;
+    dir.mkpath(path);
+
+    qInfo().noquote() << "Project created:" << path ;
 }

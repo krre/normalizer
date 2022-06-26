@@ -42,13 +42,7 @@ NewProject::NewProject() {
 }
 
 QString NewProject::path() const {
-    QString result = directoryLineEdit->text() + "/" + nameLineEdit->text();
-
-    if (result.last(QString(Const::Norm::Extension).count()) != Const::Norm::Extension) {
-        result += Const::Norm::Extension;
-    }
-
-    return result;
+    return directoryLineEdit->text() + "/" + nameLineEdit->text();
 }
 
 NormCore::Project::Template NewProject::projectTemplate() const {
@@ -65,4 +59,15 @@ void NewProject::onBrowseButtonClicked() {
 
 void NewProject::adjustAcceptedButton() {
     setOkButtonEnabled(!nameLineEdit->text().isEmpty() && !directoryLineEdit->text().isEmpty());
+}
+
+void NewProject::accept() {
+    QDir dir(path());
+
+    if (dir.exists()) {
+        QMessageBox::critical(this, tr("Create Project"), tr("Project already exists"));
+        return;
+    }
+
+    StandardDialog::accept();
 }
