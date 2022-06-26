@@ -11,6 +11,7 @@ SOURCES += \
     main.cpp \
     project/Project.cpp \
     ui/MainWindow.cpp \
+    ui/SourceEditor.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/StandardDialog.cpp
 
@@ -18,6 +19,7 @@ HEADERS += \
     core/Constants.h \
     project/Project.h \
     ui/MainWindow.h \
+    ui/SourceEditor.h \
     ui/dialog/NewProject.h \
     ui/dialog/StandardDialog.h
 

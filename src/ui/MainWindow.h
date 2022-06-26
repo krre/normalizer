@@ -1,6 +1,8 @@
 #pragma once
 #include <QMainWindow>
 
+class SourceEditor;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -19,6 +21,8 @@ private slots:
     void onTabClosed(int index);
     void onTabClicked(int index);
 
+    int addSourceTab(const QString& filePath);
+
 private:
     void createActions();
     void createWidgets();
@@ -26,5 +30,8 @@ private:
     void readSettings();
     void writeSettings();
 
+    int findSource(const QString& filePath);
+
     QTabWidget* tabWidget = nullptr;
+    SourceEditor* editor = nullptr;
 };

@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "SourceEditor.h"
 #include "core/Constants.h"
 #include "dialog/NewProject.h"
 #include "project/Project.h"
@@ -26,6 +27,8 @@ void MainWindow::onNew() {
 
     Project project;
     project.create(newProject.path(), newProject.projectTemplate());
+
+    addSourceTab(newProject.path());
 }
 
 void MainWindow::onOpen() {
@@ -50,11 +53,35 @@ void MainWindow::onAbout() {
 }
 
 void MainWindow::onTabClosed(int index) {
-
+    QWidget* widget = tabWidget->widget(index);
+    tabWidget->removeTab(index);
+    delete widget;
 }
 
 void MainWindow::onTabClicked(int index) {
+    if (index >= 0) {
+        editor = static_cast<SourceEditor*>(tabWidget->widget(index));
+        editor->setFocus();
+    } else {
+        editor = nullptr;
+    }
+}
 
+int MainWindow::addSourceTab(const QString& filePath) {
+    int tabIndex = findSource(filePath);
+
+    if (tabIndex != -1) {
+        tabWidget->setCurrentIndex(tabIndex);
+        return tabIndex;
+    } else {
+        QFileInfo fi(filePath);
+        editor = new SourceEditor(filePath);
+        int index = tabWidget->addTab(editor, fi.baseName());
+        tabWidget->setTabToolTip(index, filePath);
+        tabWidget->setCurrentIndex(index);
+
+        return index;
+    }
 }
 
 void MainWindow::createActions() {
@@ -97,4 +124,16 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue("geometry", saveGeometry());
+}
+
+int MainWindow::findSource(const QString& filePath) {
+    for (int i = 0; i < tabWidget->count(); i++) {
+        auto editor = static_cast<SourceEditor*>(tabWidget->widget(i));
+
+        if (editor->filePath() == filePath) {
+            return i;
+        }
+    }
+
+    return -1;
 }
