@@ -53,7 +53,9 @@ void Options::readSettings() {
 
 void Options::writeSettings() {
     QSettings settings;
-
     settings.setValue(Const::Settings::Project::Workspace, workspaceLineEdit->text());
     settings.setValue(Const::Settings::Session::Restore, sessionCheckBox->isChecked());
+
+    QDir dir;
+    dir.mkpath(workspaceLineEdit->text());
 }

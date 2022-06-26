@@ -41,5 +41,9 @@ void Workspace::adjustAcceptedButton(const QString& text) {
 void Workspace::accept() {
     QSettings settings;
     settings.setValue(Const::Settings::Project::Workspace, lineEdit->text());
+
+    QDir dir;
+    dir.mkpath(lineEdit->text());
+
     QDialog::accept();
 }
