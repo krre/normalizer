@@ -2,6 +2,7 @@
 #include "SourceEditor.h"
 #include "core/Constants.h"
 #include "dialog/NewProject.h"
+#include "dialog/Options.h"
 #include "project/Project.h"
 #include <QtWidgets>
 
@@ -38,6 +39,11 @@ void MainWindow::onOpen() {
 void MainWindow::onQuit() {
     writeSettings();
     QCoreApplication::quit();
+}
+
+void MainWindow::onOptions() {
+    Options options;
+    options.exec();
 }
 
 void MainWindow::onAbout() {
@@ -90,6 +96,9 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O"));
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q"));
+
+    QMenu* toolsMenu = menuBar()->addMenu(tr("Tools"));
+    toolsMenu->addAction(tr("Options..."), this, &MainWindow::onOptions);
 
     QMenu* helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &MainWindow::onAbout);

@@ -26,6 +26,10 @@ namespace Settings {
     namespace Project {
         constexpr auto Workspace = "Project/workspace";
     }
+
+    namespace Session {
+        constexpr auto Restore = "Session/restore";
+    }
 }
 
 namespace Project {

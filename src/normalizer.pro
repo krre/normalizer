@@ -14,6 +14,7 @@ SOURCES += \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
     ui/dialog/NewProject.cpp \
+    ui/dialog/Options.cpp \
     ui/dialog/StandardDialog.cpp \
     ui/dialog/Workspace.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/dialog/NewProject.h \
+    ui/dialog/Options.h \
     ui/dialog/StandardDialog.h \
     ui/dialog/Workspace.h
 

@@ -16,6 +16,7 @@ private slots:
     void onNew();
     void onOpen();
     void onQuit();
+    void onOptions();
     void onAbout();
 
     void onTabClosed(int index);
