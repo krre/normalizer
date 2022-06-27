@@ -30,6 +30,7 @@ namespace Settings {
     namespace Session {
         constexpr auto Group = "Session";
         constexpr auto Restore = "Session/restore";
+        constexpr auto Tab = "Session/tab";
     }
 
     namespace SessionList {

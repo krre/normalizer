@@ -162,12 +162,15 @@ void MainWindow::readSession() {
 
     settings.endArray();
 
+    tabWidget->setCurrentIndex(settings.value(Const::Settings::Session::Tab).toInt());
 }
 
 void MainWindow::writeSession() {
     if (!Global::restoreSession()) return;
 
     QSettings settings;
+    settings.setValue(Const::Settings::Session::Tab, tabWidget->currentIndex());
+
     settings.beginWriteArray(Const::Settings::SessionList::Group);
 
     for (int i = 0; i < tabWidget->count(); i++) {
