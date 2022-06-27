@@ -42,7 +42,10 @@ void MainWindow::onNew() {
 }
 
 void MainWindow::onOpen() {
+    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Open Norm Project"), Global::workspacePath());
+    if (dirPath.isEmpty()) return;
 
+    addSourceTab(dirPath);
 }
 
 void MainWindow::onQuit() {
