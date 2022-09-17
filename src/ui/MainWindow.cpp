@@ -253,6 +253,9 @@ void MainWindow::openProject(const QString& path) {
 
     addRecent(path);
     updateMenuState();
+
+    QFileInfo fi(projectPath);
+    setWindowTitle(QString(Const::App::Name) + " - " + fi.baseName());
 }
 
 void MainWindow::closeProject() {
@@ -266,6 +269,7 @@ void MainWindow::closeProject() {
     qInfo().noquote() << "Project closed:" << projectPath;
     projectPath = QString();
     updateMenuState();
+    setWindowTitle(Const::App::Name);
 }
 
 bool MainWindow::isProjectActive() const {

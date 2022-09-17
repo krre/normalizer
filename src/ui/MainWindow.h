@@ -46,6 +46,7 @@ private:
     void openProject(const QString& path);
     void closeProject();
     bool isProjectActive() const;
+
     int findSource(const QString& filePath);
 
     void closeWindow();
