@@ -13,6 +13,9 @@ namespace Project {
 
     bool restoreSession();
     void setRestoreSession(bool restoreSession);
+
+    bool openLastProject();
+    void setOpenLastProject(bool openLastProject);
 }
 
 namespace MainWindow {

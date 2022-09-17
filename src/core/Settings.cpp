@@ -6,6 +6,7 @@ namespace Settings {
 
 constexpr auto Workspace = "Project/workspace";
 constexpr auto RestoreSession = "Project/restoreSession";
+constexpr auto OpenLastProject = "Project/openLast";
 
 constexpr auto Geometry = "MainWindow/geometry";
 
@@ -50,6 +51,14 @@ bool restoreSession() {
 
 void setRestoreSession(bool restoreSession) {
     setValue(RestoreSession, restoreSession);
+}
+
+bool openLastProject() {
+    return value(OpenLastProject, true).toBool();
+}
+
+void setOpenLastProject(bool openLastProject) {
+    setValue(OpenLastProject, openLastProject);
 }
 
 }

@@ -16,5 +16,6 @@ private:
     void writeSettings();
 
     BrowseLineEdit* workspaceBrowseLineEdit = nullptr;
+    QCheckBox* openLastProjectCheckBox = nullptr;
     QCheckBox* sessionCheckBox = nullptr;
 };
