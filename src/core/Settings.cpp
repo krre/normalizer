@@ -8,6 +8,8 @@ constexpr auto Workspace = "Project/workspace";
 constexpr auto RestoreSession = "Project/restoreSession";
 constexpr auto OpenLastProject = "Project/openLast";
 constexpr auto LastProject = "Project/last";
+constexpr auto RecentProjects = "Project/recent";
+constexpr auto RecentProjectPath = "path";
 
 constexpr auto Geometry = "MainWindow/geometry";
 
@@ -25,6 +27,11 @@ QVariant value(const QString& key, const QVariant& defaultValue) {
 bool contains(const QString& key) {
     QSettings settings;
     return settings.contains(key);
+}
+
+void remove(const QString& key) {
+    QSettings settings;
+    settings.remove(key);
 }
 
 namespace Project {
@@ -68,6 +75,36 @@ QString lastProject() {
 
 void setLastProject(const QString& lastProject) {
     setValue(LastProject, lastProject);
+}
+
+QStringList recent() {
+    QSettings settings;
+    int size = settings.beginReadArray(RecentProjects);
+    QStringList result;
+
+    for (int i = 0; i < size; i++) {
+        settings.setArrayIndex(i);
+        result.append(settings.value(RecentProjectPath).toString());
+    }
+
+    return result;
+}
+
+void setRecent(const QStringList& recent) {
+    if (recent.isEmpty()) {
+        remove(RecentProjects);
+        return;
+    }
+
+    QSettings settings;
+    settings.beginWriteArray(RecentProjects);
+
+    for (int i = 0; i < recent.count(); i++) {
+        settings.setArrayIndex(i);
+        settings.setValue(RecentProjectPath, recent.at(i));
+    }
+
+    settings.endArray();
 }
 
 }

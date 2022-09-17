@@ -16,6 +16,7 @@ private slots:
     void onNew();
     void onOpen();
     void onClose();
+    void onClearRecent();
     void onQuit();
     void onOptions();
     void onAbout();
@@ -38,6 +39,9 @@ private:
     void readSession();
     void writeSession();
 
+    void addRecent(const QString& path);
+    void updateMenuState();
+
     void openProject(const QString& path);
     void closeProject();
     bool isProjectActive() const;
@@ -45,6 +49,7 @@ private:
 
     void closeWindow();
 
+    QMenu* recentMenu = nullptr;
     QTabWidget* tabWidget = nullptr;
     SourceEditor* editor = nullptr;
     QString projectPath;

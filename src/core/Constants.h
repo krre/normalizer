@@ -13,6 +13,10 @@ namespace App {
     constexpr auto BuildTime = __TIME__;
 }
 
+namespace Window {
+    constexpr int MaxRecentFiles = 10;
+}
+
 namespace Norm {
     constexpr auto Name = "Norm";
     constexpr auto Extension = ".norm";

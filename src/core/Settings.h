@@ -5,6 +5,7 @@ namespace Settings {
     void setValue(const QString& key, const QVariant& value);
     QVariant value(const QString& key, const QVariant& defaultValue = QVariant());
     bool contains(const QString& key);
+    void remove(const QString& key);
 
 namespace Project {
     QString workspace();
@@ -19,6 +20,9 @@ namespace Project {
 
     QString lastProject();
     void setLastProject(const QString& lastProject);
+
+    QStringList recent();
+    void setRecent(const QStringList& recent);
 }
 
 namespace MainWindow {

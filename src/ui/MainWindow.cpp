@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     createWidgets();
     createActions();
     readSettings();
+    updateMenuState();
 }
 
 MainWindow::~MainWindow() {
@@ -49,6 +50,11 @@ void MainWindow::onOpen() {
 
 void MainWindow::onClose() {
     closeProject();
+}
+
+void MainWindow::onClearRecent() {
+    recentMenu->clear();
+    updateMenuState();
 }
 
 void MainWindow::onQuit() {
@@ -110,6 +116,7 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), this, &MainWindow::onNew, QKeySequence("Ctrl+N"));
     fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O"));
     fileMenu->addAction(tr("Close"), this, &MainWindow::onClose, QKeySequence("Ctrl+W"));
+    recentMenu = fileMenu->addMenu(tr("Recent Projects"));
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q"));
 
@@ -152,6 +159,12 @@ void MainWindow::readSettings() {
         restoreGeometry(geometry);
     }
 
+    QStringList recentProjects = Settings::Project::recent();
+
+    for (int i = recentProjects.count() - 1; i >= 0; i--) {
+        addRecent(recentProjects.at(i));
+    }
+
     if (Settings::Project::openLastProject()) {
         openProject(Settings::Project::lastProject());
     }
@@ -159,6 +172,18 @@ void MainWindow::readSettings() {
 
 void MainWindow::writeSettings() {
     Settings::MainWindow::setGeometry(saveGeometry());
+
+    QStringList recentProjects;
+
+    for (int i = 0; i < recentMenu->actions().count(); i++) {
+        if (recentMenu->actions().at(i)->isSeparator()) {
+            break;
+        }
+
+        recentProjects.append(recentMenu->actions().at(i)->text());
+    }
+
+    Settings::Project::setRecent(recentProjects);
 }
 
 void MainWindow::readSession() {
@@ -169,6 +194,37 @@ void MainWindow::readSession() {
 void MainWindow::writeSession() {
     if (!isProjectActive()) return;
     qInfo().noquote() << "Session writed:" << projectPath;
+}
+
+void MainWindow::addRecent(const QString& path) {
+    if (!recentMenu->actions().count()) {
+        recentMenu->addSeparator();
+        recentMenu->addAction(tr("Clear Menu"), this, &MainWindow::onClearRecent);
+    }
+
+    for (QAction* action : recentMenu->actions()) {
+        if (action->text() == path) {
+            recentMenu->removeAction(action);
+        }
+    }
+
+    QAction* action = new QAction(path);
+    connect(action, &QAction::triggered, this, [=] {
+        openProject(path);
+    });
+
+    recentMenu->insertAction(recentMenu->actions().constFirst(), action);
+    const int SEPARATOR_AND_CLEAR = 2;
+
+    if (recentMenu->actions().size() > Const::Window::MaxRecentFiles + SEPARATOR_AND_CLEAR) {
+        recentMenu->removeAction(recentMenu->actions().at(recentMenu->actions().size() - SEPARATOR_AND_CLEAR - 1));
+    }
+
+    updateMenuState();
+}
+
+void MainWindow::updateMenuState() {
+    recentMenu->setEnabled(recentMenu->actions().count());
 }
 
 void MainWindow::openProject(const QString& path) {
@@ -183,6 +239,8 @@ void MainWindow::openProject(const QString& path) {
     if (Settings::Project::restoreSession()) {
         readSession();
     }
+
+    addRecent(path);
 }
 
 void MainWindow::closeProject() {
