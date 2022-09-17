@@ -17,6 +17,7 @@ private slots:
     void onOpen();
     void onClose();
     void onClearRecent();
+    void onProjectSettings();
     void onQuit();
     void onOptions();
     void onAbout();
@@ -50,6 +51,7 @@ private:
     void closeWindow();
 
     QMenu* recentMenu = nullptr;
+    QAction* projectSettingsAction = nullptr;
     QTabWidget* tabWidget = nullptr;
     SourceEditor* editor = nullptr;
     QString projectPath;

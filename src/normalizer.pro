@@ -20,6 +20,7 @@ SOURCES += \
     ui/component/BrowseLineEdit.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
+    ui/dialog/ProjectSettings.cpp \
     ui/dialog/StandardDialog.cpp \
     ui/dialog/Workspace.cpp
 
@@ -32,6 +33,7 @@ HEADERS += \
     ui/component/BrowseLineEdit.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \
+    ui/dialog/ProjectSettings.h \
     ui/dialog/StandardDialog.h \
     ui/dialog/Workspace.h
 

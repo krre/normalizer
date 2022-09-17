@@ -4,6 +4,7 @@
 #include "core/Settings.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
+#include "dialog/ProjectSettings.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -55,6 +56,11 @@ void MainWindow::onClose() {
 void MainWindow::onClearRecent() {
     recentMenu->clear();
     updateMenuState();
+}
+
+void MainWindow::onProjectSettings() {
+    ProjectSettings projectSettings;
+    projectSettings.exec();
 }
 
 void MainWindow::onQuit() {
@@ -117,6 +123,8 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O"));
     fileMenu->addAction(tr("Close"), this, &MainWindow::onClose, QKeySequence("Ctrl+W"));
     recentMenu = fileMenu->addMenu(tr("Recent Projects"));
+    fileMenu->addSeparator();
+    projectSettingsAction = fileMenu->addAction(tr("Project Settings..."), this, &MainWindow::onProjectSettings);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q"));
 
@@ -225,6 +233,7 @@ void MainWindow::addRecent(const QString& path) {
 
 void MainWindow::updateMenuState() {
     recentMenu->setEnabled(recentMenu->actions().count());
+    projectSettingsAction->setEnabled(isProjectActive());
 }
 
 void MainWindow::openProject(const QString& path) {
@@ -241,6 +250,7 @@ void MainWindow::openProject(const QString& path) {
     }
 
     addRecent(path);
+    updateMenuState();
 }
 
 void MainWindow::closeProject() {
@@ -253,6 +263,7 @@ void MainWindow::closeProject() {
     removeTabWidget();
     qInfo().noquote() << "Project closed:" << projectPath;
     projectPath = QString();
+    updateMenuState();
 }
 
 bool MainWindow::isProjectActive() const {
