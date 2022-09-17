@@ -3,7 +3,7 @@
 namespace Const {
 
 namespace App {
-    constexpr auto Organization = "Norm";
+    constexpr auto Organization = "Norm Group";
     constexpr auto Name = "Normalizer";
     constexpr auto Version = "0.1.0";
     constexpr auto Status = ""; // Release, Beta, Alpha
