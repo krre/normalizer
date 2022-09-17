@@ -165,8 +165,8 @@ void MainWindow::readSettings() {
         addRecent(recentProjects.at(i));
     }
 
-    if (Settings::Project::openLastProject()) {
-        openProject(Settings::Project::lastProject());
+    if (Settings::Project::openLast()) {
+        openProject(Settings::Project::last());
     }
 }
 
@@ -272,7 +272,7 @@ int MainWindow::findSource(const QString& filePath) {
 }
 
 void MainWindow::closeWindow() {
-    Settings::Project::setLastProject(Settings::Project::openLastProject() ? projectPath : QString());
+    Settings::Project::setLast(Settings::Project::openLast() ? projectPath : QString());
     closeProject();
     writeSettings();
 }

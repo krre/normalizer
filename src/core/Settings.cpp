@@ -61,19 +61,19 @@ void setRestoreSession(bool restoreSession) {
     setValue(RestoreSession, restoreSession);
 }
 
-bool openLastProject() {
+bool openLast() {
     return value(OpenLastProject, true).toBool();
 }
 
-void setOpenLastProject(bool openLastProject) {
+void setOpenLast(bool openLastProject) {
     setValue(OpenLastProject, openLastProject);
 }
 
-QString lastProject() {
+QString last() {
     return value(LastProject).toString();
 }
 
-void setLastProject(const QString& lastProject) {
+void setLast(const QString& lastProject) {
     setValue(LastProject, lastProject);
 }
 

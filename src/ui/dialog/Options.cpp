@@ -33,13 +33,13 @@ void Options::accept() {
 
 void Options::readSettings() {
     workspaceBrowseLineEdit->setText(Settings::Project::workspace());
-    openLastProjectCheckBox->setChecked(Settings::Project::openLastProject());
+    openLastProjectCheckBox->setChecked(Settings::Project::openLast());
     sessionCheckBox->setChecked(Settings::Project::restoreSession());
 }
 
 void Options::writeSettings() {
     Settings::Project::setWorkspace(workspaceBrowseLineEdit->text());
-    Settings::Project::setOpenLastProject(openLastProjectCheckBox->isChecked());
+    Settings::Project::setOpenLast(openLastProjectCheckBox->isChecked());
     Settings::Project::setRestoreSession(sessionCheckBox->isChecked());
 
     QDir dir;

@@ -15,11 +15,11 @@ namespace Project {
     bool restoreSession();
     void setRestoreSession(bool restoreSession);
 
-    bool openLastProject();
-    void setOpenLastProject(bool openLastProject);
+    bool openLast();
+    void setOpenLast(bool openLastProject);
 
-    QString lastProject();
-    void setLastProject(const QString& lastProject);
+    QString last();
+    void setLast(const QString& lastProject);
 
     QStringList recent();
     void setRecent(const QStringList& recent);
