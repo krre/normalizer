@@ -51,7 +51,6 @@ private:
     void closeWindow();
 
     QMenu* recentMenu = nullptr;
-    QAction* projectSettingsAction = nullptr;
     QTabWidget* tabWidget = nullptr;
     SourceEditor* editor = nullptr;
     QString projectPath;

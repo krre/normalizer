@@ -15,6 +15,7 @@ SOURCES += \
     core/Global.cpp \
     core/Settings.cpp \
     main.cpp \
+    ui/ActionManager.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
     ui/component/BrowseLineEdit.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     core/Constants.h \
     core/Global.h \
     core/Settings.h \
+    ui/ActionManager.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/component/BrowseLineEdit.h \

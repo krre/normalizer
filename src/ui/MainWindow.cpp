@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "ActionManager.h"
 #include "SourceEditor.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
@@ -119,14 +120,14 @@ int MainWindow::addSourceTab(const QString& filePath) {
 
 void MainWindow::createActions() {
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(tr("New..."), this, &MainWindow::onNew, QKeySequence("Ctrl+N"));
-    fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O"));
-    fileMenu->addAction(tr("Close"), this, &MainWindow::onClose, QKeySequence("Ctrl+W"));
+    ActionManager::addAction(ActionManager::NewProject, fileMenu->addAction(tr("New..."), this, &MainWindow::onNew, QKeySequence("Ctrl+N")));
+    ActionManager::addAction(ActionManager::OpenProject,fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O")));
+    ActionManager::addAction(ActionManager::CloseProject, fileMenu->addAction(tr("Close"), this, &MainWindow::onClose, QKeySequence("Ctrl+W")));
     recentMenu = fileMenu->addMenu(tr("Recent Projects"));
     fileMenu->addSeparator();
-    projectSettingsAction = fileMenu->addAction(tr("Project Settings..."), this, &MainWindow::onProjectSettings);
+    ActionManager::addAction(ActionManager::ProjectSettings, fileMenu->addAction(tr("Project Settings..."), this, &MainWindow::onProjectSettings));
     fileMenu->addSeparator();
-    fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q"));
+    ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q")));
 
     QMenu* toolsMenu = menuBar()->addMenu(tr("Tools"));
     toolsMenu->addAction(tr("Options..."), this, &MainWindow::onOptions);
@@ -233,7 +234,8 @@ void MainWindow::addRecent(const QString& path) {
 
 void MainWindow::updateMenuState() {
     recentMenu->setEnabled(recentMenu->actions().count());
-    projectSettingsAction->setEnabled(isProjectActive());
+    ActionManager::action(ActionManager::ProjectSettings)->setEnabled(isProjectActive());
+    ActionManager::action(ActionManager::CloseProject)->setEnabled(isProjectActive());
 }
 
 void MainWindow::openProject(const QString& path) {
