@@ -15,6 +15,7 @@ protected:
 private slots:
     void onNew();
     void onOpen();
+    void onClose();
     void onQuit();
     void onOptions();
     void onAbout();

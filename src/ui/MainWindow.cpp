@@ -47,7 +47,13 @@ void MainWindow::onOpen() {
     QString dirPath = QFileDialog::getExistingDirectory(this, tr("Open Norm Project"), Global::workspacePath());
     if (dirPath.isEmpty()) return;
 
-    addSourceTab(dirPath);
+    createTabWidget();
+
+//    addSourceTab(dirPath);
+}
+
+void MainWindow::onClose() {
+    removeTabWidget();
 }
 
 void MainWindow::onQuit() {
@@ -108,6 +114,7 @@ void MainWindow::createActions() {
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), this, &MainWindow::onNew, QKeySequence("Ctrl+N"));
     fileMenu->addAction(tr("Open..."), this, &MainWindow::onOpen, QKeySequence("Ctrl+O"));
+    fileMenu->addAction(tr("Close"), this, &MainWindow::onClose, QKeySequence("Ctrl+W"));
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q"));
 
@@ -135,7 +142,8 @@ void MainWindow::createTabWidget() {
 }
 
 void MainWindow::removeTabWidget() {
-
+    setCentralWidget(nullptr);
+    delete tabWidget;
 }
 
 void MainWindow::readSettings() {
