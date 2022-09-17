@@ -1,6 +1,5 @@
 #include "Options.h"
-#include "core/Constants.h"
-#include "core/Global.h"
+#include "core/Settings.h"
 #include <QtWidgets>
 
 Options::Options(QWidget* parent) : StandardDialog(parent) {
@@ -45,16 +44,13 @@ void Options::accept() {
 }
 
 void Options::readSettings() {
-    QSettings settings;
-
-    workspaceLineEdit->setText(Global::workspacePath());
-    sessionCheckBox->setChecked(settings.value(Const::Settings::Session::Restore, Global::restoreSession()).toBool());
+    workspaceLineEdit->setText(Settings::Project::workspace());
+    sessionCheckBox->setChecked(Settings::Project::restoreSession());
 }
 
 void Options::writeSettings() {
-    QSettings settings;
-    settings.setValue(Const::Settings::Project::Workspace, workspaceLineEdit->text());
-    settings.setValue(Const::Settings::Session::Restore, sessionCheckBox->isChecked());
+    Settings::Project::setWorkspace(workspaceLineEdit->text());
+    Settings::Project::setRestoreSession(sessionCheckBox->isChecked());
 
     QDir dir;
     dir.mkpath(workspaceLineEdit->text());

@@ -1,6 +1,5 @@
 #include "Workspace.h"
-#include "core/Constants.h"
-#include "core/Global.h"
+#include "core/Settings.h"
 #include <QtWidgets>
 
 Workspace::Workspace(QWidget* parent) : StandardDialog(parent) {
@@ -23,7 +22,7 @@ Workspace::Workspace(QWidget* parent) : StandardDialog(parent) {
     connect(browsePushButton, &QPushButton::clicked, this, &Workspace::onBrowseButtonClicked);
     connect(lineEdit, &QLineEdit::textChanged, this, &Workspace::adjustAcceptedButton);
 
-    lineEdit->setText(Global::workspacePath());
+    lineEdit->setText(Settings::Project::workspace());
 }
 
 void Workspace::onBrowseButtonClicked() {
@@ -39,8 +38,7 @@ void Workspace::adjustAcceptedButton(const QString& text) {
 }
 
 void Workspace::accept() {
-    QSettings settings;
-    settings.setValue(Const::Settings::Project::Workspace, lineEdit->text());
+    Settings::Project::setWorkspace(lineEdit->text());
 
     QDir dir;
     dir.mkpath(lineEdit->text());

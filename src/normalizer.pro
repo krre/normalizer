@@ -13,6 +13,7 @@ unix: PRE_TARGETDEPS += $$PWD/../../norm-common/lib/libnorm-common.a
 
 SOURCES += \
     core/Global.cpp \
+    core/Settings.cpp \
     main.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     core/Constants.h \
     core/Global.h \
+    core/Settings.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/dialog/NewProject.h \

@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include "SourceEditor.h"
 #include "core/Constants.h"
-#include "core/Global.h"
+#include "core/Settings.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
 #include <QtWidgets>
@@ -44,7 +44,7 @@ void MainWindow::onNew() {
 }
 
 void MainWindow::onOpen() {
-    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Open Norm Project"), Global::workspacePath());
+    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Open Norm Project"), Settings::Project::workspace());
     if (dirPath.isEmpty()) return;
 
     createTabWidget();
@@ -147,9 +147,7 @@ void MainWindow::removeTabWidget() {
 }
 
 void MainWindow::readSettings() {
-    QSettings settings;
-
-    QByteArray geometry = settings.value(Const::Settings::MainWindow::Geometry, QByteArray()).toByteArray();
+    QByteArray geometry = Settings::MainWindow::geometry();
 
     if (geometry.isEmpty()) {
         const QRect availableGeometry = QGuiApplication::screens().first()->availableGeometry();
@@ -163,45 +161,17 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    QSettings settings;
-    settings.setValue(Const::Settings::MainWindow::Geometry, saveGeometry());
+    Settings::MainWindow::setGeometry(saveGeometry());
 
 //    writeSession();
 }
 
 void MainWindow::readSession() {
-    if (!Global::restoreSession()) return;
-
-    QSettings settings;
-    int size = settings.beginReadArray(Const::Settings::SessionList::Group);
-
-    for (int i = 0; i < size; ++i) {
-        settings.setArrayIndex(i);
-        QString path = settings.value(Const::Settings::SessionList::Path).toString();
-        addSourceTab(path);
-    }
-
-    settings.endArray();
-
-    tabWidget->setCurrentIndex(settings.value(Const::Settings::Session::Tab).toInt());
+    if (!Settings::Project::restoreSession()) return;
 }
 
 void MainWindow::writeSession() {
-    if (!Global::restoreSession()) return;
-
-    QSettings settings;
-    settings.setValue(Const::Settings::Session::Tab, tabWidget->currentIndex());
-
-    settings.beginWriteArray(Const::Settings::SessionList::Group);
-
-    for (int i = 0; i < tabWidget->count(); i++) {
-        auto editor = static_cast<SourceEditor*>(tabWidget->widget(i));
-
-        settings.setArrayIndex(i);
-        settings.setValue(Const::Settings::SessionList::Path, editor->filePath());
-    }
-
-    settings.endArray();
+    if (!Settings::Project::restoreSession()) return;
 }
 
 int MainWindow::findSource(const QString& filePath) {

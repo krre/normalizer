@@ -1,6 +1,7 @@
 #include "ui/MainWindow.h"
 #include "ui/dialog/Workspace.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include <QApplication>
 #include <QSettings>
 
@@ -17,7 +18,7 @@ int main(int argc, char* argv[]) {
     MainWindow mainWindow;
     mainWindow.show();
 
-    if (QSettings settings; settings.value(Const::Settings::Project::Workspace).toString().isEmpty()) {
+    if (!Settings::Project::isWorkspaceExists()) {
         Workspace workspace;
         workspace.exec();
     }
