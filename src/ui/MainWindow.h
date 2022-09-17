@@ -28,6 +28,9 @@ private:
     void createActions();
     void createWidgets();
 
+    void createTabWidget();
+    void removeTabWidget();
+
     void readSettings();
     void writeSettings();
 

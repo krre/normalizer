@@ -36,9 +36,11 @@ void MainWindow::onNew() {
     project.create(newProject.projectTemplate());
     project.write(filePath, NormCommon::Project::FileFormat::Json);
 
+    createTabWidget();
+
     qInfo().noquote() << "Project created:" << newProject.path() ;
 
-    addSourceTab(newProject.path());
+//    addSourceTab(newProject.path());
 }
 
 void MainWindow::onOpen() {
@@ -117,6 +119,10 @@ void MainWindow::createActions() {
 }
 
 void MainWindow::createWidgets() {
+
+}
+
+void MainWindow::createTabWidget() {
     tabWidget = new QTabWidget;
     tabWidget->setMinimumSize(QSize(0, 50));
     tabWidget->setTabsClosable(true);
@@ -126,6 +132,10 @@ void MainWindow::createWidgets() {
     connect(tabWidget, &QTabWidget::tabBarClicked, this, &MainWindow::onTabClicked);
 
     setCentralWidget(tabWidget);
+}
+
+void MainWindow::removeTabWidget() {
+
 }
 
 void MainWindow::readSettings() {
@@ -141,14 +151,14 @@ void MainWindow::readSettings() {
         restoreGeometry(geometry);
     }
 
-    readSession();
+//    readSession();
 }
 
 void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue(Const::Settings::MainWindow::Geometry, saveGeometry());
 
-    writeSession();
+//    writeSession();
 }
 
 void MainWindow::readSession() {
