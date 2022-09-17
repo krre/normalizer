@@ -1,63 +1,43 @@
 #include "NewProject.h"
+#include "ui/component/BrowseLineEdit.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 
 NewProject::NewProject() {
     setWindowTitle(tr("New Project"));
 
-    auto gridLayout = new QGridLayout;
-    gridLayout->addWidget(new QLabel(tr("Name:")), 0, 0, 1, 1);
-    gridLayout->addWidget(new QLabel(tr("Directory:")), 1, 0, 1, 1);
-
     nameLineEdit = new QLineEdit;
-    gridLayout->addWidget(nameLineEdit, 0, 1, 1, 1);
+    connect(nameLineEdit, &QLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
-    auto horizontalLayout = new QHBoxLayout;
-
-    directoryLineEdit = new QLineEdit(Settings::Project::workspace());
-    horizontalLayout->addWidget(directoryLineEdit);
-
-    auto browsePushButton = new QPushButton(tr("Browse..."));
-    horizontalLayout->addWidget(browsePushButton);
-
-    gridLayout->addLayout(horizontalLayout, 1, 1, 1, 1);
-    gridLayout->addWidget(new QLabel(tr("Template:")), 2, 0, 1, 1);
+    directoryBrowseLineEdit = new BrowseLineEdit(Settings::Project::workspace());
+    connect(directoryBrowseLineEdit, &BrowseLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
     templateComboBox = new QComboBox;
     templateComboBox->addItem(tr("Binary"));
     templateComboBox->addItem(tr("Library"));
 
-    gridLayout->addWidget(templateComboBox, 2, 1, 1, 1, Qt::AlignLeft);
+    auto formLayout = new QFormLayout;
+    formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
+    formLayout->addRow(new QLabel(tr("Directory:")), directoryBrowseLineEdit);
+    formLayout->addRow(new QLabel(tr("Template:")), templateComboBox);
+    formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
-    setContentLayout(gridLayout);
+    setContentLayout(formLayout);
     resizeToWidth(400);
-
-    connect(browsePushButton, &QPushButton::clicked, this, &NewProject::onBrowseButtonClicked);
-    connect(nameLineEdit, &QLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
-    connect(directoryLineEdit, &QLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
-
     adjustAcceptedButton();
     nameLineEdit->setFocus();
 }
 
 QString NewProject::path() const {
-    return directoryLineEdit->text() + "/" + nameLineEdit->text();
+    return directoryBrowseLineEdit->text() + "/" + nameLineEdit->text();
 }
 
 NormCommon::Project::Template NewProject::projectTemplate() const {
     return static_cast<NormCommon::Project::Template>(templateComboBox->currentIndex());
 }
 
-void NewProject::onBrowseButtonClicked() {
-    QString dirPath = QFileDialog::getExistingDirectory(this);
-
-    if (!dirPath.isEmpty()) {
-        directoryLineEdit->setText(dirPath);
-    }
-}
-
 void NewProject::adjustAcceptedButton() {
-    setOkButtonEnabled(!nameLineEdit->text().isEmpty() && !directoryLineEdit->text().isEmpty());
+    setOkButtonEnabled(!nameLineEdit->text().isEmpty() && !directoryBrowseLineEdit->text().isEmpty());
 }
 
 void NewProject::accept() {

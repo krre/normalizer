@@ -3,8 +3,9 @@
 #include <NormCommon/Project.h>
 #include <NormCommon/Global.h>
 
-class QLineEdit;
+class BrowseLineEdit;
 class QComboBox;
+class QLineEdit;
 
 class NewProject : public StandardDialog {
     Q_OBJECT
@@ -15,11 +16,10 @@ public:
 
 private slots:
     void accept() override;
-    void onBrowseButtonClicked();
     void adjustAcceptedButton();
 
 private:
     QLineEdit* nameLineEdit = nullptr;
-    QLineEdit* directoryLineEdit = nullptr;
+    BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* templateComboBox = nullptr;
 };

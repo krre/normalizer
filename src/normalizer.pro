@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
+    ui/component/BrowseLineEdit.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
     ui/dialog/StandardDialog.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     core/Settings.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
+    ui/component/BrowseLineEdit.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \
     ui/dialog/StandardDialog.h \

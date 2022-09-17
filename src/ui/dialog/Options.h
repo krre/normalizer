@@ -1,7 +1,7 @@
 #pragma once
 #include "StandardDialog.h"
 
-class QLineEdit;
+class BrowseLineEdit;
 class QCheckBox;
 
 class Options : public StandardDialog {
@@ -11,12 +11,10 @@ public:
 private slots:
     void accept() override;
 
-    void onWorkspaceClicked();
-
 private:
     void readSettings();
     void writeSettings();
 
-    QLineEdit* workspaceLineEdit = nullptr;
+    BrowseLineEdit* workspaceBrowseLineEdit = nullptr;
     QCheckBox* sessionCheckBox = nullptr;
 };

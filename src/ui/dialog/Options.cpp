@@ -1,4 +1,5 @@
 #include "Options.h"
+#include "ui/component/BrowseLineEdit.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 
@@ -6,19 +7,14 @@ Options::Options(QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("Options"));
 
     auto projectGroupBox = new QGroupBox(tr("Project"));
-    workspaceLineEdit = new QLineEdit(projectGroupBox);
-
-    auto workspacePushButton = new QPushButton(tr("Browse..."));
-    connect(workspacePushButton, &QPushButton::clicked, this, &Options::onWorkspaceClicked);
+    workspaceBrowseLineEdit = new BrowseLineEdit;
 
     sessionCheckBox = new QCheckBox(tr("Restore session"));
     sessionCheckBox->setChecked(true);
 
-    auto gridLayout = new QGridLayout(projectGroupBox);
-    gridLayout->addWidget(new QLabel(tr("Workspace:")), 0, 0);
-    gridLayout->addWidget(workspaceLineEdit, 0, 1);
-    gridLayout->addWidget(workspacePushButton, 0, 2);
-    gridLayout->addWidget(sessionCheckBox, 1, 0, -1, 0);
+    auto formLayout = new QFormLayout(projectGroupBox);
+    formLayout->addRow(new QLabel(tr("Workspace:")), workspaceBrowseLineEdit);
+    formLayout->addRow(sessionCheckBox);
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->addWidget(projectGroupBox);
@@ -29,29 +25,20 @@ Options::Options(QWidget* parent) : StandardDialog(parent) {
     readSettings();
 }
 
-void Options::onWorkspaceClicked() {
-    QFileInfo fi(workspaceLineEdit->text());
-    QString dirPath = QFileDialog::getExistingDirectory(this, tr("Select Directory"), fi.dir().path());
-
-    if (!dirPath.isEmpty()) {
-        workspaceLineEdit->setText(dirPath);
-    }
-}
-
 void Options::accept() {
     writeSettings();
     StandardDialog::accept();
 }
 
 void Options::readSettings() {
-    workspaceLineEdit->setText(Settings::Project::workspace());
+    workspaceBrowseLineEdit->setText(Settings::Project::workspace());
     sessionCheckBox->setChecked(Settings::Project::restoreSession());
 }
 
 void Options::writeSettings() {
-    Settings::Project::setWorkspace(workspaceLineEdit->text());
+    Settings::Project::setWorkspace(workspaceBrowseLineEdit->text());
     Settings::Project::setRestoreSession(sessionCheckBox->isChecked());
 
     QDir dir;
-    dir.mkpath(workspaceLineEdit->text());
+    dir.mkpath(workspaceBrowseLineEdit->text());
 }

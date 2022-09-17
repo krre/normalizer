@@ -1,36 +1,20 @@
 #include "Workspace.h"
 #include "core/Settings.h"
+#include "ui/component/BrowseLineEdit.h"
 #include <QtWidgets>
 
 Workspace::Workspace(QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("Workspace"));
 
-    lineEdit = new QLineEdit;
-    auto browsePushButton = new QPushButton(tr("Browse..."));
-
-    auto horizontalLayout = new QHBoxLayout;
-    horizontalLayout->addWidget(lineEdit);
-    horizontalLayout->addWidget(browsePushButton);
+    workspaceBrowseLineEdit = new BrowseLineEdit(Settings::Project::workspace());
+    connect(workspaceBrowseLineEdit, &BrowseLineEdit::textChanged, this, &Workspace::adjustAcceptedButton);
 
     auto verticalLayout = new QVBoxLayout;
-    verticalLayout->addWidget(new QLabel(tr("Select directory for your Norm projects:")));
-    verticalLayout->addLayout(horizontalLayout);
+    verticalLayout->addWidget(new QLabel(tr("Directory for Norm projects:")));
+    verticalLayout->addLayout(workspaceBrowseLineEdit);
 
     setContentLayout(verticalLayout);
     resizeToWidth(430);
-
-    connect(browsePushButton, &QPushButton::clicked, this, &Workspace::onBrowseButtonClicked);
-    connect(lineEdit, &QLineEdit::textChanged, this, &Workspace::adjustAcceptedButton);
-
-    lineEdit->setText(Settings::Project::workspace());
-}
-
-void Workspace::onBrowseButtonClicked() {
-    QString dirPath = QFileDialog::getExistingDirectory(this);
-
-    if (!dirPath.isEmpty()) {
-        lineEdit->setText(dirPath);
-    }
 }
 
 void Workspace::adjustAcceptedButton(const QString& text) {
@@ -38,10 +22,10 @@ void Workspace::adjustAcceptedButton(const QString& text) {
 }
 
 void Workspace::accept() {
-    Settings::Project::setWorkspace(lineEdit->text());
+    Settings::Project::setWorkspace(workspaceBrowseLineEdit->text());
 
     QDir dir;
-    dir.mkpath(lineEdit->text());
+    dir.mkpath(workspaceBrowseLineEdit->text());
 
     QDialog::accept();
 }
