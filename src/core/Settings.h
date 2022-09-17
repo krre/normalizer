@@ -16,6 +16,9 @@ namespace Project {
 
     bool openLastProject();
     void setOpenLastProject(bool openLastProject);
+
+    QString lastProject();
+    void setLastProject(const QString& lastProject);
 }
 
 namespace MainWindow {

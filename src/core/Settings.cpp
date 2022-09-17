@@ -7,6 +7,7 @@ namespace Settings {
 constexpr auto Workspace = "Project/workspace";
 constexpr auto RestoreSession = "Project/restoreSession";
 constexpr auto OpenLastProject = "Project/openLast";
+constexpr auto LastProject = "Project/last";
 
 constexpr auto Geometry = "MainWindow/geometry";
 
@@ -59,6 +60,14 @@ bool openLastProject() {
 
 void setOpenLastProject(bool openLastProject) {
     setValue(OpenLastProject, openLastProject);
+}
+
+QString lastProject() {
+    return value(LastProject).toString();
+}
+
+void setLastProject(const QString& lastProject) {
+    setValue(LastProject, lastProject);
 }
 
 }

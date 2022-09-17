@@ -17,7 +17,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
-    writeSettings();
+    closeWindow();
     event->accept();
 }
 
@@ -35,29 +35,24 @@ void MainWindow::onNew() {
     NormCommon::Project project;
     project.create(newProject.projectTemplate());
     project.write(filePath, NormCommon::Project::FileFormat::Json);
+    qInfo().noquote() << "Project created:" << newProject.path();
 
-    createTabWidget();
-
-    qInfo().noquote() << "Project created:" << newProject.path() ;
-
-//    addSourceTab(newProject.path());
+    openProject(newProject.path());
 }
 
 void MainWindow::onOpen() {
     QString dirPath = QFileDialog::getExistingDirectory(this, tr("Open Norm Project"), Settings::Project::workspace());
     if (dirPath.isEmpty()) return;
 
-    createTabWidget();
-
-//    addSourceTab(dirPath);
+    openProject(dirPath);
 }
 
 void MainWindow::onClose() {
-    removeTabWidget();
+    closeProject();
 }
 
 void MainWindow::onQuit() {
-    writeSettings();
+    closeWindow();
     QCoreApplication::quit();
 }
 
@@ -157,21 +152,53 @@ void MainWindow::readSettings() {
         restoreGeometry(geometry);
     }
 
-//    readSession();
+    if (Settings::Project::openLastProject()) {
+        openProject(Settings::Project::lastProject());
+    }
 }
 
 void MainWindow::writeSettings() {
     Settings::MainWindow::setGeometry(saveGeometry());
-
-//    writeSession();
 }
 
 void MainWindow::readSession() {
-    if (!Settings::Project::restoreSession()) return;
+    if (!isProjectActive()) return;
+    qInfo().noquote() << "Session readed:" << projectPath;
 }
 
 void MainWindow::writeSession() {
-    if (!Settings::Project::restoreSession()) return;
+    if (!isProjectActive()) return;
+    qInfo().noquote() << "Session writed:" << projectPath;
+}
+
+void MainWindow::openProject(const QString& path) {
+    closeProject();
+
+    if (path.isEmpty()) return;
+
+    createTabWidget();
+    projectPath = path;
+    qInfo().noquote() << "Project opened:" << path;
+
+    if (Settings::Project::restoreSession()) {
+        readSession();
+    }
+}
+
+void MainWindow::closeProject() {
+    if (!isProjectActive()) return;
+
+    if (Settings::Project::restoreSession()) {
+        writeSession();
+    }
+
+    removeTabWidget();
+    qInfo().noquote() << "Project closed:" << projectPath;
+    projectPath = QString();
+}
+
+bool MainWindow::isProjectActive() const {
+    return !projectPath.isEmpty();
 }
 
 int MainWindow::findSource(const QString& filePath) {
@@ -184,4 +211,10 @@ int MainWindow::findSource(const QString& filePath) {
     }
 
     return -1;
+}
+
+void MainWindow::closeWindow() {
+    Settings::Project::setLastProject(Settings::Project::openLastProject() ? projectPath : QString());
+    closeProject();
+    writeSettings();
 }

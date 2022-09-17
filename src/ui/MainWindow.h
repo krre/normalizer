@@ -38,8 +38,14 @@ private:
     void readSession();
     void writeSession();
 
+    void openProject(const QString& path);
+    void closeProject();
+    bool isProjectActive() const;
     int findSource(const QString& filePath);
+
+    void closeWindow();
 
     QTabWidget* tabWidget = nullptr;
     SourceEditor* editor = nullptr;
+    QString projectPath;
 };
