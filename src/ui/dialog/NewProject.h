@@ -1,7 +1,7 @@
 #pragma once
 #include "StandardDialog.h"
-#include <NormCore/Project.h>
-#include <NormCore/Global.h>
+#include <NormCommon/Project.h>
+#include <NormCommon/Global.h>
 
 class QLineEdit;
 class QComboBox;
@@ -11,7 +11,7 @@ class NewProject : public StandardDialog {
 public:
     explicit NewProject();
     QString path() const;
-    NormCore::Project::Template projectTemplate() const;
+    NormCommon::Project::Template projectTemplate() const;
 
 private slots:
     void accept() override;

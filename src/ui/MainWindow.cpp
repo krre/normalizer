@@ -32,9 +32,9 @@ void MainWindow::onNew() {
     QFileInfo fi(newProject.path());
     QString filePath = newProject.path() + "/" + fi.baseName() + ".norm";
 
-    NormCore::Project project;
+    NormCommon::Project project;
     project.create(newProject.projectTemplate());
-    project.write(filePath, NormCore::Project::FileFormat::Json);
+    project.write(filePath, NormCommon::Project::FileFormat::Json);
 
     qInfo().noquote() << "Project created:" << newProject.path() ;
 

@@ -45,8 +45,8 @@ QString NewProject::path() const {
     return directoryLineEdit->text() + "/" + nameLineEdit->text();
 }
 
-NormCore::Project::Template NewProject::projectTemplate() const {
-    return static_cast<NormCore::Project::Template>(templateComboBox->currentIndex());
+NormCommon::Project::Template NewProject::projectTemplate() const {
+    return static_cast<NormCommon::Project::Template>(templateComboBox->currentIndex());
 }
 
 void NewProject::onBrowseButtonClicked() {
