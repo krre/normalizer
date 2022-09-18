@@ -2,7 +2,7 @@
 #include "core/Constants.h"
 #include <QtCore>
 
-ProjectSettings::ProjectSettings(const QString& projectPath) : projectPath(projectPath) {
+ProjectSettings::ProjectSettings()  {
 }
 
 void ProjectSettings::create() {
@@ -34,6 +34,23 @@ void ProjectSettings::save() {
     file.write(QJsonDocument(settings).toJson());
 }
 
+void ProjectSettings::clear() {
+    m_projectPath = QString();
+    settings = QJsonObject();
+}
+
+bool ProjectSettings::isValid() const {
+    return !m_projectPath.isEmpty();
+}
+
+QString ProjectSettings::projectPath() const {
+    return m_projectPath;
+}
+
+void ProjectSettings::setProjectPath(const QString& path) {
+    m_projectPath = path;
+}
+
 NormCommon::Project::Format ProjectSettings::format() const {
     return static_cast<NormCommon::Project::Format>(settings["format"].toInt());
 }
@@ -43,7 +60,7 @@ void ProjectSettings::setFormat(NormCommon::Project::Format format) {
 }
 
 QString ProjectSettings::dirPath() const {
-    return projectPath + "/" + Const::Project::DataDir;
+    return m_projectPath + "/" + Const::Project::DataDir;
 }
 
 QString ProjectSettings::filePath() const {

@@ -1,16 +1,14 @@
 #include "ProjectSettingsDialog.h"
 #include "project/ProjectSettings.h"
+#include "core/Global.h"
 #include "ui/component/FormatComboBox.h"
 #include <QtWidgets>
 
-ProjectSettingsDialog::ProjectSettingsDialog(const QString& projectPath) {
+ProjectSettingsDialog::ProjectSettingsDialog() {
     setWindowTitle(tr("Project Settings"));
 
-    settings.reset(new ProjectSettings(projectPath));
-    settings->load();
-
     formatComboBox = new FormatComboBox;
-    formatComboBox->setFormat(settings->format());
+    formatComboBox->setFormat(Global::projectSettings()->format());
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Format:"), formatComboBox);
@@ -25,7 +23,7 @@ ProjectSettingsDialog::~ProjectSettingsDialog() {
 }
 
 void ProjectSettingsDialog::accept() {
-    settings->setFormat(formatComboBox->format());
-    settings->save();
+    Global::projectSettings()->setFormat(formatComboBox->format());
+    Global::projectSettings()->save();
     StandardDialog::accept();
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
 #include <NormCommon/Project.h>
-#include <NormCommon/Global.h>
 
 class BrowseLineEdit;
 class FormatComboBox;

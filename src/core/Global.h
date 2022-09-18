@@ -1,7 +1,9 @@
 #pragma once
 #include <QString>
 
-class Global {
-public:
-    Global();
-};
+class ProjectSettings;
+
+namespace Global {
+    void init();
+    ProjectSettings* projectSettings();
+}

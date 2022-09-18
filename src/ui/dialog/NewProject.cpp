@@ -3,6 +3,7 @@
 #include "ui/component/FormatComboBox.h"
 #include "project/ProjectSettings.h"
 #include "core/Settings.h"
+#include "core/Global.h"
 #include <QtWidgets>
 
 NewProject::NewProject() {
@@ -62,10 +63,11 @@ void NewProject::accept() {
 
     dir.mkpath(path());
 
-    ProjectSettings settingsManager(path());
-    settingsManager.create();
-    settingsManager.setFormat(format());
-    settingsManager.save();
+    auto projectSettings = Global::projectSettings();
+    projectSettings->setProjectPath(path());
+    projectSettings->create();
+    projectSettings->setFormat(format());
+    projectSettings->save();
 
     QFileInfo fi(path());
     QString filePath = path() + "/" + fi.baseName() + ".norm";

@@ -54,5 +54,4 @@ private:
     QMenu* recentMenu = nullptr;
     QTabWidget* tabWidget = nullptr;
     SourceEditor* editor = nullptr;
-    QString projectPath;
 };

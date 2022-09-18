@@ -2,6 +2,7 @@
 #include "ui/dialog/Workspace.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include "core/Global.h"
 #include <QApplication>
 #include <QSettings>
 
@@ -14,6 +15,8 @@ int main(int argc, char* argv[]) {
 #ifdef Q_OS_WIN
     QSettings::setDefaultFormat(QSettings::IniFormat);
 #endif
+
+    Global::init();
 
     MainWindow mainWindow;
     mainWindow.show();

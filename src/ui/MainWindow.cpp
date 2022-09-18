@@ -3,6 +3,8 @@
 #include "SourceEditor.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include "core/Global.h"
+#include "project/ProjectSettings.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
 #include "dialog/ProjectSettingsDialog.h"
@@ -50,7 +52,7 @@ void MainWindow::onClearRecent() {
 }
 
 void MainWindow::onProjectSettings() {
-    ProjectSettingsDialog projectSettingsDialog(projectPath);
+    ProjectSettingsDialog projectSettingsDialog;
     projectSettingsDialog.exec();
 }
 
@@ -187,12 +189,12 @@ void MainWindow::writeSettings() {
 
 void MainWindow::readSession() {
     if (!isProjectActive()) return;
-    qInfo().noquote() << "Session readed:" << projectPath;
+    qInfo().noquote() << "Session readed:" << Global::projectSettings()->projectPath();
 }
 
 void MainWindow::writeSession() {
     if (!isProjectActive()) return;
-    qInfo().noquote() << "Session writed:" << projectPath;
+    qInfo().noquote() << "Session writed:" << Global::projectSettings()->projectPath();
 }
 
 void MainWindow::addRecent(const QString& path) {
@@ -243,7 +245,11 @@ void MainWindow::openProject(const QString& path) {
     if (!QFileInfo::exists(path)) return;
 
     createTabWidget();
-    projectPath = path;
+
+    auto projectSettings = Global::projectSettings();
+    projectSettings->setProjectPath(path);
+    projectSettings->load();
+
     qInfo().noquote() << "Project opened:" << path;
 
     if (Settings::Project::restoreSession()) {
@@ -252,7 +258,7 @@ void MainWindow::openProject(const QString& path) {
 
     addRecent(path);
 
-    QFileInfo fi(projectPath);
+    QFileInfo fi(path);
     setWindowTitle(QString(Const::App::Name) + " - " + fi.baseName());
 }
 
@@ -264,14 +270,16 @@ void MainWindow::closeProject() {
     }
 
     removeTabWidget();
-    qInfo().noquote() << "Project closed:" << projectPath;
-    projectPath = QString();
+    auto projectSettings = Global::projectSettings();
+
+    qInfo().noquote() << "Project closed:" << projectSettings->projectPath();
+    projectSettings->clear();
     updateMenuState();
     setWindowTitle(Const::App::Name);
 }
 
 bool MainWindow::isProjectActive() const {
-    return !projectPath.isEmpty();
+    return Global::projectSettings()->isValid();
 }
 
 int MainWindow::findSource(const QString& filePath) {
@@ -287,7 +295,7 @@ int MainWindow::findSource(const QString& filePath) {
 }
 
 void MainWindow::closeWindow() {
-    Settings::Project::setLast(Settings::Project::openLast() ? projectPath : QString());
+    Settings::Project::setLast(Settings::Project::openLast() ? Global::projectSettings()->projectPath() : QString());
     closeProject();
     writeSettings();
 }
