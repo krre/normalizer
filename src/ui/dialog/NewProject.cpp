@@ -23,7 +23,7 @@ NewProject::NewProject() {
     formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
-    resizeToWidth(400);
+    resizeToWidth(500);
     adjustAcceptedButton();
     nameLineEdit->setFocus();
 }
