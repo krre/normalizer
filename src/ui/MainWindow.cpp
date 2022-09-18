@@ -196,6 +196,8 @@ void MainWindow::writeSession() {
 }
 
 void MainWindow::addRecent(const QString& path) {
+    auto c = qScopeGuard([=] { updateMenuState(); });
+
     if (!recentMenu->actions().count()) {
         recentMenu->addSeparator();
         recentMenu->addAction(tr("Clear Menu"), this, &MainWindow::onClearRecent);
@@ -205,6 +207,10 @@ void MainWindow::addRecent(const QString& path) {
         if (action->text() == path) {
             recentMenu->removeAction(action);
         }
+    }
+
+    if (!QFileInfo::exists(path)) {
+        return;
     }
 
     QAction* action = new QAction(path);
@@ -218,11 +224,13 @@ void MainWindow::addRecent(const QString& path) {
     if (recentMenu->actions().size() > Const::Window::MaxRecentFiles + SEPARATOR_AND_CLEAR) {
         recentMenu->removeAction(recentMenu->actions().at(recentMenu->actions().size() - SEPARATOR_AND_CLEAR - 1));
     }
-
-    updateMenuState();
 }
 
 void MainWindow::updateMenuState() {
+    if (recentMenu->actions().count() && recentMenu->actions().first()->isSeparator()) {
+        recentMenu->clear();
+    }
+
     recentMenu->setEnabled(recentMenu->actions().count());
     ActionManager::action(ActionManager::ProjectSettings)->setEnabled(isProjectActive());
     ActionManager::action(ActionManager::CloseProject)->setEnabled(isProjectActive());
@@ -232,6 +240,7 @@ void MainWindow::openProject(const QString& path) {
     closeProject();
 
     if (path.isEmpty()) return;
+    if (!QFileInfo::exists(path)) return;
 
     createTabWidget();
     projectPath = path;
@@ -242,7 +251,6 @@ void MainWindow::openProject(const QString& path) {
     }
 
     addRecent(path);
-    updateMenuState();
 
     QFileInfo fi(projectPath);
     setWindowTitle(QString(Const::App::Name) + " - " + fi.baseName());
