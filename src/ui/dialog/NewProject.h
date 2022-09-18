@@ -4,6 +4,7 @@
 #include <NormCommon/Global.h>
 
 class BrowseLineEdit;
+class FormatComboBox;
 class QComboBox;
 class QLineEdit;
 
@@ -13,6 +14,7 @@ public:
     explicit NewProject();
     QString path() const;
     NormCommon::Project::Template projectTemplate() const;
+    NormCommon::Project::Format format() const;
 
 private slots:
     void accept() override;
@@ -22,4 +24,5 @@ private:
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* templateComboBox = nullptr;
+    FormatComboBox* formatComboBox = nullptr;
 };

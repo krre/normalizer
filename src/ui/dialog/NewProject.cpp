@@ -1,5 +1,6 @@
 #include "NewProject.h"
 #include "ui/component/BrowseLineEdit.h"
+#include "ui/component/FormatComboBox.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 
@@ -16,11 +17,17 @@ NewProject::NewProject() {
     templateComboBox->addItem(tr("Binary"));
     templateComboBox->addItem(tr("Library"));
 
+    formatComboBox = new FormatComboBox;
+
     auto formLayout = new QFormLayout;
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
     formLayout->addRow(new QLabel(tr("Directory:")), directoryBrowseLineEdit);
+
     formLayout->addRow(new QLabel(tr("Template:")), templateComboBox);
     formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
+
+    formLayout->addRow(new QLabel(tr("Format:")), formatComboBox);
+    formLayout->itemAt(3, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
     resizeToWidth(500);
@@ -34,6 +41,10 @@ QString NewProject::path() const {
 
 NormCommon::Project::Template NewProject::projectTemplate() const {
     return static_cast<NormCommon::Project::Template>(templateComboBox->currentIndex());
+}
+
+NormCommon::Project::Format NewProject::format() const {
+    return formatComboBox->format();
 }
 
 void NewProject::adjustAcceptedButton() {
