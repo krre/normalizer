@@ -70,12 +70,6 @@ void NewProject::accept() {
     projectSettings->setFormat(format());
     projectSettings->save();
 
-    QFileInfo fi(path());
-    QString filePath = path() + "/" + fi.baseName() + ".norm";
-
-    NormCommon::Project project;
-    project.create(projectTemplate(), Const::App::Version);
-    project.write(filePath, format());
-
+    Global::project()->create(projectTemplate(), Const::App::Version);
     StandardDialog::accept();
 }
