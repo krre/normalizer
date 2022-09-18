@@ -70,6 +70,6 @@ void NewProject::accept() {
     projectSettings->setFormat(format());
     projectSettings->save();
 
-    Global::project()->create(projectTemplate(), Const::App::Version);
+    Global::project()->create(path(), projectTemplate());
     StandardDialog::accept();
 }
