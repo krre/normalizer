@@ -250,6 +250,8 @@ void MainWindow::openProject(const QString& path) {
     projectSettings->setProjectPath(path);
     projectSettings->load();
 
+    Global::project()->open(path);
+
     qInfo().noquote() << "Project opened:" << path;
 
     if (Settings::Project::restoreSession()) {
@@ -270,10 +272,15 @@ void MainWindow::closeProject() {
     }
 
     removeTabWidget();
-    auto projectSettings = Global::projectSettings();
 
-    qInfo().noquote() << "Project closed:" << projectSettings->projectPath();
+    auto projectSettings = Global::projectSettings();
+    QString projectPath = projectSettings->projectPath();
     projectSettings->clear();
+
+    Global::project()->close();
+
+    qInfo().noquote() << "Project closed:" << projectPath;
+
     updateMenuState();
     setWindowTitle(Const::App::Name);
 }
