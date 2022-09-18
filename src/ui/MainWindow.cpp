@@ -37,7 +37,7 @@ void MainWindow::onNew() {
 
     NormCommon::Project project;
     project.create(newProject.projectTemplate());
-    project.write(filePath, NormCommon::Project::FileFormat::Json);
+    project.write(filePath, NormCommon::Project::Format::Json);
     qInfo().noquote() << "Project created:" << newProject.path();
 
     openProject(newProject.path());
