@@ -2,6 +2,7 @@
 #include "ui/component/BrowseLineEdit.h"
 #include "ui/component/FormatComboBox.h"
 #include "project/ProjectSettings.h"
+#include "core/Constants.h"
 #include "core/Settings.h"
 #include "core/Global.h"
 #include <QtWidgets>
@@ -73,7 +74,7 @@ void NewProject::accept() {
     QString filePath = path() + "/" + fi.baseName() + ".norm";
 
     NormCommon::Project project;
-    project.create(projectTemplate());
+    project.create(projectTemplate(), Const::App::Version);
     project.write(filePath, format());
 
     StandardDialog::accept();
