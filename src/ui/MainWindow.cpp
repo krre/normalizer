@@ -5,7 +5,7 @@
 #include "core/Settings.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
-#include "dialog/ProjectSettings.h"
+#include "dialog/ProjectSettingsDialog.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -27,20 +27,10 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 void MainWindow::onNew() {
     NewProject newProject;
 
-    if (newProject.exec() == QDialog::Rejected) return;
-
-    QDir dir;
-    dir.mkpath(newProject.path());
-
-    QFileInfo fi(newProject.path());
-    QString filePath = newProject.path() + "/" + fi.baseName() + ".norm";
-
-    NormCommon::Project project;
-    project.create(newProject.projectTemplate());
-    project.write(filePath, newProject.format());
-    qInfo().noquote() << "Project created:" << newProject.path();
-
-    openProject(newProject.path());
+    if (newProject.exec() == QDialog::Accepted) {
+        qInfo().noquote() << "Project created:" << newProject.path();
+        openProject(newProject.path());
+    }
 }
 
 void MainWindow::onOpen() {
@@ -60,8 +50,8 @@ void MainWindow::onClearRecent() {
 }
 
 void MainWindow::onProjectSettings() {
-    ProjectSettings projectSettings;
-    projectSettings.exec();
+    ProjectSettingsDialog projectSettingsDialog(projectPath);
+    projectSettingsDialog.exec();
 }
 
 void MainWindow::onQuit() {

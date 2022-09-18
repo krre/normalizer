@@ -15,6 +15,7 @@ SOURCES += \
     core/Global.cpp \
     core/Settings.cpp \
     main.cpp \
+    project/ProjectSettings.cpp \
     ui/ActionManager.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
@@ -22,7 +23,7 @@ SOURCES += \
     ui/component/FormatComboBox.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
-    ui/dialog/ProjectSettings.cpp \
+    ui/dialog/ProjectSettingsDialog.cpp \
     ui/dialog/StandardDialog.cpp \
     ui/dialog/Workspace.cpp
 
@@ -30,6 +31,7 @@ HEADERS += \
     core/Constants.h \
     core/Global.h \
     core/Settings.h \
+    project/ProjectSettings.h \
     ui/ActionManager.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
@@ -37,7 +39,7 @@ HEADERS += \
     ui/component/FormatComboBox.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \
-    ui/dialog/ProjectSettings.h \
+    ui/dialog/ProjectSettingsDialog.h \
     ui/dialog/StandardDialog.h \
     ui/dialog/Workspace.h
 

@@ -25,6 +25,7 @@ namespace Norm {
 namespace Project {
     constexpr auto WorkspaceDir = "NormProjects";
     constexpr auto DataDir = ".norm";
+    constexpr auto SettingsFile = "settings.json";
     constexpr auto SessionFile = "session.json";
 }
 

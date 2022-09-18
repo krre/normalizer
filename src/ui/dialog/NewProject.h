@@ -13,14 +13,15 @@ class NewProject : public StandardDialog {
 public:
     explicit NewProject();
     QString path() const;
-    NormCommon::Project::Template projectTemplate() const;
-    NormCommon::Project::Format format() const;
 
 private slots:
     void accept() override;
     void adjustAcceptedButton();
 
 private:
+    NormCommon::Project::Template projectTemplate() const;
+    NormCommon::Project::Format format() const;
+
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* templateComboBox = nullptr;

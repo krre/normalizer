@@ -1,6 +1,7 @@
 #include "NewProject.h"
 #include "ui/component/BrowseLineEdit.h"
 #include "ui/component/FormatComboBox.h"
+#include "project/ProjectSettings.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 
@@ -58,6 +59,20 @@ void NewProject::accept() {
         QMessageBox::critical(this, tr("Create Project"), tr("Project already exists"));
         return;
     }
+
+    dir.mkpath(path());
+
+    ProjectSettings settingsManager(path());
+    settingsManager.create();
+    settingsManager.setFormat(format());
+    settingsManager.save();
+
+    QFileInfo fi(path());
+    QString filePath = path() + "/" + fi.baseName() + ".norm";
+
+    NormCommon::Project project;
+    project.create(projectTemplate());
+    project.write(filePath, format());
 
     StandardDialog::accept();
 }
