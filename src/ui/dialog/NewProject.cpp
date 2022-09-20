@@ -2,7 +2,6 @@
 #include "ui/component/BrowseLineEdit.h"
 #include "ui/component/FormatComboBox.h"
 #include "project/ProjectSettings.h"
-#include "core/Constants.h"
 #include "core/Settings.h"
 #include "core/Global.h"
 #include <QtWidgets>
@@ -16,9 +15,9 @@ NewProject::NewProject() {
     directoryBrowseLineEdit = new BrowseLineEdit(Settings::Project::workspace());
     connect(directoryBrowseLineEdit, &BrowseLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
-    templateComboBox = new QComboBox;
-    templateComboBox->addItem(tr("Application"));
-    templateComboBox->addItem(tr("Library"));
+    targetComboBox = new QComboBox;
+    targetComboBox->addItem(tr("Application"));
+    targetComboBox->addItem(tr("Library"));
 
     formatComboBox = new FormatComboBox;
 
@@ -26,7 +25,7 @@ NewProject::NewProject() {
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
     formLayout->addRow(new QLabel(tr("Directory:")), directoryBrowseLineEdit);
 
-    formLayout->addRow(new QLabel(tr("Template:")), templateComboBox);
+    formLayout->addRow(new QLabel(tr("Target:")), targetComboBox);
     formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     formLayout->addRow(new QLabel(tr("Format:")), formatComboBox);
@@ -42,8 +41,8 @@ QString NewProject::path() const {
     return directoryBrowseLineEdit->text() + "/" + nameLineEdit->text();
 }
 
-NormCommon::Project::Template NewProject::projectTemplate() const {
-    return static_cast<NormCommon::Project::Template>(templateComboBox->currentIndex());
+NormCommon::Project::Target NewProject::target() const {
+    return static_cast<NormCommon::Project::Target>(targetComboBox->currentIndex());
 }
 
 NormCommon::Project::Format NewProject::format() const {
@@ -70,6 +69,6 @@ void NewProject::accept() {
     projectSettings->setFormat(format());
     projectSettings->save();
 
-    Global::project()->create(path(), projectTemplate());
+    Global::project()->create(path(), target());
     StandardDialog::accept();
 }

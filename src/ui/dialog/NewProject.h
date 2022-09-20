@@ -18,11 +18,11 @@ private slots:
     void adjustAcceptedButton();
 
 private:
-    NormCommon::Project::Template projectTemplate() const;
+    NormCommon::Project::Target target() const;
     NormCommon::Project::Format format() const;
 
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
-    QComboBox* templateComboBox = nullptr;
+    QComboBox* targetComboBox = nullptr;
     FormatComboBox* formatComboBox = nullptr;
 };
