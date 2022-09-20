@@ -17,7 +17,7 @@ NewProject::NewProject() {
     connect(directoryBrowseLineEdit, &BrowseLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
     templateComboBox = new QComboBox;
-    templateComboBox->addItem(tr("Binary"));
+    templateComboBox->addItem(tr("Application"));
     templateComboBox->addItem(tr("Library"));
 
     formatComboBox = new FormatComboBox;
