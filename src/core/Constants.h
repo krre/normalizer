@@ -17,11 +17,6 @@ namespace Window {
     constexpr int MaxRecentFiles = 10;
 }
 
-namespace Norm {
-    constexpr auto Name = "Norm";
-    constexpr auto Extension = ".norm";
-}
-
 namespace Project {
     constexpr auto WorkspaceDir = "NormProjects";
     constexpr auto DataDir = ".norm";
