@@ -9,7 +9,7 @@ void ProjectSettings::create() {
     QDir dir;
     dir.mkpath(dirPath());
 
-    setFormat(NormCommon::Project::Format::Binary);
+    setFormat(Format::Binary);
 }
 
 void ProjectSettings::load() {
@@ -51,11 +51,11 @@ void ProjectSettings::setProjectPath(const QString& path) {
     m_projectPath = path;
 }
 
-NormCommon::Project::Format ProjectSettings::format() const {
-    return static_cast<NormCommon::Project::Format>(settings["format"].toInt());
+ProjectSettings::Format ProjectSettings::format() const {
+    return static_cast<Format>(settings["format"].toInt());
 }
 
-void ProjectSettings::setFormat(NormCommon::Project::Format format) {
+void ProjectSettings::setFormat(Format format) {
     settings["format"] = static_cast<int>(format);
 }
 

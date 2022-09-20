@@ -19,10 +19,8 @@ private slots:
 
 private:
     NormCommon::Project::Target target() const;
-    NormCommon::Project::Format format() const;
 
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* targetComboBox = nullptr;
-    FormatComboBox* formatComboBox = nullptr;
 };

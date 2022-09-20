@@ -4,6 +4,11 @@
 
 class ProjectSettings {
 public:
+    enum class Format {
+        Binary,
+        BinaryAndJson
+    };
+
     ProjectSettings();
 
     void create();
@@ -16,8 +21,8 @@ public:
     QString projectPath() const;
     void setProjectPath(const QString& path);
 
-    NormCommon::Project::Format format() const;
-    void setFormat(NormCommon::Project::Format format);
+    Format format() const;
+    void setFormat(Format format);
 
 private:
     QString dirPath() const;

@@ -1,6 +1,5 @@
 #include "NewProject.h"
 #include "ui/component/BrowseLineEdit.h"
-#include "ui/component/FormatComboBox.h"
 #include "project/ProjectSettings.h"
 #include "core/Settings.h"
 #include "core/Global.h"
@@ -19,17 +18,12 @@ NewProject::NewProject() {
     targetComboBox->addItem(tr("Application"));
     targetComboBox->addItem(tr("Library"));
 
-    formatComboBox = new FormatComboBox;
-
     auto formLayout = new QFormLayout;
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
     formLayout->addRow(new QLabel(tr("Directory:")), directoryBrowseLineEdit);
 
     formLayout->addRow(new QLabel(tr("Target:")), targetComboBox);
     formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
-
-    formLayout->addRow(new QLabel(tr("Format:")), formatComboBox);
-    formLayout->itemAt(3, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
     resizeToWidth(500);
@@ -43,10 +37,6 @@ QString NewProject::path() const {
 
 NormCommon::Project::Target NewProject::target() const {
     return static_cast<NormCommon::Project::Target>(targetComboBox->currentIndex());
-}
-
-NormCommon::Project::Format NewProject::format() const {
-    return formatComboBox->format();
 }
 
 void NewProject::adjustAcceptedButton() {
@@ -66,7 +56,6 @@ void NewProject::accept() {
     auto projectSettings = Global::projectSettings();
     projectSettings->setProjectPath(path());
     projectSettings->create();
-    projectSettings->setFormat(format());
     projectSettings->save();
 
     Global::project()->create(path(), target());

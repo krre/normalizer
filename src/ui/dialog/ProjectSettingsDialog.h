@@ -2,7 +2,7 @@
 #include "StandardDialog.h"
 
 class ProjectSettings;
-class FormatComboBox;
+class QComboBox;
 
 class ProjectSettingsDialog : public StandardDialog {
 public:
@@ -13,5 +13,5 @@ private slots:
     void accept() override;
 
 private:
-    FormatComboBox* formatComboBox = nullptr;
+    QComboBox* formatComboBox = nullptr;
 };
