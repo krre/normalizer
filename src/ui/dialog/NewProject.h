@@ -8,7 +8,6 @@ class QComboBox;
 class QLineEdit;
 
 class NewProject : public StandardDialog {
-    Q_OBJECT
 public:
     explicit NewProject();
     QString path() const;
