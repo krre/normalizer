@@ -3,6 +3,7 @@
 #include "project/ProjectSettings.h"
 #include "core/Settings.h"
 #include "core/Global.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 
 NewProject::NewProject() {
@@ -15,8 +16,8 @@ NewProject::NewProject() {
     connect(directoryBrowseLineEdit, &BrowseLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
     targetComboBox = new QComboBox;
-    targetComboBox->addItem(tr("Application"));
-    targetComboBox->addItem(tr("Library"));
+    targetComboBox->addItem(Const::Project::Target::Application);
+    targetComboBox->addItem(Const::Project::Target::Library);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);

@@ -1,4 +1,6 @@
 #pragma once
+#include <QString>
+#include <QObject>
 
 namespace Const {
 
@@ -22,6 +24,11 @@ namespace Project {
     constexpr auto DataDir = ".norm";
     constexpr auto SettingsFile = "settings.json";
     constexpr auto SessionFile = "session.json";
+
+    namespace Target {
+        const QString Application = QObject::tr("Application");
+        const QString Library = QObject::tr("Library");
+    }
 }
 
 }
