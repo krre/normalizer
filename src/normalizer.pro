@@ -20,6 +20,7 @@ SOURCES += \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
     ui/component/BrowseLineEdit.cpp \
+    ui/component/SelectableLabel.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
     ui/dialog/ProjectSettingsDialog.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/component/BrowseLineEdit.h \
+    ui/component/SelectableLabel.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \
     ui/dialog/ProjectSettingsDialog.h \
