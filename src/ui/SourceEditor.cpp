@@ -1,9 +1,6 @@
 #include "SourceEditor.h"
 
-SourceEditor::SourceEditor(const QString& filePath, QWidget* parent) : QWidget(parent), m_filePath(filePath) {
+SourceEditor::SourceEditor(QWidget* parent) : QWidget(parent) {
 
 }
 
-const QString& SourceEditor::filePath() const {
-    return m_filePath;
-}

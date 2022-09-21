@@ -78,38 +78,6 @@ void MainWindow::onAbout() {
            .arg(Name, Version, Status, QT_VERSION_STR, BuildDate, BuildTime, Url, CopyrightYear));
 }
 
-void MainWindow::onTabClosed(int index) {
-    QWidget* widget = tabWidget->widget(index);
-    tabWidget->removeTab(index);
-    delete widget;
-}
-
-void MainWindow::onTabClicked(int index) {
-    if (index >= 0) {
-        editor = static_cast<SourceEditor*>(tabWidget->widget(index));
-        editor->setFocus();
-    } else {
-        editor = nullptr;
-    }
-}
-
-int MainWindow::addSourceTab(const QString& filePath) {
-    int tabIndex = findSource(filePath);
-
-    if (tabIndex != -1) {
-        tabWidget->setCurrentIndex(tabIndex);
-        return tabIndex;
-    } else {
-        QFileInfo fi(filePath);
-        editor = new SourceEditor(filePath);
-        int index = tabWidget->addTab(editor, fi.baseName());
-        tabWidget->setTabToolTip(index, filePath);
-        tabWidget->setCurrentIndex(index);
-
-        return index;
-    }
-}
-
 void MainWindow::createActions() {
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
     ActionManager::addAction(ActionManager::NewProject, fileMenu->addAction(tr("New..."), this, &MainWindow::onNew, QKeySequence("Ctrl+N")));
@@ -132,21 +100,15 @@ void MainWindow::createWidgets() {
 
 }
 
-void MainWindow::createTabWidget() {
-    tabWidget = new QTabWidget;
-    tabWidget->setMinimumSize(QSize(0, 50));
-    tabWidget->setTabsClosable(true);
-    tabWidget->setMovable(true);
-
-    connect(tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::onTabClosed);
-    connect(tabWidget, &QTabWidget::tabBarClicked, this, &MainWindow::onTabClicked);
-
-    setCentralWidget(tabWidget);
+void MainWindow::createSourceEditor() {
+    sourceEditor = new SourceEditor(this);
+    setCentralWidget(sourceEditor);
 }
 
-void MainWindow::removeTabWidget() {
+void MainWindow::removeSourceEditor() {
     setCentralWidget(nullptr);
-    delete tabWidget;
+    delete sourceEditor;
+    sourceEditor = nullptr;
 }
 
 void MainWindow::readSettings() {
@@ -244,7 +206,7 @@ void MainWindow::openProject(const QString& path) {
     if (path.isEmpty()) return;
     if (!QFileInfo::exists(path)) return;
 
-    createTabWidget();
+    createSourceEditor();
 
     auto projectSettings = Global::projectSettings();
     projectSettings->setProjectPath(path);
@@ -271,7 +233,7 @@ void MainWindow::closeProject() {
         writeSession();
     }
 
-    removeTabWidget();
+    removeSourceEditor();
 
     auto projectSettings = Global::projectSettings();
     QString projectPath = projectSettings->projectPath();
@@ -287,18 +249,6 @@ void MainWindow::closeProject() {
 
 bool MainWindow::isProjectActive() const {
     return Global::projectSettings()->isValid();
-}
-
-int MainWindow::findSource(const QString& filePath) {
-    for (int i = 0; i < tabWidget->count(); i++) {
-        auto editor = static_cast<SourceEditor*>(tabWidget->widget(i));
-
-        if (editor->filePath() == filePath) {
-            return i;
-        }
-    }
-
-    return -1;
 }
 
 void MainWindow::closeWindow() {

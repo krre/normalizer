@@ -4,9 +4,7 @@
 class SourceEditor : public QWidget {
     Q_OBJECT
 public:
-    explicit SourceEditor(const QString& filePath, QWidget* parent = nullptr);
-    const QString& filePath() const;
+    explicit SourceEditor(QWidget* parent = nullptr);
 
 private:
-    QString m_filePath;
 };
