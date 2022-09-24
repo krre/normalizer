@@ -16,6 +16,7 @@ SOURCES += \
     ui/ActionManager.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
+    ui/TopMenu.cpp \
     ui/component/BrowseLineEdit.cpp \
     ui/component/SelectableLabel.cpp \
     ui/dialog/NewProject.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     ui/ActionManager.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
+    ui/TopMenu.h \
     ui/component/BrowseLineEdit.h \
     ui/component/SelectableLabel.h \
     ui/dialog/NewProject.h \
