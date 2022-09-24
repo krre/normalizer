@@ -26,8 +26,15 @@ namespace Project {
     constexpr auto SessionFile = "session.json";
 
     namespace Target {
-        const QString Application = QObject::tr("Application");
-        const QString Library = QObject::tr("Library");
+        namespace Application {
+            const QString Name = QObject::tr("Application");
+            constexpr auto Source = "app.norm";
+        }
+
+        namespace Library {
+            const QString Name = QObject::tr("Library");
+            constexpr auto Source = "lib.norm";
+        }
     }
 }
 

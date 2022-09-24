@@ -16,8 +16,8 @@ NewProject::NewProject() {
     connect(directoryBrowseLineEdit, &BrowseLineEdit::textChanged, this, &NewProject::adjustAcceptedButton);
 
     targetComboBox = new QComboBox;
-    targetComboBox->addItem(Const::Project::Target::Application);
-    targetComboBox->addItem(Const::Project::Target::Library);
+    targetComboBox->addItem(Const::Project::Target::Application::Name);
+    targetComboBox->addItem(Const::Project::Target::Library::Name);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
@@ -36,8 +36,8 @@ QString NewProject::path() const {
     return directoryBrowseLineEdit->text() + "/" + nameLineEdit->text();
 }
 
-NormCommon::Project::Target NewProject::target() const {
-    return static_cast<NormCommon::Project::Target>(targetComboBox->currentIndex());
+Project::Target NewProject::target() const {
+    return static_cast<Project::Target>(targetComboBox->currentIndex());
 }
 
 void NewProject::adjustAcceptedButton() {

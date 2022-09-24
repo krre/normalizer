@@ -1,5 +1,4 @@
 #pragma once
-#include <NormCommon/Project.h>
 #include <QJsonObject>
 
 class ProjectSettings {

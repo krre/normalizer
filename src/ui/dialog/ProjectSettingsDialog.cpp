@@ -1,5 +1,6 @@
 #include "ProjectSettingsDialog.h"
 #include "project/ProjectSettings.h"
+#include "project/Project.h"
 #include "core/Global.h"
 #include "core/Constants.h"
 #include "ui/component/SelectableLabel.h"
@@ -10,10 +11,10 @@ ProjectSettingsDialog::ProjectSettingsDialog() {
 
     QString target;
 
-    if (Global::project()->target() == NormCommon::Project::Target::Application) {
-        target = Const::Project::Target::Application;
-    } else if (Global::project()->target() == NormCommon::Project::Target::Library) {
-        target = Const::Project::Target::Library;
+    if (Global::project()->target() == Project::Target::Application) {
+        target = Const::Project::Target::Application::Name;
+    } else if (Global::project()->target() == Project::Target::Library) {
+        target = Const::Project::Target::Library::Name;
     } else {
         target = tr("Bad target");
     }
