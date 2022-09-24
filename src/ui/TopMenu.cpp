@@ -21,16 +21,16 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), this, &TopMenu::onQuit, QKeySequence("Ctrl+Q")));
 
-    QMenu* editMenu = mainWindow->menuBar()->addMenu(tr("Edit"));
+    editMenu = mainWindow->menuBar()->addMenu(tr("Edit"));
     ActionManager::addAction(ActionManager::Undo, editMenu->addAction(tr("Undo"), this, &TopMenu::onUndo, QKeySequence("Ctrl+Z")));
     ActionManager::addAction(ActionManager::Redo, editMenu->addAction(tr("Redo"), this, &TopMenu::onRedo, QKeySequence("Ctrl+Shift+Z")));
 
-    QMenu* unitMenu = mainWindow->menuBar()->addMenu(tr("Unit"));
+    unitMenu = mainWindow->menuBar()->addMenu(tr("Unit"));
 
-    QMenu* addMenu = unitMenu->addMenu(tr("Add"));
+    addMenu = unitMenu->addMenu(tr("Add"));
     ActionManager::addAction(ActionManager::AddOperator, addMenu->addAction(tr("Operator"), this, &TopMenu::onAddOperator));
 
-    QMenu* buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
+    buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
     ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, QKeySequence("Ctrl+B")));
     ActionManager::addAction(ActionManager::Run, buildMenu->addAction(tr("Run"), this, &TopMenu::onRun, QKeySequence("Ctrl+R")));
 
@@ -47,6 +47,10 @@ void TopMenu::updateState() {
     }
 
     recentMenu->setEnabled(recentMenu->actions().count());
+    editMenu->setEnabled(isProjectActive());
+    unitMenu->setEnabled(isProjectActive());
+    addMenu->setEnabled(isProjectActive());
+    buildMenu->setEnabled(isProjectActive());
     ActionManager::action(ActionManager::ProjectSettings)->setEnabled(isProjectActive());
     ActionManager::action(ActionManager::CloseProject)->setEnabled(isProjectActive());
 }

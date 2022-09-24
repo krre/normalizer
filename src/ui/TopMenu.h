@@ -35,4 +35,8 @@ private:
     bool isProjectActive() const;
     MainWindow* mainWindow = nullptr;
     QMenu* recentMenu = nullptr;
+    QMenu* editMenu = nullptr;
+    QMenu* unitMenu = nullptr;
+    QMenu* addMenu = nullptr;
+    QMenu* buildMenu = nullptr;
 };
