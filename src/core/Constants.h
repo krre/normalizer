@@ -38,4 +38,8 @@ namespace Project {
     }
 }
 
+namespace Norm {
+    constexpr auto Version = "0.1.0";
+}
+
 }
