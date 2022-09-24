@@ -19,6 +19,9 @@ private slots:
     void onClearRecent();
     void onProjectSettings();
     void onQuit();
+
+    void onAddOperator();
+
     void onOptions();
     void onAbout();
 

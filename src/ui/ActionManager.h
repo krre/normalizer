@@ -10,6 +10,8 @@ namespace ActionManager {
     constexpr auto ProjectSettings = "ProjectSettings";
     constexpr auto Exit = "Exit";
 
+    constexpr auto AddOperator = "AddOperator";
+
     void addAction(const QString& id, QAction* action);
     void removeAction(const QString& id);
     QAction* action(const QString& id);

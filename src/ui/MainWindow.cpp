@@ -61,6 +61,10 @@ void MainWindow::onQuit() {
     QCoreApplication::quit();
 }
 
+void MainWindow::onAddOperator() {
+
+}
+
 void MainWindow::onOptions() {
     Options options;
     options.exec();
@@ -88,6 +92,11 @@ void MainWindow::createActions() {
     ActionManager::addAction(ActionManager::ProjectSettings, fileMenu->addAction(tr("Project Settings..."), this, &MainWindow::onProjectSettings));
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), this, &MainWindow::onQuit, QKeySequence("Ctrl+Q")));
+
+    QMenu* unitMenu = menuBar()->addMenu(tr("Unit"));
+
+    QMenu* addMenu = unitMenu->addMenu(tr("Add"));
+    ActionManager::addAction(ActionManager::AddOperator, addMenu->addAction(tr("Operator"), this, &MainWindow::onAddOperator));
 
     QMenu* toolsMenu = menuBar()->addMenu(tr("Tools"));
     toolsMenu->addAction(tr("Options..."), this, &MainWindow::onOptions);
