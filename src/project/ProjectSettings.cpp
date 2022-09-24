@@ -51,6 +51,10 @@ void ProjectSettings::setProjectPath(const QString& path) {
     m_projectPath = path;
 }
 
+QString ProjectSettings::outputPath() const {
+    return m_projectPath + "/" + Const::Project::OutputDir;
+}
+
 ProjectSettings::Format ProjectSettings::format() const {
     return static_cast<Format>(settings["format"].toInt());
 }

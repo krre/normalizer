@@ -22,6 +22,7 @@ namespace Window {
 namespace Project {
     constexpr auto WorkspaceDir = "NormProjects";
     constexpr auto DataDir = ".normalizer";
+    constexpr auto OutputDir = "output";
     constexpr auto SettingsFile = "settings.json";
     constexpr auto SessionFile = "session.json";
 

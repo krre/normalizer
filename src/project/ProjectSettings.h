@@ -20,6 +20,8 @@ public:
     QString projectPath() const;
     void setProjectPath(const QString& path);
 
+    QString outputPath() const;
+
     Format format() const;
     void setFormat(Format format);
 
