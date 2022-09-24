@@ -20,6 +20,9 @@ private slots:
     void onProjectSettings();
     void onQuit();
 
+    void onUndo();
+    void onRedo();
+
     void onAddOperator();
 
     void onBuild();

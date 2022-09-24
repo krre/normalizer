@@ -21,6 +21,10 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), this, &TopMenu::onQuit, QKeySequence("Ctrl+Q")));
 
+    QMenu* editMenu = mainWindow->menuBar()->addMenu(tr("Edit"));
+    ActionManager::addAction(ActionManager::Undo, editMenu->addAction(tr("Undo"), this, &TopMenu::onUndo, QKeySequence("Ctrl+Z")));
+    ActionManager::addAction(ActionManager::Redo, editMenu->addAction(tr("Redo"), this, &TopMenu::onRedo, QKeySequence("Ctrl+Shift+Z")));
+
     QMenu* unitMenu = mainWindow->menuBar()->addMenu(tr("Unit"));
 
     QMenu* addMenu = unitMenu->addMenu(tr("Add"));
@@ -115,6 +119,14 @@ void TopMenu::onProjectSettings() {
 void TopMenu::onQuit() {
     mainWindow->closeWindow();
     QCoreApplication::quit();
+}
+
+void TopMenu::onUndo() {
+
+}
+
+void TopMenu::onRedo() {
+
 }
 
 void TopMenu::onAddOperator() {

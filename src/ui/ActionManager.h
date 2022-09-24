@@ -10,6 +10,9 @@ namespace ActionManager {
     constexpr auto ProjectSettings = "ProjectSettings";
     constexpr auto Exit = "Exit";
 
+    constexpr auto Undo = "Undo";
+    constexpr auto Redo = "Redo";
+
     constexpr auto AddOperator = "AddOperator";
 
     constexpr auto Build = "Build";
