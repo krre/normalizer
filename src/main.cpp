@@ -12,6 +12,8 @@ int main(int argc, char* argv[]) {
     app.setOrganizationName(Const::App::Organization);
     app.setApplicationName(Const::App::Name);
 
+    qputenv("QT3D_RENDERER", "opengl");
+
 #ifdef Q_OS_WIN
     QSettings::setDefaultFormat(QSettings::IniFormat);
 #endif

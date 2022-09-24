@@ -17,6 +17,7 @@ namespace App {
 
 namespace Window {
     constexpr int MaxRecentFiles = 10;
+    constexpr auto BackgroundColor = 0x4d4d4f;
 }
 
 namespace Project {

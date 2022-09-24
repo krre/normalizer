@@ -1,4 +1,5 @@
 QT += core gui widgets network
+QT += 3dcore 3drender 3dinput 3dextras
 
 CONFIG += c++17
 TEMPLATE = app
