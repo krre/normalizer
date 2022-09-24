@@ -22,6 +22,9 @@ private slots:
 
     void onAddOperator();
 
+    void onBuild();
+    void onRun();
+
     void onOptions();
     void onAbout();
 

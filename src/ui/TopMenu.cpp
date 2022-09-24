@@ -26,6 +26,10 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     QMenu* addMenu = unitMenu->addMenu(tr("Add"));
     ActionManager::addAction(ActionManager::AddOperator, addMenu->addAction(tr("Operator"), this, &TopMenu::onAddOperator));
 
+    QMenu* buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
+    ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, QKeySequence("Ctrl+B")));
+    ActionManager::addAction(ActionManager::Run, buildMenu->addAction(tr("Run"), this, &TopMenu::onRun, QKeySequence("Ctrl+R")));
+
     QMenu* toolsMenu = mainWindow->menuBar()->addMenu(tr("Tools"));
     toolsMenu->addAction(tr("Options..."), this, &TopMenu::onOptions);
 
@@ -114,6 +118,14 @@ void TopMenu::onQuit() {
 }
 
 void TopMenu::onAddOperator() {
+
+}
+
+void TopMenu::onBuild() {
+
+}
+
+void TopMenu::onRun() {
 
 }
 

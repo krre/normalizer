@@ -12,6 +12,9 @@ namespace ActionManager {
 
     constexpr auto AddOperator = "AddOperator";
 
+    constexpr auto Build = "Build";
+    constexpr auto Run = "Run";
+
     void addAction(const QString& id, QAction* action);
     void removeAction(const QString& id);
     QAction* action(const QString& id);
