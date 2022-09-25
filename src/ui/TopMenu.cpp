@@ -19,7 +19,7 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::ProjectSettings, fileMenu->addAction(tr("Project Settings..."), this, &TopMenu::onProjectSettings));
     fileMenu->addSeparator();
-    ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), this, &TopMenu::onQuit, QKeySequence("Ctrl+Q")));
+    ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), mainWindow, &QMainWindow::close, QKeySequence("Ctrl+Q")));
 
     editMenu = mainWindow->menuBar()->addMenu(tr("Edit"));
     ActionManager::addAction(ActionManager::Undo, editMenu->addAction(tr("Undo"), this, &TopMenu::onUndo, QKeySequence("Ctrl+Z")));
@@ -118,10 +118,6 @@ void TopMenu::onClearRecent() {
 void TopMenu::onProjectSettings() {
     ProjectSettingsDialog projectSettingsDialog;
     projectSettingsDialog.exec();
-}
-
-void TopMenu::onQuit() {
-    mainWindow->close();
 }
 
 void TopMenu::onUndo() {

@@ -18,7 +18,6 @@ private slots:
     void onClose();
     void onClearRecent();
     void onProjectSettings();
-    void onQuit();
 
     void onUndo();
     void onRedo();
