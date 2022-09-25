@@ -121,8 +121,7 @@ void TopMenu::onProjectSettings() {
 }
 
 void TopMenu::onQuit() {
-    mainWindow->closeWindow();
-    QCoreApplication::quit();
+    mainWindow->close();
 }
 
 void TopMenu::onUndo() {
