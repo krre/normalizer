@@ -11,6 +11,7 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
+    norm/unit/Unit.cpp \
     project/Project.cpp \
     project/ProjectSettings.cpp \
     ui/ActionManager.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     core/Global.h \
     core/Settings.h \
     core/Utils.h \
+    norm/unit/Unit.h \
     project/Project.h \
     project/ProjectSettings.h \
     ui/ActionManager.h \
