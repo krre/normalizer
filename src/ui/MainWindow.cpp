@@ -38,7 +38,7 @@ void MainWindow::readSettings() {
     QByteArray geometry = Settings::MainWindow::geometry();
 
     if (geometry.isEmpty()) {
-        const QRect availableGeometry = QGuiApplication::screens().first()->availableGeometry();
+        const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         resize(availableGeometry.width() * 0.8, availableGeometry.height() * 0.8);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     } else {

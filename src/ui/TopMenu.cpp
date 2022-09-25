@@ -42,7 +42,7 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
 }
 
 void TopMenu::updateState() {
-    if (recentMenu->actions().count() && recentMenu->actions().first()->isSeparator()) {
+    if (recentMenu->actions().count() && recentMenu->actions().constFirst()->isSeparator()) {
         recentMenu->clear();
     }
 
