@@ -6,7 +6,7 @@
 #include "core/Settings.h"
 #include "dialog/NewProject.h"
 #include "dialog/Options.h"
-#include "dialog/ProjectSettingsDialog.h"
+#include "dialog/ProjectSettings.h"
 #include "project/ProjectSettings.h"
 #include <QtWidgets>
 
@@ -91,7 +91,7 @@ QMenu* TopMenu::recent() const {
 }
 
 void TopMenu::onNew() {
-    NewProject newProject;
+    Dialog::NewProject newProject;
 
     if (newProject.exec() == QDialog::Accepted) {
         qInfo().noquote() << "Project created:" << newProject.path();
@@ -116,8 +116,8 @@ void TopMenu::onClearRecent() {
 }
 
 void TopMenu::onProjectSettings() {
-    ProjectSettingsDialog projectSettingsDialog;
-    projectSettingsDialog.exec();
+    Dialog::ProjectSettings projectSettings;
+    projectSettings.exec();
 }
 
 void TopMenu::onUndo() {
@@ -141,7 +141,7 @@ void TopMenu::onRun() {
 }
 
 void TopMenu::onOptions() {
-    Options options;
+    Dialog::Options options;
     options.exec();
 }
 

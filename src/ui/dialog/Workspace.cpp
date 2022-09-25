@@ -3,6 +3,8 @@
 #include "ui/component/BrowseLineEdit.h"
 #include <QtWidgets>
 
+namespace Dialog {
+
 Workspace::Workspace(QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("Workspace"));
 
@@ -28,4 +30,6 @@ void Workspace::accept() {
     dir.mkpath(workspaceBrowseLineEdit->text());
 
     QDialog::accept();
+}
+
 }

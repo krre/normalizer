@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     mainWindow.show();
 
     if (!Settings::Project::isWorkspaceExists()) {
-        Workspace workspace;
+        Dialog::Workspace workspace;
         workspace.exec();
     }
 

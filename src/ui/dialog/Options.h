@@ -4,6 +4,8 @@
 class BrowseLineEdit;
 class QCheckBox;
 
+namespace Dialog {
+
 class Options : public StandardDialog {
 public:
     explicit Options(QWidget* parent = nullptr);
@@ -19,3 +21,5 @@ private:
     QCheckBox* openLastProjectCheckBox = nullptr;
     QCheckBox* sessionCheckBox = nullptr;
 };
+
+}

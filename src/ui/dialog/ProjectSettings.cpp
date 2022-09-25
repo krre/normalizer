@@ -1,4 +1,4 @@
-#include "ProjectSettingsDialog.h"
+#include "ProjectSettings.h"
 #include "project/ProjectSettings.h"
 #include "project/Project.h"
 #include "core/Global.h"
@@ -6,7 +6,9 @@
 #include "ui/component/SelectableLabel.h"
 #include <QtWidgets>
 
-ProjectSettingsDialog::ProjectSettingsDialog() {
+namespace Dialog {
+
+ProjectSettings::ProjectSettings() {
     setWindowTitle(tr("Project Settings"));
 
     QString target;
@@ -34,12 +36,14 @@ ProjectSettingsDialog::ProjectSettingsDialog() {
     resizeToWidth(600);
 }
 
-ProjectSettingsDialog::~ProjectSettingsDialog() {
+ProjectSettings::~ProjectSettings() {
 
 }
 
-void ProjectSettingsDialog::accept() {
-    Global::projectSettings()->setFormat(static_cast<ProjectSettings::Format>(formatComboBox->currentIndex()));
+void ProjectSettings::accept() {
+    Global::projectSettings()->setFormat(static_cast<::ProjectSettings::Format>(formatComboBox->currentIndex()));
     Global::projectSettings()->save();
     StandardDialog::accept();
+}
+
 }

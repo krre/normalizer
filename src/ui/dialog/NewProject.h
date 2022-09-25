@@ -7,6 +7,8 @@ class FormatComboBox;
 class QComboBox;
 class QLineEdit;
 
+namespace Dialog {
+
 class NewProject : public StandardDialog {
 public:
     explicit NewProject();
@@ -23,3 +25,5 @@ private:
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* targetComboBox = nullptr;
 };
+
+}

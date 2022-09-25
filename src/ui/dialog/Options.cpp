@@ -3,6 +3,8 @@
 #include "core/Settings.h"
 #include <QtWidgets>
 
+namespace Dialog {
+
 Options::Options(QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("Options"));
 
@@ -44,4 +46,6 @@ void Options::writeSettings() {
 
     QDir dir;
     dir.mkpath(workspaceBrowseLineEdit->text());
+}
+
 }

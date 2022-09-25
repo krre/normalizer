@@ -3,6 +3,8 @@
 
 class BrowseLineEdit;
 
+namespace Dialog {
+
 class Workspace : public StandardDialog {
 public:
     explicit Workspace(QWidget* parent = nullptr);
@@ -16,3 +18,5 @@ private slots:
 private:
     BrowseLineEdit* workspaceBrowseLineEdit = nullptr;
 };
+
+}

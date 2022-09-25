@@ -4,6 +4,8 @@
 class QLayout;
 class QDialogButtonBox;
 
+namespace Dialog {
+
 class StandardDialog : public QDialog {
 public:
     StandardDialog(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
@@ -24,3 +26,5 @@ public:
 private:
     QDialogButtonBox* m_buttonBox = nullptr;
 };
+
+}

@@ -6,6 +6,8 @@
 #include "core/Constants.h"
 #include <QtWidgets>
 
+namespace Dialog {
+
 NewProject::NewProject() {
     setWindowTitle(tr("New Project"));
 
@@ -61,4 +63,6 @@ void NewProject::accept() {
 
     Global::project()->create(path(), target());
     StandardDialog::accept();
+}
+
 }

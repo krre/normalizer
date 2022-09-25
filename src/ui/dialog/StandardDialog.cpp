@@ -1,6 +1,8 @@
 #include "StandardDialog.h"
 #include <QtWidgets>
 
+namespace Dialog {
+
 StandardDialog::StandardDialog(QWidget* parent, Qt::WindowFlags f) : QDialog(parent, f) {
     m_buttonBox = new QDialogButtonBox;
     m_buttonBox->setOrientation(Qt::Horizontal);
@@ -56,4 +58,6 @@ void StandardDialog::resizeToWidth(int width) {
 
 void StandardDialog::setOkButtonEnabled(bool enabled) {
     m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
+}
+
 }

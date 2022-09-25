@@ -1,7 +1,7 @@
 QT += core gui widgets network
 QT += 3dcore 3drender 3dinput 3dextras
 
-CONFIG += c++17
+CONFIG += c++17 object_parallel_to_source
 TEMPLATE = app
 
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -22,7 +22,7 @@ SOURCES += \
     ui/component/SelectableLabel.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
-    ui/dialog/ProjectSettingsDialog.cpp \
+    ui/dialog/ProjectSettings.cpp \
     ui/dialog/StandardDialog.cpp \
     ui/dialog/Workspace.cpp
 
@@ -42,7 +42,7 @@ HEADERS += \
     ui/component/SelectableLabel.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \
-    ui/dialog/ProjectSettingsDialog.h \
+    ui/dialog/ProjectSettings.h \
     ui/dialog/StandardDialog.h \
     ui/dialog/Workspace.h
 

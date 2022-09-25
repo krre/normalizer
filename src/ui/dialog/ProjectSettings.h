@@ -1,13 +1,14 @@
 #pragma once
 #include "StandardDialog.h"
 
-class ProjectSettings;
 class QComboBox;
 
-class ProjectSettingsDialog : public StandardDialog {
+namespace Dialog {
+
+class ProjectSettings : public StandardDialog {
 public:
-    ProjectSettingsDialog();
-    ~ProjectSettingsDialog();
+    ProjectSettings();
+    ~ProjectSettings();
 
 private slots:
     void accept() override;
@@ -15,3 +16,5 @@ private slots:
 private:
     QComboBox* formatComboBox = nullptr;
 };
+
+}
