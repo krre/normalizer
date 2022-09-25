@@ -14,6 +14,7 @@ SOURCES += \
     project/Project.cpp \
     project/ProjectSettings.cpp \
     ui/ActionManager.cpp \
+    ui/GuiSession.cpp \
     ui/MainWindow.cpp \
     ui/SourceEditor.cpp \
     ui/TopMenu.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     project/Project.h \
     project/ProjectSettings.h \
     ui/ActionManager.h \
+    ui/GuiSession.h \
     ui/MainWindow.h \
     ui/SourceEditor.h \
     ui/TopMenu.h \

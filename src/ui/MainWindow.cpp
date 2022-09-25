@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "TopMenu.h"
+#include "GuiSession.h"
 #include "SourceEditor.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
@@ -11,6 +12,7 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
     topMenu = new TopMenu(this);
+    guiSession.reset(new GuiSession);
     readSettings();
     topMenu->updateState();
 }
@@ -72,16 +74,6 @@ void MainWindow::writeSettings() {
     Settings::Project::setRecent(recentProjects);
 }
 
-void MainWindow::readSession() {
-    if (!isProjectActive()) return;
-    qInfo().noquote() << "Session readed:" << Global::projectSettings()->projectPath();
-}
-
-void MainWindow::writeSession() {
-    if (!isProjectActive()) return;
-    qInfo().noquote() << "Session writed:" << Global::projectSettings()->projectPath();
-}
-
 void MainWindow::openProject(const QString& path) {
     closeProject();
 
@@ -99,7 +91,7 @@ void MainWindow::openProject(const QString& path) {
     qInfo().noquote() << "Project opened:" << path;
 
     if (Settings::Project::restoreSession()) {
-        readSession();
+        guiSession->read(path);
     }
 
     topMenu->addRecent(path);
@@ -112,7 +104,7 @@ void MainWindow::closeProject() {
     if (!isProjectActive()) return;
 
     if (Settings::Project::restoreSession()) {
-        writeSession();
+        guiSession->write();
     }
 
     removeSourceEditor();

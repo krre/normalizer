@@ -3,6 +3,7 @@
 
 class SourceEditor;
 class TopMenu;
+class GuiSession;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -25,11 +26,9 @@ private:
     void readSettings();
     void writeSettings();
 
-    void readSession();
-    void writeSession();
-
     bool isProjectActive() const;
 
     TopMenu* topMenu = nullptr;
     SourceEditor* sourceEditor = nullptr;
+    QScopedPointer<GuiSession> guiSession;
 };
