@@ -22,6 +22,7 @@ ProjectSettingsDialog::ProjectSettingsDialog() {
     formatComboBox = new QComboBox;
     formatComboBox->addItem(tr("Binary"));
     formatComboBox->addItem(tr("Binary And JSON"));
+    formatComboBox->setCurrentIndex(int(Global::projectSettings()->format()));
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Path:"), new SelectableLabel(Global::project()->path()));
