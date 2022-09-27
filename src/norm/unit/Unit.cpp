@@ -1,5 +1,7 @@
 #include "Unit.h"
 
+namespace Unit {
+
 Unit::Unit() {
 
 }
@@ -38,5 +40,7 @@ QByteArray Unit::toBinary() const {
 }
 
 void Unit::fromBinary(const QByteArray& binary) {
+
+}
 
 }

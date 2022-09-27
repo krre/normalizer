@@ -13,6 +13,8 @@ SOURCES += \
     main.cpp \
     norm/unit/Function.cpp \
     norm/unit/Unit.cpp \
+    norm/unit/helper/Helper.cpp \
+    norm/unit/helper/Name.cpp \
     project/Project.cpp \
     project/ProjectSettings.cpp \
     ui/ActionManager.cpp \
@@ -35,6 +37,8 @@ HEADERS += \
     core/Utils.h \
     norm/unit/Function.h \
     norm/unit/Unit.h \
+    norm/unit/helper/Helper.h \
+    norm/unit/helper/Name.h \
     project/Project.h \
     project/ProjectSettings.h \
     ui/ActionManager.h \

@@ -1,13 +1,15 @@
 #pragma once
 #include "Unit.h"
+#include "helper/Name.h"
 
-class Function : public Unit {
+namespace Unit {
+
+class Function : public Unit, public Helper::Name {
 public:
     Function();
 
 public:
     Type type() const override;
-    QString name() const override;
 
 protected:
     QJsonObject toJsonUnit() const override;
@@ -15,3 +17,5 @@ protected:
     QByteArray toBinaryUnit() const override;
     void fromBinaryUnit(const QByteArray& binary) override;
 };
+
+}

@@ -1,6 +1,8 @@
 #pragma once
 #include <QJsonObject>
 
+namespace Unit {
+
 class Unit {
 public:
     using Id = qint64;
@@ -24,7 +26,6 @@ public:
     Unit();
 
     virtual Type type() const = 0;
-    virtual QString name() const = 0;
 
     Id id() const;
     void setId(Id id);
@@ -47,3 +48,5 @@ private:
     Id m_id = 0;
     QString m_comment;
 };
+
+}

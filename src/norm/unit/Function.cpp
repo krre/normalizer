@@ -1,15 +1,13 @@
 #include "Function.h"
 
+namespace Unit {
+
 Function::Function() {
 
 }
 
 Unit::Type Function::type() const {
     return Type::Function;
-}
-
-QString Function::name() const {
-    return QString();
 }
 
 QJsonObject Function::toJsonUnit() const {
@@ -23,5 +21,7 @@ QByteArray Function::toBinaryUnit() const {
 }
 
 void Function::fromBinaryUnit(const QByteArray& binary) {
+
+}
 
 }
