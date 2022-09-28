@@ -11,7 +11,7 @@ public:
     Parameter(DataType type, const QVariant& data);
 
     DataType dataType() const;
-    void setDataType(DataType dataType);
+    void setDataType(const DataType& dataType);
 
     QVariant data() const;
     void setData(const QVariant& data);

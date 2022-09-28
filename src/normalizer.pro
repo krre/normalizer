@@ -11,6 +11,7 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
+    norm/DataType.cpp \
     norm/unit/Function.cpp \
     norm/unit/Parameter.cpp \
     norm/unit/Unit.cpp \

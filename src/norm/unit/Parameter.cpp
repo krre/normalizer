@@ -10,7 +10,7 @@ DataType Parameter::dataType() const {
     return m_dataType;
 }
 
-void Parameter::setDataType(DataType dataType) {
+void Parameter::setDataType(const DataType& dataType) {
     m_dataType = dataType;
 }
 
