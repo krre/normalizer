@@ -12,6 +12,7 @@ SOURCES += \
     core/Utils.cpp \
     main.cpp \
     norm/unit/Function.cpp \
+    norm/unit/Parameter.cpp \
     norm/unit/Unit.cpp \
     norm/unit/helper/Helper.cpp \
     norm/unit/helper/Name.cpp \
@@ -35,7 +36,9 @@ HEADERS += \
     core/Global.h \
     core/Settings.h \
     core/Utils.h \
+    norm/DataType.h \
     norm/unit/Function.h \
+    norm/unit/Parameter.h \
     norm/unit/Unit.h \
     norm/unit/helper/Helper.h \
     norm/unit/helper/Name.h \
