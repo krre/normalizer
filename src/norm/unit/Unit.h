@@ -12,6 +12,7 @@ public:
         Module,
         Interface,
         Function,
+        Parameter,
         Expression,
         Condition,
         Loop,
