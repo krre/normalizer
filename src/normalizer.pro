@@ -12,6 +12,7 @@ SOURCES += \
     core/Utils.cpp \
     main.cpp \
     norm/expression/Expression.cpp \
+    norm/expression/Literal.cpp \
     norm/expression/operator/Math.cpp \
     norm/expression/operator/Operator.cpp \
     norm/type/Type.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     core/Settings.h \
     core/Utils.h \
     norm/expression/Expression.h \
+    norm/expression/Literal.h \
     norm/expression/operator/Math.h \
     norm/expression/operator/Operator.h \
     norm/type/Type.h \
