@@ -14,6 +14,7 @@ namespace ActionManager {
     constexpr auto Redo = "Redo";
 
     constexpr auto AddOperator = "AddOperator";
+    constexpr auto AddExpression = "AddExpression";
 
     constexpr auto Build = "Build";
     constexpr auto Run = "Run";

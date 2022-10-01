@@ -29,6 +29,7 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
 
     addMenu = unitMenu->addMenu(tr("Add"));
     ActionManager::addAction(ActionManager::AddOperator, addMenu->addAction(tr("Operator"), this, &TopMenu::onAddOperator));
+    ActionManager::addAction(ActionManager::AddExpression, addMenu->addAction(tr("Expression"), this, &TopMenu::onAddExpression));
 
     buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
     ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, QKeySequence("Ctrl+B")));
@@ -129,6 +130,10 @@ void TopMenu::onRedo() {
 }
 
 void TopMenu::onAddOperator() {
+
+}
+
+void TopMenu::onAddExpression() {
 
 }
 

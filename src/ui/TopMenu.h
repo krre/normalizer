@@ -23,6 +23,7 @@ private slots:
     void onRedo();
 
     void onAddOperator();
+    void onAddExpression();
 
     void onBuild();
     void onRun();
