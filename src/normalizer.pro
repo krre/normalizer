@@ -11,8 +11,8 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
-    norm/DataType.cpp \
     norm/expression/Expression.cpp \
+    norm/type/Type.cpp \
     norm/unit/Function.cpp \
     norm/unit/Parameter.cpp \
     norm/unit/Unit.cpp \
@@ -38,8 +38,8 @@ HEADERS += \
     core/Global.h \
     core/Settings.h \
     core/Utils.h \
-    norm/DataType.h \
     norm/expression/Expression.h \
+    norm/type/Type.h \
     norm/unit/Function.h \
     norm/unit/Parameter.h \
     norm/unit/Unit.h \

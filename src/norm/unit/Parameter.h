@@ -1,19 +1,19 @@
 #pragma once
 #include "Unit.h"
 #include "helper/Name.h"
-#include "norm/DataType.h"
+#include "norm/type/Type.h"
 #include <QVariant>
 
 namespace Unit {
 
 class Parameter : public Unit, public Helper::Name {
 public:
-    Parameter(DataType type);
+    Parameter(Type::Type type);
 
-    Type type() const override;
+    Kind kind() const override;
 
-    DataType dataType() const;
-    void setDataType(const DataType& dataType);
+    Type::Type type() const;
+    void setType(const Type::Type& type);
 
 protected:
     QJsonObject toJsonUnit() const override;
@@ -21,7 +21,7 @@ protected:
     void fromBinaryUnit(const QByteArray& binary) override;
 
 private:
-    DataType m_dataType;
+    Type::Type m_type;
 };
 
 }

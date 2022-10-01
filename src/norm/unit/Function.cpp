@@ -8,8 +8,8 @@ Function::Function() {
 
 }
 
-Unit::Type Function::type() const {
-    return Type::Function;
+Unit::Kind Function::kind() const {
+    return Kind::Function;
 }
 
 const Parameters& Function::parameters() const {

@@ -25,7 +25,7 @@ void Unit::setComment(const QString& comment) {
 QJsonObject Unit::toJson() const {
     QJsonObject result = toJsonUnit();
     result["id"] = m_id;
-    result["type"] = qint64(type());
+    result["kind"] = qint64(kind());
 
     if (!m_comment.isEmpty()) {
         result["comment"] = m_comment;

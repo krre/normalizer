@@ -2,26 +2,26 @@
 
 namespace Unit {
 
-Parameter::Parameter(DataType type) : m_dataType(type) {
+Parameter::Parameter(Type::Type type) : m_type(type) {
 
 }
 
-Unit::Type Parameter::type() const {
-    return Type::Parameter;
+Unit::Kind Parameter::kind() const {
+    return Kind::Parameter;
 }
 
-DataType Parameter::dataType() const {
-    return m_dataType;
+Type::Type Parameter::type() const {
+    return m_type;
 }
 
-void Parameter::setDataType(const DataType& dataType) {
-    m_dataType = dataType;
+void Parameter::setType(const Type::Type& type) {
+    m_type = type;
 }
 
 QJsonObject Parameter::toJsonUnit() const {
     QJsonObject result;
     result["name"] = name();
-    result["dataType"] = m_dataType.name();
+    result["type"] = m_type.name();
 
     return result;
 }

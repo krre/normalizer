@@ -2,11 +2,13 @@
 #include <QtGlobal>
 #include <QString>
 
-class DataType {
+namespace Type {
+
+class Type {
 public:
     using Id = quint32;
 
-    DataType();
+    Type();
 
     Id id() const;
 
@@ -17,3 +19,5 @@ private:
     Id m_id = 0;
     QString m_name;
 };
+
+}

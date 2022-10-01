@@ -11,7 +11,7 @@ using Parameters = QVector<QSharedPointer<Parameter>>;
 class Function : public Unit, public Helper::Name {
 public:
     Function();
-    Type type() const override;
+    Kind kind() const override;
 
     const Parameters& parameters() const;
     void setParameters(const Parameters& parameters);

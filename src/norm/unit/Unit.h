@@ -7,7 +7,7 @@ class Unit {
 public:
     using Id = qint64;
 
-    enum class Type {
+    enum class Kind {
         Project,
         Module,
         Interface,
@@ -26,7 +26,7 @@ public:
 
     Unit();
 
-    virtual Type type() const = 0;
+    virtual Kind kind() const = 0;
 
     Id id() const;
     void setId(Id id);
