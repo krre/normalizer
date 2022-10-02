@@ -6,7 +6,7 @@ namespace Expression {
 
 class StringLiteral : public Expression {
 public:
-    StringLiteral(const QString& literal);
+    StringLiteral(const QString& literal, Node* parent = nullptr);
 
 private:
     QString m_literal;

@@ -8,7 +8,7 @@ namespace Unit {
 
 class Parameter : public Unit, public Helper::Name {
 public:
-    Parameter(Type::Type type);
+    Parameter(Type::Type type, Node* parent = nullptr);
 
     Kind kind() const override;
 

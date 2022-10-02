@@ -2,7 +2,7 @@
 
 namespace Expression::Operator {
 
-Math::Math(Operation operation, const Expressions& expressions) : m_operation(operation), m_expressions(expressions) {
+Math::Math(Operation operation, const Expressions& expressions, Node* parent) : Expression(parent), m_operation(operation), m_expressions(expressions) {
     for (auto expression : expressions) {
         expression->setParent(this);
     }

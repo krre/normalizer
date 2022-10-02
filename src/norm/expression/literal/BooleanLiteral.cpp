@@ -2,7 +2,7 @@
 
 namespace Expression {
 
-BooleanLiteral::BooleanLiteral(bool literal) : m_literal(literal) {
+BooleanLiteral::BooleanLiteral(bool literal, Node* parent) : Expression(parent), m_literal(literal) {
 
 }
 

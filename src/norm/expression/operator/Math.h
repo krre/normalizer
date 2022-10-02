@@ -12,7 +12,7 @@ public:
         Division
     };
 
-    Math(Operation operation, const Expressions& expressions);
+    Math(Operation operation, const Expressions& expressions, Node* parent = nullptr);
 
     Operation operation() const;
     const Expressions& expressions() const;

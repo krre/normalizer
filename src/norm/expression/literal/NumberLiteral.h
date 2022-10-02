@@ -5,7 +5,7 @@ namespace Expression {
 
 class NumberLiteral : public Expression {
 public:
-    NumberLiteral(double literal);
+    NumberLiteral(double literal, Node* parent = nullptr);
 
 private:
     double m_literal;

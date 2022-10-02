@@ -2,7 +2,7 @@
 
 namespace Expression::Operator {
 
-Operator::Operator() {
+Operator::Operator(Node* parent) : Expression(parent) {
 
 }
 

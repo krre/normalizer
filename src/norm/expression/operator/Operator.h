@@ -5,7 +5,7 @@ namespace Expression::Operator {
 
 class Operator : public Expression {
 public:
-    Operator();
+    Operator(Node* parent = nullptr);
 };
 
 }

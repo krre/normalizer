@@ -2,7 +2,7 @@
 
 namespace Unit {
 
-Parameter::Parameter(Type::Type type) : m_type(type) {
+Parameter::Parameter(Type::Type type, Node* parent) : Unit(parent), m_type(type) {
 
 }
 
