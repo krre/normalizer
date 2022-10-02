@@ -1,8 +1,9 @@
 #pragma once
+#include "norm/expression/Expression.h"
 
 namespace Expression {
 
-class NumberLiteral {
+class NumberLiteral : public Expression {
 public:
     NumberLiteral(double literal);
 

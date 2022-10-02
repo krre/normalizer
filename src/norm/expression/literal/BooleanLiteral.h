@@ -1,8 +1,9 @@
 #pragma once
+#include "norm/expression/Expression.h"
 
 namespace Expression {
 
-class BooleanLiteral {
+class BooleanLiteral : public Expression {
 public:
     BooleanLiteral(bool literal);
 

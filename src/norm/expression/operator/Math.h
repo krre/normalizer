@@ -3,7 +3,7 @@
 
 namespace Expression::Operator {
 
-class Math {
+class Math : public Expression {
 public:
     enum class Operation {
         Addition,
