@@ -31,16 +31,7 @@ public:
     QString comment() const;
     void setComment(const QString& comment);
 
-    QJsonObject toJson() const;
-
-    QByteArray toBinary() const;
-    void fromBinary(const QByteArray& binary);
-
-protected:
-    virtual QJsonObject toJsonUnit() const = 0;
-
-    virtual QByteArray toBinaryUnit() const = 0;
-    virtual void fromBinaryUnit(const QByteArray& binary) = 0;
+    QJsonValue serializeToJson() const override;
 
 private:
     QString m_comment;

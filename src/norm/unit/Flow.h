@@ -10,11 +10,7 @@ public:
 
     void append(Node* node);
 
-protected:
-    QJsonObject toJsonUnit() const override;
-
-    QByteArray toBinaryUnit() const override;
-    void fromBinaryUnit(const QByteArray& binary) override;
+    QJsonValue serializeToJson() const override;
 
 private:
     Nodes m_nodes;

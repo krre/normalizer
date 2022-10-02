@@ -14,9 +14,8 @@ void Unit::setComment(const QString& comment) {
     m_comment = comment;
 }
 
-QJsonObject Unit::toJson() const {
-    QJsonObject result = toJsonUnit();
-//    result["id"] = m_id;
+QJsonValue Unit::serializeToJson() const {
+    QJsonObject result = Node::serializeToJson().toObject();
     result["kind"] = qint64(kind());
 
     if (!m_comment.isEmpty()) {
@@ -24,15 +23,6 @@ QJsonObject Unit::toJson() const {
     }
 
     return result;
-}
-
-QByteArray Unit::toBinary() const {
-    QByteArray result = toBinaryUnit();
-    return result;
-}
-
-void Unit::fromBinary(const QByteArray& binary) {
-
 }
 
 }

@@ -1,4 +1,5 @@
 #include "Flow.h"
+#include <QJsonArray>
 
 namespace Unit {
 
@@ -14,16 +15,16 @@ void Flow::append(Node* node) {
     m_nodes.append(node);
 }
 
-QJsonObject Flow::toJsonUnit() const {
-    return QJsonObject();
-}
+QJsonValue Flow::serializeToJson() const {
+    QJsonObject result = Unit::serializeToJson().toObject();
+    QJsonArray nodes;
 
-QByteArray Flow::toBinaryUnit() const {
-    return QByteArray();
-}
+    for (auto node : m_nodes) {
+        nodes.append(node->serializeToJson());
+    }
 
-void Flow::fromBinaryUnit(const QByteArray& binary) {
-
+    result["nodes"] = nodes;
+    return result;
 }
 
 }

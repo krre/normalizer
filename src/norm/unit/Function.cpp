@@ -21,27 +21,18 @@ void Function::setParameters(const Parameters& parameters) {
     m_parameters = parameters;
 }
 
-QJsonObject Function::toJsonUnit() const {
-    QJsonObject result;
+QJsonValue Function::serializeToJson() const {
+    QJsonObject result = Unit::serializeToJson().toObject();
     result["name"] = name();
 
     QJsonArray parameters;
 
     for (auto& parameter : m_parameters) {
-        parameters.append(parameter->toJson());
+        parameters.append(parameter->serializeToJson());
     }
 
     result["parameters"] = parameters;
     return result;
-}
-
-QByteArray Function::toBinaryUnit() const {
-    QByteArray result;
-    return result;
-}
-
-void Function::fromBinaryUnit(const QByteArray& binary) {
-
 }
 
 }

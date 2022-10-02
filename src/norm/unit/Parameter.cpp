@@ -18,20 +18,12 @@ void Parameter::setType(const Type::Type& type) {
     m_type = type;
 }
 
-QJsonObject Parameter::toJsonUnit() const {
-    QJsonObject result;
+QJsonValue Parameter::serializeToJson() const {
+    QJsonObject result = Unit::serializeToJson().toObject();
     result["name"] = name();
     result["type"] = m_type.name();
 
     return result;
-}
-
-QByteArray Parameter::toBinaryUnit() const {
-
-}
-
-void Parameter::fromBinaryUnit(const QByteArray& binary) {
-
 }
 
 }

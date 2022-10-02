@@ -40,6 +40,8 @@ void Project::create(const QString& path, Target target) {
         default: throw std::runtime_error("Unknown project target"); break;
     }
 
+    qDebug() << root->serializeToJson();
+
     QFile file(filePath);
 
     if (!file.open(QIODeviceBase::WriteOnly)) {

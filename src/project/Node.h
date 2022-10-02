@@ -13,6 +13,8 @@ public:
     Id id() const;
     void setId(Id id);
 
+    virtual QJsonValue serializeToJson() const;
+
 private:
     Id m_id = 0;
 };

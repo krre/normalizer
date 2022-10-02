@@ -17,6 +17,8 @@ public:
     Operation operation() const;
     const Expressions& expressions() const;
 
+    QJsonValue serializeToJson() const override;
+
 private:
     Operation m_operation;
     Expressions m_expressions;

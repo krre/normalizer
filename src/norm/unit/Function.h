@@ -16,11 +16,7 @@ public:
     const Parameters& parameters() const;
     void setParameters(const Parameters& parameters);
 
-protected:
-    QJsonObject toJsonUnit() const override;
-
-    QByteArray toBinaryUnit() const override;
-    void fromBinaryUnit(const QByteArray& binary) override;
+    QJsonValue serializeToJson() const override;
 
 private:
     Parameters m_parameters;

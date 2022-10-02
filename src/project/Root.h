@@ -4,4 +4,5 @@
 class Root : public Node {
 public:
     Root();
+    QJsonValue serializeToJson() const;
 };

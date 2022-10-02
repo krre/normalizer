@@ -15,10 +15,7 @@ public:
     Type::Type type() const;
     void setType(const Type::Type& type);
 
-protected:
-    QJsonObject toJsonUnit() const override;
-    QByteArray toBinaryUnit() const override;
-    void fromBinaryUnit(const QByteArray& binary) override;
+    QJsonValue serializeToJson() const override;
 
 private:
     Type::Type m_type;
