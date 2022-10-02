@@ -17,6 +17,7 @@ SOURCES += \
     norm/expression/operator/Operator.cpp \
     norm/type/Type.cpp \
     norm/unit/Entry.cpp \
+    norm/unit/Flow.cpp \
     norm/unit/Function.cpp \
     norm/unit/Parameter.cpp \
     norm/unit/Unit.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     norm/expression/operator/Operator.h \
     norm/type/Type.h \
     norm/unit/Entry.h \
+    norm/unit/Flow.h \
     norm/unit/Function.h \
     norm/unit/Parameter.h \
     norm/unit/Unit.h \

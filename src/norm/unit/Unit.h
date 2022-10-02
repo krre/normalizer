@@ -13,6 +13,7 @@ public:
         Module,
         Interface,
         Function,
+        Flow,
         Parameter,
         Expression,
         Condition,

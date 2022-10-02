@@ -2,6 +2,7 @@
 #include "Node.h"
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
+#include "norm/unit/Flow.h"
 #include <QtCore>
 
 Project::Project() {
@@ -79,8 +80,10 @@ void Project::read(const QString& path) {
 
 void Project::createApp() {
     auto entry = new Unit::Entry(root.data());
+    auto flow = new Unit::Flow(entry);
 }
 
 void Project::createLib() {
     auto func = new Unit::Function(root.data());
+    auto flow = new Unit::Flow(func);
 }
