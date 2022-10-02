@@ -3,6 +3,8 @@
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
 #include "norm/unit/Flow.h"
+#include "norm/expression/operator/Math.h"
+#include "norm/expression/literal/NumberLiteral.h"
 #include <QtCore>
 
 Project::Project() {
@@ -79,11 +81,16 @@ void Project::read(const QString& path) {
 }
 
 void Project::createApp() {
-    auto entry = new Unit::Entry(root.data());
-    auto flow = new Unit::Flow(entry);
+    createFlow(new Unit::Entry(root.data()));
 }
 
 void Project::createLib() {
-    auto func = new Unit::Function(root.data());
+    createFlow(new Unit::Function(root.data()));
+}
+
+void Project::createFlow(Node* func) {
     auto flow = new Unit::Flow(func);
+
+    using namespace Expression::Operator;
+    flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(2), new Expression::NumberLiteral(2) } ));
 }

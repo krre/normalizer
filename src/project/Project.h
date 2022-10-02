@@ -32,6 +32,7 @@ public:
 private:
     void createApp();
     void createLib();
+    void createFlow(Node* func);
 
     QString m_path;
     Target m_target;
