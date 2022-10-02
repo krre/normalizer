@@ -1,6 +1,6 @@
 #pragma once
 #include "project/Node.h"
-#include <QVector>
+#include <QList>
 
 namespace Type {
     class Type;
@@ -10,7 +10,7 @@ namespace Expression {
 
 class Expression;
 
-using Expressions = QVector<Expression*>;
+using Expressions = QList<Expression*>;
 
 class Expression : public Node {
 public:

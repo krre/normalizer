@@ -6,7 +6,7 @@
 namespace Unit {
 
 class Parameter;
-using Parameters = QVector<QSharedPointer<Parameter>>;
+using Parameters = QList<QSharedPointer<Parameter>>;
 
 class Function : public Unit, public Helper::Name {
 public:
