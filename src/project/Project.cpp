@@ -1,4 +1,5 @@
 #include "Project.h"
+#include "Root.h"
 #include "Node.h"
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
@@ -8,7 +9,7 @@
 #include <QtCore>
 
 Project::Project() {
-    root.reset(new Node);
+    root.reset(new Root);
 }
 
 Project::~Project() {
@@ -24,7 +25,7 @@ Project::Target Project::target() const {
 }
 
 void Project::create(const QString& path, Target target) {
-    root.reset(new Node);
+    root.reset(new Root);
     QString filePath;
 
     switch (target) {
@@ -77,6 +78,7 @@ void Project::write(Format format) {
 }
 
 void Project::read(const QString& path) {
+    root.reset(new Root);
     qDebug() << "Read project file:" << path;
 }
 

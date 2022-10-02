@@ -2,6 +2,7 @@
 #include <QString>
 #include <QScopedPointer>
 
+class Root;
 class Node;
 
 class Project {
@@ -36,5 +37,5 @@ private:
 
     QString m_path;
     Target m_target;
-    QScopedPointer<Node> root;
+    QScopedPointer<Root> root;
 };
