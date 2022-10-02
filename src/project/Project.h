@@ -1,5 +1,8 @@
 #pragma once
 #include <QString>
+#include <QScopedPointer>
+
+class Node;
 
 class Project {
 public:
@@ -14,6 +17,7 @@ public:
     };
 
     Project();
+    ~Project();
 
     QString path() const;
     Target target() const;
@@ -28,4 +32,5 @@ public:
 private:
     QString m_path;
     Target m_target;
+    QScopedPointer<Node> root;
 };

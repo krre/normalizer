@@ -1,8 +1,13 @@
 #include "Project.h"
+#include "Node.h"
 #include "core/Utils.h"
 #include <QtCore>
 
 Project::Project() {
+    root.reset(new Node);
+}
+
+Project::~Project() {
 
 }
 
