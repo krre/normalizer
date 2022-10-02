@@ -1,8 +1,7 @@
 #pragma once
+#include "norm/expression/Expression.h"
 
 namespace Expression::Operator {
-
-class Expression;
 
 class Math {
 public:
@@ -13,17 +12,14 @@ public:
         Division
     };
 
-    Math(Expression* expr1, Expression* expr2, Operation operation);
-
-    Expression* expr1() const;
-    Expression* expr2() const;
+    Math(Operation operation, const Expressions& expressions);
 
     Operation operation() const;
+    const Expressions& expressions() const;
 
 private:
-    Expression* m_expr1;
-    Expression* m_expr2;
     Operation m_operation;
+    Expressions m_expressions;
 };
 
 }

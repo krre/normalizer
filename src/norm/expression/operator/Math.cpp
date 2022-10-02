@@ -2,20 +2,16 @@
 
 namespace Expression::Operator {
 
-Math::Math(Expression* expr1, Expression* expr2, Operation operation) : m_expr1(expr1), m_expr2(expr2), m_operation(operation) {
+Math::Math(Operation operation, const Expressions& expressions) : m_operation(operation), m_expressions(expressions) {
 
-}
-
-Expression* Math::expr1() const {
-    return m_expr1;
-}
-
-Expression* Math::expr2() const {
-    return m_expr2;
 }
 
 Math::Operation Math::operation() const {
     return m_operation;
+}
+
+const Expressions& Math::expressions() const {
+    return m_expressions;
 }
 
 }
