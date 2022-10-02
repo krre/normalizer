@@ -6,14 +6,6 @@ Unit::Unit(Node* parent) : Node(parent) {
 
 }
 
-Unit::Id Unit::id() const {
-    return m_id;
-}
-
-void Unit::setId(Id id) {
-    m_id = id;
-}
-
 QString Unit::comment() const {
     return m_comment;
 }
@@ -24,7 +16,7 @@ void Unit::setComment(const QString& comment) {
 
 QJsonObject Unit::toJson() const {
     QJsonObject result = toJsonUnit();
-    result["id"] = m_id;
+//    result["id"] = m_id;
     result["kind"] = qint64(kind());
 
     if (!m_comment.isEmpty()) {

@@ -6,8 +6,6 @@ namespace Unit {
 
 class Unit : public Node {
 public:
-    using Id = qint64;
-
     enum class Kind {
         Project,
         Module,
@@ -30,9 +28,6 @@ public:
 
     virtual Kind kind() const = 0;
 
-    Id id() const;
-    void setId(Id id);
-
     QString comment() const;
     void setComment(const QString& comment);
 
@@ -48,7 +43,6 @@ protected:
     virtual void fromBinaryUnit(const QByteArray& binary) = 0;
 
 private:
-    Id m_id = 0;
     QString m_comment;
 };
 
