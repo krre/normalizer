@@ -1,6 +1,7 @@
 #include "Project.h"
 #include "Node.h"
 #include "core/Utils.h"
+#include "norm/unit/Entry.h"
 #include <QtCore>
 
 Project::Project() {
@@ -20,11 +21,18 @@ Project::Target Project::target() const {
 }
 
 void Project::create(const QString& path, Target target) {
+    root.reset(new Node);
     QString filePath;
 
     switch (target) {
-        case Target::Application: filePath = Utils::applicationPath(path); break;
-        case Target::Library: filePath = Utils::libraryPath(path); break;
+        case Target::Application:
+            filePath = Utils::applicationPath(path);
+            createApp();
+            break;
+        case Target::Library:
+            filePath = Utils::libraryPath(path);
+            createLib();
+            break;
         default: throw std::runtime_error("Unknown project target"); break;
     }
 
@@ -67,4 +75,12 @@ void Project::write(Format format) {
 
 void Project::read(const QString& path) {
     qDebug() << "Read project file:" << path;
+}
+
+void Project::createApp() {
+    auto entry = new Unit::Entry(root.data());
+}
+
+void Project::createLib() {
+    auto func = new Unit::Function(root.data());
 }

@@ -30,6 +30,9 @@ public:
     void read(const QString& path);
 
 private:
+    void createApp();
+    void createLib();
+
     QString m_path;
     Target m_target;
     QScopedPointer<Node> root;

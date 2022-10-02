@@ -1,9 +1,10 @@
 #pragma once
+#include "project/Node.h"
 #include <QJsonObject>
 
 namespace Unit {
 
-class Unit {
+class Unit : public Node {
 public:
     using Id = qint64;
 
@@ -24,7 +25,7 @@ public:
         Custom
     };
 
-    Unit();
+    Unit(Node* parent = nullptr);
 
     virtual Kind kind() const = 0;
 

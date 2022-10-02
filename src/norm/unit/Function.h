@@ -10,7 +10,7 @@ using Parameters = QVector<QSharedPointer<Parameter>>;
 
 class Function : public Unit, public Helper::Name {
 public:
-    Function();
+    Function(Node* parent = nullptr);
     Kind kind() const override;
 
     const Parameters& parameters() const;

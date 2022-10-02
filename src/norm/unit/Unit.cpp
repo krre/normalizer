@@ -2,7 +2,7 @@
 
 namespace Unit {
 
-Unit::Unit() {
+Unit::Unit(Node* parent) : Node(parent) {
 
 }
 

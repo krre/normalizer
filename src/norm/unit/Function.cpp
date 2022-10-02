@@ -1,10 +1,11 @@
 #include "Function.h"
 #include "Parameter.h"
+#include "project/Node.h"
 #include <QJsonArray>
 
 namespace Unit {
 
-Function::Function() {
+Function::Function(Node* parent) : Unit(parent) {
 
 }
 

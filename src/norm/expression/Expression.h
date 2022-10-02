@@ -1,4 +1,5 @@
 #pragma once
+#include "project/Node.h"
 #include <QVector>
 
 namespace Type {
@@ -11,7 +12,7 @@ class Expression;
 
 using Expressions = QVector<Expression*>;
 
-class Expression {
+class Expression : public Node {
 public:
     Expression();
     virtual Type::Type* value() { return nullptr; }
