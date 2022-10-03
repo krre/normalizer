@@ -5,7 +5,9 @@
 
 namespace Unit {
 
+class Flow;
 class Parameter;
+
 using Parameters = QList<QSharedPointer<Parameter>>;
 
 class Function : public Unit, public Helper::Name {
@@ -16,10 +18,13 @@ public:
     const Parameters& parameters() const;
     void setParameters(const Parameters& parameters);
 
+    Flow* flow() const;
+
     QJsonValue serializeToJson() const override;
 
 private:
     Parameters m_parameters;
+    Flow* m_flow = nullptr;
 };
 
 }

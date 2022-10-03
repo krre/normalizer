@@ -85,18 +85,17 @@ void Project::read(const QString& path) {
 }
 
 void Project::createApp() {
-    createFlow(new Unit::Entry(root.data()));
+    auto entry = new Unit::Entry(root.data());
+    createFlow(entry->flow());
 }
 
 void Project::createLib() {
     auto func = new Unit::Function(root.data());
     func->setName("Add");
-    createFlow(func);
+    createFlow(func->flow());
 }
 
-void Project::createFlow(Node* func) {
-    auto flow = new Unit::Flow(func);
-
+void Project::createFlow(Unit::Flow* flow) {
     using namespace Expression::Operator;
     flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(3), new Expression::NumberLiteral(2) } ));
 }

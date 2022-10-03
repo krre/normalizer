@@ -1,12 +1,13 @@
 #include "Function.h"
 #include "Parameter.h"
+#include "Flow.h"
 #include "project/Node.h"
 #include <QJsonArray>
 
 namespace Unit {
 
 Function::Function(Node* parent) : Unit(parent) {
-
+    m_flow = new Flow(this);
 }
 
 Unit::Kind Function::kind() const {
@@ -19,6 +20,10 @@ const Parameters& Function::parameters() const {
 
 void Function::setParameters(const Parameters& parameters) {
     m_parameters = parameters;
+}
+
+Flow* Function::flow() const {
+    return m_flow;
 }
 
 QJsonValue Function::serializeToJson() const {
@@ -34,6 +39,8 @@ QJsonValue Function::serializeToJson() const {
 
         result["parameters"] = parameters;
     }
+
+    result["flow"] = m_flow->serializeToJson();
 
     return result;
 }

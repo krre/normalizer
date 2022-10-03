@@ -2,6 +2,10 @@
 #include <QString>
 #include <QScopedPointer>
 
+namespace Unit {
+    class Flow;
+}
+
 class Root;
 class Node;
 
@@ -33,7 +37,7 @@ public:
 private:
     void createApp();
     void createLib();
-    void createFlow(Node* func);
+    void createFlow(Unit::Flow* flow);
 
     QString m_path;
     Target m_target;
