@@ -25,13 +25,16 @@ QJsonValue Function::serializeToJson() const {
     QJsonObject result = Unit::serializeToJson().toObject();
     result["name"] = name();
 
-    QJsonArray parameters;
+    if (!m_parameters.isEmpty()) {
+        QJsonArray parameters;
 
-    for (auto& parameter : m_parameters) {
-        parameters.append(parameter->serializeToJson());
+        for (auto& parameter : m_parameters) {
+            parameters.append(parameter->serializeToJson());
+        }
+
+        result["parameters"] = parameters;
     }
 
-    result["parameters"] = parameters;
     return result;
 }
 
