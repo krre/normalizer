@@ -89,7 +89,9 @@ void Project::createApp() {
 }
 
 void Project::createLib() {
-    createFlow(new Unit::Function(root.data()));
+    auto func = new Unit::Function(root.data());
+    func->setName("Add");
+    createFlow(func);
 }
 
 void Project::createFlow(Node* func) {
