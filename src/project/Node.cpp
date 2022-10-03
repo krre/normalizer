@@ -14,5 +14,7 @@ void Node::setId(Id id) {
 }
 
 QJsonValue Node::serializeToJson() const {
-    return { { "id", m_id } };
+    QJsonObject result;
+    result["id"] = m_id;
+    return result;
 }
