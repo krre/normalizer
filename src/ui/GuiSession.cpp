@@ -12,7 +12,6 @@ void GuiSession::read(const QString& projectPath) {
     QFile file(filePath());
 
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning().noquote() << "Failed to open project session file for reading:" << filePath();
         return;
     }
 
