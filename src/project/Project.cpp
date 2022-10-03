@@ -96,5 +96,5 @@ void Project::createFlow(Node* func) {
     auto flow = new Unit::Flow(func);
 
     using namespace Expression::Operator;
-    flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(2), new Expression::NumberLiteral(2) } ));
+    flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(3), new Expression::NumberLiteral(2) } ));
 }
