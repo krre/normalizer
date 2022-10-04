@@ -1,7 +1,7 @@
 #pragma once
 #include "StandardDialog.h"
 
-class QComboBox;
+class FormatComboBox;
 
 namespace Dialog {
 
@@ -14,7 +14,7 @@ private slots:
     void accept() override;
 
 private:
-    QComboBox* formatComboBox = nullptr;
+    FormatComboBox* formatComboBox = nullptr;
 };
 
 }

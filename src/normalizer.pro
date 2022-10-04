@@ -35,6 +35,7 @@ SOURCES += \
     ui/SourceEditor.cpp \
     ui/TopMenu.cpp \
     ui/component/BrowseLineEdit.cpp \
+    ui/component/FormatComboBox.cpp \
     ui/component/SelectableLabel.cpp \
     ui/dialog/NewProject.cpp \
     ui/dialog/Options.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     ui/dialog/Workspace.cpp
 
 HEADERS += \
+    core/CommonTypes.h \
     core/Constants.h \
     core/Global.h \
     core/Settings.h \
@@ -71,6 +73,7 @@ HEADERS += \
     ui/SourceEditor.h \
     ui/TopMenu.h \
     ui/component/BrowseLineEdit.h \
+    ui/component/FormatComboBox.h \
     ui/component/SelectableLabel.h \
     ui/dialog/NewProject.h \
     ui/dialog/Options.h \

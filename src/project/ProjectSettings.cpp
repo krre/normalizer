@@ -55,7 +55,7 @@ QString ProjectSettings::outputPath() const {
     return m_projectPath + "/" + Const::Project::OutputDir;
 }
 
-ProjectSettings::Format ProjectSettings::format() const {
+Format ProjectSettings::format() const {
     return static_cast<Format>(settings["format"].toInt());
 }
 

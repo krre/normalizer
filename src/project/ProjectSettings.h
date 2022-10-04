@@ -1,13 +1,9 @@
 #pragma once
+#include "core/CommonTypes.h"
 #include <QJsonObject>
 
 class ProjectSettings {
 public:
-    enum class Format {
-        Binary,
-        BinaryAndJson
-    };
-
     ProjectSettings();
 
     void create();

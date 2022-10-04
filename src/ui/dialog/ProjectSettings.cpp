@@ -4,6 +4,7 @@
 #include "core/Global.h"
 #include "core/Constants.h"
 #include "ui/component/SelectableLabel.h"
+#include "ui/component/FormatComboBox.h"
 #include <QtWidgets>
 
 namespace Dialog {
@@ -21,10 +22,8 @@ ProjectSettings::ProjectSettings() {
         target = tr("Bad target");
     }
 
-    formatComboBox = new QComboBox;
-    formatComboBox->addItem(tr("Binary"));
-    formatComboBox->addItem(tr("Binary / JSON"));
-    formatComboBox->setCurrentIndex(int(Global::projectSettings()->format()));
+    formatComboBox = new FormatComboBox;
+    formatComboBox->setFormat(Global::projectSettings()->format());
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Path:"), new SelectableLabel(Global::project()->path()));
@@ -41,7 +40,7 @@ ProjectSettings::~ProjectSettings() {
 }
 
 void ProjectSettings::accept() {
-    Global::projectSettings()->setFormat(static_cast<::ProjectSettings::Format>(formatComboBox->currentIndex()));
+    Global::projectSettings()->setFormat(formatComboBox->format());
     Global::projectSettings()->save();
     StandardDialog::accept();
 }
