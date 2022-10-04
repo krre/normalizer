@@ -23,7 +23,7 @@ ProjectSettings::ProjectSettings() {
 
     formatComboBox = new QComboBox;
     formatComboBox->addItem(tr("Binary"));
-    formatComboBox->addItem(tr("Binary And JSON"));
+    formatComboBox->addItem(tr("Binary / JSON"));
     formatComboBox->setCurrentIndex(int(Global::projectSettings()->format()));
 
     auto formLayout = new QFormLayout;
