@@ -16,11 +16,6 @@ public:
         Library
     };
 
-    enum class Format {
-        Binary,
-        Json
-    };
-
     Project();
     ~Project();
 
@@ -31,7 +26,7 @@ public:
     void open(const QString& path);
     void close();
 
-    void write(Format format);
+    void write();
     void read(const QString& path);
 
 private:

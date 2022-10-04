@@ -75,7 +75,7 @@ void Project::close() {
     m_path = QString();
 }
 
-void Project::write(Format format) {
+void Project::write() {
     qDebug() << "Write project file";
 }
 
