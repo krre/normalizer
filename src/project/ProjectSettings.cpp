@@ -8,8 +8,6 @@ ProjectSettings::ProjectSettings()  {
 void ProjectSettings::create() {
     QDir dir;
     dir.mkpath(dirPath());
-
-    setFormat(Format::Binary);
 }
 
 void ProjectSettings::load() {

@@ -4,6 +4,7 @@
 #include "core/Settings.h"
 #include "core/Global.h"
 #include "core/Constants.h"
+#include "ui/component/FormatComboBox.h"
 #include <QtWidgets>
 
 namespace Dialog {
@@ -21,12 +22,17 @@ NewProject::NewProject() {
     targetComboBox->addItem(Const::Project::Target::Application::Name);
     targetComboBox->addItem(Const::Project::Target::Library::Name);
 
+    formatComboBox = new FormatComboBox;
+
     auto formLayout = new QFormLayout;
     formLayout->addRow(new QLabel(tr("Name:")), nameLineEdit);
     formLayout->addRow(new QLabel(tr("Directory:")), directoryBrowseLineEdit);
 
     formLayout->addRow(new QLabel(tr("Target:")), targetComboBox);
     formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
+
+    formLayout->addRow(new QLabel(tr("Format:")), formatComboBox);
+    formLayout->itemAt(3, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
     resizeToWidth(500);
@@ -58,6 +64,7 @@ void NewProject::accept() {
 
     auto projectSettings = Global::projectSettings();
     projectSettings->setProjectPath(path());
+    projectSettings->setFormat(formatComboBox->format());
     projectSettings->create();
     projectSettings->save();
 

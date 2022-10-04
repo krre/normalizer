@@ -24,6 +24,7 @@ private:
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* targetComboBox = nullptr;
+    FormatComboBox* formatComboBox = nullptr;
 };
 
 }
