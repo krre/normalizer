@@ -53,11 +53,11 @@ QString ProjectSettings::outputPath() const {
     return m_projectPath + "/" + Const::Project::OutputDir;
 }
 
-Format ProjectSettings::format() const {
-    return static_cast<Format>(settings["format"].toInt());
+FileFormat ProjectSettings::format() const {
+    return static_cast<FileFormat>(settings["format"].toInt());
 }
 
-void ProjectSettings::setFormat(Format format) {
+void ProjectSettings::setFormat(FileFormat format) {
     settings["format"] = static_cast<int>(format);
 }
 

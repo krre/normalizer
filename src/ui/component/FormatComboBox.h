@@ -6,6 +6,6 @@ class FormatComboBox : public QComboBox {
 public:
     FormatComboBox();
 
-    Format format() const;
-    void setFormat(Format format);
+    FileFormat format() const;
+    void setFormat(FileFormat format);
 };

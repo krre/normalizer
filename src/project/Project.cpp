@@ -1,6 +1,8 @@
 #include "Project.h"
+#include "ProjectSettings.h"
 #include "Root.h"
 #include "Node.h"
+#include "core/Global.h"
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
 #include "norm/unit/Flow.h"
@@ -40,16 +42,7 @@ void Project::create(const QString& path, Target target) {
         default: throw std::runtime_error("Unknown project target"); break;
     }
 
-    qDebug() << root->serializeToJson();
-
-    QFile file(filePath);
-
-    if (!file.open(QIODeviceBase::WriteOnly)) {
-        qWarning().noquote() << "Failed to open project file for writing:" << filePath;
-        return;
-    }
-
-    file.write(0);
+    write(filePath);
 }
 
 void Project::open(const QString& path) {
@@ -75,8 +68,17 @@ void Project::close() {
     m_path = QString();
 }
 
-void Project::write() {
-    qDebug() << "Write project file";
+void Project::write(const QString& filePath) {
+    qDebug() << root->serializeToJson();
+
+    QFile file(filePath);
+
+    if (!file.open(QIODeviceBase::WriteOnly)) {
+        qWarning().noquote() << "Failed to open project file for writing:" << filePath;
+        return;
+    }
+
+    file.write(0);
 }
 
 void Project::read(const QString& path) {

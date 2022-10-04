@@ -5,10 +5,10 @@ FormatComboBox::FormatComboBox() {
     addItem(tr("Binary / JSON"));
 }
 
-Format FormatComboBox::format() const {
-    return static_cast<Format>(currentIndex());
+FileFormat FormatComboBox::format() const {
+    return static_cast<FileFormat>(currentIndex());
 }
 
-void FormatComboBox::setFormat(Format format) {
+void FormatComboBox::setFormat(FileFormat format) {
     setCurrentIndex(static_cast<int>(format));
 }

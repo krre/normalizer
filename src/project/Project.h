@@ -26,7 +26,7 @@ public:
     void open(const QString& path);
     void close();
 
-    void write();
+    void write(const QString& filePath);
     void read(const QString& path);
 
 private:
