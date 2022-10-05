@@ -2,6 +2,7 @@
 #include "ProjectSettings.h"
 #include "Root.h"
 #include "Node.h"
+#include "core/Constants.h"
 #include "core/Global.h"
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
@@ -70,16 +71,32 @@ void Project::close() {
 }
 
 void Project::write(const QString& filePath) {
-    qDebug() << root->serializeToJson();
-
-    QFile file(filePath);
+    QString binaryPath = filePath + Const::Project::Extension::Binary;
+    QFile file(binaryPath);
 
     if (!file.open(QIODeviceBase::WriteOnly)) {
-        qWarning().noquote() << "Failed to open project file for writing:" << filePath;
+        qWarning().noquote() << "Failed to open binary file for writing:" << binaryPath;
         return;
     }
 
     file.write(0);
+    file.close();
+
+    FileFormats fileFormats = Global::projectSettings()->formats();
+
+    if (!fileFormats.testFlag(JsonFormat)) {
+        return;
+    }
+
+    QString jsonPath = filePath + Const::Project::Extension::Json;
+    file.setFileName(jsonPath);
+
+    if (!file.open(QIODeviceBase::WriteOnly)) {
+        qWarning().noquote() << "Failed to open JSON file for writing:" << jsonPath;
+        return;
+    }
+
+    file.write(QJsonDocument(root->serializeToJson().toArray()).toJson());
 }
 
 void Project::read(const QString& path) {
