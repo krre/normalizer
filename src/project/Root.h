@@ -4,5 +4,7 @@
 class Root : public Node {
 public:
     Root();
-    QJsonValue serializeToJson() const;
+
+    QByteArray serializeToBinary() const override;
+    QJsonValue serializeToJson() const override;
 };

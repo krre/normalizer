@@ -79,7 +79,7 @@ void Project::write(const QString& filePath) {
         return;
     }
 
-    file.write(0);
+    file.write(root->serializeToBinary());
     file.close();
 
     FileFormats fileFormats = Global::projectSettings()->formats();

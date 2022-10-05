@@ -5,6 +5,16 @@ Root::Root() {
 
 }
 
+QByteArray Root::serializeToBinary() const {
+    QByteArray result;
+
+    for (auto child : children()) {
+        result += static_cast<Node*>(child)->serializeToBinary();
+    }
+
+    return result;
+}
+
 QJsonValue Root::serializeToJson() const {
     QJsonArray result;
 

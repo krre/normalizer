@@ -13,6 +13,7 @@ public:
     Id id() const;
     void setId(Id id);
 
+    virtual QByteArray serializeToBinary() const;
     virtual QJsonValue serializeToJson() const;
 
 private:
