@@ -27,15 +27,20 @@ namespace Project {
     constexpr auto SettingsFile = "settings.json";
     constexpr auto SessionFile = "session.json";
 
+    namespace Extension {
+        constexpr auto Binary = ".norm";
+        constexpr auto Json = ".json";
+    }
+
     namespace Target {
         namespace Application {
             const QString Name = QObject::tr("Application");
-            constexpr auto Source = "app.norm";
+            constexpr auto Source = "app";
         }
 
         namespace Library {
             const QString Name = QObject::tr("Library");
-            constexpr auto Source = "lib.norm";
+            constexpr auto Source = "lib";
         }
     }
 }
