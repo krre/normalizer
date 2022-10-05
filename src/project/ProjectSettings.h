@@ -18,8 +18,8 @@ public:
 
     QString outputPath() const;
 
-    FileFormat format() const;
-    void setFormat(FileFormat format);
+    FileFormats formats() const;
+    void setFormats(FileFormats formats);
 
 private:
     QString dirPath() const;

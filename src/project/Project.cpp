@@ -27,6 +27,7 @@ Project::Target Project::target() const {
 }
 
 void Project::create(const QString& path, Target target) {
+    m_path = path;
     root.reset(new Root);
     QString filePath;
 

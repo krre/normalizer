@@ -23,7 +23,7 @@ ProjectSettings::ProjectSettings() {
     }
 
     formatComboBox = new FormatComboBox;
-    formatComboBox->setFormat(Global::projectSettings()->format());
+    formatComboBox->setFormats(Global::projectSettings()->formats());
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Path:"), new SelectableLabel(Global::project()->path()));
@@ -40,7 +40,7 @@ ProjectSettings::~ProjectSettings() {
 }
 
 void ProjectSettings::accept() {
-    Global::projectSettings()->setFormat(formatComboBox->format());
+    Global::projectSettings()->setFormats(formatComboBox->formats());
     Global::projectSettings()->save();
     StandardDialog::accept();
 }

@@ -6,6 +6,12 @@ class FormatComboBox : public QComboBox {
 public:
     FormatComboBox();
 
-    FileFormat format() const;
-    void setFormat(FileFormat format);
+    FileFormats formats() const;
+    void setFormats(FileFormats formats);
+
+private:
+    enum class Selection {
+        Binary,
+        BinaryAnnJson
+    };
 };

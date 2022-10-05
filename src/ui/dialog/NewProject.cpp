@@ -64,7 +64,7 @@ void NewProject::accept() {
 
     auto projectSettings = Global::projectSettings();
     projectSettings->setProjectPath(path());
-    projectSettings->setFormat(formatComboBox->format());
+    projectSettings->setFormats(formatComboBox->formats());
     projectSettings->create();
     projectSettings->save();
 
