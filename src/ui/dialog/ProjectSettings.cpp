@@ -4,7 +4,6 @@
 #include "core/Global.h"
 #include "core/Constants.h"
 #include "ui/component/SelectableLabel.h"
-#include "ui/component/FormatComboBox.h"
 #include <QtWidgets>
 
 namespace Dialog {
@@ -22,14 +21,10 @@ ProjectSettings::ProjectSettings() {
         target = tr("Bad target");
     }
 
-    formatComboBox = new FormatComboBox;
-    formatComboBox->setFormats(Global::projectSettings()->formats());
-
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Path:"), new SelectableLabel(Global::project()->path()));
     formLayout->addRow(tr("Target:"), new SelectableLabel(target));
-    formLayout->addRow(tr("Format:"), formatComboBox);
-    formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
+    formLayout->itemAt(1, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
     resizeToWidth(600);
@@ -40,7 +35,6 @@ ProjectSettings::~ProjectSettings() {
 }
 
 void ProjectSettings::accept() {
-    Global::projectSettings()->setFormats(formatComboBox->formats());
     Global::projectSettings()->save();
     StandardDialog::accept();
 }

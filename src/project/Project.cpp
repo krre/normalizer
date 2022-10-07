@@ -1,9 +1,7 @@
 #include "Project.h"
-#include "ProjectSettings.h"
 #include "Root.h"
 #include "Node.h"
 #include "core/Constants.h"
-#include "core/Global.h"
 #include "core/Utils.h"
 #include "norm/unit/Entry.h"
 #include "norm/unit/Flow.h"
@@ -81,12 +79,6 @@ void Project::write(const QString& filePath) {
 
     file.write(root->serializeToBinary());
     file.close();
-
-    FileFormats fileFormats = Global::projectSettings()->formats();
-
-    if (!fileFormats.testFlag(JsonFormat)) {
-        return;
-    }
 
     QString jsonPath = filePath + Const::Project::Extension::Json;
     file.setFileName(jsonPath);

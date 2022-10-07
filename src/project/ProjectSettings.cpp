@@ -53,14 +53,6 @@ QString ProjectSettings::outputPath() const {
     return m_projectPath + "/" + Const::Project::OutputDir;
 }
 
-FileFormats ProjectSettings::formats() const {
-    return FileFormats::fromInt(settings["fileFormats"].toInt());
-}
-
-void ProjectSettings::setFormats(FileFormats formats) {
-    settings["fileFormats"] = int(formats.toInt());
-}
-
 QString ProjectSettings::dirPath() const {
     return m_projectPath + "/" + Const::Project::DataDir;
 }

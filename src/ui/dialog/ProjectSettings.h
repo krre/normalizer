@@ -1,8 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
 
-class FormatComboBox;
-
 namespace Dialog {
 
 class ProjectSettings : public StandardDialog {
@@ -12,9 +10,6 @@ public:
 
 private slots:
     void accept() override;
-
-private:
-    FormatComboBox* formatComboBox = nullptr;
 };
 
 }

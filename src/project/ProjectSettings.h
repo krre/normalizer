@@ -1,5 +1,4 @@
 #pragma once
-#include "core/CommonTypes.h"
 #include <QJsonObject>
 
 class ProjectSettings {
@@ -17,9 +16,6 @@ public:
     void setProjectPath(const QString& path);
 
     QString outputPath() const;
-
-    FileFormats formats() const;
-    void setFormats(FileFormats formats);
 
 private:
     QString dirPath() const;

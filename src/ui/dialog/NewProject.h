@@ -3,7 +3,6 @@
 #include "project/Project.h"
 
 class BrowseLineEdit;
-class FormatComboBox;
 class QComboBox;
 class QLineEdit;
 
@@ -24,7 +23,6 @@ private:
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;
     QComboBox* targetComboBox = nullptr;
-    FormatComboBox* formatComboBox = nullptr;
 };
 
 }
