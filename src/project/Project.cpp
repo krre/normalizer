@@ -77,18 +77,7 @@ void Project::write(const QString& filePath) {
         return;
     }
 
-    file.write(root->serializeToBinary());
-    file.close();
-
-    QString jsonPath = filePath + Const::Project::Extension::Json;
-    file.setFileName(jsonPath);
-
-    if (!file.open(QIODeviceBase::WriteOnly)) {
-        qWarning().noquote() << "Failed to open JSON file for writing:" << jsonPath;
-        return;
-    }
-
-    file.write(QJsonDocument(root->serializeToJson().toArray()).toJson());
+    file.write(0);
 }
 
 void Project::read(const QString& path) {

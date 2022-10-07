@@ -10,8 +10,6 @@ public:
 
     void append(Node* node);
 
-    QJsonValue serializeToJson() const override;
-
 private:
     Nodes m_nodes;
 };

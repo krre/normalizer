@@ -2,7 +2,6 @@
 #include "Parameter.h"
 #include "Flow.h"
 #include "project/Node.h"
-#include <QJsonArray>
 
 namespace Unit {
 
@@ -24,25 +23,6 @@ void Function::setParameters(const Parameters& parameters) {
 
 Flow* Function::flow() const {
     return m_flow;
-}
-
-QJsonValue Function::serializeToJson() const {
-    QJsonObject result = Unit::serializeToJson().toObject();
-    result["name"] = name();
-
-    if (!m_parameters.isEmpty()) {
-        QJsonArray parameters;
-
-        for (auto& parameter : m_parameters) {
-            parameters.append(parameter->serializeToJson());
-        }
-
-        result["parameters"] = parameters;
-    }
-
-    result["flow"] = m_flow->serializeToJson();
-
-    return result;
 }
 
 }

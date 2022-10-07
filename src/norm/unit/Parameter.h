@@ -15,8 +15,6 @@ public:
     Type::Type type() const;
     void setType(const Type::Type& type);
 
-    QJsonValue serializeToJson() const override;
-
 private:
     Type::Type m_type;
 };

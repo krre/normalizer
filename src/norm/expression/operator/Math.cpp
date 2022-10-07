@@ -1,6 +1,4 @@
 #include "Math.h"
-#include <QJsonObject>
-#include <QJsonArray>
 
 namespace Expression::Operator {
 
@@ -16,21 +14,6 @@ Math::Operation Math::operation() const {
 
 const Expressions& Math::expressions() const {
     return m_expressions;
-}
-
-QJsonValue Math::serializeToJson() const {
-    QJsonObject result = Expression::serializeToJson().toObject();
-    result["op"] = int(m_operation);
-
-    QJsonArray expressions;
-
-    for (auto expression : m_expressions) {
-        expressions.append(expression->serializeToJson());
-    }
-
-    result["expressions"] = expressions;
-
-    return result;
 }
 
 }

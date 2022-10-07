@@ -6,8 +6,6 @@ namespace Expression::Operator {
 class Operator : public Expression {
 public:
     Operator(Node* parent = nullptr);
-
-    QJsonValue serializeToJson() const override;
 };
 
 }

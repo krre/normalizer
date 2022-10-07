@@ -20,8 +20,6 @@ public:
 
     Flow* flow() const;
 
-    QJsonValue serializeToJson() const override;
-
 private:
     Parameters m_parameters;
     Flow* m_flow = nullptr;

@@ -16,8 +16,6 @@ class Expression : public Node {
 public:
     Expression(Node* parent = nullptr);
     virtual Type::Type* value() { return nullptr; }
-
-    QJsonValue serializeToJson() const override;
 };
 
 }

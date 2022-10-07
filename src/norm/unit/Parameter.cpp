@@ -18,12 +18,4 @@ void Parameter::setType(const Type::Type& type) {
     m_type = type;
 }
 
-QJsonValue Parameter::serializeToJson() const {
-    QJsonObject result = Unit::serializeToJson().toObject();
-    result["name"] = name();
-    result["type"] = m_type.name();
-
-    return result;
-}
-
 }

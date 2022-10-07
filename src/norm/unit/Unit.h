@@ -1,6 +1,5 @@
 #pragma once
 #include "project/Node.h"
-#include <QJsonObject>
 
 namespace Unit {
 
@@ -30,8 +29,6 @@ public:
 
     QString comment() const;
     void setComment(const QString& comment);
-
-    QJsonValue serializeToJson() const override;
 
 private:
     QString m_comment;
