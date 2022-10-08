@@ -60,6 +60,7 @@ void NewProject::accept() {
     projectSettings->setProjectPath(path());
     projectSettings->create();
     projectSettings->save();
+    projectSettings->clear();
 
     Global::project()->create(path(), target());
     StandardDialog::accept();
