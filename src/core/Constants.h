@@ -32,7 +32,6 @@ namespace Project {
 
     namespace Extension {
         constexpr auto Binary = ".norm";
-        constexpr auto Json = ".json";
     }
 
     namespace Target {
