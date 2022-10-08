@@ -1,8 +1,11 @@
 #include "Header.h"
-#include <QByteArray>
 #include <QDataStream>
 
 Header::Header() {
+
+}
+
+Header::~Header() {
 
 }
 
@@ -18,23 +21,16 @@ QVersionNumber Header::version() const {
     return m_version;
 }
 
-QByteArray Header::serialize() const {
-    QByteArray result;
-
-    QDataStream stream(result);
+void Header::serialize(QDataStream& stream) const {
     stream << (quint8)m_version.majorVersion();
     stream << (quint8)m_version.minorVersion();
     stream << (quint8)m_version.microVersion();
-
-    return result;
 }
 
-void Header::deserialize(const QByteArray& data) {
-    QDataStream stream(data);
-
-    int majour;
-    int minor;
-    int micro;
+void Header::deserialize(QDataStream& stream) {
+    quint8 majour;
+    quint8 minor;
+    quint8 micro;
 
     stream >> majour >> minor >> micro;
     m_version = QVersionNumber(majour, minor, micro);

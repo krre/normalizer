@@ -2,7 +2,9 @@
 #include "Root.h"
 #include "Node.h"
 #include "core/Constants.h"
+#include "core/Global.h"
 #include "core/Utils.h"
+#include "norm/Header.h"
 #include "norm/unit/Entry.h"
 #include "norm/unit/Flow.h"
 #include "norm/expression/operator/Math.h"
@@ -10,6 +12,7 @@
 #include <QtCore>
 
 Project::Project() {
+    header.reset(new Header);
     root.reset(new Root);
 }
 
@@ -27,7 +30,12 @@ Project::Target Project::target() const {
 
 void Project::create(const QString& path, Target target) {
     m_path = path;
+
+    header.reset(new Header);
+    header->setVersion(Global::Version::language());
+
     root.reset(new Root);
+
     QString filePath;
 
     switch (target) {
@@ -47,7 +55,7 @@ void Project::create(const QString& path, Target target) {
 
 void Project::open(const QString& path) {
     m_path = path;
-    QString filePath = Utils::applicationPath(path);
+    QString filePath = Utils::applicationPath(path) + Const::Project::Extension::Binary;
 
     if (QFileInfo::exists(filePath)) {
         m_target = Target::Application;
@@ -55,7 +63,7 @@ void Project::open(const QString& path) {
         return;
     }
 
-    filePath = Utils::libraryPath(path);
+    filePath = Utils::libraryPath(path) + Const::Project::Extension::Binary;
 
     if (QFileInfo::exists(filePath)) {
         m_target = Target::Library;
@@ -77,12 +85,24 @@ void Project::write(const QString& filePath) {
         return;
     }
 
-    file.write(0);
+    QDataStream stream(&file);
+    header->serialize(stream);
 }
 
 void Project::read(const QString& path) {
+    QFile file(path);
+
+    if (!file.open(QIODeviceBase::ReadOnly)) {
+        qWarning().noquote() << "Failed to open binary file for readin:" << path;
+        return;
+    }
+
+    QDataStream stream(&file);
+
+    header.reset(new Header);
+    header->deserialize(stream);
+
     root.reset(new Root);
-    qDebug() << "Read project file:" << path;
 }
 
 void Project::createApp() {

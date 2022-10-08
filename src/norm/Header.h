@@ -5,14 +5,15 @@
 class Header : public Token  {
 public:
     Header();
+    virtual ~Header();
+
     Type type() const override;
 
     void setVersion(const QVersionNumber& version);
     QVersionNumber version() const;
 
-protected:
-    QByteArray serialize() const override;
-    void deserialize(const QByteArray& data) override;
+    void serialize(QDataStream& stream) const override;
+    void deserialize(QDataStream& stream) override;
 
 private:
     QVersionNumber m_version;
