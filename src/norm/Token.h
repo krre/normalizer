@@ -4,6 +4,7 @@
 class Token {
 public:
     enum class Type : quint8 {
+        Header = 00
     };
 
     Token();

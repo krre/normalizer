@@ -11,6 +11,7 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
+    norm/Header.cpp \
     norm/Token.cpp \
     norm/expression/Expression.cpp \
     norm/expression/literal/BooleanLiteral.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     core/Settings.h \
     core/Utils.h \
     core/Version.h \
+    norm/Header.h \
     norm/Token.h \
     norm/expression/Expression.h \
     norm/expression/literal/BooleanLiteral.h \
