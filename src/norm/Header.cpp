@@ -22,12 +22,16 @@ QVersionNumber Header::version() const {
 }
 
 void Header::serialize(QDataStream& stream) const {
+    Token::serialize(stream);
+
     stream << (quint8)m_version.majorVersion();
     stream << (quint8)m_version.minorVersion();
     stream << (quint8)m_version.microVersion();
 }
 
 void Header::deserialize(QDataStream& stream) {
+    Token::deserialize(stream);
+
     quint8 majour;
     quint8 minor;
     quint8 micro;

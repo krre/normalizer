@@ -8,8 +8,11 @@ public:
     };
 
     Token();
-    virtual Type type() const = 0;
+    virtual Type type() const;
 
-    virtual void serialize(QDataStream& stream) const = 0;
-    virtual void deserialize(QDataStream& stream) = 0;
+    virtual void serialize(QDataStream& stream) const;
+    virtual void deserialize(QDataStream& stream);
+
+private:
+    Type m_type;
 };
