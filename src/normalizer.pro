@@ -48,6 +48,7 @@ HEADERS += \
     core/Global.h \
     core/Settings.h \
     core/Utils.h \
+    core/Version.h \
     norm/expression/Expression.h \
     norm/expression/literal/BooleanLiteral.h \
     norm/expression/literal/NumberLiteral.h \

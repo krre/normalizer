@@ -155,11 +155,13 @@ void TopMenu::onAbout() {
 
     QMessageBox::about(mainWindow, tr("About %1").arg(Name),
         tr("<h3>%1 %2 %3</h3>\
-           IDE for Norm language<br><br> \
-           Based on Qt %4<br> \
-           Build on %5 %6<br><br> \
-           <a href=%7>%7</a><br><br>Copyright © %8, Vladimir Zarypov")
-           .arg(Name, Version, Status, QT_VERSION_STR, BuildDate, BuildTime, Url, CopyrightYear));
+           IDE for Norm language<br> \
+           Supported Norm %4<br><br> \
+           Based on Qt %5<br> \
+           Build on %6 %7<br><br> \
+           <a href=%8>%8</a><br><br>Copyright © %9, Vladimir Zarypov")
+           .arg(Name, Global::Version::application().toString(), Status, Global::Version::language().toString(),
+                QT_VERSION_STR, BuildDate, BuildTime, Url, CopyrightYear));
 }
 
 bool TopMenu::isProjectActive() const {
