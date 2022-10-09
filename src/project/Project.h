@@ -6,7 +6,10 @@ namespace Unit {
     class Flow;
 }
 
-class Header;
+namespace Norm {
+    class Header;
+}
+
 class Root;
 class Node;
 
@@ -38,6 +41,6 @@ private:
     QString m_path;
     Target m_target;
 
-    QScopedPointer<Header> header;
+    QScopedPointer<Norm::Header> header;
     QScopedPointer<Root> root;
 };

@@ -12,7 +12,7 @@
 #include <QtCore>
 
 Project::Project() {
-    header.reset(new Header);
+    header.reset(new Norm::Header);
     root.reset(new Root);
 }
 
@@ -31,7 +31,7 @@ Project::Target Project::target() const {
 void Project::create(const QString& path, Target target) {
     m_path = path;
 
-    header.reset(new Header);
+    header.reset(new Norm::Header);
     header->setVersion(Global::Version::language());
 
     root.reset(new Root);
@@ -99,7 +99,7 @@ void Project::read(const QString& path) {
 
     QDataStream stream(&file);
 
-    header.reset(new Header);
+    header.reset(new Norm::Header);
     header->deserialize(stream);
 
     root.reset(new Root);

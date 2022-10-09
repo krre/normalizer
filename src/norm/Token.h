@@ -1,6 +1,8 @@
 #pragma once
 #include <QtGlobal>
 
+namespace Norm {
+
 class Token {
 public:
     enum class Type : quint8 {
@@ -16,3 +18,5 @@ public:
 private:
     Type m_type;
 };
+
+}

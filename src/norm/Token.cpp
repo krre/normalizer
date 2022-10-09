@@ -1,6 +1,8 @@
 #include "Token.h"
 #include <QDataStream>
 
+namespace Norm {
+
 Token::Token() {
 
 }
@@ -15,4 +17,6 @@ void Token::serialize(QDataStream& stream) const {
 
 void Token::deserialize(QDataStream& stream) {
     stream >> m_type;
+}
+
 }

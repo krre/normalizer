@@ -1,6 +1,8 @@
 #include "Header.h"
 #include <QDataStream>
 
+namespace Norm {
+
 Header::Header() {
 
 }
@@ -39,3 +41,6 @@ void Header::deserialize(QDataStream& stream) {
     stream >> majour >> minor >> micro;
     m_version = QVersionNumber(majour, minor, micro);
 }
+
+}
+

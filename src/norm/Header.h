@@ -2,6 +2,8 @@
 #include "Token.h"
 #include <QVersionNumber>
 
+namespace Norm {
+
 class Header : public Token  {
 public:
     Header();
@@ -18,3 +20,5 @@ public:
 private:
     QVersionNumber m_version;
 };
+
+}
