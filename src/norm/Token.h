@@ -6,7 +6,9 @@ namespace Norm {
 class Token {
 public:
     enum class Type : quint8 {
-        Header = 00
+        Porject = 00,
+        Version = 01,
+        Header = 03,
     };
 
     Token();
