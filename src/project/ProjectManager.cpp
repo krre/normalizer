@@ -19,22 +19,22 @@ QString ProjectManager::path() const {
     return m_path;
 }
 
-ProjectManager::Target ProjectManager::target() const {
-    return m_target;
+Norm::Project::Target ProjectManager::target() const {
+    return m_project->target();
 }
 
-void ProjectManager::create(const QString& path, Target target) {
+void ProjectManager::create(const QString& path, Norm::Project::Target target) {
     m_project.reset(new Norm::Project);
     m_path = path;
 
     QString filePath;
 
     switch (target) {
-        case Target::Application:
+        case Norm::Project::Target::Application:
             filePath = Utils::applicationPath(path);
             createApp();
             break;
-        case Target::Library:
+        case Norm::Project::Target::Library:
             filePath = Utils::libraryPath(path);
             createLib();
             break;
@@ -50,7 +50,6 @@ void ProjectManager::open(const QString& path) {
     QString filePath = Utils::applicationPath(path) + Const::Project::Extension::Binary;
 
     if (QFileInfo::exists(filePath)) {
-        m_target = Target::Application;
         read(filePath);
         return;
     }
@@ -58,7 +57,6 @@ void ProjectManager::open(const QString& path) {
     filePath = Utils::libraryPath(path) + Const::Project::Extension::Binary;
 
     if (QFileInfo::exists(filePath)) {
-        m_target = Target::Library;
         read(filePath);
         return;
     }

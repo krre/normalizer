@@ -13,9 +13,9 @@ ProjectSettings::ProjectSettings() {
 
     QString target;
 
-    if (Global::project()->target() == ProjectManager::Target::Application) {
+    if (Global::project()->target() == Norm::Project::Target::Application) {
         target = Const::Project::Target::Application::Name;
-    } else if (Global::project()->target() == ProjectManager::Target::Library) {
+    } else if (Global::project()->target() == Norm::Project::Target::Library) {
         target = Const::Project::Target::Library::Name;
     } else {
         target = tr("Bad target");

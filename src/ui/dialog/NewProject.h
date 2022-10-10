@@ -1,6 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
-#include "project/ProjectManager.h"
+#include "norm/project/Project.h"
 
 class BrowseLineEdit;
 class QComboBox;
@@ -18,7 +18,7 @@ private slots:
     void adjustAcceptedButton();
 
 private:
-    ProjectManager::Target target() const;
+    Norm::Project::Target target() const;
 
     QLineEdit* nameLineEdit = nullptr;
     BrowseLineEdit* directoryBrowseLineEdit = nullptr;

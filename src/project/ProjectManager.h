@@ -1,4 +1,5 @@
 #pragma once
+#include "norm/project/Project.h"
 #include <QString>
 #include <QScopedPointer>
 
@@ -12,18 +13,13 @@ namespace Norm {
 
 class ProjectManager {
 public:
-    enum class Target {
-        Application,
-        Library
-    };
-
     ProjectManager();
     ~ProjectManager();
 
     QString path() const;
-    Target target() const;
+    Norm::Project::Target target() const;
 
-    void create(const QString& path, Target target);
+    void create(const QString& path, Norm::Project::Target target);
     void open(const QString& path);
     void close();
 
@@ -36,6 +32,5 @@ private:
     void createFlow(Unit::Flow* flow);
 
     QString m_path;
-    Target m_target;
     QScopedPointer<Norm::Project> m_project;
 };

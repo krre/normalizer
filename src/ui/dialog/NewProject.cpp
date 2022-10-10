@@ -1,6 +1,7 @@
 #include "NewProject.h"
 #include "ui/component/BrowseLineEdit.h"
 #include "project/ProjectSettings.h"
+#include "project/ProjectManager.h"
 #include "core/Settings.h"
 #include "core/Global.h"
 #include "core/Constants.h"
@@ -38,8 +39,8 @@ QString NewProject::path() const {
     return directoryBrowseLineEdit->text() + "/" + nameLineEdit->text();
 }
 
-ProjectManager::Target NewProject::target() const {
-    return static_cast<ProjectManager::Target>(targetComboBox->currentIndex());
+Norm::Project::Target NewProject::target() const {
+    return static_cast<Norm::Project::Target>(targetComboBox->currentIndex());
 }
 
 void NewProject::adjustAcceptedButton() {
