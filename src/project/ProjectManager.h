@@ -10,7 +10,6 @@ namespace Norm {
     class Header;
 }
 
-class Root;
 class Node;
 
 class ProjectManager {
@@ -42,5 +41,4 @@ private:
     Target m_target;
 
     QScopedPointer<Norm::Header> header;
-    QScopedPointer<Root> root;
 };

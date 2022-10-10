@@ -32,7 +32,6 @@ SOURCES += \
     project/Node.cpp \
     project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
-    project/Root.cpp \
     ui/ActionManager.cpp \
     ui/GuiSession.cpp \
     ui/MainWindow.cpp \
@@ -74,7 +73,6 @@ HEADERS += \
     project/Node.h \
     project/ProjectManager.h \
     project/ProjectSettings.h \
-    project/Root.h \
     ui/ActionManager.h \
     ui/GuiSession.h \
     ui/MainWindow.h \

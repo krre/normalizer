@@ -1,11 +1,9 @@
 #include "ProjectManager.h"
-#include "Root.h"
 #include "Node.h"
 #include "core/Constants.h"
 #include "core/Global.h"
 #include "core/Utils.h"
 #include "norm/Header.h"
-#include "norm/unit/Entry.h"
 #include "norm/unit/Flow.h"
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/literal/NumberLiteral.h"
@@ -13,7 +11,6 @@
 
 ProjectManager::ProjectManager() {
     header.reset(new Norm::Header);
-    root.reset(new Root);
 }
 
 ProjectManager::~ProjectManager() {
@@ -33,8 +30,6 @@ void ProjectManager::create(const QString& path, Target target) {
 
     header.reset(new Norm::Header);
     header->setVersion(Global::Version::language());
-
-    root.reset(new Root);
 
     QString filePath;
 
@@ -101,19 +96,17 @@ void ProjectManager::read(const QString& path) {
 
     header.reset(new Norm::Header);
     header->deserialize(stream);
-
-    root.reset(new Root);
 }
 
 void ProjectManager::createApp() {
-    auto entry = new Unit::Entry(root.data());
-    createFlow(entry->flow());
+//    auto entry = new Unit::Entry(root.data());
+//    createFlow(entry->flow());
 }
 
 void ProjectManager::createLib() {
-    auto func = new Unit::Function(root.data());
-    func->setName("Add");
-    createFlow(func->flow());
+//    auto func = new Unit::Function(root.data());
+//    func->setName("Add");
+//    createFlow(func->flow());
 }
 
 void ProjectManager::createFlow(Unit::Flow* flow) {
