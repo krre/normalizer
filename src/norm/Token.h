@@ -23,15 +23,11 @@ public:
     Id id() const;
     void setId(Id id);
 
-    Id parentId() const;
-    void setParentId(Id parentId);
-
     virtual void serialize(QDataStream& stream) const;
     virtual void deserialize(QDataStream& stream);
 
 private:
     Id m_id = -1;
-    Id m_parentId = -1;
 };
 
 }
