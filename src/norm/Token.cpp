@@ -7,10 +7,6 @@ Token::Token() {
 
 }
 
-Token::Type Token::type() const {
-    return m_type;
-}
-
 Id Token::id() const {
     return m_id;
 }
@@ -32,9 +28,7 @@ void Token::serialize(QDataStream& stream) const {
 }
 
 void Token::deserialize(QDataStream& stream) {
-    qint8 t;
-    stream >> m_type >> t;
-    m_type = Type(t);
+    stream >> m_id >> m_parentId;
 }
 
 }

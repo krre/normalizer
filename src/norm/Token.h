@@ -18,7 +18,7 @@ public:
     };
 
     Token();
-    virtual Type type() const;
+    virtual Type type() const = 0;
 
     Id id() const;
     void setId(Id id);
@@ -30,7 +30,6 @@ public:
     virtual void deserialize(QDataStream& stream);
 
 private:
-    Type m_type;
     Id m_id = -1;
     Id m_parentId = -1;
 };
