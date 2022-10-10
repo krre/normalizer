@@ -28,11 +28,13 @@ void Token::setParentId(Id parentId) {
 }
 
 void Token::serialize(QDataStream& stream) const {
-    stream << quint8(type());
+    stream << quint8(type()) << m_id << m_parentId;
 }
 
 void Token::deserialize(QDataStream& stream) {
-    stream >> m_type;
+    qint8 t;
+    stream >> m_type >> t;
+    m_type = Type(t);
 }
 
 }
