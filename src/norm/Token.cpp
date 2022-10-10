@@ -27,22 +27,6 @@ void Token::setParentId(Id parentId) {
     m_parentId = parentId;
 }
 
-void Token::setChildren(const IdList& children) {
-    m_children = children;
-}
-
-const IdList& Token::children() const {
-    return m_children;
-}
-
-void Token::addChild(Id childId) {
-    m_children.append(childId);
-}
-
-void Token::removeChild(Id childId) {
-    m_children.removeOne(childId);
-}
-
 void Token::serialize(QDataStream& stream) const {
     stream << quint8(type());
 }

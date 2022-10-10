@@ -26,12 +26,6 @@ public:
     Id parentId() const;
     void setParentId(Id parentId);
 
-    void setChildren(const IdList& children);
-    const IdList& children() const;
-
-    void addChild(Id childId);
-    void removeChild(Id childId);
-
     virtual void serialize(QDataStream& stream) const;
     virtual void deserialize(QDataStream& stream);
 
@@ -39,7 +33,6 @@ private:
     Type m_type;
     Id m_id = -1;
     Id m_parentId = -1;
-    IdList m_children;
 };
 
 }
