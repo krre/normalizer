@@ -13,15 +13,15 @@ namespace Norm {
 class Root;
 class Node;
 
-class Project {
+class ProjectManager {
 public:
     enum class Target {
         Application,
         Library
     };
 
-    Project();
-    ~Project();
+    ProjectManager();
+    ~ProjectManager();
 
     QString path() const;
     Target target() const;

@@ -6,7 +6,7 @@
 #include "core/Settings.h"
 #include "core/Global.h"
 #include "project/ProjectSettings.h"
-#include "project/Project.h"
+#include "project/ProjectManager.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {

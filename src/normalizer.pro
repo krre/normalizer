@@ -30,7 +30,7 @@ SOURCES += \
     norm/unit/helper/Helper.cpp \
     norm/unit/helper/Name.cpp \
     project/Node.cpp \
-    project/Project.cpp \
+    project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
     project/Root.cpp \
     ui/ActionManager.cpp \
@@ -72,7 +72,7 @@ HEADERS += \
     norm/unit/helper/Helper.h \
     norm/unit/helper/Name.h \
     project/Node.h \
-    project/Project.h \
+    project/ProjectManager.h \
     project/ProjectSettings.h \
     project/Root.h \
     ui/ActionManager.h \

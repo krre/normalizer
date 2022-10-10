@@ -1,4 +1,4 @@
-#include "Project.h"
+#include "ProjectManager.h"
 #include "Root.h"
 #include "Node.h"
 #include "core/Constants.h"
@@ -11,24 +11,24 @@
 #include "norm/expression/literal/NumberLiteral.h"
 #include <QtCore>
 
-Project::Project() {
+ProjectManager::ProjectManager() {
     header.reset(new Norm::Header);
     root.reset(new Root);
 }
 
-Project::~Project() {
+ProjectManager::~ProjectManager() {
 
 }
 
-QString Project::path() const {
+QString ProjectManager::path() const {
     return m_path;
 }
 
-Project::Target Project::target() const {
+ProjectManager::Target ProjectManager::target() const {
     return m_target;
 }
 
-void Project::create(const QString& path, Target target) {
+void ProjectManager::create(const QString& path, Target target) {
     m_path = path;
 
     header.reset(new Norm::Header);
@@ -53,7 +53,7 @@ void Project::create(const QString& path, Target target) {
     write(filePath);
 }
 
-void Project::open(const QString& path) {
+void ProjectManager::open(const QString& path) {
     m_path = path;
     QString filePath = Utils::applicationPath(path) + Const::Project::Extension::Binary;
 
@@ -72,11 +72,11 @@ void Project::open(const QString& path) {
     }
 }
 
-void Project::close() {
+void ProjectManager::close() {
     m_path = QString();
 }
 
-void Project::write(const QString& filePath) {
+void ProjectManager::write(const QString& filePath) {
     QString binaryPath = filePath + Const::Project::Extension::Binary;
     QFile file(binaryPath);
 
@@ -89,7 +89,7 @@ void Project::write(const QString& filePath) {
     header->serialize(stream);
 }
 
-void Project::read(const QString& path) {
+void ProjectManager::read(const QString& path) {
     QFile file(path);
 
     if (!file.open(QIODeviceBase::ReadOnly)) {
@@ -105,18 +105,18 @@ void Project::read(const QString& path) {
     root.reset(new Root);
 }
 
-void Project::createApp() {
+void ProjectManager::createApp() {
     auto entry = new Unit::Entry(root.data());
     createFlow(entry->flow());
 }
 
-void Project::createLib() {
+void ProjectManager::createLib() {
     auto func = new Unit::Function(root.data());
     func->setName("Add");
     createFlow(func->flow());
 }
 
-void Project::createFlow(Unit::Flow* flow) {
+void ProjectManager::createFlow(Unit::Flow* flow) {
     using namespace Expression::Operator;
     flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(3), new Expression::NumberLiteral(2) } ));
 }

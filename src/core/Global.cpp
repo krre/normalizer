@@ -1,24 +1,24 @@
 #include "Global.h"
 #include "core/Version.h"
 #include "project/ProjectSettings.h"
-#include "project/Project.h"
+#include "project/ProjectManager.h"
 #include <QtCore>
 
 namespace Global {
 
 QScopedPointer<ProjectSettings> g_projectSettings;
-QScopedPointer<Project> g_project;
+QScopedPointer<ProjectManager> g_project;
 
 void init() {
     g_projectSettings.reset(new ProjectSettings);
-    g_project.reset(new Project);
+    g_project.reset(new ProjectManager);
 }
 
 ProjectSettings* projectSettings() {
     return g_projectSettings.data();
 }
 
-Project* project() {
+ProjectManager* project() {
     return g_project.data();
 }
 

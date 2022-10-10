@@ -38,8 +38,8 @@ QString NewProject::path() const {
     return directoryBrowseLineEdit->text() + "/" + nameLineEdit->text();
 }
 
-Project::Target NewProject::target() const {
-    return static_cast<Project::Target>(targetComboBox->currentIndex());
+ProjectManager::Target NewProject::target() const {
+    return static_cast<ProjectManager::Target>(targetComboBox->currentIndex());
 }
 
 void NewProject::adjustAcceptedButton() {

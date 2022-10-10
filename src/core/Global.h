@@ -3,7 +3,7 @@
 #include <QVersionNumber>
 
 class ProjectSettings;
-class Project;
+class ProjectManager;
 
 namespace Global {
     namespace Version {
@@ -14,7 +14,7 @@ namespace Global {
     void init();
 
     ProjectSettings* projectSettings();
-    Project* project();
+    ProjectManager* project();
 
 
 }
