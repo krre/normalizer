@@ -85,7 +85,7 @@ void ProjectManager::read(const QString& path) {
     QFile file(path);
 
     if (!file.open(QIODeviceBase::ReadOnly)) {
-        qWarning().noquote() << "Failed to open binary file for readin:" << path;
+        qWarning().noquote() << "Failed to open binary file for reading:" << path;
         return;
     }
 
