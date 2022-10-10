@@ -6,6 +6,10 @@ namespace Unit {
     class Flow;
 }
 
+namespace Norm {
+    class Project;
+}
+
 class ProjectManager {
 public:
     enum class Target {
@@ -33,4 +37,5 @@ private:
 
     QString m_path;
     Target m_target;
+    QScopedPointer<Norm::Project> m_project;
 };

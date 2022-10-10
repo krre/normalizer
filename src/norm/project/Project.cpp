@@ -6,6 +6,10 @@ Project::Project() {
 
 }
 
+Project::~Project() {
+
+}
+
 Token::Type Project::type() const {
     return Type::Porject;
 }

@@ -2,6 +2,7 @@
 #include "Node.h"
 #include "core/Constants.h"
 #include "core/Utils.h"
+#include "norm/project/Project.h"
 #include "norm/unit/Flow.h"
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/literal/NumberLiteral.h"
@@ -23,6 +24,7 @@ ProjectManager::Target ProjectManager::target() const {
 }
 
 void ProjectManager::create(const QString& path, Target target) {
+    m_project.reset(new Norm::Project);
     m_path = path;
 
     QString filePath;
@@ -43,6 +45,7 @@ void ProjectManager::create(const QString& path, Target target) {
 }
 
 void ProjectManager::open(const QString& path) {
+    m_project.reset(new Norm::Project);
     m_path = path;
     QString filePath = Utils::applicationPath(path) + Const::Project::Extension::Binary;
 
@@ -75,6 +78,7 @@ void ProjectManager::write(const QString& filePath) {
     }
 
     QDataStream stream(&file);
+    m_project->serialize(stream);
 }
 
 void ProjectManager::read(const QString& path) {
@@ -86,6 +90,7 @@ void ProjectManager::read(const QString& path) {
     }
 
     QDataStream stream(&file);
+    m_project->deserialize(stream);
 }
 
 void ProjectManager::createApp() {
