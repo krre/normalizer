@@ -1,16 +1,13 @@
 #include "ProjectManager.h"
 #include "Node.h"
 #include "core/Constants.h"
-#include "core/Global.h"
 #include "core/Utils.h"
-#include "norm/Header.h"
 #include "norm/unit/Flow.h"
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/literal/NumberLiteral.h"
 #include <QtCore>
 
 ProjectManager::ProjectManager() {
-    header.reset(new Norm::Header);
 }
 
 ProjectManager::~ProjectManager() {
@@ -27,9 +24,6 @@ ProjectManager::Target ProjectManager::target() const {
 
 void ProjectManager::create(const QString& path, Target target) {
     m_path = path;
-
-    header.reset(new Norm::Header);
-    header->setVersion(Global::Version::language());
 
     QString filePath;
 
@@ -81,7 +75,6 @@ void ProjectManager::write(const QString& filePath) {
     }
 
     QDataStream stream(&file);
-    header->serialize(stream);
 }
 
 void ProjectManager::read(const QString& path) {
@@ -93,9 +86,6 @@ void ProjectManager::read(const QString& path) {
     }
 
     QDataStream stream(&file);
-
-    header.reset(new Norm::Header);
-    header->deserialize(stream);
 }
 
 void ProjectManager::createApp() {

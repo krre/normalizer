@@ -14,7 +14,6 @@ public:
     enum class Type : quint8 {
         Porject = 00,
         Version = 01,
-        Header = 03,
     };
 
     Token();

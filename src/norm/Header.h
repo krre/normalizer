@@ -11,14 +11,11 @@ public:
 
     Type type() const override;
 
-    void setVersion(const QVersionNumber& version);
-    QVersionNumber version() const;
-
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
 private:
-    QVersionNumber m_version;
+
 };
 
 }
