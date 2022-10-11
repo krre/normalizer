@@ -12,10 +12,11 @@ using IdList = QList<Id>;
 class Token {
 public:
     enum class Type : quint8 {
-        Project = 00,
-        Version = 01,
-        Name    = 02,
-        Module  = 03,
+        Project  = 00,
+        Version  = 01,
+        Name     = 02,
+        Module   = 03,
+        Function = 04,
     };
 
     Token();
