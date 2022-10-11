@@ -12,7 +12,7 @@ Project::~Project() {
 }
 
 Token::Type Project::type() const {
-    return Type::Porject;
+    return Type::Project;
 }
 
 void Project::serialize(QDataStream& stream) const {
