@@ -6,6 +6,11 @@ namespace Norm {
 
 class Version : public Token {
 public:
+    enum class Kind : quint8 {
+        Project,
+        Norm
+    };
+
     Version();
 
     Type type() const override;
@@ -13,11 +18,15 @@ public:
     void setVersion(const QVersionNumber& version);
     QVersionNumber version() const;
 
+    Kind kind() const;
+    void setKind(Kind kind);
+
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
 private:
     QVersionNumber m_version;
+    Kind m_kind;
 };
 
 }
