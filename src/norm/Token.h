@@ -15,6 +15,7 @@ public:
         Project = 00,
         Version = 01,
         Name    = 02,
+        Module  = 03,
     };
 
     Token();

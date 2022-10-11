@@ -11,6 +11,7 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
+    norm/Module.cpp \
     norm/Name.cpp \
     norm/Token.cpp \
     norm/expression/Expression.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     core/Settings.h \
     core/Utils.h \
     core/Version.h \
+    norm/Module.h \
     norm/Name.h \
     norm/Token.h \
     norm/expression/Expression.h \
