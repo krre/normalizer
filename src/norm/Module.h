@@ -9,7 +9,6 @@ class Name;
 class Module : public Token {
 public:
     Module();
-    Type type() const override;
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;

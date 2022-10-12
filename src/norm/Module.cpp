@@ -8,10 +8,6 @@ Module::Module() {
 
 }
 
-Token::Type Module::type() const {
-    return Token::Type::Module;
-}
-
 void Module::serialize(QDataStream& stream) const {
     stream << m_name->id();
 

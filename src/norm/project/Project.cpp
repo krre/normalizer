@@ -11,10 +11,6 @@ Project::~Project() {
 
 }
 
-Token::Type Project::type() const {
-    return Type::Project;
-}
-
 void Project::serialize(QDataStream& stream) const {
     Token::serialize(stream);
     stream << quint8(m_target);

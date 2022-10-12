@@ -6,10 +6,6 @@ Version::Version() {
 
 }
 
-Token::Type Version::type() const {
-    return Token::Type::Version;
-}
-
 void Version::setVersion(const QVersionNumber& version) {
     m_version = version;
 }

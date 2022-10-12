@@ -8,16 +8,7 @@ class Token {
 public:
     using Id = quint16;
 
-    enum class Type : quint8 {
-        Project  = 00,
-        Version  = 01,
-        Name     = 02,
-        Module   = 03,
-        Function = 04,
-    };
-
     Token();
-    virtual Type type() const = 0;
 
     Id id() const;
     void setId(Id id);

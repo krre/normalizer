@@ -16,7 +16,7 @@ void Token::setId(Id id) {
 }
 
 void Token::serialize(QDataStream& stream) const {
-    stream << quint8(type()) << m_id;
+    stream << m_id;
 }
 
 void Token::deserialize(QDataStream& stream) {

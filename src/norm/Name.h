@@ -6,7 +6,6 @@ namespace Norm {
 class Name : public Token {
 public:
     Name();
-    Type type() const override;
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;

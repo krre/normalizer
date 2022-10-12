@@ -7,10 +7,6 @@ Name::Name() {
 
 }
 
-Token::Type Name::type() const {
-    return Token::Type::Name;
-}
-
 void Name::serialize(QDataStream& stream) const {
     stream << m_name;
 }
