@@ -4,11 +4,10 @@
 
 namespace Norm {
 
-using Id = quint16;
-using IdList = QList<Id>;
-
 class Token {
 public:
+    using Id = quint16;
+
     enum class Type : quint8 {
         Project  = 00,
         Version  = 01,

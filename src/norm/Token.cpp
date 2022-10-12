@@ -7,7 +7,7 @@ Token::Token() {
 
 }
 
-Id Token::id() const {
+Token::Id Token::id() const {
     return m_id;
 }
 
