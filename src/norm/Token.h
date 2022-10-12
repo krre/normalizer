@@ -4,8 +4,6 @@
 
 namespace Norm {
 
-class Token;
-
 using Id = quint16;
 using IdList = QList<Id>;
 
