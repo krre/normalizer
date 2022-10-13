@@ -6,11 +6,11 @@ Parameter::Parameter() {
 
 }
 
-Type::Type* Parameter::type() const {
+Type* Parameter::type() const {
     return m_type;
 }
 
-void Parameter::setType(Type::Type* type) {
+void Parameter::setType(Type* type) {
     m_type = type;
 }
 

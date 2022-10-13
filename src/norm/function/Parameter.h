@@ -9,11 +9,11 @@ class Parameter : public Token, public Helper::Name {
 public:
     Parameter();
 
-    Type::Type* type() const;
-    void setType(Type::Type* type);
+    Type* type() const;
+    void setType(Type* type);
 
 private:
-    Type::Type* m_type;
+    Type* m_type;
 };
 
 }

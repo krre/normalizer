@@ -1,23 +1,12 @@
 #pragma once
-#include <QtGlobal>
-#include <QString>
+#include "norm/Token.h"
+#include "norm/helper/Name.h"
 
-namespace Type {
+namespace Norm {
 
-class Type {
+class Type : public Token, Helper::Name {
 public:
-    using Id = quint32;
-
     Type();
-
-    Id id() const;
-
-    QString name() const;
-    void setName(const QString& name);
-
-private:
-    Id m_id = 0;
-    QString m_name;
 };
 
 }
