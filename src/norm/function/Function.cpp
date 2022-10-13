@@ -8,7 +8,7 @@ Function::Function() {
 }
 
 Code Function::code() const {
-    return Const::Norm::Token::Version;
+    return Const::Norm::Token::Function;
 }
 
 void Function::serialize(QDataStream& stream) const {
@@ -19,6 +19,14 @@ void Function::serialize(QDataStream& stream) const {
 
 void Function::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
+}
+
+void Function::addParameter(Parameter* parameter) {
+    parameters.append(parameter);
+}
+
+void Function::removeParameter(Parameter* parameter) {
+    parameters.removeOne(parameter);
 }
 
 }

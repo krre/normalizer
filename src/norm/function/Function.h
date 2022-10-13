@@ -1,8 +1,10 @@
 #pragma once
-#include "norm/helper/Name.h"
 #include "norm/Token.h"
+#include "norm/helper/Name.h"
 
 namespace Norm {
+
+class Parameter;
 
 class Function : public Token, Helper::Name {
 public:
@@ -12,6 +14,12 @@ public:
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
+
+    void addParameter(Parameter* parameter);
+    void removeParameter(Parameter* parameter);
+
+private:
+    QList<Parameter*> parameters;
 };
 
 }

@@ -1,0 +1,19 @@
+#pragma once
+#include "norm/Token.h"
+#include "norm/helper/Name.h"
+#include "norm/type/Type.h"
+
+namespace Norm {
+
+class Parameter : public Token, public Helper::Name {
+public:
+    Parameter();
+
+    Type::Type* type() const;
+    void setType(Type::Type* type);
+
+private:
+    Type::Type* m_type;
+};
+
+}
