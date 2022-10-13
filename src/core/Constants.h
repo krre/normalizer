@@ -1,6 +1,7 @@
 #pragma once
 #include <QString>
 #include <QObject>
+#include "CommonTypes.h"
 
 namespace Const {
 
@@ -44,6 +45,18 @@ namespace Project {
             const QString Name = QObject::tr("Library");
             constexpr auto Source = "lib";
         }
+    }
+}
+
+namespace Norm {
+    namespace Token {
+        using namespace ::Norm;
+
+        constexpr Code Project  = 0x00;
+        constexpr Code Version  = 0x01;
+        constexpr Code Name     = 0x02;
+        constexpr Code Module   = 0x03;
+        constexpr Code Function = 0x04;
     }
 }
 

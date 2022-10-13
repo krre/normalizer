@@ -13,6 +13,8 @@ public:
 
     Version();
 
+    Code code() const override;
+
     void setVersion(const QVersionNumber& version);
     QVersionNumber version() const;
 

@@ -1,9 +1,14 @@
 #include "Version.h"
+#include "core/Constants.h"
 
 namespace Norm {
 
 Version::Version() {
 
+}
+
+Code Version::code() const {
+    return Const::Norm::Token::Version;
 }
 
 void Version::setVersion(const QVersionNumber& version) {

@@ -1,10 +1,15 @@
 #include "Name.h"
+#include "core/Constants.h"
 #include <QDataStream>
 
 namespace Norm {
 
 Name::Name() {
 
+}
+
+Code Name::code() const {
+    return Const::Norm::Token::Name;
 }
 
 void Name::serialize(QDataStream& stream) const {

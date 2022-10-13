@@ -1,5 +1,6 @@
 #include "Project.h"
 #include <QDataStream>
+#include "core/Constants.h"
 
 namespace Norm {
 
@@ -9,6 +10,10 @@ Project::Project() {
 
 Project::~Project() {
 
+}
+
+Code Project::code() const {
+    return Const::Norm::Token::Project;
 }
 
 void Project::serialize(QDataStream& stream) const {

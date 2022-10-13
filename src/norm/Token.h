@@ -1,6 +1,7 @@
 #pragma once
 #include <QtGlobal>
 #include <QList>
+#include "core/CommonTypes.h"
 
 namespace Norm {
 
@@ -9,6 +10,8 @@ public:
     using Id = quint16;
 
     Token();
+
+    Code virtual code() const = 0;
 
     Id id() const;
     void setId(Id id);
