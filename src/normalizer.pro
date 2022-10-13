@@ -11,6 +11,7 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
+    norm/Flow.cpp \
     norm/Module.cpp \
     norm/Name.cpp \
     norm/Token.cpp \
@@ -26,7 +27,6 @@ SOURCES += \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
     norm/type/Type.cpp \
-    norm/unit/Flow.cpp \
     norm/unit/Unit.cpp \
     project/Node.cpp \
     project/ProjectManager.cpp \
@@ -51,6 +51,7 @@ HEADERS += \
     core/Settings.h \
     core/Utils.h \
     core/Version.h \
+    norm/Flow.h \
     norm/Module.h \
     norm/Name.h \
     norm/Token.h \
@@ -66,7 +67,6 @@ HEADERS += \
     norm/project/Project.h \
     norm/project/Version.h \
     norm/type/Type.h \
-    norm/unit/Flow.h \
     norm/unit/Unit.h \
     project/Node.h \
     project/ProjectManager.h \

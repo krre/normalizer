@@ -3,12 +3,9 @@
 #include <QString>
 #include <QScopedPointer>
 
-namespace Unit {
-    class Flow;
-}
-
 namespace Norm {
     class Project;
+    class Flow;
 }
 
 class ProjectManager {
@@ -29,7 +26,7 @@ public:
 private:
     void createApp();
     void createLib();
-    void createFlow(Unit::Flow* flow);
+    void createFlow(Norm::Flow* flow);
 
     QString m_path;
     QScopedPointer<Norm::Project> m_project;

@@ -57,6 +57,7 @@ namespace Norm {
         constexpr Code Name     = 0x02;
         constexpr Code Module   = 0x03;
         constexpr Code Function = 0x04;
+        constexpr Code Flow     = 0x05;
     }
 }
 
