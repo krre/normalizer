@@ -14,7 +14,7 @@ Code Module::code() const {
 }
 
 void Module::serialize(QDataStream& stream) const {
-    stream << m_name->id();
+    stream << name()->id();
 
     Id parentId = m_parent ? m_parent->id() : 0;
     stream << parentId;
@@ -30,14 +30,6 @@ void Module::deserialize(QDataStream& stream) {
     if (parentId) {
 
     }
-}
-
-Name* Module::name() const {
-    return m_name.data();
-}
-
-void Module::setName(Name* name) {
-    m_name.reset(name);
 }
 
 Module* Module::parent() const {

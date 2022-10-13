@@ -21,6 +21,7 @@ SOURCES += \
     norm/expression/operator/Math.cpp \
     norm/expression/operator/Operator.cpp \
     norm/function/Function.cpp \
+    norm/helper/Name.cpp \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
     norm/type/Type.cpp \
@@ -62,6 +63,7 @@ HEADERS += \
     norm/expression/operator/Math.h \
     norm/expression/operator/Operator.h \
     norm/function/Function.h \
+    norm/helper/Name.h \
     norm/project/Project.h \
     norm/project/Version.h \
     norm/type/Type.h \

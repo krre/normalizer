@@ -1,12 +1,13 @@
 #pragma once
 #include "Token.h"
+#include "helper/Name.h"
 #include <QScopedPointer>
 
 namespace Norm {
 
 class Name;
 
-class Module : public Token {
+class Module : public Token, Helper::Name {
 public:
     Module();
 
@@ -15,14 +16,10 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    Name* name() const;
-    void setName(Name* name);
-
     Module* parent() const;
     void setParent(Module* parent);
 
 private:
-    QScopedPointer<Name> m_name;
     Module* m_parent = nullptr;
 };
 

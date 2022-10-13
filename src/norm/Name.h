@@ -16,7 +16,7 @@ public:
     void setName(const QString& name);
 
 private:
-    QString m_name;
+    QString m_name = "Unnamed";
 };
 
 }
