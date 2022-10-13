@@ -27,7 +27,6 @@ SOURCES += \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
     norm/type/Type.cpp \
-    norm/unit/Unit.cpp \
     project/Node.cpp \
     project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
@@ -67,7 +66,6 @@ HEADERS += \
     norm/project/Project.h \
     norm/project/Version.h \
     norm/type/Type.h \
-    norm/unit/Unit.h \
     project/Node.h \
     project/ProjectManager.h \
     project/ProjectSettings.h \
