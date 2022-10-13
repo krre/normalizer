@@ -28,8 +28,6 @@ SOURCES += \
     norm/type/Type.cpp \
     norm/unit/Flow.cpp \
     norm/unit/Unit.cpp \
-    norm/unit/helper/Helper.cpp \
-    norm/unit/helper/Name.cpp \
     project/Node.cpp \
     project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
@@ -70,8 +68,6 @@ HEADERS += \
     norm/type/Type.h \
     norm/unit/Flow.h \
     norm/unit/Unit.h \
-    norm/unit/helper/Helper.h \
-    norm/unit/helper/Name.h \
     project/Node.h \
     project/ProjectManager.h \
     project/ProjectSettings.h \
