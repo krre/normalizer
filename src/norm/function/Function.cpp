@@ -13,10 +13,12 @@ Code Function::code() const {
 
 void Function::serialize(QDataStream& stream) const {
     Token::serialize(stream);
+    ModuleId::serialize(stream);
 }
 
 void Function::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
+    ModuleId::deserialize(stream);
 }
 
 void Function::addParameter(Parameter* parameter) {

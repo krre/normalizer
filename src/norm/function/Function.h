@@ -1,11 +1,12 @@
 #pragma once
 #include "norm/Token.h"
+#include "norm/helper/ModuleId.h"
 
 namespace Norm {
 
 class Parameter;
 
-class Function : public Token {
+class Function : public Token, Helper::ModuleId {
 public:
     Function();
 
