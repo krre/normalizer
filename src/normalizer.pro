@@ -25,6 +25,7 @@ SOURCES += \
     norm/function/Parameter.cpp \
     norm/helper/Helper.cpp \
     norm/helper/ModuleId.cpp \
+    norm/helper/NameId.cpp \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
     norm/type/Type.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
     norm/function/Parameter.h \
     norm/helper/Helper.h \
     norm/helper/ModuleId.h \
+    norm/helper/NameId.h \
     norm/project/Project.h \
     norm/project/Version.h \
     norm/type/Type.h \
