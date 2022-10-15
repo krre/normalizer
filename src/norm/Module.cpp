@@ -13,8 +13,7 @@ Code Module::code() const {
 }
 
 void Module::serialize(QDataStream& stream) const {
-    Id parentId = m_parent ? m_parent->id() : 0;
-    stream << parentId;
+    stream << m_parentId;
 }
 
 void Module::deserialize(QDataStream& stream) {
@@ -23,18 +22,14 @@ void Module::deserialize(QDataStream& stream) {
 
     Id parentId;
     stream >> parentId;
-
-    if (parentId) {
-
-    }
 }
 
-Module* Module::parent() const {
-    return m_parent;
+Token::Id Module::parentId() const {
+    return m_parentId;
 }
 
-void Module::setParent(Module* parent) {
-    m_parent = parent;
+void Module::setParentId(Id parentId) {
+    m_parentId = parentId;
 }
 
 }
