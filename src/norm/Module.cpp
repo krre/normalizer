@@ -13,13 +13,13 @@ Code Module::code() const {
 }
 
 void Module::serialize(QDataStream& stream) const {
-    stream << moduleId();
+    Token::serialize(stream);
+    ModuleId::serialize(stream);
 }
 
 void Module::deserialize(QDataStream& stream) {
-    Id moduleId;
-    stream >> moduleId;
-    setModuleId(moduleId);
+    Token::deserialize(stream);
+    ModuleId::deserialize(stream);
 }
 
 }
