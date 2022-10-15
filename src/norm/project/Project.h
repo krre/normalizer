@@ -1,9 +1,10 @@
 #pragma once
 #include "norm/Token.h"
+#include "norm/helper/NameId.h"
 
 namespace Norm {
 
-class Project : public Token {
+class Project : public Token, Helper::NameId {
 public:
     enum class Target {
         Application,

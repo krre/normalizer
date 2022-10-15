@@ -18,11 +18,14 @@ Code Project::code() const {
 
 void Project::serialize(QDataStream& stream) const {
     Token::serialize(stream);
+    NameId::serialize(stream);
     stream << quint8(m_target);
 }
 
 void Project::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
+    NameId::deserialize(stream);
+
     quint8 t;
     stream >> t;
     m_target = Target(t);
