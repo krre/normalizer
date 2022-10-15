@@ -1,13 +1,12 @@
 #pragma once
 #include "Token.h"
-#include "helper/Name.h"
 #include <QScopedPointer>
 
 namespace Norm {
 
 class Name;
 
-class Module : public Token, Helper::Name {
+class Module : public Token {
 public:
     Module();
 

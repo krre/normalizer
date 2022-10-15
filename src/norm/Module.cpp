@@ -1,5 +1,4 @@
 #include "Module.h"
-#include "Name.h"
 #include "core/Constants.h"
 #include <QDataStream>
 
@@ -14,8 +13,6 @@ Code Module::code() const {
 }
 
 void Module::serialize(QDataStream& stream) const {
-    stream << name()->id();
-
     Id parentId = m_parent ? m_parent->id() : 0;
     stream << parentId;
 }

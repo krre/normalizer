@@ -13,8 +13,6 @@ Code Function::code() const {
 
 void Function::serialize(QDataStream& stream) const {
     Token::serialize(stream);
-
-    stream << name()->id();
 }
 
 void Function::deserialize(QDataStream& stream) {

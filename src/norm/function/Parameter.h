@@ -1,11 +1,10 @@
 #pragma once
 #include "norm/Token.h"
-#include "norm/helper/Name.h"
 #include "norm/type/Type.h"
 
 namespace Norm {
 
-class Parameter : public Token, public Helper::Name {
+class Parameter : public Token {
 public:
     Parameter();
 
