@@ -13,23 +13,19 @@ Code Module::code() const {
 }
 
 void Module::serialize(QDataStream& stream) const {
-    stream << m_parentId;
+    stream << m_moduleId;
 }
 
 void Module::deserialize(QDataStream& stream) {
-    Id nameId;
-    stream >> nameId;
-
-    Id parentId;
-    stream >> parentId;
+    stream >> m_moduleId;
 }
 
-Token::Id Module::parentId() const {
-    return m_parentId;
+Token::Id Module::moduleId() const {
+    return m_moduleId;
 }
 
-void Module::setParentId(Id parentId) {
-    m_parentId = parentId;
+void Module::setModuleId(Id parentId) {
+    m_moduleId = parentId;
 }
 
 }

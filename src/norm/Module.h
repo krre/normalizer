@@ -15,11 +15,11 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    Id parentId() const;
-    void setParentId(Id parentId);
+    Id moduleId() const;
+    void setModuleId(Id parentId);
 
 private:
-    Id m_parentId = 0;
+    Id m_moduleId = 0;
 };
 
 }
