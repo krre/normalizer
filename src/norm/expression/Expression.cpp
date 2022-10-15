@@ -1,8 +1,8 @@
 #include "Expression.h"
 
-namespace Expression {
+namespace Norm {
 
-Expression::Expression(Node* parent) : Node(parent) {
+Expression::Expression() {
 
 }
 

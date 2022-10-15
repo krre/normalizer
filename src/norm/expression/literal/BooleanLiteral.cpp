@@ -1,8 +1,8 @@
 #include "BooleanLiteral.h"
 
-namespace Expression {
+namespace Norm {
 
-BooleanLiteral::BooleanLiteral(bool literal, Node* parent) : Expression(parent), m_literal(literal) {
+BooleanLiteral::BooleanLiteral(bool literal) : m_literal(literal) {
 
 }
 

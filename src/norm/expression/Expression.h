@@ -1,21 +1,11 @@
 #pragma once
-#include "project/Node.h"
-#include <QList>
+#include "norm/Token.h"
 
-namespace Type {
-    class Type;
-}
+namespace Norm {
 
-namespace Expression {
-
-class Expression;
-
-using Expressions = QList<Expression*>;
-
-class Expression : public Node {
+class Expression : public Token {
 public:
-    Expression(Node* parent = nullptr);
-    virtual Type::Type* value() { return nullptr; }
+    Expression();
 };
 
 }

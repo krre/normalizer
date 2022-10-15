@@ -1,7 +1,7 @@
 #pragma once
 #include "norm/expression/Expression.h"
 
-namespace Expression::Operator {
+namespace Norm {
 
 class Math : public Expression {
 public:
@@ -12,14 +12,12 @@ public:
         Division
     };
 
-    Math(Operation operation, const Expressions& expressions, Node* parent = nullptr);
+    Math(Operation operation);
 
     Operation operation() const;
-    const Expressions& expressions() const;
 
 private:
     Operation m_operation;
-    Expressions m_expressions;
 };
 
 }

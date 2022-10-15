@@ -1,11 +1,11 @@
 #pragma once
 #include "norm/expression/Expression.h"
 
-namespace Expression::Operator {
+namespace Norm {
 
 class Operator : public Expression {
 public:
-    Operator(Node* parent = nullptr);
+    Operator();
 };
 
 }

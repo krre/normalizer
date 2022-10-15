@@ -1,11 +1,11 @@
 #pragma once
 #include "norm/expression/Expression.h"
 
-namespace Expression {
+namespace Norm {
 
 class NumberLiteral : public Expression {
 public:
-    NumberLiteral(double literal, Node* parent = nullptr);
+    NumberLiteral(double literal);
 
 private:
     double m_literal;

@@ -103,6 +103,5 @@ void ProjectManager::createLib() {
 }
 
 void ProjectManager::createFlow(Norm::Flow* flow) {
-    using namespace Expression::Operator;
 //    flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(3), new Expression::NumberLiteral(2) } ));
 }

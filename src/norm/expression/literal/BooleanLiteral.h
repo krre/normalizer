@@ -1,11 +1,11 @@
 #pragma once
 #include "norm/expression/Expression.h"
 
-namespace Expression {
+namespace Norm {
 
 class BooleanLiteral : public Expression {
 public:
-    BooleanLiteral(bool literal, Node* parent = nullptr);
+    BooleanLiteral(bool literal);
 
 private:
     bool m_literal;

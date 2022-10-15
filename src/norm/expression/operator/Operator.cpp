@@ -1,8 +1,8 @@
 #include "Operator.h"
 
-namespace Expression::Operator {
+namespace Norm {
 
-Operator::Operator(Node* parent) : Expression(parent) {
+Operator::Operator() {
 
 }
 

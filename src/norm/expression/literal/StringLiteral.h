@@ -2,11 +2,11 @@
 #include "norm/expression/Expression.h"
 #include <QString>
 
-namespace Expression {
+namespace Norm {
 
 class StringLiteral : public Expression {
 public:
-    StringLiteral(const QString& literal, Node* parent = nullptr);
+    StringLiteral(const QString& literal);
 
 private:
     QString m_literal;

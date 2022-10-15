@@ -1,8 +1,8 @@
 #include "StringLiteral.h"
 
-namespace Expression {
+namespace Norm {
 
-StringLiteral::StringLiteral(const QString& literal, Node* parent) : Expression(parent), m_literal(literal) {
+StringLiteral::StringLiteral(const QString& literal) : m_literal(literal) {
 
 }
 
