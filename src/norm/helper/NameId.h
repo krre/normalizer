@@ -11,11 +11,11 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    void setNameId(Token::Id moduleId);
-    Token::Id nameId() const;
+    void setNameId(Id moduleId);
+    Id nameId() const;
 
 private:
-    Token::Id m_nameId;
+    Id m_nameId;
 };
 
 }

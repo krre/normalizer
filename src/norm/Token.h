@@ -7,8 +7,6 @@ namespace Norm {
 
 class Token {
 public:
-    using Id = quint16;
-
     Token();
 
     Code virtual code() const = 0;

@@ -15,11 +15,11 @@ void NameId::deserialize(QDataStream& stream) {
     stream >> m_nameId;
 }
 
-void NameId::setNameId(Token::Id moduleId) {
+void NameId::setNameId(Id moduleId) {
     m_nameId = moduleId;
 }
 
-Token::Id NameId::nameId() const {
+Id NameId::nameId() const {
     return m_nameId;
 }
 

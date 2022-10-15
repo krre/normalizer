@@ -1,6 +1,6 @@
 #pragma once
 #include "Helper.h"
-#include "norm/Token.h"
+#include "core/CommonTypes.h"
 
 namespace Norm::Helper {
 
@@ -11,11 +11,11 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    void setModuleId(Token::Id moduleId);
-    Token::Id moduleId() const;
+    void setModuleId(Id moduleId);
+    Id moduleId() const;
 
 private:
-    Token::Id m_moduleId;
+    Id m_moduleId;
 };
 
 }
