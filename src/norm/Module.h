@@ -1,12 +1,13 @@
 #pragma once
 #include "Token.h"
+#include "helper/ModuleId.h"
 #include <QScopedPointer>
 
 namespace Norm {
 
 class Name;
 
-class Module : public Token {
+class Module : public Token, Helper::ModuleId {
 public:
     Module();
 
@@ -14,12 +15,6 @@ public:
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
-
-    Id moduleId() const;
-    void setModuleId(Id parentId);
-
-private:
-    Id m_moduleId = 0;
 };
 
 }
