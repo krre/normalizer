@@ -6,6 +6,7 @@
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/literal/StringLiteral.h"
 #include "norm/expression/literal/NumberLiteral.h"
+#include "norm/expression/literal/BooleanLiteral.h"
 #include "norm/Name.h"
 #include "norm/Module.h"
 #include "core/Constants.h"
@@ -20,6 +21,7 @@ TokenFactory::TokenFactory() {
     creators.insert(Const::Norm::Token::Math, [] { return new Norm::Math; });
     creators.insert(Const::Norm::Token::StringLiteral, [] { return new Norm::StringLiteral; });
     creators.insert(Const::Norm::Token::NumberLiteral, [] { return new Norm::NumberLiteral; });
+    creators.insert(Const::Norm::Token::BooleanLiteral, [] { return new Norm::BooleanLiteral; });
 }
 
 Norm::Token* TokenFactory::create(Norm::Code code) {

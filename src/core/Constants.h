@@ -48,15 +48,16 @@ namespace Norm {
     namespace Token {
         using namespace ::Norm;
 
-        constexpr Code Project       = 0x00;
-        constexpr Code Version       = 0x01;
-        constexpr Code Name          = 0x02;
-        constexpr Code Module        = 0x03;
-        constexpr Code Function      = 0x04;
-        constexpr Code Parameter     = 0x05;
-        constexpr Code Math          = 0x06;
-        constexpr Code StringLiteral = 0x07;
-        constexpr Code NumberLiteral = 0x08;
+        constexpr Code Project        = 0x00;
+        constexpr Code Version        = 0x01;
+        constexpr Code Name           = 0x02;
+        constexpr Code Module         = 0x03;
+        constexpr Code Function       = 0x04;
+        constexpr Code Parameter      = 0x05;
+        constexpr Code Math           = 0x06;
+        constexpr Code StringLiteral  = 0x07;
+        constexpr Code NumberLiteral  = 0x08;
+        constexpr Code BooleanLiteral = 0x09;
     }
 }
 
