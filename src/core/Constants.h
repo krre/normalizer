@@ -5,10 +5,6 @@
 
 namespace Const {
 
-namespace Version {
-
-}
-
 namespace App {
     constexpr auto Organization = "Norm Group";
     constexpr auto Name = "Normalizer";
