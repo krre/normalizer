@@ -8,6 +8,8 @@ namespace Norm {
     class Flow;
 }
 
+class Database;
+
 class ProjectManager {
 public:
     ProjectManager();
@@ -21,7 +23,7 @@ public:
     void close();
 
     void write(const QString& filePath);
-    void read(const QString& path);
+    void read(const QString& filePath);
 
 private:
     void createApp();
@@ -29,5 +31,5 @@ private:
     void createFlow(Norm::Flow* flow);
 
     QString m_path;
-    QScopedPointer<Norm::Project> m_project;
+    QScopedPointer<Database> database;
 };

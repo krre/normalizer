@@ -30,6 +30,7 @@ SOURCES += \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
     norm/type/Type.cpp \
+    project/Database.cpp \
     project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
     ui/ActionManager.cpp \
@@ -71,6 +72,7 @@ HEADERS += \
     norm/project/Project.h \
     norm/project/Version.h \
     norm/type/Type.h \
+    project/Database.h \
     project/ProjectManager.h \
     project/ProjectSettings.h \
     ui/ActionManager.h \

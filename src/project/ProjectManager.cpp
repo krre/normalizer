@@ -1,4 +1,5 @@
 #include "ProjectManager.h"
+#include "Database.h"
 #include "core/Constants.h"
 #include "core/Utils.h"
 #include "norm/project/Project.h"
@@ -7,6 +8,7 @@
 #include <QtCore>
 
 ProjectManager::ProjectManager() {
+    database.reset(new Database);
 }
 
 ProjectManager::~ProjectManager() {
@@ -18,11 +20,10 @@ QString ProjectManager::path() const {
 }
 
 Norm::Project::Target ProjectManager::target() const {
-    return m_project->target();
+//    return m_project->target();
 }
 
 void ProjectManager::create(const QString& path, Norm::Project::Target target) {
-    m_project.reset(new Norm::Project);
     m_path = path;
 
     QString filePath;
@@ -43,7 +44,6 @@ void ProjectManager::create(const QString& path, Norm::Project::Target target) {
 }
 
 void ProjectManager::open(const QString& path) {
-    m_project.reset(new Norm::Project);
     m_path = path;
     QString filePath = Utils::applicationPath(path) + Const::Project::Extension::Binary;
 
@@ -74,19 +74,19 @@ void ProjectManager::write(const QString& filePath) {
     }
 
     QDataStream stream(&file);
-    m_project->serialize(stream);
+    database->serialize(stream);
 }
 
-void ProjectManager::read(const QString& path) {
-    QFile file(path);
+void ProjectManager::read(const QString& filePath) {
+    QFile file(filePath);
 
     if (!file.open(QIODeviceBase::ReadOnly)) {
-        qWarning().noquote() << "Failed to open binary file for reading:" << path;
+        qWarning().noquote() << "Failed to open binary file for reading:" << filePath;
         return;
     }
 
     QDataStream stream(&file);
-    m_project->deserialize(stream);
+    database->deserialize(stream);
 }
 
 void ProjectManager::createApp() {
