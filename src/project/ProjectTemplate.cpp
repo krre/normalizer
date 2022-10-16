@@ -4,7 +4,7 @@
 #include "norm/Name.h"
 #include "norm/function/Function.h"
 #include "norm/expression/operator/Math.h"
-#include "norm/expression/literal/NumberLiteral.h"
+#include "norm/expression/Literal.h"
 
 ProjectTemplate::ProjectTemplate(ProjectManager* projectManager) : projectManager(projectManager) {
 
