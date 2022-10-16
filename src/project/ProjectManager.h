@@ -30,10 +30,6 @@ public:
     void removeToken(Norm::Token* token);
 
 private:
-    void createApp();
-    void createLib();
-    void createFlow(Norm::Flow* flow);
-
     QString m_path;
     QScopedPointer<TokenFactory> tokenFactory;
     QScopedPointer<Database> database;

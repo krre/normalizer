@@ -33,6 +33,7 @@ SOURCES += \
     project/Database.cpp \
     project/ProjectManager.cpp \
     project/ProjectSettings.cpp \
+    project/ProjectTemplate.cpp \
     project/TokenFactory.cpp \
     ui/ActionManager.cpp \
     ui/GuiSession.cpp \
@@ -76,6 +77,7 @@ HEADERS += \
     project/Database.h \
     project/ProjectManager.h \
     project/ProjectSettings.h \
+    project/ProjectTemplate.h \
     project/TokenFactory.h \
     ui/ActionManager.h \
     ui/GuiSession.h \

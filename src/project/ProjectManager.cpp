@@ -1,11 +1,10 @@
 #include "ProjectManager.h"
 #include "Database.h"
+#include "ProjectTemplate.h"
 #include "TokenFactory.h"
 #include "core/Constants.h"
 #include "core/Utils.h"
 #include "norm/project/Project.h"
-#include "norm/expression/operator/Math.h"
-#include "norm/expression/literal/NumberLiteral.h"
 #include <QtCore>
 
 ProjectManager::ProjectManager() {
@@ -35,15 +34,16 @@ void ProjectManager::create(const QString& path, Norm::Project::Target target) {
     m_path = path;
 
     QString filePath;
+    ProjectTemplate projectTemplate(this);
 
     switch (target) {
         case Norm::Project::Target::Application:
             filePath = Utils::applicationPath(path);
-            createApp();
+            projectTemplate.createApp();
             break;
         case Norm::Project::Target::Library:
             filePath = Utils::libraryPath(path);
-            createLib();
+            projectTemplate.createLib();
             break;
         default: throw std::runtime_error("Unknown project target"); break;
     }
@@ -105,19 +105,4 @@ Norm::Token* ProjectManager::createToken(Norm::Code code) const {
 
 void ProjectManager::removeToken(Norm::Token* token) {
     database->removeToken(token);
-}
-
-void ProjectManager::createApp() {
-//    auto entry = new Unit::Entry(root.data());
-//    createFlow(entry->flow());
-}
-
-void ProjectManager::createLib() {
-//    auto func = new Unit::Function(root.data());
-//    func->setName("Add");
-//    createFlow(func->flow());
-}
-
-void ProjectManager::createFlow(Norm::Flow* flow) {
-//    flow->append(new Math(Math::Operation::Addition, { new Expression::NumberLiteral(3), new Expression::NumberLiteral(2) } ));
 }
