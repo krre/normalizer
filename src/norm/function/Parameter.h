@@ -1,18 +1,17 @@
 #pragma once
 #include "norm/Token.h"
-#include "norm/type/Type.h"
+#include "norm/helper/TypeId.h"
+#include "norm/helper/NameId.h"
 
 namespace Norm {
 
-class Parameter : public Token {
+class Parameter : public Token, public Helper::NameId, public Helper::TypeId {
 public:
     Parameter();
+    Code code() const override;
 
-    Type* type() const;
-    void setType(Type* type);
-
-private:
-    Type* m_type;
+    void serialize(QDataStream& stream) const override;
+    void deserialize(QDataStream& stream) override;
 };
 
 }

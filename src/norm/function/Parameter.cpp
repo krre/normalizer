@@ -1,4 +1,5 @@
 #include "Parameter.h"
+#include "core/Constants.h"
 
 namespace Norm {
 
@@ -6,12 +7,18 @@ Parameter::Parameter() {
 
 }
 
-Type* Parameter::type() const {
-    return m_type;
+Code Parameter::code() const {
+    return Const::Norm::Token::Parameter;
 }
 
-void Parameter::setType(Type* type) {
-    m_type = type;
+void Parameter::serialize(QDataStream& stream) const {
+    NameId::serialize(stream);
+    TypeId::serialize(stream);
+}
+
+void Parameter::deserialize(QDataStream& stream) {
+    NameId::deserialize(stream);
+    TypeId::deserialize(stream);
 }
 
 }
