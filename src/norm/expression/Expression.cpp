@@ -10,12 +10,14 @@ Expression::Expression() {
 void Expression::serialize(QDataStream& stream) const {
     Token::serialize(stream);
     FunctionId::serialize(stream);
+    ExpressionId::serialize(stream);
     stream << m_index;
 }
 
 void Expression::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
     FunctionId::deserialize(stream);
+    ExpressionId::deserialize(stream);
     stream >> m_index;
 }
 

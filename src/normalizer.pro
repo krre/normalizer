@@ -22,6 +22,7 @@ SOURCES += \
     norm/expression/operator/Operator.cpp \
     norm/function/Function.cpp \
     norm/function/Parameter.cpp \
+    norm/helper/ExpressionId.cpp \
     norm/helper/FunctionId.cpp \
     norm/helper/Helper.cpp \
     norm/helper/ModuleId.cpp \
@@ -66,6 +67,7 @@ HEADERS += \
     norm/expression/operator/Operator.h \
     norm/function/Function.h \
     norm/function/Parameter.h \
+    norm/helper/ExpressionId.h \
     norm/helper/FunctionId.h \
     norm/helper/Helper.h \
     norm/helper/ModuleId.h \

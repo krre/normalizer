@@ -38,9 +38,11 @@ Norm::Expression* ProjectTemplate::createExpression() {
 
     auto num1 = static_cast<Norm::NumberLiteral*>(projectManager->createToken(Const::Norm::Token::NumberLiteral));
     num1->setLiteral(3);
+    num1->setExpressionId(math->id());
 
     auto num2 = static_cast<Norm::NumberLiteral*>(projectManager->createToken(Const::Norm::Token::NumberLiteral));
     num2->setLiteral(2);
+    num2->setExpressionId(math->id());
 
     return math;
 }
