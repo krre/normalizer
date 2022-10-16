@@ -12,11 +12,13 @@ Code Parameter::code() const {
 }
 
 void Parameter::serialize(QDataStream& stream) const {
+    Token::serialize(stream);
     NameId::serialize(stream);
     TypeId::serialize(stream);
 }
 
 void Parameter::deserialize(QDataStream& stream) {
+    Token::deserialize(stream);
     NameId::deserialize(stream);
     TypeId::deserialize(stream);
 }

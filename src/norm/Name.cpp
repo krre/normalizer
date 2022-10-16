@@ -13,10 +13,12 @@ Code Name::code() const {
 }
 
 void Name::serialize(QDataStream& stream) const {
+    Token::serialize(stream);
     stream << m_name;
 }
 
 void Name::deserialize(QDataStream& stream) {
+    Token::deserialize(stream);
     stream >> m_name;
 }
 
