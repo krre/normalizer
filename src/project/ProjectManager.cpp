@@ -1,5 +1,6 @@
 #include "ProjectManager.h"
 #include "Database.h"
+#include "TokenFactory.h"
 #include "core/Constants.h"
 #include "core/Utils.h"
 #include "norm/project/Project.h"
@@ -8,7 +9,8 @@
 #include <QtCore>
 
 ProjectManager::ProjectManager() {
-    database.reset(new Database);
+    tokenFactory.reset(new TokenFactory);
+    database.reset(new Database(this));
 }
 
 ProjectManager::~ProjectManager() {
@@ -20,7 +22,13 @@ QString ProjectManager::path() const {
 }
 
 Norm::Project::Target ProjectManager::target() const {
-//    return m_project->target();
+    Norm::Project* project = static_cast<Norm::Project*>(database->token(Const::Norm::Token::Project, 1));
+
+    if (!project) {
+        throw std::runtime_error("Project token not exists");
+    }
+
+    return project->target();
 }
 
 void ProjectManager::create(const QString& path, Norm::Project::Target target) {
@@ -87,6 +95,16 @@ void ProjectManager::read(const QString& filePath) {
 
     QDataStream stream(&file);
     database->deserialize(stream);
+}
+
+Norm::Token* ProjectManager::createToken(Norm::Code code) const {
+    auto token = tokenFactory->create(code);
+    database->addToken(token);
+    return token;
+}
+
+void ProjectManager::removeToken(Norm::Token* token) {
+    database->removeToken(token);
 }
 
 void ProjectManager::createApp() {

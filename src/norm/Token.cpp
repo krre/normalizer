@@ -7,6 +7,10 @@ Token::Token() {
 
 }
 
+Token::~Token() {
+
+}
+
 Id Token::id() const {
     return m_id;
 }

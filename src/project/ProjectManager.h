@@ -9,6 +9,7 @@ namespace Norm {
 }
 
 class Database;
+class TokenFactory;
 
 class ProjectManager {
 public:
@@ -25,11 +26,15 @@ public:
     void write(const QString& filePath);
     void read(const QString& filePath);
 
+    Norm::Token* createToken(Norm::Code code) const;
+    void removeToken(Norm::Token* token);
+
 private:
     void createApp();
     void createLib();
     void createFlow(Norm::Flow* flow);
 
     QString m_path;
+    QScopedPointer<TokenFactory> tokenFactory;
     QScopedPointer<Database> database;
 };

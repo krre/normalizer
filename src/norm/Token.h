@@ -8,6 +8,7 @@ namespace Norm {
 class Token {
 public:
     Token();
+    virtual ~Token();
 
     Code virtual code() const = 0;
 
