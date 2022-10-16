@@ -55,7 +55,8 @@ namespace Norm {
         constexpr Code Function      = 0x04;
         constexpr Code Parameter     = 0x05;
         constexpr Code Math          = 0x06;
-        constexpr Code StringLiteral = 0x06;
+        constexpr Code StringLiteral = 0x07;
+        constexpr Code NumberLiteral = 0x08;
     }
 }
 
