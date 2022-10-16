@@ -4,7 +4,7 @@
 
 namespace Norm {
 
-class Project : public Token, Helper::NameId {
+class Project : public Token, public Helper::NameId {
 public:
     enum class Target {
         Application,

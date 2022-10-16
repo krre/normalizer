@@ -7,7 +7,7 @@ namespace Norm {
 
 class Parameter;
 
-class Function : public Token, Helper::NameId, Helper::ModuleId {
+class Function : public Token, public Helper::NameId, public Helper::ModuleId {
 public:
     Function();
 

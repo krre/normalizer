@@ -8,7 +8,7 @@ namespace Norm {
 
 class Name;
 
-class Module : public Token, Helper::NameId, Helper::ModuleId {
+class Module : public Token, public Helper::NameId, public Helper::ModuleId {
 public:
     Module();
 
