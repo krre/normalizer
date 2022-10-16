@@ -22,12 +22,4 @@ void Function::deserialize(QDataStream& stream) {
     ModuleId::deserialize(stream);
 }
 
-void Function::addParameter(Id parameterId) {
-    parameters.append(parameterId);
-}
-
-void Function::removeParameter(Id parameterId) {
-    parameters.removeOne(parameterId);
-}
-
 }

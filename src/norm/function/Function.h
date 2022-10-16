@@ -15,12 +15,6 @@ public:
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
-
-    void addParameter(Id parameterId);
-    void removeParameter(Id parameterId);
-
-private:
-    QList<Id> parameters;
 };
 
 }
