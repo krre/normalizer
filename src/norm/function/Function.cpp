@@ -1,5 +1,4 @@
 #include "Function.h"
-#include "norm/Name.h"
 #include "core/Constants.h"
 
 namespace Norm {
