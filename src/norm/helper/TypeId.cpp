@@ -15,8 +15,8 @@ void TypeId::deserialize(QDataStream& stream) {
     stream >> m_typeId;
 }
 
-void TypeId::setTypeId(Id moduleId) {
-    m_typeId = moduleId;
+void TypeId::setTypeId(Id typeId) {
+    m_typeId = typeId;
 }
 
 Id TypeId::typeId() const {

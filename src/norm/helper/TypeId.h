@@ -11,7 +11,7 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    void setTypeId(Id moduleId);
+    void setTypeId(Id typeId);
     Id typeId() const;
 
 private:
