@@ -16,11 +16,11 @@ public:
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    void addParameter(Parameter* parameter);
-    void removeParameter(Parameter* parameter);
+    void addParameter(Id parameterId);
+    void removeParameter(Id parameterId);
 
 private:
-    QList<Parameter*> parameters;
+    QList<Id> parameters;
 };
 
 }
