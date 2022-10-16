@@ -31,6 +31,15 @@ void Database::deserialize(QDataStream& stream) {
 }
 
 void Database::addToken(Norm::Token* token) {
+    if (!token->id()) {
+        Norm::Id lastId = sequences[token->code()];
+        lastId++;
+        sequences[token->code()] = lastId;
+        token->setId(lastId);
+    } else {
+        sequences[token->code()] = qMax(token->id(), sequences[token->code()]);
+    }
+
     tables[token->code()].insert(token->id(), token);
 }
 

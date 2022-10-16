@@ -1,6 +1,7 @@
 #pragma once
 #include "core/CommonTypes.h"
 #include <QMap>
+#include <QHash>
 #include <QScopedPointer>
 
 namespace Norm {
@@ -27,4 +28,5 @@ public:
 private:
     ProjectManager* projectManager = nullptr;
     QMap<Norm::Code, Table> tables;
+    QHash<Norm::Code, Norm::Id> sequences;
 };
