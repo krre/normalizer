@@ -6,7 +6,15 @@ namespace Norm {
 
 class StringLiteral : public Expression {
 public:
-    StringLiteral(const QString& literal);
+    StringLiteral();
+
+    Code code() const override;
+
+    void serialize(QDataStream& stream) const override;
+    void deserialize(QDataStream& stream) override;
+
+    void setLiteral(const QString& literal);
+    const QString& literal() const;
 
 private:
     QString m_literal;

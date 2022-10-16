@@ -4,6 +4,7 @@
 #include "norm/function/Function.h"
 #include "norm/function/Parameter.h"
 #include "norm/expression/operator/Math.h"
+#include "norm/expression/literal/StringLiteral.h"
 #include "norm/Name.h"
 #include "norm/Module.h"
 #include "core/Constants.h"
@@ -16,6 +17,7 @@ TokenFactory::TokenFactory() {
     creators.insert(Const::Norm::Token::Function, [] { return new Norm::Function; });
     creators.insert(Const::Norm::Token::Parameter, [] { return new Norm::Parameter; });
     creators.insert(Const::Norm::Token::Math, [] { return new Norm::Math; });
+    creators.insert(Const::Norm::Token::StringLiteral, [] { return new Norm::StringLiteral; });
 }
 
 Norm::Token* TokenFactory::create(Norm::Code code) {
