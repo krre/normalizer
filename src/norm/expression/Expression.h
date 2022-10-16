@@ -10,6 +10,12 @@ public:
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
+
+    void setIndex(quint16 index);
+    quint16 index() const;
+
+private:
+    quint16 m_index = 0;
 };
 
 }
