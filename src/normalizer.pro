@@ -11,7 +11,6 @@ SOURCES += \
     core/Settings.cpp \
     core/Utils.cpp \
     main.cpp \
-    norm/Flow.cpp \
     norm/Module.cpp \
     norm/Name.cpp \
     norm/Token.cpp \
@@ -53,7 +52,6 @@ HEADERS += \
     core/Settings.h \
     core/Utils.h \
     core/Version.h \
-    norm/Flow.h \
     norm/Module.h \
     norm/Name.h \
     norm/Token.h \

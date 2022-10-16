@@ -3,7 +3,6 @@
 #include "core/Constants.h"
 #include "core/Utils.h"
 #include "norm/project/Project.h"
-#include "norm/Flow.h"
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/literal/NumberLiteral.h"
 #include <QtCore>
