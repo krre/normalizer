@@ -19,4 +19,12 @@ void NumberLiteral::deserialize(QDataStream& stream) {
     stream >> m_literal;
 }
 
+void NumberLiteral::setLiteral(double literal) {
+    m_literal = literal;
+}
+
+double NumberLiteral::literal() const {
+    return m_literal;
+}
+
 }
