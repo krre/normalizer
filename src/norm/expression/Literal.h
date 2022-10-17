@@ -4,14 +4,10 @@
 
 namespace Norm {
 
-template <typename T, Code C>
+template <typename T>
 class Literal : public Expression {
 public:
-    Literal();
-
-    Code code() const override {
-        return C;
-    }
+    Literal() {}
 
     void serialize(QDataStream& stream) const override {
         stream << m_literal;
@@ -33,16 +29,22 @@ private:
     T m_literal;
 };
 
-class StringLiteral : public Literal<QString, Const::Norm::Token::StringLiteral> {
-
+class StringLiteral : public Literal<QString> {
+public:
+    StringLiteral() {}
+    Code code() const override { return Const::Norm::Token::StringLiteral; }
 };
 
-class NumberLiteral : public Literal<double, Const::Norm::Token::NumberLiteral> {
-
+class NumberLiteral : public Literal<double> {
+public:
+    NumberLiteral() {}
+    Code code() const override { return Const::Norm::Token::NumberLiteral; }
 };
 
-class BooleanLiteral : public Literal<bool, Const::Norm::Token::BooleanLiteral> {
-
+class BooleanLiteral : public Literal<bool> {
+public:
+    BooleanLiteral() {}
+    Code code() const override { return Const::Norm::Token::BooleanLiteral; }
 };
 
 }
