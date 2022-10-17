@@ -1,24 +1,17 @@
 #include "Name.h"
-#include "core/Constants.h"
 #include <QDataStream>
 
-namespace Norm {
+namespace Norm::Helper {
 
 Name::Name() {
 
 }
 
-Code Name::code() const {
-    return Const::Norm::Token::Name;
-}
-
 void Name::serialize(QDataStream& stream) const {
-    Token::serialize(stream);
     stream << m_name;
 }
 
 void Name::deserialize(QDataStream& stream) {
-    Token::deserialize(stream);
     stream >> m_name;
 }
 

@@ -12,7 +12,6 @@ SOURCES += \
     core/Utils.cpp \
     main.cpp \
     norm/Module.cpp \
-    norm/Name.cpp \
     norm/Token.cpp \
     norm/expression/Expression.cpp \
     norm/expression/operator/Math.cpp \
@@ -23,7 +22,7 @@ SOURCES += \
     norm/helper/FunctionId.cpp \
     norm/helper/Helper.cpp \
     norm/helper/ModuleId.cpp \
-    norm/helper/NameId.cpp \
+    norm/helper/Name.cpp \
     norm/helper/TypeId.cpp \
     norm/project/Project.cpp \
     norm/project/Version.cpp \
@@ -54,7 +53,6 @@ HEADERS += \
     core/Utils.h \
     core/Version.h \
     norm/Module.h \
-    norm/Name.h \
     norm/Token.h \
     norm/expression/Expression.h \
     norm/expression/Literal.h \
@@ -66,7 +64,7 @@ HEADERS += \
     norm/helper/FunctionId.h \
     norm/helper/Helper.h \
     norm/helper/ModuleId.h \
-    norm/helper/NameId.h \
+    norm/helper/Name.h \
     norm/helper/TypeId.h \
     norm/project/Project.h \
     norm/project/Version.h \

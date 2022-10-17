@@ -1,6 +1,6 @@
 #pragma once
 #include "Token.h"
-#include "helper/NameId.h"
+#include "helper/Name.h"
 #include "helper/ModuleId.h"
 #include <QScopedPointer>
 
@@ -8,7 +8,7 @@ namespace Norm {
 
 class Name;
 
-class Module : public Token, public Helper::NameId, public Helper::ModuleId {
+class Module : public Token, public Helper::Name, public Helper::ModuleId {
 public:
     Module();
 

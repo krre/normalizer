@@ -1,12 +1,12 @@
 #pragma once
 #include "norm/Token.h"
 #include "norm/helper/TypeId.h"
-#include "norm/helper/NameId.h"
+#include "norm/helper/Name.h"
 #include "norm/helper/FunctionId.h"
 
 namespace Norm {
 
-class Parameter : public Token, public Helper::NameId, public Helper::TypeId, public Helper::FunctionId {
+class Parameter : public Token, public Helper::Name, public Helper::TypeId, public Helper::FunctionId {
 public:
     Parameter();
     Code code() const override;

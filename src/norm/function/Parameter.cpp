@@ -14,14 +14,14 @@ Code Parameter::code() const {
 void Parameter::serialize(QDataStream& stream) const {
     Token::serialize(stream);
     FunctionId::serialize(stream);
-    NameId::serialize(stream);
+    Name::serialize(stream);
     TypeId::serialize(stream);
 }
 
 void Parameter::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
     FunctionId::deserialize(stream);
-    NameId::deserialize(stream);
+    Name::deserialize(stream);
     TypeId::deserialize(stream);
 }
 

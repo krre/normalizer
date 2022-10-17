@@ -14,13 +14,13 @@ Code Module::code() const {
 
 void Module::serialize(QDataStream& stream) const {
     Token::serialize(stream);
-    NameId::serialize(stream);
+    Name::serialize(stream);
     ModuleId::serialize(stream);
 }
 
 void Module::deserialize(QDataStream& stream) {
     Token::deserialize(stream);
-    NameId::deserialize(stream);
+    Name::deserialize(stream);
     ModuleId::deserialize(stream);
 }
 

@@ -4,17 +4,13 @@
 #include "norm/function/Function.h"
 #include "norm/function/Parameter.h"
 #include "norm/expression/operator/Math.h"
-#include "norm/expression/literal/StringLiteral.h"
-#include "norm/expression/literal/NumberLiteral.h"
-#include "norm/expression/literal/BooleanLiteral.h"
-#include "norm/Name.h"
+#include "norm/expression/Literal.h"
 #include "norm/Module.h"
 #include "core/Constants.h"
 
 TokenFactory::TokenFactory() {
     creators.insert(Const::Norm::Token::Project, [] { return new Norm::Project; });
     creators.insert(Const::Norm::Token::Version, [] { return new Norm::Version; });
-    creators.insert(Const::Norm::Token::Name, [] { return new Norm::Name; });
     creators.insert(Const::Norm::Token::Module, [] { return new Norm::Module; });
     creators.insert(Const::Norm::Token::Function, [] { return new Norm::Function; });
     creators.insert(Const::Norm::Token::Parameter, [] { return new Norm::Parameter; });

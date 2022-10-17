@@ -1,7 +1,6 @@
 #include "ProjectTemplate.h"
 #include "ProjectManager.h"
 #include "core/Constants.h"
-#include "norm/Name.h"
 #include "norm/function/Function.h"
 #include "norm/expression/operator/Math.h"
 #include "norm/expression/Literal.h"
@@ -11,22 +10,16 @@ ProjectTemplate::ProjectTemplate(ProjectManager* projectManager) : projectManage
 }
 
 void ProjectTemplate::createApp() {
-    auto name = static_cast<Norm::Name*>(projectManager->createToken(Const::Norm::Token::Name));
-    name->setName("Main");
-
     auto entryFunc = static_cast<Norm::Function*>(projectManager->createToken(Const::Norm::Token::Function));
-    entryFunc->setNameId(name->id());
+    entryFunc->setName("Main");
 
     auto expression = createExpression();
     expression->setFunctionId(entryFunc->id());
 }
 
 void ProjectTemplate::createLib() {
-    auto name = static_cast<Norm::Name*>(projectManager->createToken(Const::Norm::Token::Name));
-    name->setName("Add");
-
     auto addFunc = static_cast<Norm::Function*>(projectManager->createToken(Const::Norm::Token::Function));
-    addFunc->setNameId(name->id());
+    addFunc->setName("Add");
 
     auto expression = createExpression();
     expression->setFunctionId(addFunc->id());

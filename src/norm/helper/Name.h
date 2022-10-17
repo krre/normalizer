@@ -4,18 +4,18 @@
 
 namespace Norm::Helper {
 
-class NameId : public Helper {
+class Name : public Helper {
 public:
-    NameId();
+    Name();
 
     void serialize(QDataStream& stream) const override;
     void deserialize(QDataStream& stream) override;
 
-    void setNameId(Id nameId);
-    Id nameId() const;
+    QString name() const;
+    void setName(const QString& name);
 
 private:
-    Id m_nameId;
+    QString m_name = "Unnamed";
 };
 
 }
