@@ -19,7 +19,7 @@ public:
     virtual void deserialize(QDataStream& stream);
 
 private:
-    Id m_id = -1;
+    Id m_id = 0;
 };
 
 }
