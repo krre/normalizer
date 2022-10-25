@@ -1,9 +1,9 @@
 #pragma once
 
-#define APP_MAJOR 0
-#define APP_MINOR 1
-#define APP_MICRO 0
+constexpr auto APP_MAJOR = 0;
+constexpr auto APP_MINOR = 1;
+constexpr auto APP_MICRO = 0;
 
-#define LANG_MAJOR 0
-#define LANG_MINOR 1
-#define LANG_MICRO 0
+constexpr auto LANG_MAJOR = 0;
+constexpr auto LANG_MINOR = 1;
+constexpr auto LANG_MICRO = 0;
