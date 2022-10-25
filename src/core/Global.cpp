@@ -23,11 +23,13 @@ ProjectManager* project() {
 }
 
 QVersionNumber Version::application() {
-    return QVersionNumber(APP_MAJOR, APP_MINOR, APP_MICRO);
+    using namespace ::Version::App;
+    return QVersionNumber(Major, Minor, Micro);
 }
 
 QVersionNumber Version::language() {
-    return QVersionNumber(LANG_MAJOR, LANG_MINOR, LANG_MICRO);
+    using namespace ::Version::Norm;
+    return QVersionNumber(Major, Minor, Micro);
 }
 
 }
