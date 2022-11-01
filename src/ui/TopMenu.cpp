@@ -13,7 +13,7 @@
 TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainWindow) {
     QMenu* fileMenu = mainWindow->menuBar()->addMenu(tr("File"));
     ActionManager::addAction(ActionManager::NewProject, fileMenu->addAction(tr("New..."), this, &TopMenu::onNew, QKeySequence("Ctrl+N")));
-    ActionManager::addAction(ActionManager::OpenProject,fileMenu->addAction(tr("Open..."), this, &TopMenu::onOpen, QKeySequence("Ctrl+O")));
+    ActionManager::addAction(ActionManager::OpenProject, fileMenu->addAction(tr("Open..."), this, &TopMenu::onOpen, QKeySequence("Ctrl+O")));
     ActionManager::addAction(ActionManager::CloseProject, fileMenu->addAction(tr("Close"), this, &TopMenu::onClose, QKeySequence("Ctrl+W")));
     recentMenu = fileMenu->addMenu(tr("Recent Projects"));
     fileMenu->addSeparator();
