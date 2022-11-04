@@ -12,20 +12,20 @@
 
 TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainWindow) {
     QMenu* fileMenu = mainWindow->menuBar()->addMenu(tr("File"));
-    ActionManager::addAction(ActionManager::NewProject, fileMenu->addAction(tr("New..."), this, &TopMenu::onNew, QKeySequence("Ctrl+N")));
-    ActionManager::addAction(ActionManager::OpenProject, fileMenu->addAction(tr("Open..."), this, &TopMenu::onOpen, QKeySequence("Ctrl+O")));
-    ActionManager::addAction(ActionManager::CloseProject, fileMenu->addAction(tr("Close"), this, &TopMenu::onClose, QKeySequence("Ctrl+W")));
+    ActionManager::addAction(ActionManager::NewProject, fileMenu->addAction(tr("New..."), this, &TopMenu::onNew, Qt::CTRL | Qt::Key_N));
+    ActionManager::addAction(ActionManager::OpenProject, fileMenu->addAction(tr("Open..."), this, &TopMenu::onOpen, Qt::CTRL | Qt::Key_O));
+    ActionManager::addAction(ActionManager::CloseProject, fileMenu->addAction(tr("Close"), this, &TopMenu::onClose, Qt::CTRL | Qt::Key_W));
     recentMenu = fileMenu->addMenu(tr("Recent Projects"));
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::ProjectSettings, fileMenu->addAction(tr("Project Settings..."), this, &TopMenu::onProjectSettings));
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Preferences..."), this, &TopMenu::onPreferences);
     fileMenu->addSeparator();
-    ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), mainWindow, &QMainWindow::close, QKeySequence("Ctrl+Q")));
+    ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), mainWindow, &QMainWindow::close, Qt::CTRL | Qt::Key_Q));
 
     editMenu = mainWindow->menuBar()->addMenu(tr("Edit"));
-    ActionManager::addAction(ActionManager::Undo, editMenu->addAction(tr("Undo"), this, &TopMenu::onUndo, QKeySequence("Ctrl+Z")));
-    ActionManager::addAction(ActionManager::Redo, editMenu->addAction(tr("Redo"), this, &TopMenu::onRedo, QKeySequence("Ctrl+Shift+Z")));
+    ActionManager::addAction(ActionManager::Undo, editMenu->addAction(tr("Undo"), this, &TopMenu::onUndo, Qt::CTRL | Qt::Key_Z));
+    ActionManager::addAction(ActionManager::Redo, editMenu->addAction(tr("Redo"), this, &TopMenu::onRedo, Qt::CTRL | Qt::SHIFT | Qt::Key_Z));
 
     unitMenu = mainWindow->menuBar()->addMenu(tr("Unit"));
 
@@ -34,8 +34,8 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     ActionManager::addAction(ActionManager::AddExpression, addMenu->addAction(tr("Expression"), this, &TopMenu::onAddExpression));
 
     buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
-    ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, QKeySequence("Ctrl+B")));
-    ActionManager::addAction(ActionManager::Run, buildMenu->addAction(tr("Run"), this, &TopMenu::onRun, QKeySequence("Ctrl+R")));
+    ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, Qt::CTRL | Qt::Key_B));
+    ActionManager::addAction(ActionManager::Run, buildMenu->addAction(tr("Run"), this, &TopMenu::onRun, Qt::CTRL | Qt::Key_R));
 
     QMenu* helpMenu = mainWindow->menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &TopMenu::onAbout);
