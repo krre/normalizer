@@ -1,12 +1,12 @@
-#include "Options.h"
+#include "Preferences.h"
 #include "ui/component/BrowseLineEdit.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 
 namespace Dialog {
 
-Options::Options(QWidget* parent) : StandardDialog(parent) {
-    setWindowTitle(tr("Options"));
+Preferences::Preferences(QWidget* parent) : StandardDialog(parent) {
+    setWindowTitle(tr("Preferences"));
 
     auto projectGroupBox = new QGroupBox(tr("Project"));
 
@@ -28,18 +28,18 @@ Options::Options(QWidget* parent) : StandardDialog(parent) {
     readSettings();
 }
 
-void Options::accept() {
+void Preferences::accept() {
     writeSettings();
     StandardDialog::accept();
 }
 
-void Options::readSettings() {
+void Preferences::readSettings() {
     workspaceBrowseLineEdit->setText(Settings::Project::workspace());
     openLastProjectCheckBox->setChecked(Settings::Project::openLast());
     sessionCheckBox->setChecked(Settings::Project::restoreSession());
 }
 
-void Options::writeSettings() {
+void Preferences::writeSettings() {
     Settings::Project::setWorkspace(workspaceBrowseLineEdit->text());
     Settings::Project::setOpenLast(openLastProjectCheckBox->isChecked());
     Settings::Project::setRestoreSession(sessionCheckBox->isChecked());

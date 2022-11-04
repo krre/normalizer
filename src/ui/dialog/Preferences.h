@@ -6,9 +6,9 @@ class QCheckBox;
 
 namespace Dialog {
 
-class Options : public StandardDialog {
+class Preferences : public StandardDialog {
 public:
-    explicit Options(QWidget* parent = nullptr);
+    explicit Preferences(QWidget* parent = nullptr);
 
 private slots:
     void accept() override;

@@ -28,7 +28,7 @@ private slots:
     void onBuild();
     void onRun();
 
-    void onOptions();
+    void onPreferences();
     void onAbout();
 
 private:

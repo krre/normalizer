@@ -5,7 +5,7 @@
 #include "core/Global.h"
 #include "core/Settings.h"
 #include "dialog/NewProject.h"
-#include "dialog/Options.h"
+#include "dialog/Preferences.h"
 #include "dialog/ProjectSettings.h"
 #include "project/ProjectSettings.h"
 #include <QtWidgets>
@@ -18,6 +18,8 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     recentMenu = fileMenu->addMenu(tr("Recent Projects"));
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::ProjectSettings, fileMenu->addAction(tr("Project Settings..."), this, &TopMenu::onProjectSettings));
+    fileMenu->addSeparator();
+    fileMenu->addAction(tr("Preferences..."), this, &TopMenu::onPreferences);
     fileMenu->addSeparator();
     ActionManager::addAction(ActionManager::Exit, fileMenu->addAction(tr("Exit"), mainWindow, &QMainWindow::close, QKeySequence("Ctrl+Q")));
 
@@ -34,9 +36,6 @@ TopMenu::TopMenu(MainWindow* mainWindow) : QObject(mainWindow), mainWindow(mainW
     buildMenu = mainWindow->menuBar()->addMenu(tr("Build"));
     ActionManager::addAction(ActionManager::Build, buildMenu->addAction(tr("Build"), this, &TopMenu::onBuild, QKeySequence("Ctrl+B")));
     ActionManager::addAction(ActionManager::Run, buildMenu->addAction(tr("Run"), this, &TopMenu::onRun, QKeySequence("Ctrl+R")));
-
-    QMenu* toolsMenu = mainWindow->menuBar()->addMenu(tr("Tools"));
-    toolsMenu->addAction(tr("Options..."), this, &TopMenu::onOptions);
 
     QMenu* helpMenu = mainWindow->menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &TopMenu::onAbout);
@@ -145,9 +144,9 @@ void TopMenu::onRun() {
 
 }
 
-void TopMenu::onOptions() {
-    Dialog::Options options;
-    options.exec();
+void TopMenu::onPreferences() {
+    Dialog::Preferences preferences;
+    preferences.exec();
 }
 
 void TopMenu::onAbout() {
