@@ -10,7 +10,7 @@ namespace App {
     constexpr auto Name = "Normalizer";
     constexpr auto Status = ""; // Release, Beta, Alpha
     constexpr auto Url = "https://github.com/krre/normalizer";
-    constexpr auto CopyrightYear = "2022";
+    constexpr auto CopyrightYear = "2022-2023";
     constexpr auto BuildDate = __DATE__;
     constexpr auto BuildTime = __TIME__;
 }
