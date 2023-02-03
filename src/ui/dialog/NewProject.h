@@ -4,6 +4,7 @@
 
 class BrowseLineEdit;
 class QComboBox;
+class QGroupBox;
 class QLineEdit;
 
 namespace Dialog {
@@ -15,14 +16,21 @@ public:
 
 private slots:
     void accept() override;
+    void onProjectNameChanged(const QString& projectName);
     void adjustAcceptedButton();
 
 private:
+    QGroupBox* createProjectGroupBox();
+    QGroupBox* createTargetGroupBox();
+
     Norm::Project::Target target() const;
 
-    QLineEdit* nameLineEdit = nullptr;
-    BrowseLineEdit* directoryBrowseLineEdit = nullptr;
-    QComboBox* targetComboBox = nullptr;
+    QGroupBox* targetGroupBox = nullptr;
+    QLineEdit* projectNameLineEdit = nullptr;
+    QLineEdit* targetNameLineEdit = nullptr;
+    BrowseLineEdit* projectDirectoryBrowseLineEdit = nullptr;
+    QComboBox* targetTypeComboBox = nullptr;
+    QString oldProjectName;
 };
 
 }
