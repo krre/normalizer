@@ -154,7 +154,7 @@ void TopMenu::onAbout() {
 
     QMessageBox::about(mainWindow, tr("About %1").arg(Name),
         tr("<h3>%1 %2 %3</h3>\
-           IDE for Norm language<br> \
+           IDE for Norm programming language<br> \
            Supported Norm %4<br><br> \
            Based on Qt %5<br> \
            Build on %6 %7<br><br> \
