@@ -1,0 +1,11 @@
+[package]
+name = "normalizer"
+version = "0.1.0"
+authors = ["Vladimir Zarypov"]
+edition = "2021"
+description = "IDE for Norm visual programming language"
+repository = "https://github.com/krre/normalizer"
+
+[dependencies]
+antiq = { path = "../antiq" }
+norm-common = { path = "../norm-common" }

@@ -1,4 +1,2 @@
-# Qt Creator
-build-*
-*.user
-*.autosave
+/.vscode
+/target
