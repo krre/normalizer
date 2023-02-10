@@ -1,3 +1,10 @@
+use antiq::core::Application;
+
 fn main() {
-    println!("Normalizer");
+    let mut app = Application::new();
+
+    let window = app.create_window();
+    window.set_title("Normalizer");
+
+    app.run();
 }
