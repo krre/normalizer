@@ -6,6 +6,10 @@ edition = "2021"
 description = "IDE for Norm visual programming language"
 repository = "https://github.com/krre/normalizer"
 
+[lib]
+name = "normalizer"
+path = "src/normalizer/lib.rs"
+
 [dependencies]
 antiq = { path = "../antiq" }
 norm-common = { path = "../norm-common" }
