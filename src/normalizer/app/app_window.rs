@@ -1,8 +1,10 @@
-use antiq::core::window::Window;
-use antiq::core::{Application, Color};
+use antiq::core::{Application, Color, Window};
+
+use super::Preferences;
 
 pub struct AppWindow<'a> {
-    _window: &'a Window,
+    window: &'a Window,
+    preferences: Preferences,
 }
 
 impl<'a> AppWindow<'a> {
@@ -10,6 +12,22 @@ impl<'a> AppWindow<'a> {
         let window = app.create_window();
         window.set_title("Normalizer");
         window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
-        Self { _window: window }
+
+        Self {
+            window,
+            preferences: Preferences::new(),
+        }
+    }
+}
+
+impl<'a> Drop for AppWindow<'a> {
+    fn drop(&mut self) {
+        println!("drop app window");
+        (
+            self.preferences.window.width,
+            self.preferences.window.height,
+        ) = self.window.size();
+
+        self.preferences.save();
     }
 }
