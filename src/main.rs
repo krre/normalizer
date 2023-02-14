@@ -1,5 +1,5 @@
 use antiq::core::Application;
-use normalizer::app::app_window::AppWindow;
+use normalizer::app::AppWindow;
 
 fn main() {
     let mut app = Application::new();
