@@ -7,8 +7,8 @@ pub struct Preferences {
 
 #[derive(Default, Serialize, Deserialize)]
 pub struct Window {
-    pub x: u32,
-    pub y: u32,
+    pub x: i32,
+    pub y: i32,
     pub width: u32,
     pub height: u32,
 }

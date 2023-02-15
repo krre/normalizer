@@ -22,11 +22,12 @@ impl<'a> AppWindow<'a> {
 
 impl<'a> Drop for AppWindow<'a> {
     fn drop(&mut self) {
-        println!("drop app window");
         (
             self.preferences.window.width,
             self.preferences.window.height,
         ) = self.window.size();
+
+        (self.preferences.window.x, self.preferences.window.y) = self.window.position();
 
         self.preferences.save();
     }
