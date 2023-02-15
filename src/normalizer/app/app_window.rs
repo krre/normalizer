@@ -1,34 +1,36 @@
-use antiq::core::{Application, Color, Window};
+use std::cell::RefCell;
+use std::rc::Rc;
+
+use antiq::core::Window;
+use antiq::core::{Application, Color};
 
 use super::Preferences;
 
-pub struct AppWindow<'a> {
-    window: &'a Window,
-    preferences: Preferences,
+pub struct AppWindow {
+    preferences: RefCell<Preferences>,
+    window: Rc<Window>,
 }
 
-impl<'a> AppWindow<'a> {
-    pub fn new(app: &'a mut Application) -> Self {
+impl AppWindow {
+    pub fn new(app: &Application) -> Self {
         let window = app.create_window();
         window.set_title("Normalizer");
         window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
 
         Self {
+            preferences: RefCell::new(Preferences::new()),
             window,
-            preferences: Preferences::new(),
         }
     }
-}
 
-impl<'a> Drop for AppWindow<'a> {
-    fn drop(&mut self) {
-        (
-            self.preferences.window.width,
-            self.preferences.window.height,
-        ) = self.window.size();
+    pub fn finish(&self) {
+        let mut prefs = self.preferences.borrow_mut();
 
-        (self.preferences.window.x, self.preferences.window.y) = self.window.position();
+        (prefs.window.width, prefs.window.height) = self.window.size();
+        (prefs.window.x, prefs.window.y) = self.window.position();
 
-        self.preferences.save();
+        prefs.save();
+
+        println!("finish");
     }
 }
