@@ -12,6 +12,7 @@ path = "src/normalizer/lib.rs"
 
 [dependencies]
 antiq = { path = "../antiq" }
+dirs = "4.0.0"
 norm-common = { path = "../norm-common" }
 serde = { version = "1.0.152", features = ["derive"] }
 #serde_derive = "1.0.152"

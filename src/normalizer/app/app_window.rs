@@ -13,11 +13,18 @@ pub struct AppWindow {
 impl AppWindow {
     pub fn new(app: &mut Application) -> Self {
         let window = app.create_window();
-        window.set_title("Normalizer");
+        window.set_title(&Application::name().unwrap());
         window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
 
+        let mut preferences = Preferences::new();
+
+        if preferences.load() {
+            window.set_position(preferences.window.x, preferences.window.y);
+            window.set_size(preferences.window.width, preferences.window.height);
+        }
+
         Self {
-            preferences: Preferences::new(),
+            preferences,
             window,
         }
     }
