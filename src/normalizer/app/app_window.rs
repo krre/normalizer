@@ -21,6 +21,7 @@ impl AppWindow {
         if preferences.load() {
             window.set_position(preferences.window.x, preferences.window.y);
             window.set_size(preferences.window.width, preferences.window.height);
+            window.set_maximized(preferences.window.is_maximized);
         }
 
         Self {
@@ -40,6 +41,7 @@ impl Drop for AppWindow {
         ) = self.window.size();
 
         (self.preferences.window.x, self.preferences.window.y) = self.window.position();
+        self.preferences.window.is_maximized = self.window.is_maximized();
 
         self.preferences.save();
     }
