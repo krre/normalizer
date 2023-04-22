@@ -838,10 +838,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "norm-common"
-version = "0.1.0"
-
-[[package]]
 name = "normalizer"
 version = "0.1.0"
 dependencies = [
@@ -849,7 +845,6 @@ dependencies = [
  "dirs",
  "env_logger",
  "log",
- "norm-common",
  "serde",
  "serde_json",
 ]
