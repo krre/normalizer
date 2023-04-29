@@ -8,15 +8,15 @@ use antiq::core::{Application, Color};
 use super::Preferences;
 
 pub struct AppWindow {
+    app: Application,
     preferences: Rc<RefCell<Preferences>>,
     window_id: Id,
-    app: RefCell<Application>,
 }
 
 impl AppWindow {
-    pub fn new(app: RefCell<Application>) -> Self {
-        let mut app_mut = app.borrow_mut();
-        let mut window = app_mut.create_window(Box::new(layout::Box::new()));
+    pub fn new() -> Self {
+        let mut app = Application::new();
+        let mut window = app.create_window(Box::new(layout::Box::new()));
 
         window.set_title(&Application::name().unwrap());
         window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
@@ -32,7 +32,6 @@ impl AppWindow {
         let window_id = window.id();
 
         drop(window);
-        drop(app_mut);
 
         let result = Self {
             preferences: Rc::new(RefCell::new(preferences)),
@@ -44,13 +43,12 @@ impl AppWindow {
         result
     }
 
-    pub fn run(&self) {
-        self.app.borrow_mut().run();
+    pub fn run(&mut self) {
+        self.app.run();
     }
 
     fn setup(&self) {
-        let app_ref = self.app.borrow();
-        let mut window = app_ref.window_mut(self.window_id);
+        let mut window = self.app.window_mut(self.window_id);
 
         let prefs = self.preferences.clone();
         let handler = move |w: &Window| {
