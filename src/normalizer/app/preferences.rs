@@ -4,7 +4,7 @@ use std::{
     path::PathBuf,
 };
 
-use antiq::core::Application;
+use antiq::core::{Application, Position, Size};
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Serialize, Deserialize)]
@@ -14,10 +14,8 @@ pub struct Preferences {
 
 #[derive(Default, Serialize, Deserialize)]
 pub struct Window {
-    pub x: i32,
-    pub y: i32,
-    pub width: u32,
-    pub height: u32,
+    pub position: Position,
+    pub size: Size,
     pub is_maximized: bool,
 }
 
