@@ -16,8 +16,7 @@ pub struct AppWindow {
 impl AppWindow {
     pub fn new(app: RefCell<Application>) -> Self {
         let mut app_mut = app.borrow_mut();
-        let window_id = app_mut.create_window(Box::new(layout::Box::new()));
-        let mut window = app_mut.window_mut(window_id);
+        let mut window = app_mut.create_window(Box::new(layout::Box::new()));
 
         window.set_title(&Application::name().unwrap());
         window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
@@ -29,6 +28,8 @@ impl AppWindow {
             window.set_size(preferences.window.size);
             window.set_maximized(preferences.window.is_maximized);
         }
+
+        let window_id = window.id();
 
         drop(window);
         drop(app_mut);
@@ -53,9 +54,10 @@ impl AppWindow {
 
         let prefs = self.preferences.clone();
         let handler = move |w: &Window| {
-            prefs.borrow_mut().window.position = w.position();
-            prefs.borrow_mut().window.size = w.size();
-            prefs.borrow().save();
+            let mut prefs = prefs.borrow_mut();
+            prefs.window.position = w.position();
+            prefs.window.size = w.size();
+            prefs.save();
         };
 
         window.set_drop_handler(Box::new(handler));
