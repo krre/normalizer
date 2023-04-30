@@ -28,10 +28,11 @@ impl AppWindow {
         }
 
         let mut app = Application::new();
-        let window = app.create_window(settings);
-        let window_id = window.id();
 
-        drop(window);
+        let window_id = {
+            let window = app.create_window(settings);
+            window.id()
+        };
 
         let result = Self {
             preferences: Rc::new(RefCell::new(preferences)),
