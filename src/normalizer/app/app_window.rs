@@ -2,7 +2,7 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 use antiq::core::window::{Id, Settings};
-use antiq::core::{layout, Window};
+use antiq::core::Window;
 use antiq::core::{Application, Color};
 
 use super::Preferences;
@@ -28,7 +28,7 @@ impl AppWindow {
         }
 
         let mut app = Application::new();
-        let window = app.create_window(settings, Box::new(layout::Box::new()));
+        let window = app.create_window(settings);
         let window_id = window.id();
 
         drop(window);
