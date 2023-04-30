@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use antiq::core::window::Id;
+use antiq::core::window::{Id, Settings};
 use antiq::core::{layout, Window};
 use antiq::core::{Application, Color};
 
@@ -15,20 +15,20 @@ pub struct AppWindow {
 
 impl AppWindow {
     pub fn new() -> Self {
-        let mut app = Application::new();
-        let mut window = app.create_window(Box::new(layout::Box::new()));
-
-        window.set_title(&Application::name().unwrap());
-        window.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
+        let mut settings = Settings::new();
+        settings.set_title(&Application::name().unwrap());
+        settings.set_color(Color::new(0.3, 0.3, 0.3, 1.0));
 
         let mut preferences = Preferences::new();
 
         if preferences.load() {
-            window.set_position(preferences.window.position);
-            window.set_size(preferences.window.size);
-            window.set_maximized(preferences.window.is_maximized);
+            settings.set_position(preferences.window.position);
+            settings.set_size(preferences.window.size);
+            settings.set_maximized(preferences.window.is_maximized);
         }
 
+        let mut app = Application::new();
+        let window = app.create_window(settings, Box::new(layout::Box::new()));
         let window_id = window.id();
 
         drop(window);
