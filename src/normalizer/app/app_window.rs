@@ -49,8 +49,6 @@ impl AppWindow {
     }
 
     fn setup(&self) {
-        let mut window = self.app.window_mut(self.window_id);
-
         let prefs = self.preferences.clone();
         let handler = move |w: &Window| {
             let mut prefs = prefs.borrow_mut();
@@ -59,6 +57,8 @@ impl AppWindow {
             prefs.save();
         };
 
-        window.set_drop_handler(Box::new(handler));
+        self.app
+            .window_mut(self.window_id)
+            .set_drop_handler(Box::new(handler));
     }
 }
