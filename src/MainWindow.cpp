@@ -1,7 +1,8 @@
 #include "MainWindow.h"
+#include "core/Constants.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    setWindowTitle("Normalizer");
+    setWindowTitle(Const::App::Name);
     resize(800, 600);
 }
 

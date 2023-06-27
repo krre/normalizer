@@ -7,4 +7,5 @@ SOURCES += \
     MainWindow.cpp
 
 HEADERS += \
-    MainWindow.h
+    MainWindow.h \
+    core/Constants.h
