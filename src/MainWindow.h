@@ -13,4 +13,6 @@ protected:
 private:
     void readSettings();
     void writeSettings();
+
+    void createActions();
 };

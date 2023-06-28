@@ -5,6 +5,7 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
     readSettings();
+    createActions();
 }
 
 MainWindow::~MainWindow() {
@@ -33,4 +34,9 @@ void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue("geometry", saveGeometry());
     settings.setValue("state", saveState());
+}
+
+void MainWindow::createActions() {
+    auto fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &MainWindow::close);
 }
