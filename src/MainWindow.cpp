@@ -1,11 +1,15 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
+#include "RenderView.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
     readSettings();
     createActions();
+
+    m_renderView = new RenderView;
+    setCentralWidget(m_renderView);
 }
 
 MainWindow::~MainWindow() {

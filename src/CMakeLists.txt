@@ -5,22 +5,38 @@ project(normalizer VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS
+    Widgets
+    3DCore
+    3DRender
+    3DInput
+    3DLogic
+    3DExtras
+    3DAnimation
+)
+
 qt_standard_project_setup()
 
 set(PROJECT_SOURCES
         main.cpp
-        MainWindow.cpp
-        MainWindow.h
+        core/Constants.h
+        MainWindow.h MainWindow.cpp
+        RenderView.h RenderView.cpp
 )
 
 qt_add_executable(normalizer
     ${PROJECT_SOURCES}
-    core/Constants.h
     ../README.md
 )
 
-target_link_libraries(normalizer PRIVATE Qt6::Widgets)
+target_link_libraries(normalizer PRIVATE
+    Qt6::Widgets
+    Qt6::3DCore
+    Qt6::3DRender
+    Qt6::3DLogic
+    Qt6::3DExtras
+    Qt6::3DAnimation
+)
 
 set_target_properties(normalizer PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER normalizer.dev

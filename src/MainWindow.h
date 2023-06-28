@@ -1,6 +1,8 @@
 #pragma once
 #include <QMainWindow>
 
+class RenderView;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -18,4 +20,6 @@ private:
     void writeSettings();
 
     void createActions();
+
+    RenderView* m_renderView = nullptr;
 };
