@@ -9,3 +9,6 @@ SOURCES += \
 HEADERS += \
     MainWindow.h \
     core/Constants.h
+
+DISTFILES += \
+    ../README.md
