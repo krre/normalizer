@@ -8,7 +8,7 @@ class BrowseLayout;
 
 class NewProject : public StandardDialog {
 public:
-    NewProject(QWidget* parent = nullptr);
+    NewProject(const QString& directory, QWidget* parent = nullptr);
 
     QString name() const;
     QString directory() const;

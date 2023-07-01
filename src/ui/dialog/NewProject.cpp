@@ -1,16 +1,15 @@
 #include "NewProject.h"
-#include "core/Constants.h"
 #include "core/ObjectNames.h"
 #include "ui/widget/BrowseLayout.h"
 #include <QtWidgets>
 
-NewProject::NewProject(QWidget* parent) : StandardDialog(parent) {
+NewProject::NewProject(const QString& directory, QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("New Project"));
     m_nameLineEdit = new QLineEdit;
     m_nameLineEdit->setObjectName(ObjectName::Name);
 
     m_directoryBrowseLayout = new BrowseLayout;
-    m_directoryBrowseLayout->lineEdit()->setText(QDir::homePath() + "/" + Const::Project::WorkspaceDir);
+    m_directoryBrowseLayout->lineEdit()->setText(directory);
     m_directoryBrowseLayout->lineEdit()->setObjectName(ObjectName::Directory);
 
     m_templateComboBox = new QComboBox;

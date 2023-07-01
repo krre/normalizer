@@ -20,7 +20,7 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::newProject() {
-    NewProject newProject;
+    NewProject newProject(QDir::homePath() + "/" + Const::Project::WorkspaceDir);
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.projectTemplate());
