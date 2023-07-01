@@ -7,10 +7,31 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow) : QObject(mainWindow), m_ma
     QMenuBar* menuBar = mainWindow->menuBar();
 
     auto fileMenu = menuBar->addMenu(tr("File"));
+    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newFile);
+    fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
+    fileMenu->addAction(tr("Save"), Qt::CTRL | Qt::Key_S, this, &ActionBuilder::save);
+    fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &ActionBuilder::close);
+    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
+}
+
+void ActionBuilder::newFile() {
+
+}
+
+void ActionBuilder::open() {
+
+}
+
+void ActionBuilder::save() {
+
+}
+
+void ActionBuilder::close() {
+
 }
 
 void ActionBuilder::about() {

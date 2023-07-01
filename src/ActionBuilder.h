@@ -9,6 +9,11 @@ public:
     explicit ActionBuilder(MainWindow* mainWindow);
 
 private slots:
+    void newFile();
+    void open();
+    void save();
+    void close();
+
     void about();
 
 private:
