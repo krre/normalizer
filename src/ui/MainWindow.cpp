@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include "ActionBuilder.h"
 #include "RenderView.h"
 #include "project/Project.h"
@@ -21,11 +22,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::readSettings() {
-    QSettings settings;
-
-    if (settings.contains("geometry")) {
-        restoreGeometry(settings.value("geometry").toByteArray());
-        restoreState(settings.value("state").toByteArray());
+    if (Settings::contains(Settings::Geometry())) {
+        restoreGeometry(Settings::value(Settings::Geometry()));
+        restoreState(Settings::value(Settings::State()));
     } else {
         const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         constexpr auto scale = 0.8;
@@ -35,7 +34,6 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    QSettings settings;
-    settings.setValue("geometry", saveGeometry());
-    settings.setValue("state", saveState());
+    Settings::setValue(Settings::Geometry(), saveGeometry());
+    Settings::setValue(Settings::State(), saveState());
 }

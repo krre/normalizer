@@ -11,6 +11,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 set(SRC
     core/Constants.h
     core/ObjectNames.h
+    core/Settings.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
     ui/RenderView.h ui/RenderView.cpp

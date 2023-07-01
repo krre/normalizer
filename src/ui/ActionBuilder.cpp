@@ -1,6 +1,7 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include "dialog/NewProject.h"
 #include <QtWidgets>
 
@@ -20,10 +21,11 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::newProject() {
-    NewProject newProject(QDir::homePath() + "/" + Const::Project::WorkspaceDir);
+    NewProject newProject(Settings::value(Settings::Workspace()));
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.projectTemplate());
+        Settings::setValue(Settings::Workspace(), newProject.directory());
     }
 }
 
