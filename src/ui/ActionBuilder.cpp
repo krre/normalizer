@@ -4,7 +4,7 @@
 #include "dialog/NewProject.h"
 #include <QtWidgets>
 
-ActionBuilder::ActionBuilder(MainWindow* mainWindow) : QObject(mainWindow), m_mainWindow(mainWindow) {
+ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow), m_mainWindow(mainWindow) {
     QMenuBar* menuBar = mainWindow->menuBar();
 
     auto fileMenu = menuBar->addMenu(tr("File"));
@@ -21,7 +21,10 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow) : QObject(mainWindow), m_ma
 
 void ActionBuilder::newProject() {
     NewProject newProject;
-    if (newProject.exec() == QDialog::Rejected) return;
+
+    if (newProject.exec() == QDialog::Accepted) {
+        m_project->create(newProject.name(), newProject.directory(), newProject.projectTemplate());
+    }
 }
 
 void ActionBuilder::open() {

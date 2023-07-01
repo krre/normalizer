@@ -14,6 +14,7 @@ namespace App {
 
 namespace Project {
     constexpr auto WorkspaceDir = "NormProjects";
+    constexpr auto Extension = ".norm";
 }
 
 }

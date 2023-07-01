@@ -3,6 +3,7 @@
 
 class RenderView;
 class ActionBuilder;
+class Project;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -18,4 +19,5 @@ private:
 
     RenderView* m_renderView = nullptr;
     ActionBuilder* m_actionBuilder = nullptr;
+    Project* m_project = nullptr;
 };

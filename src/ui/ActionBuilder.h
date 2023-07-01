@@ -2,11 +2,12 @@
 #include <QObject>
 
 class MainWindow;
+class Project;
 
 class ActionBuilder : public QObject {
     Q_OBJECT
 public:
-    explicit ActionBuilder(MainWindow* mainWindow);
+    explicit ActionBuilder(MainWindow* mainWindow, Project* project);
 
 private slots:
     void newProject();
@@ -18,4 +19,5 @@ private slots:
 
 private:
     MainWindow* m_mainWindow = nullptr;
+    Project* m_project = nullptr;
 };

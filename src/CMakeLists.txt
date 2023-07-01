@@ -28,6 +28,7 @@ qt_add_executable(normalizer
     ui/dialog/NewProject.h ui/dialog/NewProject.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     core/CommonTypes.h
+    project/Project.h project/Project.cpp
 )
 
 target_link_libraries(normalizer PRIVATE

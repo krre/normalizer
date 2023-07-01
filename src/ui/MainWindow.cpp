@@ -2,13 +2,15 @@
 #include "core/Constants.h"
 #include "ActionBuilder.h"
 #include "RenderView.h"
+#include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
     readSettings();
 
-    m_actionBuilder = new ActionBuilder(this);
+    m_project = new Project(this);
+    m_actionBuilder = new ActionBuilder(this, m_project);
     m_renderView = new RenderView;
     setCentralWidget(m_renderView);
 }

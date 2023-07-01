@@ -1,6 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
-#include "core/CommonTypes.h"
+#include "project/Project.h"
 
 class QLineEdit;
 class QComboBox;
