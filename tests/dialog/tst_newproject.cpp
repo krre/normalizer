@@ -13,7 +13,9 @@ public:
     ~TestNewProject();
 
 private slots:
-    void createNewProject();
+    void createDefault();
+    void setFields();
+    void setFields_data();
 };
 
 TestNewProject::TestNewProject() {
@@ -24,28 +26,42 @@ TestNewProject::~TestNewProject() {
 
 }
 
-void TestNewProject::createNewProject() {
-    NewProject newProject("dir");
+void TestNewProject::createDefault() {
+    constexpr auto dir = "dir";
+    NewProject newProject(dir);
+    QPushButton* okButton = newProject.findChild<QDialogButtonBox*>(ObjectName::ButtonBox)->button(QDialogButtonBox::Ok);
+
+    QCOMPARE(newProject.name(), QString());
+    QCOMPARE(newProject.directory(), dir);
+    QCOMPARE(okButton->isEnabled(), false);
+}
+
+void TestNewProject::setFields() {
+    NewProject newProject("");
 
     QLineEdit* nameLineEdit = newProject.findChild<QLineEdit*>(ObjectName::Name);
     QLineEdit* directoryLineEdit = newProject.findChild<QLineEdit*>(ObjectName::Directory);
     QPushButton* okButton = newProject.findChild<QDialogButtonBox*>(ObjectName::ButtonBox)->button(QDialogButtonBox::Ok);
 
-    QCOMPARE(newProject.name(), QString());
-    QCOMPARE(newProject.directory(), "dir");
-    QCOMPARE(okButton->isEnabled(), false);
+    QFETCH(QString, name);
+    QFETCH(QString, directory);
+    QFETCH(bool, okEnabled);
 
-    nameLineEdit->setText("");
-    directoryLineEdit->setText("");
-    QCOMPARE(okButton->isEnabled(), false);
+    nameLineEdit->setText(name);
+    directoryLineEdit->setText(directory);
 
-    nameLineEdit->setText("name");
-    directoryLineEdit->setText("");
-    QCOMPARE(okButton->isEnabled(), false);
+    QCOMPARE(okButton->isEnabled(), okEnabled);
+}
 
-    directoryLineEdit->setText("name");
-    directoryLineEdit->setText("dir");
-    QCOMPARE(okButton->isEnabled(), true);
+void TestNewProject::setFields_data() {
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QString>("directory");
+    QTest::addColumn<bool>("okEnabled");
+
+    QTest::newRow("all-empty") << "" << "" << false;
+    QTest::newRow("only-name") << "name" << "" << false;
+    QTest::newRow("only-dir") << "" << "dir" << false;
+    QTest::newRow("all-filled") << "name" << "dir" << true;
 }
 
 QTEST_MAIN(TestNewProject)
