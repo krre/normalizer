@@ -20,9 +20,9 @@ qt_standard_project_setup()
 set(PROJECT_SOURCES
         main.cpp
         core/Constants.h
-        ActionBuilder.h ActionBuilder.cpp
-        MainWindow.h MainWindow.cpp
-        RenderView.h RenderView.cpp
+        ui/ActionBuilder.h ui/ActionBuilder.cpp
+        ui/MainWindow.h ui/MainWindow.cpp
+        ui/RenderView.h ui/RenderView.cpp
 )
 
 qt_add_executable(normalizer
@@ -46,6 +46,8 @@ set_target_properties(normalizer PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
+target_include_directories(normalizer PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 install(TARGETS normalizer
     BUNDLE DESTINATION .
