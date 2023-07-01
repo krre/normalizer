@@ -17,17 +17,17 @@ find_package(Qt6 REQUIRED COMPONENTS
 
 qt_standard_project_setup()
 
-set(PROJECT_SOURCES
-        main.cpp
-        core/Constants.h
-        ui/ActionBuilder.h ui/ActionBuilder.cpp
-        ui/MainWindow.h ui/MainWindow.cpp
-        ui/RenderView.h ui/RenderView.cpp
-)
-
 qt_add_executable(normalizer
-    ${PROJECT_SOURCES}
     ../README.md
+    main.cpp
+    core/Constants.h
+    ui/ActionBuilder.h ui/ActionBuilder.cpp
+    ui/MainWindow.h ui/MainWindow.cpp
+    ui/RenderView.h ui/RenderView.cpp
+    ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
+    ui/dialog/NewProject.h ui/dialog/NewProject.cpp
+    ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
+    core/CommonTypes.h
 )
 
 target_link_libraries(normalizer PRIVATE

@@ -12,4 +12,8 @@ namespace App {
     constexpr auto BuildTime = __TIME__;
 }
 
+namespace Project {
+    constexpr auto WorkspaceDir = "NormProjects";
+}
+
 }

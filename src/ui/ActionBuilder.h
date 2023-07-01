@@ -9,7 +9,7 @@ public:
     explicit ActionBuilder(MainWindow* mainWindow);
 
 private slots:
-    void newFile();
+    void newProject();
     void open();
     void save();
     void close();

@@ -1,13 +1,14 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
 #include "core/Constants.h"
+#include "dialog/NewProject.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(MainWindow* mainWindow) : QObject(mainWindow), m_mainWindow(mainWindow) {
     QMenuBar* menuBar = mainWindow->menuBar();
 
     auto fileMenu = menuBar->addMenu(tr("File"));
-    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newFile);
+    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
     fileMenu->addAction(tr("Save"), Qt::CTRL | Qt::Key_S, this, &ActionBuilder::save);
     fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &ActionBuilder::close);
@@ -18,8 +19,9 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow) : QObject(mainWindow), m_ma
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 }
 
-void ActionBuilder::newFile() {
-
+void ActionBuilder::newProject() {
+    NewProject newProject;
+    if (newProject.exec() == QDialog::Rejected) return;
 }
 
 void ActionBuilder::open() {
