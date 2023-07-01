@@ -20,6 +20,7 @@ qt_standard_project_setup()
 set(PROJECT_SOURCES
         main.cpp
         core/Constants.h
+        ActionBuilder.h ActionBuilder.cpp
         MainWindow.h MainWindow.cpp
         RenderView.h RenderView.cpp
 )
