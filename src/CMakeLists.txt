@@ -1,10 +1,3 @@
-cmake_minimum_required(VERSION 3.22)
-
-project(normalizer VERSION 0.1.0 LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     3DCore
@@ -15,11 +8,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     3DAnimation
 )
 
-qt_standard_project_setup()
-
-qt_add_executable(normalizer
-    ../README.md
-    main.cpp
+set(SRC
     core/Constants.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
@@ -31,27 +20,16 @@ qt_add_executable(normalizer
     project/Project.h project/Project.cpp
 )
 
-target_link_libraries(normalizer PRIVATE
+add_library(common STATIC ${SRC})
+
+target_link_libraries(common PRIVATE
     Qt6::Widgets
     Qt6::3DCore
     Qt6::3DRender
+    Qt6::3DInput
     Qt6::3DLogic
     Qt6::3DExtras
     Qt6::3DAnimation
 )
 
-set_target_properties(normalizer PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER normalizer.dev
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
-
-target_include_directories(normalizer PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-install(TARGETS normalizer
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
