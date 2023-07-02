@@ -8,6 +8,8 @@ public:
     template <typename T>
     class Key {
     public:
+        using value_type = T;
+
         Key(const QString& key, T defaultValue = T{}) : m_key(key), m_default(defaultValue) {}
 
         const QString& key() const { return m_key; }
@@ -18,22 +20,23 @@ public:
         T m_default;
     };
 
-    template <typename T>
-    static void setValue(const Key<T>& key, T value) {
+    template <typename K>
+    static void setValue(K::value_type value) {
         QSettings settings;
-        settings.setValue(key.key(), value);
+        settings.setValue(K().key(), value);
     }
 
-    template <typename T>
-    static T value(const Key<T>& key) {
+    template <typename K>
+    static K::value_type value() {
+        K key;
         QSettings settings;
-        return settings.value(key.key(), key.defaultValue()).template value<T>();
+        return settings.value(key.key(), key.defaultValue()).template value<typename K::value_type>();
     }
 
-    template <typename T>
-    static bool contains(const Key<T>& key) {
+    template <typename K>
+    static bool contains() {
         QSettings settings;
-        return settings.contains(key.key());
+        return settings.contains(K().key());
     }
 };
 

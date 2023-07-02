@@ -21,11 +21,11 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::newProject() {
-    NewProject newProject(Settings::value(General::Workspace()));
+    NewProject newProject(Settings::value<General::Workspace>());
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.projectTemplate());
-        Settings::setValue(General::Workspace(), newProject.directory());
+        Settings::setValue<General::Workspace>(newProject.directory());
     }
 }
 
