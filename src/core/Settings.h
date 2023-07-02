@@ -18,18 +18,6 @@ public:
         T m_default;
     };
 
-    struct Geometry : public Key<QByteArray> {
-        Geometry() : Key("geometry") {}
-    };
-
-    struct State : public Key<QByteArray> {
-        State() : Key("state") {}
-    };
-
-    struct Workspace : public Key<QString> {
-        Workspace() : Key("workspace", QDir::homePath() + "/" + Const::Project::WorkspaceDir) {}
-    };
-
     template <typename T>
     static void setValue(const Key<T>& key, T value) {
         QSettings settings;
@@ -48,3 +36,19 @@ public:
         return settings.contains(key.key());
     }
 };
+
+namespace General {
+
+struct Geometry : public Settings::Key<QByteArray> {
+    Geometry() : Key("geometry") {}
+};
+
+struct State : public Settings::Key<QByteArray> {
+    State() : Key("state") {}
+};
+
+struct Workspace : public Settings::Key<QString> {
+    Workspace() : Key("workspace", QDir::homePath() + "/" + Const::Project::WorkspaceDir) {}
+};
+
+}

@@ -22,9 +22,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::readSettings() {
-    if (Settings::contains(Settings::Geometry())) {
-        restoreGeometry(Settings::value(Settings::Geometry()));
-        restoreState(Settings::value(Settings::State()));
+    if (Settings::contains(General::Geometry())) {
+        restoreGeometry(Settings::value(General::Geometry()));
+        restoreState(Settings::value(General::State()));
     } else {
         const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         constexpr auto scale = 0.8;
@@ -34,6 +34,6 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    Settings::setValue(Settings::Geometry(), saveGeometry());
-    Settings::setValue(Settings::State(), saveState());
+    Settings::setValue(General::Geometry(), saveGeometry());
+    Settings::setValue(General::State(), saveState());
 }
