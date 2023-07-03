@@ -1,8 +1,8 @@
 #include "MainWindow.h"
-#include "core/Constants.h"
-#include "core/Settings.h"
 #include "ActionBuilder.h"
 #include "RenderView.h"
+#include "core/Constants.h"
+#include "core/Settings.h"
 #include "project/Project.h"
 #include <QtWidgets>
 

@@ -20,6 +20,7 @@ set(SRC
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     core/CommonTypes.h
     project/Project.h project/Project.cpp
+    project/Session.h project/Session.cpp
 )
 
 add_library(common STATIC ${SRC})
