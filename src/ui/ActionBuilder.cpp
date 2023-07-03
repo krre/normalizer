@@ -5,7 +5,8 @@
 #include "dialog/NewProject.h"
 #include <QtWidgets>
 
-ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow), m_mainWindow(mainWindow) {
+ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
+        m_mainWindow(mainWindow), m_project(project) {
     QMenuBar* menuBar = mainWindow->menuBar();
 
     auto fileMenu = menuBar->addMenu(tr("File"));
