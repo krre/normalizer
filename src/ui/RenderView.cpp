@@ -12,4 +12,6 @@ RenderView::RenderView() {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(container);
+
+    setVisible(false);
 }

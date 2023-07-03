@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_project = new Project(this);
     m_actionBuilder = new ActionBuilder(this, m_project);
     m_renderView = new RenderView;
+
     setCentralWidget(m_renderView);
 }
 
