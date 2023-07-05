@@ -41,7 +41,11 @@ void ActionBuilder::newProject() {
 }
 
 void ActionBuilder::open() {
+    QString dirPath = QFileDialog::getExistingDirectory(m_mainWindow, tr("Open Norm Project"), Settings::value<General::Workspace>());
 
+    if (!dirPath.isEmpty()) {
+        m_project->open(dirPath);
+    }
 }
 
 void ActionBuilder::about() {
