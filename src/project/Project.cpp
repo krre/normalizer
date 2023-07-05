@@ -18,4 +18,19 @@ void Project::create(const QString& name, const QString& directory, Template pro
     QFile file(m_path + "/" + name + Const::Project::Extension);
     file.open(QIODeviceBase::WriteOnly);
     file.write(0);
+
+    open(m_path);
+}
+
+void Project::open(const QString& path) {
+    m_path = path;
+    opened = true;
+}
+
+void Project::save() {
+
+}
+
+void Project::close() {
+    opened = false;
 }

@@ -12,8 +12,6 @@ public:
 private slots:
     void newProject();
     void open();
-    void save();
-    void close();
 
     void about();
 

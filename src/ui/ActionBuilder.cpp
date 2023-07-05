@@ -2,6 +2,8 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include "widget/Menu.h"
+#include "widget/Action.h"
 #include "dialog/NewProject.h"
 #include <QtWidgets>
 
@@ -9,11 +11,13 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
         m_mainWindow(mainWindow), m_project(project) {
     QMenuBar* menuBar = mainWindow->menuBar();
 
-    auto fileMenu = menuBar->addMenu(tr("File"));
+    auto fileMenu = new Menu(tr("File"), menuBar);
+    menuBar->addMenu(fileMenu);
+
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
-    fileMenu->addAction(tr("Save"), Qt::CTRL | Qt::Key_S, this, &ActionBuilder::save);
-    fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &ActionBuilder::close);
+    fileMenu->addBindableAction(tr("Save"), Qt::CTRL | Qt::Key_S, project, &Project::save)->enabled().setBinding([this] { return m_project->opened.value(); });
+    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened.value(); });
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
 
@@ -31,14 +35,6 @@ void ActionBuilder::newProject() {
 }
 
 void ActionBuilder::open() {
-
-}
-
-void ActionBuilder::save() {
-
-}
-
-void ActionBuilder::close() {
 
 }
 
