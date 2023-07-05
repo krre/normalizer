@@ -10,14 +10,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
     readSettings();
 
-    m_project = new Project(this);
+    m_renderView = new RenderView;
+
+    m_project = new Project(m_renderView, this);
     m_projectPathNotifier = m_project->path().addNotifier([&] {
         QFileInfo fi(m_project->path().value());
         setWindowTitle((!fi.baseName().isEmpty() ? fi.baseName() + " - " : "") + Const::App::Name);
     });
 
     m_actionBuilder = new ActionBuilder(this, m_project);
-    m_renderView = new RenderView;
 
     setCentralWidget(m_renderView);
 

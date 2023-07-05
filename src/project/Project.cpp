@@ -1,10 +1,11 @@
 #include "Project.h"
 #include "Session.h"
+#include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include <QDir>
 
-Project::Project(QObject* parent) : QObject(parent) {
+Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
     m_session = new Session(this);
     m_opened.setBinding([&] { return !m_path.value().isEmpty(); });
 }
@@ -31,8 +32,7 @@ void Project::open(const QString& path) {
         return;
     }
 
-    m_path = path;
-    Settings::setValue<General::LastProject>(m_path);
+    setPath(path);
 }
 
 void Project::save() {
@@ -40,5 +40,11 @@ void Project::save() {
 }
 
 void Project::close() {
-    m_path = "";
+    setPath("");
+}
+
+void Project::setPath(const QString& path) {
+    m_path = path;
+    m_renderView->setVisible(!path.isEmpty());
+    Settings::setValue<General::LastProject>(m_path);
 }

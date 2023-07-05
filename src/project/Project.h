@@ -3,6 +3,7 @@
 #include <QProperty>
 
 class Session;
+class RenderView;
 
 class Project : public QObject {
 public:
@@ -11,7 +12,7 @@ public:
         Library
     };
 
-    Project(QObject* parent = nullptr);
+    Project(RenderView* renderView, QObject* parent = nullptr);
 
     void create(const QString& name, const QString& directory, Template projectTemplate);
     void open(const QString& path);
@@ -24,6 +25,9 @@ public slots:
     void close();
 
 private:
+    void setPath(const QString& path);
+
+    RenderView* m_renderView = nullptr;
     Session* m_session = nullptr;
 
     QProperty<QString> m_path;
