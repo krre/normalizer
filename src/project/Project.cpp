@@ -1,6 +1,7 @@
 #include "Project.h"
 #include "Session.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include <QDir>
 
 Project::Project(QObject* parent) : QObject(parent) {
@@ -24,7 +25,14 @@ void Project::create(const QString& name, const QString& directory, Template pro
 }
 
 void Project::open(const QString& path) {
+    QDir dir(path);
+
+    if (!dir.exists()) {
+        return;
+    }
+
     m_path = path;
+    Settings::setValue<General::LastProject>(m_path);
 }
 
 void Project::save() {

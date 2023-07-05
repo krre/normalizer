@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_renderView = new RenderView;
 
     setCentralWidget(m_renderView);
+
+    m_project->open(Settings::value<General::LastProject>());
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
