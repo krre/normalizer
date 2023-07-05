@@ -11,6 +11,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     readSettings();
 
     m_project = new Project(this);
+    m_projectPathNotifier = m_project->path().addNotifier([&] {
+        QFileInfo fi(m_project->path().value());
+        setWindowTitle((!fi.baseName().isEmpty() ? fi.baseName() + " - " : "") + Const::App::Name);
+    });
+
     m_actionBuilder = new ActionBuilder(this, m_project);
     m_renderView = new RenderView;
 

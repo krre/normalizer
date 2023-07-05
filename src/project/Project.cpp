@@ -5,26 +5,26 @@
 
 Project::Project(QObject* parent) : QObject(parent) {
     m_session = new Session(this);
+    m_opened.setBinding([&] { return !m_path.value().isEmpty(); });
 }
 
 void Project::create(const QString& name, const QString& directory, Template projectTemplate) {
-    m_path = directory + "/" + name;
+    QString path = directory + "/" + name;
 
     QDir dir;
-    dir.mkpath(m_path);
+    dir.mkpath(path);
 
-    m_session->create(m_path);
+    m_session->create(path);
 
-    QFile file(m_path + "/" + name + Const::Project::Extension);
+    QFile file(path + "/" + name + Const::Project::Extension);
     file.open(QIODeviceBase::WriteOnly);
     file.write(0);
 
-    open(m_path);
+    open(path);
 }
 
 void Project::open(const QString& path) {
     m_path = path;
-    opened = true;
 }
 
 void Project::save() {
@@ -32,5 +32,5 @@ void Project::save() {
 }
 
 void Project::close() {
-    opened = false;
+    m_path = "";
 }

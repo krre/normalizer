@@ -16,8 +16,8 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
-    fileMenu->addBindableAction(tr("Save"), Qt::CTRL | Qt::Key_S, project, &Project::save)->enabled().setBinding([this] { return m_project->opened.value(); });
-    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened.value(); });
+    fileMenu->addBindableAction(tr("Save"), Qt::CTRL | Qt::Key_S, project, &Project::save)->enabled().setBinding([this] { return m_project->opened().value(); });
+    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
 

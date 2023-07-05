@@ -16,13 +16,16 @@ public:
     void create(const QString& name, const QString& directory, Template projectTemplate);
     void open(const QString& path);
 
-    QProperty<bool> opened { false };
+    QBindable<QString> path() { return &m_path; } ;
+    QBindable<bool> opened() { return &m_opened; };
 
 public slots:
     void save();
     void close();
 
 private:
-    QString m_path;
     Session* m_session = nullptr;
+
+    QProperty<QString> m_path;
+    QProperty<bool> m_opened { false };
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include <QPropertyNotifier>
 
 class RenderView;
 class ActionBuilder;
@@ -20,4 +21,5 @@ private:
     RenderView* m_renderView = nullptr;
     ActionBuilder* m_actionBuilder = nullptr;
     Project* m_project = nullptr;
+    QPropertyNotifier m_projectPathNotifier;
 };
