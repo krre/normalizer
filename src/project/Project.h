@@ -15,12 +15,12 @@ public:
     Project(RenderView* renderView, QObject* parent = nullptr);
 
     void create(const QString& name, const QString& directory, Template projectTemplate);
-    void open(const QString& path);
 
     QBindable<QString> path() { return &m_path; } ;
     QBindable<bool> opened() { return &m_opened; };
 
 public slots:
+    void open(const QString& path);
     void save();
     void close();
 

@@ -58,4 +58,8 @@ struct LastProject : public Settings::Key<QString> {
     LastProject() : Key("lastProject") {}
 };
 
+struct RecentProjects : public Settings::Key<QStringList> {
+    RecentProjects() : Key("recentProjects") {}
+};
+
 }

@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
 #include "RenderView.h"
+#include "RecentProjectsMenu.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include "project/Project.h"
@@ -11,18 +12,19 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     readSettings();
 
     m_renderView = new RenderView;
-
     m_project = new Project(m_renderView, this);
+    m_actionBuilder = new ActionBuilder(this, m_project);
+
     m_projectPathNotifier = m_project->path().addNotifier([&] {
         QFileInfo fi(m_project->path().value());
         setWindowTitle((!fi.baseName().isEmpty() ? fi.baseName() + " - " : "") + Const::App::Name);
+        m_actionBuilder->recentProjectsMenu()->addPath(m_project->path().value());
     });
-
-    m_actionBuilder = new ActionBuilder(this, m_project);
 
     setCentralWidget(m_renderView);
 
-    m_project->open(Settings::value<General::LastProject>());
+    QString projectPath = Settings::value<General::LastProject>();
+    m_project->open(projectPath);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
