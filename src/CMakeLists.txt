@@ -8,7 +8,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     3DAnimation
 )
 
-set(SRC
+add_library(common STATIC
     core/Constants.h
     core/ObjectNames.h
     core/Settings.h
@@ -25,8 +25,6 @@ set(SRC
     project/Project.h project/Project.cpp
     project/Session.h project/Session.cpp
 )
-
-add_library(common STATIC ${SRC})
 
 target_link_libraries(common PRIVATE
     Qt6::Widgets
