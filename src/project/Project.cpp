@@ -17,8 +17,9 @@ void Project::create(const QString& name, const QString& directory, Template pro
         throw ProjectExists();
     }
 
-    QDir().mkpath(path);
+    close();
 
+    QDir().mkpath(path);
     m_session->create(path);
 
     QFile file(path + "/" + name + Const::Project::Extension);
