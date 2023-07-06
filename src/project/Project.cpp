@@ -13,8 +13,11 @@ Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_r
 void Project::create(const QString& name, const QString& directory, Template projectTemplate) {
     QString path = directory + "/" + name;
 
-    QDir dir;
-    dir.mkpath(path);
+    if (QDir(path).exists()) {
+        throw ProjectExists();
+    }
+
+    QDir().mkpath(path);
 
     m_session->create(path);
 

@@ -33,10 +33,13 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
 void ActionBuilder::newProject() {
     NewProject newProject(Settings::value<General::Workspace>());
+    if (newProject.exec() == QDialog::Rejected) return;
 
-    if (newProject.exec() == QDialog::Accepted) {
+    try {
         m_project->create(newProject.name(), newProject.directory(), newProject.projectTemplate());
         Settings::setValue<General::Workspace>(newProject.directory());
+    } catch (ProjectExists&) {
+        QMessageBox::critical(m_mainWindow, tr("Creating project"), tr("Project already exists"));
     }
 }
 

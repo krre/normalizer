@@ -5,6 +5,8 @@
 class Session;
 class RenderView;
 
+class ProjectExists : public std::exception {};
+
 class Project : public QObject {
 public:
     enum class Template {
