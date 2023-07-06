@@ -32,12 +32,11 @@ void Project::create(const QString& name, const QString& directory, Template pro
 void Project::open(const QString& path) {
     if (path == m_path.value()) return;
 
-    QDir dir(path);
-
-    if (!dir.exists()) {
+    if (!QDir(path).exists()) {
         return;
     }
 
+    close();
     setPath(path);
 }
 
