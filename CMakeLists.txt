@@ -14,6 +14,7 @@ add_subdirectory(tests)
 
 target_link_libraries(normalizer PRIVATE common)
 target_link_libraries(test_newproject PRIVATE common)
+target_link_libraries(test_recentmenu PRIVATE common)
 
 install(TARGETS normalizer
     BUNDLE DESTINATION .

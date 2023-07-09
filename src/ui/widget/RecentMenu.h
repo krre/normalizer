@@ -14,6 +14,6 @@ public:
 signals:
     void activated(const QString& path);
 
-private slots:
+public slots:
     void clear();
 };
