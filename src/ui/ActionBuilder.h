@@ -3,13 +3,13 @@
 
 class MainWindow;
 class Project;
-class RecentProjectsMenu;
+class RecentMenu;
 
 class ActionBuilder : public QObject {
     Q_OBJECT
 public:
     explicit ActionBuilder(MainWindow* mainWindow, Project* project);
-    RecentProjectsMenu* recentProjectsMenu() const { return m_recentProjectsMenu; }
+    RecentMenu* recentProjectsMenu() const { return m_recentProjectsMenu; }
 
 private slots:
     void newProject();
@@ -20,5 +20,5 @@ private slots:
 private:
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
-    RecentProjectsMenu* m_recentProjectsMenu = nullptr;
+    RecentMenu* m_recentProjectsMenu = nullptr;
 };

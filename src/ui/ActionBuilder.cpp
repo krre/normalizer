@@ -1,10 +1,10 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
-#include "RecentProjectsMenu.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include "widget/Menu.h"
 #include "widget/Action.h"
+#include "widget/RecentMenu.h"
 #include "dialog/NewProject.h"
 #include <QtWidgets>
 
@@ -18,9 +18,9 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
 
-    m_recentProjectsMenu = new RecentProjectsMenu(tr("Recent Projects"), menuBar);
+    m_recentProjectsMenu = new RecentMenu(tr("Recent Projects"), menuBar);
     fileMenu->addAction(m_recentProjectsMenu->menuAction());
-    connect(m_recentProjectsMenu, &RecentProjectsMenu::activated, m_project, &Project::open);
+    connect(m_recentProjectsMenu, &RecentMenu::activated, m_project, &Project::open);
 
     fileMenu->addBindableAction(tr("Save"), Qt::CTRL | Qt::Key_S, project, &Project::save)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });

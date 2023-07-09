@@ -18,12 +18,12 @@ add_library(common STATIC
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
     ui/RenderView.h ui/RenderView.cpp
-    ui/RecentProjectsMenu.h ui/RecentProjectsMenu.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
     ui/dialog/NewProject.h ui/dialog/NewProject.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h
     ui/widget/Menu.h
+    ui/widget/RecentMenu.h ui/widget/RecentMenu.cpp
     core/CommonTypes.h
     project/Project.h project/Project.cpp
     project/Session.h project/Session.cpp

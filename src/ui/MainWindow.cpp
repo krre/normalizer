@@ -1,15 +1,14 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
 #include "RenderView.h"
-#include "RecentProjectsMenu.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include "widget/RecentMenu.h"
 #include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
-    readSettings();
 
     m_renderView = new RenderView;
     m_project = new Project(m_renderView, this);
@@ -22,6 +21,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     });
 
     setCentralWidget(m_renderView);
+
+    readSettings();
 
     QString projectPath = Settings::value<General::LastProject>();
     m_project->open(projectPath);
@@ -42,9 +43,12 @@ void MainWindow::readSettings() {
         resize(availableGeometry.width() * scale, availableGeometry.height() * scale);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
+
+    m_actionBuilder->recentProjectsMenu()->setPathes(Settings::value<General::RecentProjects>());
 }
 
 void MainWindow::writeSettings() {
     Settings::setValue<General::Geometry>(saveGeometry());
     Settings::setValue<General::State>(saveState());
+    Settings::setValue<General::RecentProjects>(m_actionBuilder->recentProjectsMenu()->pathes());
 }

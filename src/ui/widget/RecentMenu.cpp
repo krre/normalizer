@@ -1,37 +1,21 @@
-#include "RecentProjectsMenu.h"
-#include "core/Settings.h"
+#include "RecentMenu.h"
 #include <QDir>
 
 constexpr auto systemActionCount = 2;
 constexpr auto maxRecentFiles = 10;
 
-
-RecentProjectsMenu::RecentProjectsMenu(const QString& title, QWidget* parent) : QMenu(title, parent) {
+RecentMenu::RecentMenu(const QString& title, QWidget* parent) : QMenu(title, parent) {
     addSeparator();
-    addAction(tr("Clear"), this, &RecentProjectsMenu::clear);
-
-    for (const QString& path : Settings::value<General::RecentProjects>()) {
-        addPath(path);
-    }
+    addAction(tr("Clear"), this, &RecentMenu::clear);
 }
 
-RecentProjectsMenu::~RecentProjectsMenu() {
-    QStringList pathes;
-
-    for (int i = 0; i < actions().size() - systemActionCount; ++i) {
-        pathes.append(actions().at(i)->text());
-    }
-
-    Settings::setValue<General::RecentProjects>(pathes);
-}
-
-void RecentProjectsMenu::clear() {
+void RecentMenu::clear() {
     for (int i = actions().size() - systemActionCount - 1; i >= 0; i--) {
         removeAction(actions().at(i));
     }
 }
 
-void RecentProjectsMenu::addPath(const QString& path) {
+void RecentMenu::addPath(const QString& path) {
     if (path.isEmpty()) return;
 
     QDir dir(path);
@@ -52,5 +36,21 @@ void RecentProjectsMenu::addPath(const QString& path) {
 
     if (actions().size() > maxRecentFiles + systemActionCount) {
         removeAction(actions().at(actions().size() - systemActionCount - 1));
+    }
+}
+
+QStringList RecentMenu::pathes() const {
+    QStringList result;
+
+    for (int i = 0; i < actions().size() - systemActionCount; ++i) {
+        result.append(actions().at(i)->text());
+    }
+
+    return result;
+}
+
+void RecentMenu::setPathes(const QStringList& pathes) {
+    for (const QString& path : pathes) {
+        addPath(path);
     }
 }
