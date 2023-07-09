@@ -23,9 +23,13 @@ void Project::create(const QString& name, const QString& directory, Template pro
     QDir().mkpath(path);
     m_session->create(path);
 
-    QFile file(path + "/" + name + Const::Project::Extension);
-    file.open(QIODeviceBase::WriteOnly);
-    file.write(0);
+    QString filePath = path + "/" + name + Const::Project::Extension;
+
+    if (projectTemplate == Template::Binary) {
+        createBinary(name, filePath);
+    } else {
+        createLibrary(name, filePath);
+    }
 
     open(path);
 }
@@ -63,4 +67,14 @@ void Project::setPath(const QString& path) {
     m_path = path;
     m_renderView->setVisible(!path.isEmpty());
     Settings::setValue<General::LastProject>(m_path);
+}
+
+void Project::createBinary(const QString& name, const QString& filePath) {
+    Norm::Project project(name.toStdString(), Norm::Project::Type::Binary);
+    project.write(filePath.toStdString());
+}
+
+void Project::createLibrary(const QString& name, const QString& filePath) {
+    Norm::Project project(name.toStdString(), Norm::Project::Type::Library);
+    project.write(filePath.toStdString());
 }
