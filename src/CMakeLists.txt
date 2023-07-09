@@ -8,6 +8,9 @@ find_package(Qt6 REQUIRED COMPONENTS
     3DAnimation
 )
 
+find_library(NORM_LIB norm)
+find_path(NORM_INCLUDES norm)
+
 add_library(common STATIC
     core/Constants.h
     core/ObjectNames.h
@@ -36,6 +39,7 @@ target_link_libraries(common PRIVATE
     Qt6::3DLogic
     Qt6::3DExtras
     Qt6::3DAnimation
+    "${NORM_LIB}"
 )
 
-target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${NORM_INCLUDES})
