@@ -4,6 +4,7 @@
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include <norm/token/Project.h>
+#include <norm/token/Function.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -71,6 +72,10 @@ void Project::setPath(const QString& path) {
 
 void Project::createBinary(const QString& name, const QString& filePath) {
     Norm::Project project(name.toStdString(), Norm::Project::Type::Binary);
+
+    auto main = new Norm::Function("Main");
+    project.addFunction(main);
+    project.setMain(main);
     project.write(filePath.toStdString());
 }
 
