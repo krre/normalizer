@@ -3,7 +3,6 @@
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include <norm/Builder.h>
 #include <norm/token/Project.h>
 #include <QDir>
 
@@ -45,8 +44,7 @@ void Project::open(const QString& path) {
     QString filePath = path + "/" + name + Const::Project::Extension;
 
     try {
-        Norm::Builder builder(filePath.toStdString());
-        auto project = builder.build();
+        auto project = Norm::Project::read(filePath.toStdString());
         m_project.reset(project);
     } catch (std::exception& e) {
         qDebug() << e.what();
