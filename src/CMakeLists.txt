@@ -26,6 +26,8 @@ add_library(common STATIC
     project/Session.h project/Session.cpp
 )
 
+set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
+
 target_link_libraries(common PRIVATE
     Qt6::Widgets
     Qt6::3DCore
