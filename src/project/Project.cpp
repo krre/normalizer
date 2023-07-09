@@ -3,6 +3,8 @@
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include <norm/Builder.h>
+#include <norm/token/Project.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -38,6 +40,17 @@ void Project::open(const QString& path) {
 
     close();
     setPath(path);
+
+    QString name = QDir(path).dirName();
+    QString filePath = path + "/" + name + Const::Project::Extension;
+
+    try {
+        Norm::Builder builder(filePath.toStdString());
+        auto project = builder.build();
+        m_project.reset(project);
+    } catch (std::exception& e) {
+        qDebug() << e.what();
+    }
 }
 
 void Project::save() {
