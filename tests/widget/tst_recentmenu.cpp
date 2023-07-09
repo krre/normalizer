@@ -48,6 +48,7 @@ void TextRecentMenu::setPathes_data() {
     QTest::newRow("one") << QStringList(path1()) << QStringList(path1());
     QTest::newRow("two") << QStringList({ path1(), path2() }) << QStringList({ path2(), path1() });
     QTest::newRow("same") << QStringList({ path1(), path1() }) << QStringList(path1());
+    QTest::newRow("not-exists") << QStringList("name1/name2") << QStringList();
 
 }
 
