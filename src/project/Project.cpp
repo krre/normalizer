@@ -3,7 +3,8 @@
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include <norm/token/Project.h>
+#include <norm/token/project/BinaryProject.h>
+#include <norm/token/project/LibraryProject.h>
 #include <norm/token/Function.h>
 #include <QDir>
 
@@ -71,15 +72,11 @@ void Project::setPath(const QString& path) {
 }
 
 void Project::createBinary(const QString& name, const QString& filePath) {
-    Norm::Project project(name.toStdString(), Norm::Project::Type::Binary);
-
-    auto main = new Norm::Function("Main");
-    project.addFunction(main);
-    project.setMain(main);
+    Norm::BinaryProject project(name.toStdString());
     project.write(filePath.toStdString());
 }
 
 void Project::createLibrary(const QString& name, const QString& filePath) {
-    Norm::Project project(name.toStdString(), Norm::Project::Type::Library);
+    Norm::LibraryProject project(name.toStdString());
     project.write(filePath.toStdString());
 }
