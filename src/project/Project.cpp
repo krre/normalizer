@@ -3,9 +3,9 @@
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include <norm/token/project/BinaryProject.h>
-#include <norm/token/project/LibraryProject.h>
-#include <norm/token/Function.h>
+#include <norm/token/target/BinaryTarget.h>
+#include <norm/token/target/LibraryTarget.h>
+#include <norm/token/item/Function.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -50,8 +50,8 @@ void Project::open(const QString& path) {
     QString filePath = path + "/" + name + Const::Project::Extension;
 
     try {
-        auto project = Norm::Project::read(filePath.toStdString());
-        m_project.reset(project);
+        auto target = Norm::Target::read(filePath.toStdString());
+        m_target.reset(target);
     } catch (std::exception& e) {
         qDebug() << e.what();
     }
@@ -72,11 +72,11 @@ void Project::setPath(const QString& path) {
 }
 
 void Project::createBinary(const QString& name, const QString& filePath) {
-    Norm::BinaryProject project(name.toStdString());
-    project.write(filePath.toStdString());
+    Norm::BinaryTarget target(name.toStdString());
+    target.write(filePath.toStdString());
 }
 
 void Project::createLibrary(const QString& name, const QString& filePath) {
-    Norm::LibraryProject project(name.toStdString());
-    project.write(filePath.toStdString());
+    Norm::LibraryTarget target(name.toStdString());
+    target.write(filePath.toStdString());
 }

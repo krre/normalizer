@@ -6,7 +6,7 @@ class Session;
 class RenderView;
 
 namespace Norm {
-    class Project;
+    class Target;
 }
 
 class ProjectExists : public std::exception {};
@@ -38,7 +38,7 @@ private:
 
     RenderView* m_renderView = nullptr;
     Session* m_session = nullptr;
-    QScopedPointer<Norm::Project> m_project;
+    QScopedPointer<Norm::Target> m_target;
 
     QProperty<QString> m_path;
     QProperty<bool> m_opened { false };
