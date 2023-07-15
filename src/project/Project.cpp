@@ -6,6 +6,12 @@
 #include <norm/token/target/BinaryTarget.h>
 #include <norm/token/target/LibraryTarget.h>
 #include <norm/token/item/Function.h>
+#include <norm/token/expression/BlockExpression.h>
+#include <norm/token/statement/AssignStatement.h>
+#include <norm/token/Identifier.h>
+#include <norm/token/type/Integer.h>
+#include <norm/token/expression/OperatorExpression.h>
+#include <norm/token/expression/LiteralExpression.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -72,7 +78,22 @@ void Project::setPath(const QString& path) {
 }
 
 void Project::createBinary(const QString& name, const QString& filePath) {
+    Norm::Integer integer;
+    auto x = std::make_unique<Norm::Identifier>("x", &integer);
+
+    auto sumExpr = std::make_unique<Norm::SumOperator>();
+    sumExpr->addExpression(std::make_unique<Norm::IntegerLiteral>("2"));
+    sumExpr->addExpression(std::make_unique<Norm::IntegerLiteral>("3"));
+
+    auto assign = std::make_unique<Norm::AssignStatement>();
+    assign->setIdentifier(std::move(x));
+    assign->setExpression(std::move(sumExpr));
+
+    auto block = std::make_unique<Norm::BlockExpression>();
+    block->addStatement(std::move(assign));
+
     Norm::BinaryTarget target(name.toStdString());
+    target.main()->setBlock(std::move(block));
     target.write(filePath.toStdString());
 }
 
