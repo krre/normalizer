@@ -78,22 +78,21 @@ void Project::setPath(const QString& path) {
 }
 
 void Project::createBinary(const QString& name, const QString& filePath) {
-    Norm::Integer integer;
-    auto x = std::make_unique<Norm::Identifier>("x", &integer);
+    using namespace Norm;
 
-    auto sumExpr = std::make_unique<Norm::SumOperator>();
-    sumExpr->addExpression(std::make_unique<Norm::IntegerLiteral>("2"));
-    sumExpr->addExpression(std::make_unique<Norm::IntegerLiteral>("3"));
+    auto sumExpr = new SumOperator;
+    sumExpr->addExpression(new IntegerLiteral("2"));
+    sumExpr->addExpression(new IntegerLiteral("3"));
 
-    auto assign = std::make_unique<Norm::AssignStatement>();
-    assign->setIdentifier(std::move(x));
-    assign->setExpression(std::move(sumExpr));
+    auto assign = new AssignStatement;
+    assign->setIdentifier(new Identifier("x", new Integer));
+    assign->setExpression(sumExpr);
 
-    auto block = std::make_unique<Norm::BlockExpression>();
-    block->addStatement(std::move(assign));
+    auto block = new BlockExpression;
+    block->addStatement(assign);
 
-    Norm::BinaryTarget target(name.toStdString());
-    target.main()->setBlock(std::move(block));
+    BinaryTarget target(name.toStdString());
+    target.main()->setBlock(block);
     target.write(filePath.toStdString());
 }
 
