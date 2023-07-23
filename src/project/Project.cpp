@@ -12,6 +12,8 @@
 #include <norm/token/type/Integer.h>
 #include <norm/token/expression/OperatorExpression.h>
 #include <norm/token/expression/LiteralExpression.h>
+#include <norm/io/FileReader.h>
+#include <norm/io/FileWriter.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -52,11 +54,10 @@ void Project::open(const QString& path) {
     close();
     setPath(path);
 
-    QString name = QDir(path).dirName();
-    QString filePath = path + "/" + name + Const::Project::Extension;
-
     try {
-        auto target = Norm::Target::read(filePath.toStdString());
+        Norm::FileReader reader;
+        auto token = reader.read(filePath().toStdString());
+        Norm::Target* target = dynamic_cast<Norm::Target*>(token);
         m_target.reset(target);
     } catch (std::exception& e) {
         qDebug() << e.what();
@@ -77,6 +78,11 @@ void Project::setPath(const QString& path) {
     Settings::setValue<General::LastProject>(m_path);
 }
 
+QString Project::filePath() const {
+    QString name = QDir(m_path).dirName();
+    return m_path + "/" + name + Const::Project::Extension;
+}
+
 void Project::createBinary(const QString& name, const QString& filePath) {
     using namespace Norm;
 
@@ -93,10 +99,13 @@ void Project::createBinary(const QString& name, const QString& filePath) {
 
     BinaryTarget target(name.toStdString());
     target.main()->setBlock(block);
-    target.write(filePath.toStdString());
+
+    Norm::FileWriter writer;
+    writer.write(filePath.toStdString(), &target);
 }
 
 void Project::createLibrary(const QString& name, const QString& filePath) {
     Norm::LibraryTarget target(name.toStdString());
-    target.write(filePath.toStdString());
+    Norm::FileWriter writer;
+    writer.write(filePath.toStdString(), &target);
 }
