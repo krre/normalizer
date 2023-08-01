@@ -21,7 +21,8 @@ NewProject::NewProject(const QString& directory, QWidget* parent) : StandardDial
     formLayout->addRow(new QLabel(tr("Name:")), m_nameLineEdit);
     formLayout->addRow(new QLabel(tr("Directory:")), m_directoryBrowseLayout);
     formLayout->addRow(new QLabel(tr("Template:")), m_templateComboBox);
-    formLayout->itemAt(2, QFormLayout::FieldRole)->setAlignment(Qt::AlignLeft);
+
+    formLayout->itemAt(formLayout->indexOf(m_templateComboBox))->setAlignment(Qt::AlignLeft);
 
     setContentLayout(formLayout);
     resizeToWidth(400);
