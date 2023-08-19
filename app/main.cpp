@@ -1,5 +1,6 @@
 #include "ui/MainWindow.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include <QApplication>
 
 int main(int argc, char* argv[]) {
@@ -11,9 +12,7 @@ int main(int argc, char* argv[]) {
     app.setOrganizationName(Const::App::Organization);
     app.setApplicationName(Const::App::Name);
 
-#ifdef Q_OS_WIN
-    QSettings::setDefaultFormat(QSettings::IniFormat);
-#endif
+    Settings::init();
 
     MainWindow mainWindow;
     mainWindow.show();
