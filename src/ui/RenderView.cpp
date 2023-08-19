@@ -7,11 +7,9 @@ RenderView::RenderView() {
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);
 
-    QWidget* container = QWidget::createWindowContainer(view);
-
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(container);
+    layout->addWidget(QWidget::createWindowContainer(view));
 
     setVisible(false);
 }
