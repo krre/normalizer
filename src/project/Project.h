@@ -34,9 +34,6 @@ private:
     void setPath(const QString& path);
     QString filePath() const;
 
-    void createBinary(const QString& name, const QString& filePath);
-    void createLibrary(const QString& name, const QString& filePath);
-
     RenderView* m_renderView = nullptr;
     Session* m_session = nullptr;
     QScopedPointer<Norm::Target> m_target;

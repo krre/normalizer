@@ -1,19 +1,11 @@
 #include "Project.h"
 #include "Session.h"
+#include "TemplateCreator.h"
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include <norm/token/target/BinaryTarget.h>
-#include <norm/token/target/LibraryTarget.h>
-#include <norm/token/item/Function.h>
-#include <norm/token/expression/BlockExpression.h>
-#include <norm/token/statement/AssignStatement.h>
-#include <norm/token/Identifier.h>
-#include <norm/token/type/Integer.h>
-#include <norm/token/expression/OperatorExpression.h>
-#include <norm/token/expression/LiteralExpression.h>
 #include <norm/io/FileReader.h>
-#include <norm/io/FileWriter.h>
+#include <norm/token/target/Target.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -36,9 +28,9 @@ void Project::create(const QString& name, const QString& directory, Template pro
     QString filePath = path + "/" + name + Const::Project::Extension;
 
     if (projectTemplate == Template::Binary) {
-        createBinary(name, filePath);
+        TemplateCreator::createBinary(name, filePath);
     } else {
-        createLibrary(name, filePath);
+        TemplateCreator::createLibrary(name, filePath);
     }
 
     open(path);
@@ -81,31 +73,4 @@ void Project::setPath(const QString& path) {
 QString Project::filePath() const {
     QString name = QDir(m_path).dirName();
     return m_path + "/" + name + Const::Project::Extension;
-}
-
-void Project::createBinary(const QString& name, const QString& filePath) {
-    using namespace Norm;
-
-    auto sumExpr = new SumOperator;
-    sumExpr->addExpression(new IntegerLiteral("2"));
-    sumExpr->addExpression(new IntegerLiteral("3"));
-
-    auto assign = new AssignStatement;
-    assign->setIdentifier(new Identifier("x", new Integer));
-    assign->setExpression(sumExpr);
-
-    auto block = new BlockExpression;
-    block->addStatement(assign);
-
-    BinaryTarget target(name.toStdString());
-    target.main()->setBlock(block);
-
-    Norm::FileWriter writer;
-    writer.write(filePath.toStdString(), &target);
-}
-
-void Project::createLibrary(const QString& name, const QString& filePath) {
-    Norm::LibraryTarget target(name.toStdString());
-    Norm::FileWriter writer;
-    writer.write(filePath.toStdString(), &target);
 }

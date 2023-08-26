@@ -28,6 +28,7 @@ add_library(common STATIC
     project/Project.h project/Project.cpp
     project/Session.h project/Session.cpp
     core/Application.h core/Application.cpp
+    project/TemplateCreator.h project/TemplateCreator.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
