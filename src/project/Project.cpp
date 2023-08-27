@@ -1,5 +1,7 @@
 #include "Project.h"
 #include "Session.h"
+#include "ProjectReader.h"
+#include "ProjectWriter.h"
 #include "ui/RenderView.h"
 #include "norm/Project.h"
 #include "core/Constants.h"
@@ -26,7 +28,15 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
     m_normProject.reset(new Norm::Project(name, projectTemplate));
 
     QString filePath = path + "/" + name + Const::Project::Extension;
-    open(path);
+
+    try {
+        ProjectWriter writer;
+        writer.write(m_normProject.get(), filePath);
+
+        open(path);
+    } catch (std::exception& e) {
+        qDebug() << e.what();
+    }
 }
 
 void Project::open(const QString& path) {
@@ -40,7 +50,8 @@ void Project::open(const QString& path) {
     setPath(path);
 
     try {
-
+        ProjectReader reader;
+        m_normProject = reader.read(filePath());
     } catch (std::exception& e) {
         qDebug() << e.what();
     }

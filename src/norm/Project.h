@@ -11,6 +11,7 @@ public:
     };
 
     Project(const QString& name, Template projectTemplate);
+    Project() = default;
 
     void setName(const QString& name);
     QString name() const;

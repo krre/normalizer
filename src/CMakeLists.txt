@@ -26,6 +26,8 @@ add_library(common STATIC
     project/Session.h project/Session.cpp
     core/Application.h core/Application.cpp
     norm/Project.h norm/Project.cpp
+    project/ProjectReader.h project/ProjectReader.cpp
+    project/ProjectWriter.h project/ProjectWriter.cpp
 
 )
 
