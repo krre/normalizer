@@ -12,6 +12,10 @@ namespace App {
     constexpr auto BuildTime = __TIME__;
 }
 
+namespace Norm {
+    constexpr auto Version = "0.1";
+}
+
 namespace Project {
     constexpr auto WorkspaceDir = "NormProjects";
     constexpr auto Extension = ".norm";
