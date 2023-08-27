@@ -1,11 +1,8 @@
 #include "Project.h"
 #include "Session.h"
-#include "TemplateCreator.h"
 #include "ui/RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include <norm/io/FileReader.h>
-#include <norm/token/target/Target.h>
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -27,12 +24,6 @@ void Project::create(const QString& name, const QString& directory, Template pro
 
     QString filePath = path + "/" + name + Const::Project::Extension;
 
-    if (projectTemplate == Template::Binary) {
-        TemplateCreator::createBinary(name, filePath);
-    } else {
-        TemplateCreator::createLibrary(name, filePath);
-    }
-
     open(path);
 }
 
@@ -47,10 +38,7 @@ void Project::open(const QString& path) {
     setPath(path);
 
     try {
-        Norm::FileReader reader;
-        auto token = reader.read(filePath().toStdString());
-        Norm::Target* target = dynamic_cast<Norm::Target*>(token);
-        m_target.reset(target);
+
     } catch (std::exception& e) {
         qDebug() << e.what();
     }
