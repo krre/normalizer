@@ -42,8 +42,8 @@ QString NewProject::directory() const {
     return m_directoryBrowseLayout->lineEdit()->text();
 }
 
-Project::Template NewProject::projectTemplate() const {
-    return static_cast<Project::Template>(m_templateComboBox->currentIndex());
+Norm::Project::Template NewProject::projectTemplate() const {
+    return static_cast<Norm::Project::Template>(m_templateComboBox->currentIndex());
 }
 
 void NewProject::adjustAcceptedButton() {

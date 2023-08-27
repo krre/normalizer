@@ -1,4 +1,5 @@
 #pragma once
+#include "norm/Project.h"
 #include <QObject>
 #include <QProperty>
 
@@ -9,14 +10,9 @@ class ProjectExists : public std::exception {};
 
 class Project : public QObject {
 public:
-    enum class Template {
-        Binary,
-        Library
-    };
-
     Project(RenderView* renderView, QObject* parent = nullptr);
 
-    void create(const QString& name, const QString& directory, Template projectTemplate);
+    void create(const QString& name, const QString& directory, Norm::Project::Template projectTemplate);
 
     QBindable<QString> path() { return &m_path; } ;
     QBindable<bool> opened() { return &m_opened; };

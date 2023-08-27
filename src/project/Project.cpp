@@ -10,7 +10,7 @@ Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_r
     m_opened.setBinding([&] { return !m_path.value().isEmpty(); });
 }
 
-void Project::create(const QString& name, const QString& directory, Template projectTemplate) {
+void Project::create(const QString& name, const QString& directory, Norm::Project::Template projectTemplate) {
     QString path = directory + "/" + name;
 
     if (QDir(path).exists()) {

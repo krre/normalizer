@@ -1,5 +1,6 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
+#include "project/Project.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include "widget/Menu.h"

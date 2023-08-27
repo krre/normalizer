@@ -1,6 +1,6 @@
 #pragma once
 #include "StandardDialog.h"
-#include "project/Project.h"
+#include "norm/Project.h"
 
 class QLineEdit;
 class QComboBox;
@@ -12,7 +12,7 @@ public:
 
     QString name() const;
     QString directory() const;
-    Project::Template projectTemplate() const;
+    Norm::Project::Template projectTemplate() const;
 
 private slots:
     void adjustAcceptedButton();
