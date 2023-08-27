@@ -1,4 +1,5 @@
 #pragma once
+#include <QString>
 
 namespace Norm {
 
@@ -9,7 +10,16 @@ public:
         Library
     };
 
-    Project();
+    Project(const QString& name, Template projectTemplate);
+
+    void setName(const QString& name);
+    QString name() const;
+
+    Template projectTemplate() const;
+
+private:
+    QString m_name;
+    Template m_projectTemplate;
 };
 
 }
