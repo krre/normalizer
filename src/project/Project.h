@@ -3,6 +3,10 @@
 #include <QObject>
 #include <QProperty>
 
+namespace Norm {
+    class Project;
+}
+
 class Session;
 class RenderView;
 
@@ -28,6 +32,7 @@ private:
 
     RenderView* m_renderView = nullptr;
     Session* m_session = nullptr;
+    QScopedPointer<Norm::Project> m_normProject;
 
     QProperty<QString> m_path;
     QProperty<bool> m_opened { false };

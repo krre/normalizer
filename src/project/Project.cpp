@@ -1,6 +1,7 @@
 #include "Project.h"
 #include "Session.h"
 #include "ui/RenderView.h"
+#include "norm/Project.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include <QDir>
@@ -22,8 +23,9 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
     QDir().mkpath(path);
     m_session->create(path);
 
-    QString filePath = path + "/" + name + Const::Project::Extension;
+    m_normProject.reset(new Norm::Project(name, projectTemplate));
 
+    QString filePath = path + "/" + name + Const::Project::Extension;
     open(path);
 }
 
