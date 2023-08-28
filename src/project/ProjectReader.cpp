@@ -1,5 +1,6 @@
 #include "ProjectReader.h"
 #include "norm/Project.h"
+#include "norm/Sign.h"
 #include <QtCore>
 
 ProjectReader::ProjectReader() {
@@ -16,19 +17,18 @@ std::unique_ptr<Norm::Project> ProjectReader::read(const QString& filePath) {
     QTextStream in(&file);
     QString line;
 
+    auto project = std::make_unique<Norm::Project>();
+
     while (in.readLineInto(&line)) {
-        QStringList words = line.split(' ');
-        QString tokenName = words.first();
+        QString sign = line.first(4);
+        using namespace Norm;
 
-        qDebug() << words;
+        if (sign == Sign::Norm) {
 
-        if (tokenName == "norm") {
-
-        } else if (tokenName == "project") {
-
+        } else if (sign == Sign::Project) {
+            project->parse(line.mid(5));
         }
     }
 
-    auto result = std::make_unique<Norm::Project>();
-    return result;
+    return project;
 }

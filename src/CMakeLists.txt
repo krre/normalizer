@@ -28,6 +28,8 @@ add_library(common STATIC
     norm/Project.h norm/Project.cpp
     project/ProjectReader.h project/ProjectReader.cpp
     project/ProjectWriter.h project/ProjectWriter.cpp
+    norm/Token.h norm/Token.cpp
+    norm/Sign.h
 
 )
 
