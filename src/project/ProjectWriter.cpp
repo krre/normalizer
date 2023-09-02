@@ -1,4 +1,5 @@
 #include "ProjectWriter.h"
+#include "core/Exception.h"
 #include "norm/Project.h"
 #include <QtCore>
 
@@ -10,7 +11,7 @@ void ProjectWriter::write(Norm::Project* project, const QString& filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODeviceBase::WriteOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("Failed to write file %1").arg(filePath).toStdString().c_str());
+        throw Exception(QString("Failed to write file %1").arg(filePath));
     }
 
     QTextStream out(&file);

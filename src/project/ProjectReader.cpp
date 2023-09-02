@@ -1,4 +1,5 @@
 #include "ProjectReader.h"
+#include "core/Exception.h"
 #include "norm/Project.h"
 #include "norm/Sign.h"
 #include <QtCore>
@@ -11,7 +12,7 @@ std::unique_ptr<Norm::Project> ProjectReader::read(const QString& filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODeviceBase::ReadOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("Failed to read file %1").arg(filePath).toStdString().c_str());
+        throw Exception(QString("Failed to read file %1").arg(filePath));
     }
 
     QTextStream in(&file);

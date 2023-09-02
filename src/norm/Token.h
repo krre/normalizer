@@ -1,4 +1,5 @@
 #pragma once
+#include "core/Exception.h"
 #include <QVariant>
 
 namespace Norm {
@@ -24,7 +25,7 @@ protected:
     struct ParsedProperties {
         QVariant value(const QString& name) const {
             if (!properties.contains(name)) {
-                throw std::runtime_error(QString("Property '%1' not found in token '%2'").arg(name, sign).toStdString().c_str());
+                throw Exception(QString("Property '%1' not found in token '%2'").arg(name, sign));
             }
 
             return properties.value(name);

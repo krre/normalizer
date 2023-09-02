@@ -6,6 +6,7 @@
 #include "norm/Project.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
+#include "core/Exception.h"
 #include <QDir>
 
 Project::Project(RenderView* renderView, QObject* parent) : QObject(parent), m_renderView(renderView) {
@@ -34,8 +35,8 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
         writer.write(m_normProject.get(), filePath);
 
         open(path);
-    } catch (std::exception& e) {
-        qDebug() << e.what();
+    } catch (Exception& e) {
+        qDebug() << e.error();
     }
 }
 
@@ -52,8 +53,8 @@ void Project::open(const QString& path) {
     try {
         ProjectReader reader;
         m_normProject = reader.read(filePath());
-    } catch (std::exception& e) {
-        qDebug() << e.what();
+    } catch (Exception& e) {
+        qDebug() << e.error();
     }
 }
 
