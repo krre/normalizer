@@ -27,6 +27,7 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
     m_session->create(path);
 
     m_normProject = new Norm::Project(name, projectTemplate);
+    m_normProject->setParent(this);
 
     QString filePath = path + "/" + name + Const::Project::Extension;
 
@@ -53,6 +54,7 @@ void Project::open(const QString& path) {
     try {
         Norm::FileReader reader;
         m_normProject = static_cast<Norm::Project*>(reader.read(filePath()));
+        m_normProject->setParent(this);
     } catch (Exception& e) {
         qDebug() << e.error();
     }

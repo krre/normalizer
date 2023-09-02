@@ -1,16 +1,16 @@
 #pragma once
 #include "TokenType.h"
 #include "core/Exception.h"
+#include <QObject>
 #include <QVariant>
 
 namespace Norm {
 
-class Token {
+class Token : public QObject {
 public:
     virtual TokenType type() const = 0;
 
     QByteArray serialize() const;
-
     void parse(const QByteArray& data);
 
 protected:

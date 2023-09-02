@@ -1,5 +1,6 @@
 #include "FileReader.h"
 #include "Token.h"
+#include "Project.h"
 #include "core/Exception.h"
 #include <QFile>
 
@@ -25,7 +26,7 @@ Token* FileReader::read(const QString& filePath) {
         qDebug() << "type" << int(type);
     }
 
-    return nullptr;
+    return new Project;
 }
 
 }
