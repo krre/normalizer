@@ -4,6 +4,7 @@
 namespace Norm {
 
 enum class TokenType : uint8_t {
+    Invalid,
     Project
 };
 

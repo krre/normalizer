@@ -5,23 +5,13 @@
 
 namespace Norm {
 
-template <TokenType tt>
 class Token {
 public:
-    static constexpr TokenType type = tt;
+    virtual TokenType type() const = 0;
 
-    QByteArray serialize() const {
-        QByteArray data;
-        QDataStream stream(&data, QIODeviceBase::WriteOnly);
+    QByteArray serialize() const;
 
-        stream << "serialize type" << type;
-
-        return data;
-    }
-
-    void parse(const QByteArray& data) {
-
-    }
+    void parse(const QByteArray& data);
 
 protected:
     struct SerializedProperties {

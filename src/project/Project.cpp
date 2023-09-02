@@ -1,8 +1,8 @@
 #include "Project.h"
 #include "Session.h"
-#include "ProjectReader.h"
-#include "ProjectWriter.h"
 #include "ui/RenderView.h"
+#include "norm/FileReader.h"
+#include "norm/FileWriter.h"
 #include "norm/Project.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
@@ -26,13 +26,13 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
     QDir().mkpath(path);
     m_session->create(path);
 
-    m_normProject.reset(new Norm::Project(name, projectTemplate));
+    m_normProject = new Norm::Project(name, projectTemplate);
 
     QString filePath = path + "/" + name + Const::Project::Extension;
 
     try {
-        ProjectWriter writer;
-        writer.write(m_normProject.get(), filePath);
+        Norm::FileWriter writer;
+        writer.write(m_normProject, filePath);
 
         open(path);
     } catch (Exception& e) {
@@ -51,8 +51,8 @@ void Project::open(const QString& path) {
     setPath(path);
 
     try {
-        ProjectReader reader;
-        m_normProject = reader.read(filePath());
+        Norm::FileReader reader;
+        m_normProject = static_cast<Norm::Project*>(reader.read(filePath()));
     } catch (Exception& e) {
         qDebug() << e.error();
     }

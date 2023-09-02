@@ -3,6 +3,19 @@
 
 namespace Norm {
 
+QByteArray Token::serialize() const {
+    QByteArray data;
+    QDataStream stream(&data, QIODeviceBase::WriteOnly);
+
+    stream << type();
+
+    return data;
+}
+
+void Token::parse(const QByteArray& data) {
+
+}
+
 //QByteArray Token::serialize() const {
 //    QByteArray result;
 //    return result;

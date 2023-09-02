@@ -1,13 +1,15 @@
-#include "ProjectReader.h"
+#include "FileReader.h"
+#include "Token.h"
 #include "core/Exception.h"
-#include "norm/Project.h"
-#include <QtCore>
+#include <QFile>
 
-ProjectReader::ProjectReader() {
+namespace Norm {
+
+FileReader::FileReader() {
 
 }
 
-std::unique_ptr<Norm::Project> ProjectReader::read(const QString& filePath) {
+Token* FileReader::read(const QString& filePath) {
     QFile file(filePath);
 
     if (!file.open(QFile::ReadOnly)) {
@@ -23,8 +25,7 @@ std::unique_ptr<Norm::Project> ProjectReader::read(const QString& filePath) {
         qDebug() << "type" << int(type);
     }
 
-    auto project = std::make_unique<Norm::Project>();
+    return nullptr;
+}
 
-
-    return project;
 }

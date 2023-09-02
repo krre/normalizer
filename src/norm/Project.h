@@ -4,7 +4,7 @@
 
 namespace Norm {
 
-class Project : public Token<TokenType::Project> {
+class Project : public Token {
 public:
     enum class Template {
         Binary,
@@ -13,6 +13,8 @@ public:
 
     Project(const QString& name, Template projectTemplate);
     Project() = default;
+
+    TokenType type() const override { return TokenType::Project; }
 
     void setName(const QString& name);
     QString name() const;

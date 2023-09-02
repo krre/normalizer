@@ -32,7 +32,7 @@ private:
 
     RenderView* m_renderView = nullptr;
     Session* m_session = nullptr;
-    std::unique_ptr<Norm::Project> m_normProject;
+    Norm::Project* m_normProject = nullptr;
 
     QProperty<QString> m_path;
     QProperty<bool> m_opened { false };
