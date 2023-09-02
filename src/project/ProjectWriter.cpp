@@ -11,7 +11,7 @@ void ProjectWriter::write(Norm::Project* project, const QString& filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODeviceBase::WriteOnly | QIODevice::Text)) {
-        throw Exception(QString("Failed to write file %1").arg(filePath));
+        throw Exception("Failed to write file '{}'", filePath);
     }
 
     QTextStream out(&file);

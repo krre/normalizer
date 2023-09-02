@@ -12,7 +12,7 @@ std::unique_ptr<Norm::Project> ProjectReader::read(const QString& filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODeviceBase::ReadOnly | QIODevice::Text)) {
-        throw Exception(QString("Failed to read file %1").arg(filePath));
+        throw Exception("Failed to read file '{}'", filePath);
     }
 
     QTextStream in(&file);

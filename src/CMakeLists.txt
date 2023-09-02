@@ -31,6 +31,7 @@ add_library(common STATIC
     norm/Token.h norm/Token.cpp
     norm/Sign.h
     core/Exception.h core/Exception.cpp
+    core/Format.h
 
 )
 

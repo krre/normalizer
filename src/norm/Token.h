@@ -25,7 +25,7 @@ protected:
     struct ParsedProperties {
         QVariant value(const QString& name) const {
             if (!properties.contains(name)) {
-                throw Exception(QString("Property '%1' not found in token '%2'").arg(name, sign));
+                throw Exception("Property '{}' not found in token '{}'", name, sign);
             }
 
             return properties.value(name);
