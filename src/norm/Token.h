@@ -1,17 +1,27 @@
 #pragma once
+#include "TokenType.h"
 #include "core/Exception.h"
 #include <QVariant>
 
 namespace Norm {
 
+template <TokenType tt>
 class Token {
 public:
-    Token();
+    static constexpr TokenType type = tt;
 
-    virtual QString sign() const = 0;
+    QByteArray serialize() const {
+        QByteArray data;
+        QDataStream stream(&data, QIODeviceBase::WriteOnly);
 
-    QString serialize() const;
-    void parse(const QString& line);
+        stream << "serialize type" << type;
+
+        return data;
+    }
+
+    void parse(const QByteArray& data) {
+
+    }
 
 protected:
     struct SerializedProperties {

@@ -29,9 +29,10 @@ add_library(common STATIC
     project/ProjectReader.h project/ProjectReader.cpp
     project/ProjectWriter.h project/ProjectWriter.cpp
     norm/Token.h norm/Token.cpp
-    norm/Sign.h
+
     core/Exception.h core/Exception.cpp
     core/Format.h
+    norm/TokenType.h
 
 )
 

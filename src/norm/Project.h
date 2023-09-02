@@ -1,10 +1,10 @@
 #pragma once
 #include "Token.h"
-#include "Sign.h"
+#include "TokenType.h"
 
 namespace Norm {
 
-class Project : public Token {
+class Project : public Token<TokenType::Project> {
 public:
     enum class Template {
         Binary,
@@ -13,8 +13,6 @@ public:
 
     Project(const QString& name, Template projectTemplate);
     Project() = default;
-
-    QString sign() const override { return Sign::Project; }
 
     void setName(const QString& name);
     QString name() const;

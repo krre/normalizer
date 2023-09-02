@@ -1,41 +1,40 @@
 #include "Token.h"
+#include <QDataStream>
 
 namespace Norm {
 
-Token::Token() {
+//QByteArray Token::serialize() const {
+//    QByteArray result;
+//    return result;
+//    SerializedProperties properties;
+//    getSerializedProperties(properties);
 
-}
+//    QString result = sign();
 
-QString Token::serialize() const {
-    SerializedProperties properties;
-    getSerializedProperties(properties);
+//    for (const auto& property : properties.properties) {
+//        result += " " + property.first + " " + property.second.toString();
+//    }
 
-    QString result = sign();
+//    return result;
+//}
 
-    for (const auto& property : properties.properties) {
-        result += " " + property.first + " " + property.second.toString();
-    }
+//void Token::parse(const QString& line) {
+//    ParsedProperties properties;
+//    properties.sign = sign();
 
-    return result;
-}
+//    QTextStream stream(line.toUtf8());
 
-void Token::parse(const QString& line) {
-    ParsedProperties properties;
-    properties.sign = sign();
+//    while (!stream.atEnd()) {
+//        QString name;
+//        stream >> name;
 
-    QTextStream stream(line.toUtf8());
+//        QString value;
+//        stream >> value;
 
-    while (!stream.atEnd()) {
-        QString name;
-        stream >> name;
+//        properties.properties[name] = value;
+//    }
 
-        QString value;
-        stream >> value;
-
-        properties.properties[name] = value;
-    }
-
-    setParsedProperties(properties);
-}
+//    setParsedProperties(properties);
+//}
 
 }
