@@ -3,51 +3,29 @@
 
 namespace Norm {
 
+void Token::setId(TokenId id) {
+    m_id = id;
+}
+
+TokenId Token::id() const {
+    return m_id;
+}
+
 QByteArray Token::serialize() const {
-    QByteArray data;
-    QDataStream stream(&data, QIODeviceBase::WriteOnly);
+    QByteArray result;
+    QDataStream stream(&result, QIODeviceBase::WriteOnly);
 
-    stream << type();
+    stream << type() << m_id;
+    getSerializedProperties(stream);
 
-    return data;
+    return result;
 }
 
 void Token::parse(const QByteArray& data) {
+    QDataStream stream(data);
 
+    stream >> m_id;
+    setParsedProperties(stream);
 }
-
-//QByteArray Token::serialize() const {
-//    QByteArray result;
-//    return result;
-//    SerializedProperties properties;
-//    getSerializedProperties(properties);
-
-//    QString result = sign();
-
-//    for (const auto& property : properties.properties) {
-//        result += " " + property.first + " " + property.second.toString();
-//    }
-
-//    return result;
-//}
-
-//void Token::parse(const QString& line) {
-//    ParsedProperties properties;
-//    properties.sign = sign();
-
-//    QTextStream stream(line.toUtf8());
-
-//    while (!stream.atEnd()) {
-//        QString name;
-//        stream >> name;
-
-//        QString value;
-//        stream >> value;
-
-//        properties.properties[name] = value;
-//    }
-
-//    setParsedProperties(properties);
-//}
 
 }

@@ -22,8 +22,6 @@ Token* FileReader::read(const QString& filePath) {
     while (!stream.atEnd()) {
         Norm::TokenType type;
         stream >> type;
-
-        qDebug() << "type" << int(type);
     }
 
     return new Project;

@@ -22,8 +22,8 @@ public:
     Template projectTemplate() const;
 
 protected:
-    void getSerializedProperties(SerializedProperties& properties) const override;
-    void setParsedProperties(ParsedProperties& properties) override;
+    void getSerializedProperties(QDataStream& stream) const override;
+    void setParsedProperties(const QDataStream& stream) override;
 
 private:
     QString m_name;
