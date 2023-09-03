@@ -29,7 +29,6 @@ add_library(common STATIC
     norm/FileReader.h norm/FileReader.cpp
     norm/FileWriter.h norm/FileWriter.cpp
     norm/Token.h norm/Token.cpp
-
     core/Exception.h core/Exception.cpp
     core/Format.h
     norm/TokenType.h
