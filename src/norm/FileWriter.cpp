@@ -16,7 +16,24 @@ void FileWriter::write(Token* root, const QString& filePath) {
         throw Exception("Failed to write file '{}'", filePath);
     }
 
-    file.write(root->serialize());
+    file.write(serializeToken(root));
+}
+
+QByteArray FileWriter::serializeToken(Token* token) {
+    QByteArray result = token->serialize();
+
+    QByteArray sizeBa;
+    QDataStream ds(&sizeBa, QIODeviceBase::WriteOnly);
+    TokenSize size = result.size();
+    ds << size;
+
+    result.prepend(sizeBa);
+
+    for (auto child : token->children()) {
+        result += serializeToken(static_cast<Token*>(child));
+    }
+
+    return result;
 }
 
 }
