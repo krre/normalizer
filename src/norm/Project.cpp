@@ -19,9 +19,13 @@ Project::Template Project::projectTemplate() const {
 }
 
 void Project::getSerializedProperties(QDataStream& stream) const {
+    stream << m_projectTemplate;
+    stream << m_name;
 }
 
-void Project::setParsedProperties(const QDataStream& stream) {
+void Project::setParsedProperties(QDataStream& stream) {
+    stream >> m_projectTemplate;
+    stream >> m_name;
 }
 
 }

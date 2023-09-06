@@ -6,7 +6,7 @@ namespace Norm {
 
 class Project : public Token {
 public:
-    enum class Template {
+    enum class Template : uint8_t {
         Binary,
         Library
     };
@@ -23,7 +23,7 @@ public:
 
 protected:
     void getSerializedProperties(QDataStream& stream) const override;
-    void setParsedProperties(const QDataStream& stream) override;
+    void setParsedProperties(QDataStream& stream) override;
 
 private:
     QString m_name;

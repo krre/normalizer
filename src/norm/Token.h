@@ -16,7 +16,7 @@ public:
 
 protected:
     virtual void getSerializedProperties(QDataStream& stream) const = 0;
-    virtual void setParsedProperties(const QDataStream& stream) = 0;
+    virtual void setParsedProperties(QDataStream& stream) = 0;
 
 private:
     TokenId m_id = 0;
