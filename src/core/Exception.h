@@ -5,6 +5,7 @@
 
 class Exception : std::exception {
 public:
+    Exception(const char* error);
     Exception(const QString& error);
     Exception(const std::string& error);
 

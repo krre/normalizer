@@ -1,5 +1,9 @@
 #include "Exception.h"
 
+Exception::Exception(const char* error) : m_error(error) {
+
+}
+
 Exception::Exception(const QString& error) : m_error(error) {
 
 }
