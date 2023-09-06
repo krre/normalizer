@@ -1,9 +1,11 @@
 #include "FileReader.h"
 #include "Token.h"
 #include "Project.h"
+#include "core/Constants.h"
 #include "core/Exception.h"
 #include <QFile>
 #include <QHash>
+#include <QVersionNumber>
 
 namespace Norm {
 
@@ -16,6 +18,28 @@ Token* FileReader::read(const QString& filePath) {
 
     if (!file.open(QFile::ReadOnly)) {
         throw Exception("Failed to read file '{}'", filePath);
+    }
+
+    QDataStream ds(&file);
+
+    int magicSize = QString(Const::Norm::Magic).length();
+    char magic[magicSize];
+    ds.readRawData(magic, magicSize);
+
+    if (QString::fromLatin1(magic, magicSize) != Const::Norm::Magic) {
+        throw Exception("Invalid file format");
+    }
+
+    quint8 majour;
+    ds >> majour;
+
+    quint8 minor;
+    ds >> minor;
+
+    QVersionNumber version(majour, minor);
+
+    if (version > QVersionNumber::fromString(Const::Norm::Version)) {
+        throw Exception("Version Norm file greater than supported");
     }
 
     QHash<TokenId, Token*> tokens;

@@ -13,6 +13,7 @@ namespace App {
 }
 
 namespace Norm {
+    constexpr auto Magic = "norm";
     constexpr auto Version = "0.1";
 }
 

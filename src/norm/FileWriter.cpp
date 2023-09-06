@@ -1,7 +1,9 @@
 #include "FileWriter.h"
 #include "Token.h"
+#include "core/Constants.h"
 #include "core/Exception.h"
 #include <QFile>
+#include <QVersionNumber>
 
 namespace Norm {
 
@@ -15,6 +17,13 @@ void FileWriter::write(Token* root, const QString& filePath) {
     if (!file.open(QFile::WriteOnly)) {
         throw Exception("Failed to write file '{}'", filePath);
     }
+
+    QDataStream ds(&file);
+    ds.writeRawData(Const::Norm::Magic, QString(Const::Norm::Magic).length());
+
+    QVersionNumber version = QVersionNumber::fromString(Const::Norm::Version);
+    ds << static_cast<quint8>(version.majorVersion());
+    ds << static_cast<quint8>(version.minorVersion());
 
     file.write(serializeToken(root));
 }
