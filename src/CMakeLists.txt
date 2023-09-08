@@ -8,6 +8,9 @@ find_package(Qt6 REQUIRED COMPONENTS
     3DAnimation
 )
 
+find_library(NORM_LIB norm)
+find_path(NORM_INCLUDES norm)
+
 add_library(common STATIC
     core/Constants.h
     core/ObjectNames.h
@@ -32,7 +35,6 @@ add_library(common STATIC
     core/Exception.h core/Exception.cpp
     core/Format.h
     norm/TokenType.h
-
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
@@ -48,4 +50,4 @@ target_link_libraries(common PRIVATE
     "${NORM_LIB}"
 )
 
-target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${NORM_INCLUDES})
