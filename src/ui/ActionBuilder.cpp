@@ -59,9 +59,16 @@ void ActionBuilder::open() {
 }
 
 void ActionBuilder::showPreferences() {
-    Preferences preferences;
+    Preferences::Data data;
+    data.host = QHostAddress(Settings::value<Server::Host>());
+    data.port = Settings::value<Server::Port>();
 
+    Preferences preferences(data);
     if (preferences.exec() == QDialog::Rejected) return;
+
+    data = preferences.data();
+    Settings::setValue<Server::Host>(data.host.toString());
+    Settings::setValue<Server::Port>(data.port);
 }
 
 void ActionBuilder::about() {

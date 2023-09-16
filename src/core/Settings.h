@@ -2,6 +2,7 @@
 #include "core/Constants.h"
 #include <QSettings>
 #include <QDir>
+#include <QHostAddress>
 
 class Settings {
 public:
@@ -10,7 +11,8 @@ public:
     public:
         using value_type = T;
 
-        Key(const QString& key, T defaultValue = T{}) : m_key(key), m_default(defaultValue) {}
+        Key(const QString& key, T defaultValue = T{}) : m_key(key), m_default(defaultValue) {
+        }
 
         const QString& key() const { return m_key; }
         T defaultValue() const { return m_default; }
@@ -66,6 +68,18 @@ struct LastProject : public Settings::Key<QString> {
 
 struct RecentProjects : public Settings::Key<QStringList> {
     RecentProjects() : Key("recentProjects") {}
+};
+
+}
+
+namespace Server {
+
+struct Host : public Settings::Key<QString> {
+    Host() : Key("Server/host", QHostAddress(QHostAddress::LocalHost).toString()) {}
+};
+
+struct Port : public Settings::Key<quint16> {
+    Port() : Key("Server/port", 3000) {}
 };
 
 }
