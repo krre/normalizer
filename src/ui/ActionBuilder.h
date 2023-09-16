@@ -14,7 +14,7 @@ public:
 private slots:
     void newProject();
     void open();
-
+    void showPreferences();
     void about();
 
 private:

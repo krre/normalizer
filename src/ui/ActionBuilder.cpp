@@ -7,6 +7,7 @@
 #include "widget/Action.h"
 #include "widget/RecentMenu.h"
 #include "dialog/NewProject.h"
+#include "dialog/Preferences.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
@@ -27,6 +28,11 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
+
+    auto editMenu = new Menu(tr("Edit"), menuBar);
+    menuBar->addMenu(editMenu);
+
+    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::showPreferences);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
@@ -50,6 +56,12 @@ void ActionBuilder::open() {
     if (!dirPath.isEmpty()) {
         m_project->open(dirPath);
     }
+}
+
+void ActionBuilder::showPreferences() {
+    Preferences preferences;
+
+    if (preferences.exec() == QDialog::Rejected) return;
 }
 
 void ActionBuilder::about() {

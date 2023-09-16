@@ -35,6 +35,7 @@ add_library(common STATIC
     core/Exception.h core/Exception.cpp
     core/Format.h
     norm/TokenType.h
+    ui/dialog/Preferences.h ui/dialog/Preferences.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
