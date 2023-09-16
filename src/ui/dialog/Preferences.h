@@ -5,6 +5,7 @@
 class QLineEdit;
 
 class Preferences : public StandardDialog {
+    friend class TestPreferences;
 public:
     struct Data {
         QHostAddress host;
