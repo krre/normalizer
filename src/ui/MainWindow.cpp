@@ -4,12 +4,14 @@
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include "widget/RecentMenu.h"
+#include "widget/project/ProjectTable.h"
 #include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
 
+    m_projectTable = new ProjectTable;
     m_renderView = new RenderView;
     m_project = new Project(m_renderView, this);
     m_actionBuilder = new ActionBuilder(this, m_project);
@@ -20,7 +22,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
         m_actionBuilder->recentProjectsMenu()->addPath(m_project->path().value());
     });
 
-    setCentralWidget(m_renderView);
+    setCentralWidget(m_projectTable);
 
     readSettings();
 

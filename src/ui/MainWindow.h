@@ -2,6 +2,7 @@
 #include <QMainWindow>
 #include <QPropertyNotifier>
 
+class ProjectTable;
 class RenderView;
 class ActionBuilder;
 class Project;
@@ -18,6 +19,7 @@ private:
     void readSettings();
     void writeSettings();
 
+    ProjectTable* m_projectTable = nullptr;
     RenderView* m_renderView = nullptr;
     ActionBuilder* m_actionBuilder = nullptr;
     Project* m_project = nullptr;
