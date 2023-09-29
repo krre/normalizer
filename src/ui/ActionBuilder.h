@@ -12,7 +12,6 @@ public:
     RecentMenu* recentProjectsMenu() const { return m_recentProjectsMenu; }
 
 private slots:
-    void open();
     void showPreferences();
     void about();
 

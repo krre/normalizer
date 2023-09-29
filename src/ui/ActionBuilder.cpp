@@ -16,8 +16,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     auto fileMenu = new Menu(tr("File"), menuBar);
     menuBar->addMenu(fileMenu);
 
-    fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
-
     m_recentProjectsMenu = new RecentMenu(tr("Recent Projects"), menuBar);
     fileMenu->addAction(m_recentProjectsMenu->menuAction());
     connect(m_recentProjectsMenu, &RecentMenu::activated, m_project, &Project::open);
@@ -34,14 +32,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
-}
-
-void ActionBuilder::open() {
-    QString dirPath = QFileDialog::getExistingDirectory(m_mainWindow, tr("Open Norm Project"), Settings::value<General::Workspace>());
-
-    if (!dirPath.isEmpty()) {
-        m_project->open(dirPath);
-    }
 }
 
 void ActionBuilder::showPreferences() {
