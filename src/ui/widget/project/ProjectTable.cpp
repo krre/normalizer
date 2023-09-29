@@ -1,4 +1,5 @@
 #include "ProjectTable.h"
+#include "ProjectEditor.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 #include <QtNetwork>
@@ -28,11 +29,13 @@ ProjectTable::ProjectTable() {
 }
 
 void ProjectTable::addProject() {
-
+    ProjectEditor projectEditor;
+    projectEditor.exec();
 }
 
 void ProjectTable::editProject() {
-
+    ProjectEditor projectEditor(1);
+    projectEditor.exec();
 }
 
 void ProjectTable::deleteProject() {
