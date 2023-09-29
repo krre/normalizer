@@ -23,7 +23,6 @@ public:
 
 public slots:
     void open(const QString& path);
-    void save();
     void close();
 
 private:

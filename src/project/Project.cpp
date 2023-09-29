@@ -60,10 +60,6 @@ void Project::open(const QString& path) {
     }
 }
 
-void Project::save() {
-
-}
-
 void Project::close() {
     setPath("");
 }

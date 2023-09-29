@@ -20,7 +20,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     fileMenu->addAction(m_recentProjectsMenu->menuAction());
     connect(m_recentProjectsMenu, &RecentMenu::activated, m_project, &Project::open);
 
-    fileMenu->addBindableAction(tr("Save"), Qt::CTRL | Qt::Key_S, project, &Project::save)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
