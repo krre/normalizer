@@ -20,7 +20,7 @@ add_library(common STATIC
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h
     ui/widget/Menu.h
-    ui/widget/RecentMenu.h ui/widget/RecentMenu.cpp
+
     core/CommonTypes.h
     project/Project.h project/Project.cpp
     project/Session.h project/Session.cpp

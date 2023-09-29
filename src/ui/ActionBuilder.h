@@ -9,7 +9,6 @@ class ActionBuilder : public QObject {
     Q_OBJECT
 public:
     explicit ActionBuilder(MainWindow* mainWindow, Project* project);
-    RecentMenu* recentProjectsMenu() const { return m_recentProjectsMenu; }
 
 private slots:
     void showPreferences();
@@ -18,5 +17,4 @@ private slots:
 private:
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
-    RecentMenu* m_recentProjectsMenu = nullptr;
 };

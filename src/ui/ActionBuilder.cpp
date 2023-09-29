@@ -5,7 +5,6 @@
 #include "core/Settings.h"
 #include "widget/Menu.h"
 #include "widget/Action.h"
-#include "widget/RecentMenu.h"
 #include "dialog/Preferences.h"
 #include <QtWidgets>
 
@@ -15,10 +14,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     auto fileMenu = new Menu(tr("File"), menuBar);
     menuBar->addMenu(fileMenu);
-
-    m_recentProjectsMenu = new RecentMenu(tr("Recent Projects"), menuBar);
-    fileMenu->addAction(m_recentProjectsMenu->menuAction());
-    connect(m_recentProjectsMenu, &RecentMenu::activated, m_project, &Project::open);
 
     fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addSeparator();

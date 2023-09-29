@@ -3,7 +3,6 @@
 #include "RenderView.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
-#include "widget/RecentMenu.h"
 #include "widget/project/ProjectTable.h"
 #include "project/Project.h"
 #include <QtWidgets>
@@ -19,7 +18,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_projectPathNotifier = m_project->path().addNotifier([&] {
         QFileInfo fi(m_project->path().value());
         setWindowTitle((!fi.baseName().isEmpty() ? fi.baseName() + " - " : "") + Const::App::Name);
-        m_actionBuilder->recentProjectsMenu()->addPath(m_project->path().value());
     });
 
     setCentralWidget(m_projectTable);
@@ -45,12 +43,9 @@ void MainWindow::readSettings() {
         resize(availableGeometry.width() * scale, availableGeometry.height() * scale);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
-
-    m_actionBuilder->recentProjectsMenu()->setPathes(Settings::value<General::RecentProjects>());
 }
 
 void MainWindow::writeSettings() {
     Settings::setValue<General::Geometry>(saveGeometry());
     Settings::setValue<General::State>(saveState());
-    Settings::setValue<General::RecentProjects>(m_actionBuilder->recentProjectsMenu()->pathes());
 }
