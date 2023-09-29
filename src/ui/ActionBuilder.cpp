@@ -6,7 +6,6 @@
 #include "widget/Menu.h"
 #include "widget/Action.h"
 #include "widget/RecentMenu.h"
-#include "dialog/NewProject.h"
 #include "dialog/Preferences.h"
 #include <QtWidgets>
 
@@ -17,7 +16,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     auto fileMenu = new Menu(tr("File"), menuBar);
     menuBar->addMenu(fileMenu);
 
-    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &ActionBuilder::open);
 
     m_recentProjectsMenu = new RecentMenu(tr("Recent Projects"), menuBar);
@@ -36,11 +34,6 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
-}
-
-void ActionBuilder::newProject() {
-    NewProject newProject;
-    newProject.exec();
 }
 
 void ActionBuilder::open() {

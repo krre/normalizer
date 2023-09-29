@@ -16,7 +16,7 @@ add_library(common STATIC
     ui/MainWindow.h ui/MainWindow.cpp
     ui/RenderView.h ui/RenderView.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
-    ui/dialog/NewProject.h ui/dialog/NewProject.cpp
+
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h
     ui/widget/Menu.h

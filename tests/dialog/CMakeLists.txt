@@ -1,2 +1,1 @@
-add_subdirectory(newproject)
 add_subdirectory(preferences)
