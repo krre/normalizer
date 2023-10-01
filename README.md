@@ -1,2 +1,2 @@
 # Normalizer
-IDE for [Norm](https://github.com/krre/norm) visual programming language.
+IDE for developing of [Norm](https://github.com/krre/norm) projects.
