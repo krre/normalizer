@@ -35,6 +35,7 @@ add_library(common STATIC
     ui/dialog/Preferences.h ui/dialog/Preferences.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
+    ui/dialog/account/RegisterAccount.h ui/dialog/account/RegisterAccount.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
