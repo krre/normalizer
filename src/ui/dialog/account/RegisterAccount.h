@@ -16,4 +16,7 @@ private:
 
 public slots:
     void accept() override;
+
+private slots:
+    void enableOkButton();
 };
