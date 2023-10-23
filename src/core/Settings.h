@@ -79,3 +79,11 @@ struct Port : public Settings::Key<quint16> {
 };
 
 }
+
+namespace Account {
+
+struct Token : public Settings::Key<QString> {
+    Token() : Key("Account/token") {}
+};
+
+}
