@@ -20,21 +20,31 @@ RegisterAccount::RegisterAccount() {
     m_passwordLineEdit->setEchoMode(QLineEdit::Password);
     connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
 
+    m_confirmPasswordLineEdit = new QLineEdit;
+    m_confirmPasswordLineEdit->setEchoMode(QLineEdit::Password);
+    connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("URL:"), m_urlLineEdit);
     formLayout->addRow(tr("Sign:"), m_signLineEdit);
-    formLayout->addRow(tr("Name:"), m_nameLineEdit);
+    formLayout->addRow(tr("Full name:"), m_nameLineEdit);
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
     formLayout->addRow(tr("Password:"), m_passwordLineEdit);
+    formLayout->addRow(tr("Confirm password:"), m_confirmPasswordLineEdit);
 
     setContentLayout(formLayout);
-    resizeToWidth(400);
+    resizeToWidth(500);
     m_signLineEdit->setFocus();
     enableOkButton();
 }
 
 void RegisterAccount::accept() {
+    if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
+        QMessageBox::critical(this, tr("Confirm Password Error"), tr("Password mismatch!"));
+        return;
+    }
 
+    StandardDialog::accept();
 }
 
 void RegisterAccount::enableOkButton() {
@@ -42,5 +52,6 @@ void RegisterAccount::enableOkButton() {
                                                           !m_signLineEdit->text().isEmpty() &&
                                                           !m_nameLineEdit->text().isEmpty() &&
                                                           !m_emailLineEdit->text().isEmpty() &&
-                                                          !m_passwordLineEdit->text().isEmpty());
+                                                          !m_passwordLineEdit->text().isEmpty() &&
+                                                          !m_confirmPasswordLineEdit->text().isEmpty());
 }
