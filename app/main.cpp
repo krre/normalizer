@@ -1,6 +1,7 @@
 #include "ui/MainWindow.h"
 #include "core/Application.h"
 #include "core/Settings.h"
+#include "ui/dialog/account/RegisterAccount.h"
 
 int main(int argc, char* argv[]) {
     // Hack to fix styling with Qt 6.5 on GTK3
@@ -10,8 +11,15 @@ int main(int argc, char* argv[]) {
     Application app(argc, argv);
     Settings::init();
 
-    MainWindow mainWindow;
-    mainWindow.show();
+    QString token = Settings::value<Account::Token>();
 
-    return app.exec();
+    if (token.isEmpty()) {
+        RegisterAccount registerDialog;
+        registerDialog.exec();
+    }
+
+//    MainWindow mainWindow;
+//    mainWindow.show();
+
+//    return app.exec();
 }

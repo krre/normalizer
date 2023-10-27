@@ -1,4 +1,5 @@
 #include "RegisterAccount.h"
+#include "core/async/NetworkAccessManager.h"
 #include <QtWidgets>
 
 RegisterAccount::RegisterAccount() {
@@ -44,7 +45,7 @@ void RegisterAccount::accept() {
         return;
     }
 
-    StandardDialog::accept();
+    getToken();
 }
 
 void RegisterAccount::enableOkButton() {
@@ -54,4 +55,22 @@ void RegisterAccount::enableOkButton() {
                                                           !m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty() &&
                                                           !m_confirmPasswordLineEdit->text().isEmpty());
+}
+
+Async::Task<void> RegisterAccount::getToken() {
+    QJsonObject data;
+    data["sign"] = m_signLineEdit->text();
+    data["name"] = m_nameLineEdit->text();
+    data["email"] = m_emailLineEdit->text();
+    data["password"] = m_passwordLineEdit->text();
+
+    QNetworkRequest request(QUrl(m_urlLineEdit->text() + "/users"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    Async::NetworkAccessManager networkAccessManager;
+    QByteArray response = co_await networkAccessManager.post(request, QJsonDocument(data).toJson(QJsonDocument::Compact));
+    QString token = QJsonDocument::fromJson(response).object()["token"].toString();
+    qDebug() << "response" << response << "token" << token;
+
+    StandardDialog::accept();
 }

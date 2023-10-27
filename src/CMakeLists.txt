@@ -36,6 +36,8 @@ add_library(common STATIC
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
     ui/dialog/account/RegisterAccount.h ui/dialog/account/RegisterAccount.cpp
+    core/async/Task.h core/async/Task.cpp
+    core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
