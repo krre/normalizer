@@ -14,9 +14,9 @@ int main(int argc, char* argv[]) {
     QString token = Settings::value<Account::Token>();
 
     if (token.isEmpty()) {
-        RegisterAccount registerDialog;
+        RegisterAccount registerAccount;
 
-        if (registerDialog.exec() == QDialog::Rejected) {
+        if (registerAccount.exec() == QDialog::Rejected) {
             return EXIT_SUCCESS;
         }
     }
