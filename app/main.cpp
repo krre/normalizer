@@ -15,11 +15,14 @@ int main(int argc, char* argv[]) {
 
     if (token.isEmpty()) {
         RegisterAccount registerDialog;
-        registerDialog.exec();
+
+        if (registerDialog.exec() == QDialog::Rejected) {
+            return EXIT_SUCCESS;
+        }
     }
 
-//    MainWindow mainWindow;
-//    mainWindow.show();
+    MainWindow mainWindow;
+    mainWindow.show();
 
-//    return app.exec();
+    return app.exec();
 }
