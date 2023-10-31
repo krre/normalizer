@@ -23,17 +23,26 @@ private:
     Awaiter<T>* m_awaiter;
 };
 
-template <typename T>
-class Awaiter {
+class AwaiterBase {
 public:
-    Awaiter(std::unique_ptr<Waker<T>> waker) : m_waker(std::move(waker)) {
-        m_waker->setAwaiter(this);
-    }
-
     bool await_ready() const noexcept { return false; }
 
     void await_suspend(std::coroutine_handle<> handle) noexcept {
         m_handle = handle;
+    }
+
+protected:
+    std::coroutine_handle<> handle() const { return m_handle; }
+
+private:
+    std::coroutine_handle<> m_handle;
+};
+
+template <typename T>
+class Awaiter : public AwaiterBase {
+public:
+    Awaiter(std::unique_ptr<Waker<T>> waker) : m_waker(std::move(waker)) {
+        m_waker->setAwaiter(this);
     }
 
     T await_resume() {
@@ -41,37 +50,27 @@ public:
     }
 
     void resume(const T& value) {
-        if (m_handle && !m_handle.done()) {
+        if (handle() && !handle().done()) {
             m_value = value;
-            m_handle.resume();
+            handle().resume();
         }
     }
 
 private:
     std::unique_ptr<Waker<T>> m_waker;
     T m_value;
-    std::coroutine_handle<> m_handle;
 };
 
 template <>
-class Awaiter<void> {
+class Awaiter<void> : public AwaiterBase {
 public:
-    bool await_ready() const noexcept { return false; }
-
-    void await_suspend(std::coroutine_handle<> handle) noexcept {
-        m_handle = handle;
-    }
-
     void await_resume() {}
 
     void resume() {
-        if (m_handle && !m_handle.done()) {
-            m_handle.resume();
+        if (handle() && !handle().done()) {
+            handle().resume();
         }
     }
-
-private:
-    std::coroutine_handle<> m_handle;
 };
 
 }
