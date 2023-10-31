@@ -1,5 +1,6 @@
 #include "RegisterAccount.h"
 #include "core/async/NetworkAccessManager.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 #include <QNetworkReply>
 
@@ -77,6 +78,15 @@ Async::Task<void> RegisterAccount::getToken() {
         qDebug() << "response" << response << "token" << token;
         StandardDialog::accept();
     } else {
-        QMessageBox::critical(this, tr("Register error"), reply->errorString());
+        QString message;
+        QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+        if (statusCode.toInt() == Const::HttpStatus::Conflict) {
+            message = tr("Account already exists");
+        } else {
+            message = reply->errorString();
+        }
+
+        QMessageBox::critical(this, tr("Register error"), message);
     }
 }

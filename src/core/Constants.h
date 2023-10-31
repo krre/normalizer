@@ -22,4 +22,8 @@ namespace Project {
     constexpr auto Extension = ".norm";
 }
 
+namespace HttpStatus {
+    constexpr auto Conflict = 409;
+}
+
 }
