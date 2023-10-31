@@ -1,6 +1,7 @@
 #include "RegisterAccount.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QtWidgets>
+#include <QNetworkReply>
 
 RegisterAccount::RegisterAccount() {
     setWindowTitle(tr("Register Account"));
@@ -68,9 +69,14 @@ Async::Task<void> RegisterAccount::getToken() {
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     Async::NetworkAccessManager networkAccessManager;
-    QByteArray response = co_await networkAccessManager.post(request, QJsonDocument(data).toJson(QJsonDocument::Compact));
-    QString token = QJsonDocument::fromJson(response).object()["token"].toString();
-    qDebug() << "response" << response << "token" << token;
+    QNetworkReply* reply = co_await networkAccessManager.post(request, QJsonDocument(data).toJson(QJsonDocument::Compact));
 
-    StandardDialog::accept();
+    if (reply->error() == QNetworkReply::NoError) {
+        QByteArray response = reply->readAll();
+        QString token = QJsonDocument::fromJson(response).object()["token"].toString();
+        qDebug() << "response" << response << "token" << token;
+        StandardDialog::accept();
+    } else {
+        QMessageBox::critical(this, tr("Register error"), reply->errorString());
+    }
 }

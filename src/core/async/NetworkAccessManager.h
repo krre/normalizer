@@ -2,9 +2,11 @@
 #include "Task.h"
 #include <QNetworkAccessManager>
 
+class QNetworkReply;
+
 namespace Async {
 
-class NetworkWaker : public Waker<QByteArray> {
+class NetworkWaker : public Waker<QNetworkReply*> {
 public:
     NetworkWaker(QNetworkReply* reply);
 };
@@ -12,7 +14,7 @@ public:
 class NetworkAccessManager {
 public:
     NetworkAccessManager() = default;
-    Awaiter<QByteArray> post(const QNetworkRequest& request, const QByteArray& data);
+    Awaiter<QNetworkReply*> post(const QNetworkRequest& request, const QByteArray& data);
 
 private:
     QNetworkAccessManager m_networkAccessManager;
