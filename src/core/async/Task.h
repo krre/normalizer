@@ -1,78 +1,9 @@
 #pragma once
+#include "Awaiter.h"
 #include <coroutine>
 #include <QDebug>
 
 namespace Async {
-
-template <typename T>
-class Awaiter;
-
-template <typename T>
-class Waker {
-public:
-    void setAwaiter(Awaiter<T>* awaiter) {
-        m_awaiter = awaiter;
-    }
-
-protected:
-    Awaiter<T>* awaiter() const {
-        return m_awaiter;
-    }
-
-private:
-    Awaiter<T>* m_awaiter;
-};
-
-template <typename T>
-class Awaiter {
-public:
-    Awaiter(std::unique_ptr<Waker<T>> waker) : m_waker(std::move(waker)) {
-        m_waker->setAwaiter(this);
-    }
-
-    bool await_ready() const noexcept { return false; }
-
-    void await_suspend(std::coroutine_handle<> handle) noexcept {
-        m_handle = handle;
-    }
-
-    T await_resume() {
-        return m_value;
-    }
-
-    void resume(const T& value) {
-        if (m_handle && !m_handle.done()) {
-            m_value = value;
-            m_handle.resume();
-        }
-    }
-
-private:
-    std::unique_ptr<Waker<T>> m_waker;
-    T m_value;
-    std::coroutine_handle<> m_handle;
-};
-
-template <>
-class Awaiter<void> {
-public:
-    bool await_ready() const noexcept { return false; }
-
-    void await_suspend(std::coroutine_handle<> handle) noexcept {
-        m_handle = handle;
-    }
-
-    void await_resume() {}
-
-    void resume() {
-        if (m_handle && !m_handle.done()) {
-            m_handle.resume();
-        }
-    }
-
-private:
-    std::coroutine_handle<> m_handle;
-};
 
 template <typename T>
 class Task {

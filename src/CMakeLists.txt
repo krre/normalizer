@@ -38,6 +38,7 @@ add_library(common STATIC
     ui/dialog/account/RegisterAccount.h ui/dialog/account/RegisterAccount.cpp
     core/async/Task.h core/async/Task.cpp
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
+    core/async/Awaiter.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

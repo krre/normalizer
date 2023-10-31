@@ -1,5 +1,5 @@
 #pragma once
-#include "Task.h"
+#include "Awaiter.h"
 #include <QNetworkAccessManager>
 
 class QNetworkReply;
