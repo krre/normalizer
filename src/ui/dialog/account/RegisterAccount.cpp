@@ -1,6 +1,7 @@
 #include "RegisterAccount.h"
 #include "core/async/NetworkAccessManager.h"
 #include "core/Constants.h"
+#include "core/Settings.h"
 #include <QtWidgets>
 #include <QNetworkReply>
 
@@ -75,7 +76,7 @@ Async::Task<void> RegisterAccount::getToken() {
     if (reply->error() == QNetworkReply::NoError) {
         QByteArray response = reply->readAll();
         QString token = QJsonDocument::fromJson(response).object()["token"].toString();
-        qDebug() << "response" << response << "token" << token;
+        Settings::setValue<Account::Token>(token);
         StandardDialog::accept();
     } else {
         QString message;
