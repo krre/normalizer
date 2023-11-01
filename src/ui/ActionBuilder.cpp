@@ -6,6 +6,7 @@
 #include "widget/Menu.h"
 #include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
+#include "manager/settings/SettingsManager.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
@@ -32,16 +33,10 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    PreferencesDialog::Data data;
-    data.host = QHostAddress(Settings::value<Server::Host>());
-    data.port = Settings::value<Server::Port>();
+    SettingsManager settingsManager;
 
-    PreferencesDialog preferencesDialog(data);
-    if (preferencesDialog.exec() == QDialog::Rejected) return;
-
-    data = preferencesDialog.data();
-    Settings::setValue<Server::Host>(data.host.toString());
-    Settings::setValue<Server::Port>(data.port);
+    PreferencesDialog preferencesDialog(&settingsManager);
+    preferencesDialog.exec();
 }
 
 void ActionBuilder::logout() {

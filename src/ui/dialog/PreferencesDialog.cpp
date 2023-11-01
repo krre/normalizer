@@ -1,11 +1,13 @@
 #include "PreferencesDialog.h"
 #include <QtWidgets>
 
-PreferencesDialog::PreferencesDialog(const Data& data, QWidget* parent) : StandardDialog(parent) {
+PreferencesDialog::PreferencesDialog(AbstractSettingsManager* settingsManager, QWidget* parent) : StandardDialog(parent), m_settingsManager(settingsManager) {
     setWindowTitle(tr("Preferences"));
 
-    m_hostLineEdit = new QLineEdit(data.host.toString());
-    m_portLineEdit = new QLineEdit(QString::number(data.port));
+    AbstractSettingsManager::ServerAddress serverAddress = settingsManager->serverAddress();
+
+    m_hostLineEdit = new QLineEdit(serverAddress.host);
+    m_portLineEdit = new QLineEdit(QString::number(serverAddress.port));
     m_portLineEdit->setValidator(new QIntValidator(1, 1 << 16, this));
 
     auto formLayout = new QFormLayout;
@@ -20,10 +22,7 @@ PreferencesDialog::PreferencesDialog(const Data& data, QWidget* parent) : Standa
     resizeToWidth(400);
 }
 
-PreferencesDialog::Data PreferencesDialog::data() const {
-    Data result;
-    result.host = QHostAddress(m_hostLineEdit->text());
-    result.port = m_portLineEdit->text().toInt();
-
-    return result;
+void PreferencesDialog::accept() {
+    m_settingsManager->setServerAddress(AbstractSettingsManager::ServerAddress(m_hostLineEdit->text(), m_portLineEdit->text().toInt()));
+    StandardDialog::accept();
 }
