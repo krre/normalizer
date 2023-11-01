@@ -22,13 +22,13 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     auto editMenu = new Menu(tr("Edit"), menuBar);
     menuBar->addMenu(editMenu);
 
-    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::showPreferencesDialog);
+    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 }
 
-void ActionBuilder::showPreferencesDialog() {
+void ActionBuilder::openPreferencesDialog() {
     PreferencesDialog::Data data;
     data.host = QHostAddress(Settings::value<Server::Host>());
     data.port = Settings::value<Server::Port>();

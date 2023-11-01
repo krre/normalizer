@@ -11,7 +11,7 @@ public:
     explicit ActionBuilder(MainWindow* mainWindow, Project* project);
 
 private slots:
-    void showPreferencesDialog();
+    void openPreferencesDialog();
     void about();
 
 private:
