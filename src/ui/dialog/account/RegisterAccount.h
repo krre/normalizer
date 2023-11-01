@@ -9,7 +9,6 @@ public:
     RegisterAccount();
 
 public slots:
-//    void accept() override {}
     void accept() override;
 
 private:
