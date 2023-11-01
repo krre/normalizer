@@ -24,6 +24,9 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
+    auto accountMenu = menuBar->addMenu(tr("Account"));
+    accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
+
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 }
@@ -39,6 +42,15 @@ void ActionBuilder::openPreferencesDialog() {
     data = preferencesDialog.data();
     Settings::setValue<Server::Host>(data.host.toString());
     Settings::setValue<Server::Port>(data.port);
+}
+
+void ActionBuilder::logout() {
+    Settings::setValue<Account::Token>("");
+
+    QStringList arguments = QCoreApplication::arguments();
+    arguments.removeAt(0); // Remove application name
+    QProcess::startDetached(QCoreApplication::applicationFilePath(), arguments);
+    qApp->quit();
 }
 
 void ActionBuilder::about() {

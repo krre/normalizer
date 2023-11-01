@@ -12,6 +12,7 @@ public:
 
 private slots:
     void openPreferencesDialog();
+    void logout();
     void about();
 
 private:
