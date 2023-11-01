@@ -1,4 +1,4 @@
-#include "ui/dialog/Preferences.h"
+#include "ui/dialog/PreferencesDialog.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -13,26 +13,26 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    Preferences::Data data;
+    PreferencesDialog::Data data;
     data.host = host;
     data.port = port;
 
-    Preferences preferences(data);
+    PreferencesDialog preferencesDialog(data);
 
-    QCOMPARE(preferences.m_hostLineEdit->text(), data.host.toString());
-    QCOMPARE(preferences.m_portLineEdit->text().toInt(), data.port);
+    QCOMPARE(preferencesDialog.m_hostLineEdit->text(), data.host.toString());
+    QCOMPARE(preferencesDialog.m_portLineEdit->text().toInt(), data.port);
 }
 
 void TestPreferences::setSettings() {
-    Preferences preferences((Preferences::Data()));
-    preferences.m_hostLineEdit->setText(host.toString());
-    preferences.m_portLineEdit->setText(QString::number(port));
-    preferences.accept();
+    PreferencesDialog preferencesDialog((PreferencesDialog::Data()));
+    preferencesDialog.m_hostLineEdit->setText(host.toString());
+    preferencesDialog.m_portLineEdit->setText(QString::number(port));
+    preferencesDialog.accept();
 
-    Preferences::Data outputData = preferences.data();
+    PreferencesDialog::Data outputData = preferencesDialog.data();
 
-    QCOMPARE(preferences.m_hostLineEdit->text(), outputData.host.toString());
-    QCOMPARE(preferences.m_portLineEdit->text().toInt(), outputData.port);
+    QCOMPARE(preferencesDialog.m_hostLineEdit->text(), outputData.host.toString());
+    QCOMPARE(preferencesDialog.m_portLineEdit->text().toInt(), outputData.port);
 }
 
 QTEST_MAIN(TestPreferences)

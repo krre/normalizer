@@ -1,32 +1,32 @@
-#include "RegisterAccount.h"
+#include "RegisterAccountDialog.h"
 #include "core/async/NetworkAccessManager.h"
 #include "core/Constants.h"
 #include "core/Settings.h"
 #include <QtWidgets>
 #include <QNetworkReply>
 
-RegisterAccount::RegisterAccount() {
+RegisterAccountDialog::RegisterAccountDialog() {
     setWindowTitle(tr("Register Account"));
 
     m_urlLineEdit = new QLineEdit("http://localhost:3000");
-    connect(m_urlLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_urlLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_signLineEdit = new QLineEdit;
-    connect(m_signLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_signLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_nameLineEdit = new QLineEdit;
-    connect(m_nameLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_nameLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_emailLineEdit = new QLineEdit;
-    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_passwordLineEdit = new QLineEdit;
     m_passwordLineEdit->setEchoMode(QLineEdit::Password);
-    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_confirmPasswordLineEdit = new QLineEdit;
     m_confirmPasswordLineEdit->setEchoMode(QLineEdit::Password);
-    connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterAccount::enableOkButton);
+    connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("URL:"), m_urlLineEdit);
@@ -42,7 +42,7 @@ RegisterAccount::RegisterAccount() {
     enableOkButton();
 }
 
-void RegisterAccount::accept() {
+void RegisterAccountDialog::accept() {
     if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
         QMessageBox::critical(this, tr("Confirm Password Error"), tr("Password mismatch!"));
         return;
@@ -51,7 +51,7 @@ void RegisterAccount::accept() {
     getToken();
 }
 
-void RegisterAccount::enableOkButton() {
+void RegisterAccountDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_urlLineEdit->text().isEmpty() &&
                                                           !m_signLineEdit->text().isEmpty() &&
                                                           !m_nameLineEdit->text().isEmpty() &&
@@ -60,7 +60,7 @@ void RegisterAccount::enableOkButton() {
                                                           !m_confirmPasswordLineEdit->text().isEmpty());
 }
 
-Async::Task<void> RegisterAccount::getToken() {
+Async::Task<void> RegisterAccountDialog::getToken() {
     QJsonObject data;
     data["sign"] = m_signLineEdit->text();
     data["name"] = m_nameLineEdit->text();

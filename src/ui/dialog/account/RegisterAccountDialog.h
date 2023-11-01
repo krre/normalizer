@@ -4,9 +4,9 @@
 
 class QLineEdit;
 
-class RegisterAccount : public StandardDialog {
+class RegisterAccountDialog : public StandardDialog {
 public:
-    RegisterAccount();
+    RegisterAccountDialog();
 
 public slots:
     void accept() override;

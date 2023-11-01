@@ -1,7 +1,7 @@
-#include "Preferences.h"
+#include "PreferencesDialog.h"
 #include <QtWidgets>
 
-Preferences::Preferences(const Data& data, QWidget* parent) : StandardDialog(parent) {
+PreferencesDialog::PreferencesDialog(const Data& data, QWidget* parent) : StandardDialog(parent) {
     setWindowTitle(tr("Preferences"));
 
     m_hostLineEdit = new QLineEdit(data.host.toString());
@@ -20,7 +20,7 @@ Preferences::Preferences(const Data& data, QWidget* parent) : StandardDialog(par
     resizeToWidth(400);
 }
 
-Preferences::Data Preferences::data() const {
+PreferencesDialog::Data PreferencesDialog::data() const {
     Data result;
     result.host = QHostAddress(m_hostLineEdit->text());
     result.port = m_portLineEdit->text().toInt();

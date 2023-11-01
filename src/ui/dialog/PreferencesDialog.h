@@ -4,7 +4,7 @@
 
 class QLineEdit;
 
-class Preferences : public StandardDialog {
+class PreferencesDialog : public StandardDialog {
     friend class TestPreferences;
 public:
     struct Data {
@@ -12,7 +12,7 @@ public:
         quint16 port;
     };
 
-    Preferences(const Data& data, QWidget* parent = nullptr);
+    PreferencesDialog(const Data& data, QWidget* parent = nullptr);
     Data data() const;
 
 private:

@@ -1,7 +1,7 @@
 #include "ui/MainWindow.h"
 #include "core/Application.h"
 #include "core/Settings.h"
-#include "ui/dialog/account/RegisterAccount.h"
+#include "ui/dialog/account/RegisterAccountDialog.h"
 
 int main(int argc, char* argv[]) {
     // Hack to fix styling with Qt 6.5 on GTK3
@@ -14,9 +14,9 @@ int main(int argc, char* argv[]) {
     QString token = Settings::value<Account::Token>();
 
     if (token.isEmpty()) {
-        RegisterAccount registerAccount;
+        RegisterAccountDialog registerAccountDialog;
 
-        if (registerAccount.exec() == QDialog::Rejected) {
+        if (registerAccountDialog.exec() == QDialog::Rejected) {
             return EXIT_SUCCESS;
         }
     }

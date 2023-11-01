@@ -5,7 +5,7 @@
 #include "core/Settings.h"
 #include "widget/Menu.h"
 #include "widget/Action.h"
-#include "dialog/Preferences.h"
+#include "dialog/PreferencesDialog.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
@@ -22,21 +22,21 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     auto editMenu = new Menu(tr("Edit"), menuBar);
     menuBar->addMenu(editMenu);
 
-    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::showPreferences);
+    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::showPreferencesDialog);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 }
 
-void ActionBuilder::showPreferences() {
-    Preferences::Data data;
+void ActionBuilder::showPreferencesDialog() {
+    PreferencesDialog::Data data;
     data.host = QHostAddress(Settings::value<Server::Host>());
     data.port = Settings::value<Server::Port>();
 
-    Preferences preferences(data);
-    if (preferences.exec() == QDialog::Rejected) return;
+    PreferencesDialog preferencesDialog(data);
+    if (preferencesDialog.exec() == QDialog::Rejected) return;
 
-    data = preferences.data();
+    data = preferencesDialog.data();
     Settings::setValue<Server::Host>(data.host.toString());
     Settings::setValue<Server::Port>(data.port);
 }

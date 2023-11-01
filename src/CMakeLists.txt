@@ -32,10 +32,10 @@ add_library(common STATIC
     core/Exception.h core/Exception.cpp
     core/Format.h
     norm/TokenType.h
-    ui/dialog/Preferences.h ui/dialog/Preferences.cpp
+    ui/dialog/PreferencesDialog.h ui/dialog/PreferencesDialog.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
-    ui/dialog/account/RegisterAccount.h ui/dialog/account/RegisterAccount.cpp
+    ui/dialog/account/RegisterAccountDialog.h ui/dialog/account/RegisterAccountDialog.cpp
     core/async/Task.h core/async/Task.cpp
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
