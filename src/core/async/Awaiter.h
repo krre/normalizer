@@ -45,6 +45,8 @@ public:
         m_waker->setAwaiter(this);
     }
 
+    Awaiter() {}
+
     T await_resume() {
         return m_value;
     }

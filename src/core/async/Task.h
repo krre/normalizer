@@ -28,7 +28,7 @@ public:
     };
 
     Awaiter<T> operator co_await() {
-        return Awaiter<T>{};
+        return Awaiter<T>();
     }
 
 private:

@@ -41,6 +41,8 @@ add_library(common STATIC
     core/async/Awaiter.h
     manager/settings/AbstractSettingsManager.h
     manager/settings/SettingsManager.h manager/settings/SettingsManager.cpp
+    manager/network/AbstractNetworkManager.h
+    manager/network/NetworkManager.h manager/network/NetworkManager.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

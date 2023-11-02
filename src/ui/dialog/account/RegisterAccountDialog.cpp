@@ -1,9 +1,7 @@
 #include "RegisterAccountDialog.h"
-#include "core/async/NetworkAccessManager.h"
-#include "core/Constants.h"
 #include "core/Settings.h"
+#include "manager/network/NetworkManager.h"
 #include <QtWidgets>
-#include <QNetworkReply>
 
 RegisterAccountDialog::RegisterAccountDialog() {
     setWindowTitle(tr("Register Account"));
@@ -61,33 +59,21 @@ void RegisterAccountDialog::enableOkButton() {
 }
 
 Async::Task<void> RegisterAccountDialog::getToken() {
-    QJsonObject data;
-    data["sign"] = m_signLineEdit->text();
-    data["name"] = m_nameLineEdit->text();
-    data["email"] = m_emailLineEdit->text();
-    data["password"] = m_passwordLineEdit->text();
+    NetworkManager::User user;
+    user.sign = m_signLineEdit->text();
+    user.name = m_nameLineEdit->text();
+    user.email = m_emailLineEdit->text();
+    user.password = m_passwordLineEdit->text();
 
-    QNetworkRequest request(QUrl(m_urlLineEdit->text() + "/users"));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-
-    Async::NetworkAccessManager networkAccessManager;
-    QNetworkReply* reply = co_await networkAccessManager.post(request, QJsonDocument(data).toJson(QJsonDocument::Compact));
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray response = reply->readAll();
-        QString token = QJsonDocument::fromJson(response).object()["token"].toString();
+    try {
+        NetworkManager networkManager;
+        QString token = co_await networkManager.registerUser(m_urlLineEdit->text(), user);
         Settings::setValue<Account::Token>(token);
         StandardDialog::accept();
-    } else {
-        QString message;
-        QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-
-        if (statusCode.toInt() == Const::HttpStatus::Conflict) {
-            message = tr("Account already exists");
-        } else {
-            message = reply->errorString();
-        }
-
+    } catch (NetworkException& e) {
+        QString message = e.status() == Const::HttpStatus::Conflict ? tr("Account already exists") : e.message();
         QMessageBox::critical(this, tr("Register error"), message);
     }
+
+    co_return;
 }
