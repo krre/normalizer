@@ -73,7 +73,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
     } catch (NetworkException& e) {
         QString message = e.status() == Const::HttpStatus::Conflict ? tr("Account already exists") : e.message();
         QMessageBox::critical(this, tr("Register error"), message);
+    } catch (std::exception& e) {
+        QMessageBox::critical(this, tr("Register error"), e.what());
     }
-
-    co_return;
 }
