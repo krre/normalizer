@@ -6,9 +6,6 @@
 RegisterAccountDialog::RegisterAccountDialog() {
     setWindowTitle(tr("Register Account"));
 
-    m_urlLineEdit = new QLineEdit("127.0.0.1");
-    connect(m_urlLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
-
     m_signLineEdit = new QLineEdit;
     connect(m_signLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
@@ -27,7 +24,6 @@ RegisterAccountDialog::RegisterAccountDialog() {
     connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     auto formLayout = new QFormLayout;
-    formLayout->addRow(tr("URL:"), m_urlLineEdit);
     formLayout->addRow(tr("Sign:"), m_signLineEdit);
     formLayout->addRow(tr("Full name:"), m_nameLineEdit);
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
@@ -50,8 +46,7 @@ void RegisterAccountDialog::accept() {
 }
 
 void RegisterAccountDialog::enableOkButton() {
-    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_urlLineEdit->text().isEmpty() &&
-                                                          !m_signLineEdit->text().isEmpty() &&
+    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_signLineEdit->text().isEmpty() &&
                                                           !m_nameLineEdit->text().isEmpty() &&
                                                           !m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty() &&
@@ -66,7 +61,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
     user.password = m_passwordLineEdit->text();
 
     try {
-        NetworkManager networkManager(QHostAddress(m_urlLineEdit->text()), 3000);
+        NetworkManager networkManager(Settings::value<Server::Host>(), Settings::value<Server::Port>());
         QString token = co_await networkManager.registerUser(user);
         Settings::setValue<Account::Token>(token);
         StandardDialog::accept();

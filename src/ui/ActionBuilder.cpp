@@ -6,6 +6,7 @@
 #include "widget/Menu.h"
 #include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
+#include "dialog/account/RegisterAccountDialog.h"
 #include "manager/settings/SettingsManager.h"
 #include <QtWidgets>
 
@@ -26,6 +27,7 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
+    accountMenu->addAction(tr("Register"), this, &ActionBuilder::openRegisterAccountDialog);
     accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -37,6 +39,11 @@ void ActionBuilder::openPreferencesDialog() {
 
     PreferencesDialog preferencesDialog(&settingsManager);
     preferencesDialog.exec();
+}
+
+void ActionBuilder::openRegisterAccountDialog() {
+    RegisterAccountDialog registerAccountDialog;
+    registerAccountDialog.exec();
 }
 
 void ActionBuilder::logout() {

@@ -4,7 +4,7 @@
 #include <QJsonDocument>
 #include <QNetworkReply>
 
-NetworkManager::NetworkManager(const QHostAddress& address, quint16 port) : m_address(address), m_port(port) {
+NetworkManager::NetworkManager(const QString& host, quint16 port) : m_host(host), m_port(port) {
 }
 
 Async::Task<QString> NetworkManager::registerUser(const User& user) {
@@ -19,7 +19,7 @@ Async::Task<QString> NetworkManager::registerUser(const User& user) {
 }
 
 Async::Task<QVariant> NetworkManager::post(const QString& endpoint, const QByteArray& data) {
-    QString url = "http://" + m_address.toString();
+    QString url = m_host;
 
     if (m_port) {
         url += ":" + QString::number(m_port);
