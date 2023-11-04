@@ -1,5 +1,6 @@
 #pragma once
 #include <coroutine>
+#include <exception>
 
 namespace Async {
 
@@ -44,6 +45,10 @@ public:
         }
 
         T await_resume() {
+            if (m_handle.promise().m_exception) {
+                std::rethrow_exception(m_handle.promise().m_exception);
+            }
+
             return m_handle.promise().m_value;
         }
 
@@ -54,7 +59,10 @@ public:
         std::suspend_never initial_suspend() { return {}; }
         auto final_suspend() noexcept { return FinalAwaiter{}; }
         Task<T> get_return_object() { return Handle::from_promise(*this); }
-        void unhandled_exception() {}
+
+        void unhandled_exception() {
+            m_exception = std::current_exception();
+        }
         void return_value(T value) {
             m_value = value;
         }
@@ -65,6 +73,7 @@ public:
 
         std::coroutine_handle<> m_awatingHandle;
         T m_value;
+        std::exception_ptr m_exception = nullptr;
     };
 
     TaskAwaiter operator co_await() {
@@ -114,7 +123,11 @@ public:
             m_handle.promise().setAwaitingHandle(awatingHandle);
         }
 
-        void await_resume() {}
+        void await_resume() {
+            if (m_handle.promise().m_exception) {
+                std::rethrow_exception(m_handle.promise().m_exception);
+            }
+        }
 
         Handle m_handle;
     };
@@ -123,7 +136,10 @@ public:
         std::suspend_never initial_suspend() { return {}; }
         auto final_suspend() noexcept { return FinalAwaiter{}; }
         Task<void> get_return_object() { return Handle::from_promise(*this); }
-        void unhandled_exception() {}
+
+        void unhandled_exception() {
+            m_exception = std::current_exception();
+        }
         void return_void() {}
 
         void setAwaitingHandle(std::coroutine_handle<> handle) {
@@ -131,6 +147,7 @@ public:
         }
 
         std::coroutine_handle<> m_awatingHandle;
+        std::exception_ptr m_exception = nullptr;
     };
 
     TaskAwaiter operator co_await() {
