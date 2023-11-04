@@ -23,5 +23,5 @@ public:
         QString password;
     };
 
-    virtual Async::Task<QString> registerUser(const QString& url, const User& user) = 0;
+    virtual Async::Task<QString> registerUser(const User& user) = 0;
 };

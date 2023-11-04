@@ -4,26 +4,36 @@
 #include <QJsonDocument>
 #include <QNetworkReply>
 
-NetworkManager::NetworkManager() {
-
+NetworkManager::NetworkManager(const QHostAddress& address, quint16 port) : m_address(address), m_port(port) {
 }
 
-Async::Task<QString> NetworkManager::registerUser(const QString& url, const User& user) {
+Async::Task<QString> NetworkManager::registerUser(const User& user) {
     QJsonObject data;
     data["sign"] = user.sign;
     data["name"] = user.name;
     data["email"] = user.email;
     data["password"] = user.password;
 
-    QNetworkRequest request(QUrl(url + "/users"));
+    QVariant response = co_await post("/users", QJsonDocument(data).toJson(QJsonDocument::Compact));
+    co_return response.toMap()["token"].toString();
+}
+
+Async::Task<QVariant> NetworkManager::post(const QString& endpoint, const QByteArray& data) {
+    QString url = "http://" + m_address.toString();
+
+    if (m_port) {
+        url += ":" + QString::number(m_port);
+    }
+
+    QNetworkRequest request(QUrl(url + endpoint));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     Async::NetworkAccessManager networkAccessManager;
-    QNetworkReply* reply = co_await networkAccessManager.post(request, QJsonDocument(data).toJson(QJsonDocument::Compact));
+    QNetworkReply* reply = co_await networkAccessManager.post(request, data);
 
     if (reply->error() == QNetworkReply::NoError) {
         QByteArray response = reply->readAll();
-        co_return QJsonDocument::fromJson(response).object()["token"].toString();
+        co_return QJsonDocument::fromJson(response).toVariant();
     } else {
         throw NetworkException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
     }

@@ -6,7 +6,7 @@
 RegisterAccountDialog::RegisterAccountDialog() {
     setWindowTitle(tr("Register Account"));
 
-    m_urlLineEdit = new QLineEdit("http://localhost:3000");
+    m_urlLineEdit = new QLineEdit("127.0.0.1");
     connect(m_urlLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_signLineEdit = new QLineEdit;
@@ -66,8 +66,8 @@ Async::Task<void> RegisterAccountDialog::getToken() {
     user.password = m_passwordLineEdit->text();
 
     try {
-        NetworkManager networkManager;
-        QString token = co_await networkManager.registerUser(m_urlLineEdit->text(), user);
+        NetworkManager networkManager(QHostAddress(m_urlLineEdit->text()), 3000);
+        QString token = co_await networkManager.registerUser(user);
         Settings::setValue<Account::Token>(token);
         StandardDialog::accept();
     } catch (NetworkException& e) {
