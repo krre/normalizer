@@ -71,7 +71,7 @@ struct LastProject : public Settings::Key<QString> {
 namespace Server {
 
 struct Host : public Settings::Key<QString> {
-    Host() : Key("Server/host", QHostAddress(QHostAddress::LocalHost).toString()) {}
+    Host() : Key("Server/host", "http://localhost") {}
 };
 
 struct Port : public Settings::Key<quint16> {
