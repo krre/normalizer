@@ -1,9 +1,9 @@
 #include "RegisterAccountDialog.h"
-#include "core/Settings.h"
 #include "manager/network/NetworkManager.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 
-RegisterAccountDialog::RegisterAccountDialog() {
+RegisterAccountDialog::RegisterAccountDialog(AbstractNetworkManager* networkManager) : m_networkManager(networkManager) {
     setWindowTitle(tr("Register Account"));
 
     m_signLineEdit = new QLineEdit;
@@ -36,6 +36,10 @@ RegisterAccountDialog::RegisterAccountDialog() {
     enableOkButton();
 }
 
+QString RegisterAccountDialog::token() const {
+    return m_token;
+}
+
 void RegisterAccountDialog::accept() {
     if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
         QMessageBox::critical(this, tr("Confirm Password Error"), tr("Password mismatch!"));
@@ -61,9 +65,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
     user.password = m_passwordLineEdit->text();
 
     try {
-        NetworkManager networkManager(Settings::value<Server::Host>(), Settings::value<Server::Port>());
-        QString token = co_await networkManager.registerUser(user);
-        Settings::setValue<Account::Token>(token);
+        m_token = co_await m_networkManager->registerUser(user);
         StandardDialog::accept();
     } catch (NetworkException& e) {
         QString message = e.status() == Const::HttpStatus::Conflict ? tr("Account already exists") : e.message();
