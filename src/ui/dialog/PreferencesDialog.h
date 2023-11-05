@@ -5,7 +5,6 @@
 class QLineEdit;
 
 class PreferencesDialog : public StandardDialog {
-    friend class TestPreferences;
 public:
     PreferencesDialog(SettingsStorage* settingsStorage, QWidget* parent = nullptr);
 

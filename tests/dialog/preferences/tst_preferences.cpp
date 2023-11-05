@@ -41,16 +41,28 @@ void TestPreferences::readSettings() {
 
     PreferencesDialog preferencesDialog(&settingsStorage);
 
-    QCOMPARE(preferencesDialog.m_hostLineEdit->text(), host.toString());
-    QCOMPARE(preferencesDialog.m_portLineEdit->text().toInt(), port);
+    QLineEdit* hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    QCOMPARE(hostLineEdit->text(), host.toString());
+
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+
+    QLineEdit* portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    QCOMPARE(portLineEdit->text().toInt(), port);
 }
 
 void TestPreferences::setSettings() {
     TestSettingsStorage settingsStorage;
 
     PreferencesDialog preferencesDialog(&settingsStorage);
-    preferencesDialog.m_hostLineEdit->setText(host.toString());
-    preferencesDialog.m_portLineEdit->setText(QString::number(port));
+
+    QLineEdit* hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    hostLineEdit->setText(host.toString());
+
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+
+    QLineEdit* portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    portLineEdit->setText(QString::number(port));
+
     preferencesDialog.accept();
 
     QCOMPARE(settingsStorage.m_serverAddress.host, host.toString());

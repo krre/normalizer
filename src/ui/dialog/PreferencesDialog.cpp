@@ -20,6 +20,7 @@ PreferencesDialog::PreferencesDialog(SettingsStorage* settingsStorage, QWidget* 
     setContentWidget(serverGroupBox);
 
     resizeToWidth(400);
+    m_hostLineEdit->setFocus();
 }
 
 void PreferencesDialog::accept() {
