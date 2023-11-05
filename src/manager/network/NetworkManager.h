@@ -18,7 +18,7 @@ class NetworkManager {
 public:
     struct User {
         QString login;
-        QString name;
+        QString fullName;
         QString email;
         QString password;
     };

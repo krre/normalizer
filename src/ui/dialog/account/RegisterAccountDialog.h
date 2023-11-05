@@ -16,7 +16,7 @@ public slots:
 
 private:
     QLineEdit* m_loginLineEdit = nullptr;
-    QLineEdit* m_nameLineEdit = nullptr;
+    QLineEdit* m_fullNameLineEdit = nullptr;
     QLineEdit* m_emailLineEdit = nullptr;
     QLineEdit* m_passwordLineEdit = nullptr;
     QLineEdit* m_confirmPasswordLineEdit = nullptr;

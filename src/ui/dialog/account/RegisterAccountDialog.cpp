@@ -9,8 +9,8 @@ RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m
     m_loginLineEdit = new QLineEdit;
     connect(m_loginLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
-    m_nameLineEdit = new QLineEdit;
-    connect(m_nameLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
+    m_fullNameLineEdit = new QLineEdit;
+    connect(m_fullNameLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_emailLineEdit = new QLineEdit;
     connect(m_emailLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
@@ -25,7 +25,7 @@ RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Login:"), m_loginLineEdit);
-    formLayout->addRow(tr("Full name:"), m_nameLineEdit);
+    formLayout->addRow(tr("Full name:"), m_fullNameLineEdit);
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
     formLayout->addRow(tr("Password:"), m_passwordLineEdit);
     formLayout->addRow(tr("Confirm password:"), m_confirmPasswordLineEdit);
@@ -51,7 +51,7 @@ void RegisterAccountDialog::accept() {
 
 void RegisterAccountDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_loginLineEdit->text().isEmpty() &&
-                                                          !m_nameLineEdit->text().isEmpty() &&
+                                                          !m_fullNameLineEdit->text().isEmpty() &&
                                                           !m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty() &&
                                                           !m_confirmPasswordLineEdit->text().isEmpty());
@@ -60,7 +60,7 @@ void RegisterAccountDialog::enableOkButton() {
 Async::Task<void> RegisterAccountDialog::getToken() {
     HttpNetworkManager::User user;
     user.login = m_loginLineEdit->text();
-    user.name = m_nameLineEdit->text();
+    user.fullName = m_fullNameLineEdit->text();
     user.email = m_emailLineEdit->text();
     user.password = m_passwordLineEdit->text();
 
