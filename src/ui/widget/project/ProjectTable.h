@@ -17,5 +17,4 @@ private:
     void load();
 
     QTableWidget* m_tableWidget = nullptr;
-    QScopedPointer<QNetworkAccessManager> networkAccessManager;
 };

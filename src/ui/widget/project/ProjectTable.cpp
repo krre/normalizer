@@ -1,8 +1,6 @@
 #include "ProjectTable.h"
 #include "ProjectEditor.h"
-#include "core/Settings.h"
 #include <QtWidgets>
-#include <QtNetwork>
 
 ProjectTable::ProjectTable() {
     auto toolBar = new QToolBar;
@@ -23,8 +21,6 @@ ProjectTable::ProjectTable() {
 
     setLayout(verticalLayout);
 
-    networkAccessManager.reset(new QNetworkAccessManager);
-
     load();
 }
 
@@ -43,21 +39,5 @@ void ProjectTable::deleteProject() {
 }
 
 void ProjectTable::load() {
-    QString host = Settings::value<Server::Host>();
-    quint64 port = Settings::value<Server::Port>();
 
-    QNetworkRequest request(QUrl(QString("http://%1:%2/projects").arg(host).arg(port)));
-    QNetworkReply* reply = networkAccessManager->get(request);
-
-    connect(reply, &QNetworkReply::finished, [=] {
-        reply->deleteLater();
-    });
-
-    connect(reply, &QNetworkReply::errorOccurred, [=] (QNetworkReply::NetworkError code) {
-        qWarning().noquote() << code;
-    });
-
-    connect(reply, &QNetworkReply::readyRead, [=] {
-        qDebug() << reply->readAll();
-    });
 }
