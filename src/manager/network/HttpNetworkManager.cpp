@@ -9,7 +9,7 @@ HttpNetworkManager::HttpNetworkManager(const QString& host, quint16 port) : m_ho
 
 Async::Task<QString> HttpNetworkManager::registerUser(const User& user) {
     QJsonObject data;
-    data["sign"] = user.sign;
+    data["login"] = user.login;
     data["name"] = user.name;
     data["email"] = user.email;
     data["password"] = user.password;

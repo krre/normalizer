@@ -15,7 +15,7 @@ public slots:
     void accept() override;
 
 private:
-    QLineEdit* m_signLineEdit = nullptr;
+    QLineEdit* m_loginLineEdit = nullptr;
     QLineEdit* m_nameLineEdit = nullptr;
     QLineEdit* m_emailLineEdit = nullptr;
     QLineEdit* m_passwordLineEdit = nullptr;

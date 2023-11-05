@@ -6,8 +6,8 @@
 RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
     setWindowTitle(tr("Register Account"));
 
-    m_signLineEdit = new QLineEdit;
-    connect(m_signLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
+    m_loginLineEdit = new QLineEdit;
+    connect(m_loginLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
@@ -24,7 +24,7 @@ RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m
     connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterAccountDialog::enableOkButton);
 
     auto formLayout = new QFormLayout;
-    formLayout->addRow(tr("Sign:"), m_signLineEdit);
+    formLayout->addRow(tr("Login:"), m_loginLineEdit);
     formLayout->addRow(tr("Full name:"), m_nameLineEdit);
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
     formLayout->addRow(tr("Password:"), m_passwordLineEdit);
@@ -32,7 +32,7 @@ RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m
 
     setContentLayout(formLayout);
     resizeToWidth(500);
-    m_signLineEdit->setFocus();
+    m_loginLineEdit->setFocus();
     enableOkButton();
 }
 
@@ -50,7 +50,7 @@ void RegisterAccountDialog::accept() {
 }
 
 void RegisterAccountDialog::enableOkButton() {
-    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_signLineEdit->text().isEmpty() &&
+    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_loginLineEdit->text().isEmpty() &&
                                                           !m_nameLineEdit->text().isEmpty() &&
                                                           !m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty() &&
@@ -59,7 +59,7 @@ void RegisterAccountDialog::enableOkButton() {
 
 Async::Task<void> RegisterAccountDialog::getToken() {
     HttpNetworkManager::User user;
-    user.sign = m_signLineEdit->text();
+    user.login = m_loginLineEdit->text();
     user.name = m_nameLineEdit->text();
     user.email = m_emailLineEdit->text();
     user.password = m_passwordLineEdit->text();
