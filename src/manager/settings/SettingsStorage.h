@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 
-class AbstractSettingsManager {
+class SettingsStorage {
 public:
     struct ServerAddress {
         QString host;

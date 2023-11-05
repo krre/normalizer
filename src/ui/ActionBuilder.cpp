@@ -7,7 +7,7 @@
 #include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
-#include "manager/settings/SettingsManager.h"
+#include "manager/settings/FileSettingsStorage.h"
 #include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
@@ -36,20 +36,20 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    SettingsManager settingsManager;
+    FileSettingsStrorage settingsStorage;
 
-    PreferencesDialog preferencesDialog(&settingsManager);
+    PreferencesDialog preferencesDialog(&settingsStorage);
     preferencesDialog.exec();
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    SettingsManager settingsManager;
-    HttpNetworkManager networkManager(settingsManager.serverAddress().host, settingsManager.serverAddress().port);
+    FileSettingsStrorage settingsStorage;
+    HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
 
     RegisterAccountDialog registerAccountDialog(&networkManager);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        settingsManager.setAccount(SettingsManager::Account(registerAccountDialog.token()));
+        settingsStorage.setAccount(FileSettingsStrorage::Account(registerAccountDialog.token()));
     }
 }
 

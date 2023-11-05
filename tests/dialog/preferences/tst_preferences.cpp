@@ -1,12 +1,12 @@
 #include "ui/dialog/PreferencesDialog.h"
-#include "manager/settings/AbstractSettingsManager.h"
+#include "manager/settings/SettingsStorage.h"
 #include <QTest>
 #include <QLineEdit>
 
 static const QHostAddress host = QHostAddress(QHostAddress::LocalHost);
 constexpr auto port = 3128;
 
-class TestSettingsManager : public AbstractSettingsManager {
+class TestSettingsStorage : public SettingsStorage {
 public:
     void setServerAddress(const ServerAddress& serverAddress) override {
         m_serverAddress = serverAddress;
@@ -36,25 +36,25 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettingsManager settingsManager;
-    settingsManager.m_serverAddress = TestSettingsManager::ServerAddress(host.toString(), port);
+    TestSettingsStorage settingsStorage;
+    settingsStorage.m_serverAddress = TestSettingsStorage::ServerAddress(host.toString(), port);
 
-    PreferencesDialog preferencesDialog(&settingsManager);
+    PreferencesDialog preferencesDialog(&settingsStorage);
 
     QCOMPARE(preferencesDialog.m_hostLineEdit->text(), host.toString());
     QCOMPARE(preferencesDialog.m_portLineEdit->text().toInt(), port);
 }
 
 void TestPreferences::setSettings() {
-    TestSettingsManager settingsManager;
+    TestSettingsStorage settingsStorage;
 
-    PreferencesDialog preferencesDialog(&settingsManager);
+    PreferencesDialog preferencesDialog(&settingsStorage);
     preferencesDialog.m_hostLineEdit->setText(host.toString());
     preferencesDialog.m_portLineEdit->setText(QString::number(port));
     preferencesDialog.accept();
 
-    QCOMPARE(settingsManager.m_serverAddress.host, host.toString());
-    QCOMPARE(settingsManager.m_serverAddress.port, port);
+    QCOMPARE(settingsStorage.m_serverAddress.host, host.toString());
+    QCOMPARE(settingsStorage.m_serverAddress.port, port);
 }
 
 QTEST_MAIN(TestPreferences)
