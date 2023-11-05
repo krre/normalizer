@@ -1,13 +1,13 @@
-#include "NetworkManager.h"
+#include "HttpNetworkManager.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
 
-NetworkManager::NetworkManager(const QString& host, quint16 port) : m_host(host), m_port(port) {
+HttpNetworkManager::HttpNetworkManager(const QString& host, quint16 port) : m_host(host), m_port(port) {
 }
 
-Async::Task<QString> NetworkManager::registerUser(const User& user) {
+Async::Task<QString> HttpNetworkManager::registerUser(const User& user) {
     QJsonObject data;
     data["sign"] = user.sign;
     data["name"] = user.name;
@@ -18,7 +18,7 @@ Async::Task<QString> NetworkManager::registerUser(const User& user) {
     co_return response.toMap()["token"].toString();
 }
 
-Async::Task<QVariant> NetworkManager::post(const QString& endpoint, const QByteArray& data) {
+Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QByteArray& data) {
     QString url = m_host;
 
     if (m_port) {

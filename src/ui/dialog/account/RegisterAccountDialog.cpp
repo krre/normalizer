@@ -1,9 +1,9 @@
 #include "RegisterAccountDialog.h"
-#include "manager/network/NetworkManager.h"
+#include "manager/network/HttpNetworkManager.h"
 #include "core/Constants.h"
 #include <QtWidgets>
 
-RegisterAccountDialog::RegisterAccountDialog(AbstractNetworkManager* networkManager) : m_networkManager(networkManager) {
+RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
     setWindowTitle(tr("Register Account"));
 
     m_signLineEdit = new QLineEdit;
@@ -58,7 +58,7 @@ void RegisterAccountDialog::enableOkButton() {
 }
 
 Async::Task<void> RegisterAccountDialog::getToken() {
-    NetworkManager::User user;
+    HttpNetworkManager::User user;
     user.sign = m_signLineEdit->text();
     user.name = m_nameLineEdit->text();
     user.email = m_emailLineEdit->text();

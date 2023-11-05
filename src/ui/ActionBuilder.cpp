@@ -8,7 +8,7 @@
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
 #include "manager/settings/SettingsManager.h"
-#include "manager/network/NetworkManager.h"
+#include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
@@ -44,7 +44,7 @@ void ActionBuilder::openPreferencesDialog() {
 
 void ActionBuilder::openRegisterAccountDialog() {
     SettingsManager settingsManager;
-    NetworkManager networkManager(settingsManager.serverAddress().host, settingsManager.serverAddress().port);
+    HttpNetworkManager networkManager(settingsManager.serverAddress().host, settingsManager.serverAddress().port);
 
     RegisterAccountDialog registerAccountDialog(&networkManager);
 

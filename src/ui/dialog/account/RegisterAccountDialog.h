@@ -2,13 +2,13 @@
 #include "ui/dialog/StandardDialog.h"
 #include "core/async/Task.h"
 
-class AbstractNetworkManager;
+class NetworkManager;
 
 class QLineEdit;
 
 class RegisterAccountDialog : public StandardDialog {
 public:
-    RegisterAccountDialog(AbstractNetworkManager* networkManager);
+    RegisterAccountDialog(NetworkManager* networkManager);
     QString token() const;
 
 public slots:
@@ -26,6 +26,6 @@ private slots:
     Async::Task<void> getToken();
 
 private:
-    AbstractNetworkManager* m_networkManager = nullptr;
+    NetworkManager* m_networkManager = nullptr;
     QString m_token;
 };

@@ -1,16 +1,27 @@
 #pragma once
-#include "AbstractNetworkManager.h"
-#include <QHostAddress>
+#include "core/async/Task.h"
+#include <QString>
 
-class NetworkManager : public AbstractNetworkManager {
+class NetworkException : public std::exception {
 public:
-    NetworkManager(const QString& host, quint16 port = 0);
+    NetworkException(int status, const QString& message = QString()) : m_status(status), m_message(message) {}
 
-    Async::Task<QString> registerUser(const User& user) override;
+    int status() const { return m_status; }
+    QString message() const { return m_message; }
 
 private:
-    Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
+    int m_status = 0;
+    QString m_message;
+};
 
-    QString m_host;
-    quint16 m_port = 0;
+class NetworkManager {
+public:
+    struct User {
+        QString sign;
+        QString name;
+        QString email;
+        QString password;
+    };
+
+    virtual Async::Task<QString> registerUser(const User& user) = 0;
 };
