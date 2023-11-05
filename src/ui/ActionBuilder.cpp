@@ -38,31 +38,31 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    FileSettingsStrorage settingsStorage;
+    FileSettingsStorage settingsStorage;
 
     PreferencesDialog preferencesDialog(&settingsStorage);
     preferencesDialog.exec();
 }
 
 void ActionBuilder::openLoginDialog() {
-    FileSettingsStrorage settingsStorage;
+    FileSettingsStorage settingsStorage;
     HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
 
     LoginDialog loginDialog(&networkManager);
 
     if (loginDialog.exec() == QDialog::Accepted) {
-        settingsStorage.setAccount(FileSettingsStrorage::Account(loginDialog.token()));
+        settingsStorage.setAccount(FileSettingsStorage::Account(loginDialog.token()));
     }
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    FileSettingsStrorage settingsStorage;
+    FileSettingsStorage settingsStorage;
     HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
 
     RegisterAccountDialog registerAccountDialog(&networkManager);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        settingsStorage.setAccount(FileSettingsStrorage::Account(registerAccountDialog.token()));
+        settingsStorage.setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
     }
 }
 

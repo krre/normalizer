@@ -1,7 +1,7 @@
 #pragma once
 #include "SettingsStorage.h"
 
-class FileSettingsStrorage : public SettingsStorage {
+class FileSettingsStorage : public SettingsStorage {
 public:
     void setServerAddress(const ServerAddress& serverAddress) override;
     ServerAddress serverAddress() const override;
