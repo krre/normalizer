@@ -65,7 +65,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
     user.password = m_passwordLineEdit->text();
 
     try {
-        m_token = co_await m_networkManager->registerUser(user);
+        m_token = co_await m_networkManager->createUser(user);
         StandardDialog::accept();
     } catch (NetworkException& e) {
         QString message = e.status() == Const::HttpStatus::Conflict ? tr("Account already exists") : e.message();

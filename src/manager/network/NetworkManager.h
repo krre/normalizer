@@ -23,6 +23,6 @@ public:
         QString password;
     };
 
-    virtual Async::Task<QString> registerUser(const User& user) = 0;
+    virtual Async::Task<QString> createUser(const User& user) = 0;
     virtual Async::Task<QString> login(const User& user) = 0;
 };
