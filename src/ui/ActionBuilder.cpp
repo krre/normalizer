@@ -7,6 +7,7 @@
 #include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
+#include "dialog/account/LoginDialog.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
@@ -29,6 +30,7 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
     accountMenu->addAction(tr("Register"), this, &ActionBuilder::openRegisterAccountDialog);
+    accountMenu->addAction(tr("Login"), this, &ActionBuilder::openLoginDialog);
     accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -40,6 +42,17 @@ void ActionBuilder::openPreferencesDialog() {
 
     PreferencesDialog preferencesDialog(&settingsStorage);
     preferencesDialog.exec();
+}
+
+void ActionBuilder::openLoginDialog() {
+    FileSettingsStrorage settingsStorage;
+    HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
+
+    LoginDialog loginDialog(&networkManager);
+
+    if (loginDialog.exec() == QDialog::Accepted) {
+        settingsStorage.setAccount(FileSettingsStrorage::Account(loginDialog.token()));
+    }
 }
 
 void ActionBuilder::openRegisterAccountDialog() {

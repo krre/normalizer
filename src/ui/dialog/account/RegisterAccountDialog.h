@@ -3,7 +3,6 @@
 #include "core/async/Task.h"
 
 class NetworkManager;
-
 class QLineEdit;
 
 class RegisterAccountDialog : public StandardDialog {

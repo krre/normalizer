@@ -23,6 +23,8 @@ namespace Project {
 }
 
 namespace HttpStatus {
+    constexpr auto Unauthorized = 401;
+    constexpr auto NotFound = 404;
     constexpr auto Conflict = 409;
 }
 

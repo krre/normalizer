@@ -43,6 +43,7 @@ add_library(common STATIC
     manager/settings/FileSettingsStorage.h manager/settings/FileSettingsStorage.cpp
     manager/network/NetworkManager.h
     manager/network/HttpNetworkManager.h manager/network/HttpNetworkManager.cpp
+    ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

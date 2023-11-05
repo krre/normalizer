@@ -12,8 +12,11 @@ public:
 
 private slots:
     void openPreferencesDialog();
+
+    void openLoginDialog();
     void openRegisterAccountDialog();
     void logout();
+
     void about();
 
 private:

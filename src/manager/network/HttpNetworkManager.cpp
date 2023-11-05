@@ -18,6 +18,15 @@ Async::Task<QString> HttpNetworkManager::registerUser(const User& user) {
     co_return response.toMap()["token"].toString();
 }
 
+Async::Task<QString> HttpNetworkManager::login(const User& user) {
+    QJsonObject data;
+    data["email"] = user.email;
+    data["password"] = user.password;
+
+    QVariant response = co_await post("/users/login", QJsonDocument(data).toJson(QJsonDocument::Compact));
+    co_return response.toMap()["token"].toString();
+}
+
 Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QByteArray& data) {
     QString url = m_host;
 
