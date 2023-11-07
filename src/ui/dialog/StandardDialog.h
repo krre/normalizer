@@ -16,6 +16,9 @@ public:
     void setLayoutToFixedSize();
     void resizeToWidth(int width);
 
+protected:
+    void errorMessage(const QString& message);
+
 private:
     QDialogButtonBox* m_buttonBox = nullptr;
 };

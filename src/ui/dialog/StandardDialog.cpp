@@ -40,3 +40,7 @@ void StandardDialog::setLayoutToFixedSize() {
 void StandardDialog::resizeToWidth(int width) {
     resize(width, sizeHint().height());
 }
+
+void StandardDialog::errorMessage(const QString& message) {
+    QMessageBox::critical(this, windowTitle() + " - " + tr("Error"), message);
+}

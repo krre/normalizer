@@ -58,7 +58,3 @@ Async::Task<void> LoginDialog::getToken() {
         errorMessage(e.what());
     }
 }
-
-void LoginDialog::errorMessage(const QString& message) {
-    QMessageBox::critical(this, tr("Login Error"), message);
-}

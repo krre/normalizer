@@ -74,7 +74,3 @@ Async::Task<void> RegisterAccountDialog::getToken() {
         errorMessage(e.what());
     }
 }
-
-void RegisterAccountDialog::errorMessage(const QString& message) {
-    QMessageBox::critical(this, tr("Register Error"), message);
-}
