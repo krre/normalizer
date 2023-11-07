@@ -7,4 +7,6 @@ target_link_libraries(test_register_account PRIVATE
     Qt6::Widgets
     Qt6::Network
     common
+    test_common
 )
+

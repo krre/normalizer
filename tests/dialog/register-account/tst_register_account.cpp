@@ -1,5 +1,5 @@
 #include "ui/dialog/account/RegisterAccountDialog.h"
-#include "manager/network/NetworkManager.h"
+#include "tests/common/TestNetworkManager.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -7,19 +7,6 @@ constexpr auto Login = "admin";
 constexpr auto FullName = "Morpheus";
 constexpr auto Email = "admin@example.com";
 constexpr auto Password = "qwerty";
-constexpr auto Token = "1234567890";
-
-class TestNetworkManager : public NetworkManager {
-public:
-    Async::Task<QString> createUser(const User& user) override {
-        m_user = user;
-        co_return Token;
-    };
-
-    Async::Task<QString> login(const User& user) override {};
-
-    User m_user;
-};
 
 class TestRegisterAccount : public QObject {
     Q_OBJECT
