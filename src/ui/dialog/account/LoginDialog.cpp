@@ -53,8 +53,12 @@ Async::Task<void> LoginDialog::getToken() {
             message = tr("Wrong password");
         }
 
-        QMessageBox::critical(this, tr("Login error"), message);
+        errorMessage(message);
     } catch (std::exception& e) {
-        QMessageBox::critical(this, tr("Login error"), e.what());
+        errorMessage(e.what());
     }
+}
+
+void LoginDialog::errorMessage(const QString& message) {
+    QMessageBox::critical(this, tr("Login Error"), message);
 }
