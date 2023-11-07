@@ -25,6 +25,8 @@ private slots:
     Async::Task<void> getToken();
 
 private:
+    void errorMessage(const QString& message);
+
     NetworkManager* m_networkManager = nullptr;
     QString m_token;
 };
