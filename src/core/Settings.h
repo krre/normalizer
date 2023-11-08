@@ -71,11 +71,11 @@ struct LastProject : public Settings::Key<QString> {
 namespace Server {
 
 struct Host : public Settings::Key<QString> {
-    Host() : Key("Server/host", "http://localhost") {}
+    Host() : Key("Server/host", "api.norm.dev") {}
 };
 
 struct Port : public Settings::Key<quint16> {
-    Port() : Key("Server/port", 3000) {}
+    Port() : Key("Server/port", 80) {}
 };
 
 }

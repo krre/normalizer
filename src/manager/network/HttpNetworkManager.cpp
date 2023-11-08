@@ -28,13 +28,16 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
 }
 
 Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QByteArray& data) {
-    QString url = m_host;
+    QUrl url;
+    url.setScheme("http");
+    url.setHost(m_host);
+    url.setPath(endpoint);
 
     if (m_port) {
-        url += ":" + QString::number(m_port);
+        url.setPort(m_port);
     }
 
-    QNetworkRequest request(QUrl(url + endpoint));
+    QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     Async::NetworkAccessManager networkAccessManager;
