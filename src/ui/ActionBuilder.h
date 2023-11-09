@@ -7,6 +7,8 @@ class HttpNetworkManager;
 class FileSettingsStorage;
 class RecentMenu;
 
+class QAction;
+
 class ActionBuilder : public QObject {
     Q_OBJECT
 public:
@@ -29,8 +31,14 @@ private slots:
     void about();
 
 private:
+    void updateAccountActions();
+
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
     HttpNetworkManager* m_httpNetworkManager = nullptr;
     FileSettingsStorage* m_fileSettingsStorage = nullptr;
+
+    QAction* registerAction = nullptr;
+    QAction* loginAction = nullptr;
+    QAction* logoutAction = nullptr;
 };
