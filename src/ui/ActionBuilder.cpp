@@ -33,8 +33,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
-    registerAction = accountMenu->addAction(tr("Register"), this, &ActionBuilder::openRegisterAccountDialog);
-    loginAction = accountMenu->addAction(tr("Login"), this, &ActionBuilder::openLoginDialog);
+    registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
+    loginAction = accountMenu->addAction(tr("Login..."), this, &ActionBuilder::openLoginDialog);
     profileAction = accountMenu->addAction(tr("Profile..."), this, &ActionBuilder::openProfileDialog);
     logoutAction = accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
     updateAccountActions();
