@@ -8,6 +8,16 @@ constexpr auto port = 3128;
 
 class TestSettingsStorage : public SettingsStorage {
 public:
+    void setMainWindow(const MainWindow& mainWindow [[maybe_unused]]) override {}
+
+    SettingsStorage::MainWindow mainWindow() const override {
+        return MainWindow();
+    }
+
+    bool containsMainWindow() const override {
+        return true;
+    }
+
     void setServerAddress(const ServerAddress& serverAddress) override {
         m_serverAddress = serverAddress;
     }

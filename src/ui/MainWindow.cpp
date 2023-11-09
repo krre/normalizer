@@ -2,7 +2,6 @@
 #include "ActionBuilder.h"
 #include "RenderView.h"
 #include "core/Constants.h"
-#include "core/Settings.h"
 #include "manager/network/HttpNetworkManager.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "widget/project/ProjectTable.h"
@@ -47,9 +46,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::readSettings() {
-    if (Settings::contains<General::Geometry>()) {
-        restoreGeometry(Settings::value<General::Geometry>());
-        restoreState(Settings::value<General::State>());
+    if (m_fileSettingsStorage->containsMainWindow()) {
+        restoreGeometry(m_fileSettingsStorage->mainWindow().geometry);
+        restoreState(m_fileSettingsStorage->mainWindow().state);
     } else {
         const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         constexpr auto scale = 0.8;
@@ -59,6 +58,5 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    Settings::setValue<General::Geometry>(saveGeometry());
-    Settings::setValue<General::State>(saveState());
+    m_fileSettingsStorage->setMainWindow(FileSettingsStorage::MainWindow(saveGeometry(), saveState()));
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "core/Constants.h"
 #include <QSettings>
 #include <QDir>
 #include <QHostAddress>
@@ -48,7 +47,7 @@ public:
     }
 };
 
-namespace General {
+namespace MainWindow {
 
 struct Geometry : public Settings::Key<QByteArray> {
     Geometry() : Key("geometry") {}
