@@ -67,7 +67,6 @@ void Project::close() {
 void Project::setPath(const QString& path) {
     m_path = path;
     m_renderView->setVisible(!path.isEmpty());
-    Settings::setValue<General::LastProject>(m_path);
 }
 
 QString Project::filePath() const {

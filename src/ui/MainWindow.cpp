@@ -35,9 +35,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setCentralWidget(m_projectTable);
 
     readSettings();
-
-    QString projectPath = Settings::value<General::LastProject>();
-    m_project->open(projectPath);
 }
 
 MainWindow::~MainWindow() {

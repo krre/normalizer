@@ -58,10 +58,6 @@ struct State : public Settings::Key<QByteArray> {
     State() : Key("state") {}
 };
 
-struct LastProject : public Settings::Key<QString> {
-    LastProject() : Key("lastProject") {}
-};
-
 }
 
 namespace Server {
