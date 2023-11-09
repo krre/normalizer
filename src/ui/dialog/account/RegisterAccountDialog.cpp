@@ -42,7 +42,7 @@ QString RegisterAccountDialog::token() const {
 
 void RegisterAccountDialog::accept() {
     if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
-        QMessageBox::critical(this, tr("Confirm Password Error"), tr("Password mismatch!"));
+        errorMessage(tr("Password mismatch!"));
         return;
     }
 
