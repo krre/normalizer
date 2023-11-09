@@ -19,7 +19,7 @@ private:
 
 private slots:
     void enableOkButton();
-        Async::Task<void> getToken();
+    Async::Task<void> getToken();
 
 private:
     NetworkManager* m_networkManager = nullptr;
