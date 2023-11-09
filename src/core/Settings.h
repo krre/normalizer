@@ -58,10 +58,6 @@ struct State : public Settings::Key<QByteArray> {
     State() : Key("state") {}
 };
 
-struct Workspace : public Settings::Key<QString> {
-    Workspace() : Key("workspace", QDir::homePath() + "/" + Const::Project::WorkspaceDir) {}
-};
-
 struct LastProject : public Settings::Key<QString> {
     LastProject() : Key("lastProject") {}
 };
