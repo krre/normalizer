@@ -2,7 +2,6 @@
 #include "MainWindow.h"
 #include "project/Project.h"
 #include "core/Constants.h"
-#include "core/Settings.h"
 #include "widget/Menu.h"
 #include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
@@ -12,16 +11,20 @@
 #include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
-ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject(mainWindow),
-        m_mainWindow(mainWindow), m_project(project) {
-    QMenuBar* menuBar = mainWindow->menuBar();
+ActionBuilder::ActionBuilder(const Parameters& parameters) :
+        QObject(parameters.mainWindow),
+        m_mainWindow(parameters.mainWindow),
+        m_project(parameters.project),
+        m_httpNetworkManager(parameters.httpNetworkManager),
+        m_fileSettingsStorage(parameters.fileSettingsStorage) {
+    QMenuBar* menuBar = m_mainWindow->menuBar();
 
     auto fileMenu = new Menu(tr("File"), menuBar);
     menuBar->addMenu(fileMenu);
 
-    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
+    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
     fileMenu->addSeparator();
-    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, mainWindow, &MainWindow::close);
+    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
     auto editMenu = new Menu(tr("Edit"), menuBar);
     menuBar->addMenu(editMenu);
@@ -38,36 +41,28 @@ ActionBuilder::ActionBuilder(MainWindow* mainWindow, Project* project) : QObject
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    FileSettingsStorage settingsStorage;
-
-    PreferencesDialog preferencesDialog(&settingsStorage);
+    PreferencesDialog preferencesDialog(m_fileSettingsStorage);
     preferencesDialog.exec();
 }
 
 void ActionBuilder::openLoginDialog() {
-    FileSettingsStorage settingsStorage;
-    HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
-
-    LoginDialog loginDialog(&networkManager);
+    LoginDialog loginDialog(m_httpNetworkManager);
 
     if (loginDialog.exec() == QDialog::Accepted) {
-        settingsStorage.setAccount(FileSettingsStorage::Account(loginDialog.token()));
+        m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(loginDialog.token()));
     }
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    FileSettingsStorage settingsStorage;
-    HttpNetworkManager networkManager(settingsStorage.serverAddress().host, settingsStorage.serverAddress().port);
-
-    RegisterAccountDialog registerAccountDialog(&networkManager);
+    RegisterAccountDialog registerAccountDialog(m_httpNetworkManager);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        settingsStorage.setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
+        m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
     }
 }
 
 void ActionBuilder::logout() {
-    Settings::setValue<Account::Token>("");
+    m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(""));
 
     QStringList arguments = QCoreApplication::arguments();
     arguments.removeAt(0); // Remove application name

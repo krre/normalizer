@@ -3,12 +3,21 @@
 
 class MainWindow;
 class Project;
+class HttpNetworkManager;
+class FileSettingsStorage;
 class RecentMenu;
 
 class ActionBuilder : public QObject {
     Q_OBJECT
 public:
-    explicit ActionBuilder(MainWindow* mainWindow, Project* project);
+    struct Parameters {
+        MainWindow* mainWindow;
+        Project* project;
+        HttpNetworkManager* httpNetworkManager;
+        FileSettingsStorage* fileSettingsStorage;
+    };
+
+    explicit ActionBuilder(const Parameters& parameters);
 
 private slots:
     void openPreferencesDialog();
@@ -22,4 +31,6 @@ private slots:
 private:
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
+    HttpNetworkManager* m_httpNetworkManager = nullptr;
+    FileSettingsStorage* m_fileSettingsStorage = nullptr;
 };
