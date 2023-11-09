@@ -42,6 +42,7 @@ add_library(common STATIC
     manager/network/NetworkManager.h
     manager/network/HttpNetworkManager.h manager/network/HttpNetworkManager.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
+    ui/dialog/account/ProfileDialog.h ui/dialog/account/ProfileDialog.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

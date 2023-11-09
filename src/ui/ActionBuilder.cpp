@@ -7,6 +7,7 @@
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
+#include "dialog/account/ProfileDialog.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
@@ -34,6 +35,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     auto accountMenu = menuBar->addMenu(tr("Account"));
     registerAction = accountMenu->addAction(tr("Register"), this, &ActionBuilder::openRegisterAccountDialog);
     loginAction = accountMenu->addAction(tr("Login"), this, &ActionBuilder::openLoginDialog);
+    profileAction = accountMenu->addAction(tr("Profile..."), this, &ActionBuilder::openProfileDialog);
     logoutAction = accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
     updateAccountActions();
 
@@ -53,6 +55,11 @@ void ActionBuilder::openLoginDialog() {
         m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(loginDialog.token()));
         updateAccountActions();
     }
+}
+
+void ActionBuilder::openProfileDialog() {
+    ProfileDialog profileDialog(m_httpNetworkManager);
+    profileDialog.exec();
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
@@ -85,5 +92,6 @@ void ActionBuilder::updateAccountActions() {
     bool tokenExists = !m_fileSettingsStorage->account().token.isEmpty();
     registerAction->setVisible(!tokenExists);
     loginAction->setVisible(!tokenExists);
+    profileAction->setVisible(tokenExists);
     logoutAction->setVisible(tokenExists);
 }

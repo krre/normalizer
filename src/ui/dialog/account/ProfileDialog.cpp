@@ -1,0 +1,64 @@
+#include "ProfileDialog.h"
+#include <QtWidgets>
+
+ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+    setWindowTitle(tr("Profile"));
+
+    m_loginLineEdit = new QLineEdit;
+    m_loginLineEdit->setReadOnly(true);
+
+    m_emailLineEdit = new QLineEdit;
+    m_emailLineEdit->setReadOnly(true);
+
+    m_fullNameLineEdit = new QLineEdit;
+
+    m_passwordLineEdit = new QLineEdit;
+    m_passwordLineEdit->setEchoMode(QLineEdit::Password);
+
+    m_confirmPasswordLineEdit = new QLineEdit;
+    m_confirmPasswordLineEdit->setEchoMode(QLineEdit::Password);
+
+    auto deleteButton = new QPushButton(tr("Delete Account..."));
+    connect(deleteButton, &QPushButton::clicked, this, &ProfileDialog::deleteAccount);
+
+    auto formLayout = new QFormLayout;
+    formLayout->addRow(tr("Login:"), m_loginLineEdit);
+    formLayout->addRow(tr("Email:"), m_emailLineEdit);
+    formLayout->addRow(tr("Full name:"), m_fullNameLineEdit);
+    formLayout->addRow(tr("Password:"), m_passwordLineEdit);
+    formLayout->addRow(tr("Confirm password:"), m_confirmPasswordLineEdit);
+    formLayout->addRow("", deleteButton);
+
+    formLayout->itemAt(formLayout->indexOf(deleteButton))->setAlignment(Qt::AlignLeft);
+
+    setContentLayout(formLayout);
+    resizeToWidth(500);
+    m_fullNameLineEdit->setFocus();
+}
+
+void ProfileDialog::accept() {
+    if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
+        errorMessage(tr("Password mismatch!"));
+        return;
+    }
+
+    updateProfile();
+}
+
+void ProfileDialog::deleteAccount() {
+    if (QMessageBox::warning(this,
+                             tr("Confirm Deleting Account"),
+                             tr("Account will be deleted along with all your projects without the possibility of recovery!"),
+                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) == QMessageBox::Ok) {
+        close();
+
+    }
+}
+
+Async::Task<void> ProfileDialog::getProfile() {
+
+}
+
+Async::Task<void> ProfileDialog::updateProfile() {
+    StandardDialog::accept();
+}
