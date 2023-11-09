@@ -1,7 +1,5 @@
 #pragma once
 #include <QSettings>
-#include <QDir>
-#include <QHostAddress>
 
 class Settings {
 public:
