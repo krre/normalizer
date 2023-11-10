@@ -7,6 +7,10 @@
 HttpNetworkManager::HttpNetworkManager(const QString& host, quint16 port) : m_host(host), m_port(port) {
 }
 
+void HttpNetworkManager::setToken(const QString& token) {
+    m_token = token;
+}
+
 Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
     QJsonObject data;
     data["login"] = user.login;
@@ -53,6 +57,10 @@ Async::Task<QVariant> HttpNetworkManager::get(const QString& endpoint, const QUr
 
     QNetworkRequest request(url);
 
+    if (!m_token.isEmpty()) {
+        request.setRawHeader("Authorization", m_token.toUtf8());
+    }
+
     Async::NetworkAccessManager networkAccessManager;
     QNetworkReply* reply = co_await networkAccessManager.get(request);
 
@@ -76,6 +84,10 @@ Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QB
 
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    if (!m_token.isEmpty()) {
+        request.setRawHeader("Authorization", m_token.toUtf8());
+    }
 
     Async::NetworkAccessManager networkAccessManager;
     QNetworkReply* reply = co_await networkAccessManager.post(request, data);

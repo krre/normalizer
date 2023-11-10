@@ -7,6 +7,8 @@ class HttpNetworkManager : public NetworkManager {
 public:
     HttpNetworkManager(const QString& host, quint16 port = 0);
 
+    void setToken(const QString& token);
+
     Async::Task<QString> createUser(const User& user) override;
     Async::Task<User> getUser() override;
     Async::Task<QString> login(const User& user) override;
@@ -19,4 +21,5 @@ private:
 
     QString m_host;
     quint16 m_port = 0;
+    QString m_token;
 };

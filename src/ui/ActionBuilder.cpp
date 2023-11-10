@@ -41,6 +41,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
+
+    m_httpNetworkManager->setToken(m_fileSettingsStorage->account().token);
 }
 
 void ActionBuilder::openPreferencesDialog() {
@@ -53,6 +55,7 @@ void ActionBuilder::openLoginDialog() {
 
     if (loginDialog.exec() == QDialog::Accepted) {
         m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(loginDialog.token()));
+        m_httpNetworkManager->setToken(loginDialog.token());
         updateAccountActions();
     }
 }
@@ -67,12 +70,14 @@ void ActionBuilder::openRegisterAccountDialog() {
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
         m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
+        m_httpNetworkManager->setToken(registerAccountDialog.token());
         updateAccountActions();
     }
 }
 
 void ActionBuilder::logout() {
     m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(""));
+    m_httpNetworkManager->setToken("");
     updateAccountActions();
 }
 
