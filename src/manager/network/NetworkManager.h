@@ -24,5 +24,6 @@ public:
     };
 
     virtual Async::Task<QString> createUser(const User& user) = 0;
+    virtual Async::Task<User> getUser() = 0;
     virtual Async::Task<QString> login(const User& user) = 0;
 };

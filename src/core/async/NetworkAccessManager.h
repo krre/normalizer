@@ -14,6 +14,8 @@ public:
 class NetworkAccessManager {
 public:
     NetworkAccessManager() = default;
+
+    Awaiter<QNetworkReply*> get(const QNetworkRequest& request);
     Awaiter<QNetworkReply*> post(const QNetworkRequest& request, const QByteArray& data);
 
 private:

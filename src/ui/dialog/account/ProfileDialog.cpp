@@ -1,4 +1,5 @@
 #include "ProfileDialog.h"
+#include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
 ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
@@ -34,6 +35,7 @@ ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(
     setContentLayout(formLayout);
     resizeToWidth(500);
     m_fullNameLineEdit->setFocus();
+    getProfile();
 }
 
 void ProfileDialog::accept() {
@@ -56,7 +58,16 @@ void ProfileDialog::deleteAccount() {
 }
 
 Async::Task<void> ProfileDialog::getProfile() {
-
+    try {
+        HttpNetworkManager::User user = co_await m_networkManager->getUser();
+        m_loginLineEdit->setText(user.login);
+        m_emailLineEdit->setText(user.email);
+        m_fullNameLineEdit->setText(user.fullName);
+    } catch (NetworkException& e) {
+        errorMessage(e.message());
+    } catch (std::exception& e) {
+        errorMessage(e.what());
+    }
 }
 
 Async::Task<void> ProfileDialog::updateProfile() {

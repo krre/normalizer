@@ -10,6 +10,10 @@ NetworkWaker::NetworkWaker(QNetworkReply* reply) {
     });
 }
 
+Awaiter<QNetworkReply*> NetworkAccessManager::get(const QNetworkRequest& request) {
+    return Awaiter<QNetworkReply*>(std::make_unique<NetworkWaker>(m_networkAccessManager.get(request)));
+}
+
 Awaiter<QNetworkReply*> NetworkAccessManager::post(const QNetworkRequest& request, const QByteArray& data) {
     return Awaiter<QNetworkReply*>(std::make_unique<NetworkWaker>(m_networkAccessManager.post(request, data)));
 }
