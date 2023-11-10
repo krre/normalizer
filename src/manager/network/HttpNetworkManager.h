@@ -1,5 +1,7 @@
 #pragma once
 #include "NetworkManager.h"
+#include "HttpRequestAttributes.h"
+#include "core/async/NetworkAccessManager.h"
 #include <QJsonObject>
 #include <QUrlQuery>
 
@@ -19,7 +21,6 @@ private:
     Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
     Async::Task<QVariant> post(const QString& endpoint, const QJsonObject& data = QJsonObject());
 
-    QString m_host;
-    quint16 m_port = 0;
-    QString m_token;
+    Async::NetworkAccessManager m_networkAccessManager;
+    HttpRequestAttributes m_requestAttributes;
 };

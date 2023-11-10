@@ -1,14 +1,18 @@
 #include "HttpNetworkManager.h"
+#include "HttpRequest.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
 
-HttpNetworkManager::HttpNetworkManager(const QString& host, quint16 port) : m_host(host), m_port(port) {
+HttpNetworkManager::HttpNetworkManager(const QString& host, quint16 port) {
+    m_requestAttributes.scheme = HttpRequestAttributes::Scheme::Http;
+    m_requestAttributes.host = host;
+    m_requestAttributes.port = port;
 }
 
 void HttpNetworkManager::setToken(const QString& token) {
-    m_token = token;
+    m_requestAttributes.token = token;
 }
 
 Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
@@ -44,60 +48,13 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
 }
 
 Async::Task<QVariant> HttpNetworkManager::get(const QString& endpoint, const QUrlQuery& query) {
-    QUrl url;
-    url.setScheme("http");
-    url.setHost(m_host);
-    url.setPath(endpoint);
-
-    if (m_port) {
-        url.setPort(m_port);
-    }
-
-    url.setQuery(query);
-
-    QNetworkRequest request(url);
-
-    if (!m_token.isEmpty()) {
-        request.setRawHeader("Authorization", m_token.toUtf8());
-    }
-
-    Async::NetworkAccessManager networkAccessManager;
-    QNetworkReply* reply = co_await networkAccessManager.get(request);
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray response = reply->readAll();
-        co_return QJsonDocument::fromJson(response).toVariant();
-    } else {
-        throw NetworkException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
-    }
+    GetHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, query);
+    co_return co_await httpRequest.send(endpoint);
 }
 
 Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QByteArray& data) {
-    QUrl url;
-    url.setScheme("http");
-    url.setHost(m_host);
-    url.setPath(endpoint);
-
-    if (m_port) {
-        url.setPort(m_port);
-    }
-
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-
-    if (!m_token.isEmpty()) {
-        request.setRawHeader("Authorization", m_token.toUtf8());
-    }
-
-    Async::NetworkAccessManager networkAccessManager;
-    QNetworkReply* reply = co_await networkAccessManager.post(request, data);
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray response = reply->readAll();
-        co_return QJsonDocument::fromJson(response).toVariant();
-    } else {
-        throw NetworkException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
-    }
+    PostHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, data);
+    co_return co_await httpRequest.send(endpoint);
 }
 
 Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QJsonObject& data) {

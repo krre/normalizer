@@ -43,6 +43,8 @@ add_library(common STATIC
     manager/network/HttpNetworkManager.h manager/network/HttpNetworkManager.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/ProfileDialog.h ui/dialog/account/ProfileDialog.cpp
+    manager/network/HttpRequest.h manager/network/HttpRequest.cpp
+    manager/network/HttpRequestAttributes.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
