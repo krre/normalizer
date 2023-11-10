@@ -1,6 +1,6 @@
 #pragma once
 #include "NetworkManager.h"
-#include <QHostAddress>
+#include <QJsonObject>
 
 class HttpNetworkManager : public NetworkManager {
 public:
@@ -11,6 +11,7 @@ public:
 
 private:
     Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
+    Async::Task<QVariant> post(const QString& endpoint, const QJsonObject& data = QJsonObject());
 
     QString m_host;
     quint16 m_port = 0;

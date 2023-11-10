@@ -14,7 +14,7 @@ Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
     data["email"] = user.email;
     data["password"] = user.password;
 
-    QVariant response = co_await post("/users", QJsonDocument(data).toJson(QJsonDocument::Compact));
+    QVariant response = co_await post("/users", data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -23,7 +23,7 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
     data["email"] = user.email;
     data["password"] = user.password;
 
-    QVariant response = co_await post("/users/login", QJsonDocument(data).toJson(QJsonDocument::Compact));
+    QVariant response = co_await post("/users/login", data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -49,4 +49,8 @@ Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QB
     } else {
         throw NetworkException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
     }
+}
+
+Async::Task<QVariant> HttpNetworkManager::post(const QString& endpoint, const QJsonObject& data) {
+    co_return co_await post(endpoint, QJsonDocument(data).toJson(QJsonDocument::Compact));
 }
