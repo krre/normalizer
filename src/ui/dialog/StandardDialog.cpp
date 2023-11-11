@@ -1,10 +1,8 @@
 #include "StandardDialog.h"
-#include "core/ObjectNames.h"
 #include <QtWidgets>
 
 StandardDialog::StandardDialog(QWidget* parent, Qt::WindowFlags f) : QDialog(parent, f) {
     m_buttonBox = new QDialogButtonBox;
-    m_buttonBox->setObjectName(ObjectName::ButtonBox);
     m_buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
