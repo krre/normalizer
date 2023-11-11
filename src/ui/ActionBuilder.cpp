@@ -1,6 +1,5 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
-#include "project/Project.h"
 #include "core/Constants.h"
 #include "widget/Menu.h"
 #include "widget/Action.h"
@@ -22,9 +21,6 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     auto fileMenu = new Menu(tr("File"), menuBar);
     menuBar->addMenu(fileMenu);
-
-    fileMenu->addBindableAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_project, &Project::close)->enabled().setBinding([this] { return m_project->opened().value(); });
-    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
     auto editMenu = new Menu(tr("Edit"), menuBar);

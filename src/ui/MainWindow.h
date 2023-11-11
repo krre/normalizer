@@ -7,7 +7,6 @@ class FileSettingsStorage;
 class ProjectTable;
 class RenderView;
 class ActionBuilder;
-class Project;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -28,6 +27,5 @@ private:
     ProjectTable* m_projectTable = nullptr;
     RenderView* m_renderView = nullptr;
     ActionBuilder* m_actionBuilder = nullptr;
-    Project* m_project = nullptr;
     QPropertyNotifier m_projectPathNotifier;
 };

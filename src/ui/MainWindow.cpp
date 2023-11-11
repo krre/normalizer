@@ -5,7 +5,6 @@
 #include "manager/network/HttpNetworkManager.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "widget/project/ProjectTable.h"
-#include "project/Project.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -16,23 +15,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     m_projectTable = new ProjectTable;
     m_renderView = new RenderView;
-    m_project = new Project(m_renderView, this);
 
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
-    parameters.project = m_project;
     parameters.httpNetworkManager = m_httpNetworkManager.data();
     parameters.fileSettingsStorage = m_fileSettingsStorage.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
 
-    m_projectPathNotifier = m_project->path().addNotifier([&] {
-        QFileInfo fi(m_project->path().value());
-        setWindowTitle((!fi.baseName().isEmpty() ? fi.baseName() + " - " : "") + Const::App::Name);
-    });
-
     setCentralWidget(m_projectTable);
-
     readSettings();
 }
 

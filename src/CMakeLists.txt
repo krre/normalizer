@@ -10,7 +10,6 @@ find_package(Qt6 REQUIRED COMPONENTS
 
 add_library(common STATIC
     core/Constants.h
-
     core/Settings.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
@@ -20,8 +19,6 @@ add_library(common STATIC
     ui/widget/Action.h
     ui/widget/Menu.h
     core/CommonTypes.h
-    project/Project.h project/Project.cpp
-    project/Session.h project/Session.cpp
     core/Application.h core/Application.cpp
     norm/Project.h norm/Project.cpp
     norm/FileReader.h norm/FileReader.cpp
