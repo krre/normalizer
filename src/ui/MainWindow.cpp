@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_httpNetworkManager.reset(new HttpNetworkManager(m_fileSettingsStorage->serverAddress().host, m_fileSettingsStorage->serverAddress().port));
 
     m_projectTable = new ProjectTable;
+    m_projectTable->setVisible(false);
+
     m_renderView = new RenderView;
 
     ActionBuilder::Parameters parameters;
