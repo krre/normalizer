@@ -2,7 +2,6 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
 #include "widget/Menu.h"
-#include "widget/Action.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
