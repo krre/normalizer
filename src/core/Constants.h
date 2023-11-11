@@ -17,11 +17,6 @@ namespace Norm {
     constexpr auto Version = "0.1";
 }
 
-namespace Project {
-    constexpr auto WorkspaceDir = "NormProjects";
-    constexpr auto Extension = ".norm";
-}
-
 namespace HttpStatus {
     constexpr auto Unauthorized = 401;
     constexpr auto NotFound = 404;

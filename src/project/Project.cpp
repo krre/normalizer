@@ -4,8 +4,6 @@
 #include "norm/FileReader.h"
 #include "norm/FileWriter.h"
 #include "norm/Project.h"
-#include "core/Constants.h"
-#include "core/Settings.h"
 #include "core/Exception.h"
 #include <QDir>
 
@@ -29,7 +27,7 @@ void Project::create(const QString& name, const QString& directory, Norm::Projec
     m_normProject = new Norm::Project(name, projectTemplate);
     m_normProject->setParent(this);
 
-    QString filePath = path + "/" + name + Const::Project::Extension;
+    QString filePath = path + "/" + name;
 
     try {
         Norm::FileWriter writer;
@@ -71,5 +69,5 @@ void Project::setPath(const QString& path) {
 
 QString Project::filePath() const {
     QString name = QDir(m_path).dirName();
-    return m_path + "/" + name + Const::Project::Extension;
+    return m_path + "/" + name;
 }
