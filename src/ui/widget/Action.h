@@ -12,4 +12,5 @@ public:
     }
 
     QBindable<bool> enabled() { return QBindable<bool>(this, "enabled"); }
+    QBindable<bool> visible() { return QBindable<bool>(this, "visible"); }
 };
