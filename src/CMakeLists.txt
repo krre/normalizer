@@ -20,13 +20,8 @@ add_library(common STATIC
     ui/widget/Menu.h
     core/CommonTypes.h
     core/Application.h core/Application.cpp
-    norm/Project.h norm/Project.cpp
-    norm/FileReader.h norm/FileReader.cpp
-    norm/FileWriter.h norm/FileWriter.cpp
-    norm/Token.h norm/Token.cpp
     core/Exception.h core/Exception.cpp
     core/Format.h
-    norm/TokenType.h
     ui/dialog/PreferencesDialog.h ui/dialog/PreferencesDialog.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
