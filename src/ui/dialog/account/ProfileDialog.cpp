@@ -1,4 +1,5 @@
 #include "ProfileDialog.h"
+#include "ui/dialog/DialogMessages.h"
 #include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
@@ -40,7 +41,7 @@ ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(
 
 void ProfileDialog::accept() {
     if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
-        errorMessage(tr("Password mismatch!"));
+        errorMessage(DialogMessages::PasswordMismatch);
         return;
     }
 

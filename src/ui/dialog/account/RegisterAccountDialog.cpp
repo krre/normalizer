@@ -1,4 +1,5 @@
 #include "RegisterAccountDialog.h"
+#include "ui/dialog/DialogMessages.h"
 #include "manager/network/HttpNetworkManager.h"
 #include "core/Constants.h"
 #include <QtWidgets>
@@ -42,7 +43,7 @@ QString RegisterAccountDialog::token() const {
 
 void RegisterAccountDialog::accept() {
     if (m_passwordLineEdit->text() != m_confirmPasswordLineEdit->text()) {
-        errorMessage(tr("Password mismatch!"));
+        errorMessage(DialogMessages::PasswordMismatch);
         return;
     }
 

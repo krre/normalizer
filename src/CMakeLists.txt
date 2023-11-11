@@ -45,6 +45,7 @@ add_library(common STATIC
     ui/dialog/account/ProfileDialog.h ui/dialog/account/ProfileDialog.cpp
     manager/network/HttpRequest.h manager/network/HttpRequest.cpp
     manager/network/HttpRequestAttributes.h
+    ui/dialog/DialogMessages.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
