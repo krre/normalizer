@@ -1,2 +1,2 @@
 # Normalizer
-IDE for developing of [Norm](https://github.com/krre/norm) projects.
+Cloud IDE for developing of [Norm](https://github.com/krre/norm) projects.
