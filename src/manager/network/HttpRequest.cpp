@@ -23,7 +23,7 @@ Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     if (!m_requestAttributes->token.isEmpty()) {
-        request.setRawHeader("Authorization", m_requestAttributes->token.toUtf8());
+        request.setRawHeader("Authorization", "Bearer " + m_requestAttributes->token.toUtf8());
     }
 
     QNetworkReply* reply = co_await sendRequest(m_networkAccessManager, &request);
