@@ -46,3 +46,11 @@ protected:
 private:
     QByteArray m_data;
 };
+
+class DeleteHttpRequest : public HttpRequest {
+public:
+    DeleteHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes);
+
+protected:
+    Async::Task<QNetworkReply*> sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) override;
+};

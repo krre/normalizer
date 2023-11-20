@@ -56,3 +56,11 @@ PostHttpRequest::PostHttpRequest(Async::NetworkAccessManager* networkAccessManag
 Async::Task<QNetworkReply*> PostHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
     co_return co_await networkAccessManager->post(*request, m_data);
 }
+
+DeleteHttpRequest::DeleteHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes) :
+    HttpRequest(networkAccessManager, requestAttributes) {
+}
+
+Async::Task<QNetworkReply*> DeleteHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
+    co_return co_await networkAccessManager->deleteResource(*request);
+}

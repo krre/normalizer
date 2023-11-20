@@ -13,8 +13,7 @@ public slots:
     void accept() override;
 
 private slots:
-    void deleteAccount();
-
+    Async::Task<void> deleteAccount();
     Async::Task<void> getProfile();
     Async::Task<void> updateProfile();
 

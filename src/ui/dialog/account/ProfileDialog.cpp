@@ -48,13 +48,21 @@ void ProfileDialog::accept() {
     updateProfile();
 }
 
-void ProfileDialog::deleteAccount() {
+Async::Task<void> ProfileDialog::deleteAccount() {
     if (QMessageBox::warning(this,
                              tr("Confirm Deleting Account"),
                              tr("Account will be deleted along with all your projects without the possibility of recovery!"),
-                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) == QMessageBox::Ok) {
-        close();
+                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) != QMessageBox::Ok) {
+        co_return;
+    }
 
+    try {
+        co_await m_networkManager->deleteUser();
+        close();
+    } catch (NetworkException& e) {
+        errorMessage(e.message());
+    } catch (std::exception& e) {
+        errorMessage(e.what());
     }
 }
 
@@ -73,4 +81,5 @@ Async::Task<void> ProfileDialog::getProfile() {
 
 Async::Task<void> ProfileDialog::updateProfile() {
     StandardDialog::accept();
+    co_return;
 }

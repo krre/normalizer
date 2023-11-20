@@ -14,9 +14,11 @@ public:
     Async::Task<QString> createUser(const User& user) override;
     Async::Task<User> getUser() override;
     Async::Task<QString> login(const User& user) override;
+    Async::Task<void> deleteUser() override;
 
 private:
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
+    Async::Task<QVariant> deleteResource(const QString& endpoint);
 
     Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
     Async::Task<QVariant> post(const QString& endpoint, const QJsonObject& data = QJsonObject());

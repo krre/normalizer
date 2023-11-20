@@ -47,8 +47,17 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
     co_return response.toMap()["token"].toString();
 }
 
+Async::Task<void> HttpNetworkManager::deleteUser() {
+    co_await deleteResource("/user");
+}
+
 Async::Task<QVariant> HttpNetworkManager::get(const QString& endpoint, const QUrlQuery& query) {
     GetHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, query);
+    co_return co_await httpRequest.send(endpoint);
+}
+
+Async::Task<QVariant> HttpNetworkManager::deleteResource(const QString& endpoint) {
+    DeleteHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes);
     co_return co_await httpRequest.send(endpoint);
 }
 

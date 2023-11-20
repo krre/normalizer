@@ -14,3 +14,7 @@ Async::Task<QString> TestNetworkManager::login(const User& user) {
     m_user = user;
     co_return Token;
 }
+
+Async::Task<void> TestNetworkManager::deleteUser() {
+    co_return;
+}
