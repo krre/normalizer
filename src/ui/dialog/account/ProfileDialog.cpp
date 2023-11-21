@@ -80,6 +80,17 @@ Async::Task<void> ProfileDialog::getProfile() {
 }
 
 Async::Task<void> ProfileDialog::updateProfile() {
-    StandardDialog::accept();
+    HttpNetworkManager::User user;
+    user.fullName = m_fullNameLineEdit->text();
+
+    try {
+        co_await m_networkManager->updateUser(user);
+        StandardDialog::accept();
+    } catch (NetworkException& e) {
+        errorMessage(e.message());
+    } catch (std::exception& e) {
+        errorMessage(e.what());
+    }
+
     co_return;
 }

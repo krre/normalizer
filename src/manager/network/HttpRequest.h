@@ -47,6 +47,17 @@ private:
     QByteArray m_data;
 };
 
+class PutHttpRequest : public HttpRequest {
+public:
+    PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QByteArray& data = QByteArray());
+
+protected:
+    Async::Task<QNetworkReply*> sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) override;
+
+private:
+    QByteArray m_data;
+};
+
 class DeleteHttpRequest : public HttpRequest {
 public:
     DeleteHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes);

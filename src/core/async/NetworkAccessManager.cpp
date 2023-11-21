@@ -18,6 +18,10 @@ Awaiter<QNetworkReply*> NetworkAccessManager::post(const QNetworkRequest& reques
     return Awaiter<QNetworkReply*>(std::make_unique<NetworkWaker>(m_networkAccessManager.post(request, data)));
 }
 
+Awaiter<QNetworkReply*> NetworkAccessManager::put(const QNetworkRequest& request, const QByteArray& data) {
+    return Awaiter<QNetworkReply*>(std::make_unique<NetworkWaker>(m_networkAccessManager.put(request, data)));
+}
+
 Awaiter<QNetworkReply*> NetworkAccessManager::deleteResource(const QNetworkRequest& request) {
     return Awaiter<QNetworkReply*>(std::make_unique<NetworkWaker>(m_networkAccessManager.deleteResource(request)));
 }

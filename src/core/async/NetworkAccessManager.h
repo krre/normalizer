@@ -17,6 +17,7 @@ public:
 
     Awaiter<QNetworkReply*> get(const QNetworkRequest& request);
     Awaiter<QNetworkReply*> post(const QNetworkRequest& request, const QByteArray& data);
+    Awaiter<QNetworkReply*> put(const QNetworkRequest& request, const QByteArray& data);
     Awaiter<QNetworkReply*> deleteResource(const QNetworkRequest& request);
 
 private:
