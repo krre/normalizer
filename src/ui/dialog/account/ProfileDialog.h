@@ -13,6 +13,8 @@ public slots:
     void accept() override;
 
 private slots:
+    void openChangePasswordDialog();
+
     Async::Task<void> deleteAccount();
     Async::Task<void> getProfile();
     Async::Task<void> updateProfile();
@@ -23,6 +25,4 @@ private:
     QLineEdit* m_loginLineEdit = nullptr;
     QLineEdit* m_fullNameLineEdit = nullptr;
     QLineEdit* m_emailLineEdit = nullptr;
-    QLineEdit* m_passwordLineEdit = nullptr;
-    QLineEdit* m_confirmPasswordLineEdit = nullptr;
 };
