@@ -21,7 +21,7 @@ Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
     data["email"] = user.email;
     data["password"] = user.password;
 
-    QVariant response = co_await post("/users", data);
+    QVariant response = co_await post("users", data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -33,7 +33,7 @@ Async::Task<void> HttpNetworkManager::updateUser(const User& user) {
 }
 
 Async::Task<NetworkManager::User> HttpNetworkManager::getUser() {
-    QVariant response = co_await get("/user");
+    QVariant response = co_await get("user");
     QVariantMap params = response.toMap();
 
     User user;
@@ -49,7 +49,7 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
     data["email"] = user.email;
     data["password"] = user.password;
 
-    QVariant response = co_await post("/users/login", data);
+    QVariant response = co_await post("users/login", data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -62,7 +62,7 @@ Async::Task<void> HttpNetworkManager::changePassword(const UserPassword& userPas
     data["old_password"] = userPassword.oldPassword;
     data["new_password"] = userPassword.newPassword;
 
-    co_await put("/user/password", data);
+    co_await put("user/password", data);
 }
 
 Async::Task<QVariant> HttpNetworkManager::get(const QString& endpoint, const QUrlQuery& query) {

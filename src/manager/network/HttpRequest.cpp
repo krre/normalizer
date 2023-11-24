@@ -13,7 +13,7 @@ Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
     QUrl url;
     url.setScheme(m_requestAttributes->scheme == HttpRequestAttributes::Scheme::Http ? "http" : "https");
     url.setHost(m_requestAttributes->host);
-    url.setPath(endpoint);
+    url.setPath("/" + endpoint);
 
     if (m_requestAttributes->port) {
         url.setPort(m_requestAttributes->port);
