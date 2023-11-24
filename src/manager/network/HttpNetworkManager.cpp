@@ -1,6 +1,5 @@
 #include "HttpNetworkManager.h"
 #include "HttpRequest.h"
-#include "core/async/NetworkAccessManager.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
