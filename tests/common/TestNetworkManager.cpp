@@ -22,3 +22,8 @@ Async::Task<QString> TestNetworkManager::login(const User& user) {
 Async::Task<void> TestNetworkManager::deleteUser() {
     co_return;
 }
+
+Async::Task<void> TestNetworkManager::changePassword(const UserPassword& userPassword) {
+    m_userPassword = userPassword;
+    co_return;
+}

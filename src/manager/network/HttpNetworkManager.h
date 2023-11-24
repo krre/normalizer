@@ -16,6 +16,7 @@ public:
     Async::Task<User> getUser() override;
     Async::Task<QString> login(const User& user) override;
     Async::Task<void> deleteUser() override;
+    Async::Task<void> changePassword(const UserPassword& userPassword) override;
 
 private:
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());

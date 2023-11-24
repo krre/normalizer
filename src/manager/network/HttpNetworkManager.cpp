@@ -58,6 +58,14 @@ Async::Task<void> HttpNetworkManager::deleteUser() {
     co_await deleteResource("/user");
 }
 
+Async::Task<void> HttpNetworkManager::changePassword(const UserPassword& userPassword) {
+    QJsonObject data;
+    data["old_password"] = userPassword.oldPassword;
+    data["new_password"] = userPassword.newPassword;
+
+    co_await put("/user/password", data);
+}
+
 Async::Task<QVariant> HttpNetworkManager::get(const QString& endpoint, const QUrlQuery& query) {
     GetHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, query);
     co_return co_await httpRequest.send(endpoint);

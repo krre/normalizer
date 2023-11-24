@@ -1,5 +1,6 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
+#include "manager/network/HttpNetworkManager.h"
 #include <QtWidgets>
 
 ChangePasswordDialog::ChangePasswordDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
@@ -34,11 +35,28 @@ void ChangePasswordDialog::accept() {
         return;
     }
 
-    StandardDialog::accept();
+    changePassword();
 }
 
 void ChangePasswordDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_oldPasswordLineEdit->text().isEmpty() &&
                                                           !m_newPasswordLineEdit->text().isEmpty() &&
                                                           !m_confirmPasswordLineEdit->text().isEmpty());
+}
+
+Async::Task<void> ChangePasswordDialog::changePassword() {
+    HttpNetworkManager::UserPassword userPassword;
+    userPassword.oldPassword = m_oldPasswordLineEdit->text();
+    userPassword.newPassword = m_newPasswordLineEdit->text();
+
+    try {
+        co_await m_networkManager->changePassword(userPassword);
+        StandardDialog::accept();
+    } catch (NetworkException& e) {
+        errorMessage(e.message());
+    } catch (std::exception& e) {
+        errorMessage(e.what());
+    }
+
+    co_return;
 }

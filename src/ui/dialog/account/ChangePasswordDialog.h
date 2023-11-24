@@ -1,5 +1,6 @@
 #pragma once
 #include "ui/dialog/StandardDialog.h"
+#include "core/async/Task.h"
 
 class NetworkManager;
 class QLineEdit;
@@ -15,6 +16,8 @@ private slots:
     void enableOkButton();
 
 private:
+    Async::Task<void> changePassword();
+
     NetworkManager* m_networkManager = nullptr;
 
     QLineEdit* m_oldPasswordLineEdit = nullptr;

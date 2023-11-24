@@ -23,9 +23,15 @@ public:
         QString password;
     };
 
+    struct UserPassword {
+        QString oldPassword;
+        QString newPassword;
+    };
+
     virtual Async::Task<QString> createUser(const User& user) = 0;
     virtual Async::Task<void> updateUser(const User& user) = 0;
     virtual Async::Task<User> getUser() = 0;
     virtual Async::Task<QString> login(const User& user) = 0;
     virtual Async::Task<void> deleteUser() = 0;
+    virtual Async::Task<void> changePassword(const UserPassword& userPassword) = 0;
 };
