@@ -57,7 +57,10 @@ void ActionBuilder::openLoginDialog() {
 
 void ActionBuilder::openProfileDialog() {
     ProfileDialog profileDialog(m_httpNetworkManager);
-    profileDialog.exec();
+
+    if (profileDialog.exec() == QDialog::Accepted && profileDialog.result() == ProfileDialog::Result::Deleted) {
+        logout();
+    }
 }
 
 void ActionBuilder::openRegisterAccountDialog() {

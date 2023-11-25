@@ -7,7 +7,13 @@ class QLineEdit;
 
 class ProfileDialog : public StandardDialog {
 public:
+    enum class Result {
+        None,
+        Deleted
+    };
+
     ProfileDialog(NetworkManager* networkManager);
+    Result result() const { return m_result; }
 
 public slots:
     void accept() override;
@@ -25,4 +31,6 @@ private:
     QLineEdit* m_loginLineEdit = nullptr;
     QLineEdit* m_fullNameLineEdit = nullptr;
     QLineEdit* m_emailLineEdit = nullptr;
+
+    Result m_result = Result::None;
 };

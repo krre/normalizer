@@ -62,7 +62,8 @@ Async::Task<void> ProfileDialog::deleteAccount() {
 
     try {
         co_await m_networkManager->deleteUser();
-        close();
+        m_result = Result::Deleted;
+        StandardDialog::accept();
     } catch (NetworkException& e) {
         errorMessage(e.message());
     } catch (std::exception& e) {
