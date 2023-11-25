@@ -6,12 +6,12 @@ Async::Task<QString> TestNetworkManager::createUser(const User& user) {
 }
 
 Async::Task<void> TestNetworkManager::updateUser(const User& user) {
+    m_user = user;
     co_return;
 }
 
 Async::Task<NetworkManager::User> TestNetworkManager::getUser() {
-    User user;
-    co_return user;
+    co_return m_user;
 }
 
 Async::Task<QString> TestNetworkManager::login(const User& user) {
