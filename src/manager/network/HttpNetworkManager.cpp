@@ -1,5 +1,6 @@
 #include "HttpNetworkManager.h"
 #include "HttpRequest.h"
+#include "core/Utils.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
@@ -19,7 +20,7 @@ Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
     data["login"] = user.login;
     data["full_name"] = user.fullName;
     data["email"] = user.email;
-    data["password"] = user.password;
+    data["password"] = Utils::sha256(user.password);
 
     QVariant response = co_await post("users", data);
     co_return response.toMap()["token"].toString();
@@ -47,7 +48,7 @@ Async::Task<NetworkManager::User> HttpNetworkManager::getUser() {
 Async::Task<QString> HttpNetworkManager::login(const User& user) {
     QJsonObject data;
     data["email"] = user.email;
-    data["password"] = user.password;
+    data["password"] = Utils::sha256(user.password);
 
     QVariant response = co_await post("users/login", data);
     co_return response.toMap()["token"].toString();
@@ -59,8 +60,8 @@ Async::Task<void> HttpNetworkManager::deleteUser() {
 
 Async::Task<void> HttpNetworkManager::changePassword(const UserPassword& userPassword) {
     QJsonObject data;
-    data["old_password"] = userPassword.oldPassword;
-    data["new_password"] = userPassword.newPassword;
+    data["old_password"] = Utils::sha256(userPassword.oldPassword);
+    data["new_password"] = Utils::sha256(userPassword.newPassword);
 
     co_await put("user/password", data);
 }
