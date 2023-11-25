@@ -30,7 +30,7 @@ Async::Task<void> HttpNetworkManager::updateUser(const User& user) {
     QJsonObject data;
     data["full_name"] = user.fullName;
 
-    co_await put("/user", data);
+    co_await put("user", data);
 }
 
 Async::Task<NetworkManager::User> HttpNetworkManager::getUser() {
@@ -55,7 +55,7 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
 }
 
 Async::Task<void> HttpNetworkManager::deleteUser() {
-    co_await deleteResource("/user");
+    co_await deleteResource("user");
 }
 
 Async::Task<void> HttpNetworkManager::changePassword(const UserPassword& userPassword) {
