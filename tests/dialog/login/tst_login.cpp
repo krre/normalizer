@@ -24,8 +24,6 @@ void TestLogin::validData() {
     QLineEdit* passwordLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
     passwordLineEdit->setText(Password);
 
-    QTest::keyClick(&loginDialog, Qt::Key_Tab);
-
     loginDialog.accept();
 
     QCOMPARE(networkManager.m_user.email, Email);
