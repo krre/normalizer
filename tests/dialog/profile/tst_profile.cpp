@@ -32,9 +32,11 @@ void TestProfile::getData() {
 
     QLineEdit* loginLineEdit = static_cast<QLineEdit*>(profileDialog.focusWidget());
 
-    // QCOMPARE(networkManager.m_user.fullName, fullNameLineEdit->text());
-    // QCOMPARE(networkManager.m_user.email, emailLineEdit->text());
-    // QCOMPARE(networkManager.m_user.login, loginLineEdit->text());
+    profileDialog.accept();
+
+    QCOMPARE(networkManager.m_user.fullName, fullNameLineEdit->text());
+    QCOMPARE(networkManager.m_user.email, emailLineEdit->text());
+    QCOMPARE(networkManager.m_user.login, loginLineEdit->text());
 }
 
 void TestProfile::updateData() {
