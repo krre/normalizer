@@ -1,6 +1,7 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
 #include "manager/network/HttpNetworkManager.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 
 ChangePasswordDialog::ChangePasswordDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
@@ -53,7 +54,8 @@ Async::Task<void> ChangePasswordDialog::changePassword() {
         co_await m_networkManager->changePassword(userPassword);
         StandardDialog::accept();
     } catch (NetworkException& e) {
-        errorMessage(e.message());
+        QString message = e.status() == Const::HttpStatus::BadRequest ? tr("Old password and new one do not match") : e.message();
+        errorMessage(message);
     } catch (std::exception& e) {
         errorMessage(e.what());
     }
