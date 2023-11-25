@@ -39,6 +39,7 @@ add_library(common STATIC
     manager/network/HttpRequestAttributes.h
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
+    core/Utils.h core/Utils.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
