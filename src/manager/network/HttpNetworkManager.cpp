@@ -22,7 +22,7 @@ Async::Task<QString> HttpNetworkManager::createUser(const User& user) {
     data["email"] = user.email;
     data["password"] = Utils::sha256(user.password);
 
-    QVariant response = co_await post("users", data);
+    QVariant response = co_await post("user", data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -50,7 +50,7 @@ Async::Task<QString> HttpNetworkManager::login(const User& user) {
     data["email"] = user.email;
     data["password"] = Utils::sha256(user.password);
 
-    QVariant response = co_await post("users/login", data);
+    QVariant response = co_await post("user/login", data);
     co_return response.toMap()["token"].toString();
 }
 
