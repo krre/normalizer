@@ -1,6 +1,5 @@
 #pragma once
 #include "core/async/Task.h"
-#include "core/async/Awaiter.h"
 #include <QUrlQuery>
 
 class QNetworkReply;
