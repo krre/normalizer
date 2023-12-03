@@ -47,5 +47,6 @@ public:
     Async::Task<QVariant> put(const QString& endpoint, const QByteArray& data = QByteArray());
     Async::Task<QVariant> put(const QString& endpoint, const QJsonObject& data = QJsonObject());
 
+private:
     Async::NetworkAccessManager m_networkAccessManager;
 };
