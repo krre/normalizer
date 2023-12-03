@@ -1,4 +1,4 @@
-#include "ui/dialog/account/ProfileDialog.h"
+#include "ui/dialog/account/AccountDialog.h"
 #include "tests/common/TestNetworkManager.h"
 #include <QTest>
 #include <QLineEdit>
@@ -20,19 +20,19 @@ void TestProfile::getData() {
     networkManager.m_user.email = Email;
     networkManager.m_user.fullName = FullName;
 
-    ProfileDialog profileDialog(&networkManager);
+    AccountDialog AccountDialog(&networkManager);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(profileDialog.focusWidget());
+    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
 
-    QTest::keyClick(&profileDialog, Qt::Key_Backtab);
+    QTest::keyClick(&AccountDialog, Qt::Key_Backtab);
 
-    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(profileDialog.focusWidget());
+    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
 
-    QTest::keyClick(&profileDialog, Qt::Key_Backtab);
+    QTest::keyClick(&AccountDialog, Qt::Key_Backtab);
 
-    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(profileDialog.focusWidget());
+    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
 
-    profileDialog.accept();
+    AccountDialog.accept();
 
     QCOMPARE(networkManager.m_user.fullName, fullNameLineEdit->text());
     QCOMPARE(networkManager.m_user.email, emailLineEdit->text());
@@ -41,14 +41,14 @@ void TestProfile::getData() {
 
 void TestProfile::updateData() {
     TestNetworkManager networkManager;
-    ProfileDialog profileDialog(&networkManager);
+    AccountDialog AccountDialog(&networkManager);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(profileDialog.focusWidget());
+    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
 
-    QTest::keyClick(&profileDialog, Qt::Key_Tab);
+    QTest::keyClick(&AccountDialog, Qt::Key_Tab);
 
-    profileDialog.accept();
+    AccountDialog.accept();
 
     QCOMPARE(networkManager.m_user.fullName, FullName);
 }

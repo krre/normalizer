@@ -5,14 +5,14 @@
 class NetworkManager;
 class QLineEdit;
 
-class ProfileDialog : public StandardDialog {
+class AccountDialog : public StandardDialog {
 public:
     enum class Result {
         None,
         Deleted
     };
 
-    ProfileDialog(NetworkManager* networkManager);
+    AccountDialog(NetworkManager* networkManager);
     Result result() const { return m_result; }
 
 public slots:
@@ -22,8 +22,8 @@ private slots:
     void openChangePasswordDialog();
 
     Async::Task<void> deleteAccount();
-    Async::Task<void> getProfile();
-    Async::Task<void> updateProfile();
+    Async::Task<void> getAccount();
+    Async::Task<void> updateAccount();
 
 private:
     NetworkManager* m_networkManager = nullptr;

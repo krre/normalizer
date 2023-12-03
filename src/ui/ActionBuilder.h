@@ -25,7 +25,7 @@ private slots:
     void openPreferencesDialog();
 
     void openLoginDialog();
-    void openProfileDialog();
+    void openAccountDialog();
     void openRegisterAccountDialog();
     void logout();
 
@@ -41,6 +41,6 @@ private:
 
     QAction* registerAction = nullptr;
     QAction* loginAction = nullptr;
-    QAction* profileAction = nullptr;
+    QAction* accountAction = nullptr;
     QAction* logoutAction = nullptr;
 };

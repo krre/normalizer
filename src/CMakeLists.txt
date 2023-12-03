@@ -34,7 +34,7 @@ add_library(common STATIC
     network/http/NetworkManager.h
     network/http/HttpNetworkManager.h network/http/HttpNetworkManager.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
-    ui/dialog/account/ProfileDialog.h ui/dialog/account/ProfileDialog.cpp
+    ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
     network/http/HttpRequest.h network/http/HttpRequest.cpp
     network/http/HttpRequestAttributes.h
     ui/dialog/DialogMessages.h

@@ -1,10 +1,10 @@
-#include "ProfileDialog.h"
+#include "AccountDialog.h"
 #include "ChangePasswordDialog.h"
 #include "network/http/HttpNetworkManager.h"
 #include <QtWidgets>
 
-ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
-    setWindowTitle(tr("Profile"));
+AccountDialog::AccountDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+    setWindowTitle(tr("Account"));
 
     m_loginLineEdit = new QLineEdit;
     m_loginLineEdit->setReadOnly(true);
@@ -20,10 +20,10 @@ ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(
     formLayout->addRow(tr("Full name:"), m_fullNameLineEdit);
 
     auto changePasswordButton = new QPushButton(tr("Change Password..."));
-    connect(changePasswordButton, &QPushButton::clicked, this, &ProfileDialog::openChangePasswordDialog);
+    connect(changePasswordButton, &QPushButton::clicked, this, &AccountDialog::openChangePasswordDialog);
 
     auto deleteButton = new QPushButton(tr("Delete Account..."));
-    connect(deleteButton, &QPushButton::clicked, this, &ProfileDialog::deleteAccount);
+    connect(deleteButton, &QPushButton::clicked, this, &AccountDialog::deleteAccount);
 
     auto buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(changePasswordButton);
@@ -37,14 +37,14 @@ ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(
     setContentLayout(dialogLayout);
     resizeToWidth(500);
     m_fullNameLineEdit->setFocus();
-    getProfile();
+    getAccount();
 }
 
-void ProfileDialog::accept() {
-    updateProfile();
+void AccountDialog::accept() {
+    updateAccount();
 }
 
-void ProfileDialog::openChangePasswordDialog() {
+void AccountDialog::openChangePasswordDialog() {
     ChangePasswordDialog changePasswordDialog(m_networkManager);
 
     if (changePasswordDialog.exec() == QDialog::Accepted) {
@@ -52,7 +52,7 @@ void ProfileDialog::openChangePasswordDialog() {
     }
 }
 
-Async::Task<void> ProfileDialog::deleteAccount() {
+Async::Task<void> AccountDialog::deleteAccount() {
     if (QMessageBox::warning(this,
                              tr("Confirm Deleting Account"),
                              tr("Account will be deleted along with all your projects without the possibility of recovery!"),
@@ -71,7 +71,7 @@ Async::Task<void> ProfileDialog::deleteAccount() {
     }
 }
 
-Async::Task<void> ProfileDialog::getProfile() {
+Async::Task<void> AccountDialog::getAccount() {
     try {
         HttpNetworkManager::User user = co_await m_networkManager->getUser();
         m_loginLineEdit->setText(user.login);
@@ -84,7 +84,7 @@ Async::Task<void> ProfileDialog::getProfile() {
     }
 }
 
-Async::Task<void> ProfileDialog::updateProfile() {
+Async::Task<void> AccountDialog::updateAccount() {
     HttpNetworkManager::User user;
     user.fullName = m_fullNameLineEdit->text();
 
