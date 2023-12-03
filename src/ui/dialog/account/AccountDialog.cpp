@@ -22,7 +22,7 @@ AccountDialog::AccountDialog(NetworkManager* networkManager) : m_networkManager(
     auto changePasswordButton = new QPushButton(tr("Change Password..."));
     connect(changePasswordButton, &QPushButton::clicked, this, &AccountDialog::openChangePasswordDialog);
 
-    auto deleteButton = new QPushButton(tr("Delete Account..."));
+    auto deleteButton = new QPushButton(tr("Delete..."));
     connect(deleteButton, &QPushButton::clicked, this, &AccountDialog::deleteAccount);
 
     auto buttonLayout = new QHBoxLayout;
