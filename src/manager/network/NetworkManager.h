@@ -1,6 +1,9 @@
 #pragma once
 #include "core/async/Task.h"
+#include "core/async/NetworkAccessManager.h"
 #include <QString>
+#include <QJsonObject>
+#include <QUrlQuery>
 
 class NetworkException : public std::exception {
 public:
@@ -34,4 +37,15 @@ public:
     virtual Async::Task<QString> login(const User& user) = 0;
     virtual Async::Task<void> deleteUser() = 0;
     virtual Async::Task<void> changePassword(const UserPassword& userPassword) = 0;
+
+    Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
+    Async::Task<QVariant> deleteResource(const QString& endpoint);
+
+    Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
+    Async::Task<QVariant> post(const QString& endpoint, const QJsonObject& data = QJsonObject());
+
+    Async::Task<QVariant> put(const QString& endpoint, const QByteArray& data = QByteArray());
+    Async::Task<QVariant> put(const QString& endpoint, const QJsonObject& data = QJsonObject());
+
+    Async::NetworkAccessManager m_networkAccessManager;
 };

@@ -18,7 +18,6 @@ public:
     Async::Task<void> deleteUser() override;
     Async::Task<void> changePassword(const UserPassword& userPassword) override;
 
-private:
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
     Async::Task<QVariant> deleteResource(const QString& endpoint);
 
