@@ -2,6 +2,6 @@
 
 namespace Controller::Action {
 
-AbstractAction::AbstractAction(NetworkController* controller) {}
+AbstractAction::AbstractAction(AbstractController* controller) {}
 
 }

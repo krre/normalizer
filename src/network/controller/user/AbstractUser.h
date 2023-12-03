@@ -1,10 +1,10 @@
 #pragma once
-#include "network/controller/NetworkController.h"
+#include "network/controller/AbstractController.h"
 #include "network/controller/Action.h"
 
 namespace Controller {
 
-class AbstractUser : public NetworkController {
+class AbstractUser : public AbstractController {
 public:
     AbstractUser(NetworkManager* networkManager);
 

@@ -21,9 +21,9 @@ namespace Controller {
     // T data;
 // };
 
-class NetworkController {
+class AbstractController {
 public:
-    NetworkController(NetworkManager* networkManager);
+    AbstractController(NetworkManager* networkManager);
 
     virtual QString name() const = 0;
     NetworkManager* networkManager() const;

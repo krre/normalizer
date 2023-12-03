@@ -1,32 +1,32 @@
 #pragma once
 #include "core/CommonTypes.h"
 #include "core/async/Task.h"
-#include "NetworkController.h"
+#include "AbstractController.h"
 #include "network/NetworkManager.h"
 #include <QJsonObject>
 #include <QUrlQuery>
 
 namespace Controller {
 
-class NetworkController;
+class AbstractController;
 
 namespace Action {
 
 class AbstractAction {
 public:
-    AbstractAction(NetworkController* controller);
+    AbstractAction(AbstractController* controller);
 
 protected:
-    NetworkController* controller() const { return m_controller; }
+    AbstractController* controller() const { return m_controller; }
 
 private:
-    NetworkController* m_controller = nullptr;
+    AbstractController* m_controller = nullptr;
 };
 
 template <typename Request, typename Response>
 class Create : public AbstractAction {
 public:
-    Create(NetworkController* controller) : AbstractAction(controller) {}
+    Create(AbstractController* controller) : AbstractAction(controller) {}
 
     virtual Async::Task<Response> create(const Request& request) {
         QJsonObject data = request.serialize();
@@ -38,7 +38,7 @@ public:
 template <typename Request>
 class Update : public AbstractAction {
 public:
-    Update(NetworkController* controller) : AbstractAction(controller) {}
+    Update(AbstractController* controller) : AbstractAction(controller) {}
 
     virtual Async::Task<void> update(const Request& request) {
         QJsonObject data = request.serialize();
@@ -49,7 +49,7 @@ public:
 template <typename Response>
 class GetById : public AbstractAction {
 public:
-    GetById(NetworkController* controller) : AbstractAction(controller) {}
+    GetById(AbstractController* controller) : AbstractAction(controller) {}
 
     virtual Async::Task<Response> getById(Id id) {
         QUrlQuery query;

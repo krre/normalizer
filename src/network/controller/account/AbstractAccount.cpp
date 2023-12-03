@@ -2,6 +2,6 @@
 
 namespace Controller {
 
-AbstractAccount::AbstractAccount(NetworkManager* networkManager) : NetworkController(networkManager) {}
+AbstractAccount::AbstractAccount(NetworkManager* networkManager) : AbstractController(networkManager) {}
 
 }
