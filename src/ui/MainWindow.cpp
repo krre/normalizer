@@ -2,7 +2,7 @@
 #include "ActionBuilder.h"
 #include "RenderView.h"
 #include "core/Constants.h"
-#include "network/HttpNetworkManager.h"
+#include "network/http/HttpNetworkManager.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>

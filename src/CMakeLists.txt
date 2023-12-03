@@ -31,12 +31,12 @@ add_library(common STATIC
     core/async/Awaiter.h
     manager/settings/SettingsStorage.h
     manager/settings/FileSettingsStorage.h manager/settings/FileSettingsStorage.cpp
-    network/NetworkManager.h
-    network/HttpNetworkManager.h network/HttpNetworkManager.cpp
+    network/http/NetworkManager.h
+    network/http/HttpNetworkManager.h network/http/HttpNetworkManager.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/ProfileDialog.h ui/dialog/account/ProfileDialog.cpp
-    network/HttpRequest.h network/HttpRequest.cpp
-    network/HttpRequestAttributes.h
+    network/http/HttpRequest.h network/http/HttpRequest.cpp
+    network/http/HttpRequestAttributes.h
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp

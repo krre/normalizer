@@ -1,6 +1,6 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
-#include "network/HttpNetworkManager.h"
+#include "network/http/HttpNetworkManager.h"
 #include "core/Constants.h"
 #include <QtWidgets>
 

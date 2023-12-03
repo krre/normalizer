@@ -1,4 +1,4 @@
-#include "network/NetworkManager.h"
+#include "network/http/NetworkManager.h"
 
 constexpr auto Token = "1234567890";
 
