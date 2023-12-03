@@ -44,6 +44,8 @@ add_library(common STATIC
     controller/user/AbstractUser.h controller/user/AbstractUser.cpp
     controller/user/User.h controller/user/User.cpp
     controller/Action.h controller/Action.cpp
+    controller/account/Account.cpp controller/account/Account.h
+    controller/account/AbstractAccount.cpp controller/account/AbstractAccount.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
