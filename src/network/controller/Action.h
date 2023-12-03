@@ -2,7 +2,7 @@
 #include "core/CommonTypes.h"
 #include "core/async/Task.h"
 #include "NetworkController.h"
-#include "manager/network/NetworkManager.h"
+#include "network/NetworkManager.h"
 #include <QJsonObject>
 #include <QUrlQuery>
 

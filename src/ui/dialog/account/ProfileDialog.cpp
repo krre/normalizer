@@ -1,6 +1,6 @@
 #include "ProfileDialog.h"
 #include "ChangePasswordDialog.h"
-#include "manager/network/HttpNetworkManager.h"
+#include "network/HttpNetworkManager.h"
 #include <QtWidgets>
 
 ProfileDialog::ProfileDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {

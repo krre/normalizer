@@ -7,7 +7,7 @@
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/ProfileDialog.h"
 #include "manager/settings/FileSettingsStorage.h"
-#include "manager/network/HttpNetworkManager.h"
+#include "network/HttpNetworkManager.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
