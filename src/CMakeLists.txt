@@ -40,12 +40,12 @@ add_library(common STATIC
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp
-    controller/NetworkController.h controller/NetworkController.cpp
-    controller/user/AbstractUser.h controller/user/AbstractUser.cpp
-    controller/user/User.h controller/user/User.cpp
-    controller/Action.h controller/Action.cpp
-    controller/account/Account.cpp controller/account/Account.h
-    controller/account/AbstractAccount.cpp controller/account/AbstractAccount.h
+    network/controller/NetworkController.h network/controller/NetworkController.cpp
+    network/controller/user/AbstractUser.h network/controller/user/AbstractUser.cpp
+    network/controller/user/User.h network/controller/user/User.cpp
+    network/controller/Action.h network/controller/Action.cpp
+    network/controller/account/Account.cpp network/controller/account/Account.h
+    network/controller/account/AbstractAccount.cpp network/controller/account/AbstractAccount.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

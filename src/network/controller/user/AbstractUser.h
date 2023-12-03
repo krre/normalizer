@@ -1,6 +1,6 @@
 #pragma once
-#include "controller/NetworkController.h"
-#include "controller/Action.h"
+#include "network/controller/NetworkController.h"
+#include "network/controller/Action.h"
 
 namespace Controller {
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "controller/NetworkController.h"
+#include "network/controller/NetworkController.h"
 
 namespace Controller {
 
