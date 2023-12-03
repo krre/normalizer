@@ -7,14 +7,14 @@ constexpr auto Login = "admin";
 constexpr auto Email = "admin@example.com";
 constexpr auto FullName = "Admin";
 
-class TestProfile : public QObject {
+class TestAccount : public QObject {
     Q_OBJECT
 private slots:
     void getData();
     void updateData();
 };
 
-void TestProfile::getData() {
+void TestAccount::getData() {
     TestNetworkManager networkManager;
     networkManager.m_user.login = Login;
     networkManager.m_user.email = Email;
@@ -39,20 +39,20 @@ void TestProfile::getData() {
     QCOMPARE(networkManager.m_user.login, loginLineEdit->text());
 }
 
-void TestProfile::updateData() {
+void TestAccount::updateData() {
     TestNetworkManager networkManager;
-    AccountDialog AccountDialog(&networkManager);
+    AccountDialog accountDialog(&networkManager);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
+    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
 
-    QTest::keyClick(&AccountDialog, Qt::Key_Tab);
+    QTest::keyClick(&accountDialog, Qt::Key_Tab);
 
-    AccountDialog.accept();
+    accountDialog.accept();
 
     QCOMPARE(networkManager.m_user.fullName, FullName);
 }
 
-QTEST_MAIN(TestProfile)
+QTEST_MAIN(TestAccount)
 
-#include "tst_profile.moc"
+#include "tst_account.moc"
