@@ -4,7 +4,7 @@
 
 namespace Controller {
 
-class AbstractAccount {
+class Account {
 public:
     struct CreateAccount {
         QString login;

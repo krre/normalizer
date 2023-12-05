@@ -3,14 +3,14 @@
 #include "core/async/Task.h"
 
 namespace Controller {
-    class AbstractAccount;
+    class Account;
 }
 
 class QLineEdit;
 
 class RegisterAccountDialog : public StandardDialog {
 public:
-    RegisterAccountDialog(Controller::AbstractAccount* account);
+    RegisterAccountDialog(Controller::Account* account);
     QString token() const;
 
 public slots:
@@ -28,6 +28,6 @@ private slots:
     Async::Task<void> getToken();
 
 private:
-    Controller::AbstractAccount* m_account = nullptr;
+    Controller::Account* m_account = nullptr;
     QString m_token;
 };

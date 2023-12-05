@@ -26,7 +26,7 @@ Async::Task<void> Controller::UserAccount::update(const UpdateAccount& account) 
     co_await m_httpNetwork->put(NAME, data);
 }
 
-Async::Task<Controller::AbstractAccount::GetAccount> Controller::UserAccount::get() {
+Async::Task<Controller::Account::GetAccount> Controller::UserAccount::get() {
     QVariant response = co_await m_httpNetwork->get(NAME);
     QVariantMap params = response.toMap();
 

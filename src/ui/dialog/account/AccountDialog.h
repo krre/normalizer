@@ -3,7 +3,7 @@
 #include "core/async/Task.h"
 
 namespace Controller {
-    class AbstractAccount;
+    class Account;
 }
 
 class QLineEdit;
@@ -15,7 +15,7 @@ public:
         Deleted
     };
 
-    AccountDialog(Controller::AbstractAccount* account);
+    AccountDialog(Controller::Account* account);
     Result result() const { return m_result; }
 
 public slots:
@@ -29,7 +29,7 @@ private slots:
     Async::Task<void> updateAccount();
 
 private:
-    Controller::AbstractAccount* m_account = nullptr;
+    Controller::Account* m_account = nullptr;
 
     QLineEdit* m_loginLineEdit = nullptr;
     QLineEdit* m_fullNameLineEdit = nullptr;

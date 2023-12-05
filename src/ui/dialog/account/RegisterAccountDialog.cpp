@@ -1,11 +1,11 @@
 #include "RegisterAccountDialog.h"
 #include "ui/dialog/DialogMessages.h"
 #include "core/Constants.h"
-#include "network/controller/account/AbstractAccount.h"
+#include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-RegisterAccountDialog::RegisterAccountDialog(Controller::AbstractAccount* account) : m_account(account) {
+RegisterAccountDialog::RegisterAccountDialog(Controller::Account* account) : m_account(account) {
     setWindowTitle(tr("Register Account"));
 
     m_loginLineEdit = new QLineEdit;
@@ -60,7 +60,7 @@ void RegisterAccountDialog::enableOkButton() {
 }
 
 Async::Task<void> RegisterAccountDialog::getToken() {
-    Controller::AbstractAccount::CreateAccount account;
+    Controller::Account::CreateAccount account;
     account.login = m_loginLineEdit->text();
     account.fullName = m_fullNameLineEdit->text();
     account.email = m_emailLineEdit->text();

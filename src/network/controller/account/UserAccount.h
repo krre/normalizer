@@ -1,11 +1,11 @@
 #pragma once
-#include "AbstractAccount.h"
+#include "Account.h"
 
 class HttpNetwork;
 
 namespace Controller {
 
-class UserAccount : public AbstractAccount {
+class UserAccount : public Account {
 public:
     UserAccount(HttpNetwork* httpNetwork);
 

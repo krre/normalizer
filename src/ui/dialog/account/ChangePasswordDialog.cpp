@@ -1,11 +1,11 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
-#include "network/controller/account/AbstractAccount.h"
+#include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
 #include "core/Constants.h"
 #include <QtWidgets>
 
-ChangePasswordDialog::ChangePasswordDialog(Controller::AbstractAccount* account) : m_account(account) {
+ChangePasswordDialog::ChangePasswordDialog(Controller::Account* account) : m_account(account) {
     setWindowTitle(tr("Change Password"));
 
     m_oldPasswordLineEdit = new QLineEdit;
@@ -47,7 +47,7 @@ void ChangePasswordDialog::enableOkButton() {
 }
 
 Async::Task<void> ChangePasswordDialog::changePassword() {
-    Controller::AbstractAccount::Password password;
+    Controller::Account::Password password;
     password.oldPassword = m_oldPasswordLineEdit->text();
     password.newPassword = m_newPasswordLineEdit->text();
 

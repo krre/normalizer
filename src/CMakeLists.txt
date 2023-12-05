@@ -43,7 +43,7 @@ add_library(common STATIC
     network/controller/AbstractController.h network/controller/AbstractController.cpp
     network/controller/Action.h network/controller/Action.cpp
     network/controller/account/UserAccount.cpp network/controller/account/UserAccount.h
-    network/controller/account/AbstractAccount.h
+    network/controller/account/Account.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

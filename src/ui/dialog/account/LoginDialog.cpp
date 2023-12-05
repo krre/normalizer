@@ -1,10 +1,10 @@
 #include "LoginDialog.h"
 #include "core/Constants.h"
-#include "network/controller/account/AbstractAccount.h"
+#include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-LoginDialog::LoginDialog(Controller::AbstractAccount* account) : m_account(account) {
+LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
     setWindowTitle(tr("Login"));
 
     m_emailLineEdit = new QLineEdit;
@@ -38,7 +38,7 @@ void LoginDialog::enableOkButton() {
 }
 
 Async::Task<void> LoginDialog::getToken() {
-    Controller::AbstractAccount::LoginAccount account;
+    Controller::Account::LoginAccount account;
     account.email = m_emailLineEdit->text();
     account.password = m_passwordLineEdit->text();
 

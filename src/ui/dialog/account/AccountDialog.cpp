@@ -1,10 +1,10 @@
 #include "AccountDialog.h"
 #include "ChangePasswordDialog.h"
-#include "network/controller/account/AbstractAccount.h"
+#include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-AccountDialog::AccountDialog(Controller::AbstractAccount* account) : m_account(account) {
+AccountDialog::AccountDialog(Controller::Account* account) : m_account(account) {
     setWindowTitle(tr("Account"));
 
     m_loginLineEdit = new QLineEdit;
@@ -74,7 +74,7 @@ Async::Task<void> AccountDialog::deleteAccount() {
 
 Async::Task<void> AccountDialog::getAccount() {
     try {
-        Controller::AbstractAccount::GetAccount account = co_await m_account->get();
+        Controller::Account::GetAccount account = co_await m_account->get();
         m_loginLineEdit->setText(account.login);
         m_emailLineEdit->setText(account.email);
         m_fullNameLineEdit->setText(account.fullName);
@@ -86,7 +86,7 @@ Async::Task<void> AccountDialog::getAccount() {
 }
 
 Async::Task<void> AccountDialog::updateAccount() {
-    Controller::AbstractAccount::UpdateAccount account;
+    Controller::Account::UpdateAccount account;
     account.fullName = m_fullNameLineEdit->text();
 
     try {
