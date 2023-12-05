@@ -1,5 +1,5 @@
 #include "ui/dialog/account/AccountDialog.h"
-#include "tests/common/TestNetworkManager.h"
+#include "tests/common/TestAccount.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -7,41 +7,41 @@ constexpr auto Login = "admin";
 constexpr auto Email = "admin@example.com";
 constexpr auto FullName = "Admin";
 
-class TestAccount : public QObject {
+class TestAccountDialog : public QObject {
     Q_OBJECT
 private slots:
     void getData();
     void updateData();
 };
 
-void TestAccount::getData() {
-    TestNetworkManager networkManager;
-    networkManager.m_user.login = Login;
-    networkManager.m_user.email = Email;
-    networkManager.m_user.fullName = FullName;
+void TestAccountDialog::getData() {
+    TestAccount account;
+    account.m_getAccount.login = Login;
+    account.m_getAccount.email = Email;
+    account.m_getAccount.fullName = FullName;
 
-    AccountDialog AccountDialog(&networkManager);
+    AccountDialog accountDialog(&account);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
+    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
-    QTest::keyClick(&AccountDialog, Qt::Key_Backtab);
+    QTest::keyClick(&accountDialog, Qt::Key_Backtab);
 
-    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
+    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
-    QTest::keyClick(&AccountDialog, Qt::Key_Backtab);
+    QTest::keyClick(&accountDialog, Qt::Key_Backtab);
 
-    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(AccountDialog.focusWidget());
+    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
-    AccountDialog.accept();
+    accountDialog.accept();
 
-    QCOMPARE(networkManager.m_user.fullName, fullNameLineEdit->text());
-    QCOMPARE(networkManager.m_user.email, emailLineEdit->text());
-    QCOMPARE(networkManager.m_user.login, loginLineEdit->text());
+    QCOMPARE(account.m_getAccount.fullName, fullNameLineEdit->text());
+    QCOMPARE(account.m_getAccount.email, emailLineEdit->text());
+    QCOMPARE(account.m_getAccount.login, loginLineEdit->text());
 }
 
-void TestAccount::updateData() {
-    TestNetworkManager networkManager;
-    AccountDialog accountDialog(&networkManager);
+void TestAccountDialog::updateData() {
+    TestAccount account;
+    AccountDialog accountDialog(&account);
 
     QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
@@ -50,9 +50,9 @@ void TestAccount::updateData() {
 
     accountDialog.accept();
 
-    QCOMPARE(networkManager.m_user.fullName, FullName);
+    QCOMPARE(account.m_updateAccount.fullName, FullName);
 }
 
-QTEST_MAIN(TestAccount)
+QTEST_MAIN(TestAccountDialog)
 
 #include "tst_account.moc"

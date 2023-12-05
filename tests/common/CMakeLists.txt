@@ -1,8 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS Test)
 
 add_library(test_common STATIC
-    TestNetworkManager.h
-    TestNetworkManager.cpp
+    TestAccount.h TestAccount.cpp
 )
 
 target_link_libraries(test_common PRIVATE
@@ -11,4 +10,3 @@ target_link_libraries(test_common PRIVATE
     Qt6::Network
     common
 )
-

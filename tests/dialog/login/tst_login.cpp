@@ -1,5 +1,5 @@
 #include "ui/dialog/account/LoginDialog.h"
-#include "tests/common/TestNetworkManager.h"
+#include "tests/common/TestAccount.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -13,8 +13,8 @@ private slots:
 };
 
 void TestLogin::validData() {
-    TestNetworkManager networkManager;
-    LoginDialog loginDialog(&networkManager);
+    TestAccount account;
+    LoginDialog loginDialog(&account);
 
     QLineEdit* emailLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
     emailLineEdit->setText(Email);
@@ -26,8 +26,8 @@ void TestLogin::validData() {
 
     loginDialog.accept();
 
-    QCOMPARE(networkManager.m_user.email, Email);
-    QCOMPARE(networkManager.m_user.password, Password);
+    QCOMPARE(account.m_loginAccount.email, Email);
+    QCOMPARE(account.m_loginAccount.password, Password);
 }
 
 QTEST_MAIN(TestLogin)

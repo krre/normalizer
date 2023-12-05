@@ -1,5 +1,5 @@
 #include "ui/dialog/account/ChangePasswordDialog.h"
-#include "tests/common/TestNetworkManager.h"
+#include "tests/common/TestAccount.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -13,8 +13,8 @@ private slots:
 };
 
 void TestChangePassword::validData() {
-    TestNetworkManager networkManager;
-    ChangePasswordDialog changePasswordDialog(&networkManager);
+    TestAccount account;
+    ChangePasswordDialog changePasswordDialog(&account);
 
     QLineEdit* oldPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
     oldPasswordLineEdit->setText(OldPassword);
@@ -31,8 +31,8 @@ void TestChangePassword::validData() {
 
     changePasswordDialog.accept();
 
-    QCOMPARE(networkManager.m_userPassword.oldPassword, OldPassword);
-    QCOMPARE(networkManager.m_userPassword.newPassword, NewPassword);
+    QCOMPARE(account.m_password.oldPassword, OldPassword);
+    QCOMPARE(account.m_password.newPassword, NewPassword);
 }
 
 QTEST_MAIN(TestChangePassword)

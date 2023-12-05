@@ -1,5 +1,5 @@
 #include "ui/dialog/account/RegisterAccountDialog.h"
-#include "tests/common/TestNetworkManager.h"
+#include "tests/common/TestAccount.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -15,8 +15,8 @@ private slots:
 };
 
 void TestRegisterAccount::validData() {
-    TestNetworkManager networkManager;
-    RegisterAccountDialog registerAccountDialog(&networkManager);
+    TestAccount account;
+    RegisterAccountDialog registerAccountDialog(&account);
 
     QLineEdit* loginLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     loginLineEdit->setText(Login);
@@ -43,10 +43,10 @@ void TestRegisterAccount::validData() {
 
     registerAccountDialog.accept();
 
-    QCOMPARE(networkManager.m_user.login, Login);
-    QCOMPARE(networkManager.m_user.fullName, FullName);
-    QCOMPARE(networkManager.m_user.email, Email);
-    QCOMPARE(networkManager.m_user.password, Password);
+    QCOMPARE(account.m_createAccount.login, Login);
+    QCOMPARE(account.m_createAccount.fullName, FullName);
+    QCOMPARE(account.m_createAccount.email, Email);
+    QCOMPARE(account.m_createAccount.password, Password);
 }
 
 QTEST_MAIN(TestRegisterAccount)
