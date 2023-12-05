@@ -5,9 +5,9 @@ class HttpNetwork;
 
 namespace Controller {
 
-class Account : public AbstractAccount {
+class UserAccount : public AbstractAccount {
 public:
-    Account(HttpNetwork* httpNetwork);
+    UserAccount(HttpNetwork* httpNetwork);
 
     static constexpr auto NAME = "account";
 

@@ -8,7 +8,7 @@
 #include "dialog/account/AccountDialog.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "network/http/HttpNetwork.h"
-#include "network/controller/account/Account.h"
+#include "network/controller/account/UserAccount.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
@@ -47,7 +47,7 @@ void ActionBuilder::openPreferencesDialog() {
 }
 
 void ActionBuilder::openLoginDialog() {
-    Controller::Account account(m_httpNetwork);
+    Controller::UserAccount account(m_httpNetwork);
     LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
@@ -58,7 +58,7 @@ void ActionBuilder::openLoginDialog() {
 }
 
 void ActionBuilder::openAccountDialog() {
-    Controller::Account account(m_httpNetwork);
+    Controller::UserAccount account(m_httpNetwork);
     AccountDialog AccountDialog(&account);
 
     if (AccountDialog.exec() == QDialog::Accepted && AccountDialog.result() == AccountDialog::Result::Deleted) {
@@ -67,7 +67,7 @@ void ActionBuilder::openAccountDialog() {
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    Controller::Account account(m_httpNetwork);
+    Controller::UserAccount account(m_httpNetwork);
     RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
