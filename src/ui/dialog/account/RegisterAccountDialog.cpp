@@ -1,10 +1,11 @@
 #include "RegisterAccountDialog.h"
 #include "ui/dialog/DialogMessages.h"
-#include "network/http/HttpNetworkManager.h"
 #include "core/Constants.h"
+#include "network/controller/account/AbstractAccount.h"
+#include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-RegisterAccountDialog::RegisterAccountDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+RegisterAccountDialog::RegisterAccountDialog(Controller::AbstractAccount* account) : m_account(account) {
     setWindowTitle(tr("Register Account"));
 
     m_loginLineEdit = new QLineEdit;
@@ -59,16 +60,16 @@ void RegisterAccountDialog::enableOkButton() {
 }
 
 Async::Task<void> RegisterAccountDialog::getToken() {
-    HttpNetworkManager::User user;
-    user.login = m_loginLineEdit->text();
-    user.fullName = m_fullNameLineEdit->text();
-    user.email = m_emailLineEdit->text();
-    user.password = m_passwordLineEdit->text();
+    Controller::AbstractAccount::CreateAccount account;
+    account.login = m_loginLineEdit->text();
+    account.fullName = m_fullNameLineEdit->text();
+    account.email = m_emailLineEdit->text();
+    account.password = m_passwordLineEdit->text();
 
     try {
-        m_token = co_await m_networkManager->createUser(user);
+        m_token = co_await m_account->create(account);
         StandardDialog::accept();
-    } catch (NetworkException& e) {
+    } catch (HttpException& e) {
         QString message = e.status() == Const::HttpStatus::Conflict ? tr("Account already exists") : e.message();
         errorMessage(message);
     } catch (std::exception& e) {

@@ -2,12 +2,15 @@
 #include "ui/dialog/StandardDialog.h"
 #include "core/async/Task.h"
 
-class NetworkManager;
+namespace Controller {
+    class AbstractAccount;
+}
+
 class QLineEdit;
 
 class ChangePasswordDialog : public StandardDialog {
 public:
-    ChangePasswordDialog(NetworkManager* networkManager);
+    ChangePasswordDialog(Controller::AbstractAccount* account);
 
 public slots:
     void accept() override;
@@ -18,7 +21,7 @@ private slots:
 private:
     Async::Task<void> changePassword();
 
-    NetworkManager* m_networkManager = nullptr;
+    Controller::AbstractAccount* m_account = nullptr;
 
     QLineEdit* m_oldPasswordLineEdit = nullptr;
     QLineEdit* m_newPasswordLineEdit = nullptr;

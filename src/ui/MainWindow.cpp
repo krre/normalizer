@@ -2,7 +2,7 @@
 #include "ActionBuilder.h"
 #include "RenderView.h"
 #include "core/Constants.h"
-#include "network/http/HttpNetworkManager.h"
+#include "network/http/HttpNetwork.h"
 #include "manager/settings/FileSettingsStorage.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
 
     m_fileSettingsStorage.reset(new FileSettingsStorage);
-    m_httpNetworkManager.reset(new HttpNetworkManager(m_fileSettingsStorage->serverAddress().host, m_fileSettingsStorage->serverAddress().port));
+    m_httpNetwork.reset(new HttpNetwork(m_fileSettingsStorage->serverAddress().host, m_fileSettingsStorage->serverAddress().port));
 
     m_projectTable = new ProjectTable;
     m_projectTable->setVisible(false);
@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
-    parameters.httpNetworkManager = m_httpNetworkManager.data();
+    parameters.httpNetwork = m_httpNetwork.data();
     parameters.fileSettingsStorage = m_fileSettingsStorage.data();
 
     m_actionBuilder = new ActionBuilder(parameters);

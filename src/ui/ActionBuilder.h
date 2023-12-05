@@ -3,7 +3,7 @@
 
 class MainWindow;
 class Project;
-class HttpNetworkManager;
+class HttpNetwork;
 class FileSettingsStorage;
 class RecentMenu;
 
@@ -15,7 +15,7 @@ public:
     struct Parameters {
         MainWindow* mainWindow;
         Project* project;
-        HttpNetworkManager* httpNetworkManager;
+        HttpNetwork* httpNetwork;
         FileSettingsStorage* fileSettingsStorage;
     };
 
@@ -36,7 +36,7 @@ private:
 
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
-    HttpNetworkManager* m_httpNetworkManager = nullptr;
+    HttpNetwork* m_httpNetwork = nullptr;
     FileSettingsStorage* m_fileSettingsStorage = nullptr;
 
     QAction* registerAction = nullptr;

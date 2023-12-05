@@ -1,22 +1,27 @@
 #pragma once
-#include "NetworkManager.h"
 #include "HttpRequestAttributes.h"
+#include "core/async/Task.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QJsonObject>
 #include <QUrlQuery>
 
-class HttpNetworkManager : public NetworkManager {
+class HttpException : public std::exception {
 public:
-    HttpNetworkManager(const QString& host, quint16 port = 0);
+    HttpException(int status, const QString& message = QString()) : m_status(status), m_message(message) {}
+
+    int status() const { return m_status; }
+    QString message() const { return m_message; }
+
+private:
+    int m_status = 0;
+    QString m_message;
+};
+
+class HttpNetwork {
+public:
+    HttpNetwork(const QString& host, quint16 port = 0);
 
     void setToken(const QString& token);
-
-    Async::Task<QString> createUser(const User& user) override;
-    Async::Task<void> updateUser(const User& user) override;
-    Async::Task<User> getUser() override;
-    Async::Task<QString> login(const User& user) override;
-    Async::Task<void> deleteUser() override;
-    Async::Task<void> changePassword(const UserPassword& userPassword) override;
 
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
     Async::Task<QVariant> deleteResource(const QString& endpoint);
@@ -27,6 +32,7 @@ public:
     Async::Task<QVariant> put(const QString& endpoint, const QByteArray& data = QByteArray());
     Async::Task<QVariant> put(const QString& endpoint, const QJsonObject& data = QJsonObject());
 
+private:
     Async::NetworkAccessManager m_networkAccessManager;
     HttpRequestAttributes m_requestAttributes;
 };

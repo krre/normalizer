@@ -1,10 +1,11 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
-#include "network/http/HttpNetworkManager.h"
+#include "network/controller/account/AbstractAccount.h"
+#include "network/http/HttpNetwork.h"
 #include "core/Constants.h"
 #include <QtWidgets>
 
-ChangePasswordDialog::ChangePasswordDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+ChangePasswordDialog::ChangePasswordDialog(Controller::AbstractAccount* account) : m_account(account) {
     setWindowTitle(tr("Change Password"));
 
     m_oldPasswordLineEdit = new QLineEdit;
@@ -46,14 +47,14 @@ void ChangePasswordDialog::enableOkButton() {
 }
 
 Async::Task<void> ChangePasswordDialog::changePassword() {
-    HttpNetworkManager::UserPassword userPassword;
-    userPassword.oldPassword = m_oldPasswordLineEdit->text();
-    userPassword.newPassword = m_newPasswordLineEdit->text();
+    Controller::AbstractAccount::Password password;
+    password.oldPassword = m_oldPasswordLineEdit->text();
+    password.newPassword = m_newPasswordLineEdit->text();
 
     try {
-        co_await m_networkManager->changePassword(userPassword);
+        co_await m_account->changePassword(password);
         StandardDialog::accept();
-    } catch (NetworkException& e) {
+    } catch (HttpException& e) {
         QString message = e.status() == Const::HttpStatus::BadRequest ? tr("Old password and new one do not match") : e.message();
         errorMessage(message);
     } catch (std::exception& e) {

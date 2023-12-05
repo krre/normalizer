@@ -2,7 +2,7 @@
 #include "core/CommonTypes.h"
 #include "core/async/Task.h"
 #include "AbstractController.h"
-#include "network/http/NetworkManager.h"
+#include "network/http/HttpNetwork.h"
 #include <QJsonObject>
 #include <QUrlQuery>
 

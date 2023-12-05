@@ -1,6 +1,6 @@
 #include "HttpRequest.h"
 #include "HttpRequestAttributes.h"
-#include "NetworkManager.h"
+#include "network/http/HttpNetwork.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QNetworkReply>
 #include <QJsonDocument>
@@ -32,7 +32,7 @@ Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
         QByteArray response = reply->readAll();
         co_return QJsonDocument::fromJson(response).toVariant();
     } else {
-        throw NetworkException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
+        throw HttpException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
     }
 }
 

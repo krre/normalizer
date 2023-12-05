@@ -1,9 +1,10 @@
 #include "LoginDialog.h"
-#include "network/http/HttpNetworkManager.h"
 #include "core/Constants.h"
+#include "network/controller/account/AbstractAccount.h"
+#include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-LoginDialog::LoginDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+LoginDialog::LoginDialog(Controller::AbstractAccount* account) : m_account(account) {
     setWindowTitle(tr("Login"));
 
     m_emailLineEdit = new QLineEdit;
@@ -37,14 +38,14 @@ void LoginDialog::enableOkButton() {
 }
 
 Async::Task<void> LoginDialog::getToken() {
-    HttpNetworkManager::User user;
-    user.email = m_emailLineEdit->text();
-    user.password = m_passwordLineEdit->text();
+    Controller::AbstractAccount::LoginAccount account;
+    account.email = m_emailLineEdit->text();
+    account.password = m_passwordLineEdit->text();
 
     try {
-        m_token = co_await m_networkManager->login(user);
+        m_token = co_await m_account->login(account);
         StandardDialog::accept();
-    } catch (NetworkException& e) {
+    } catch (HttpException& e) {
         QString message = e.message();
 
         if (e.status() == Const::HttpStatus::NotFound) {

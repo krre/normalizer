@@ -1,9 +1,10 @@
 #include "AccountDialog.h"
 #include "ChangePasswordDialog.h"
-#include "network/http/HttpNetworkManager.h"
+#include "network/controller/account/AbstractAccount.h"
+#include "network/http/HttpNetwork.h"
 #include <QtWidgets>
 
-AccountDialog::AccountDialog(NetworkManager* networkManager) : m_networkManager(networkManager) {
+AccountDialog::AccountDialog(Controller::AbstractAccount* account) : m_account(account) {
     setWindowTitle(tr("Account"));
 
     m_loginLineEdit = new QLineEdit;
@@ -45,7 +46,7 @@ void AccountDialog::accept() {
 }
 
 void AccountDialog::openChangePasswordDialog() {
-    ChangePasswordDialog changePasswordDialog(m_networkManager);
+    ChangePasswordDialog changePasswordDialog(m_account);
 
     if (changePasswordDialog.exec() == QDialog::Accepted) {
         QMessageBox::information(this, tr("Changing Password"), tr("Password successfully changed!"));
@@ -61,10 +62,10 @@ Async::Task<void> AccountDialog::deleteAccount() {
     }
 
     try {
-        co_await m_networkManager->deleteUser();
+        co_await m_account->remove();
         m_result = Result::Deleted;
         StandardDialog::accept();
-    } catch (NetworkException& e) {
+    } catch (HttpException& e) {
         errorMessage(e.message());
     } catch (std::exception& e) {
         errorMessage(e.what());
@@ -73,11 +74,11 @@ Async::Task<void> AccountDialog::deleteAccount() {
 
 Async::Task<void> AccountDialog::getAccount() {
     try {
-        HttpNetworkManager::User user = co_await m_networkManager->getUser();
-        m_loginLineEdit->setText(user.login);
-        m_emailLineEdit->setText(user.email);
-        m_fullNameLineEdit->setText(user.fullName);
-    } catch (NetworkException& e) {
+        Controller::AbstractAccount::GetAccount account = co_await m_account->get();
+        m_loginLineEdit->setText(account.login);
+        m_emailLineEdit->setText(account.email);
+        m_fullNameLineEdit->setText(account.fullName);
+    } catch (HttpException& e) {
         errorMessage(e.message());
     } catch (std::exception& e) {
         errorMessage(e.what());
@@ -85,13 +86,13 @@ Async::Task<void> AccountDialog::getAccount() {
 }
 
 Async::Task<void> AccountDialog::updateAccount() {
-    HttpNetworkManager::User user;
-    user.fullName = m_fullNameLineEdit->text();
+    Controller::AbstractAccount::UpdateAccount account;
+    account.fullName = m_fullNameLineEdit->text();
 
     try {
-        co_await m_networkManager->updateUser(user);
+        co_await m_account->update(account);
         StandardDialog::accept();
-    } catch (NetworkException& e) {
+    } catch (HttpException& e) {
         errorMessage(e.message());
     } catch (std::exception& e) {
         errorMessage(e.what());

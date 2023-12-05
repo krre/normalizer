@@ -31,8 +31,8 @@ add_library(common STATIC
     core/async/Awaiter.h
     manager/settings/SettingsStorage.h
     manager/settings/FileSettingsStorage.h manager/settings/FileSettingsStorage.cpp
-    network/http/NetworkManager.h
-    network/http/HttpNetworkManager.h network/http/HttpNetworkManager.cpp
+
+    network/http/HttpNetwork.h network/http/HttpNetwork.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
     network/http/HttpRequest.h network/http/HttpRequest.cpp
@@ -45,7 +45,7 @@ add_library(common STATIC
     network/controller/user/User.h network/controller/user/User.cpp
     network/controller/Action.h network/controller/Action.cpp
     network/controller/account/Account.cpp network/controller/account/Account.h
-    network/controller/account/AbstractAccount.cpp network/controller/account/AbstractAccount.h
+    network/controller/account/AbstractAccount.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

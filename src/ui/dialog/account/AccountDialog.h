@@ -2,7 +2,10 @@
 #include "ui/dialog/StandardDialog.h"
 #include "core/async/Task.h"
 
-class NetworkManager;
+namespace Controller {
+    class AbstractAccount;
+}
+
 class QLineEdit;
 
 class AccountDialog : public StandardDialog {
@@ -12,7 +15,7 @@ public:
         Deleted
     };
 
-    AccountDialog(NetworkManager* networkManager);
+    AccountDialog(Controller::AbstractAccount* account);
     Result result() const { return m_result; }
 
 public slots:
@@ -26,7 +29,7 @@ private slots:
     Async::Task<void> updateAccount();
 
 private:
-    NetworkManager* m_networkManager = nullptr;
+    Controller::AbstractAccount* m_account = nullptr;
 
     QLineEdit* m_loginLineEdit = nullptr;
     QLineEdit* m_fullNameLineEdit = nullptr;

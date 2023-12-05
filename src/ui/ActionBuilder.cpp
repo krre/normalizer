@@ -7,14 +7,15 @@
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "manager/settings/FileSettingsStorage.h"
-#include "network/http/HttpNetworkManager.h"
+#include "network/http/HttpNetwork.h"
+#include "network/controller/account/Account.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
         QObject(parameters.mainWindow),
         m_mainWindow(parameters.mainWindow),
         m_project(parameters.project),
-        m_httpNetworkManager(parameters.httpNetworkManager),
+        m_httpNetwork(parameters.httpNetwork),
         m_fileSettingsStorage(parameters.fileSettingsStorage) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
@@ -37,7 +38,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 
-    m_httpNetworkManager->setToken(m_fileSettingsStorage->account().token);
+    m_httpNetwork->setToken(m_fileSettingsStorage->account().token);
 }
 
 void ActionBuilder::openPreferencesDialog() {
@@ -46,17 +47,19 @@ void ActionBuilder::openPreferencesDialog() {
 }
 
 void ActionBuilder::openLoginDialog() {
-    LoginDialog loginDialog(m_httpNetworkManager);
+    Controller::Account account(m_httpNetwork);
+    LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
         m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(loginDialog.token()));
-        m_httpNetworkManager->setToken(loginDialog.token());
+        m_httpNetwork->setToken(loginDialog.token());
         updateAccountActions();
     }
 }
 
 void ActionBuilder::openAccountDialog() {
-    AccountDialog AccountDialog(m_httpNetworkManager);
+    Controller::Account account(m_httpNetwork);
+    AccountDialog AccountDialog(&account);
 
     if (AccountDialog.exec() == QDialog::Accepted && AccountDialog.result() == AccountDialog::Result::Deleted) {
         logout();
@@ -64,18 +67,19 @@ void ActionBuilder::openAccountDialog() {
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    RegisterAccountDialog registerAccountDialog(m_httpNetworkManager);
+    Controller::Account account(m_httpNetwork);
+    RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
         m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
-        m_httpNetworkManager->setToken(registerAccountDialog.token());
+        m_httpNetwork->setToken(registerAccountDialog.token());
         updateAccountActions();
     }
 }
 
 void ActionBuilder::logout() {
     m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(""));
-    m_httpNetworkManager->setToken("");
+    m_httpNetwork->setToken("");
     updateAccountActions();
 }
 
