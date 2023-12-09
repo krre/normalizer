@@ -22,15 +22,13 @@ void TestAccountDialog::getData() {
 
     AccountDialog accountDialog(&account);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
+    auto fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
     QTest::keyClick(&accountDialog, Qt::Key_Backtab);
-
-    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
+    auto emailLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
     QTest::keyClick(&accountDialog, Qt::Key_Backtab);
-
-    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
+    auto loginLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
 
     accountDialog.accept();
 
@@ -43,10 +41,8 @@ void TestAccountDialog::updateData() {
     TestAccount account;
     AccountDialog accountDialog(&account);
 
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
+    auto fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
-
-    QTest::keyClick(&accountDialog, Qt::Key_Tab);
 
     accountDialog.accept();
 

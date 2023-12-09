@@ -16,17 +16,15 @@ void TestChangePassword::validData() {
     TestAccount account;
     ChangePasswordDialog changePasswordDialog(&account);
 
-    QLineEdit* oldPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
+    auto oldPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
     oldPasswordLineEdit->setText(OldPassword);
 
     QTest::keyClick(&changePasswordDialog, Qt::Key_Tab);
-
-    QLineEdit* newPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
+    auto newPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
     newPasswordLineEdit->setText(NewPassword);
 
     QTest::keyClick(&changePasswordDialog, Qt::Key_Tab);
-
-    QLineEdit* confirmPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
+    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
     confirmPasswordLineEdit->setText(NewPassword);
 
     changePasswordDialog.accept();

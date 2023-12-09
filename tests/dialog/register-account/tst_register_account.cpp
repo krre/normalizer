@@ -18,27 +18,23 @@ void TestRegisterAccount::validData() {
     TestAccount account;
     RegisterAccountDialog registerAccountDialog(&account);
 
-    QLineEdit* loginLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto loginLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     loginLineEdit->setText(Login);
 
     QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-
-    QLineEdit* fullNameLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto fullNameLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
 
     QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-
-    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto emailLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     emailLineEdit->setText(Email);
 
     QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-
-    QLineEdit* passwordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto passwordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     passwordLineEdit->setText(Password);
 
     QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-
-    QLineEdit* confirmPasswordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
     confirmPasswordLineEdit->setText(Password);
 
     registerAccountDialog.accept();

@@ -3,8 +3,8 @@
 #include <QTest>
 #include <QLineEdit>
 
-static const QHostAddress host = QHostAddress(QHostAddress::LocalHost);
-constexpr auto port = 3128;
+static const QHostAddress Host = QHostAddress(QHostAddress::LocalHost);
+constexpr auto Port = 3128;
 
 class TestSettingsStorage : public SettingsStorage {
 public:
@@ -47,17 +47,16 @@ private slots:
 
 void TestPreferences::readSettings() {
     TestSettingsStorage settingsStorage;
-    settingsStorage.m_serverAddress = TestSettingsStorage::ServerAddress(host.toString(), port);
+    settingsStorage.m_serverAddress = TestSettingsStorage::ServerAddress(Host.toString(), Port);
 
     PreferencesDialog preferencesDialog(&settingsStorage);
 
-    QLineEdit* hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(hostLineEdit->text(), host.toString());
+    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    QCOMPARE(hostLineEdit->text(), Host.toString());
 
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-
-    QLineEdit* portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(portLineEdit->text().toInt(), port);
+    auto portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    QCOMPARE(portLineEdit->text().toInt(), Port);
 }
 
 void TestPreferences::setSettings() {
@@ -65,18 +64,17 @@ void TestPreferences::setSettings() {
 
     PreferencesDialog preferencesDialog(&settingsStorage);
 
-    QLineEdit* hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    hostLineEdit->setText(host.toString());
+    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    hostLineEdit->setText(Host.toString());
 
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-
-    QLineEdit* portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    portLineEdit->setText(QString::number(port));
+    auto portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    portLineEdit->setText(QString::number(Port));
 
     preferencesDialog.accept();
 
-    QCOMPARE(settingsStorage.m_serverAddress.host, host.toString());
-    QCOMPARE(settingsStorage.m_serverAddress.port, port);
+    QCOMPARE(settingsStorage.m_serverAddress.host, Host.toString());
+    QCOMPARE(settingsStorage.m_serverAddress.port, Port);
 }
 
 QTEST_MAIN(TestPreferences)

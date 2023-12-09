@@ -16,12 +16,11 @@ void TestLogin::validData() {
     TestAccount account;
     LoginDialog loginDialog(&account);
 
-    QLineEdit* emailLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
+    auto emailLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
     emailLineEdit->setText(Email);
 
     QTest::keyClick(&loginDialog, Qt::Key_Tab);
-
-    QLineEdit* passwordLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
+    auto passwordLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
     passwordLineEdit->setText(Password);
 
     loginDialog.accept();
