@@ -14,7 +14,7 @@ void FileSettingsStorage::setMainWindow(const MainWindow& mainWindow) {
     settings.endGroup();
 }
 
-SettingsStorage::MainWindow FileSettingsStorage::mainWindow() const {
+Settings::MainWindow FileSettingsStorage::mainWindow() const {
     MainWindow result;
 
     QSettings settings;
@@ -43,7 +43,7 @@ void FileSettingsStorage::setServerAddress(const ServerAddress& serverAddress) {
     settings.endGroup();
 }
 
-SettingsStorage::ServerAddress FileSettingsStorage::serverAddress() const {
+Settings::ServerAddress FileSettingsStorage::serverAddress() const {
     ServerAddress result;
 
     QSettings settings;
@@ -62,7 +62,7 @@ void FileSettingsStorage::setAccount(const Account& account) {
     settings.setValue("Account/token", account.token);
 }
 
-SettingsStorage::Account FileSettingsStorage::account() const {
+Settings::Account FileSettingsStorage::account() const {
     QSettings settings;
 
     Account result;

@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 
-class SettingsStorage {
+class Settings {
 public:
     struct MainWindow {
         QByteArray geometry;

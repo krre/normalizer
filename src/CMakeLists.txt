@@ -28,7 +28,7 @@ add_library(common STATIC
     core/async/Task.h core/async/Task.cpp
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
-    manager/settings/SettingsStorage.h
+    manager/settings/Settings.h
     manager/settings/FileSettingsStorage.h manager/settings/FileSettingsStorage.cpp
 
     network/http/HttpNetwork.h network/http/HttpNetwork.cpp

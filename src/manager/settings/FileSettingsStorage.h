@@ -1,7 +1,7 @@
 #pragma once
-#include "SettingsStorage.h"
+#include "Settings.h"
 
-class FileSettingsStorage : public SettingsStorage {
+class FileSettingsStorage : public Settings {
 public:
     FileSettingsStorage();
 

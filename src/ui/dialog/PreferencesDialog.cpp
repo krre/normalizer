@@ -1,10 +1,10 @@
 #include "PreferencesDialog.h"
 #include <QtWidgets>
 
-PreferencesDialog::PreferencesDialog(SettingsStorage* settingsStorage, QWidget* parent) : StandardDialog(parent), m_settingsStorage(settingsStorage) {
+PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
-    SettingsStorage::ServerAddress serverAddress = settingsStorage->serverAddress();
+    Settings::ServerAddress serverAddress = settings->serverAddress();
 
     m_hostLineEdit = new QLineEdit(serverAddress.host);
     m_portLineEdit = new QLineEdit(QString::number(serverAddress.port));
@@ -24,6 +24,6 @@ PreferencesDialog::PreferencesDialog(SettingsStorage* settingsStorage, QWidget* 
 }
 
 void PreferencesDialog::accept() {
-    m_settingsStorage->setServerAddress(SettingsStorage::ServerAddress(m_hostLineEdit->text(), m_portLineEdit->text().toInt()));
+    m_settings->setServerAddress(Settings::ServerAddress(m_hostLineEdit->text(), m_portLineEdit->text().toInt()));
     StandardDialog::accept();
 }

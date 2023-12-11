@@ -1,16 +1,16 @@
 #include "ui/dialog/PreferencesDialog.h"
-#include "manager/settings/SettingsStorage.h"
+#include "manager/settings/Settings.h"
 #include <QTest>
 #include <QLineEdit>
 
 static const QHostAddress Host = QHostAddress(QHostAddress::LocalHost);
 constexpr auto Port = 3128;
 
-class TestSettingsStorage : public SettingsStorage {
+class TestSettingsStorage : public Settings {
 public:
     void setMainWindow(const MainWindow& mainWindow [[maybe_unused]]) override {}
 
-    SettingsStorage::MainWindow mainWindow() const override {
+    Settings::MainWindow mainWindow() const override {
         return MainWindow();
     }
 
@@ -46,10 +46,10 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettingsStorage settingsStorage;
-    settingsStorage.m_serverAddress = TestSettingsStorage::ServerAddress(Host.toString(), Port);
+    TestSettingsStorage settings;
+    settings.m_serverAddress = TestSettingsStorage::ServerAddress(Host.toString(), Port);
 
-    PreferencesDialog preferencesDialog(&settingsStorage);
+    PreferencesDialog preferencesDialog(&settings);
 
     auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
     QCOMPARE(hostLineEdit->text(), Host.toString());
@@ -60,9 +60,9 @@ void TestPreferences::readSettings() {
 }
 
 void TestPreferences::setSettings() {
-    TestSettingsStorage settingsStorage;
+    TestSettingsStorage settings;
 
-    PreferencesDialog preferencesDialog(&settingsStorage);
+    PreferencesDialog preferencesDialog(&settings);
 
     auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
     hostLineEdit->setText(Host.toString());
@@ -73,8 +73,8 @@ void TestPreferences::setSettings() {
 
     preferencesDialog.accept();
 
-    QCOMPARE(settingsStorage.m_serverAddress.host, Host.toString());
-    QCOMPARE(settingsStorage.m_serverAddress.port, Port);
+    QCOMPARE(settings.m_serverAddress.host, Host.toString());
+    QCOMPARE(settings.m_serverAddress.port, Port);
 }
 
 QTEST_MAIN(TestPreferences)
