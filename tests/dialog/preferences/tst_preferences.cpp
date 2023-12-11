@@ -6,7 +6,7 @@
 static const QHostAddress Host = QHostAddress(QHostAddress::LocalHost);
 constexpr auto Port = 3128;
 
-class TestSettingsStorage : public Settings {
+class TestSettings : public Settings {
 public:
     void setMainWindow(const MainWindow& mainWindow [[maybe_unused]]) override {}
 
@@ -46,8 +46,8 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettingsStorage settings;
-    settings.m_serverAddress = TestSettingsStorage::ServerAddress(Host.toString(), Port);
+    TestSettings settings;
+    settings.m_serverAddress = TestSettings::ServerAddress(Host.toString(), Port);
 
     PreferencesDialog preferencesDialog(&settings);
 
@@ -60,7 +60,7 @@ void TestPreferences::readSettings() {
 }
 
 void TestPreferences::setSettings() {
-    TestSettingsStorage settings;
+    TestSettings settings;
 
     PreferencesDialog preferencesDialog(&settings);
 
