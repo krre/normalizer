@@ -25,12 +25,11 @@ add_library(common STATIC
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
     ui/dialog/account/RegisterAccountDialog.h ui/dialog/account/RegisterAccountDialog.cpp
-    core/async/Task.h core/async/Task.cpp
+    core/async/Task.h
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
     manager/settings/Settings.h
     manager/settings/FileSettings.h manager/settings/FileSettings.cpp
-
     network/http/HttpNetwork.h network/http/HttpNetwork.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
