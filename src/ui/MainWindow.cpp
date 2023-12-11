@@ -3,15 +3,15 @@
 #include "RenderView.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
-#include "manager/settings/FileSettingsStorage.h"
+#include "manager/settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
 
-    m_fileSettingsStorage.reset(new FileSettingsStorage);
-    m_httpNetwork.reset(new HttpNetwork(m_fileSettingsStorage->serverAddress().host, m_fileSettingsStorage->serverAddress().port));
+    m_fileSettings.reset(new FileSettings);
+    m_httpNetwork.reset(new HttpNetwork(m_fileSettings->serverAddress().host, m_fileSettings->serverAddress().port));
 
     m_projectTable = new ProjectTable;
     m_projectTable->setVisible(false);
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
     parameters.httpNetwork = m_httpNetwork.data();
-    parameters.fileSettingsStorage = m_fileSettingsStorage.data();
+    parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
 
@@ -39,9 +39,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::readSettings() {
-    if (m_fileSettingsStorage->containsGeometry()) {
-        restoreGeometry(m_fileSettingsStorage->mainWindow().geometry);
-        restoreState(m_fileSettingsStorage->mainWindow().state);
+    if (m_fileSettings->containsGeometry()) {
+        restoreGeometry(m_fileSettings->mainWindow().geometry);
+        restoreState(m_fileSettings->mainWindow().state);
     } else {
         const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         constexpr auto scale = 0.8;
@@ -51,5 +51,5 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    m_fileSettingsStorage->setMainWindow(FileSettingsStorage::MainWindow(saveGeometry(), saveState()));
+    m_fileSettings->setMainWindow(FileSettings::MainWindow(saveGeometry(), saveState()));
 }

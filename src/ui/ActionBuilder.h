@@ -4,7 +4,7 @@
 class MainWindow;
 class Project;
 class HttpNetwork;
-class FileSettingsStorage;
+class FileSettings;
 class RecentMenu;
 
 class QAction;
@@ -16,7 +16,7 @@ public:
         MainWindow* mainWindow;
         Project* project;
         HttpNetwork* httpNetwork;
-        FileSettingsStorage* fileSettingsStorage;
+        FileSettings* fileSettings;
     };
 
     explicit ActionBuilder(const Parameters& parameters);
@@ -37,7 +37,7 @@ private:
     MainWindow* m_mainWindow = nullptr;
     Project* m_project = nullptr;
     HttpNetwork* m_httpNetwork = nullptr;
-    FileSettingsStorage* m_fileSettingsStorage = nullptr;
+    FileSettings* m_fileSettings = nullptr;
 
     QAction* registerAction = nullptr;
     QAction* loginAction = nullptr;

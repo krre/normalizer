@@ -1,9 +1,9 @@
 #pragma once
 #include "Settings.h"
 
-class FileSettingsStorage : public Settings {
+class FileSettings : public Settings {
 public:
-    FileSettingsStorage();
+    FileSettings();
 
     void setMainWindow(const MainWindow& mainWindow) override;
     MainWindow mainWindow() const override;

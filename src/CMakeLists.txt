@@ -29,7 +29,7 @@ add_library(common STATIC
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
     manager/settings/Settings.h
-    manager/settings/FileSettingsStorage.h manager/settings/FileSettingsStorage.cpp
+    manager/settings/FileSettings.h manager/settings/FileSettings.cpp
 
     network/http/HttpNetwork.h network/http/HttpNetwork.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h

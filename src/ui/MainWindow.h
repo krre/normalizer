@@ -3,7 +3,7 @@
 #include <QPropertyNotifier>
 
 class HttpNetwork;
-class FileSettingsStorage;
+class FileSettings;
 class ProjectTable;
 class RenderView;
 class ActionBuilder;
@@ -22,7 +22,7 @@ private:
     void writeSettings();
 
     QScopedPointer<HttpNetwork> m_httpNetwork;
-    QScopedPointer<FileSettingsStorage> m_fileSettingsStorage;
+    QScopedPointer<FileSettings> m_fileSettings;
 
     ProjectTable* m_projectTable = nullptr;
     RenderView* m_renderView = nullptr;

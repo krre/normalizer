@@ -1,10 +1,10 @@
-#include "FileSettingsStorage.h"
+#include "FileSettings.h"
 #include <QSettings>
 
-FileSettingsStorage::FileSettingsStorage() {
+FileSettings::FileSettings() {
 }
 
-void FileSettingsStorage::setMainWindow(const MainWindow& mainWindow) {
+void FileSettings::setMainWindow(const MainWindow& mainWindow) {
     QSettings settings;
     settings.beginGroup("MainWindow");
 
@@ -14,7 +14,7 @@ void FileSettingsStorage::setMainWindow(const MainWindow& mainWindow) {
     settings.endGroup();
 }
 
-Settings::MainWindow FileSettingsStorage::mainWindow() const {
+Settings::MainWindow FileSettings::mainWindow() const {
     MainWindow result;
 
     QSettings settings;
@@ -28,12 +28,12 @@ Settings::MainWindow FileSettingsStorage::mainWindow() const {
     return result;
 }
 
-bool FileSettingsStorage::containsGeometry() const {
+bool FileSettings::containsGeometry() const {
     QSettings settings;
     return settings.contains("MainWindow/geometry");
 }
 
-void FileSettingsStorage::setServerAddress(const ServerAddress& serverAddress) {
+void FileSettings::setServerAddress(const ServerAddress& serverAddress) {
     QSettings settings;
     settings.beginGroup("Server");
 
@@ -43,7 +43,7 @@ void FileSettingsStorage::setServerAddress(const ServerAddress& serverAddress) {
     settings.endGroup();
 }
 
-Settings::ServerAddress FileSettingsStorage::serverAddress() const {
+Settings::ServerAddress FileSettings::serverAddress() const {
     ServerAddress result;
 
     QSettings settings;
@@ -57,12 +57,12 @@ Settings::ServerAddress FileSettingsStorage::serverAddress() const {
     return result;
 }
 
-void FileSettingsStorage::setAccount(const Account& account) {
+void FileSettings::setAccount(const Account& account) {
     QSettings settings;
     settings.setValue("Account/token", account.token);
 }
 
-Settings::Account FileSettingsStorage::account() const {
+Settings::Account FileSettings::account() const {
     QSettings settings;
 
     Account result;

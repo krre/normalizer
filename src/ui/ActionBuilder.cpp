@@ -6,7 +6,7 @@
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/AccountDialog.h"
-#include "manager/settings/FileSettingsStorage.h"
+#include "manager/settings/FileSettings.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/account/UserAccount.h"
 #include <QtWidgets>
@@ -16,7 +16,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
         m_mainWindow(parameters.mainWindow),
         m_project(parameters.project),
         m_httpNetwork(parameters.httpNetwork),
-        m_fileSettingsStorage(parameters.fileSettingsStorage) {
+        m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
     auto fileMenu = new Menu(tr("File"), menuBar);
@@ -38,11 +38,11 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
 
-    m_httpNetwork->setToken(m_fileSettingsStorage->account().token);
+    m_httpNetwork->setToken(m_fileSettings->account().token);
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    PreferencesDialog preferencesDialog(m_fileSettingsStorage);
+    PreferencesDialog preferencesDialog(m_fileSettings);
     preferencesDialog.exec();
 }
 
@@ -51,7 +51,7 @@ void ActionBuilder::openLoginDialog() {
     LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
-        m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(loginDialog.token()));
+        m_fileSettings->setAccount(FileSettings::Account(loginDialog.token()));
         m_httpNetwork->setToken(loginDialog.token());
         updateAccountActions();
     }
@@ -71,14 +71,14 @@ void ActionBuilder::openRegisterAccountDialog() {
     RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(registerAccountDialog.token()));
+        m_fileSettings->setAccount(FileSettings::Account(registerAccountDialog.token()));
         m_httpNetwork->setToken(registerAccountDialog.token());
         updateAccountActions();
     }
 }
 
 void ActionBuilder::logout() {
-    m_fileSettingsStorage->setAccount(FileSettingsStorage::Account(""));
+    m_fileSettings->setAccount(FileSettings::Account(""));
     m_httpNetwork->setToken("");
     updateAccountActions();
 }
@@ -96,7 +96,7 @@ void ActionBuilder::about() {
 }
 
 void ActionBuilder::updateAccountActions() {
-    bool tokenExists = !m_fileSettingsStorage->account().token.isEmpty();
+    bool tokenExists = !m_fileSettings->account().token.isEmpty();
     registerAction->setVisible(!tokenExists);
     loginAction->setVisible(!tokenExists);
     accountAction->setVisible(tokenExists);
