@@ -39,7 +39,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::readSettings() {
-    if (m_fileSettingsStorage->containsMainWindow()) {
+    if (m_fileSettingsStorage->containsGeometry()) {
         restoreGeometry(m_fileSettingsStorage->mainWindow().geometry);
         restoreState(m_fileSettingsStorage->mainWindow().state);
     } else {

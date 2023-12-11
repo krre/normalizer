@@ -14,7 +14,7 @@ SettingsStorage::MainWindow FileSettingsStorage::mainWindow() const {
     return MainWindow(Settings::value<::MainWindow::Geometry>(), Settings::value<::MainWindow::State>());
 }
 
-bool FileSettingsStorage::containsMainWindow() const {
+bool FileSettingsStorage::containsGeometry() const {
     return Settings::contains<::MainWindow::Geometry>();
 }
 

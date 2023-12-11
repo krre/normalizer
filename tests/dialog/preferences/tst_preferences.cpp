@@ -14,7 +14,7 @@ public:
         return MainWindow();
     }
 
-    bool containsMainWindow() const override {
+    bool containsGeometry() const override {
         return true;
     }
 
