@@ -4,6 +4,10 @@
 #include <QJsonDocument>
 
 HttpNetwork::HttpNetwork(const QUrl& url) {
+    setUrl(url);
+}
+
+void HttpNetwork::setUrl(const QUrl& url) {
     m_requestAttributes.url = url;
 }
 

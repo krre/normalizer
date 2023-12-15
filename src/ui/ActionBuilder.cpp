@@ -43,7 +43,10 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
 void ActionBuilder::openPreferencesDialog() {
     PreferencesDialog preferencesDialog(m_fileSettings);
-    preferencesDialog.exec();
+
+    if (preferencesDialog.exec() == QDialog::Accepted) {
+        m_httpNetwork->setUrl(m_fileSettings->serverAddress().url);
+    }
 }
 
 void ActionBuilder::openLoginDialog() {

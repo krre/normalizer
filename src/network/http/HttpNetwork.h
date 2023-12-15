@@ -21,6 +21,7 @@ class HttpNetwork {
 public:
     HttpNetwork(const QUrl& url);
 
+    void setUrl(const QUrl& url);
     void setToken(const QString& token);
 
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
