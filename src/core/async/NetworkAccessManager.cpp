@@ -8,6 +8,12 @@ NetworkWaker::NetworkWaker(QNetworkReply* reply) {
         reply->deleteLater();
         awaiter()->resume(reply);
     });
+
+    QObject::connect(reply, &QNetworkReply::sslErrors, [] (const QList<QSslError> &errors) {
+        qWarning() << "SSL errors:" << errors;
+    });
+
+    reply->ignoreSslErrors();
 }
 
 Awaiter<QNetworkReply*> NetworkAccessManager::get(const QNetworkRequest& request) {
