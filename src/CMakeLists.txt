@@ -38,8 +38,6 @@ add_library(common STATIC
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp
-    network/controller/AbstractController.h network/controller/AbstractController.cpp
-    network/controller/Action.h network/controller/Action.cpp
     network/controller/account/UserAccount.cpp network/controller/account/UserAccount.h
     network/controller/account/Account.h
 )
