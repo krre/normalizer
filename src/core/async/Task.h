@@ -4,6 +4,8 @@
 
 namespace Async {
 
+inline bool Ready = false;
+
 template <typename T>
 class Task {
 public:
@@ -20,6 +22,7 @@ public:
 
     struct FinalAwaiter {
         bool await_ready() const noexcept { return false; }
+
         std::coroutine_handle<> await_suspend(Handle handle) noexcept {
             auto& promise = handle.promise();
 
@@ -38,7 +41,7 @@ public:
     struct TaskAwaiter {
         TaskAwaiter(Handle handle) : m_handle(handle)  { }
 
-        bool await_ready() { return false; }
+        bool await_ready() { return Ready; }
 
         void await_suspend(std::coroutine_handle<> awatingHandle) noexcept {
             m_handle.promise().setAwaitingHandle(awatingHandle);
@@ -117,7 +120,7 @@ public:
 
         TaskAwaiter() {}
 
-        bool await_ready() { return false; }
+        bool await_ready() { return Ready; }
 
         void await_suspend(std::coroutine_handle<> awatingHandle) noexcept {
             m_handle.promise().setAwaitingHandle(awatingHandle);
