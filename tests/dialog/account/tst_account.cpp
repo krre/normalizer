@@ -10,6 +10,10 @@ constexpr auto FullName = "Admin";
 class TestAccountDialog : public QObject {
     Q_OBJECT
 private slots:
+    void init() {
+        Async::Ready = true;
+    }
+
     void getData();
     void updateData();
 };
