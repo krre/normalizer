@@ -3,10 +3,8 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
 
-HttpNetwork::HttpNetwork(const QString& host, quint16 port) {
-    m_requestAttributes.scheme = HttpRequestAttributes::Scheme::Http;
-    m_requestAttributes.host = host;
-    m_requestAttributes.port = port;
+HttpNetwork::HttpNetwork(const QUrl& url) {
+    m_requestAttributes.url = url;
 }
 
 void HttpNetwork::setToken(const QString& token) {

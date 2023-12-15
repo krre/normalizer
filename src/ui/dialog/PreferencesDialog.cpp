@@ -6,13 +6,10 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 
     Settings::ServerAddress serverAddress = settings->serverAddress();
 
-    m_hostLineEdit = new QLineEdit(serverAddress.host);
-    m_portLineEdit = new QLineEdit(QString::number(serverAddress.port));
-    m_portLineEdit->setValidator(new QIntValidator(1, 1 << 16, this));
+    m_urlLineEdit = new QLineEdit(serverAddress.url.toString());
 
     auto formLayout = new QFormLayout;
-    formLayout->addRow(tr("Host:"), m_hostLineEdit);
-    formLayout->addRow(tr("Port:"), m_portLineEdit);
+    formLayout->addRow(tr("URL:"), m_urlLineEdit);
 
     auto serverGroupBox = new QGroupBox(tr("Norm Developer Server"));
     serverGroupBox->setLayout(formLayout);
@@ -20,10 +17,10 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
     setContentWidget(serverGroupBox);
 
     resizeToWidth(400);
-    m_hostLineEdit->setFocus();
+    m_urlLineEdit->setFocus();
 }
 
 void PreferencesDialog::accept() {
-    m_settings->setServerAddress(Settings::ServerAddress(m_hostLineEdit->text(), m_portLineEdit->text().toInt()));
+    m_settings->setServerAddress(Settings::ServerAddress(QUrl(m_urlLineEdit->text())));
     StandardDialog::accept();
 }

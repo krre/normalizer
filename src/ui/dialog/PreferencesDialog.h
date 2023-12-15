@@ -14,6 +14,5 @@ public slots:
 private:
     Settings* m_settings = nullptr;
 
-    QLineEdit* m_hostLineEdit = nullptr;
-    QLineEdit* m_portLineEdit = nullptr;
+    QLineEdit* m_urlLineEdit = nullptr;
 };

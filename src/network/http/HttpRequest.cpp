@@ -10,14 +10,8 @@ HttpRequest::HttpRequest(Async::NetworkAccessManager* networkAccessManager, Http
 }
 
 Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
-    QUrl url;
-    url.setScheme(m_requestAttributes->scheme == HttpRequestAttributes::Scheme::Http ? "http" : "https");
-    url.setHost(m_requestAttributes->host);
+    QUrl url = m_requestAttributes->url;
     url.setPath("/" + endpoint);
-
-    if (m_requestAttributes->port) {
-        url.setPort(m_requestAttributes->port);
-    }
 
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");

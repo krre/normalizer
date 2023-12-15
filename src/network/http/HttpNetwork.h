@@ -19,7 +19,7 @@ private:
 
 class HttpNetwork {
 public:
-    HttpNetwork(const QString& host, quint16 port = 0);
+    HttpNetwork(const QUrl& url);
 
     void setToken(const QString& token);
 

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
 
     m_fileSettings.reset(new FileSettings);
-    m_httpNetwork.reset(new HttpNetwork(m_fileSettings->serverAddress().host, m_fileSettings->serverAddress().port));
+    m_httpNetwork.reset(new HttpNetwork(m_fileSettings->serverAddress().url));
 
     m_projectTable = new ProjectTable;
     m_projectTable->setVisible(false);

@@ -3,8 +3,7 @@
 #include <QTest>
 #include <QLineEdit>
 
-static const QHostAddress Host = QHostAddress(QHostAddress::LocalHost);
-constexpr auto Port = 3128;
+static const QUrl Url = QUrl("localhost");
 
 class TestSettings : public Settings {
 public:
@@ -47,16 +46,12 @@ private slots:
 
 void TestPreferences::readSettings() {
     TestSettings settings;
-    settings.m_serverAddress = TestSettings::ServerAddress(Host.toString(), Port);
+    settings.m_serverAddress = TestSettings::ServerAddress(Url.toString());
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(hostLineEdit->text(), Host.toString());
-
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(portLineEdit->text().toInt(), Port);
+    auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    QCOMPARE(urlLineEdit->text(), Url.toString());
 }
 
 void TestPreferences::setSettings() {
@@ -65,16 +60,11 @@ void TestPreferences::setSettings() {
     PreferencesDialog preferencesDialog(&settings);
 
     auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    hostLineEdit->setText(Host.toString());
-
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto portLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    portLineEdit->setText(QString::number(Port));
+    hostLineEdit->setText(Url.toString());
 
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_serverAddress.host, Host.toString());
-    QCOMPARE(settings.m_serverAddress.port, Port);
+    QCOMPARE(settings.m_serverAddress.url, Url);
 }
 
 QTEST_MAIN(TestPreferences)

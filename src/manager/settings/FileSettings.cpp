@@ -35,24 +35,14 @@ bool FileSettings::containsGeometry() const {
 
 void FileSettings::setServerAddress(const ServerAddress& serverAddress) {
     QSettings settings;
-    settings.beginGroup("Server");
-
-    settings.setValue("host", serverAddress.host);
-    settings.setValue("port", serverAddress.port);
-
-    settings.endGroup();
+    settings.setValue("url", serverAddress.url.toString());
 }
 
 Settings::ServerAddress FileSettings::serverAddress() const {
     ServerAddress result;
 
     QSettings settings;
-    settings.beginGroup("Server");
-
-    result.host = settings.value("host", "api.norm.dev").toByteArray();
-    result.port = settings.value("port", 80).toInt();
-
-    settings.endGroup();
+    result.url = settings.value("url", "https://api.norm.dev").toByteArray();
 
     return result;
 }

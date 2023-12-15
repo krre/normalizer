@@ -1,5 +1,5 @@
 #pragma once
-#include <QString>
+#include <QUrl>
 
 class Settings {
 public:
@@ -9,8 +9,7 @@ public:
     };
 
     struct ServerAddress {
-        QString host;
-        quint16 port;
+        QUrl url;
     };
 
     struct Account {
