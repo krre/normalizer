@@ -140,6 +140,7 @@ public:
         void unhandled_exception() {
             m_exception = std::current_exception();
         }
+
         void return_void() {}
 
         void setAwaitingHandle(std::coroutine_handle<> handle) {
