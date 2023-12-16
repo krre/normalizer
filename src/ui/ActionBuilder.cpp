@@ -37,10 +37,10 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     updateProjectActions();
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
-    registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
-    loginAction = accountMenu->addAction(tr("Login..."), this, &ActionBuilder::openLoginDialog);
-    accountAction = accountMenu->addAction(tr("Open..."), this, &ActionBuilder::openAccountDialog);
-    logoutAction = accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
+    m_registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
+    m_loginAction = accountMenu->addAction(tr("Login..."), this, &ActionBuilder::openLoginDialog);
+    m_accountAction = accountMenu->addAction(tr("Open..."), this, &ActionBuilder::openAccountDialog);
+    m_logoutAction = accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -120,8 +120,8 @@ void ActionBuilder::updateProjectActions() {
 
 void ActionBuilder::updateAccountActions() {
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
-    registerAction->setVisible(!tokenExists);
-    loginAction->setVisible(!tokenExists);
-    accountAction->setVisible(tokenExists);
-    logoutAction->setVisible(tokenExists);
+    m_registerAction->setVisible(!tokenExists);
+    m_loginAction->setVisible(!tokenExists);
+    m_accountAction->setVisible(tokenExists);
+    m_logoutAction->setVisible(tokenExists);
 }

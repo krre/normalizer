@@ -52,8 +52,8 @@ private:
     QAction* m_editProjectAction = nullptr;
     QAction* m_deleteProjectAction = nullptr;
 
-    QAction* registerAction = nullptr;
-    QAction* loginAction = nullptr;
-    QAction* accountAction = nullptr;
-    QAction* logoutAction = nullptr;
+    QAction* m_registerAction = nullptr;
+    QAction* m_loginAction = nullptr;
+    QAction* m_accountAction = nullptr;
+    QAction* m_logoutAction = nullptr;
 };
