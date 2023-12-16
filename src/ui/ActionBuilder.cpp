@@ -54,9 +54,7 @@ void ActionBuilder::openLoginDialog() {
     LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
-        m_fileSettings->setAccount(FileSettings::Account(loginDialog.token()));
-        m_httpNetwork->setToken(loginDialog.token());
-        updateAccountActions();
+        login(loginDialog.token());
     }
 }
 
@@ -74,16 +72,22 @@ void ActionBuilder::openRegisterAccountDialog() {
     RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        m_fileSettings->setAccount(FileSettings::Account(registerAccountDialog.token()));
-        m_httpNetwork->setToken(registerAccountDialog.token());
-        updateAccountActions();
+        login(registerAccountDialog.token());
     }
+}
+
+void ActionBuilder::login(const QString& token) {
+    m_fileSettings->setAccount(FileSettings::Account(token));
+    m_httpNetwork->setToken(token);
+    updateAccountActions();
+    emit loggedChanged(true);
 }
 
 void ActionBuilder::logout() {
     m_fileSettings->setAccount(FileSettings::Account(""));
     m_httpNetwork->setToken("");
     updateAccountActions();
+    emit loggedChanged(false);
 }
 
 void ActionBuilder::about() {

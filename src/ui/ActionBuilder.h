@@ -21,12 +21,17 @@ public:
 
     explicit ActionBuilder(const Parameters& parameters);
 
+signals:
+    void loggedChanged(bool logged);
+
 private slots:
     void openPreferencesDialog();
 
     void openLoginDialog();
     void openAccountDialog();
     void openRegisterAccountDialog();
+
+    void login(const QString& token);
     void logout();
 
     void about();
