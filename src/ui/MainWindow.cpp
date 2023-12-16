@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().url));
 
     m_projectTable = new ProjectTable;
-    m_projectTable->setVisible(false);
-
     m_renderView = new RenderView;
 
     ActionBuilder::Parameters parameters;
@@ -24,6 +22,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
+    connect(m_actionBuilder, &ActionBuilder::loggedChanged, m_projectTable, &ProjectTable::setVisible);
 
     setCentralWidget(m_projectTable);
     readSettings();
@@ -48,6 +47,8 @@ void MainWindow::readSettings() {
         resize(availableGeometry.width() * scale, availableGeometry.height() * scale);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
+
+    m_projectTable->setVisible(!m_fileSettings->account().token.isEmpty());
 }
 
 void MainWindow::writeSettings() {
