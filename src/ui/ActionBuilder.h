@@ -2,11 +2,12 @@
 #include <QObject>
 
 class MainWindow;
-class Project;
+class ProjectTable;
 class HttpNetwork;
 class FileSettings;
 class RecentMenu;
 
+class QMenu;
 class QAction;
 
 class ActionBuilder : public QObject {
@@ -14,7 +15,7 @@ class ActionBuilder : public QObject {
 public:
     struct Parameters {
         MainWindow* mainWindow;
-        Project* project;
+        ProjectTable* projectTable;
         HttpNetwork* httpNetwork;
         FileSettings* fileSettings;
     };
@@ -37,12 +38,19 @@ private slots:
     void about();
 
 private:
+    void updateProjectActions();
     void updateAccountActions();
 
     MainWindow* m_mainWindow = nullptr;
-    Project* m_project = nullptr;
+    ProjectTable* m_projectTable = nullptr;
     HttpNetwork* m_httpNetwork = nullptr;
     FileSettings* m_fileSettings = nullptr;
+
+    QMenu* m_projectMenu = nullptr;
+
+    QAction* m_addProjectAction = nullptr;
+    QAction* m_editProjectAction = nullptr;
+    QAction* m_deleteProjectAction = nullptr;
 
     QAction* registerAction = nullptr;
     QAction* loginAction = nullptr;

@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
+    parameters.projectTable = m_projectTable;
     parameters.httpNetwork = m_httpNetwork.data();
     parameters.fileSettings = m_fileSettings.data();
 

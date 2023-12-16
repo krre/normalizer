@@ -2,6 +2,7 @@
 #include "MainWindow.h"
 #include "core/Constants.h"
 #include "widget/Menu.h"
+#include "widget/project/ProjectTable.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
@@ -14,7 +15,7 @@
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
         QObject(parameters.mainWindow),
         m_mainWindow(parameters.mainWindow),
-        m_project(parameters.project),
+        m_projectTable(parameters.projectTable),
         m_httpNetwork(parameters.httpNetwork),
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
@@ -27,6 +28,13 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     menuBar->addMenu(editMenu);
 
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
+
+    m_projectMenu = menuBar->addMenu(tr("Project"));
+    m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
+    m_addProjectAction = m_projectMenu->addAction(tr("Add..."), m_projectTable, &ProjectTable::add);
+    m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
+    m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::deleteProject);
+    updateProjectActions();
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
     registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
@@ -79,13 +87,16 @@ void ActionBuilder::openRegisterAccountDialog() {
 void ActionBuilder::login(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
     m_httpNetwork->setToken(token);
+    m_projectMenu->menuAction()->setVisible(true);
     updateAccountActions();
+    updateProjectActions();
     emit loggedChanged(true);
 }
 
 void ActionBuilder::logout() {
     m_fileSettings->setAccount(FileSettings::Account(""));
     m_httpNetwork->setToken("");
+    m_projectMenu->menuAction()->setVisible(false);
     updateAccountActions();
     emit loggedChanged(false);
 }
@@ -99,7 +110,12 @@ void ActionBuilder::about() {
           "Based on Qt %3<br>"
           "Build on %4 %5<br><br>"
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
-              .arg(Name, Version, QT_VERSION_STR, BuildDate, BuildTime, URL, CopyrightYear));
+                           .arg(Name, Version, QT_VERSION_STR, BuildDate, BuildTime, URL, CopyrightYear));
+}
+
+void ActionBuilder::updateProjectActions() {
+    m_editProjectAction->setEnabled(m_projectTable->isActive());
+    m_deleteProjectAction->setEnabled(m_projectTable->isActive());
 }
 
 void ActionBuilder::updateAccountActions() {

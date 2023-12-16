@@ -8,9 +8,11 @@ class ProjectTable : public QWidget {
 public:
     ProjectTable();
 
-private:
-    void addProject();
-    void editProject();
+    bool isActive() const;
+
+public slots:
+    void add();
+    void edit();
     void deleteProject();
 
 private:
