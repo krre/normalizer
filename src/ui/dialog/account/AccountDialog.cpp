@@ -97,6 +97,4 @@ Async::Task<void> AccountDialog::updateAccount() {
     } catch (std::exception& e) {
         errorMessage(e.what());
     }
-
-    co_return;
 }

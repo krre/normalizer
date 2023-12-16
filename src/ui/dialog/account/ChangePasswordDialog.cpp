@@ -60,6 +60,4 @@ Async::Task<void> ChangePasswordDialog::changePassword() {
     } catch (std::exception& e) {
         errorMessage(e.what());
     }
-
-    co_return;
 }
