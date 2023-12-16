@@ -9,8 +9,8 @@ public:
     MainWindow mainWindow() const override;
     bool containsGeometry() const override;
 
-    void setServerAddress(const ServerAddress& serverAddress) override;
-    ServerAddress serverAddress() const override;
+    void setServer(const Server& server) override;
+    Server server() const override;
 
     void setAccount(const Account& account) override;
     Account account() const override;

@@ -17,12 +17,12 @@ public:
         return true;
     }
 
-    void setServerAddress(const ServerAddress& serverAddress) override {
-        m_serverAddress = serverAddress;
+    void setServer(const Server& server) override {
+        m_server = server;
     }
 
-    ServerAddress serverAddress() const override {
-        return m_serverAddress;
+    Server server() const override {
+        return m_server;
     }
 
     void setAccount(const Account& account) override {
@@ -33,7 +33,7 @@ public:
         return m_account;
     }
 
-    ServerAddress m_serverAddress;
+    Server m_server;
     Account m_account;
 };
 
@@ -46,7 +46,7 @@ private slots:
 
 void TestPreferences::readSettings() {
     TestSettings settings;
-    settings.m_serverAddress = TestSettings::ServerAddress(Url.toString());
+    settings.m_server = TestSettings::Server(Url.toString());
 
     PreferencesDialog preferencesDialog(&settings);
 
@@ -64,7 +64,7 @@ void TestPreferences::setSettings() {
 
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_serverAddress.url, Url);
+    QCOMPARE(settings.m_server.url, Url);
 }
 
 QTEST_MAIN(TestPreferences)

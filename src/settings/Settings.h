@@ -8,7 +8,7 @@ public:
         QByteArray state;
     };
 
-    struct ServerAddress {
+    struct Server {
         QUrl url;
     };
 
@@ -20,8 +20,8 @@ public:
     virtual MainWindow mainWindow() const = 0;
     virtual bool containsGeometry() const = 0;
 
-    virtual void setServerAddress(const ServerAddress& serverAddress) = 0;
-    virtual ServerAddress serverAddress() const = 0;
+    virtual void setServer(const Server& server) = 0;
+    virtual Server server() const = 0;
 
     virtual void setAccount(const Account& account) = 0;
     virtual Account account() const = 0;

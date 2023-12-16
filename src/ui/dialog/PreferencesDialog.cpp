@@ -5,9 +5,9 @@
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
-    Settings::ServerAddress serverAddress = settings->serverAddress();
+    Settings::Server server = settings->server();
 
-    m_urlLineEdit = new QLineEdit(serverAddress.url.toString());
+    m_urlLineEdit = new QLineEdit(server.url.toString());
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("URL:"), m_urlLineEdit);
@@ -22,6 +22,6 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 }
 
 void PreferencesDialog::accept() {
-    m_settings->setServerAddress(Settings::ServerAddress(QUrl(m_urlLineEdit->text())));
+    m_settings->setServer(Settings::Server(QUrl(m_urlLineEdit->text())));
     StandardDialog::accept();
 }

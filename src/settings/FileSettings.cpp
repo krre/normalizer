@@ -33,13 +33,13 @@ bool FileSettings::containsGeometry() const {
     return settings.contains("MainWindow/geometry");
 }
 
-void FileSettings::setServerAddress(const ServerAddress& serverAddress) {
+void FileSettings::setServer(const Server& server) {
     QSettings settings;
-    settings.setValue("url", serverAddress.url.toString());
+    settings.setValue("url", server.url.toString());
 }
 
-Settings::ServerAddress FileSettings::serverAddress() const {
-    ServerAddress result;
+Settings::Server FileSettings::server() const {
+    Server result;
 
     QSettings settings;
     result.url = settings.value("url", "https://api.norm.dev").toByteArray();
