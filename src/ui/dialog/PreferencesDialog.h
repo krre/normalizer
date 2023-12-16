@@ -1,8 +1,8 @@
 #pragma once
 #include "StandardDialog.h"
-#include "manager/settings/Settings.h"
 
 class QLineEdit;
+class Settings;
 
 class PreferencesDialog : public StandardDialog {
 public:

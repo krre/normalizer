@@ -28,8 +28,8 @@ add_library(common STATIC
     core/async/Task.h
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
-    manager/settings/Settings.h
-    manager/settings/FileSettings.h manager/settings/FileSettings.cpp
+    settings/Settings.h
+    settings/FileSettings.h settings/FileSettings.cpp
     network/http/HttpNetwork.h network/http/HttpNetwork.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp

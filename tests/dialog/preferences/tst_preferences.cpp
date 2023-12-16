@@ -1,5 +1,5 @@
 #include "ui/dialog/PreferencesDialog.h"
-#include "manager/settings/Settings.h"
+#include "settings/Settings.h"
 #include <QTest>
 #include <QLineEdit>
 

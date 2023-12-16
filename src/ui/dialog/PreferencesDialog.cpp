@@ -1,4 +1,5 @@
 #include "PreferencesDialog.h"
+#include "settings/Settings.h"
 #include <QtWidgets>
 
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {

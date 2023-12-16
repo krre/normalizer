@@ -6,7 +6,7 @@
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/AccountDialog.h"
-#include "manager/settings/FileSettings.h"
+#include "settings/FileSettings.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/account/UserAccount.h"
 #include <QtWidgets>

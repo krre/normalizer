@@ -3,7 +3,7 @@
 #include "RenderView.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
-#include "manager/settings/FileSettings.h"
+#include "settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
 
