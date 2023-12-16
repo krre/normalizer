@@ -27,5 +27,4 @@ private:
     ProjectTable* m_projectTable = nullptr;
     RenderView* m_renderView = nullptr;
     ActionBuilder* m_actionBuilder = nullptr;
-    QPropertyNotifier m_projectPathNotifier;
 };
