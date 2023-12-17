@@ -26,12 +26,12 @@ bool ProjectTable::isActive() const {
 }
 
 void ProjectTable::add() {
-    ProjectEditor projectEditor;
+    ProjectEditor projectEditor(m_project);
     projectEditor.exec();
 }
 
 void ProjectTable::edit() {
-    ProjectEditor projectEditor(1);
+    ProjectEditor projectEditor(m_project, 1);
     projectEditor.exec();
 }
 

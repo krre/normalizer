@@ -1,17 +1,10 @@
 #include "ProjectEditor.h"
 #include <QtWidgets>
 
-ProjectEditor::ProjectEditor(QWidget* parent) : StandardDialog(parent) {
+ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
+        StandardDialog(parent), m_project(project) {
     setWindowTitle(tr("Add Project"));
-    setup();
-}
 
-ProjectEditor::ProjectEditor(Id id, QWidget* parent) : StandardDialog(parent) {
-    setWindowTitle(tr("Edit Project"));
-    setup();
-}
-
-void ProjectEditor::setup() {
     m_nameLineEdit = new QLineEdit;
     m_descriptionTextEdit = new QPlainTextEdit;
 
@@ -30,4 +23,13 @@ void ProjectEditor::setup() {
     resizeToWidth(800);
 
     m_nameLineEdit->setFocus();
+}
+
+ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* parent) : ProjectEditor(project, parent) {
+    setWindowTitle(tr("Edit Project"));
+    m_id = id;
+}
+
+void ProjectEditor::accept() {
+    StandardDialog::accept();
 }
