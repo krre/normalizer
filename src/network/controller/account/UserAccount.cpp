@@ -6,9 +6,7 @@ namespace Controller {
 
 UserAccount::UserAccount(HttpNetwork* httpNetwork) : m_httpNetwork(httpNetwork) {}
 
-}
-
-Async::Task<QString> Controller::UserAccount::create(const CreateAccount& account) {
+Async::Task<QString>UserAccount::create(const CreateAccount& account) {
     QJsonObject data;
     data["login"] = account.login;
     data["full_name"] = account.fullName;
@@ -19,14 +17,14 @@ Async::Task<QString> Controller::UserAccount::create(const CreateAccount& accoun
     co_return response.toMap()["token"].toString();
 }
 
-Async::Task<void> Controller::UserAccount::update(const UpdateAccount& account) {
+Async::Task<void>UserAccount::update(const UpdateAccount& account) {
     QJsonObject data;
     data["full_name"] = account.fullName;
 
     co_await m_httpNetwork->put(NAME, data);
 }
 
-Async::Task<Controller::Account::GetAccount> Controller::UserAccount::get() {
+Async::Task<Account::GetAccount>UserAccount::get() {
     QVariant response = co_await m_httpNetwork->get(NAME);
     QVariantMap params = response.toMap();
 
@@ -38,7 +36,7 @@ Async::Task<Controller::Account::GetAccount> Controller::UserAccount::get() {
     co_return account;
 }
 
-Async::Task<QString> Controller::UserAccount::login(const LoginAccount& account) {
+Async::Task<QString>UserAccount::login(const LoginAccount& account) {
     QJsonObject data;
     data["email"] = account.email;
     data["password"] = Utils::sha256(account.password);
@@ -47,14 +45,16 @@ Async::Task<QString> Controller::UserAccount::login(const LoginAccount& account)
     co_return response.toMap()["token"].toString();
 }
 
-Async::Task<void> Controller::UserAccount::remove() {
+Async::Task<void>UserAccount::remove() {
     co_await m_httpNetwork->deleteResource(NAME);
 }
 
-Async::Task<void> Controller::UserAccount::changePassword(const Password& password) {
+Async::Task<void>UserAccount::changePassword(const Password& password) {
     QJsonObject data;
     data["old_password"] = Utils::sha256(password.oldPassword);
     data["new_password"] = Utils::sha256(password.newPassword);
 
     co_await m_httpNetwork->put(QString(NAME) +  "/password", data);
+}
+
 }
