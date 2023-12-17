@@ -41,6 +41,7 @@ add_library(common STATIC
     network/controller/account/UserAccount.cpp network/controller/account/UserAccount.h
     network/controller/account/Account.h
     network/controller/project/Project.h
+    network/controller/project/NormProject.h network/controller/project/NormProject.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

@@ -1,8 +1,9 @@
 #include "ProjectTable.h"
 #include "ProjectEditor.h"
+#include "network/controller/project/Project.h"
 #include <QtWidgets>
 
-ProjectTable::ProjectTable() {
+ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     m_tableWidget = new QTableWidget;
     m_tableWidget->setColumnCount(5);
     m_tableWidget->setHorizontalHeaderLabels({ tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") });
@@ -13,8 +14,11 @@ ProjectTable::ProjectTable() {
     verticalLayout->addWidget(m_tableWidget);
 
     setLayout(verticalLayout);
+}
 
-    load();
+Async::Task<void> ProjectTable::load() {
+    m_tableWidget->setRowCount(0);
+    auto projects = co_await m_project->getList();
 }
 
 bool ProjectTable::isActive() const {
@@ -35,6 +39,6 @@ void ProjectTable::deleteProject() {
 
 }
 
-void ProjectTable::load() {
-
+void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
+    load();
 }

@@ -3,6 +3,7 @@
 #include "RenderView.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
+#include "network/controller/project/NormProject.h"
 #include "settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
@@ -12,8 +13,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     m_fileSettings.reset(new FileSettings);
     m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().url));
+    m_project.reset(new Controller::NormProject(m_httpNetwork.data()));
 
-    m_projectTable = new ProjectTable;
+    m_projectTable = new ProjectTable(m_project.data());
     m_renderView = new RenderView;
 
     ActionBuilder::Parameters parameters;

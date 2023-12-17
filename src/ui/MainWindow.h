@@ -2,6 +2,10 @@
 #include <QMainWindow>
 #include <QPropertyNotifier>
 
+namespace Controller {
+    class NormProject;
+}
+
 class HttpNetwork;
 class FileSettings;
 class ProjectTable;
@@ -23,6 +27,7 @@ private:
 
     QScopedPointer<HttpNetwork> m_httpNetwork;
     QScopedPointer<FileSettings> m_fileSettings;
+    QScopedPointer<Controller::NormProject> m_project;
 
     ProjectTable* m_projectTable = nullptr;
     RenderView* m_renderView = nullptr;
