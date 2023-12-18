@@ -9,6 +9,7 @@ int main(int argc, char* argv[]) {
     Application app(argc, argv);
 
     MainWindow mainWindow;
+    app.setMainWindow(&mainWindow);
     mainWindow.show();
 
     return app.exec();

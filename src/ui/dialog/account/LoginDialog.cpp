@@ -55,7 +55,5 @@ Async::Task<void> LoginDialog::getToken() {
         }
 
         errorMessage(message);
-    } catch (std::exception& e) {
-        errorMessage(e.what());
     }
 }

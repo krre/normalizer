@@ -64,7 +64,11 @@ public:
         Task<T> get_return_object() { return Handle::from_promise(*this); }
 
         void unhandled_exception() {
-            m_exception = std::current_exception();
+            if (m_awatingHandle) {
+                m_exception = std::current_exception();
+            } else {
+                std::rethrow_exception(std::current_exception());
+            }
         }
         void return_value(T value) {
             m_value = value;
@@ -141,7 +145,11 @@ public:
         Task<void> get_return_object() { return Handle::from_promise(*this); }
 
         void unhandled_exception() {
-            m_exception = std::current_exception();
+            if (m_awatingHandle) {
+                m_exception = std::current_exception();
+            } else {
+                std::rethrow_exception(std::current_exception());
+            }
         }
 
         void return_void() {}

@@ -61,40 +61,22 @@ Async::Task<void> AccountDialog::deleteAccount() {
         co_return;
     }
 
-    try {
-        co_await m_account->remove();
-        m_result = Result::Deleted;
-        StandardDialog::accept();
-    } catch (HttpException& e) {
-        errorMessage(e.message());
-    } catch (std::exception& e) {
-        errorMessage(e.what());
-    }
+    co_await m_account->remove();
+    m_result = Result::Deleted;
+    StandardDialog::accept();
 }
 
 Async::Task<void> AccountDialog::getAccount() {
-    try {
-        Controller::Account::GetAccount account = co_await m_account->get();
-        m_loginLineEdit->setText(account.login);
-        m_emailLineEdit->setText(account.email);
-        m_fullNameLineEdit->setText(account.fullName);
-    } catch (HttpException& e) {
-        errorMessage(e.message());
-    } catch (std::exception& e) {
-        errorMessage(e.what());
-    }
+    Controller::Account::GetAccount account = co_await m_account->get();
+    m_loginLineEdit->setText(account.login);
+    m_emailLineEdit->setText(account.email);
+    m_fullNameLineEdit->setText(account.fullName);
 }
 
 Async::Task<void> AccountDialog::updateAccount() {
     Controller::Account::UpdateAccount account;
     account.fullName = m_fullNameLineEdit->text();
 
-    try {
-        co_await m_account->update(account);
-        StandardDialog::accept();
-    } catch (HttpException& e) {
-        errorMessage(e.message());
-    } catch (std::exception& e) {
-        errorMessage(e.what());
-    }
+    co_await m_account->update(account);
+    StandardDialog::accept();
 }
