@@ -1,4 +1,5 @@
 #include "ProjectEditor.h"
+#include "network/controller/project/Project.h"
 #include <QtWidgets>
 
 ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
@@ -31,5 +32,28 @@ ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* paren
 }
 
 void ProjectEditor::accept() {
+    if (m_id) {
+        updateProject();
+    } else {
+        createProject();
+    }
+}
+
+Async::Task<void> ProjectEditor::createProject() {
+    Controller::Project::CreateProject project;
+    project.name = m_nameLineEdit->text();
+    project.projectTemplate = static_cast<Controller::Project::Template>(m_templateComboBox->currentIndex());
+    project.description = m_descriptionTextEdit->toPlainText();
+
+    co_await m_project->create(project);
+    StandardDialog::accept();
+}
+
+Async::Task<void> ProjectEditor::updateProject() {
+    Controller::Project::UpdateProject project;
+    project.name = m_nameLineEdit->text();
+    project.description = m_descriptionTextEdit->toPlainText();
+
+    co_await m_project->update(m_id, project);
     StandardDialog::accept();
 }

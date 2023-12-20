@@ -1,6 +1,7 @@
 #pragma once
-#include "ui/dialog/StandardDialog.h"
 #include "core/CommonTypes.h"
+#include "core/async/Task.h"
+#include "ui/dialog/StandardDialog.h"
 
 namespace Controller {
     class Project;
@@ -19,9 +20,11 @@ public slots:
     void accept() override;
 
 private:
+    Async::Task<void> createProject();
+    Async::Task<void> updateProject();
+
     Controller::Project* m_project = nullptr;
     Id m_id = 0;
-
     QLineEdit* m_nameLineEdit = nullptr;
     QPlainTextEdit* m_descriptionTextEdit = nullptr;
     QComboBox* m_templateComboBox = nullptr;
