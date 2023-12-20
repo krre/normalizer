@@ -60,6 +60,10 @@ public:
         }
     };
 
+    static QString templateToString(Template projectTemplate) {
+        return projectTemplate == Template::Binary ? "Binary" : "Library";
+    }
+
     virtual Async::Task<Id> create(const CreateProject& project) = 0;
     virtual Async::Task<void> update(Id id, const UpdateProject& project) = 0;
     virtual Async::Task<GetProject> getOne(Id id) = 0;
