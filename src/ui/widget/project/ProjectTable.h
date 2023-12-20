@@ -11,11 +11,16 @@ class QTableWidget;
 class QNetworkAccessManager;
 
 class ProjectTable : public QWidget {
+    Q_OBJECT
 public:
     ProjectTable(Controller::Project* project);
 
     bool isActive() const;
+    int currentRow() const;
     Async::Task<void> load();
+
+signals:
+    void currentRowChanged(int row);
 
 public slots:
     void add();

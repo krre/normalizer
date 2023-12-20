@@ -34,6 +34,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_addProjectAction = m_projectMenu->addAction(tr("Add..."), m_projectTable, &ProjectTable::add);
     m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
     m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::deleteProject);
+    connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);
     updateProjectActions();
 
     auto accountMenu = menuBar->addMenu(tr("Account"));

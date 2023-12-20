@@ -11,6 +11,10 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
 
+    connect(m_tableWidget, &QTableWidget::itemSelectionChanged, this, [this] {
+        emit currentRowChanged(currentRow());
+    });
+
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->setContentsMargins(0, 0, 0, 0);
     verticalLayout->addWidget(m_tableWidget);
@@ -31,6 +35,10 @@ Async::Task<void> ProjectTable::load() {
 
 bool ProjectTable::isActive() const {
     return m_tableWidget->currentRow() >= 0;
+}
+
+int ProjectTable::currentRow() const {
+    return m_tableWidget->selectedItems().count() ? m_tableWidget->selectedItems().first()->row() : -1;
 }
 
 void ProjectTable::add() {
