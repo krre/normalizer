@@ -1,5 +1,6 @@
 #pragma once
 #include "core/async/Task.h"
+#include "network/controller/project/Project.h"
 #include <QWidget>
 
 namespace Controller {
@@ -25,6 +26,17 @@ protected:
     void showEvent(QShowEvent* event) override;
 
 private:
+    enum class Column {
+        Id,
+        Name,
+        Template,
+        Description,
+        CreatedTime,
+        UpdatedTime,
+    };
+
+    void addRow(const Controller::Project::GetProject& project);
+
     Controller::Project* m_project = nullptr;
     QTableWidget* m_tableWidget = nullptr;
 };

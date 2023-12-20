@@ -1,13 +1,15 @@
 #include "ProjectTable.h"
 #include "ProjectEditor.h"
-#include "network/controller/project/Project.h"
 #include <QtWidgets>
 
 ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
+    QStringList columnLabels = { tr("Id"), tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") };
+
     m_tableWidget = new QTableWidget;
-    m_tableWidget->setColumnCount(5);
-    m_tableWidget->setHorizontalHeaderLabels({ tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") });
-    m_tableWidget->setSelectionBehavior(QAbstractItemView::SelectItems);
+    m_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    m_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_tableWidget->setColumnCount(columnLabels.count());
+    m_tableWidget->setHorizontalHeaderLabels(columnLabels);
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -19,6 +21,12 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
 Async::Task<void> ProjectTable::load() {
     m_tableWidget->setRowCount(0);
     auto projects = co_await m_project->getList();
+
+    for (const auto& project : projects) {
+        addRow(project);
+    }
+
+    m_tableWidget->selectRow(0);
 }
 
 bool ProjectTable::isActive() const {
@@ -27,7 +35,10 @@ bool ProjectTable::isActive() const {
 
 void ProjectTable::add() {
     ProjectEditor projectEditor(m_project);
-    projectEditor.exec();
+
+    if (projectEditor.exec() == QDialog::Accepted) {
+        load();
+    }
 }
 
 void ProjectTable::edit() {
@@ -41,4 +52,26 @@ void ProjectTable::deleteProject() {
 
 void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
     load();
+}
+
+void ProjectTable::addRow(const Controller::Project::GetProject& project) {
+    m_tableWidget->insertRow(m_tableWidget->rowCount());
+
+    QTableWidgetItem* idItem = new QTableWidgetItem(QString::number(project.id));
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Id), idItem);
+
+    QTableWidgetItem* nameItem = new QTableWidgetItem(project.name);
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Name), nameItem);
+
+    QTableWidgetItem* templateItem = new QTableWidgetItem(Controller::Project::templateToString(project.projectTemplate));
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Template), templateItem);
+
+    QTableWidgetItem* descriptionItem = new QTableWidgetItem(project.description);
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Description), descriptionItem);
+
+    QTableWidgetItem* createdItem = new QTableWidgetItem(project.createdTime.toString("yyyy.MM.dd hh:mm"));
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::CreatedTime), createdItem);
+
+    QTableWidgetItem* updatedItem = new QTableWidgetItem(project.updatedTime.toString("yyyy.MM.dd hh:mm"));
+    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::UpdatedTime), updatedItem);
 }
