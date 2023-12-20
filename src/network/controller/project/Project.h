@@ -44,6 +44,8 @@ public:
         QString name;
         Template projectTemplate;
         QString description;
+        QDateTime createdTime;
+        QDateTime updatedTime;
 
         static GetProject fromVariantMap(const QVariantMap& params) {
             GetProject result;
@@ -51,6 +53,8 @@ public:
             result.name = params["name"].toString();
             result.projectTemplate = static_cast<Template>(params["template"].toInt());
             result.description = params["description"].toString();
+            result.createdTime = params["created_at"].toDateTime();
+            result.updatedTime = params["updated_at"].toDateTime();
 
             return result;
         }
