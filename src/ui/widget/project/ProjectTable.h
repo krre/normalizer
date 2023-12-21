@@ -1,5 +1,6 @@
 #pragma once
 #include "core/async/Task.h"
+#include "core/CommonTypes.h"
 #include "network/controller/project/Project.h"
 #include <QWidget>
 
@@ -24,7 +25,7 @@ signals:
 
 public slots:
     void add();
-    void edit();
+    Async::Task<void> edit();
     void deleteProject();
 
 protected:
@@ -41,6 +42,7 @@ private:
     };
 
     void addRow(const Controller::Project::GetProject& project);
+    void updateRow(const Controller::Project::GetProject& project);
 
     Controller::Project* m_project = nullptr;
     QTableWidget* m_tableWidget = nullptr;

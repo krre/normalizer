@@ -51,11 +51,15 @@ void ProjectTable::add() {
     }
 }
 
-void ProjectTable::edit() {
+Async::Task<void> ProjectTable::edit() {
     Id id = m_tableWidget->item(currentRow(), int(Column::Id))->text().toInt();
 
     ProjectEditor projectEditor(m_project, id);
-    projectEditor.exec();
+
+    if (projectEditor.exec() == QDialog::Accepted) {
+        Controller::Project::GetProject project = co_await m_project->getOne(id);
+        updateRow(project);
+    }
 }
 
 void ProjectTable::deleteProject() {
@@ -68,22 +72,34 @@ void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
 
 void ProjectTable::addRow(const Controller::Project::GetProject& project) {
     m_tableWidget->insertRow(m_tableWidget->rowCount());
+    int row = m_tableWidget->rowCount() - 1;
 
     QTableWidgetItem* idItem = new QTableWidgetItem(QString::number(project.id));
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Id), idItem);
+    m_tableWidget->setItem(row, int(Column::Id), idItem);
 
     QTableWidgetItem* nameItem = new QTableWidgetItem(project.name);
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Name), nameItem);
+    m_tableWidget->setItem(row, int(Column::Name), nameItem);
 
     QTableWidgetItem* templateItem = new QTableWidgetItem(Controller::Project::templateToString(project.projectTemplate));
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Template), templateItem);
+    m_tableWidget->setItem(row, int(Column::Template), templateItem);
 
     QTableWidgetItem* descriptionItem = new QTableWidgetItem(project.description);
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::Description), descriptionItem);
+    m_tableWidget->setItem(row, int(Column::Description), descriptionItem);
 
     QTableWidgetItem* createdItem = new QTableWidgetItem(project.createdTime.toString("yyyy.MM.dd hh:mm"));
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::CreatedTime), createdItem);
+    m_tableWidget->setItem(row, int(Column::CreatedTime), createdItem);
 
     QTableWidgetItem* updatedItem = new QTableWidgetItem(project.updatedTime.toString("yyyy.MM.dd hh:mm"));
-    m_tableWidget->setItem(m_tableWidget->rowCount() - 1, int(Column::UpdatedTime), updatedItem);
+    m_tableWidget->setItem(row, int(Column::UpdatedTime), updatedItem);
+}
+
+void ProjectTable::updateRow(const Controller::Project::GetProject& project) {
+    for (int i = 0; i < m_tableWidget->rowCount(); i++) {
+        if (m_tableWidget->item(i, int(Column::Id))->text().toInt() == project.id) {
+            m_tableWidget->item(i, int(Column::Name))->setText(project.name);
+            m_tableWidget->item(i, int(Column::Description))->setText(project.description);
+            m_tableWidget->item(i, int(Column::UpdatedTime))->setText(project.updatedTime.toString("yyyy.MM.dd hh:mm"));
+            break;
+        }
+    }
 }
