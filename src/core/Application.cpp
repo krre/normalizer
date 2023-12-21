@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
-#include "ui/MainWindow.h"
+#include <QMainWindow>
 #include <QMessageBox>
 
 Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
@@ -9,18 +9,25 @@ Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
     setApplicationName(Const::App::Name);
 }
 
-void Application::setMainWindow(MainWindow* mainWindow) {
-    m_mainWindow = mainWindow;
-}
-
 bool Application::notify(QObject* receiver, QEvent* event) {
     try {
         return QApplication::notify(receiver, event);
     } catch (HttpException& e) {
-        QMessageBox::critical(m_mainWindow, m_mainWindow->windowTitle(), e.message());
+        showErrorMessage(e.message());
     } catch (const std::exception& e) {
-        QMessageBox::critical(m_mainWindow, m_mainWindow->windowTitle(), e.what());
+        showErrorMessage(e.what());
     }
 
     return false;
+}
+
+void Application::showErrorMessage(const QString& message) const {
+    for (QWidget* widget : QApplication::topLevelWidgets()) {
+        if (dynamic_cast<QMainWindow*>(widget)) {
+            QMessageBox::critical(widget, widget->windowTitle(), message);
+            return;
+        }
+    }
+
+    qCritical().noquote() << "Exception:" << message;
 }
