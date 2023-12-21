@@ -17,7 +17,7 @@ Async::Task<QString>UserAccount::create(const CreateAccount& account) {
     data["email"] = account.email;
     data["password"] = Utils::sha256(account.password);
 
-    QVariant response = co_await network()->post(name(), data);
+    QVariant response = co_await network()->post(endpoint(), data);
     co_return response.toMap()["token"].toString();
 }
 
@@ -25,11 +25,11 @@ Async::Task<void>UserAccount::update(const UpdateAccount& account) {
     QJsonObject data;
     data["full_name"] = account.fullName;
 
-    co_await network()->put(name(), data);
+    co_await network()->put(endpoint(), data);
 }
 
 Async::Task<Account::GetAccount>UserAccount::getOne() {
-    QVariant response = co_await network()->get(name());
+    QVariant response = co_await network()->get(endpoint());
     QVariantMap params = response.toMap();
 
     GetAccount account;
@@ -45,12 +45,12 @@ Async::Task<QString>UserAccount::login(const LoginAccount& account) {
     data["email"] = account.email;
     data["password"] = Utils::sha256(account.password);
 
-    QVariant response = co_await network()->post(QString(name()) + "/login", data);
+    QVariant response = co_await network()->post(endpoint() + "/login", data);
     co_return response.toMap()["token"].toString();
 }
 
 Async::Task<void>UserAccount::remove() {
-    co_await network()->deleteResource(name());
+    co_await network()->deleteResource(endpoint());
 }
 
 Async::Task<void>UserAccount::changePassword(const Password& password) {
@@ -58,7 +58,7 @@ Async::Task<void>UserAccount::changePassword(const Password& password) {
     data["old_password"] = Utils::sha256(password.oldPassword);
     data["new_password"] = Utils::sha256(password.newPassword);
 
-    co_await network()->put(QString(name()) +  "/password", data);
+    co_await network()->put(endpoint() +  "/password", data);
 }
 
 }

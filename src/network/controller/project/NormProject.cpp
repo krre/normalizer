@@ -10,21 +10,21 @@ QString NormProject::name() const {
 }
 
 Async::Task<Id>NormProject::create(const CreateProject& project) {
-    QVariant response = co_await network()->post(name(), project.toJson());
+    QVariant response = co_await network()->post(endpoint(), project.toJson());
     co_return response.toMap()["id"].toLongLong();
 }
 
 Async::Task<void>NormProject::update(Id id, const UpdateProject& project) {
-    co_await network()->put(QString("%1/%2").arg(name()).arg(id), project.toJson());
+    co_await network()->put(endpoint(id), project.toJson());
 }
 
 Async::Task<Project::GetProject> Controller::NormProject::getOne(Id id) {
-    QVariant response = co_await network()->get(QString("%1/%2").arg(name()).arg(id));
+    QVariant response = co_await network()->get(endpoint(id));
     co_return Project::GetProject::fromVariantMap(response.toMap());
 }
 
 Async::Task<QList<Project::GetProject>>NormProject::getAll() {
-    QVariant response = co_await network()->get(name());
+    QVariant response = co_await network()->get(endpoint());
     QList<Project::GetProject> result;
 
     for (const auto& item : response.toList()) {
@@ -35,7 +35,7 @@ Async::Task<QList<Project::GetProject>>NormProject::getAll() {
 }
 
 Async::Task<void>NormProject::remove(Id id) {
-    co_await network()->deleteResource(QString("%1/%2").arg(name()).arg(id));
+    co_await network()->deleteResource(endpoint(id));
 }
 
 }
