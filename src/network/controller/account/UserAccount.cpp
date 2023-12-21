@@ -28,7 +28,7 @@ Async::Task<void>UserAccount::update(const UpdateAccount& account) {
     co_await network()->put(name(), data);
 }
 
-Async::Task<Account::GetAccount>UserAccount::get() {
+Async::Task<Account::GetAccount>UserAccount::getOne() {
     QVariant response = co_await network()->get(name());
     QVariantMap params = response.toMap();
 

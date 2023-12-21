@@ -35,7 +35,7 @@ public:
 
     virtual Async::Task<QString> create(const CreateAccount& account) = 0;
     virtual Async::Task<void> update(const UpdateAccount& account) = 0;
-    virtual Async::Task<GetAccount> get() = 0;
+    virtual Async::Task<GetAccount> getOne() = 0;
     virtual Async::Task<QString> login(const LoginAccount& account) = 0;
     virtual Async::Task<void> remove() = 0;
     virtual Async::Task<void> changePassword(const Password& password) = 0;

@@ -13,7 +13,7 @@ Async::Task<void> TestAccount::update(const UpdateAccount& account) {
     co_return;
 }
 
-Async::Task<Controller::Account::GetAccount> TestAccount::get() {
+Async::Task<Controller::Account::GetAccount> TestAccount::getOne() {
     co_return m_getAccount;
 }
 
