@@ -62,8 +62,23 @@ Async::Task<void> ProjectTable::edit() {
     }
 }
 
-void ProjectTable::deleteProject() {
+Async::Task<void> ProjectTable::deleteProject() {
+    if (QMessageBox::warning(this,
+                             tr("Confirm Deleting Project"),
+                             tr("Delete the project?"),
+                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) != QMessageBox::Ok) {
+        co_return;
+    }
 
+    Id id = m_tableWidget->item(currentRow(), int(Column::Id))->text().toInt();
+    co_await m_project->remove(id);
+
+    for (int i = 0; i < m_tableWidget->rowCount(); i++) {
+        if (m_tableWidget->item(i, int(Column::Id))->text().toInt() == id) {
+            m_tableWidget->removeRow(i);
+            break;
+        }
+    }
 }
 
 void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {

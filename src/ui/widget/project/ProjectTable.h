@@ -26,7 +26,7 @@ signals:
 public slots:
     void add();
     Async::Task<void> edit();
-    void deleteProject();
+    Async::Task<void> deleteProject();
 
 protected:
     void showEvent(QShowEvent* event) override;
