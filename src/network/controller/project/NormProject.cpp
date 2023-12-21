@@ -23,7 +23,7 @@ Async::Task<Project::GetProject> Controller::NormProject::getOne(Id id) {
     co_return Project::GetProject::fromVariantMap(response.toMap());
 }
 
-Async::Task<QList<Project::GetProject>>NormProject::getList() {
+Async::Task<QList<Project::GetProject>>NormProject::getAll() {
     QVariant response = co_await network()->get(name());
     QList<Project::GetProject> result;
 

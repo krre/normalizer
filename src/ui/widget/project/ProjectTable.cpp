@@ -26,7 +26,7 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
 
 Async::Task<void> ProjectTable::load() {
     m_tableWidget->setRowCount(0);
-    auto projects = co_await m_project->getList();
+    auto projects = co_await m_project->getAll();
 
     for (const auto& project : projects) {
         addRow(project);

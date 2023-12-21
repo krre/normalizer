@@ -67,7 +67,7 @@ public:
     virtual Async::Task<Id> create(const CreateProject& project) = 0;
     virtual Async::Task<void> update(Id id, const UpdateProject& project) = 0;
     virtual Async::Task<GetProject> getOne(Id id) = 0;
-    virtual Async::Task<QList<GetProject>> getList() = 0;
+    virtual Async::Task<QList<GetProject>> getAll() = 0;
     virtual Async::Task<void> remove(Id id) = 0;
 };
 
