@@ -29,6 +29,8 @@ ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
 ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* parent) : ProjectEditor(project, parent) {
     setWindowTitle(tr("Edit Project"));
     m_id = id;
+    m_templateComboBox->setEnabled(false);
+    getProject();
 }
 
 void ProjectEditor::accept() {
@@ -56,4 +58,11 @@ Async::Task<void> ProjectEditor::updateProject() {
 
     co_await m_project->update(m_id, project);
     StandardDialog::accept();
+}
+
+Async::Task<void> ProjectEditor::getProject() {
+    Controller::Project::GetProject project = co_await m_project->getOne(m_id);
+    m_nameLineEdit->setText(project.name);
+    m_templateComboBox->setCurrentIndex(int(project.projectTemplate));
+    m_descriptionTextEdit->setPlainText(project.description);
 }

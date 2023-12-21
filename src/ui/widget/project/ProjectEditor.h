@@ -22,6 +22,7 @@ public slots:
 private:
     Async::Task<void> createProject();
     Async::Task<void> updateProject();
+    Async::Task<void> getProject();
 
     Controller::Project* m_project = nullptr;
     Id m_id = 0;

@@ -15,6 +15,8 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
         emit currentRowChanged(currentRow());
     });
 
+    connect(m_tableWidget, &QTableWidget::doubleClicked, this, &ProjectTable::edit);
+
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->setContentsMargins(0, 0, 0, 0);
     verticalLayout->addWidget(m_tableWidget);
@@ -50,7 +52,9 @@ void ProjectTable::add() {
 }
 
 void ProjectTable::edit() {
-    ProjectEditor projectEditor(m_project, 1);
+    Id id = m_tableWidget->item(currentRow(), int(Column::Id))->text().toInt();
+
+    ProjectEditor projectEditor(m_project, id);
     projectEditor.exec();
 }
 

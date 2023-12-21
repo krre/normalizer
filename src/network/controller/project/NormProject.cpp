@@ -15,8 +15,7 @@ Async::Task<void>NormProject::update(Id id, const UpdateProject& project) {
 }
 
 Async::Task<Project::GetProject> Controller::NormProject::getOne(Id id) {
-    QUrlQuery query = { { "id", QString::number(id) } };
-    QVariant response = co_await m_httpNetwork->get(NAME, query);
+    QVariant response = co_await m_httpNetwork->get(QString("%1/%2").arg(NAME).arg(id));
     co_return Project::GetProject::fromVariantMap(response.toMap());
 }
 
