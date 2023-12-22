@@ -11,6 +11,8 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     m_tableWidget->setFocusPolicy(Qt::NoFocus);
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
+    m_tableWidget->horizontalHeader()->setHighlightSections(false);
+    m_tableWidget->verticalHeader()->setVisible(false);
 
     connect(m_tableWidget, &QTableWidget::itemSelectionChanged, this, [this] {
         emit currentRowChanged(currentRow());
