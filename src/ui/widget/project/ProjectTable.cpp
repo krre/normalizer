@@ -1,18 +1,14 @@
 #include "ProjectTable.h"
 #include "ProjectEditor.h"
+#include "ui/widget/TableWidget.h"
 #include <QtWidgets>
 
 ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     QStringList columnLabels = { tr("Id"), tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") };
 
-    m_tableWidget = new QTableWidget;
-    m_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    m_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_tableWidget->setFocusPolicy(Qt::NoFocus);
+    m_tableWidget = new TableWidget;
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
-    m_tableWidget->horizontalHeader()->setHighlightSections(false);
-    m_tableWidget->verticalHeader()->setVisible(false);
 
     connect(m_tableWidget, &QTableWidget::itemSelectionChanged, this, [this] {
         emit currentRowChanged(currentRow());

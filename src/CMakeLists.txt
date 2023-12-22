@@ -43,6 +43,7 @@ add_library(common STATIC
     network/controller/project/Project.h
     network/controller/project/NormProject.h network/controller/project/NormProject.cpp
     network/controller/HttpController.h network/controller/HttpController.cpp
+    ui/widget/TableWidget.h ui/widget/TableWidget.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

@@ -1,14 +1,14 @@
 #pragma once
 #include "core/async/Task.h"
-#include "core/CommonTypes.h"
 #include "network/controller/project/Project.h"
 #include <QWidget>
+
+class TableWidget;
 
 namespace Controller {
     class Project;
 }
 
-class QTableWidget;
 class QNetworkAccessManager;
 
 class ProjectTable : public QWidget {
@@ -45,5 +45,5 @@ private:
     void updateRow(const Controller::Project::GetProject& project);
 
     Controller::Project* m_project = nullptr;
-    QTableWidget* m_tableWidget = nullptr;
+    TableWidget* m_tableWidget = nullptr;
 };
