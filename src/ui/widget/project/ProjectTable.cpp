@@ -8,6 +8,7 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     m_tableWidget = new QTableWidget;
     m_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_tableWidget->setFocusPolicy(Qt::NoFocus);
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
 
