@@ -32,6 +32,7 @@ Async::Task<void> ProjectTable::load() {
     }
 
     m_tableWidget->selectRow(0);
+    m_tableWidget->resizeColumnsToContents();
 }
 
 bool ProjectTable::isActive() const {
