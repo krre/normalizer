@@ -39,9 +39,9 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     auto accountMenu = menuBar->addMenu(tr("Account"));
     m_registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
-    m_loginAction = accountMenu->addAction(tr("Login..."), this, &ActionBuilder::openLoginDialog);
+    m_loginAction = accountMenu->addAction(tr("Log In..."), this, &ActionBuilder::openLoginDialog);
     m_accountAction = accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
-    m_logoutAction = accountMenu->addAction(tr("Logout"), this, &ActionBuilder::logout);
+    m_logoutAction = accountMenu->addAction(tr("Log Out"), this, &ActionBuilder::logout);
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));

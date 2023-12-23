@@ -5,7 +5,7 @@
 #include <QtWidgets>
 
 LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
-    setWindowTitle(tr("Login"));
+    setWindowTitle(tr("Log In"));
 
     m_emailLineEdit = new QLineEdit;
     connect(m_emailLineEdit, &QLineEdit::textChanged, this, &LoginDialog::enableOkButton);
