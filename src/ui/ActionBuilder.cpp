@@ -105,7 +105,7 @@ void ActionBuilder::logout() {
 void ActionBuilder::about() {
     using namespace Const::App;
 
-    QMessageBox::about(m_mainWindow, tr("About %1").arg(Name),
+    QMessageBox::about(m_mainWindow, Name,
         tr("<h3>%1 %2</h3>"
           "Cloud IDE for the Norm visual programming language<br><br>"
           "Based on Qt %3<br>"

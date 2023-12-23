@@ -1,4 +1,5 @@
 #include "StandardDialog.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 
 StandardDialog::StandardDialog(QWidget* parent, Qt::WindowFlags f) : QDialog(parent, f) {
@@ -40,5 +41,5 @@ void StandardDialog::resizeToWidth(int width) {
 }
 
 void StandardDialog::errorMessage(const QString& message) {
-    QMessageBox::critical(this, windowTitle() + " - " + tr("Error"), message);
+    QMessageBox::critical(this, Const::App::Name, message);
 }

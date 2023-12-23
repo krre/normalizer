@@ -24,7 +24,7 @@ bool Application::notify(QObject* receiver, QEvent* event) {
 void Application::showErrorMessage(const QString& message) const {
     for (QWidget* widget : QApplication::topLevelWidgets()) {
         if (dynamic_cast<QMainWindow*>(widget)) {
-            QMessageBox::critical(widget, widget->windowTitle(), message);
+            QMessageBox::critical(widget, Const::App::Name, message);
             return;
         }
     }

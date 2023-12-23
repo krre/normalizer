@@ -1,7 +1,7 @@
 #include "AccountDialog.h"
 #include "ChangePasswordDialog.h"
 #include "network/controller/account/Account.h"
-#include "network/http/HttpNetwork.h"
+#include "core/Constants.h"
 #include <QtWidgets>
 
 AccountDialog::AccountDialog(Controller::Account* account) : m_account(account) {
@@ -49,13 +49,12 @@ void AccountDialog::openChangePasswordDialog() {
     ChangePasswordDialog changePasswordDialog(m_account);
 
     if (changePasswordDialog.exec() == QDialog::Accepted) {
-        QMessageBox::information(this, tr("Changing Password"), tr("Password successfully changed!"));
+        QMessageBox::information(this, Const::App::Name, tr("Password successfully changed!"));
     }
 }
 
 Async::Task<void> AccountDialog::deleteAccount() {
-    if (QMessageBox::warning(this,
-                             tr("Confirm Deleting Account"),
+    if (QMessageBox::warning(this, Const::App::Name,
                              tr("Account will be deleted along with all your projects without the possibility of recovery!"),
                              QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) != QMessageBox::Ok) {
         co_return;
