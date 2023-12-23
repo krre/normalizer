@@ -4,7 +4,7 @@
 
 ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
         StandardDialog(parent), m_project(project) {
-    setWindowTitle(tr("Add Project"));
+    setWindowTitle(tr("Create Project"));
 
     m_nameLineEdit = new QLineEdit;
     m_descriptionTextEdit = new QPlainTextEdit;

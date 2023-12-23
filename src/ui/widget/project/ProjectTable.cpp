@@ -44,7 +44,7 @@ int ProjectTable::currentRow() const {
     return m_tableWidget->selectedItems().count() ? m_tableWidget->selectedItems().first()->row() : -1;
 }
 
-void ProjectTable::add() {
+void ProjectTable::create() {
     ProjectEditor projectEditor(m_project);
 
     if (projectEditor.exec() == QDialog::Accepted) {
