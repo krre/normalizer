@@ -21,6 +21,7 @@ public:
     };
 
     explicit ActionBuilder(const Parameters& parameters);
+    void updateProjectActions();
 
 signals:
     void loggedChanged(bool logged);
@@ -39,7 +40,6 @@ private slots:
     void about();
 
 private:
-    void updateProjectActions();
     void updateAccountActions();
 
     MainWindow* m_mainWindow = nullptr;
@@ -49,7 +49,7 @@ private:
 
     QMenu* m_projectMenu = nullptr;
 
-    QAction* m_addProjectAction = nullptr;
+    QAction* m_createProjectAction = nullptr;
     QAction* m_openProjectAction = nullptr;
     QAction* m_closeProjectAction = nullptr;
     QAction* m_editProjectAction = nullptr;

@@ -49,12 +49,14 @@ void MainWindow::openProject(Id id) {
     m_renderView.reset(new RenderView(id));
     setToRootWidget(m_renderView.data());
     m_projectTable->setVisible(false);
+    m_actionBuilder->updateProjectActions();
 }
 
 void MainWindow::closeProject() {
     m_renderView.reset();
     setToRootWidget(m_projectTable.data());
     m_projectTable->setVisible(true);
+    m_actionBuilder->updateProjectActions();
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {
