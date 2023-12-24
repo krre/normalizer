@@ -15,7 +15,7 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
         emit currentRowChanged(currentRow());
     });
 
-    connect(m_tableWidget, &QTableWidget::doubleClicked, this, &ProjectTable::edit);
+    connect(m_tableWidget, &QTableWidget::doubleClicked, this, &ProjectTable::open);
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->setContentsMargins(0, 0, 0, 0);
