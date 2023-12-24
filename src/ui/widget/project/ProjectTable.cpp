@@ -44,6 +44,16 @@ int ProjectTable::currentRow() const {
     return m_tableWidget->selectedItems().count() ? m_tableWidget->selectedItems().first()->row() : -1;
 }
 
+std::optional<Id> ProjectTable::currentId() const {
+    int row = currentRow();
+
+    if (row >= 0) {
+        return m_tableWidget->item(row, int(Column::Id))->text().toInt();
+    }
+
+    return {};
+}
+
 void ProjectTable::create() {
     ProjectEditor projectEditor(m_project);
 
@@ -53,7 +63,7 @@ void ProjectTable::create() {
 }
 
 Async::Task<void> ProjectTable::edit() {
-    Id id = m_tableWidget->item(currentRow(), int(Column::Id))->text().toInt();
+    Id id = currentId().value();
 
     ProjectEditor projectEditor(m_project, id);
 
@@ -70,7 +80,7 @@ Async::Task<void> ProjectTable::deleteProject() {
         co_return;
     }
 
-    Id id = m_tableWidget->item(currentRow(), int(Column::Id))->text().toInt();
+    Id id = currentId().value();
     co_await m_project->remove(id);
 
     for (int i = 0; i < m_tableWidget->rowCount(); i++) {

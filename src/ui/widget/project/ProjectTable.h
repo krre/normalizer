@@ -18,6 +18,7 @@ public:
 
     bool isActive() const;
     int currentRow() const;
+    std::optional<Id> currentId() const;
     Async::Task<void> load();
 
 signals:
