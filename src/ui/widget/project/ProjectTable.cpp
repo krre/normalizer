@@ -62,6 +62,10 @@ void ProjectTable::create() {
     }
 }
 
+void ProjectTable::open() {
+    emit opened(currentId().value());
+}
+
 Async::Task<void> ProjectTable::edit() {
     Id id = currentId().value();
 

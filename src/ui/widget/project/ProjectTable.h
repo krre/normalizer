@@ -23,9 +23,11 @@ public:
 
 signals:
     void currentRowChanged(int row);
+    void opened(Id id);
 
 public slots:
     void create();
+    void open();
     Async::Task<void> edit();
     Async::Task<void> deleteProject();
 

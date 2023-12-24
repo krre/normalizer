@@ -1,4 +1,5 @@
 #pragma once
+#include "core/CommonTypes.h"
 #include <QMainWindow>
 #include <QPropertyNotifier>
 
@@ -21,15 +22,23 @@ public:
 protected:
     void closeEvent(QCloseEvent* event) override;
 
+private slots:
+    void openProject(Id id);
+
 private:
+    void setToRootWidget(QWidget* widget);
+
     void readSettings();
     void writeSettings();
+
+    QWidget* m_rootWidget = nullptr;
 
     QScopedPointer<HttpNetwork> m_httpNetwork;
     QScopedPointer<FileSettings> m_fileSettings;
     QScopedPointer<Controller::NormProject> m_project;
 
-    ProjectTable* m_projectTable = nullptr;
-    RenderView* m_renderView = nullptr;
+    QScopedPointer<ProjectTable> m_projectTable;
+    QScopedPointer<RenderView> m_renderView;
+
     ActionBuilder* m_actionBuilder = nullptr;
 };

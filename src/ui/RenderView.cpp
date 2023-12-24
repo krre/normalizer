@@ -2,7 +2,7 @@
 #include <QtWidgets>
 #include <Qt3DExtras>
 
-RenderView::RenderView() {
+RenderView::RenderView(Id projectId) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);

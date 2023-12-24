@@ -15,19 +15,23 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().url));
     m_project.reset(new Controller::NormProject(m_httpNetwork.data()));
 
-    m_projectTable = new ProjectTable(m_project.data());
-    m_renderView = new RenderView;
+    m_projectTable.reset(new ProjectTable(m_project.data()));
+    connect(m_projectTable.data(), &ProjectTable::opened, this, &MainWindow::openProject);
 
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
-    parameters.projectTable = m_projectTable;
+    parameters.projectTable = m_projectTable.data();
     parameters.httpNetwork = m_httpNetwork.data();
     parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
-    connect(m_actionBuilder, &ActionBuilder::loggedChanged, m_projectTable, &ProjectTable::setVisible);
+    connect(m_actionBuilder, &ActionBuilder::loggedChanged, m_projectTable.data(), &ProjectTable::setVisible);
 
-    setCentralWidget(m_projectTable);
+    m_rootWidget = new QWidget;
+    setCentralWidget(m_rootWidget);
+
+    setToRootWidget(m_projectTable.data());
+
     readSettings();
 }
 
@@ -38,6 +42,24 @@ MainWindow::~MainWindow() {
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();
+}
+
+void MainWindow::openProject(Id id) {
+    m_renderView.reset(new RenderView(id));
+    setToRootWidget(m_renderView.data());
+    m_projectTable->setVisible(false);
+}
+
+void MainWindow::setToRootWidget(QWidget* widget) {
+    if (m_rootWidget->layout()) {
+        delete m_rootWidget->layout();
+    }
+
+    auto layout = new QVBoxLayout(m_rootWidget);
+    layout->setContentsMargins(QMargins());
+    layout->addWidget(widget);
+
+    m_rootWidget->setLayout(layout);
 }
 
 void MainWindow::readSettings() {

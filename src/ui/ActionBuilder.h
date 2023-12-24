@@ -49,6 +49,7 @@ private:
     QMenu* m_projectMenu = nullptr;
 
     QAction* m_addProjectAction = nullptr;
+    QAction* m_openProjectAction = nullptr;
     QAction* m_editProjectAction = nullptr;
     QAction* m_deleteProjectAction = nullptr;
 
