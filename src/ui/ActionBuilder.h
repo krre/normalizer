@@ -24,6 +24,7 @@ public:
 
 signals:
     void loggedChanged(bool logged);
+    void projectClosed();
 
 private slots:
     void openPreferencesDialog();
@@ -50,6 +51,7 @@ private:
 
     QAction* m_addProjectAction = nullptr;
     QAction* m_openProjectAction = nullptr;
+    QAction* m_closeProjectAction = nullptr;
     QAction* m_editProjectAction = nullptr;
     QAction* m_deleteProjectAction = nullptr;
 

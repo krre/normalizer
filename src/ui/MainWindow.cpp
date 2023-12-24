@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     m_actionBuilder = new ActionBuilder(parameters);
     connect(m_actionBuilder, &ActionBuilder::loggedChanged, m_projectTable.data(), &ProjectTable::setVisible);
+    connect(m_actionBuilder, &ActionBuilder::projectClosed, this, &MainWindow::closeProject);
 
     m_rootWidget = new QWidget;
     setCentralWidget(m_rootWidget);
@@ -48,6 +49,12 @@ void MainWindow::openProject(Id id) {
     m_renderView.reset(new RenderView(id));
     setToRootWidget(m_renderView.data());
     m_projectTable->setVisible(false);
+}
+
+void MainWindow::closeProject() {
+    m_renderView.reset();
+    setToRootWidget(m_projectTable.data());
+    m_projectTable->setVisible(true);
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {

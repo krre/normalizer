@@ -33,6 +33,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
     m_addProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
     m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
+    m_closeProjectAction = m_projectMenu->addAction(tr("Close"), this, &ActionBuilder::projectClosed);
     m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
     m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::deleteProject);
     connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);

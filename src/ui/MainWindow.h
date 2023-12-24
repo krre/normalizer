@@ -24,6 +24,7 @@ protected:
 
 private slots:
     void openProject(Id id);
+    void closeProject();
 
 private:
     void setToRootWidget(QWidget* widget);
