@@ -31,6 +31,8 @@ public slots:
     Async::Task<void> edit();
     Async::Task<void> deleteProject();
 
+    void showContextMenu(const QPoint& pos);
+
 protected:
     void showEvent(QShowEvent* event) override;
 

@@ -10,12 +10,14 @@ ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
     m_tableWidget = new TableWidget;
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
+    m_tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(m_tableWidget, &QTableWidget::itemSelectionChanged, this, [this] {
         emit currentRowChanged(currentRow());
     });
 
     connect(m_tableWidget, &QTableWidget::doubleClicked, this, &ProjectTable::open);
+    connect(m_tableWidget, &QTableWidget::customContextMenuRequested, this, &ProjectTable::showContextMenu);
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -93,6 +95,18 @@ Async::Task<void> ProjectTable::deleteProject() {
             break;
         }
     }
+}
+
+void ProjectTable::showContextMenu(const QPoint& pos) {
+    auto index = m_tableWidget->indexAt(pos);
+
+    if (!index.isValid()) return;
+
+    auto customMenu = new QMenu(m_tableWidget);
+    customMenu->addAction(tr("Open"), this, &ProjectTable::open);
+    customMenu->addAction(tr("Edit..."), this, &ProjectTable::edit);
+    customMenu->addAction(tr("Delete..."), this, &ProjectTable::deleteProject);
+    customMenu->exec(m_tableWidget->mapToGlobal(pos));
 }
 
 void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
