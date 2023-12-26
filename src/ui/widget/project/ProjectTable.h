@@ -16,13 +16,12 @@ class ProjectTable : public QWidget {
 public:
     ProjectTable(Controller::Project* project);
 
-    bool isActive() const;
-    int currentRow() const;
+    std::optional<int> currentRow() const;
     std::optional<Id> currentId() const;
     Async::Task<void> load();
 
 signals:
-    void currentRowChanged(int row);
+    void currentRowChanged(std::optional<int> row);
     void opened(Id id);
 
 public slots:

@@ -38,19 +38,19 @@ Async::Task<void> ProjectTable::load() {
     m_tableWidget->resizeColumnsToContents();
 }
 
-bool ProjectTable::isActive() const {
-    return m_tableWidget->currentRow() >= 0;
-}
+std::optional<int> ProjectTable::currentRow() const {
+    if (m_tableWidget->selectedItems().count()) {
+        return m_tableWidget->selectedItems().first()->row();
+    }
 
-int ProjectTable::currentRow() const {
-    return m_tableWidget->selectedItems().count() ? m_tableWidget->selectedItems().first()->row() : -1;
+    return {};
 }
 
 std::optional<Id> ProjectTable::currentId() const {
-    int row = currentRow();
+    auto row = currentRow();
 
-    if (row >= 0) {
-        return m_tableWidget->item(row, int(Column::Id))->text().toInt();
+    if (row.has_value()) {
+        return m_tableWidget->item(row.value(), int(Column::Id))->text().toInt();
     }
 
     return {};

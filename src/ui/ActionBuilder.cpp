@@ -123,9 +123,9 @@ void ActionBuilder::updateProjectActions() {
     m_editProjectAction->setVisible(m_projectTable->isVisible());
     m_deleteProjectAction->setVisible(m_projectTable->isVisible());
 
-    m_openProjectAction->setEnabled(m_projectTable->isActive());
-    m_editProjectAction->setEnabled(m_projectTable->isActive());
-    m_deleteProjectAction->setEnabled(m_projectTable->isActive());
+    m_openProjectAction->setEnabled(m_projectTable->currentRow().has_value());
+    m_editProjectAction->setEnabled(m_projectTable->currentRow().has_value());
+    m_deleteProjectAction->setEnabled(m_projectTable->currentRow().has_value());
 }
 
 void ActionBuilder::updateAccountActions() {
