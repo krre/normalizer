@@ -3,9 +3,27 @@
 #include <QtWidgets>
 
 ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
-        StandardDialog(parent), m_project(project) {
+        StandardDialog(parent), m_project(project), m_state(State::Add) {
     setWindowTitle(tr("Create Project"));
+    createForm();
+}
 
+ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* parent) : StandardDialog(parent), m_project(project), m_id(id), m_state(State::Edit) {
+    setWindowTitle(tr("Edit Project"));
+    createForm();
+    m_templateComboBox->setEnabled(false);
+    getProject();
+}
+
+void ProjectEditor::accept() {
+    if (m_state == State::Edit) {
+        updateProject();
+    } else {
+        createProject();
+    }
+}
+
+void ProjectEditor::createForm() {
     m_nameLineEdit = new QLineEdit;
     m_descriptionTextEdit = new QPlainTextEdit;
 
@@ -24,21 +42,6 @@ ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
     resizeToWidth(800);
 
     m_nameLineEdit->setFocus();
-}
-
-ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* parent) : ProjectEditor(project, parent) {
-    setWindowTitle(tr("Edit Project"));
-    m_id = id;
-    m_templateComboBox->setEnabled(false);
-    getProject();
-}
-
-void ProjectEditor::accept() {
-    if (m_id) {
-        updateProject();
-    } else {
-        createProject();
-    }
 }
 
 Async::Task<void> ProjectEditor::createProject() {

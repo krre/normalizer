@@ -20,12 +20,21 @@ public slots:
     void accept() override;
 
 private:
+    enum class State {
+        Add,
+        Edit
+    };
+
+    void createForm();
+
     Async::Task<void> createProject();
     Async::Task<void> updateProject();
     Async::Task<void> getProject();
 
     Controller::Project* m_project = nullptr;
     Id m_id = 0;
+    const State m_state;
+
     QLineEdit* m_nameLineEdit = nullptr;
     QPlainTextEdit* m_descriptionTextEdit = nullptr;
     QComboBox* m_templateComboBox = nullptr;
