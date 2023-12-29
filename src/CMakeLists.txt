@@ -1,6 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Network
+    WebEngineWidgets
 )
 
 add_library(common STATIC
@@ -46,6 +47,7 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PRIVATE
     Qt6::Widgets
     Qt6::Network
+    Qt6::WebEngineWidgets
 )
 
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
