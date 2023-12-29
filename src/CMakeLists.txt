@@ -8,7 +8,7 @@ add_library(common STATIC
     core/Constants.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
-    ui/RenderView.h ui/RenderView.cpp
+    ui/editor/RenderView.h ui/editor/RenderView.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h

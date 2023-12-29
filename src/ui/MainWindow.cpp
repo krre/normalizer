@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
-#include "RenderView.h"
+#include "editor/RenderView.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/project/NormProject.h"
