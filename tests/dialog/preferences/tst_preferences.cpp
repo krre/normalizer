@@ -3,7 +3,8 @@
 #include <QTest>
 #include <QLineEdit>
 
-static const QUrl ApiUrl = QUrl("localhost");
+static const QUrl ApiUrl = QUrl("localhost/api");
+static const QUrl EditorUrl = QUrl("localhost/editor");
 
 class TestSettings : public Settings {
 public:
@@ -54,13 +55,22 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
+    Settings::Server server;
+    server.api = ApiUrl.toString();
+    server.editor = EditorUrl.toString();
+
     TestSettings settings;
-    settings.m_server = TestSettings::Server(ApiUrl.toString());
+    settings.m_server = server;
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(urlLineEdit->text(), ApiUrl.toString());
+    auto apiUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+    auto editorUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+
+    QCOMPARE(apiUrlLineEdit->text(), ApiUrl.toString());
+    QCOMPARE(editorUrlLineEdit->text(), EditorUrl.toString());
 }
 
 void TestPreferences::setSettings() {
@@ -68,12 +78,17 @@ void TestPreferences::setSettings() {
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    hostLineEdit->setText(ApiUrl.toString());
+    auto apiUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    apiUrlLineEdit->setText(ApiUrl.toString());
+
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+    auto editorUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    editorUrlLineEdit->setText(EditorUrl.toString());
 
     preferencesDialog.accept();
 
     QCOMPARE(settings.m_server.api, ApiUrl);
+    QCOMPARE(settings.m_server.editor, EditorUrl);
 }
 
 QTEST_MAIN(TestPreferences)

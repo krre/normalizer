@@ -14,5 +14,6 @@ public slots:
 private:
     Settings* m_settings = nullptr;
 
-    QLineEdit* m_urlLineEdit = nullptr;
+    QLineEdit* m_apiUrlLineEdit = nullptr;
+    QLineEdit* m_editorUrlLineEdit = nullptr;
 };
