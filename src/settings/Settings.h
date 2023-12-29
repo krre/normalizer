@@ -10,7 +10,7 @@ public:
     };
 
     struct Server {
-        QUrl url;
+        QUrl api;
     };
 
     struct Account {

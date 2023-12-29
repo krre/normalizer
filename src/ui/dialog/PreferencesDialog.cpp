@@ -7,7 +7,7 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 
     Settings::Server server = settings->server();
 
-    m_urlLineEdit = new QLineEdit(server.url.toString());
+    m_urlLineEdit = new QLineEdit(server.api.toString());
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("URL:"), m_urlLineEdit);

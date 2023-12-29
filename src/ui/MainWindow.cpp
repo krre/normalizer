@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Const::App::Name);
 
     m_fileSettings.reset(new FileSettings);
-    m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().url));
+    m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().api));
     m_project.reset(new Controller::NormProject(m_httpNetwork.data()));
 
     m_projectTable.reset(new ProjectTable(m_project.data()));

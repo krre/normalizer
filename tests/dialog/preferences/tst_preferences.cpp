@@ -3,7 +3,7 @@
 #include <QTest>
 #include <QLineEdit>
 
-static const QUrl Url = QUrl("localhost");
+static const QUrl ApiUrl = QUrl("localhost");
 
 class TestSettings : public Settings {
 public:
@@ -55,12 +55,12 @@ private slots:
 
 void TestPreferences::readSettings() {
     TestSettings settings;
-    settings.m_server = TestSettings::Server(Url.toString());
+    settings.m_server = TestSettings::Server(ApiUrl.toString());
 
     PreferencesDialog preferencesDialog(&settings);
 
     auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    QCOMPARE(urlLineEdit->text(), Url.toString());
+    QCOMPARE(urlLineEdit->text(), ApiUrl.toString());
 }
 
 void TestPreferences::setSettings() {
@@ -69,11 +69,11 @@ void TestPreferences::setSettings() {
     PreferencesDialog preferencesDialog(&settings);
 
     auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    hostLineEdit->setText(Url.toString());
+    hostLineEdit->setText(ApiUrl.toString());
 
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_server.url, Url);
+    QCOMPARE(settings.m_server.api, ApiUrl);
 }
 
 QTEST_MAIN(TestPreferences)
