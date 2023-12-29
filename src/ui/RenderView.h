@@ -6,4 +6,7 @@ class RenderView : public QWidget {
     Q_OBJECT
 public:
     RenderView(const QUrl& editorUrl, Id projectId);
+
+private:
+    Id m_projectId;
 };
