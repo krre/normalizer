@@ -46,7 +46,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     event->accept();
 }
 
-void MainWindow::openProject(Id id) {
+void MainWindow::openProject(Id id, const QString& name) {
     m_renderView.reset(new RenderView(id));
     setToRootWidget(m_renderView.data());
     m_projectTable->setVisible(false);
@@ -54,7 +54,10 @@ void MainWindow::openProject(Id id) {
 
     FileSettings::Project project = m_fileSettings->project();
     project.id = id;
+    project.name = name;
     m_fileSettings->setProject(project);
+
+    setWindowTitle(name + " - " + Const::App::Name);
 }
 
 void MainWindow::closeProject() {
@@ -65,7 +68,10 @@ void MainWindow::closeProject() {
 
     FileSettings::Project project = m_fileSettings->project();
     project.id = 0;
+    project.name = "";
     m_fileSettings->setProject(project);
+
+    setWindowTitle(Const::App::Name);
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {
@@ -92,10 +98,10 @@ void MainWindow::readSettings() {
     }
 
     if (!m_fileSettings->account().token.isEmpty()) {
-        Id projectId = m_fileSettings->project().id;
+        FileSettings::Project project = m_fileSettings->project();
 
-        if (projectId) {
-            openProject(projectId);
+        if (project.id) {
+            openProject(project.id, project.name);
         } else {
             m_projectTable->setVisible(true);
         }

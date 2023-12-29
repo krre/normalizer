@@ -19,6 +19,7 @@ public:
 
     struct Project {
         Id id;
+        QString name;
     };
 
     virtual void setMainWindow(const MainWindow& mainWindow) = 0;

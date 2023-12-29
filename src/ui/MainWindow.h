@@ -23,7 +23,7 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private slots:
-    void openProject(Id id);
+    void openProject(Id id, const QString& name);
     void closeProject();
 
 private:

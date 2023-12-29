@@ -65,7 +65,7 @@ void ProjectTable::create() {
 }
 
 void ProjectTable::open() {
-    emit opened(currentId().value());
+    emit opened(currentId().value(), m_tableWidget->item(currentRow().value(), int(Column::Name))->text());
 }
 
 Async::Task<void> ProjectTable::edit() {
