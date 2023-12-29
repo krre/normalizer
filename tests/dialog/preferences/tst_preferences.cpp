@@ -33,8 +33,17 @@ public:
         return m_account;
     }
 
+    void setProject(const Project& project) override {
+        m_project = project;
+    }
+
+    Project project() const override {
+        return m_project;
+    }
+
     Server m_server;
     Account m_account;
+    Project m_project;
 };
 
 class TestPreferences : public QObject {

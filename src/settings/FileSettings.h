@@ -14,4 +14,7 @@ public:
 
     void setAccount(const Account& account) override;
     Account account() const override;
+
+    void setProject(const Project& project) override;
+    Project project() const override;
 };

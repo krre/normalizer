@@ -60,3 +60,17 @@ Settings::Account FileSettings::account() const {
 
     return result;
 }
+
+void FileSettings::setProject(const Project& project) {
+    QSettings settings;
+    settings.setValue("Project/id", project.id);
+}
+
+Settings::Project FileSettings::project() const {
+    QSettings settings;
+
+    Project result;
+    result.id = settings.value("Project/id", 0).toLongLong();
+
+    return result;
+}
