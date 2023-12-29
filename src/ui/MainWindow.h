@@ -10,7 +10,7 @@ namespace Controller {
 class HttpNetwork;
 class FileSettings;
 class ProjectTable;
-class RenderView;
+class View;
 class ActionBuilder;
 
 class MainWindow : public QMainWindow {
@@ -39,7 +39,7 @@ private:
     QScopedPointer<Controller::NormProject> m_project;
 
     QScopedPointer<ProjectTable> m_projectTable;
-    QScopedPointer<RenderView> m_renderView;
+    QScopedPointer<View> m_view;
 
     ActionBuilder* m_actionBuilder = nullptr;
 };

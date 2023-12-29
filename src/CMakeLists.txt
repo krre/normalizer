@@ -40,6 +40,8 @@ add_library(common STATIC
     network/controller/project/NormProject.h network/controller/project/NormProject.cpp
     network/controller/HttpController.h network/controller/HttpController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
+    ui/editor/TreeView.h ui/editor/TreeView.cpp
+    ui/editor/View.h ui/editor/View.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

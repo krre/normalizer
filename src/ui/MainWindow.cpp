@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
-#include "editor/RenderView.h"
+#include "editor/View.h"
 #include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/project/NormProject.h"
@@ -47,8 +47,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::openProject(Id id, const QString& name) {
-    m_renderView.reset(new RenderView(m_fileSettings->server().editor, id));
-    setToRootWidget(m_renderView.data());
+    m_view.reset(new View(m_fileSettings->server().editor, id));
+    setToRootWidget(m_view.data());
     m_projectTable->setVisible(false);
     m_actionBuilder->updateProjectActions();
 
@@ -61,7 +61,7 @@ void MainWindow::openProject(Id id, const QString& name) {
 }
 
 void MainWindow::closeProject() {
-    m_renderView.reset();
+    m_view.reset();
     setToRootWidget(m_projectTable.data());
     m_projectTable->setVisible(true);
     m_actionBuilder->updateProjectActions();
