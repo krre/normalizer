@@ -47,7 +47,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::openProject(Id id, const QString& name) {
-    m_renderView.reset(new RenderView(id));
+    m_renderView.reset(new RenderView(m_fileSettings->server().editor, id));
     setToRootWidget(m_renderView.data());
     m_projectTable->setVisible(false);
     m_actionBuilder->updateProjectActions();

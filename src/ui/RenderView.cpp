@@ -2,9 +2,9 @@
 #include <QtWidgets>
 #include <QWebEngineView>
 
-RenderView::RenderView(Id projectId) {
+RenderView::RenderView(const QUrl& editorUrl, Id projectId) {
     QWebEngineView* view = new QWebEngineView;
-    view->load(QUrl("https://qt-project.org/"));
+    view->load(editorUrl);
 
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

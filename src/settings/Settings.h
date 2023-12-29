@@ -11,6 +11,7 @@ public:
 
     struct Server {
         QUrl api;
+        QUrl editor;
     };
 
     struct Account {

@@ -5,5 +5,5 @@
 class RenderView : public QWidget {
     Q_OBJECT
 public:
-    RenderView(Id projectId);
+    RenderView(const QUrl& editorUrl, Id projectId);
 };

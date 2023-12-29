@@ -35,14 +35,23 @@ bool FileSettings::containsGeometry() const {
 
 void FileSettings::setServer(const Server& server) {
     QSettings settings;
+    settings.beginGroup("Server");
+
     settings.setValue("api", server.api.toString());
+    settings.setValue("editor", server.editor.toString());
+
+    settings.endGroup();
 }
 
-Settings::Server FileSettings::server() const {
-    Server result;
-
+Settings::Server FileSettings::server() const {\
     QSettings settings;
-    result.api = settings.value("api", "https://api.norm.dev").toByteArray();
+    settings.beginGroup("Server");
+
+    Server result;
+    result.api = settings.value("api", "https://api.norm.dev").toString();
+    result.editor = settings.value("editor", "http://localhost:5173/editor").toString();
+
+    settings.endGroup();
 
     return result;
 }
