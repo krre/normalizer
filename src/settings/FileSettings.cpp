@@ -92,3 +92,22 @@ Settings::Project FileSettings::project() const {
 
     return result;
 }
+
+void FileSettings::setView(const View& view) {
+    QSettings settings;
+    settings.beginGroup("View");
+    settings.setValue("selected", view.selected);
+    settings.endGroup();
+}
+
+Settings::View FileSettings::view() const {
+    QSettings settings;
+    settings.beginGroup("View");
+
+    View result;
+    result.selected = settings.value("selected").toInt();
+
+    settings.endGroup();
+
+    return result;
+}

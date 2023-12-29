@@ -42,9 +42,18 @@ public:
         return m_project;
     }
 
+    void setView(const View& view) override {
+        m_view = view;
+    }
+
+    View view() const override {
+        return m_view;
+    }
+
     Server m_server;
     Account m_account;
     Project m_project;
+    View m_view;
 };
 
 class TestPreferences : public QObject {

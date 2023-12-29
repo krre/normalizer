@@ -23,6 +23,10 @@ public:
         QString name;
     };
 
+    struct View {
+        int selected;
+    };
+
     virtual void setMainWindow(const MainWindow& mainWindow) = 0;
     virtual MainWindow mainWindow() const = 0;
     virtual bool containsGeometry() const = 0;
@@ -35,4 +39,7 @@ public:
 
     virtual void setProject(const Project& project) = 0;
     virtual Project project() const = 0;
+
+    virtual void setView(const View& view) = 0;
+    virtual View view() const = 0;
 };
