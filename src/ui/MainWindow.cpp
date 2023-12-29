@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_project.reset(new Controller::NormProject(m_httpNetwork.data()));
 
     m_projectTable.reset(new ProjectTable(m_project.data()));
+    m_projectTable->setVisible(false);
     connect(m_projectTable.data(), &ProjectTable::opened, this, &MainWindow::openProject);
 
     ActionBuilder::Parameters parameters;
@@ -50,6 +51,10 @@ void MainWindow::openProject(Id id) {
     setToRootWidget(m_renderView.data());
     m_projectTable->setVisible(false);
     m_actionBuilder->updateProjectActions();
+
+    FileSettings::Project project = m_fileSettings->project();
+    project.id = id;
+    m_fileSettings->setProject(project);
 }
 
 void MainWindow::closeProject() {
@@ -57,6 +62,10 @@ void MainWindow::closeProject() {
     setToRootWidget(m_projectTable.data());
     m_projectTable->setVisible(true);
     m_actionBuilder->updateProjectActions();
+
+    FileSettings::Project project = m_fileSettings->project();
+    project.id = 0;
+    m_fileSettings->setProject(project);
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {
@@ -82,7 +91,15 @@ void MainWindow::readSettings() {
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
 
-    m_projectTable->setVisible(!m_fileSettings->account().token.isEmpty());
+    if (!m_fileSettings->account().token.isEmpty()) {
+        Id projectId = m_fileSettings->project().id;
+
+        if (projectId) {
+            openProject(projectId);
+        } else {
+            m_projectTable->setVisible(true);
+        }
+    }
 }
 
 void MainWindow::writeSettings() {
