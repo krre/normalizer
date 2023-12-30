@@ -7,26 +7,26 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 
     Settings::Server server = settings->server();
 
-    m_apiUrlLineEdit = new QLineEdit(server.api.toString());
-    m_editorUrlLineEdit = new QLineEdit(server.editor.toString());
+    m_apilLineEdit = new QLineEdit(server.api.toString());
+    m_webLineEdit = new QLineEdit(server.web.toString());
 
     auto formLayout = new QFormLayout;
-    formLayout->addRow(tr("API URL:"), m_apiUrlLineEdit);
-    formLayout->addRow(tr("Editor URL:"), m_editorUrlLineEdit);
+    formLayout->addRow("API:", m_apilLineEdit);
+    formLayout->addRow(tr("Web:"), m_webLineEdit);
 
-    auto serverGroupBox = new QGroupBox(tr("Norm Developer Server"));
-    serverGroupBox->setLayout(formLayout);
+    auto urlGroupBox = new QGroupBox("Server");
+    urlGroupBox->setLayout(formLayout);
 
-    setContentWidget(serverGroupBox);
+    setContentWidget(urlGroupBox);
 
     resizeToWidth(400);
-    m_apiUrlLineEdit->setFocus();
+    m_apilLineEdit->setFocus();
 }
 
 void PreferencesDialog::accept() {
     Settings::Server server;
-    server.api = QUrl(m_apiUrlLineEdit->text());
-    server.editor = QUrl(m_editorUrlLineEdit->text());
+    server.api = QUrl(m_apilLineEdit->text());
+    server.web = QUrl(m_webLineEdit->text());
 
     m_settings->setServer(server);
     StandardDialog::accept();

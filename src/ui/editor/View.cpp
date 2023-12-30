@@ -4,13 +4,13 @@
 #include "settings/Settings.h"
 #include <QtWidgets>
 
-View::View(const QUrl& editorUrl, Id projectId, Settings* settings) : m_settings(settings) {
+View::View(const QUrl& webUrl, Id projectId, Settings* settings) : m_settings(settings) {
     pageComboBox = new QComboBox;
     pageComboBox->addItem(tr("3D space"));
     pageComboBox->addItem(tr("Tree"));
     pageComboBox->setCurrentIndex(settings->view().selected);
 
-    m_renderView = new RenderView(editorUrl, projectId);
+    m_renderView = new RenderView(webUrl, projectId);
     m_treeView = new TreeView();
 
     auto stackedLayout = new QStackedLayout;

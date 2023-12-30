@@ -4,7 +4,7 @@
 #include <QLineEdit>
 
 static const QUrl ApiUrl = QUrl("localhost/api");
-static const QUrl EditorUrl = QUrl("localhost/editor");
+static const QUrl WebUrl = QUrl("localhost/web");
 
 class TestSettings : public Settings {
 public:
@@ -66,20 +66,20 @@ private slots:
 void TestPreferences::readSettings() {
     Settings::Server server;
     server.api = ApiUrl.toString();
-    server.editor = EditorUrl.toString();
+    server.web = WebUrl.toString();
 
     TestSettings settings;
     settings.m_server = server;
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto apiUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    auto apiLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto editorUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    auto webLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
-    QCOMPARE(apiUrlLineEdit->text(), ApiUrl.toString());
-    QCOMPARE(editorUrlLineEdit->text(), EditorUrl.toString());
+    QCOMPARE(apiLineEdit->text(), ApiUrl.toString());
+    QCOMPARE(webLineEdit->text(), WebUrl.toString());
 }
 
 void TestPreferences::setSettings() {
@@ -87,17 +87,17 @@ void TestPreferences::setSettings() {
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto apiUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    apiUrlLineEdit->setText(ApiUrl.toString());
+    auto apiLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    apiLineEdit->setText(ApiUrl.toString());
 
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto editorUrlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    editorUrlLineEdit->setText(EditorUrl.toString());
+    auto webLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    webLineEdit->setText(WebUrl.toString());
 
     preferencesDialog.accept();
 
     QCOMPARE(settings.m_server.api, ApiUrl);
-    QCOMPARE(settings.m_server.editor, EditorUrl);
+    QCOMPARE(settings.m_server.web, WebUrl);
 }
 
 QTEST_MAIN(TestPreferences)
