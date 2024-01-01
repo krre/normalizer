@@ -1,7 +1,7 @@
 #include "ProjectTable.h"
 #include "ProjectEditor.h"
 #include "ui/widget/TableWidget.h"
-#include "core/Constants.h"
+#include "core/Application.h"
 #include <QtWidgets>
 
 ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
@@ -80,7 +80,7 @@ Async::Task<void> ProjectTable::edit() {
 }
 
 Async::Task<void> ProjectTable::deleteProject() {
-    if (QMessageBox::warning(this, Const::App::Name,
+    if (QMessageBox::warning(this, Application::Name,
                             tr("Delete the project?"),
                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) != QMessageBox::Ok) {
         co_return;

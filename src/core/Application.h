@@ -6,6 +6,14 @@ class MainWindow;
 
 class Application : public QApplication {
 public:
+    static constexpr auto Organization = "Norm Group";
+    static constexpr auto Name = "Normalizer";
+    static constexpr auto Version = "0.1.0";
+    static constexpr auto Url = "https://github.com/krre/normalizer";
+    static constexpr auto CopyrightYear = "2022-2024";
+    static constexpr auto BuildDate = __DATE__;
+    static constexpr auto BuildTime = __TIME__;
+
     Application(int& argc, char* argv[]);
     bool notify(QObject* receiver, QEvent* event) override;
 

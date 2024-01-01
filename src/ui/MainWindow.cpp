@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
 #include "editor/View.h"
-#include "core/Constants.h"
+#include "core/Application.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/project/NormProject.h"
 #include "settings/FileSettings.h"
@@ -9,7 +9,7 @@
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    setWindowTitle(Const::App::Name);
+    setWindowTitle(Application::Name);
 
     m_fileSettings.reset(new FileSettings);
     m_httpNetwork.reset(new HttpNetwork(m_fileSettings->server().api));
@@ -57,7 +57,7 @@ void MainWindow::openProject(Id id, const QString& name) {
     project.name = name;
     m_fileSettings->setProject(project);
 
-    setWindowTitle(name + " - " + Const::App::Name);
+    setWindowTitle(name + " - " + Application::Name);
 }
 
 void MainWindow::closeProject() {
@@ -71,7 +71,7 @@ void MainWindow::closeProject() {
     project.name = "";
     m_fileSettings->setProject(project);
 
-    setWindowTitle(Const::App::Name);
+    setWindowTitle(Application::Name);
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {

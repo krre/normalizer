@@ -1,6 +1,6 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
-#include "core/Constants.h"
+#include "core/Application.h"
 #include "widget/Menu.h"
 #include "widget/project/ProjectTable.h"
 #include "dialog/PreferencesDialog.h"
@@ -47,7 +47,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
-    helpMenu->addAction(tr("About %1...").arg(Const::App::Name), this, &ActionBuilder::about);
+    helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &ActionBuilder::about);
 
     m_httpNetwork->setToken(m_fileSettings->account().token);
 }
@@ -105,15 +105,14 @@ void ActionBuilder::logout() {
 }
 
 void ActionBuilder::about() {
-    using namespace Const::App;
-
-    QMessageBox::about(m_mainWindow, Name,
+    QMessageBox::about(m_mainWindow, Application::Name,
         tr("<h3>%1 %2</h3>"
           "Cloud IDE for the Norm visual programming language<br><br>"
           "Based on Qt %3<br>"
           "Build on %4 %5<br><br>"
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
-                           .arg(Name, Version, QT_VERSION_STR, BuildDate, BuildTime, URL, CopyrightYear));
+                           .arg(Application::Name, Application::Version, QT_VERSION_STR,
+                            Application::BuildDate, Application::BuildTime, Application::Url, Application::CopyrightYear));
 }
 
 void ActionBuilder::updateProjectActions() {

@@ -1,12 +1,11 @@
 #include "Application.h"
-#include "core/Constants.h"
 #include "network/http/HttpNetwork.h"
 #include <QMainWindow>
 #include <QMessageBox>
 
 Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
-    setOrganizationName(Const::App::Organization);
-    setApplicationName(Const::App::Name);
+    setOrganizationName(Organization);
+    setApplicationName(Name);
 }
 
 bool Application::notify(QObject* receiver, QEvent* event) {
@@ -24,7 +23,7 @@ bool Application::notify(QObject* receiver, QEvent* event) {
 void Application::showErrorMessage(const QString& message) const {
     for (QWidget* widget : QApplication::topLevelWidgets()) {
         if (dynamic_cast<QMainWindow*>(widget)) {
-            QMessageBox::critical(widget, Const::App::Name, message);
+            QMessageBox::critical(widget, Name, message);
             return;
         }
     }
