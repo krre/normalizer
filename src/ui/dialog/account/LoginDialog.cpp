@@ -1,7 +1,7 @@
 #include "LoginDialog.h"
-#include "core/Constants.h"
 #include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
+#include "network/http/HttpStatus.h"
 #include <QtWidgets>
 
 LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
@@ -48,9 +48,9 @@ Async::Task<void> LoginDialog::getToken() {
     } catch (HttpException& e) {
         QString message = e.message();
 
-        if (e.status() == Const::HttpStatus::NotFound) {
+        if (e.status() == HttpStatus::NotFound) {
             message = tr("Email not found");
-        } else if (e.status() == Const::HttpStatus::Unauthorized) {
+        } else if (e.status() == HttpStatus::Unauthorized) {
             message = tr("Wrong password");
         }
 

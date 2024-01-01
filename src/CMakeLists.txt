@@ -42,6 +42,7 @@ add_library(common STATIC
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/TreeView.h ui/editor/TreeView.cpp
     ui/editor/View.h ui/editor/View.cpp
+    network/http/HttpStatus.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

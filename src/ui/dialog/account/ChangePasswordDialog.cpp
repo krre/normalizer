@@ -2,7 +2,7 @@
 #include "ui/dialog/DialogMessages.h"
 #include "network/controller/account/Account.h"
 #include "network/http/HttpNetwork.h"
-#include "core/Constants.h"
+#include "network/http/HttpStatus.h"
 #include <QtWidgets>
 
 ChangePasswordDialog::ChangePasswordDialog(Controller::Account* account) : m_account(account) {
@@ -55,7 +55,7 @@ Async::Task<void> ChangePasswordDialog::changePassword() {
         co_await m_account->changePassword(password);
         StandardDialog::accept();
     } catch (HttpException& e) {
-        QString message = e.status() == Const::HttpStatus::BadRequest ? tr("Old password and new one do not match") : e.message();
+        QString message = e.status() == HttpStatus::BadRequest ? tr("Old password and new one do not match") : e.message();
         errorMessage(message);
     } catch (std::exception& e) {
         errorMessage(e.what());
