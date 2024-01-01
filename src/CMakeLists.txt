@@ -5,7 +5,6 @@ find_package(Qt6 REQUIRED COMPONENTS
 )
 
 add_library(common STATIC
-    core/Constants.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
     ui/editor/RenderView.h ui/editor/RenderView.cpp
