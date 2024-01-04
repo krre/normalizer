@@ -1,6 +1,6 @@
 #include "View.h"
-#include "RenderView.h"
-#include "TreeView.h"
+#include "render/RenderView.h"
+#include "tree/TreeView.h"
 #include "settings/Settings.h"
 #include <QtWidgets>
 
