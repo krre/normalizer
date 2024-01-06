@@ -1,8 +1,8 @@
-#include "RenderView.h"
+#include "Space3d.h"
 #include <QtWidgets>
 #include <QWebEngineView>
 
-RenderView::RenderView(const QUrl& webUrl, Id projectId) : m_projectId(projectId) {
+Space3d::Space3d(const QUrl& webUrl, Id projectId) : m_projectId(projectId) {
     QWebEngineView* view = new QWebEngineView;
     view->load(QString("%1/editor/%2").arg(webUrl.toString()).arg(projectId));
 

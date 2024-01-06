@@ -2,9 +2,9 @@
 #include <core/CommonTypes.h>
 #include <QWidget>
 
-class RenderView : public QWidget {
+class Space3d : public QWidget {
 public:
-    RenderView(const QUrl& webUrl, Id projectId);
+    Space3d(const QUrl& webUrl, Id projectId);
 
 private:
     Id m_projectId;

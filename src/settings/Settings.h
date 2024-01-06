@@ -23,7 +23,7 @@ public:
         QString name;
     };
 
-    struct View {
+    struct Editor {
         int selected;
     };
 
@@ -40,6 +40,6 @@ public:
     virtual void setProject(const Project& project) = 0;
     virtual Project project() const = 0;
 
-    virtual void setView(const View& view) = 0;
-    virtual View view() const = 0;
+    virtual void setEditor(const Editor& editor) = 0;
+    virtual Editor editor() const = 0;
 };

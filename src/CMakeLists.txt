@@ -7,7 +7,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 add_library(common STATIC
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
-    ui/editor/render/RenderView.h ui/editor/render/RenderView.cpp
+    ui/editor/space/Space3d.h ui/editor/space/Space3d.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h
@@ -39,8 +39,8 @@ add_library(common STATIC
     network/controller/project/NormProject.h network/controller/project/NormProject.cpp
     network/controller/HttpController.h network/controller/HttpController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
-    ui/editor/tree/TreeView.h ui/editor/tree/TreeView.cpp
-    ui/editor/View.h ui/editor/View.cpp
+    ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
+    ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     network/http/HttpStatus.h
 )
 

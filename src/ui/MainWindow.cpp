@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "ActionBuilder.h"
-#include "editor/View.h"
+#include "editor/CodeEditor.h"
 #include "core/Application.h"
 #include "network/http/HttpNetwork.h"
 #include "network/controller/project/NormProject.h"
@@ -47,8 +47,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::openProject(Id id, const QString& name) {
-    m_view.reset(new View(m_fileSettings->server().web, id, m_fileSettings.data()));
-    setToRootWidget(m_view.data());
+    m_codeEditor.reset(new CodeEditor(m_fileSettings->server().web, id, m_fileSettings.data()));
+    setToRootWidget(m_codeEditor.data());
     m_projectTable->setVisible(false);
     m_actionBuilder->updateProjectActions();
 
@@ -61,7 +61,7 @@ void MainWindow::openProject(Id id, const QString& name) {
 }
 
 void MainWindow::closeProject() {
-    m_view.reset();
+    m_codeEditor.reset();
     setToRootWidget(m_projectTable.data());
     m_projectTable->setVisible(true);
     m_actionBuilder->updateProjectActions();

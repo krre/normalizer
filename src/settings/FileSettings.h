@@ -18,6 +18,6 @@ public:
     void setProject(const Project& project) override;
     Project project() const override;
 
-    void setView(const View& view) override;
-    View view() const override;
+    void setEditor(const Editor& editor) override;
+    Editor editor() const override;
 };

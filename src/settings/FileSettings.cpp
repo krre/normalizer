@@ -93,18 +93,18 @@ Settings::Project FileSettings::project() const {
     return result;
 }
 
-void FileSettings::setView(const View& view) {
+void FileSettings::setEditor(const Editor& editor) {
     QSettings settings;
-    settings.beginGroup("View");
-    settings.setValue("selected", view.selected);
+    settings.beginGroup("Editor");
+    settings.setValue("selected", editor.selected);
     settings.endGroup();
 }
 
-Settings::View FileSettings::view() const {
+Settings::Editor FileSettings::editor() const {
     QSettings settings;
-    settings.beginGroup("View");
+    settings.beginGroup("Editor");
 
-    View result;
+    Editor result;
     result.selected = settings.value("selected").toInt();
 
     settings.endGroup();
