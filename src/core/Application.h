@@ -2,9 +2,6 @@
 #include "config.h"
 #include <QApplication>
 
-class QMainWindow;
-class MainWindow;
-
 class Application : public QApplication {
 public:
     static constexpr auto Organization = "Norm Group";
