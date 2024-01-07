@@ -1,4 +1,5 @@
 #pragma once
+#include "config.h"
 #include <QApplication>
 
 class QMainWindow;
@@ -8,7 +9,7 @@ class Application : public QApplication {
 public:
     static constexpr auto Organization = "Norm Group";
     static constexpr auto Name = "Normalizer";
-    static constexpr auto Version = "0.1.0";
+    static constexpr auto Version = PROJECT_VERSION;
     static constexpr auto Url = "https://github.com/krre/normalizer";
     static constexpr auto CopyrightYear = "2022-2024";
     static constexpr auto BuildDate = __DATE__;
