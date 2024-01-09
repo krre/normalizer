@@ -44,6 +44,7 @@ add_library(common STATIC
     network/http/HttpStatus.h
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
     ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
+    ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
