@@ -1,11 +1,10 @@
 #include "NodeTree.h"
+#include "NodeTreeWidget.h"
 #include "NodeProperties.h"
 #include <QtWidgets>
 
 NodeTree::NodeTree(QWidget* parent) : QWidget(parent) {
-    m_treeWidget = new QTreeWidget;
-    m_treeWidget->header()->setVisible(false);
-
+    m_treeWidget = new NodeTreeWidget;
     m_properties = new NodeProperties;
 
     m_splitter = new QSplitter;

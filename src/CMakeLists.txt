@@ -43,6 +43,7 @@ add_library(common STATIC
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     network/http/HttpStatus.h
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
+    ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
