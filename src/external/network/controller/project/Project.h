@@ -47,7 +47,7 @@ public:
         QDateTime createdTime;
         QDateTime updatedTime;
 
-        static GetProject fromVariantMap(const QVariantMap& params) {
+        static GetProject parse(const QVariantMap& params) {
             GetProject result;
             result.id = params["id"].toLongLong();
             result.name = params["name"].toString();

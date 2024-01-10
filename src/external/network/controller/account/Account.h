@@ -63,7 +63,7 @@ public:
         QString email;
         QString fullName;
 
-        static GetAccount fromVariantMap(const QVariantMap& params) {
+        static GetAccount parse(const QVariantMap& params) {
             GetAccount result;
             result.login = params["login"].toString();
             result.email = params["email"].toString();

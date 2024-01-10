@@ -21,7 +21,7 @@ Async::Task<void>UserAccount::update(const UpdateAccount& account) {
 Async::Task<Account::GetAccount>UserAccount::getOne() {
     QVariant response = co_await network()->get(endpoint());
     QVariantMap params = response.toMap();
-    co_return Account::GetAccount::fromVariantMap(params);
+    co_return Account::GetAccount::parse(params);
 }
 
 Async::Task<QString>UserAccount::login(const LoginAccount& account) {

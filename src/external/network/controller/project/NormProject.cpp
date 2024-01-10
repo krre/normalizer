@@ -20,7 +20,7 @@ Async::Task<void>NormProject::update(Id id, const UpdateProject& project) {
 
 Async::Task<Project::GetProject> Controller::NormProject::getOne(Id id) {
     QVariant response = co_await network()->get(endpoint(id));
-    co_return Project::GetProject::fromVariantMap(response.toMap());
+    co_return Project::GetProject::parse(response.toMap());
 }
 
 Async::Task<QList<Project::GetProject>>NormProject::getAll() {
@@ -28,7 +28,7 @@ Async::Task<QList<Project::GetProject>>NormProject::getAll() {
     QList<Project::GetProject> result;
 
     for (const auto& item : response.toList()) {
-        result.append(Project::GetProject::fromVariantMap(item.toMap()));
+        result.append(Project::GetProject::parse(item.toMap()));
     }
 
     co_return result;
