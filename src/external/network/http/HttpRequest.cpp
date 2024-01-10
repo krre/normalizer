@@ -1,6 +1,6 @@
 #include "HttpRequest.h"
 #include "HttpRequestAttributes.h"
-#include "network/http/HttpNetwork.h"
+#include "external/network/http/HttpNetwork.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QNetworkReply>
 #include <QJsonDocument>

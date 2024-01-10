@@ -1,6 +1,6 @@
 #pragma once
 #include "core/async/Task.h"
-#include "network/controller/project/Project.h"
+#include "external/network/controller/project/Project.h"
 #include <QWidget>
 
 class TableWidget;

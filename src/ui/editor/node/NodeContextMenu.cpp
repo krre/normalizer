@@ -2,6 +2,13 @@
 
 NodeContextMenu::NodeContextMenu(QWidget* parent) : QMenu(parent) {
     setAttribute(Qt::WA_DeleteOnClose);
-    addMenu(tr("Add"));
+
+    QMenu* addMenu = QMenu::addMenu(tr("Add"));
+    addMenu->addAction(tr("Module"), this, &NodeContextMenu::addModule);
+
     addAction(tr("Remove..."));
+}
+
+void NodeContextMenu::addModule() {
+    qDebug() << "add module";
 }

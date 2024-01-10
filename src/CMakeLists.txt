@@ -23,25 +23,25 @@ add_library(common STATIC
     core/async/Task.h
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h
-    settings/Settings.h
-    settings/FileSettings.h settings/FileSettings.cpp
-    network/http/HttpNetwork.h network/http/HttpNetwork.cpp
+    external/settings/Settings.h
+    external/settings/FileSettings.h external/settings/FileSettings.cpp
+    external/network/http/HttpNetwork.h external/network/http/HttpNetwork.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
-    network/http/HttpRequest.h network/http/HttpRequest.cpp
-    network/http/HttpRequestAttributes.h
+    external/network/http/HttpRequest.h external/network/http/HttpRequest.cpp
+    external/network/http/HttpRequestAttributes.h
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp
-    network/controller/account/UserAccount.cpp network/controller/account/UserAccount.h
-    network/controller/account/Account.h
-    network/controller/project/Project.h
-    network/controller/project/NormProject.h network/controller/project/NormProject.cpp
-    network/controller/HttpController.h network/controller/HttpController.cpp
+    external/network/controller/account/UserAccount.cpp external/network/controller/account/UserAccount.h
+    external/network/controller/account/Account.h
+    external/network/controller/project/Project.h
+    external/network/controller/project/NormProject.h external/network/controller/project/NormProject.cpp
+    external/network/controller/HttpController.h external/network/controller/HttpController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-    network/http/HttpStatus.h
+    external/network/http/HttpStatus.h
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
     ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
     ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp

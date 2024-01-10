@@ -1,6 +1,6 @@
 #include "AccountDialog.h"
 #include "ChangePasswordDialog.h"
-#include "network/controller/account/Account.h"
+#include "external/network/controller/account/Account.h"
 #include "core/Application.h"
 #include <QtWidgets>
 

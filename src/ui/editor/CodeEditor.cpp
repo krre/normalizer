@@ -1,7 +1,7 @@
 #include "CodeEditor.h"
 #include "space/Space3d.h"
 #include "node/NodeTree.h"
-#include "settings/Settings.h"
+#include "external/settings/Settings.h"
 #include <QtWidgets>
 
 CodeEditor::CodeEditor(const QUrl& webUrl, Id projectId, Settings* settings) : m_settings(settings) {

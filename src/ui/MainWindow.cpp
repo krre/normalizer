@@ -2,9 +2,9 @@
 #include "ActionBuilder.h"
 #include "editor/CodeEditor.h"
 #include "core/Application.h"
-#include "network/http/HttpNetwork.h"
-#include "network/controller/project/NormProject.h"
-#include "settings/FileSettings.h"
+#include "external/network/http/HttpNetwork.h"
+#include "external/network/controller/project/NormProject.h"
+#include "external/settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
 
