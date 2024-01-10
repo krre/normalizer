@@ -9,9 +9,9 @@ QString UserAccount::name() const {
     return "account";
 }
 
-Async::Task<QString>UserAccount::create(const CreateAccount& account) {
+Async::Task<Account::Token>UserAccount::create(const CreateAccount& account) {
     QVariant response = co_await network()->post(endpoint(), account.serialize());
-    co_return response.toMap()["token"].toString();
+    co_return Token::parse(response);
 }
 
 Async::Task<void>UserAccount::update(const UpdateAccount& account) {
@@ -23,9 +23,9 @@ Async::Task<Account::GetAccount>UserAccount::getOne() {
     co_return Account::GetAccount::parse(response);
 }
 
-Async::Task<QString>UserAccount::login(const LoginAccount& account) {
+Async::Task<Account::Token> UserAccount::login(const LoginAccount& account) {
     QVariant response = co_await network()->post(endpoint() + "/login", account.serialize());
-    co_return response.toMap()["token"].toString();
+    co_return Token::parse(response);
 }
 
 Async::Task<void>UserAccount::remove() {

@@ -43,7 +43,8 @@ Async::Task<void> LoginDialog::getToken() {
     account.password = m_passwordLineEdit->text();
 
     try {
-        m_token = co_await m_account->login(account);
+        auto response = co_await m_account->login(account);
+        m_token = response.token;
         StandardDialog::accept();
     } catch (HttpException& e) {
         QString message = e.message();

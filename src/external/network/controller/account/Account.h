@@ -7,6 +7,19 @@ namespace Controller {
 
 class Account {
 public:
+    struct Token {
+        QString token;
+
+        static Token parse(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
+            Token result;
+            result.token = params["token"].toString();
+
+            return result;
+        }
+    };
+
     struct CreateAccount {
         QString login;
         QString email;
@@ -74,10 +87,10 @@ public:
         }
     };
 
-    virtual Async::Task<QString> create(const CreateAccount& account) = 0;
+    virtual Async::Task<Token> create(const CreateAccount& account) = 0;
     virtual Async::Task<void> update(const UpdateAccount& account) = 0;
     virtual Async::Task<GetAccount> getOne() = 0;
-    virtual Async::Task<QString> login(const LoginAccount& account) = 0;
+    virtual Async::Task<Token> login(const LoginAccount& account) = 0;
     virtual Async::Task<void> remove() = 0;
     virtual Async::Task<void> changePassword(const Password& password) = 0;
 };
