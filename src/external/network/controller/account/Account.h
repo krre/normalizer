@@ -14,7 +14,7 @@ public:
         QString fullName;
         QString password;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "login", login },
                 { "email", email },
@@ -27,7 +27,7 @@ public:
     struct UpdateAccount {
         QString fullName;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "full_name", fullName },
             };
@@ -38,7 +38,7 @@ public:
         QString oldPassword;
         QString newPassword;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "old_password", Utils::sha256(oldPassword) },
                 { "new_password", Utils::sha256(newPassword) },
@@ -50,7 +50,7 @@ public:
         QString email;
         QString password;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "email", email },
                 { "password", Utils::sha256(password) },

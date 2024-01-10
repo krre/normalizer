@@ -10,12 +10,12 @@ QString UserAccount::name() const {
 }
 
 Async::Task<QString>UserAccount::create(const CreateAccount& account) {
-    QVariant response = co_await network()->post(endpoint(), account.toJson());
+    QVariant response = co_await network()->post(endpoint(), account.serialize());
     co_return response.toMap()["token"].toString();
 }
 
 Async::Task<void>UserAccount::update(const UpdateAccount& account) {
-    co_await network()->put(endpoint(), account.toJson());
+    co_await network()->put(endpoint(), account.serialize());
 }
 
 Async::Task<Account::GetAccount>UserAccount::getOne() {
@@ -25,7 +25,7 @@ Async::Task<Account::GetAccount>UserAccount::getOne() {
 }
 
 Async::Task<QString>UserAccount::login(const LoginAccount& account) {
-    QVariant response = co_await network()->post(endpoint() + "/login", account.toJson());
+    QVariant response = co_await network()->post(endpoint() + "/login", account.serialize());
     co_return response.toMap()["token"].toString();
 }
 
@@ -34,7 +34,7 @@ Async::Task<void>UserAccount::remove() {
 }
 
 Async::Task<void>UserAccount::changePassword(const Password& password) {
-    co_await network()->put(endpoint() +  "/password", password.toJson());
+    co_await network()->put(endpoint() +  "/password", password.serialize());
 }
 
 }

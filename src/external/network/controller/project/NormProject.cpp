@@ -10,12 +10,12 @@ QString NormProject::name() const {
 }
 
 Async::Task<Id>NormProject::create(const CreateProject& project) {
-    QVariant response = co_await network()->post(endpoint(), project.toJson());
+    QVariant response = co_await network()->post(endpoint(), project.serialize());
     co_return response.toMap()["id"].toLongLong();
 }
 
 Async::Task<void>NormProject::update(Id id, const UpdateProject& project) {
-    co_await network()->put(endpoint(id), project.toJson());
+    co_await network()->put(endpoint(id), project.serialize());
 }
 
 Async::Task<Project::GetProject> Controller::NormProject::getOne(Id id) {

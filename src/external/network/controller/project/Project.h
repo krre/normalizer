@@ -18,7 +18,7 @@ public:
         Template projectTemplate;
         QString description;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "name", name },
                 { "template", int(projectTemplate) },
@@ -31,7 +31,7 @@ public:
         QString name;
         QString description;
 
-        QJsonObject toJson() const {
+        QJsonObject serialize() const {
             return {
                 { "name", name },
                 { "description", description },
