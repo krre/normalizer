@@ -43,20 +43,20 @@ Async::Task<QNetworkReply*> GetHttpRequest::sendRequest(Async::NetworkAccessMana
     co_return co_await networkAccessManager->get(*request);
 }
 
-PostHttpRequest::PostHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QByteArray& data) :
+PostHttpRequest::PostHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QVariant& data) :
     HttpRequest(networkAccessManager, requestAttributes), m_data(data) {
 }
 
 Async::Task<QNetworkReply*> PostHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
-    co_return co_await networkAccessManager->post(*request, m_data);
+    co_return co_await networkAccessManager->post(*request, m_data.toByteArray());
 }
 
-PutHttpRequest::PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QByteArray& data) :
+PutHttpRequest::PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QVariant& data) :
     HttpRequest(networkAccessManager, requestAttributes), m_data(data) {
 }
 
 Async::Task<QNetworkReply*> PutHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
-    co_return co_await networkAccessManager->put(*request, m_data);
+    co_return co_await networkAccessManager->put(*request, m_data.toByteArray());
 }
 
 DeleteHttpRequest::DeleteHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes) :

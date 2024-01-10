@@ -1,8 +1,8 @@
 #pragma once
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
-#include <QString>
-#include <QJsonObject>
+#include <QVariant>
+#include <QDateTime>
 
 namespace Controller {
 
@@ -18,12 +18,12 @@ public:
         Template projectTemplate;
         QString description;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "name", name },
                 { "template", int(projectTemplate) },
                 { "description", description },
-            };
+            });
         }
     };
 
@@ -31,11 +31,11 @@ public:
         QString name;
         QString description;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "name", name },
                 { "description", description },
-            };
+            });
         }
     };
 
@@ -47,7 +47,9 @@ public:
         QDateTime createdTime;
         QDateTime updatedTime;
 
-        static GetProject parse(const QVariantMap& params) {
+        static GetProject parse(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
             GetProject result;
             result.id = params["id"].toLongLong();
             result.name = params["name"].toString();

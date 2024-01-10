@@ -1,8 +1,7 @@
 #pragma once
 #include "core/async/Task.h"
 #include "core/Utils.h"
-#include <QString>
-#include <QJsonObject>
+#include <QVariant>
 
 namespace Controller {
 
@@ -14,23 +13,23 @@ public:
         QString fullName;
         QString password;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "login", login },
                 { "email", email },
                 { "full_name", fullName },
                 { "password", Utils::sha256(password) },
-            };
+            });
         }
     };
 
     struct UpdateAccount {
         QString fullName;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "full_name", fullName },
-            };
+            });
         }
     };
 
@@ -38,11 +37,11 @@ public:
         QString oldPassword;
         QString newPassword;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "old_password", Utils::sha256(oldPassword) },
                 { "new_password", Utils::sha256(newPassword) },
-            };
+            });
         }
     };
 
@@ -50,11 +49,11 @@ public:
         QString email;
         QString password;
 
-        QJsonObject serialize() const {
-            return {
+        QVariant serialize() const {
+            return QVariantMap({
                 { "email", email },
                 { "password", Utils::sha256(password) },
-            };
+            });
         }
     };
 
@@ -63,7 +62,9 @@ public:
         QString email;
         QString fullName;
 
-        static GetAccount parse(const QVariantMap& params) {
+        static GetAccount parse(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
             GetAccount result;
             result.login = params["login"].toString();
             result.email = params["email"].toString();

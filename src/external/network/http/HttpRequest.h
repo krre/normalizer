@@ -1,6 +1,7 @@
 #pragma once
 #include "core/async/Task.h"
 #include <QUrlQuery>
+#include <QVariant>
 
 class QNetworkReply;
 class QNetworkRequest;
@@ -37,24 +38,24 @@ private:
 
 class PostHttpRequest : public HttpRequest {
 public:
-    PostHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QByteArray& data = QByteArray());
+    PostHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QVariant& data = QVariant());
 
 protected:
     Async::Task<QNetworkReply*> sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) override;
 
 private:
-    QByteArray m_data;
+    QVariant m_data;
 };
 
 class PutHttpRequest : public HttpRequest {
 public:
-    PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QByteArray& data = QByteArray());
+    PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QVariant& data = QVariant());
 
 protected:
     Async::Task<QNetworkReply*> sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) override;
 
 private:
-    QByteArray m_data;
+    QVariant m_data;
 };
 
 class DeleteHttpRequest : public HttpRequest {

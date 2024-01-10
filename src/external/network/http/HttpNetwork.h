@@ -2,7 +2,6 @@
 #include "HttpRequestAttributes.h"
 #include "core/async/Task.h"
 #include "core/async/NetworkAccessManager.h"
-#include <QJsonObject>
 #include <QUrlQuery>
 
 class HttpException : public std::exception {
@@ -26,12 +25,8 @@ public:
 
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery());
     Async::Task<QVariant> deleteResource(const QString& endpoint);
-
-    Async::Task<QVariant> post(const QString& endpoint, const QByteArray& data = QByteArray());
-    Async::Task<QVariant> post(const QString& endpoint, const QJsonObject& data = QJsonObject());
-
-    Async::Task<QVariant> put(const QString& endpoint, const QByteArray& data = QByteArray());
-    Async::Task<QVariant> put(const QString& endpoint, const QJsonObject& data = QJsonObject());
+    Async::Task<QVariant> post(const QString& endpoint, const QVariant& data = QVariant());
+    Async::Task<QVariant> put(const QString& endpoint, const QVariant& data = QVariant());
 
 private:
     Async::NetworkAccessManager m_networkAccessManager;

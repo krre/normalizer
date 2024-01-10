@@ -1,7 +1,6 @@
 #include "HttpNetwork.h"
 #include "HttpRequest.h"
 #include <QNetworkReply>
-#include <QJsonDocument>
 
 HttpNetwork::HttpNetwork(const QUrl& url) {
     setUrl(url);
@@ -25,20 +24,12 @@ Async::Task<QVariant> HttpNetwork::deleteResource(const QString& endpoint) {
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::post(const QString& endpoint, const QByteArray& data) {
+Async::Task<QVariant> HttpNetwork::post(const QString& endpoint, const QVariant& data) {
     PostHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, data);
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::post(const QString& endpoint, const QJsonObject& data) {
-    co_return co_await post(endpoint, QJsonDocument(data).toJson(QJsonDocument::Compact));
-}
-
-Async::Task<QVariant> HttpNetwork::put(const QString& endpoint, const QByteArray& data) {
+Async::Task<QVariant> HttpNetwork::put(const QString& endpoint, const QVariant& data) {
     PutHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, data);
     co_return co_await httpRequest.send(endpoint);
-}
-
-Async::Task<QVariant> HttpNetwork::put(const QString& endpoint, const QJsonObject& data) {
-    co_return co_await put(endpoint, QJsonDocument(data).toJson(QJsonDocument::Compact));
 }
