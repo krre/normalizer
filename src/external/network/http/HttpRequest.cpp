@@ -48,7 +48,7 @@ PostHttpRequest::PostHttpRequest(Async::NetworkAccessManager* networkAccessManag
 }
 
 Async::Task<QNetworkReply*> PostHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
-    co_return co_await networkAccessManager->post(*request, m_data.toByteArray());
+    co_return co_await networkAccessManager->post(*request, QJsonDocument::fromVariant(m_data).toJson(QJsonDocument::Compact));
 }
 
 PutHttpRequest::PutHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes, const QVariant& data) :
@@ -56,7 +56,7 @@ PutHttpRequest::PutHttpRequest(Async::NetworkAccessManager* networkAccessManager
 }
 
 Async::Task<QNetworkReply*> PutHttpRequest::sendRequest(Async::NetworkAccessManager* networkAccessManager, QNetworkRequest* request) {
-    co_return co_await networkAccessManager->put(*request, m_data.toByteArray());
+    co_return co_await networkAccessManager->put(*request, QJsonDocument::fromVariant(m_data).toJson(QJsonDocument::Compact));
 }
 
 DeleteHttpRequest::DeleteHttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes) :
