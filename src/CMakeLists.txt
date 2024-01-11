@@ -37,7 +37,7 @@ add_library(common STATIC
     external/network/controller/account/Account.h
     external/network/controller/project/Project.h
     external/network/controller/project/NormProject.h external/network/controller/project/NormProject.cpp
-    external/network/controller/HttpController.h external/network/controller/HttpController.cpp
+    external/network/controller/RestController.h external/network/controller/RestController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp

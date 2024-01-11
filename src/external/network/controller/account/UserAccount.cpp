@@ -3,7 +3,7 @@
 
 namespace Controller {
 
-UserAccount::UserAccount(HttpNetwork* network) : HttpController(network) {}
+UserAccount::UserAccount(HttpNetwork* network) : RestController(network) {}
 
 QString UserAccount::name() const {
     return "account";

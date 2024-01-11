@@ -1,10 +1,10 @@
 #pragma once
-#include "external/network/controller/HttpController.h"
+#include "external/network/controller/RestController.h"
 #include "Account.h"
 
 namespace Controller {
 
-class UserAccount : public HttpController, public Account {
+class UserAccount : public RestController, public Account {
 public:
     UserAccount(HttpNetwork* network);
     QString name() const override;

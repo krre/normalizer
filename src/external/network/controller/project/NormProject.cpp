@@ -3,7 +3,7 @@
 
 namespace Controller {
 
-NormProject::NormProject(HttpNetwork* network) : HttpController(network) {}
+NormProject::NormProject(HttpNetwork* network) : RestController(network) {}
 
 QString NormProject::name() const {
     return "project";

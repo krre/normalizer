@@ -6,9 +6,9 @@ class HttpNetwork;
 
 namespace Controller {
 
-class HttpController {
+class RestController {
 public:
-    HttpController(HttpNetwork* network);
+    RestController(HttpNetwork* network);
     virtual QString name() const = 0;
 
     virtual QString endpoint() const;

@@ -1,10 +1,10 @@
 #pragma once
-#include "external/network/controller/HttpController.h"
+#include "external/network/controller/RestController.h"
 #include "Project.h"
 
 namespace Controller {
 
-class NormProject : public HttpController, public Project {
+class NormProject : public RestController, public Project {
 public:
     NormProject(HttpNetwork* network);
     QString name() const override;
