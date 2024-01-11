@@ -29,7 +29,7 @@ Async::Task<Account::Token> UserAccount::login(const LoginAccount& account) {
 }
 
 Async::Task<void>UserAccount::remove() {
-    co_await network()->deleteResource(endpoint());
+    co_await network()->del(endpoint());
 }
 
 Async::Task<void>UserAccount::changePassword(const Password& password) {

@@ -19,7 +19,7 @@ Async::Task<QVariant> HttpNetwork::get(const QString& endpoint, const QUrlQuery&
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::deleteResource(const QString& endpoint) {
+Async::Task<QVariant> HttpNetwork::del(const QString& endpoint) {
     DeleteHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes);
     co_return co_await httpRequest.send(endpoint);
 }

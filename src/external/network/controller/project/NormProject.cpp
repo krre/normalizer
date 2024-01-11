@@ -35,7 +35,7 @@ Async::Task<QList<Project::GetProject>>NormProject::getAll() {
 }
 
 Async::Task<void>NormProject::remove(Id id) {
-    co_await network()->deleteResource(endpoint(id));
+    co_await network()->del(endpoint(id));
 }
 
 }

@@ -13,7 +13,7 @@ public:
     void setToken(const QString& token);
 
     Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery()) override;
-    Async::Task<QVariant> deleteResource(const QString& endpoint) override;
+    Async::Task<QVariant> del(const QString& endpoint) override;
     Async::Task<QVariant> post(const QString& endpoint, const QVariant& data = QVariant()) override;
     Async::Task<QVariant> put(const QString& endpoint, const QVariant& data = QVariant()) override;
 
