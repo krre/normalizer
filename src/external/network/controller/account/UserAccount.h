@@ -6,7 +6,7 @@ namespace Controller {
 
 class UserAccount : public RestController, public Account {
 public:
-    UserAccount(HttpNetwork* network);
+    UserAccount(HttpRestApi* network);
     QString name() const override;
 
     Async::Task<Token> create(const CreateAccount& account) override;

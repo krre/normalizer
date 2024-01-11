@@ -1,9 +1,9 @@
 #include "UserAccount.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 
 namespace Controller {
 
-UserAccount::UserAccount(HttpNetwork* network) : RestController(network) {}
+UserAccount::UserAccount(HttpRestApi* network) : RestController(network) {}
 
 QString UserAccount::name() const {
     return "account";

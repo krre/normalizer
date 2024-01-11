@@ -1,9 +1,9 @@
 #include "NormProject.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 
 namespace Controller {
 
-NormProject::NormProject(HttpNetwork* network) : RestController(network) {}
+NormProject::NormProject(HttpRestApi* network) : RestController(network) {}
 
 QString NormProject::name() const {
     return "project";

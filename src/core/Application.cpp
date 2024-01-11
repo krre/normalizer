@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 #include <QMainWindow>
 #include <QMessageBox>
 

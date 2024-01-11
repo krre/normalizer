@@ -3,7 +3,7 @@
 
 class MainWindow;
 class ProjectTable;
-class HttpNetwork;
+class HttpRestApi;
 class FileSettings;
 class RecentMenu;
 
@@ -16,7 +16,7 @@ public:
     struct Parameters {
         MainWindow* mainWindow;
         ProjectTable* projectTable;
-        HttpNetwork* httpNetwork;
+        HttpRestApi* httpNetwork;
         FileSettings* fileSettings;
     };
 
@@ -44,7 +44,7 @@ private:
 
     MainWindow* m_mainWindow = nullptr;
     ProjectTable* m_projectTable = nullptr;
-    HttpNetwork* m_httpNetwork = nullptr;
+    HttpRestApi* m_httpNetwork = nullptr;
     FileSettings* m_fileSettings = nullptr;
 
     QMenu* m_projectMenu = nullptr;

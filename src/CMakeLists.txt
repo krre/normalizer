@@ -25,7 +25,7 @@ add_library(common STATIC
     core/async/Awaiter.h
     external/settings/Settings.h
     external/settings/FileSettings.h external/settings/FileSettings.cpp
-    external/network/http/HttpNetwork.h external/network/http/HttpNetwork.cpp
+    external/network/http/HttpRestApi.h external/network/http/HttpRestApi.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
     external/network/http/HttpRequest.h external/network/http/HttpRequest.cpp

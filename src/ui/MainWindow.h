@@ -7,7 +7,7 @@ namespace Controller {
     class NormProject;
 }
 
-class HttpNetwork;
+class HttpRestApi;
 class FileSettings;
 class ProjectTable;
 class CodeEditor;
@@ -34,7 +34,7 @@ private:
 
     QWidget* m_rootWidget = nullptr;
 
-    QScopedPointer<HttpNetwork> m_httpNetwork;
+    QScopedPointer<HttpRestApi> m_httpNetwork;
     QScopedPointer<FileSettings> m_fileSettings;
     QScopedPointer<Controller::NormProject> m_project;
 

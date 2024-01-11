@@ -8,7 +8,7 @@
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 #include "external/network/controller/account/UserAccount.h"
 #include <QtWidgets>
 

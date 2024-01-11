@@ -1,6 +1,6 @@
 #include "LoginDialog.h"
 #include "external/network/controller/account/Account.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 #include "external/network/http/HttpStatus.h"
 #include <QtWidgets>
 

@@ -6,7 +6,7 @@ namespace Controller {
 
 class NormProject : public RestController, public Project {
 public:
-    NormProject(HttpNetwork* network);
+    NormProject(HttpRestApi* network);
     QString name() const override;
 
     Async::Task<Id> create(const CreateProject& project) override;

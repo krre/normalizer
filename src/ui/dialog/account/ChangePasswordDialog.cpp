@@ -1,7 +1,7 @@
 #include "ChangePasswordDialog.h"
 #include "ui/dialog/DialogMessages.h"
 #include "external/network/controller/account/Account.h"
-#include "external/network/http/HttpNetwork.h"
+#include "external/network/http/HttpRestApi.h"
 #include "external/network/http/HttpStatus.h"
 #include <QtWidgets>
 

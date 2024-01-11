@@ -5,9 +5,9 @@
 #include "core/async/NetworkAccessManager.h"
 #include <QUrlQuery>
 
-class HttpNetwork : public RestApi {
+class HttpRestApi : public RestApi {
 public:
-    HttpNetwork(const QUrl& url);
+    HttpRestApi(const QUrl& url);
 
     void setUrl(const QUrl& url);
     void setToken(const QString& token);

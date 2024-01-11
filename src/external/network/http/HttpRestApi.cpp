@@ -1,35 +1,35 @@
-#include "HttpNetwork.h"
+#include "HttpRestApi.h"
 #include "HttpRequest.h"
 #include <QNetworkReply>
 
-HttpNetwork::HttpNetwork(const QUrl& url) {
+HttpRestApi::HttpRestApi(const QUrl& url) {
     setUrl(url);
 }
 
-void HttpNetwork::setUrl(const QUrl& url) {
+void HttpRestApi::setUrl(const QUrl& url) {
     m_requestAttributes.url = url;
 }
 
-void HttpNetwork::setToken(const QString& token) {
+void HttpRestApi::setToken(const QString& token) {
     m_requestAttributes.token = token;
 }
 
-Async::Task<QVariant> HttpNetwork::get(const QString& endpoint, const QUrlQuery& query) {
+Async::Task<QVariant> HttpRestApi::get(const QString& endpoint, const QUrlQuery& query) {
     GetHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, query);
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::del(const QString& endpoint) {
+Async::Task<QVariant> HttpRestApi::del(const QString& endpoint) {
     DeleteHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes);
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::post(const QString& endpoint, const QVariant& data) {
+Async::Task<QVariant> HttpRestApi::post(const QString& endpoint, const QVariant& data) {
     PostHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, data);
     co_return co_await httpRequest.send(endpoint);
 }
 
-Async::Task<QVariant> HttpNetwork::put(const QString& endpoint, const QVariant& data) {
+Async::Task<QVariant> HttpRestApi::put(const QString& endpoint, const QVariant& data) {
     PutHttpRequest httpRequest(&m_networkAccessManager, &m_requestAttributes, data);
     co_return co_await httpRequest.send(endpoint);
 }
