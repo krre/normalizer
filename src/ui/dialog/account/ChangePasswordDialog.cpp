@@ -54,7 +54,7 @@ Async::Task<void> ChangePasswordDialog::changePassword() {
     try {
         co_await m_account->changePassword(password);
         StandardDialog::accept();
-    } catch (HttpException& e) {
+    } catch (RestException& e) {
         QString message = e.status() == HttpStatus::BadRequest ? tr("Old password and new one do not match") : e.message();
         errorMessage(message);
     } catch (std::exception& e) {

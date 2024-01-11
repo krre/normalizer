@@ -11,7 +11,7 @@ Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
 bool Application::notify(QObject* receiver, QEvent* event) {
     try {
         return QApplication::notify(receiver, event);
-    } catch (HttpException& e) {
+    } catch (RestException& e) {
         showErrorMessage(e.message());
     } catch (const std::exception& e) {
         showErrorMessage(e.what());

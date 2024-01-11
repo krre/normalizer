@@ -70,7 +70,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
         auto response = co_await m_account->create(account);
         m_token = response.token;
         StandardDialog::accept();
-    } catch (HttpException& e) {
+    } catch (RestException& e) {
         QString message = e.status() == HttpStatus::Conflict ? tr("Account already exists") : e.message();
         errorMessage(message);
     }

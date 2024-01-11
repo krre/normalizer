@@ -46,7 +46,7 @@ Async::Task<void> LoginDialog::getToken() {
         auto response = co_await m_account->login(account);
         m_token = response.token;
         StandardDialog::accept();
-    } catch (HttpException& e) {
+    } catch (RestException& e) {
         QString message = e.message();
 
         if (e.status() == HttpStatus::NotFound) {

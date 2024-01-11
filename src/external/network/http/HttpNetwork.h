@@ -5,18 +5,6 @@
 #include "core/async/NetworkAccessManager.h"
 #include <QUrlQuery>
 
-class HttpException : public std::exception {
-public:
-    HttpException(int status, const QString& message = QString()) : m_status(status), m_message(message) {}
-
-    int status() const { return m_status; }
-    QString message() const { return m_message; }
-
-private:
-    int m_status = 0;
-    QString m_message;
-};
-
 class HttpNetwork : public RestApi {
 public:
     HttpNetwork(const QUrl& url);

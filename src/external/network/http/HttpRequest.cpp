@@ -26,7 +26,7 @@ Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
         QByteArray response = reply->readAll();
         co_return QJsonDocument::fromJson(response).toVariant();
     } else {
-        throw HttpException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
+        throw RestException(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt(), reply->errorString());
     }
 }
 
