@@ -41,7 +41,7 @@ add_library(common STATIC
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-    external/network/http/HttpStatus.h
+
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
     ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
     ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp

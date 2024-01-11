@@ -3,6 +3,13 @@
 #include <QUrlQuery>
 #include <QVariant>
 
+namespace RestStatus {
+    constexpr auto BadRequest = 400;
+    constexpr auto Unauthorized = 401;
+    constexpr auto NotFound = 404;
+    constexpr auto Conflict = 409;
+}
+
 class RestException : public std::exception {
 public:
     RestException(int status, const QString& message = QString()) : m_status(status), m_message(message) {}

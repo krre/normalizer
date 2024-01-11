@@ -2,7 +2,6 @@
 #include "ui/dialog/DialogMessages.h"
 #include "external/network/controller/account/Account.h"
 #include "external/network/http/HttpRestApi.h"
-#include "external/network/http/HttpStatus.h"
 #include <QtWidgets>
 
 RegisterAccountDialog::RegisterAccountDialog(Controller::Account* account) : m_account(account) {
@@ -71,7 +70,7 @@ Async::Task<void> RegisterAccountDialog::getToken() {
         m_token = response.token;
         StandardDialog::accept();
     } catch (RestException& e) {
-        QString message = e.status() == HttpStatus::Conflict ? tr("Account already exists") : e.message();
+        QString message = e.status() == RestStatus::Conflict ? tr("Account already exists") : e.message();
         errorMessage(message);
     }
 }
