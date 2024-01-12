@@ -1,7 +1,7 @@
 #include "RegisterAccountDialog.h"
 #include "ui/dialog/DialogMessages.h"
 #include "external/network/controller/account/Account.h"
-#include "external/network/http/HttpRestApi.h"
+#include "external/network/RestApi.h"
 #include <QtWidgets>
 
 RegisterAccountDialog::RegisterAccountDialog(Controller::Account* account) : m_account(account) {

@@ -1,6 +1,6 @@
 #include "LoginDialog.h"
 #include "external/network/controller/account/Account.h"
-#include "external/network/http/HttpRestApi.h"
+#include "external/network/RestApi.h"
 #include <QtWidgets>
 
 LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
