@@ -44,7 +44,7 @@ private:
 
     MainWindow* m_mainWindow = nullptr;
     ProjectTable* m_projectTable = nullptr;
-    HttpRestApi* m_httpNetwork = nullptr;
+    HttpRestApi* m_httpRestApi = nullptr;
     FileSettings* m_fileSettings = nullptr;
 
     QMenu* m_projectMenu = nullptr;

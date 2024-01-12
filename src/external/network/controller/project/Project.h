@@ -1,4 +1,5 @@
 #pragma once
+#include "external/network/controller/RestController.h"
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
 #include <QVariant>
@@ -6,7 +7,7 @@
 
 namespace Controller {
 
-class Project {
+class Project : public RestController {
 public:
     enum class Template {
         Binary,
@@ -62,15 +63,19 @@ public:
         }
     };
 
+    Project(RestApi* restApi);
+
+    QString name() const override;
+
     static QString templateToString(Template projectTemplate) {
         return projectTemplate == Template::Binary ? "Binary" : "Library";
     }
 
-    virtual Async::Task<Id> create(const CreateProject& project) = 0;
-    virtual Async::Task<void> update(Id id, const UpdateProject& project) = 0;
-    virtual Async::Task<GetProject> getOne(Id id) = 0;
-    virtual Async::Task<QList<GetProject>> getAll() = 0;
-    virtual Async::Task<void> remove(Id id) = 0;
+    Async::Task<Id> create(const CreateProject& project);
+    Async::Task<void> update(Id id, const UpdateProject& project);
+    Async::Task<GetProject> getOne(Id id);
+    Async::Task<QList<GetProject>> getAll();
+    Async::Task<void> remove(Id id);
 };
 
 }

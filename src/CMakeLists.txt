@@ -33,15 +33,14 @@ add_library(common STATIC
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp
-    external/network/controller/account/UserAccount.cpp external/network/controller/account/UserAccount.h
+    external/network/controller/account/Account.cpp
     external/network/controller/account/Account.h
     external/network/controller/project/Project.h
-    external/network/controller/project/NormProject.h external/network/controller/project/NormProject.cpp
+    external/network/controller/project/Project.cpp
     external/network/controller/RestController.h external/network/controller/RestController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
     ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
     ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp

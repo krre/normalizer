@@ -3,7 +3,7 @@
 #include "editor/CodeEditor.h"
 #include "core/Application.h"
 #include "external/network/http/HttpRestApi.h"
-#include "external/network/controller/project/NormProject.h"
+#include "external/network/controller/project/Project.h"
 #include "external/settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>
@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Application::Name);
 
     m_fileSettings.reset(new FileSettings);
-    m_httpNetwork.reset(new HttpRestApi(m_fileSettings->server().api));
-    m_project.reset(new Controller::NormProject(m_httpNetwork.data()));
+    m_httpRestApi.reset(new HttpRestApi(m_fileSettings->server().api));
+    m_project.reset(new Controller::Project(m_httpRestApi.data()));
 
     m_projectTable.reset(new ProjectTable(m_project.data()));
     m_projectTable->setVisible(false);
@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
     parameters.projectTable = m_projectTable.data();
-    parameters.httpNetwork = m_httpNetwork.data();
+    parameters.httpNetwork = m_httpRestApi.data();
     parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);

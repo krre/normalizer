@@ -2,23 +2,24 @@
 #include "core/CommonTypes.h"
 #include <QString>
 
-class HttpRestApi;
+class RestApi;
 
 namespace Controller {
 
 class RestController {
 public:
-    RestController(HttpRestApi* network);
+    RestController(RestApi* restApi);
+
     virtual QString name() const = 0;
 
     virtual QString endpoint() const;
     virtual QString endpoint(Id id) const;
 
 protected:
-    HttpRestApi* network() const;
+    RestApi* restApi() const;
 
 private:
-    HttpRestApi* m_network = nullptr;
+    RestApi* m_restApi = nullptr;
 };
 
 }

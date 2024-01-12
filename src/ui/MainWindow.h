@@ -4,7 +4,7 @@
 #include <QPropertyNotifier>
 
 namespace Controller {
-    class NormProject;
+    class Project;
 }
 
 class HttpRestApi;
@@ -34,9 +34,9 @@ private:
 
     QWidget* m_rootWidget = nullptr;
 
-    QScopedPointer<HttpRestApi> m_httpNetwork;
+    QScopedPointer<HttpRestApi> m_httpRestApi;
     QScopedPointer<FileSettings> m_fileSettings;
-    QScopedPointer<Controller::NormProject> m_project;
+    QScopedPointer<Controller::Project> m_project;
 
     QScopedPointer<ProjectTable> m_projectTable;
     QScopedPointer<CodeEditor> m_codeEditor;

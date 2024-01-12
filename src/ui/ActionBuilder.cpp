@@ -9,14 +9,14 @@
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
 #include "external/network/http/HttpRestApi.h"
-#include "external/network/controller/account/UserAccount.h"
+#include "external/network/controller/account/Account.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
         QObject(parameters.mainWindow),
         m_mainWindow(parameters.mainWindow),
         m_projectTable(parameters.projectTable),
-        m_httpNetwork(parameters.httpNetwork),
+        m_httpRestApi(parameters.httpNetwork),
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
@@ -49,19 +49,19 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &ActionBuilder::about);
 
-    m_httpNetwork->setToken(m_fileSettings->account().token);
+    m_httpRestApi->setToken(m_fileSettings->account().token);
 }
 
 void ActionBuilder::openPreferencesDialog() {
     PreferencesDialog preferencesDialog(m_fileSettings);
 
     if (preferencesDialog.exec() == QDialog::Accepted) {
-        m_httpNetwork->setUrl(m_fileSettings->server().api);
+        m_httpRestApi->setUrl(m_fileSettings->server().api);
     }
 }
 
 void ActionBuilder::openLoginDialog() {
-    Controller::UserAccount account(m_httpNetwork);
+    Controller::Account account(m_httpRestApi);
     LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
@@ -70,7 +70,7 @@ void ActionBuilder::openLoginDialog() {
 }
 
 void ActionBuilder::openAccountDialog() {
-    Controller::UserAccount account(m_httpNetwork);
+    Controller::Account account(m_httpRestApi);
     AccountDialog AccountDialog(&account);
 
     if (AccountDialog.exec() == QDialog::Accepted && AccountDialog.result() == AccountDialog::Result::Deleted) {
@@ -79,7 +79,7 @@ void ActionBuilder::openAccountDialog() {
 }
 
 void ActionBuilder::openRegisterAccountDialog() {
-    Controller::UserAccount account(m_httpNetwork);
+    Controller::Account account(m_httpRestApi);
     RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
@@ -89,7 +89,7 @@ void ActionBuilder::openRegisterAccountDialog() {
 
 void ActionBuilder::login(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
-    m_httpNetwork->setToken(token);
+    m_httpRestApi->setToken(token);
     m_projectMenu->menuAction()->setVisible(true);
     updateAccountActions();
     updateProjectActions();
@@ -98,7 +98,7 @@ void ActionBuilder::login(const QString& token) {
 
 void ActionBuilder::logout() {
     m_fileSettings->setAccount(FileSettings::Account(""));
-    m_httpNetwork->setToken("");
+    m_httpRestApi->setToken("");
     m_projectMenu->menuAction()->setVisible(false);
     updateAccountActions();
     emit loggedChanged(false);

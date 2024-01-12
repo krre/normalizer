@@ -1,11 +1,14 @@
 #pragma once
+#include "external/network/controller/RestController.h"
 #include "core/async/Task.h"
 #include "core/Utils.h"
 #include <QVariant>
 
+class RestApi;
+
 namespace Controller {
 
-class Account {
+class Account : public RestController {
 public:
     struct Token {
         QString token;
@@ -87,12 +90,16 @@ public:
         }
     };
 
-    virtual Async::Task<Token> create(const CreateAccount& account) = 0;
-    virtual Async::Task<void> update(const UpdateAccount& account) = 0;
-    virtual Async::Task<GetAccount> getOne() = 0;
-    virtual Async::Task<Token> login(const LoginAccount& account) = 0;
-    virtual Async::Task<void> remove() = 0;
-    virtual Async::Task<void> changePassword(const Password& password) = 0;
+    Account(RestApi* restApi);
+
+    QString name() const override;
+
+    Async::Task<Token> create(const CreateAccount& account);
+    Async::Task<void> update(const UpdateAccount& account);
+    Async::Task<GetAccount> getOne();
+    Async::Task<Token> login(const LoginAccount& account);
+    Async::Task<void> remove();
+    Async::Task<void> changePassword(const Password& password);
 };
 
 }
