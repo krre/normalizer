@@ -39,11 +39,11 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);
     updateProjectActions();
 
-    auto accountMenu = menuBar->addMenu(tr("Account"));
-    m_registerAction = accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
-    m_loginAction = accountMenu->addAction(tr("Log In..."), this, &ActionBuilder::openLoginDialog);
-    m_accountAction = accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
-    m_logoutAction = accountMenu->addAction(tr("Log Out"), this, &ActionBuilder::logout);
+    m_accountMenu = menuBar->addMenu(tr("Account"));
+    m_registerAction = m_accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
+    m_loginAction = m_accountMenu->addAction(tr("Log In..."), this, &ActionBuilder::openLoginDialog);
+    m_accountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
+    m_logoutAction = m_accountMenu->addAction(tr("Log Out"), this, &ActionBuilder::logout);
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -128,6 +128,8 @@ void ActionBuilder::updateProjectActions() {
 }
 
 void ActionBuilder::updateAccountActions() {
+    m_accountMenu->menuAction()->setVisible(m_projectTable->isVisible());
+
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
     m_registerAction->setVisible(!tokenExists);
     m_loginAction->setVisible(!tokenExists);

@@ -50,7 +50,9 @@ void MainWindow::openProject(Id id, const QString& name) {
     m_codeEditor.reset(new CodeEditor(m_fileSettings->server().web, id, m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
     m_projectTable->setVisible(false);
+
     m_actionBuilder->updateProjectActions();
+    m_actionBuilder->updateAccountActions();
 
     FileSettings::Project project = m_fileSettings->project();
     project.id = id;
@@ -64,7 +66,9 @@ void MainWindow::closeProject() {
     m_codeEditor.reset();
     setToRootWidget(m_projectTable.data());
     m_projectTable->setVisible(true);
+
     m_actionBuilder->updateProjectActions();
+    m_actionBuilder->updateAccountActions();
 
     FileSettings::Project project = m_fileSettings->project();
     project.id = 0;
@@ -104,6 +108,11 @@ void MainWindow::readSettings() {
             openProject(project.id, project.name);
         } else {
             m_projectTable->setVisible(true);
+
+            QTimer::singleShot(0, [this] {
+                m_actionBuilder->updateAccountActions();
+            });
+
         }
     }
 }

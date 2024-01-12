@@ -21,7 +21,9 @@ public:
     };
 
     explicit ActionBuilder(const Parameters& parameters);
+
     void updateProjectActions();
+    void updateAccountActions();
 
 signals:
     void loggedChanged(bool logged);
@@ -40,14 +42,13 @@ private slots:
     void about();
 
 private:
-    void updateAccountActions();
-
     MainWindow* m_mainWindow = nullptr;
     ProjectTable* m_projectTable = nullptr;
     HttpRestApi* m_httpRestApi = nullptr;
     FileSettings* m_fileSettings = nullptr;
 
     QMenu* m_projectMenu = nullptr;
+    QMenu* m_accountMenu = nullptr;
 
     QAction* m_createProjectAction = nullptr;
     QAction* m_openProjectAction = nullptr;
