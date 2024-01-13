@@ -79,7 +79,7 @@ Async::Task<void> ProjectTable::edit() {
     }
 }
 
-Async::Task<void> ProjectTable::deleteProject() {
+Async::Task<void> ProjectTable::remove() {
     if (QMessageBox::warning(this, Application::Name,
                             tr("Delete the project?"),
                             QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) != QMessageBox::Ok) {
@@ -105,7 +105,7 @@ void ProjectTable::showContextMenu(const QPoint& pos) {
     auto customMenu = new QMenu(m_tableWidget);
     customMenu->addAction(tr("Open"), this, &ProjectTable::open);
     customMenu->addAction(tr("Edit..."), this, &ProjectTable::edit);
-    customMenu->addAction(tr("Delete..."), this, &ProjectTable::deleteProject);
+    customMenu->addAction(tr("Delete..."), this, &ProjectTable::remove);
     customMenu->exec(m_tableWidget->mapToGlobal(pos));
 }
 

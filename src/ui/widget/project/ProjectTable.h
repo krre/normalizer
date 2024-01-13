@@ -28,7 +28,7 @@ public slots:
     void create();
     void open();
     Async::Task<void> edit();
-    Async::Task<void> deleteProject();
+    Async::Task<void> remove();
 
     void showContextMenu(const QPoint& pos);
 
