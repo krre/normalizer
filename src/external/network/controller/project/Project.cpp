@@ -10,32 +10,23 @@ QString Project::name() const {
 }
 
 Async::Task<Id>Project::create(const CreateProject& project) {
-    QVariant response = co_await restApi()->post(endpoint(), project.serialize());
-    co_return response.toMap()["id"].toLongLong();
+    co_return co_await RestController::create(project);
 }
 
 Async::Task<void>Project::update(Id id, const UpdateProject& project) {
-    co_await restApi()->put(endpoint(id), project.serialize());
+    co_await RestController::update(id, project);
 }
 
 Async::Task<Project::GetProject> Controller::Project::getOne(Id id) {
-    QVariant response = co_await restApi()->get(endpoint(id));
-    co_return Project::GetProject::parse(response);
+    co_return co_await RestController::getOne<Project::GetProject>(id);
 }
 
 Async::Task<QList<Project::GetProject>>Project::getAll() {
-    QVariant response = co_await restApi()->get(endpoint());
-    QList<Project::GetProject> result;
-
-    for (const auto& item : response.toList()) {
-        result.append(Project::GetProject::parse(item));
-    }
-
-    co_return result;
+co_return co_await RestController::getAll<Project::GetProject>();
 }
 
 Async::Task<void>Project::remove(Id id) {
-    co_await restApi()->del(endpoint(id));
+    co_await RestController::remove(id);
 }
 
 }

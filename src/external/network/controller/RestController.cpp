@@ -16,4 +16,8 @@ RestApi* RestController::restApi() const {
     return m_restApi;
 }
 
+Async::Task<void> RestController::remove(Id id) {
+    co_await m_restApi->del(endpoint(id));
+}
+
 }

@@ -12,32 +12,23 @@ QString Module::name() const {
 }
 
 Async::Task<Id>Module::create(const CreateModule& module) {
-    QVariant response = co_await restApi()->post(endpoint(), module.serialize());
-    co_return response.toMap()["id"].toLongLong();
+    co_return co_await RestController::create(module);
 }
 
 Async::Task<void>Module::update(Id id, const UpdateModule& module) {
-    co_await restApi()->put(endpoint(id), module.serialize());
+    co_await RestController::update(id, module);
 }
 
 Async::Task<Module::GetModule> Controller::Module::getOne(Id id) {
-    QVariant response = co_await restApi()->get(endpoint(id));
-    co_return Module::GetModule::parse(response);
+    co_return co_await RestController::getOne<Module::GetModule>(id);
 }
 
 Async::Task<QList<Module::GetModule>>Module::getAll() {
-    QVariant response = co_await restApi()->get(endpoint());
-    QList<Module::GetModule> result;
-
-    for (const auto& item : response.toList()) {
-        result.append(Module::GetModule::parse(item));
-    }
-
-    co_return result;
+    co_return co_await RestController::getAll<Module::GetModule>();
 }
 
 Async::Task<void>Module::remove(Id id) {
-    co_await restApi()->del(endpoint(id));
+    co_await RestController::remove(id);
 }
 
 }
