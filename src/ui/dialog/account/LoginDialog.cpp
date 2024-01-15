@@ -37,7 +37,7 @@ void LoginDialog::enableOkButton() {
 }
 
 Async::Task<void> LoginDialog::getToken() {
-    Controller::Account::LoginAccount account;
+    Controller::Account::LoginParams account;
     account.email = m_emailLineEdit->text();
     account.password = m_passwordLineEdit->text();
 

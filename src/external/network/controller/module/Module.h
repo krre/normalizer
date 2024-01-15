@@ -14,7 +14,7 @@ public:
         Private
     };
 
-    struct CreateModule {
+    struct CreateParams {
         Id projectId;
         QString name;
         Visibility visibility;
@@ -28,7 +28,7 @@ public:
         }
     };
 
-    struct UpdateModule {
+    struct UpdateParams {
         QString name;
         Visibility visibility;
 
@@ -40,17 +40,17 @@ public:
         }
     };
 
-    struct GetModule {
+    struct GetParams {
         Id id;
         Id projectId;
         QString name;
         Visibility visibility;
         QDateTime updatedTime;
 
-        static GetModule parse(const QVariant& value) {
+        static GetParams parse(const QVariant& value) {
             QVariantMap params = value.toMap();
 
-            GetModule result;
+            GetParams result;
             result.id = params["id"].toLongLong();
             result.projectId = params["project_id"].toLongLong();
             result.name = params["name"].toString();
@@ -65,10 +65,10 @@ public:
 
     QString name() const override;
 
-    Async::Task<Id> create(const CreateModule& module);
-    Async::Task<void> update(Id id, const UpdateModule& module);
-    Async::Task<GetModule> getOne(Id id);
-    Async::Task<QList<GetModule>> getAll();
+    Async::Task<Id> create(const CreateParams& params);
+    Async::Task<void> update(Id id, const UpdateParams& params);
+    Async::Task<GetParams> getOne(Id id);
+    Async::Task<QList<GetParams>> getAll();
     Async::Task<void> remove(Id id);
 };
 

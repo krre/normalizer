@@ -14,7 +14,7 @@ public:
         Library
     };
 
-    struct CreateProject {
+    struct CreateParams {
         QString name;
         Template projectTemplate;
         QString description;
@@ -28,7 +28,7 @@ public:
         }
     };
 
-    struct UpdateProject {
+    struct UpdateParams {
         QString name;
         QString description;
 
@@ -40,7 +40,7 @@ public:
         }
     };
 
-    struct GetProject {
+    struct GetParams {
         Id id;
         QString name;
         Template projectTemplate;
@@ -48,10 +48,10 @@ public:
         QDateTime createdTime;
         QDateTime updatedTime;
 
-        static GetProject parse(const QVariant& value) {
+        static GetParams parse(const QVariant& value) {
             QVariantMap params = value.toMap();
 
-            GetProject result;
+            GetParams result;
             result.id = params["id"].toLongLong();
             result.name = params["name"].toString();
             result.projectTemplate = static_cast<Template>(params["template"].toInt());
@@ -71,10 +71,10 @@ public:
         return projectTemplate == Template::Binary ? "Binary" : "Library";
     }
 
-    Async::Task<Id> create(const CreateProject& project);
-    Async::Task<void> update(Id id, const UpdateProject& project);
-    Async::Task<GetProject> getOne(Id id);
-    Async::Task<QList<GetProject>> getAll();
+    Async::Task<Id> create(const CreateParams& params);
+    Async::Task<void> update(Id id, const UpdateParams& params);
+    Async::Task<GetParams> getOne(Id id);
+    Async::Task<QList<GetParams>> getAll();
     Async::Task<void> remove(Id id);
 };
 

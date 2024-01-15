@@ -45,8 +45,8 @@ private:
         UpdatedTime,
     };
 
-    void addRow(const Controller::Project::GetProject& project);
-    void updateRow(const Controller::Project::GetProject& project);
+    void addRow(const Controller::Project::GetParams& project);
+    void updateRow(const Controller::Project::GetParams& project);
 
     Controller::Project* m_project = nullptr;
     TableWidget* m_tableWidget = nullptr;

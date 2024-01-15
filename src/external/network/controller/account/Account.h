@@ -23,7 +23,7 @@ public:
         }
     };
 
-    struct CreateAccount {
+    struct CreateParams {
         QString login;
         QString email;
         QString fullName;
@@ -39,7 +39,7 @@ public:
         }
     };
 
-    struct UpdateAccount {
+    struct UpdateParams {
         QString fullName;
 
         QVariant serialize() const {
@@ -49,7 +49,7 @@ public:
         }
     };
 
-    struct Password {
+    struct PasswordParams {
         QString oldPassword;
         QString newPassword;
 
@@ -61,7 +61,7 @@ public:
         }
     };
 
-    struct LoginAccount {
+    struct LoginParams {
         QString email;
         QString password;
 
@@ -73,15 +73,15 @@ public:
         }
     };
 
-    struct GetAccount {
+    struct GetParams {
         QString login;
         QString email;
         QString fullName;
 
-        static GetAccount parse(const QVariant& value) {
+        static GetParams parse(const QVariant& value) {
             QVariantMap params = value.toMap();
 
-            GetAccount result;
+            GetParams result;
             result.login = params["login"].toString();
             result.email = params["email"].toString();
             result.fullName = params["full_name"].toString();
@@ -94,12 +94,12 @@ public:
 
     QString name() const override;
 
-    Async::Task<Token> create(const CreateAccount& account);
-    Async::Task<void> update(const UpdateAccount& account);
-    Async::Task<GetAccount> getOne();
-    Async::Task<Token> login(const LoginAccount& account);
+    Async::Task<Token> create(const CreateParams& params);
+    Async::Task<void> update(const UpdateParams& params);
+    Async::Task<GetParams> getOne();
+    Async::Task<Token> login(const LoginParams& params);
     Async::Task<void> remove();
-    Async::Task<void> changePassword(const Password& password);
+    Async::Task<void> changePassword(const PasswordParams& params);
 };
 
 }

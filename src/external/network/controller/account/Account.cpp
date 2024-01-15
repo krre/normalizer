@@ -9,22 +9,22 @@ QString Account::name() const {
     return "account";
 }
 
-Async::Task<Account::Token>Account::create(const CreateAccount& account) {
-    QVariant response = co_await restApi()->post(endpoint(), account.serialize());
+Async::Task<Account::Token>Account::create(const CreateParams& params) {
+    QVariant response = co_await restApi()->post(endpoint(), params.serialize());
     co_return Token::parse(response);
 }
 
-Async::Task<void>Account::update(const UpdateAccount& account) {
-    co_await restApi()->put(endpoint(), account.serialize());
+Async::Task<void>Account::update(const UpdateParams& params) {
+    co_await restApi()->put(endpoint(), params.serialize());
 }
 
-Async::Task<Account::GetAccount>Account::getOne() {
+Async::Task<Account::GetParams>Account::getOne() {
     QVariant response = co_await restApi()->get(endpoint());
-    co_return Account::GetAccount::parse(response);
+    co_return GetParams::parse(response);
 }
 
-Async::Task<Account::Token> Account::login(const LoginAccount& account) {
-    QVariant response = co_await restApi()->post(endpoint() + "/login", account.serialize());
+Async::Task<Account::Token> Account::login(const LoginParams& params) {
+    QVariant response = co_await restApi()->post(endpoint() + "/login", params.serialize());
     co_return Token::parse(response);
 }
 
@@ -32,8 +32,8 @@ Async::Task<void>Account::remove() {
     co_await restApi()->del(endpoint());
 }
 
-Async::Task<void>Account::changePassword(const Password& password) {
-    co_await restApi()->put(endpoint() +  "/password", password.serialize());
+Async::Task<void>Account::changePassword(const PasswordParams& params) {
+    co_await restApi()->put(endpoint() +  "/password", params.serialize());
 }
 
 }
