@@ -11,7 +11,7 @@ QString Account::name() const {
 
 Async::Task<Account::Token>Account::create(const CreateParams& params) {
     QVariant response = co_await restApi()->post(endpoint(), params.serialize());
-    co_return Token::parse(response);
+    co_return Token::deserialize(response);
 }
 
 Async::Task<void>Account::update(const UpdateParams& params) {
@@ -20,12 +20,12 @@ Async::Task<void>Account::update(const UpdateParams& params) {
 
 Async::Task<Account::GetParams>Account::getOne() {
     QVariant response = co_await restApi()->get(endpoint());
-    co_return GetParams::parse(response);
+    co_return GetParams::deserialize(response);
 }
 
 Async::Task<Account::Token> Account::login(const LoginParams& params) {
     QVariant response = co_await restApi()->post(endpoint() + "/login", params.serialize());
-    co_return Token::parse(response);
+    co_return Token::deserialize(response);
 }
 
 Async::Task<void>Account::remove() {

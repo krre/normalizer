@@ -34,7 +34,7 @@ protected:
     template <typename T>
     Async::Task<T> getOne(Id id) {
         QVariant response = co_await m_restApi->get(endpoint(id));
-        co_return T::parse(response);
+        co_return T::deserialize(response);
     }
 
     template <typename T>
@@ -43,7 +43,7 @@ protected:
         QList<T> result;
 
         for (const auto& item : response.toList()) {
-            result.append(T::parse(item));
+            result.append(T::deserialize(item));
         }
 
         co_return result;

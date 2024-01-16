@@ -48,7 +48,7 @@ public:
         QDateTime createdTime;
         QDateTime updatedTime;
 
-        static GetParams parse(const QVariant& value) {
+        static GetParams deserialize(const QVariant& value) {
             QVariantMap params = value.toMap();
 
             GetParams result;

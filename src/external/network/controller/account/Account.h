@@ -13,7 +13,7 @@ public:
     struct Token {
         QString token;
 
-        static Token parse(const QVariant& value) {
+        static Token deserialize(const QVariant& value) {
             QVariantMap params = value.toMap();
 
             Token result;
@@ -78,7 +78,7 @@ public:
         QString email;
         QString fullName;
 
-        static GetParams parse(const QVariant& value) {
+        static GetParams deserialize(const QVariant& value) {
             QVariantMap params = value.toMap();
 
             GetParams result;
