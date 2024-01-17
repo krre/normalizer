@@ -3,12 +3,12 @@
 
 namespace Controller {
 
-Module::Module(RestApi* restApi) : RestController(restApi) {
+Module::Module(Id projectId, RestApi* restApi) : RestController(restApi), m_projectId(projectId) {
 
 }
 
 QString Module::name() const {
-    return "module";
+    return QString("project/%1/module").arg(m_projectId);
 }
 
 Async::Task<Id>Module::create(const CreateParams& params) {

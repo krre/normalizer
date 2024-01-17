@@ -61,7 +61,7 @@ public:
         }
     };
 
-    Module(RestApi* restApi);
+    Module(Id projectId, RestApi* restApi);
 
     QString name() const override;
 
@@ -70,6 +70,9 @@ public:
     Async::Task<GetParams> getOne(Id id);
     Async::Task<QList<GetParams>> getAll();
     Async::Task<void> remove(Id id);
+
+private:
+    Id m_projectId;
 };
 
 }
