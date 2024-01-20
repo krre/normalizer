@@ -45,7 +45,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::openProject(Id id, const QString& name) {
-    m_codeEditor.reset(new CodeEditor(id, m_fileSettings.data()));
+    m_codeEditor.reset(new CodeEditor(id, m_httpRestApi.data(), m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
     m_projectTable->setVisible(false);
 

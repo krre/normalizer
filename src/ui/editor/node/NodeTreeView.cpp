@@ -1,8 +1,11 @@
 #include "NodeTreeView.h"
 #include "NodeContextMenu.h"
+#include "ui/editor/NodeManager.h"
+#include "ui/editor/model/NodeModel.h"
 #include <QtWidgets>
 
-NodeTreeView::NodeTreeView() {
+NodeTreeView::NodeTreeView(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
+    setModel(nodeManager->model());
     header()->setVisible(false);
 
     setContextMenuPolicy(Qt::CustomContextMenu);

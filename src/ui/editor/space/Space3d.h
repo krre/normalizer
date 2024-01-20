@@ -2,13 +2,13 @@
 #include <core/CommonTypes.h>
 #include <QWidget>
 
-class NodeModel;
+class NodeManager;
 
 class Space3d : public QWidget {
 public:
-    Space3d(NodeModel* model, Id projectId);
+    Space3d(NodeManager* nodeManager, Id projectId);
 
 private:
-    NodeModel* m_model = nullptr;
+    NodeManager* m_nodeManager = nullptr;
     Id m_projectId;
 };

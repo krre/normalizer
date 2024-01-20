@@ -1,7 +1,7 @@
 #pragma once
 #include <QWidget>
 
-class NodeModel;
+class NodeManager;
 class NodeTreeView;
 class NodeProperties;
 
@@ -9,7 +9,7 @@ class QSplitter;
 
 class NodeTree : public QWidget {
 public:
-    explicit NodeTree(NodeModel* model, QWidget* parent = nullptr);
+    explicit NodeTree(NodeManager* nodeManager, QWidget* parent = nullptr);
 
 private:
     QSplitter* m_splitter = nullptr;

@@ -1,5 +1,5 @@
 #include "NodeProperties.h"
 
-NodeProperties::NodeProperties(QWidget* parent) : QWidget(parent) {
+NodeProperties::NodeProperties(NodeManager* nodeManager, QWidget* parent) : QWidget(parent),m_nodeManager(nodeManager) {
     setMinimumWidth(100);
 }

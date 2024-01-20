@@ -1,14 +1,12 @@
 #include "NodeTree.h"
 #include "NodeTreeView.h"
 #include "NodeProperties.h"
-#include "ui/editor/model/NodeModel.h"
+#include "ui/editor/NodeManager.h"
 #include <QtWidgets>
 
-NodeTree::NodeTree(NodeModel* model, QWidget* parent) : QWidget(parent) {
-    m_treeView = new NodeTreeView;
-    m_treeView->setModel(model);
-
-    m_properties = new NodeProperties;
+NodeTree::NodeTree(NodeManager* nodeManager, QWidget* parent) : QWidget(parent) {
+    m_treeView = new NodeTreeView(nodeManager);
+    m_properties = new NodeProperties(nodeManager);
 
     m_splitter = new QSplitter;
     m_splitter->setHandleWidth(1);
