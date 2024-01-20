@@ -38,7 +38,6 @@ void FileSettings::setServer(const Server& server) {
     settings.beginGroup("Server");
 
     settings.setValue("api", server.api.toString());
-    settings.setValue("web", server.web.toString());
 
     settings.endGroup();
 }
@@ -49,7 +48,6 @@ Settings::Server FileSettings::server() const {\
 
     Server result;
     result.api = settings.value("api", "https://api.norm.dev").toString();
-    result.web = settings.value("web", "http://localhost:5173").toString();
 
     settings.endGroup();
 

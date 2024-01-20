@@ -15,5 +15,4 @@ private:
     Settings* m_settings = nullptr;
 
     QLineEdit* m_apilLineEdit = nullptr;
-    QLineEdit* m_webLineEdit = nullptr;
 };

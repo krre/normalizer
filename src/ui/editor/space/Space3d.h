@@ -4,7 +4,7 @@
 
 class Space3d : public QWidget {
 public:
-    Space3d(const QUrl& webUrl, Id projectId);
+    Space3d(Id projectId);
 
 private:
     Id m_projectId;

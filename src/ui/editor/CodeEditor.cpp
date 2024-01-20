@@ -10,7 +10,7 @@ CodeEditor::CodeEditor(Id projectId, Settings* settings) : m_settings(settings) 
     pageComboBox->addItem(tr("Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_space3d = new Space3d(settings->server().web, projectId);
+    m_space3d = new Space3d(projectId);
     m_nodeTree = new NodeTree();
 
     auto stackedLayout = new QStackedLayout;
