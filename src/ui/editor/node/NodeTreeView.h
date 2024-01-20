@@ -1,9 +1,9 @@
 #pragma once
-#include <QTreeWidget>
+#include <QTreeView>
 
-class NodeTreeWidget : public QTreeWidget {
+class NodeTreeView : public QTreeView {
 public:
-    NodeTreeWidget();
+    NodeTreeView();
 
 private slots:
     void showContextMenu(const QPoint& point);

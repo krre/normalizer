@@ -47,7 +47,7 @@ add_library(common STATIC
     ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
-    ui/editor/node/NodeTreeWidget.h ui/editor/node/NodeTreeWidget.cpp
+    ui/editor/node/NodeTreeView.h ui/editor/node/NodeTreeView.cpp
     ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp
     external/network/RestApi.h
     external/network/controller/module/Module.h external/network/controller/module/Module.cpp

@@ -1,10 +1,10 @@
 #include "NodeTree.h"
-#include "NodeTreeWidget.h"
+#include "NodeTreeView.h"
 #include "NodeProperties.h"
 #include <QtWidgets>
 
 NodeTree::NodeTree(QWidget* parent) : QWidget(parent) {
-    m_treeWidget = new NodeTreeWidget;
+    m_treeView = new NodeTreeView;
     m_properties = new NodeProperties;
 
     m_splitter = new QSplitter;
@@ -13,7 +13,7 @@ NodeTree::NodeTree(QWidget* parent) : QWidget(parent) {
     m_splitter->setSizes({ 200, 500 });
     m_splitter->setContentsMargins(QMargins());
 
-    m_splitter->addWidget(m_treeWidget);
+    m_splitter->addWidget(m_treeView);
     m_splitter->addWidget(m_properties);
 
     auto layout = new QVBoxLayout;
