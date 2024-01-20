@@ -15,15 +15,11 @@ public:
     };
 
     struct CreateParams {
-        Id projectId;
-        QString name;
-        Visibility visibility;
+        std::optional<Id> moduleId;
 
         QVariant serialize() const {
             return QVariantMap({
-                { "project_id", projectId },
-                { "name", name },
-                { "visibility", int(visibility) },
+                { "module_id", QVariant::fromValue(moduleId) },
             });
         }
     };
@@ -65,7 +61,7 @@ public:
 
     QString name() const override;
 
-    Async::Task<Id> create(const CreateParams& params);
+    Async::Task<Id> create(std::optional<Id> moduleId = std::nullopt);
     Async::Task<void> update(Id id, const UpdateParams& params);
     Async::Task<GetParams> getOne(Id id);
     Async::Task<QList<GetParams>> getAll();

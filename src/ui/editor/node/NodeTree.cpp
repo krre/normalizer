@@ -4,8 +4,8 @@
 #include "ui/editor/NodeManager.h"
 #include <QtWidgets>
 
-NodeTree::NodeTree(NodeManager* nodeManager, QWidget* parent) : QWidget(parent) {
-    m_treeView = new NodeTreeView(nodeManager);
+NodeTree::NodeTree(NodeManager* nodeManager, Id projectId, QWidget* parent) : QWidget(parent) {
+    m_treeView = new NodeTreeView(nodeManager, projectId);
     m_properties = new NodeProperties(nodeManager);
 
     m_splitter = new QSplitter;

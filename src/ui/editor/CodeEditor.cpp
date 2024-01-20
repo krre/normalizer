@@ -16,7 +16,7 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
     m_space3d = new Space3d(m_nodeManager.data(), projectId);
-    m_nodeTree = new NodeTree(m_nodeManager.data());
+    m_nodeTree = new NodeTree(m_nodeManager.data(), projectId);
 
     auto stackedLayout = new QStackedLayout;
     stackedLayout->addWidget(m_space3d);

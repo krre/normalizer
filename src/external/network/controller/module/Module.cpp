@@ -11,7 +11,10 @@ QString Module::name() const {
     return QString("project/%1/module").arg(m_projectId);
 }
 
-Async::Task<Id>Module::create(const CreateParams& params) {
+Async::Task<Id>Module::create(std::optional<Id> moduleId) {
+    CreateParams params;
+    params.moduleId = moduleId;
+
     co_return co_await RestController::create(params);
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <core/CommonTypes.h>
+#include "core/CommonTypes.h"
 #include <QWidget>
 
 class NodeManager;
