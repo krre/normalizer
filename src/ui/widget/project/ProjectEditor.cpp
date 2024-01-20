@@ -11,7 +11,6 @@ ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
 ProjectEditor::ProjectEditor(Controller::Project* project, Id id, QWidget* parent) : StandardDialog(parent), m_project(project), m_id(id), m_state(State::Edit) {
     setWindowTitle(tr("Edit Project"));
     createForm();
-    m_templateComboBox->setEnabled(false);
     getProject();
 }
 
@@ -27,16 +26,21 @@ void ProjectEditor::createForm() {
     m_nameLineEdit = new QLineEdit;
     m_descriptionTextEdit = new QPlainTextEdit;
 
-    m_templateComboBox = new QComboBox;
-    m_templateComboBox->addItem(tr("Binary"));
-    m_templateComboBox->addItem(tr("Library"));
-
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
-    formLayout->addRow(tr("Template:"), m_templateComboBox);
-    formLayout->addRow(tr("Description:"), m_descriptionTextEdit);
 
-    formLayout->itemAt(formLayout->indexOf(m_templateComboBox))->setAlignment(Qt::AlignLeft);
+    if (m_state == State::Add) {
+        m_templateComboBox = new QComboBox;
+        m_templateComboBox->addItems(m_templates);
+
+        formLayout->addRow(tr("Template:"), m_templateComboBox);
+        formLayout->itemAt(formLayout->indexOf(m_templateComboBox))->setAlignment(Qt::AlignLeft);
+    } else {
+        m_templateLabel = new QLabel;
+        formLayout->addRow(tr("Template:"), m_templateLabel);
+    }
+
+    formLayout->addRow(tr("Description:"), m_descriptionTextEdit);
 
     setContentLayout(formLayout, false);
     resizeToWidth(800);
@@ -66,6 +70,6 @@ Async::Task<void> ProjectEditor::updateProject() {
 Async::Task<void> ProjectEditor::getProject() {
     Controller::Project::GetParams project = co_await m_project->getOne(m_id);
     m_nameLineEdit->setText(project.name);
-    m_templateComboBox->setCurrentIndex(int(project.projectTemplate));
+    m_templateLabel->setText(m_templates.at(int(project.projectTemplate)));
     m_descriptionTextEdit->setPlainText(project.description);
 }

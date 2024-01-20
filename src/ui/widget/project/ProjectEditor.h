@@ -10,6 +10,7 @@ namespace Controller {
 class QLineEdit;
 class QPlainTextEdit;
 class QComboBox;
+class QLabel;
 
 class ProjectEditor : public StandardDialog {
 public:
@@ -31,6 +32,8 @@ private:
     Async::Task<void> updateProject();
     Async::Task<void> getProject();
 
+    const QStringList m_templates = { tr("Binary"), tr("Library") };
+
     Controller::Project* m_project = nullptr;
     Id m_id = 0;
     const State m_state;
@@ -38,4 +41,5 @@ private:
     QLineEdit* m_nameLineEdit = nullptr;
     QPlainTextEdit* m_descriptionTextEdit = nullptr;
     QComboBox* m_templateComboBox = nullptr;
+    QLabel* m_templateLabel = nullptr;
 };
