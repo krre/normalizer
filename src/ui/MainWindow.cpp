@@ -109,7 +109,7 @@ void MainWindow::readSettings() {
         } else {
             m_projectTable->setVisible(true);
 
-            QTimer::singleShot(0, [this] {
+            QTimer::singleShot(0, this, [this] {
                 m_actionBuilder->updateAccountActions();
             });
 
