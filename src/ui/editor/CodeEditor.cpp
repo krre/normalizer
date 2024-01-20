@@ -1,17 +1,20 @@
 #include "CodeEditor.h"
 #include "space/Space3d.h"
 #include "node/NodeTree.h"
+#include "model/NodeModel.h"
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
 CodeEditor::CodeEditor(Id projectId, Settings* settings) : m_settings(settings) {
+    m_nodeModel.reset(new NodeModel);
+
     pageComboBox = new QComboBox;
     pageComboBox->addItem(tr("3D space"));
     pageComboBox->addItem(tr("Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_space3d = new Space3d(projectId);
-    m_nodeTree = new NodeTree();
+    m_space3d = new Space3d(m_nodeModel.data(), projectId);
+    m_nodeTree = new NodeTree(m_nodeModel.data());
 
     auto stackedLayout = new QStackedLayout;
     stackedLayout->addWidget(m_space3d);

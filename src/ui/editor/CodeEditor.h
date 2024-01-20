@@ -5,6 +5,7 @@
 class Settings;
 class Space3d;
 class NodeTree;
+class NodeModel;
 
 class QComboBox;
 
@@ -15,6 +16,8 @@ public:
     ~CodeEditor();
 
 private:
+    QScopedPointer<NodeModel> m_nodeModel;
+
     Space3d* m_space3d = nullptr;
     NodeTree* m_nodeTree = nullptr;
     Settings* m_settings = nullptr;

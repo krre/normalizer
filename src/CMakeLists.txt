@@ -51,6 +51,7 @@ add_library(common STATIC
     ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp
     external/network/RestApi.h
     external/network/controller/module/Module.h external/network/controller/module/Module.cpp
+    ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
