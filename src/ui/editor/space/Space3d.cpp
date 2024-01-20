@@ -1,12 +1,13 @@
 #include "Space3d.h"
 #include <QtWidgets>
-#include <QWebEngineView>
+#include <Qt3DExtras>
 
 Space3d::Space3d(const QUrl& webUrl, Id projectId) : m_projectId(projectId) {
-    QWebEngineView* view = new QWebEngineView;
-    view->load(QString("%1/editor/%2").arg(webUrl.toString()).arg(projectId));
+    Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
+    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
+    view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);
 
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(view);
+    layout->addWidget(QWidget::createWindowContainer(view));
 }

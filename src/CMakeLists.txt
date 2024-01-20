@@ -1,7 +1,12 @@
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Network
-    WebEngineWidgets
+    3DCore
+    3DRender
+    3DInput
+    3DLogic
+    3DExtras
+    3DAnimation
 )
 
 add_library(common STATIC
@@ -53,7 +58,12 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PRIVATE
     Qt6::Widgets
     Qt6::Network
-    Qt6::WebEngineWidgets
+    Qt6::3DCore
+    Qt6::3DRender
+    Qt6::3DInput
+    Qt6::3DLogic
+    Qt6::3DExtras
+    Qt6::3DAnimation
 )
 
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
