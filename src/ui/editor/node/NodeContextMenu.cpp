@@ -8,7 +8,3 @@ NodeContextMenu::NodeContextMenu(QWidget* parent) : QMenu(parent) {
 
     addAction(tr("Remove..."));
 }
-
-void NodeContextMenu::addModule() {
-    qDebug() << "add module";
-}

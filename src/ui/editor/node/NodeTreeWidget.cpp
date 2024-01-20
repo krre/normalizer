@@ -11,5 +11,11 @@ NodeTreeWidget::NodeTreeWidget() {
 
 void NodeTreeWidget::showContextMenu(const QPoint& point) {
     auto contextMenu = new NodeContextMenu(this);
+    connect(contextMenu, &NodeContextMenu::addModule, this, &NodeTreeWidget::addModule);
+
     contextMenu->exec(mapToGlobal(point));
+}
+
+void NodeTreeWidget::addModule() {
+    qDebug() << "add module";
 }

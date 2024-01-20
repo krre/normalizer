@@ -7,4 +7,5 @@ public:
 
 private slots:
     void showContextMenu(const QPoint& point);
+    void addModule();
 };

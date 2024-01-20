@@ -2,9 +2,10 @@
 #include <QMenu>
 
 class NodeContextMenu : public QMenu {
+    Q_OBJECT
 public:
     NodeContextMenu(QWidget* parent);
 
-private slots:
+signals:
     void addModule();
 };
