@@ -110,7 +110,6 @@ void MainWindow::readSettings() {
             QTimer::singleShot(0, this, [this] {
                 m_actionBuilder->updateAccountActions();
             });
-
         }
     }
 }
