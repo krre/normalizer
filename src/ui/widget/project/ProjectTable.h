@@ -3,18 +3,15 @@
 #include "external/network/controller/project/Project.h"
 #include <QWidget>
 
+class RestApi;
 class TableWidget;
-
-namespace Controller {
-    class Project;
-}
 
 class QNetworkAccessManager;
 
 class ProjectTable : public QWidget {
     Q_OBJECT
 public:
-    ProjectTable(Controller::Project* project);
+    ProjectTable(RestApi* restApi);
 
     std::optional<int> currentRow() const;
     std::optional<Id> currentId() const;
@@ -48,6 +45,6 @@ private:
     void addRow(const Controller::Project::GetParams& project);
     void updateRow(const Controller::Project::GetParams& project);
 
-    Controller::Project* m_project = nullptr;
+    QScopedPointer<Controller::Project> m_project;
     TableWidget* m_tableWidget = nullptr;
 };

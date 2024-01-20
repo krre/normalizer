@@ -4,7 +4,9 @@
 #include "core/Application.h"
 #include <QtWidgets>
 
-ProjectTable::ProjectTable(Controller::Project* project) : m_project(project) {
+ProjectTable::ProjectTable(RestApi* restApi) {
+    m_project.reset(new Controller::Project(restApi));
+
     QStringList columnLabels = { tr("Id"), tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") };
 
     m_tableWidget = new TableWidget;
@@ -57,7 +59,7 @@ std::optional<Id> ProjectTable::currentId() const {
 }
 
 void ProjectTable::create() {
-    ProjectEditor projectEditor(m_project);
+    ProjectEditor projectEditor(m_project.data());
 
     if (projectEditor.exec() == QDialog::Accepted) {
         load();
@@ -71,7 +73,7 @@ void ProjectTable::open() {
 Async::Task<void> ProjectTable::edit() {
     Id id = currentId().value();
 
-    ProjectEditor projectEditor(m_project, id);
+    ProjectEditor projectEditor(m_project.data(), id);
 
     if (projectEditor.exec() == QDialog::Accepted) {
         Controller::Project::GetParams project = co_await m_project->getOne(id);

@@ -3,10 +3,6 @@
 #include <QMainWindow>
 #include <QPropertyNotifier>
 
-namespace Controller {
-    class Project;
-}
-
 class HttpRestApi;
 class FileSettings;
 class ProjectTable;
@@ -36,7 +32,6 @@ private:
 
     QScopedPointer<HttpRestApi> m_httpRestApi;
     QScopedPointer<FileSettings> m_fileSettings;
-    QScopedPointer<Controller::Project> m_project;
 
     QScopedPointer<ProjectTable> m_projectTable;
     QScopedPointer<CodeEditor> m_codeEditor;
