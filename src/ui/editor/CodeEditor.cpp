@@ -4,13 +4,13 @@
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
-CodeEditor::CodeEditor(const QUrl& webUrl, Id projectId, Settings* settings) : m_settings(settings) {
+CodeEditor::CodeEditor(Id projectId, Settings* settings) : m_settings(settings) {
     pageComboBox = new QComboBox;
     pageComboBox->addItem(tr("3D space"));
     pageComboBox->addItem(tr("Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_space3d = new Space3d(webUrl, projectId);
+    m_space3d = new Space3d(settings->server().web, projectId);
     m_nodeTree = new NodeTree();
 
     auto stackedLayout = new QStackedLayout;

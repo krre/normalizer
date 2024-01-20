@@ -11,7 +11,7 @@ class QComboBox;
 class CodeEditor : public QWidget {
     Q_OBJECT
 public:
-    CodeEditor(const QUrl& webUrl, Id projectId, Settings* settings);
+    CodeEditor(Id projectId, Settings* settings);
     ~CodeEditor();
 
 private:
