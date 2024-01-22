@@ -46,7 +46,7 @@ void ChangePasswordDialog::enableOkButton() {
 }
 
 Async::Task<void> ChangePasswordDialog::changePassword() {
-    Controller::Account::PasswordParams password;
+    Controller::Account::PasswordRequest password;
     password.oldPassword = m_oldPasswordLineEdit->text();
     password.newPassword = m_newPasswordLineEdit->text();
 

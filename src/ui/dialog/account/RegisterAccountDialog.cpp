@@ -59,7 +59,7 @@ void RegisterAccountDialog::enableOkButton() {
 }
 
 Async::Task<void> RegisterAccountDialog::getToken() {
-    Controller::Account::CreateParams account;
+    Controller::Account::CreateRequest account;
     account.login = m_loginLineEdit->text();
     account.fullName = m_fullNameLineEdit->text();
     account.email = m_emailLineEdit->text();

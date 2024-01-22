@@ -12,22 +12,22 @@ QString Module::name() const {
 }
 
 Async::Task<Module::CreateResponse> Module::create(std::optional<Id> moduleId) {
-    CreateParams params;
+    CreateRequest params;
     params.moduleId = moduleId;
 
-    co_return co_await RestController::create<CreateParams, CreateResponse>(params);
+    co_return co_await RestController::create<CreateRequest, CreateResponse>(params);
 }
 
-Async::Task<void>Module::update(Id id, const UpdateParams& params) {
+Async::Task<void>Module::update(Id id, const UpdateRequest& params) {
     co_await RestController::update(id, params);
 }
 
-Async::Task<Module::GetParams> Controller::Module::getOne(Id id) {
-    co_return co_await RestController::getOne<GetParams>(id);
+Async::Task<Module::GetResponse> Controller::Module::getOne(Id id) {
+    co_return co_await RestController::getOne<GetResponse>(id);
 }
 
-Async::Task<QList<Module::GetParams>>Module::getAll() {
-    co_return co_await RestController::getAll<GetParams>();
+Async::Task<QList<Module::GetResponse>>Module::getAll() {
+    co_return co_await RestController::getAll<GetResponse>();
 }
 
 Async::Task<void>Module::remove(Id id) {

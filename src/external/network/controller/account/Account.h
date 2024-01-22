@@ -10,20 +10,7 @@ namespace Controller {
 
 class Account : public RestController {
 public:
-    struct Token {
-        QString token;
-
-        static Token deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            Token result;
-            result.token = params["token"].toString();
-
-            return result;
-        }
-    };
-
-    struct CreateParams {
+    struct CreateRequest {
         QString login;
         QString email;
         QString fullName;
@@ -39,7 +26,7 @@ public:
         }
     };
 
-    struct UpdateParams {
+    struct UpdateRequest {
         QString fullName;
 
         QVariant serialize() const {
@@ -49,7 +36,7 @@ public:
         }
     };
 
-    struct PasswordParams {
+    struct PasswordRequest {
         QString oldPassword;
         QString newPassword;
 
@@ -61,7 +48,7 @@ public:
         }
     };
 
-    struct LoginParams {
+    struct LoginRequest {
         QString email;
         QString password;
 
@@ -73,15 +60,28 @@ public:
         }
     };
 
-    struct GetParams {
+    struct TokenResponse {
+        QString token;
+
+        static TokenResponse deserialize(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
+            TokenResponse result;
+            result.token = params["token"].toString();
+
+            return result;
+        }
+    };
+
+    struct GetResponse {
         QString login;
         QString email;
         QString fullName;
 
-        static GetParams deserialize(const QVariant& value) {
+        static GetResponse deserialize(const QVariant& value) {
             QVariantMap params = value.toMap();
 
-            GetParams result;
+            GetResponse result;
             result.login = params["login"].toString();
             result.email = params["email"].toString();
             result.fullName = params["full_name"].toString();
@@ -94,12 +94,12 @@ public:
 
     QString name() const override;
 
-    Async::Task<Token> create(const CreateParams& params);
-    Async::Task<void> update(const UpdateParams& params);
-    Async::Task<GetParams> getOne();
-    Async::Task<Token> login(const LoginParams& params);
+    Async::Task<TokenResponse> create(const CreateRequest& params);
+    Async::Task<void> update(const UpdateRequest& params);
+    Async::Task<GetResponse> getOne();
+    Async::Task<TokenResponse> login(const LoginRequest& params);
     Async::Task<void> remove();
-    Async::Task<void> changePassword(const PasswordParams& params);
+    Async::Task<void> changePassword(const PasswordRequest& params);
 };
 
 }

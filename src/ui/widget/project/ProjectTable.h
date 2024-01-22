@@ -41,9 +41,9 @@ private:
         CreatedTime,
         UpdatedTime,
     };
-
-    void addRow(const Controller::Project::GetParams& project);
-    void updateRow(const Controller::Project::GetParams& project);
+    
+    void addRow(const Controller::Project::GetResponse& project);
+    void updateRow(const Controller::Project::GetResponse& project);
 
     QScopedPointer<Controller::Project> m_project;
     TableWidget* m_tableWidget = nullptr;

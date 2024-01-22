@@ -14,7 +14,7 @@ public:
         Private
     };
 
-    struct CreateParams {
+    struct CreateRequest {
         std::optional<Id> moduleId;
 
         QVariant serialize() const {
@@ -24,7 +24,7 @@ public:
         }
     };
 
-    struct UpdateParams {
+    struct UpdateRequest {
         QString name;
         Visibility visibility;
 
@@ -33,27 +33,6 @@ public:
                 { "name", name },
                 { "visibility", int(visibility) },
             });
-        }
-    };
-
-    struct GetParams {
-        Id id;
-        Id projectId;
-        QString name;
-        Visibility visibility;
-        QDateTime updatedTime;
-
-        static GetParams deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            GetParams result;
-            result.id = params["id"].toLongLong();
-            result.projectId = params["project_id"].toLongLong();
-            result.name = params["name"].toString();
-            result.visibility = static_cast<Visibility>(params["visibility"].toInt());
-            result.updatedTime = params["updated_at"].toDateTime();
-
-            return result;
         }
     };
 
@@ -74,14 +53,35 @@ public:
         }
     };
 
+    struct GetResponse {
+        Id id;
+        Id projectId;
+        QString name;
+        Visibility visibility;
+        QDateTime updatedTime;
+
+        static GetResponse deserialize(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
+            GetResponse result;
+            result.id = params["id"].toLongLong();
+            result.projectId = params["project_id"].toLongLong();
+            result.name = params["name"].toString();
+            result.visibility = static_cast<Visibility>(params["visibility"].toInt());
+            result.updatedTime = params["updated_at"].toDateTime();
+
+            return result;
+        }
+    };
+
     Module(Id projectId, RestApi* restApi);
 
     QString name() const override;
 
     Async::Task<CreateResponse> create(std::optional<Id> moduleId = std::nullopt);
-    Async::Task<void> update(Id id, const UpdateParams& params);
-    Async::Task<GetParams> getOne(Id id);
-    Async::Task<QList<GetParams>> getAll();
+    Async::Task<void> update(Id id, const UpdateRequest& params);
+    Async::Task<GetResponse> getOne(Id id);
+    Async::Task<QList<GetResponse>> getAll();
     Async::Task<void> remove(Id id);
 
 private:

@@ -66,14 +66,14 @@ Async::Task<void> AccountDialog::deleteAccount() {
 }
 
 Async::Task<void> AccountDialog::getAccount() {
-    Controller::Account::GetParams account = co_await m_account->getOne();
+    Controller::Account::GetResponse account = co_await m_account->getOne();
     m_loginLineEdit->setText(account.login);
     m_emailLineEdit->setText(account.email);
     m_fullNameLineEdit->setText(account.fullName);
 }
 
 Async::Task<void> AccountDialog::updateAccount() {
-    Controller::Account::UpdateParams account;
+    Controller::Account::UpdateRequest account;
     account.fullName = m_fullNameLineEdit->text();
 
     co_await m_account->update(account);
