@@ -11,11 +11,11 @@ QString Module::name() const {
     return QString("project/%1/module").arg(m_projectId);
 }
 
-Async::Task<Id>Module::create(std::optional<Id> moduleId) {
+Async::Task<Module::CreateResponse> Module::create(std::optional<Id> moduleId) {
     CreateParams params;
     params.moduleId = moduleId;
 
-    co_return co_await RestController::create(params);
+    co_return co_await RestController::create<CreateParams, CreateResponse>(params);
 }
 
 Async::Task<void>Module::update(Id id, const UpdateParams& params) {

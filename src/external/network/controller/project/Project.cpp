@@ -9,8 +9,8 @@ QString Project::name() const {
     return "project";
 }
 
-Async::Task<Id>Project::create(const CreateParams& params) {
-    co_return co_await RestController::create(params);
+Async::Task<Project::CreateResponse> Project::create(const CreateParams& params) {
+    co_return co_await RestController::create<CreateParams, CreateResponse>(params);
 }
 
 Async::Task<void>Project::update(Id id, const UpdateParams& params) {

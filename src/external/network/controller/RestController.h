@@ -20,10 +20,10 @@ public:
 protected:
     RestApi* restApi() const;
 
-    template <typename T>
-    Async::Task<Id> create(const T& params) {
+    template <typename Request, typename Response>
+    Async::Task<Response> create(const Request& params) {
         QVariant response = co_await m_restApi->post(endpoint(), params.serialize());
-        co_return response.toMap()["id"].toLongLong();
+        co_return Response::deserialize(response);
     }
 
     template <typename T>

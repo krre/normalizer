@@ -63,6 +63,19 @@ public:
         }
     };
 
+    struct CreateResponse {
+        Id id;
+
+        static CreateResponse deserialize(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
+            CreateResponse result;
+            result.id = params["id"].toLongLong();
+
+            return result;
+        }
+    };
+
     Project(RestApi* restApi);
 
     QString name() const override;
@@ -71,7 +84,7 @@ public:
         return projectTemplate == Template::Binary ? "Binary" : "Library";
     }
 
-    Async::Task<Id> create(const CreateParams& params);
+    Async::Task<CreateResponse> create(const CreateParams& params);
     Async::Task<void> update(Id id, const UpdateParams& params);
     Async::Task<GetParams> getOne(Id id);
     Async::Task<QList<GetParams>> getAll();

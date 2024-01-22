@@ -57,11 +57,28 @@ public:
         }
     };
 
+    struct CreateResponse {
+        Id id;
+        QString name;
+        Visibility visibility;
+
+        static CreateResponse deserialize(const QVariant& value) {
+            QVariantMap params = value.toMap();
+
+            CreateResponse result;
+            result.id = params["id"].toLongLong();
+            result.name = params["name"].toString();
+            result.visibility = static_cast<Visibility>(params["visibility"].toInt());
+
+            return result;
+        }
+    };
+
     Module(Id projectId, RestApi* restApi);
 
     QString name() const override;
 
-    Async::Task<Id> create(std::optional<Id> moduleId = std::nullopt);
+    Async::Task<CreateResponse> create(std::optional<Id> moduleId = std::nullopt);
     Async::Task<void> update(Id id, const UpdateParams& params);
     Async::Task<GetParams> getOne(Id id);
     Async::Task<QList<GetParams>> getAll();
