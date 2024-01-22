@@ -17,7 +17,7 @@ Async::Task<void>Project::update(Id id, const UpdateRequest& params) {
     co_await RestController::update(id, params);
 }
 
-Async::Task<Project::GetResponse> Controller::Project::getOne(Id id) {
+Async::Task<Project::GetResponse> Project::getOne(Id id) {
     co_return co_await RestController::getOne<GetResponse>(id);
 }
 

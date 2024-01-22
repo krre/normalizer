@@ -22,7 +22,7 @@ Async::Task<void>Module::update(Id id, const UpdateRequest& params) {
     co_await RestController::update(id, params);
 }
 
-Async::Task<Module::GetResponse> Controller::Module::getOne(Id id) {
+Async::Task<Module::GetResponse> Module::getOne(Id id) {
     co_return co_await RestController::getOne<GetResponse>(id);
 }
 
