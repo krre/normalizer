@@ -36,12 +36,12 @@ private:
     enum class Column {
         Id,
         Name,
-        Template,
+        Target,
         Description,
         CreatedTime,
         UpdatedTime,
     };
-    
+
     void addRow(const Controller::Project::GetResponse& project);
     void updateRow(const Controller::Project::GetResponse& project);
 

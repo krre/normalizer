@@ -9,20 +9,20 @@ namespace Controller {
 
 class Project : public RestController {
 public:
-    enum class Template {
+    enum class Target {
         Binary,
         Library
     };
 
     struct CreateRequest {
         QString name;
-        Template projectTemplate;
+        Target target;
         QString description;
 
         QVariant serialize() const {
             return QVariantMap({
                 { "name", name },
-                { "template", int(projectTemplate) },
+                { "target", int(target) },
                 { "description", description },
             });
         }
@@ -56,7 +56,7 @@ public:
     struct GetResponse {
         Id id;
         QString name;
-        Template projectTemplate;
+        Target target;
         QString description;
         QDateTime createdTime;
         QDateTime updatedTime;
@@ -67,7 +67,7 @@ public:
             GetResponse result;
             result.id = params["id"].toLongLong();
             result.name = params["name"].toString();
-            result.projectTemplate = static_cast<Template>(params["template"].toInt());
+            result.target = static_cast<Target>(params["target"].toInt());
             result.description = params["description"].toString();
             result.createdTime = params["created_at"].toDateTime();
             result.updatedTime = params["updated_at"].toDateTime();
@@ -80,8 +80,8 @@ public:
 
     QString name() const override;
 
-    static QString templateToString(Template projectTemplate) {
-        return projectTemplate == Template::Binary ? "Binary" : "Library";
+    static QString targetToString(Target target) {
+        return target == Target::Binary ? "Binary" : "Library";
     }
 
     Async::Task<CreateResponse> create(const CreateRequest& params);

@@ -30,14 +30,14 @@ void ProjectEditor::createForm() {
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
 
     if (m_state == State::Add) {
-        m_templateComboBox = new QComboBox;
-        m_templateComboBox->addItems(m_templates);
+        m_targetComboBox = new QComboBox;
+        m_targetComboBox->addItems(m_targets);
 
-        formLayout->addRow(tr("Template:"), m_templateComboBox);
-        formLayout->itemAt(formLayout->indexOf(m_templateComboBox))->setAlignment(Qt::AlignLeft);
+        formLayout->addRow(tr("Target:"), m_targetComboBox);
+        formLayout->itemAt(formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
     } else {
-        m_templateLabel = new QLabel;
-        formLayout->addRow(tr("Template:"), m_templateLabel);
+        m_targetLabel = new QLabel;
+        formLayout->addRow(tr("Target:"), m_targetLabel);
     }
 
     formLayout->addRow(tr("Description:"), m_descriptionTextEdit);
@@ -51,7 +51,7 @@ void ProjectEditor::createForm() {
 Async::Task<void> ProjectEditor::createProject() {
     Controller::Project::CreateRequest project;
     project.name = m_nameLineEdit->text();
-    project.projectTemplate = static_cast<Controller::Project::Template>(m_templateComboBox->currentIndex());
+    project.target = static_cast<Controller::Project::Target>(m_targetComboBox->currentIndex());
     project.description = m_descriptionTextEdit->toPlainText();
 
     co_await m_project->create(project);
@@ -70,6 +70,6 @@ Async::Task<void> ProjectEditor::updateProject() {
 Async::Task<void> ProjectEditor::getProject() {
     Controller::Project::GetResponse project = co_await m_project->getOne(m_id);
     m_nameLineEdit->setText(project.name);
-    m_templateLabel->setText(m_templates.at(int(project.projectTemplate)));
+    m_targetLabel->setText(m_targets.at(int(project.target)));
     m_descriptionTextEdit->setPlainText(project.description);
 }

@@ -7,7 +7,7 @@
 ProjectTable::ProjectTable(RestApi* restApi) {
     m_project.reset(new Controller::Project(restApi));
 
-    QStringList columnLabels = { tr("Id"), tr("Name"), tr("Template"), tr("Description"), tr("Created time"), tr("Updated time") };
+    QStringList columnLabels = { tr("Id"), tr("Name"), tr("Target"), tr("Description"), tr("Created time"), tr("Updated time") };
 
     m_tableWidget = new TableWidget;
     m_tableWidget->setColumnCount(columnLabels.count());
@@ -125,8 +125,8 @@ void ProjectTable::addRow(const Controller::Project::GetResponse& project) {
     QTableWidgetItem* nameItem = new QTableWidgetItem(project.name);
     m_tableWidget->setItem(row, int(Column::Name), nameItem);
 
-    QTableWidgetItem* templateItem = new QTableWidgetItem(Controller::Project::templateToString(project.projectTemplate));
-    m_tableWidget->setItem(row, int(Column::Template), templateItem);
+    QTableWidgetItem* targetItem = new QTableWidgetItem(Controller::Project::targetToString(project.target));
+    m_tableWidget->setItem(row, int(Column::Target), targetItem);
 
     QTableWidgetItem* descriptionItem = new QTableWidgetItem(project.description);
     m_tableWidget->setItem(row, int(Column::Description), descriptionItem);

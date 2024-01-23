@@ -32,7 +32,7 @@ private:
     Async::Task<void> updateProject();
     Async::Task<void> getProject();
 
-    const QStringList m_templates = { tr("Binary"), tr("Library") };
+    const QStringList m_targets = { tr("Binary"), tr("Library") };
 
     Controller::Project* m_project = nullptr;
     Id m_id = 0;
@@ -40,6 +40,6 @@ private:
 
     QLineEdit* m_nameLineEdit = nullptr;
     QPlainTextEdit* m_descriptionTextEdit = nullptr;
-    QComboBox* m_templateComboBox = nullptr;
-    QLabel* m_templateLabel = nullptr;
+    QComboBox* m_targetComboBox = nullptr;
+    QLabel* m_targetLabel = nullptr;
 };
