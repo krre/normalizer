@@ -10,7 +10,7 @@ namespace Controller {
 class Project : public RestController {
 public:
     enum class Target {
-        Binary,
+        Application,
         Library
     };
 
@@ -81,7 +81,7 @@ public:
     QString name() const override;
 
     static QString targetToString(Target target) {
-        return target == Target::Binary ? "Binary" : "Library";
+        return target == Target::Application ? "Application" : "Library";
     }
 
     Async::Task<CreateResponse> create(const CreateRequest& params);
