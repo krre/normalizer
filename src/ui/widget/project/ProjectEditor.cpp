@@ -29,9 +29,12 @@ void ProjectEditor::createForm() {
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
 
+    using namespace Controller;
+
     if (m_state == State::Add) {
         m_targetComboBox = new QComboBox;
-        m_targetComboBox->addItems(m_targets);
+        m_targetComboBox->addItems({ Project::targetToString(Project::Target::Application),
+                                    Project::targetToString(Project::Target::Library) });
 
         formLayout->addRow(tr("Target:"), m_targetComboBox);
         formLayout->itemAt(formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
@@ -70,6 +73,6 @@ Async::Task<void> ProjectEditor::updateProject() {
 Async::Task<void> ProjectEditor::getProject() {
     Controller::Project::GetResponse project = co_await m_project->getOne(m_id);
     m_nameLineEdit->setText(project.name);
-    m_targetLabel->setText(m_targets.at(int(project.target)));
+    m_targetLabel->setText(Controller::Project::targetToString(project.target));
     m_descriptionTextEdit->setPlainText(project.description);
 }

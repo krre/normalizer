@@ -81,7 +81,12 @@ public:
     QString name() const override;
 
     static QString targetToString(Target target) {
-        return target == Target::Application ? "Application" : "Library";
+        switch (target) {
+            case Target::Application: return QObject::tr("Application");
+            case Target::Library: return QObject::tr("Library");
+        }
+
+        return QString("n/a");
     }
 
     Async::Task<CreateResponse> create(const CreateRequest& params);
