@@ -80,7 +80,7 @@ public:
 
     QString name() const override;
 
-    static QString targetToString(Target target) {
+    static QString targetString(Target target) {
         switch (target) {
             case Target::Application: return QObject::tr("Application");
             case Target::Library: return QObject::tr("Library");
