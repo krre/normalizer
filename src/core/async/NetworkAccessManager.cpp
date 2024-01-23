@@ -9,8 +9,14 @@ NetworkWaker::NetworkWaker(QNetworkReply* reply) {
         awaiter()->resume(reply);
     });
 
-    QObject::connect(reply, &QNetworkReply::sslErrors, [] (const QList<QSslError> &errors) {
-        qWarning() << "SSL errors:" << errors;
+    QObject::connect(reply, &QNetworkReply::sslErrors, [] (const QList<QSslError>& errors) {
+        for (auto& error : errors) {
+            if (error.error() == QSslError::SelfSignedCertificate || error.error() == QSslError::HostNameMismatch) {
+                continue;
+            }
+
+            qWarning() << "SSL error:" << error.errorString();
+        }
     });
 
     reply->ignoreSslErrors();
