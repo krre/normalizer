@@ -11,8 +11,8 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     m_nodeManager.reset(new NodeManager(restApi, m_nodeModel.data()));
 
     pageComboBox = new QComboBox;
-    pageComboBox->addItem(tr("3D space"));
-    pageComboBox->addItem(tr("Tree"));
+    pageComboBox->addItem(tr("3D Space"));
+    pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
     m_space3d = new Space3d(m_nodeManager.data(), projectId);
