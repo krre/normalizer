@@ -1,7 +1,7 @@
 #include "CodeEditor.h"
 #include "NodeManager.h"
 #include "space/Space3d.h"
-#include "node/NodeTree.h"
+#include "tree/NodeTree.h"
 #include "model/NodeModel.h"
 #include "external/settings/Settings.h"
 #include <QtWidgets>

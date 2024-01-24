@@ -44,11 +44,11 @@ add_library(common STATIC
     external/network/controller/project/Project.cpp
     external/network/controller/RestController.h external/network/controller/RestController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
-    ui/editor/node/NodeTree.h ui/editor/node/NodeTree.cpp
+    ui/editor/tree/NodeTree.h ui/editor/tree/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-    ui/editor/node/NodeProperties.h ui/editor/node/NodeProperties.cpp
-    ui/editor/node/NodeTreeView.h ui/editor/node/NodeTreeView.cpp
-    ui/editor/node/NodeContextMenu.h ui/editor/node/NodeContextMenu.cpp
+    ui/editor/tree/NodeProperties.h ui/editor/tree/NodeProperties.cpp
+    ui/editor/tree/NodeTreeView.h ui/editor/tree/NodeTreeView.cpp
+    ui/editor/tree/NodeContextMenu.h ui/editor/tree/NodeContextMenu.cpp
     external/network/RestApi.h
     external/network/controller/module/Module.h external/network/controller/module/Module.cpp
     ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
