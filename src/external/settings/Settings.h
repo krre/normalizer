@@ -22,6 +22,10 @@ public:
         QString name;
     };
 
+    struct ProjectTable {
+        QByteArray header;
+    };
+
     struct Editor {
         int selected;
     };
@@ -38,6 +42,9 @@ public:
 
     virtual void setProject(const Project& project) = 0;
     virtual Project project() const = 0;
+
+    virtual void setProjectTable(const ProjectTable& projectTable) = 0;
+    virtual ProjectTable projectTable() const = 0;
 
     virtual void setEditor(const Editor& editor) = 0;
     virtual Editor editor() const = 0;

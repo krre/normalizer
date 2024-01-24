@@ -1,9 +1,11 @@
 #pragma once
 #include "core/async/Task.h"
 #include "external/network/controller/project/Project.h"
+#include "external/settings/Settings.h"
 #include <QWidget>
 
 class RestApi;
+class Settings;
 class TableWidget;
 
 class QNetworkAccessManager;
@@ -11,7 +13,8 @@ class QNetworkAccessManager;
 class ProjectTable : public QWidget {
     Q_OBJECT
 public:
-    ProjectTable(RestApi* restApi);
+    ProjectTable(RestApi* restApi, Settings* settings);
+    ~ProjectTable();
 
     std::optional<int> currentRow() const;
     std::optional<Id> currentId() const;
@@ -47,4 +50,5 @@ private:
 
     QScopedPointer<Controller::Project> m_project;
     TableWidget* m_tableWidget = nullptr;
+    Settings* m_settings = nullptr;
 };

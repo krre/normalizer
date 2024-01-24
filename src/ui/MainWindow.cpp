@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_fileSettings.reset(new FileSettings);
     m_httpRestApi.reset(new HttpRestApi(m_fileSettings->server().api));
 
-    m_projectTable.reset(new ProjectTable(m_httpRestApi.data()));
+    m_projectTable.reset(new ProjectTable(m_httpRestApi.data(), m_fileSettings.data()));
     m_projectTable->setVisible(false);
     connect(m_projectTable.data(), &ProjectTable::opened, this, &MainWindow::openProject);
 

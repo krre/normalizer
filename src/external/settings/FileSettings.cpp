@@ -91,6 +91,25 @@ Settings::Project FileSettings::project() const {
     return result;
 }
 
+void FileSettings::setProjectTable(const ProjectTable& projectTable) {
+    QSettings settings;
+    settings.beginGroup("ProjectTable");
+    settings.setValue("header", projectTable.header);
+    settings.endGroup();
+}
+
+Settings::ProjectTable FileSettings::projectTable() const {
+    QSettings settings;
+    settings.beginGroup("ProjectTable");
+
+    ProjectTable result;
+    result.header = settings.value("header").toByteArray();
+
+    settings.endGroup();
+
+    return result;
+}
+
 void FileSettings::setEditor(const Editor& editor) {
     QSettings settings;
     settings.beginGroup("Editor");

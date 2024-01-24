@@ -41,6 +41,14 @@ public:
         return m_project;
     }
 
+    void setProjectTable(const ProjectTable& projectTable) override {
+        m_projectTable = projectTable;
+    }
+
+    ProjectTable projectTable() const override {
+        return m_projectTable;
+    }
+
     void setEditor(const Editor& editor) override {
         m_editor = editor;
     }
@@ -52,6 +60,7 @@ public:
     Server m_server;
     Account m_account;
     Project m_project;
+    ProjectTable m_projectTable;
     Editor m_editor;
 };
 

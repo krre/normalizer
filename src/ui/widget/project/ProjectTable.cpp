@@ -4,7 +4,7 @@
 #include "core/Application.h"
 #include <QtWidgets>
 
-ProjectTable::ProjectTable(RestApi* restApi) {
+ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(settings) {
     m_project.reset(new Controller::Project(restApi));
 
     QStringList columnLabels = { tr("Id"), tr("Name"), tr("Target"), tr("Description"), tr("Created time"), tr("Updated time") };
@@ -13,6 +13,7 @@ ProjectTable::ProjectTable(RestApi* restApi) {
     m_tableWidget->setColumnCount(columnLabels.count());
     m_tableWidget->setHorizontalHeaderLabels(columnLabels);
     m_tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    m_tableWidget->horizontalHeader()->restoreState(settings->projectTable().header);
 
     connect(m_tableWidget, &QTableWidget::itemSelectionChanged, this, [this] {
         emit currentRowChanged(currentRow());
@@ -28,6 +29,13 @@ ProjectTable::ProjectTable(RestApi* restApi) {
     setLayout(verticalLayout);
 }
 
+ProjectTable::~ProjectTable() {
+    Settings::ProjectTable projectTable;
+    projectTable.header = m_tableWidget->horizontalHeader()->saveState();
+
+    m_settings->setProjectTable(projectTable);
+}
+
 Async::Task<void> ProjectTable::load() {
     m_tableWidget->setRowCount(0);
     auto projects = co_await m_project->getAll();
@@ -37,7 +45,6 @@ Async::Task<void> ProjectTable::load() {
     }
 
     m_tableWidget->selectRow(0);
-    m_tableWidget->resizeColumnsToContents();
 }
 
 std::optional<int> ProjectTable::currentRow() const {

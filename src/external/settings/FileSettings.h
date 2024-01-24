@@ -18,6 +18,9 @@ public:
     void setProject(const Project& project) override;
     Project project() const override;
 
+    void setProjectTable(const ProjectTable& projectTable) override;
+    ProjectTable projectTable() const override;
+
     void setEditor(const Editor& editor) override;
     Editor editor() const override;
 };
