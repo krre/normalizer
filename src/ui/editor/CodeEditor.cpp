@@ -11,7 +11,7 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     m_nodeManager.reset(new NodeManager(restApi, m_nodeModel.data()));
 
     pageComboBox = new QComboBox;
-    pageComboBox->addItem(tr("3D Space"));
+    pageComboBox->addItem(tr("3D View"));
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
