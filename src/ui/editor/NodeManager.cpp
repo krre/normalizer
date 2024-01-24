@@ -12,5 +12,6 @@ NodeModel* NodeManager::model() const {
 
 Async::Task<void> NodeManager::createModule(Id projectId, std::optional<Id> moduleId) {
     Controller::Module module(projectId, m_restApi);
-    co_await module.create();
+    Controller::Module::CreateResponse response = co_await module.create(moduleId);
+    qDebug() << response.name;
 }
