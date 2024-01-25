@@ -30,6 +30,8 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     verticalLayout->addLayout(stackedLayout);
 
     setLayout(verticalLayout);
+
+    m_nodeManager->getModules();
 }
 
 CodeEditor::~CodeEditor() {

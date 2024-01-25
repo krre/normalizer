@@ -10,6 +10,11 @@ NodeModel* NodeManager::model() const {
     return m_model;
 }
 
+Async::Task<void> NodeManager::getModules() {
+    Controller::Module module(m_projectId, m_restApi);
+    auto response = co_await module.getAll();
+}
+
 Async::Task<void> NodeManager::createModule(std::optional<Id> moduleId) {
     Controller::Module module(m_projectId, m_restApi);
     Controller::Module::CreateResponse response = co_await module.create(moduleId);

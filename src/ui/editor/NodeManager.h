@@ -11,6 +11,7 @@ public:
 
     NodeModel* model() const;
 
+    Async::Task<void> getModules();
     Async::Task<void> createModule(std::optional<Id> moduleId = std::nullopt);
 
 private:
