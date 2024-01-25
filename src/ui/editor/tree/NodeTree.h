@@ -1,5 +1,4 @@
 #pragma once
-#include "core/CommonTypes.h"
 #include <QWidget>
 
 class NodeManager;
@@ -10,7 +9,7 @@ class QSplitter;
 
 class NodeTree : public QWidget {
 public:
-    explicit NodeTree(NodeManager* nodeManager, Id projectId, QWidget* parent = nullptr);
+    explicit NodeTree(NodeManager* nodeManager, QWidget* parent = nullptr);
 
 private:
     QSplitter* m_splitter = nullptr;

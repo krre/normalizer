@@ -2,16 +2,16 @@
 #include "external/network/RestApi.h"
 #include "external/network/controller/module/Module.h"
 
-NodeManager::NodeManager(RestApi* restApi, NodeModel* model) : m_restApi(restApi), m_model(model) {
-
+NodeManager::NodeManager(Id projectId, RestApi* restApi, NodeModel* model) :
+        m_projectId(projectId), m_restApi(restApi), m_model(model) {
 }
 
 NodeModel* NodeManager::model() const {
     return m_model;
 }
 
-Async::Task<void> NodeManager::createModule(Id projectId, std::optional<Id> moduleId) {
-    Controller::Module module(projectId, m_restApi);
+Async::Task<void> NodeManager::createModule(std::optional<Id> moduleId) {
+    Controller::Module module(m_projectId, m_restApi);
     Controller::Module::CreateResponse response = co_await module.create(moduleId);
     qDebug() << response.name;
 }

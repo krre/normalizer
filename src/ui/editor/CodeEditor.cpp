@@ -8,15 +8,15 @@
 
 CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_settings(settings) {
     m_nodeModel.reset(new NodeModel);
-    m_nodeManager.reset(new NodeManager(restApi, m_nodeModel.data()));
+    m_nodeManager.reset(new NodeManager(projectId, restApi, m_nodeModel.data()));
 
     pageComboBox = new QComboBox;
     pageComboBox->addItem(tr("3D View"));
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_space3d = new Space3d(m_nodeManager.data(), projectId);
-    m_nodeTree = new NodeTree(m_nodeManager.data(), projectId);
+    m_space3d = new Space3d(m_nodeManager.data());
+    m_nodeTree = new NodeTree(m_nodeManager.data());
 
     auto stackedLayout = new QStackedLayout;
     stackedLayout->addWidget(m_space3d);

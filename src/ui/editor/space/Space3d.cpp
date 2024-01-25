@@ -2,7 +2,7 @@
 #include <QtWidgets>
 #include <Qt3DExtras>
 
-Space3d::Space3d(NodeManager* nodeManager, Id projectId) : m_nodeManager(nodeManager), m_projectId(projectId) {
+Space3d::Space3d(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);

@@ -1,13 +1,12 @@
 #pragma once
 #include "core/async/Task.h"
-#include "core/CommonTypes.h"
 #include <QTreeView>
 
 class NodeManager;
 
 class NodeTreeView : public QTreeView {
 public:
-    NodeTreeView(NodeManager* nodeManager, Id projectId);
+    NodeTreeView(NodeManager* nodeManager);
 
 private slots:
     void showContextMenu(const QPoint& point);
@@ -15,5 +14,4 @@ private slots:
 
 private:
     NodeManager* m_nodeManager = nullptr;
-    Id m_projectId;
 };

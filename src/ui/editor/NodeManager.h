@@ -7,13 +7,14 @@ class NodeModel;
 
 class NodeManager {
 public:
-    NodeManager(RestApi* restApi, NodeModel* model);
+    NodeManager(Id projectId, RestApi* restApi, NodeModel* model);
 
     NodeModel* model() const;
 
-    Async::Task<void> createModule(Id projectId, std::optional<Id> moduleId = std::nullopt);
+    Async::Task<void> createModule(std::optional<Id> moduleId = std::nullopt);
 
 private:
+    Id m_projectId = 0;
     RestApi* m_restApi = nullptr;
     NodeModel* m_model = nullptr;
 };

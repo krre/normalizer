@@ -4,7 +4,7 @@
 #include "ui/editor/model/NodeModel.h"
 #include <QtWidgets>
 
-NodeTreeView::NodeTreeView(NodeManager* nodeManager, Id projectId) : m_nodeManager(nodeManager), m_projectId(projectId) {
+NodeTreeView::NodeTreeView(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
     setModel(nodeManager->model());
     header()->setVisible(false);
 
@@ -20,5 +20,5 @@ void NodeTreeView::showContextMenu(const QPoint& point) {
 }
 
 Async::Task<void> NodeTreeView::addModule() {
-    co_await m_nodeManager->createModule(m_projectId);
+    co_await m_nodeManager->createModule();
 }
