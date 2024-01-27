@@ -2,10 +2,13 @@
 #include "external/network/http/HttpRestApi.h"
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QSettings>
 
 Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
     setOrganizationName(Organization);
     setApplicationName(Name);
+
+    QSettings::setDefaultFormat(QSettings::IniFormat);
 }
 
 bool Application::notify(QObject* receiver, QEvent* event) {
