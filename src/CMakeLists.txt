@@ -53,6 +53,8 @@ add_library(common STATIC
     external/network/controller/module/Module.h external/network/controller/module/Module.cpp
     ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
     ui/editor/NodeManager.h ui/editor/NodeManager.cpp
+    ui/editor/3d/View3dContextMenu.h ui/editor/3d/View3dContextMenu.cpp
+    ui/editor/3d/Window3d.h ui/editor/3d/Window3d.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
