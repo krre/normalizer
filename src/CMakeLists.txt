@@ -12,7 +12,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 add_library(common STATIC
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
-    ui/editor/space/Space3d.h ui/editor/space/Space3d.cpp
+    ui/editor/3d/View3d.h ui/editor/3d/View3d.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h

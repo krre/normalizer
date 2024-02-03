@@ -1,6 +1,6 @@
 #include "CodeEditor.h"
 #include "NodeManager.h"
-#include "space/Space3d.h"
+#include "3d/View3d.h"
 #include "tree/NodeTree.h"
 #include "model/NodeModel.h"
 #include "external/settings/Settings.h"
@@ -15,11 +15,11 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_space3d = new Space3d(m_nodeManager.data());
+    m_view3d = new View3d(m_nodeManager.data());
     m_nodeTree = new NodeTree(m_nodeManager.data());
 
     auto stackedLayout = new QStackedLayout;
-    stackedLayout->addWidget(m_space3d);
+    stackedLayout->addWidget(m_view3d);
     stackedLayout->addWidget(m_nodeTree);
     stackedLayout->setCurrentIndex(pageComboBox->currentIndex());
 

@@ -4,7 +4,7 @@
 
 class RestApi;
 class Settings;
-class Space3d;
+class View3d;
 class NodeTree;
 class NodeModel;
 class NodeManager;
@@ -21,7 +21,7 @@ private:
     QScopedPointer<NodeModel> m_nodeModel;
     QScopedPointer<NodeManager> m_nodeManager;
 
-    Space3d* m_space3d = nullptr;
+    View3d* m_view3d = nullptr;
     NodeTree* m_nodeTree = nullptr;
     Settings* m_settings = nullptr;
 

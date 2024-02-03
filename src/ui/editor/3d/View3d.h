@@ -3,9 +3,9 @@
 
 class NodeManager;
 
-class Space3d : public QWidget {
+class View3d : public QWidget {
 public:
-    Space3d(NodeManager* nodeManager);
+    View3d(NodeManager* nodeManager);
 
 private:
     NodeManager* m_nodeManager = nullptr;

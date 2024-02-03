@@ -1,8 +1,8 @@
-#include "Space3d.h"
+#include "View3d.h"
 #include <QtWidgets>
 #include <Qt3DExtras>
 
-Space3d::Space3d(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
+View3d::View3d(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
     Qt3DExtras::Qt3DWindow* view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);
