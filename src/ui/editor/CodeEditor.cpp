@@ -25,8 +25,13 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
 
     connect(pageComboBox, &QComboBox::activated, stackedLayout, &QStackedLayout::setCurrentIndex);
 
+    QToolBar* toolBar = new QToolBar;
+    toolBar->addWidget(pageComboBox);
+
     auto verticalLayout = new QVBoxLayout;
-    verticalLayout->addWidget(pageComboBox, 0, Qt::AlignLeft);
+    verticalLayout->setContentsMargins(QMargins());
+    verticalLayout->setSpacing(0);
+    verticalLayout->addWidget(toolBar);
     verticalLayout->addLayout(stackedLayout);
 
     setLayout(verticalLayout);
