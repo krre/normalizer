@@ -1,5 +1,5 @@
 #include "NodeTreeView.h"
-#include "NodeContextMenu.h"
+#include "ui/editor/NodeContextMenu.h"
 #include "ui/editor/NodeManager.h"
 #include "ui/editor/model/NodeModel.h"
 #include <QtWidgets>
@@ -13,9 +13,7 @@ NodeTreeView::NodeTreeView(NodeManager* nodeManager) : m_nodeManager(nodeManager
 }
 
 void NodeTreeView::showContextMenu(const QPoint& point) {
-    auto contextMenu = new NodeContextMenu(this);
-    connect(contextMenu, &NodeContextMenu::addModule, this, &NodeTreeView::addModule);
-
+    auto contextMenu = new NodeContextMenu(m_nodeManager, this);
     contextMenu->exec(mapToGlobal(point));
 }
 

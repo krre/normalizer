@@ -1,20 +1,20 @@
 #include "Window3D.h"
-#include "View3DContextMenu.h"
+#include "ui/editor/NodeContextMenu.h"
 #include <QMenu>
 #include <QMouseEvent>
 
-Window3D::Window3D() {}
+Window3D::Window3D(NodeManager* nodeManager) : m_nodeManager(nodeManager) {}
 
 void Window3D::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::RightButton) {
-        View3DContextMenu menu;
+        NodeContextMenu menu(m_nodeManager);
         QAction* action = menu.exec(event->globalPosition().toPoint());
 
         if (!action) return;
 
-        auto menuAction = action->data().value<View3DContextMenu::Action>();
+        auto menuAction = action->data().value<NodeContextMenu::Action>();
 
-        if (menuAction == View3DContextMenu::Action::AddModule) {
+        if (menuAction == NodeContextMenu::Action::AddModule) {
             qDebug() << "Add module";
         }
     } else {

@@ -4,7 +4,7 @@
 #include <Qt3DExtras>
 
 View3D::View3D(NodeManager* nodeManager) : m_nodeManager(nodeManager) {
-    auto view = new Window3D;
+    auto view = new Window3D(nodeManager);
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
     view->renderSettings()->setRenderPolicy(Qt3DRender::QRenderSettings::OnDemand);
 
