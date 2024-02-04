@@ -9,6 +9,9 @@ void Window3D::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::RightButton) {
         View3DContextMenu menu;
         QAction* action = menu.exec(event->globalPosition().toPoint());
+
+        if (!action) return;
+
         auto menuAction = action->data().value<View3DContextMenu::Action>();
 
         if (menuAction == View3DContextMenu::Action::AddModule) {
