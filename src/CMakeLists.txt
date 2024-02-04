@@ -12,7 +12,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 add_library(common STATIC
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
-    ui/editor/3d/View3d.h ui/editor/3d/View3d.cpp
+    ui/editor/3d/View3D.h ui/editor/3d/View3D.cpp
     ui/dialog/StandardDialog.h ui/dialog/StandardDialog.cpp
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Action.h
@@ -53,8 +53,8 @@ add_library(common STATIC
     external/network/controller/module/Module.h external/network/controller/module/Module.cpp
     ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
     ui/editor/NodeManager.h ui/editor/NodeManager.cpp
-    ui/editor/3d/View3dContextMenu.h ui/editor/3d/View3dContextMenu.cpp
-    ui/editor/3d/Window3d.h ui/editor/3d/Window3d.cpp
+    ui/editor/3d/View3DContextMenu.h ui/editor/3d/View3DContextMenu.cpp
+    ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

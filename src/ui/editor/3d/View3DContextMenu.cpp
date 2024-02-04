@@ -1,6 +1,6 @@
-#include "View3dContextMenu.h"
+#include "View3DContextMenu.h"
 
-View3dContextMenu::View3dContextMenu(QWidget* parent) : QMenu(parent) {
+View3DContextMenu::View3DContextMenu(QWidget* parent) : QMenu(parent) {
     QMenu* addMenu = QMenu::addMenu(tr("Add"));
 
     QAction* action = new QAction(tr("Module"), this);

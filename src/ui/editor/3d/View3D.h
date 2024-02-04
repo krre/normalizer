@@ -3,9 +3,9 @@
 
 class NodeManager;
 
-class View3d : public QWidget {
+class View3D : public QWidget {
 public:
-    View3d(NodeManager* nodeManager);
+    View3D(NodeManager* nodeManager);
 
 private:
     NodeManager* m_nodeManager = nullptr;

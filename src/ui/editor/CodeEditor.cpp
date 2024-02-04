@@ -1,6 +1,6 @@
 #include "CodeEditor.h"
 #include "NodeManager.h"
-#include "3d/View3d.h"
+#include "3d/View3D.h"
 #include "tree/NodeTree.h"
 #include "model/NodeModel.h"
 #include "external/settings/Settings.h"
@@ -14,8 +14,8 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     pageComboBox->addItem(tr("3D View"));
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
-
-    m_view3d = new View3d(m_nodeManager.data());
+    
+    m_view3d = new View3D(m_nodeManager.data());
     m_nodeTree = new NodeTree(m_nodeManager.data());
 
     auto stackedLayout = new QStackedLayout;
