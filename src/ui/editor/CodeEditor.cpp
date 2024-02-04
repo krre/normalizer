@@ -2,19 +2,17 @@
 #include "NodeManager.h"
 #include "3d/View3D.h"
 #include "tree/NodeTree.h"
-#include "model/NodeModel.h"
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
 CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_settings(settings) {
-    m_nodeModel.reset(new NodeModel);
-    m_nodeManager.reset(new NodeManager(projectId, restApi, m_nodeModel.data()));
+    m_nodeManager.reset(new NodeManager(projectId, restApi));
 
     pageComboBox = new QComboBox;
     pageComboBox->addItem(tr("3D View"));
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
-    
+
     m_view3d = new View3D(m_nodeManager.data());
     m_nodeTree = new NodeTree(m_nodeManager.data());
 

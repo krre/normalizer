@@ -1,13 +1,15 @@
 #pragma once
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
+#include <QScopedPointer>
 
 class RestApi;
 class NodeModel;
 
 class NodeManager {
 public:
-    NodeManager(Id projectId, RestApi* restApi, NodeModel* model);
+    NodeManager(Id projectId, RestApi* restApi);
+    ~NodeManager();
 
     NodeModel* model() const;
 
@@ -17,5 +19,5 @@ public:
 private:
     Id m_projectId = 0;
     RestApi* m_restApi = nullptr;
-    NodeModel* m_model = nullptr;
+    QScopedPointer<NodeModel> m_model;
 };

@@ -1,13 +1,17 @@
 #include "NodeManager.h"
+#include "model/NodeModel.h"
 #include "external/network/RestApi.h"
 #include "external/network/controller/module/Module.h"
 
-NodeManager::NodeManager(Id projectId, RestApi* restApi, NodeModel* model) :
-        m_projectId(projectId), m_restApi(restApi), m_model(model) {
+NodeManager::NodeManager(Id projectId, RestApi* restApi) : m_projectId(projectId), m_restApi(restApi) {
+}
+
+NodeManager::~NodeManager() {
+
 }
 
 NodeModel* NodeManager::model() const {
-    return m_model;
+    return m_model.data();
 }
 
 Async::Task<void> NodeManager::getModules() {
