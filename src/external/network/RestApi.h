@@ -12,7 +12,7 @@ namespace RestStatus {
 
 class RestException : public std::exception {
 public:
-    RestException(int status, const QString& message = QString()) : m_status(status), m_message(message) {}
+    RestException(int status, const QString& message = {}) : m_status(status), m_message(message) {}
 
     int status() const { return m_status; }
     QString message() const { return m_message; }
