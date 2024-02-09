@@ -1,9 +1,10 @@
 #include "NewProjectDialog.h"
 #include "ui/widget/BrowseLayout.h"
+#include "external/settings/Settings.h"
 #include "external/network/controller/project/Project.h"
 #include <QtWidgets>
 
-NewProjectDialog::NewProjectDialog() {
+NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("New Project"));
 
     using namespace Controller;
@@ -26,6 +27,7 @@ NewProjectDialog::NewProjectDialog() {
     });
 
     m_directoryBrowseLayout = new BrowseLayout;
+    m_directoryBrowseLayout->lineEdit()->setText(m_settings->newProject().directory);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
@@ -46,6 +48,13 @@ NewProjectDialog::NewProjectDialog() {
     connect(m_locationComboBox, &QComboBox::currentIndexChanged, this, [=, this] {
         formLayout->setRowVisible(m_directoryBrowseLayout, m_locationComboBox->currentIndex() == int(Project::Location::Local));
     });
+}
+
+NewProjectDialog::~NewProjectDialog() {
+    Settings::NewProject newProject;
+    newProject.directory = m_directoryBrowseLayout->lineEdit()->text();
+
+    m_settings->setNewProject(newProject);
 }
 
 void NewProjectDialog::enableOkButton() {

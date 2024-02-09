@@ -18,6 +18,9 @@ public:
     void setProject(const Project& project) override;
     Project project() const override;
 
+    void setNewProject(const NewProject& newProject) override;
+    NewProject newProject() const override;
+
     void setProjectTable(const ProjectTable& projectTable) override;
     ProjectTable projectTable() const override;
 

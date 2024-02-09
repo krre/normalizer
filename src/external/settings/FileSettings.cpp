@@ -1,5 +1,6 @@
 #include "FileSettings.h"
 #include <QSettings>
+#include <QDir>
 
 FileSettings::FileSettings() {
 }
@@ -87,6 +88,20 @@ Settings::Project FileSettings::project() const {
     result.name = settings.value("name").toString();
 
     settings.endGroup();
+
+    return result;
+}
+
+void FileSettings::setNewProject(const NewProject& newProject) {
+    QSettings settings;
+    settings.setValue("NewProject/directory", newProject.directory);
+}
+
+Settings::NewProject FileSettings::newProject() const {
+    QSettings settings;
+
+    NewProject result;
+    result.directory = settings.value("NewProject/directory", QDir::homePath() + "/" + "NormProjects").toString();
 
     return result;
 }

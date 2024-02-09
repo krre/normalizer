@@ -140,6 +140,6 @@ void ActionBuilder::updateAccountActions() {
 }
 
 void ActionBuilder::newProject() {
-    NewProjectDialog newProjectDialog;
+    NewProjectDialog newProjectDialog(m_fileSettings);
     newProjectDialog.exec();
 }
