@@ -1,8 +1,8 @@
 #include "BrowseLayout.h"
 #include <QtWidgets>
 
-BrowseLayout::BrowseLayout() {
-    m_lineEdit = new QLineEdit;
+BrowseLayout::BrowseLayout(const QString& text) {
+    m_lineEdit = new QLineEdit(text);
 
     auto pushButton = new QPushButton(tr("Browse..."));
     connect(pushButton, &QPushButton::clicked, this, &BrowseLayout::onClicked);
@@ -11,8 +11,8 @@ BrowseLayout::BrowseLayout() {
     addWidget(pushButton);
 }
 
-QLineEdit* BrowseLayout::lineEdit() const {
-    return m_lineEdit;
+QString BrowseLayout::text() const {
+    return m_lineEdit->text();
 }
 
 void BrowseLayout::onClicked() {

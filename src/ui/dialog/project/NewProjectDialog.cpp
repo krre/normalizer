@@ -26,8 +26,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
         Project::locationString(Project::Location::Remote)
     });
 
-    m_directoryBrowseLayout = new BrowseLayout;
-    m_directoryBrowseLayout->lineEdit()->setText(m_settings->newProject().directory);
+    m_directoryBrowseLayout = new BrowseLayout(m_settings->newProject().directory);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
@@ -52,7 +51,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 
 NewProjectDialog::~NewProjectDialog() {
     Settings::NewProject newProject;
-    newProject.directory = m_directoryBrowseLayout->lineEdit()->text();
+    newProject.directory = m_directoryBrowseLayout->text();
 
     m_settings->setNewProject(newProject);
 }

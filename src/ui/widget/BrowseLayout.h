@@ -5,8 +5,8 @@ class QLineEdit;
 
 class BrowseLayout : public QHBoxLayout {
 public:
-    BrowseLayout();
-    QLineEdit* lineEdit() const;
+    BrowseLayout(const QString& text = {});
+    QString text() const;
 
 private slots:
     void onClicked();
