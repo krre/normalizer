@@ -14,6 +14,11 @@ public:
         Library
     };
 
+    enum class Location {
+        Local,
+        Remote
+    };
+
     struct CreateRequest {
         QString name;
         Target target;
@@ -84,6 +89,15 @@ public:
         switch (target) {
             case Target::Application: return QObject::tr("Application");
             case Target::Library: return QObject::tr("Library");
+        }
+
+        return QString("n/a");
+    }
+
+    static QString locationString(Location location) {
+        switch (location) {
+            case Location::Local: return QObject::tr("Local");
+            case Location::Remote: return QObject::tr("Remote");
         }
 
         return QString("n/a");

@@ -3,6 +3,7 @@
 #include "core/Application.h"
 #include "widget/Menu.h"
 #include "widget/project/ProjectTable.h"
+#include "dialog/project/NewProjectDialog.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
 #include "dialog/account/LoginDialog.h"
@@ -21,7 +22,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
     m_projectMenu = menuBar->addMenu(tr("Project"));
-    m_projectMenu->addAction(tr("New..."), this, &ActionBuilder::newProject);
+    m_projectMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     // m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
     // m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
     // m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
@@ -139,5 +140,6 @@ void ActionBuilder::updateAccountActions() {
 }
 
 void ActionBuilder::newProject() {
-
+    NewProjectDialog newProjectDialog;
+    newProjectDialog.exec();
 }
