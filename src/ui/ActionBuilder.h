@@ -30,6 +30,8 @@ signals:
     void projectClosed();
 
 private slots:
+    void newProject();
+
     void openPreferencesDialog();
 
     void openLoginDialog();

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_rootWidget = new QWidget;
     setCentralWidget(m_rootWidget);
 
-    setToRootWidget(m_projectTable.data());
+    // setToRootWidget(m_projectTable.data());
 
     readSettings();
 }
@@ -99,19 +99,19 @@ void MainWindow::readSettings() {
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
 
-    if (!m_fileSettings->account().token.isEmpty()) {
-        FileSettings::Project project = m_fileSettings->project();
+    // if (!m_fileSettings->account().token.isEmpty()) {
+    //     FileSettings::Project project = m_fileSettings->project();
 
-        if (project.id) {
-            openProject(project.id, project.name);
-        } else {
-            m_projectTable->setVisible(true);
+    //     if (project.id) {
+    //         openProject(project.id, project.name);
+    //     } else {
+    //         m_projectTable->setVisible(true);
 
-            QTimer::singleShot(0, this, [this] {
-                m_actionBuilder->updateAccountActions();
-            });
-        }
-    }
+    //         QTimer::singleShot(0, this, [this] {
+    //             m_actionBuilder->updateAccountActions();
+    //         });
+    //     }
+    // }
 }
 
 void MainWindow::writeSettings() {

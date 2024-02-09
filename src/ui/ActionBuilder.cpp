@@ -21,12 +21,13 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
     m_projectMenu = menuBar->addMenu(tr("Project"));
-    m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
-    m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
-    m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
-    m_closeProjectAction = m_projectMenu->addAction(tr("Close"), this, &ActionBuilder::projectClosed);
-    m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
-    m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::remove);
+    m_projectMenu->addAction(tr("New..."), this, &ActionBuilder::newProject);
+    // m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
+    // m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
+    // m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
+    // m_closeProjectAction = m_projectMenu->addAction(tr("Close"), this, &ActionBuilder::projectClosed);
+    // m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
+    // m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::remove);
 
     m_projectMenu->addSeparator();
     m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
@@ -116,15 +117,15 @@ void ActionBuilder::about() {
 }
 
 void ActionBuilder::updateProjectActions() {
-    m_createProjectAction->setVisible(m_projectTable->isVisible());
-    m_openProjectAction->setVisible(m_projectTable->isVisible());
-    m_closeProjectAction->setVisible(!m_projectTable->isVisible());
-    m_editProjectAction->setVisible(m_projectTable->isVisible());
-    m_deleteProjectAction->setVisible(m_projectTable->isVisible());
+    // m_createProjectAction->setVisible(m_projectTable->isVisible());
+    // m_openProjectAction->setVisible(m_projectTable->isVisible());
+    // m_closeProjectAction->setVisible(!m_projectTable->isVisible());
+    // m_editProjectAction->setVisible(m_projectTable->isVisible());
+    // m_deleteProjectAction->setVisible(m_projectTable->isVisible());
 
-    m_openProjectAction->setEnabled(m_projectTable->currentRow().has_value());
-    m_editProjectAction->setEnabled(m_projectTable->currentRow().has_value());
-    m_deleteProjectAction->setEnabled(m_projectTable->currentRow().has_value());
+    // m_openProjectAction->setEnabled(m_projectTable->currentRow().has_value());
+    // m_editProjectAction->setEnabled(m_projectTable->currentRow().has_value());
+    // m_deleteProjectAction->setEnabled(m_projectTable->currentRow().has_value());
 }
 
 void ActionBuilder::updateAccountActions() {
@@ -135,4 +136,8 @@ void ActionBuilder::updateAccountActions() {
     m_loginAction->setVisible(!tokenExists);
     m_accountAction->setVisible(tokenExists);
     m_logoutAction->setVisible(tokenExists);
+}
+
+void ActionBuilder::newProject() {
+
 }
