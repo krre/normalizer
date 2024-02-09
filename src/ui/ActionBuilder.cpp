@@ -20,15 +20,6 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
-    auto fileMenu = new Menu(tr("File"), menuBar);
-    menuBar->addMenu(fileMenu);
-    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
-
-    auto editMenu = new Menu(tr("Edit"), menuBar);
-    menuBar->addMenu(editMenu);
-
-    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
-
     m_projectMenu = menuBar->addMenu(tr("Project"));
     m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
     m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
@@ -36,8 +27,17 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_closeProjectAction = m_projectMenu->addAction(tr("Close"), this, &ActionBuilder::projectClosed);
     m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
     m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::remove);
+
+    m_projectMenu->addSeparator();
+    m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
+
     connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);
     updateProjectActions();
+
+    auto editMenu = new Menu(tr("Edit"), menuBar);
+    menuBar->addMenu(editMenu);
+
+    editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     m_accountMenu = menuBar->addMenu(tr("Account"));
     m_registerAction = m_accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
