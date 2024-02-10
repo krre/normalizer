@@ -21,8 +21,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
-    m_projectMenu = menuBar->addMenu(tr("Project"));
-    m_projectMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
+    m_fileMenu = menuBar->addMenu(tr("File"));
+    m_fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
     // m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
     // m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
     // m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
@@ -30,8 +30,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     // m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
     // m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::remove);
 
-    m_projectMenu->addSeparator();
-    m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
+    m_fileMenu->addSeparator();
+    m_fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
     connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);
     updateProjectActions();
@@ -92,7 +92,7 @@ void ActionBuilder::openRegisterAccountDialog() {
 void ActionBuilder::login(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
     m_httpRestApi->setToken(token);
-    m_projectMenu->menuAction()->setVisible(true);
+    m_fileMenu->menuAction()->setVisible(true);
     updateAccountActions();
     updateProjectActions();
     emit loggedChanged(true);
@@ -101,7 +101,7 @@ void ActionBuilder::login(const QString& token) {
 void ActionBuilder::logout() {
     m_fileSettings->setAccount(FileSettings::Account(""));
     m_httpRestApi->setToken("");
-    m_projectMenu->menuAction()->setVisible(false);
+    m_fileMenu->menuAction()->setVisible(false);
     updateAccountActions();
     emit loggedChanged(false);
 }
