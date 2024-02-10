@@ -1,6 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Network
+    Sql
     3DCore
     3DRender
     3DInput
@@ -59,6 +60,7 @@ add_library(common STATIC
     external/repository/Repository.h external/repository/Repository.cpp
     external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
     external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
+    external/database/Database.h external/database/Database.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
@@ -66,6 +68,7 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PRIVATE
     Qt6::Widgets
     Qt6::Network
+    Qt6::Sql
     Qt6::3DCore
     Qt6::3DRender
     Qt6::3DInput
