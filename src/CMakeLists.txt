@@ -56,6 +56,9 @@ add_library(common STATIC
     ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     ui/dialog/project/NewProjectDialog.h ui/dialog/project/NewProjectDialog.cpp
     project/Project.h project/Project.cpp
+    external/repository/Repository.h external/repository/Repository.cpp
+    external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
+    external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
