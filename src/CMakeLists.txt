@@ -55,6 +55,7 @@ add_library(common STATIC
     ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp
     ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     ui/dialog/project/NewProjectDialog.h ui/dialog/project/NewProjectDialog.cpp
+    project/Project.h project/Project.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)

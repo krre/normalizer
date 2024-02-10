@@ -132,7 +132,7 @@ void ProjectTable::addRow(const Controller::Project::GetResponse& project) {
     QTableWidgetItem* nameItem = new QTableWidgetItem(project.name);
     m_tableWidget->setItem(row, int(Column::Name), nameItem);
 
-    QTableWidgetItem* targetItem = new QTableWidgetItem(Controller::Project::targetString(project.target));
+    QTableWidgetItem* targetItem = new QTableWidgetItem(Project::targetString(project.target));
     m_tableWidget->setItem(row, int(Column::Target), targetItem);
 
     QTableWidgetItem* descriptionItem = new QTableWidgetItem(project.description);

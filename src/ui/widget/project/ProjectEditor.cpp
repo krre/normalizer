@@ -1,5 +1,6 @@
 #include "ProjectEditor.h"
 #include "external/network/controller/project/Project.h"
+#include "project/Project.h"
 #include <QtWidgets>
 
 ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
@@ -29,8 +30,6 @@ void ProjectEditor::createForm() {
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
 
-    using namespace Controller;
-
     if (m_state == State::Add) {
         m_targetComboBox = new QComboBox;
         m_targetComboBox->addItems({ Project::targetString(Project::Target::Application),
@@ -54,7 +53,7 @@ void ProjectEditor::createForm() {
 Async::Task<void> ProjectEditor::createProject() {
     Controller::Project::CreateRequest project;
     project.name = m_nameLineEdit->text();
-    project.target = static_cast<Controller::Project::Target>(m_targetComboBox->currentIndex());
+    project.target = static_cast<Project::Target>(m_targetComboBox->currentIndex());
     project.description = m_descriptionTextEdit->toPlainText();
 
     co_await m_project->create(project);
@@ -73,6 +72,6 @@ Async::Task<void> ProjectEditor::updateProject() {
 Async::Task<void> ProjectEditor::getProject() {
     Controller::Project::GetResponse project = co_await m_project->getOne(m_id);
     m_nameLineEdit->setText(project.name);
-    m_targetLabel->setText(Controller::Project::targetString(project.target));
+    m_targetLabel->setText(Project::targetString(project.target));
     m_descriptionTextEdit->setPlainText(project.description);
 }

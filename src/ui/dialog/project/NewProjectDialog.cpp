@@ -1,13 +1,11 @@
 #include "NewProjectDialog.h"
 #include "ui/widget/BrowseLayout.h"
 #include "external/settings/Settings.h"
-#include "external/network/controller/project/Project.h"
+#include "project/Project.h"
 #include <QtWidgets>
 
 NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("New Project"));
-
-    using namespace Controller;
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewProjectDialog::enableOkButton);

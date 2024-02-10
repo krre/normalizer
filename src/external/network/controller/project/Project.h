@@ -2,6 +2,7 @@
 #include "external/network/controller/RestController.h"
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
+#include "project/Project.h"
 #include <QVariant>
 #include <QDateTime>
 
@@ -9,19 +10,9 @@ namespace Controller {
 
 class Project : public RestController {
 public:
-    enum class Target {
-        Application,
-        Library
-    };
-
-    enum class Location {
-        Local,
-        Remote
-    };
-
     struct CreateRequest {
         QString name;
-        Target target;
+        ::Project::Target target;
         QString description;
 
         QVariant serialize() const {
@@ -61,7 +52,7 @@ public:
     struct GetResponse {
         Id id;
         QString name;
-        Target target;
+        ::Project::Target target;
         QString description;
         QDateTime createdTime;
         QDateTime updatedTime;
@@ -72,7 +63,7 @@ public:
             GetResponse result;
             result.id = params["id"].toLongLong();
             result.name = params["name"].toString();
-            result.target = static_cast<Target>(params["target"].toInt());
+            result.target = static_cast<::Project::Target>(params["target"].toInt());
             result.description = params["description"].toString();
             result.createdTime = params["created_at"].toDateTime();
             result.updatedTime = params["updated_at"].toDateTime();
@@ -84,24 +75,6 @@ public:
     Project(RestApi* restApi);
 
     QString name() const override;
-
-    static QString targetString(Target target) {
-        switch (target) {
-            case Target::Application: return QObject::tr("Application");
-            case Target::Library: return QObject::tr("Library");
-        }
-
-        return QString("n/a");
-    }
-
-    static QString locationString(Location location) {
-        switch (location) {
-            case Location::Local: return QObject::tr("Local");
-            case Location::Remote: return QObject::tr("Remote");
-        }
-
-        return QString("n/a");
-    }
 
     Async::Task<CreateResponse> create(const CreateRequest& params);
     Async::Task<void> update(Id id, const UpdateRequest& params);
