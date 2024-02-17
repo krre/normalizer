@@ -24,36 +24,48 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
         Project::locationString(Project::Location::Remote)
     });
 
+    connect(m_locationComboBox, &QComboBox::currentIndexChanged, this, &NewProjectDialog::switchLocation);
+
     m_directoryBrowseLayout = new BrowseLayout(m_settings->newProject().directory);
+    m_hostLineEdit = new QLineEdit(m_settings->newProject().host);
 
-    auto formLayout = new QFormLayout;
-    formLayout->addRow(tr("Name:"), m_nameLineEdit);
-    formLayout->addRow(tr("Description:"), m_descriptionLineEdit);
-    formLayout->addRow(tr("Target:"), m_targetComboBox);
-    formLayout->addRow(tr("Location:"), m_locationComboBox);
-    formLayout->addRow(tr("Directory:"), m_directoryBrowseLayout);
+    m_formLayout = new QFormLayout;
+    m_formLayout->addRow(tr("Name:"), m_nameLineEdit);
+    m_formLayout->addRow(tr("Description:"), m_descriptionLineEdit);
+    m_formLayout->addRow(tr("Target:"), m_targetComboBox);
+    m_formLayout->addRow(tr("Location:"), m_locationComboBox);
+    m_formLayout->addRow(tr("Directory:"), m_directoryBrowseLayout);
+    m_formLayout->addRow(tr("Host:"), m_hostLineEdit);
 
-    formLayout->itemAt(formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
-    formLayout->itemAt(formLayout->indexOf(m_locationComboBox))->setAlignment(Qt::AlignLeft);
+    m_formLayout->itemAt(m_formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
+    m_formLayout->itemAt(m_formLayout->indexOf(m_locationComboBox))->setAlignment(Qt::AlignLeft);
 
-    setContentLayout(formLayout, false);
+    setContentLayout(m_formLayout, false);
+    switchLocation();
     resizeToWidth(500);
 
     m_nameLineEdit->setFocus();
     enableOkButton();
-
-    connect(m_locationComboBox, &QComboBox::currentIndexChanged, this, [=, this] {
-        formLayout->setRowVisible(m_directoryBrowseLayout, m_locationComboBox->currentIndex() == int(Project::Location::Local));
-    });
 }
 
 NewProjectDialog::~NewProjectDialog() {
     Settings::NewProject newProject;
     newProject.directory = m_directoryBrowseLayout->text();
+    newProject.host = m_hostLineEdit->text();
 
     m_settings->setNewProject(newProject);
 }
 
 void NewProjectDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_nameLineEdit->text().isEmpty());
+}
+
+void NewProjectDialog::switchLocation() {
+    if (m_locationComboBox->currentIndex() == int(Project::Location::Local)) {
+        m_formLayout->setRowVisible(m_hostLineEdit, false);
+        m_formLayout->setRowVisible(m_directoryBrowseLayout, true);
+    } else {
+        m_formLayout->setRowVisible(m_directoryBrowseLayout, false);
+        m_formLayout->setRowVisible(m_hostLineEdit, true);
+    }
 }
