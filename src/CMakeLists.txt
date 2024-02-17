@@ -59,8 +59,8 @@ add_library(common STATIC
     project/Project.h project/Project.cpp
     external/repository/Repository.h external/repository/Repository.cpp
     external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
+    external/repository/database/Database.h external/repository/database/Database.cpp
     external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
-    external/database/Database.h external/database/Database.cpp
     external/controller/AbstractController.h external/controller/AbstractController.cpp
 )
 
