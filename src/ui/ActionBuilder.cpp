@@ -58,7 +58,7 @@ void ActionBuilder::openPreferencesDialog() {
     PreferencesDialog preferencesDialog(m_fileSettings);
 
     if (preferencesDialog.exec() == QDialog::Accepted) {
-        m_httpRestApi->setUrl(m_fileSettings->server().api);
+        m_httpRestApi->setUrl(m_fileSettings->projectLocation().host);
     }
 }
 

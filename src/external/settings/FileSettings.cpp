@@ -34,27 +34,6 @@ bool FileSettings::containsGeometry() const {
     return settings.contains("MainWindow/geometry");
 }
 
-void FileSettings::setServer(const Server& server) {
-    QSettings settings;
-    settings.beginGroup("Server");
-
-    settings.setValue("api", server.api.toString());
-
-    settings.endGroup();
-}
-
-Settings::Server FileSettings::server() const {\
-    QSettings settings;
-    settings.beginGroup("Server");
-
-    Server result;
-    result.api = settings.value("api", "https://api.norm.dev").toString();
-
-    settings.endGroup();
-
-    return result;
-}
-
 void FileSettings::setAccount(const Account& account) {
     QSettings settings;
     settings.setValue("Account/token", account.token);
