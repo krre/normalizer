@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
-    connect(m_actionBuilder, &ActionBuilder::loggedChanged, m_projectTable.data(), &ProjectTable::setVisible);
     connect(m_actionBuilder, &ActionBuilder::projectClosed, this, &MainWindow::closeProject);
 
     m_rootWidget = new QWidget;

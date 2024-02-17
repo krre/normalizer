@@ -92,7 +92,6 @@ void ActionBuilder::openRegisterAccountDialog() {
 void ActionBuilder::login(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
     m_httpRestApi->setToken(token);
-    m_fileMenu->menuAction()->setVisible(true);
     updateAccountActions();
     updateProjectActions();
     emit loggedChanged(true);
@@ -101,7 +100,6 @@ void ActionBuilder::login(const QString& token) {
 void ActionBuilder::logout() {
     m_fileSettings->setAccount(FileSettings::Account(""));
     m_httpRestApi->setToken("");
-    m_fileMenu->menuAction()->setVisible(false);
     updateAccountActions();
     emit loggedChanged(false);
 }
@@ -130,8 +128,6 @@ void ActionBuilder::updateProjectActions() {
 }
 
 void ActionBuilder::updateAccountActions() {
-    m_accountMenu->menuAction()->setVisible(m_projectTable->isVisible());
-
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
     m_registerAction->setVisible(!tokenExists);
     m_loginAction->setVisible(!tokenExists);
