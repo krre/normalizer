@@ -1,30 +1,34 @@
 #include "PreferencesDialog.h"
+#include "ui/widget/BrowseLayout.h"
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
-    Settings::Server server = settings->server();
+    Settings::NewProject newProject = settings->newProject();
 
-    m_apilLineEdit = new QLineEdit(server.api.toString());
+    m_directoryBrowseLayout = new BrowseLayout(settings->newProject().directory);
+    m_hostLineEdit = new QLineEdit(newProject.host);
 
     auto formLayout = new QFormLayout;
-    formLayout->addRow("API:", m_apilLineEdit);
+    formLayout->addRow("Local directory:", m_directoryBrowseLayout);
+    formLayout->addRow("Remote host:", m_hostLineEdit);
 
-    auto urlGroupBox = new QGroupBox("Server");
+    auto urlGroupBox = new QGroupBox("Project Location");
     urlGroupBox->setLayout(formLayout);
 
     setContentWidget(urlGroupBox);
 
-    resizeToWidth(400);
-    m_apilLineEdit->setFocus();
+    resizeToWidth(600);
+    m_directoryBrowseLayout->setFocus();
 }
 
 void PreferencesDialog::accept() {
-    Settings::Server server;
-    server.api = QUrl(m_apilLineEdit->text());
+    Settings::NewProject newProject;
+    newProject.directory = m_directoryBrowseLayout->text();
+    newProject.host = m_hostLineEdit->text();
 
-    m_settings->setServer(server);
+    m_settings->setNewProject(newProject);
     StandardDialog::accept();
 }

@@ -1,8 +1,10 @@
 #pragma once
 #include "StandardDialog.h"
 
-class QLineEdit;
 class Settings;
+class BrowseLayout;
+
+class QLineEdit;
 
 class PreferencesDialog : public StandardDialog {
 public:
@@ -14,5 +16,6 @@ public slots:
 private:
     Settings* m_settings = nullptr;
 
-    QLineEdit* m_apilLineEdit = nullptr;
+    BrowseLayout* m_directoryBrowseLayout = nullptr;
+    QLineEdit* m_hostLineEdit = nullptr;
 };
