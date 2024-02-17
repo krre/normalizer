@@ -67,7 +67,7 @@ void ActionBuilder::openLoginDialog() {
     LoginDialog loginDialog(&account);
 
     if (loginDialog.exec() == QDialog::Accepted) {
-        login(loginDialog.token());
+        setToken(loginDialog.token());
     }
 }
 
@@ -76,7 +76,7 @@ void ActionBuilder::openAccountDialog() {
     AccountDialog AccountDialog(&account);
 
     if (AccountDialog.exec() == QDialog::Accepted && AccountDialog.result() == AccountDialog::Result::Deleted) {
-        logout();
+        setToken(QString());
     }
 }
 
@@ -85,23 +85,19 @@ void ActionBuilder::openRegisterAccountDialog() {
     RegisterAccountDialog registerAccountDialog(&account);
 
     if (registerAccountDialog.exec() == QDialog::Accepted) {
-        login(registerAccountDialog.token());
+        setToken(registerAccountDialog.token());
     }
 }
 
-void ActionBuilder::login(const QString& token) {
+void ActionBuilder::setToken(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
     m_httpRestApi->setToken(token);
     updateAccountActions();
-    updateProjectActions();
-    emit loggedChanged(true);
+    emit tokenChanged(token);
 }
 
 void ActionBuilder::logout() {
-    m_fileSettings->setAccount(FileSettings::Account(""));
-    m_httpRestApi->setToken("");
-    updateAccountActions();
-    emit loggedChanged(false);
+    setToken(QString());
 }
 
 void ActionBuilder::about() {

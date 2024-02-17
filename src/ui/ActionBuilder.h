@@ -26,7 +26,7 @@ public:
     void updateAccountActions();
 
 signals:
-    void loggedChanged(bool logged);
+    void tokenChanged(const QString& token);
     void projectClosed();
 
 private slots:
@@ -38,7 +38,7 @@ private slots:
     void openAccountDialog();
     void openRegisterAccountDialog();
 
-    void login(const QString& token);
+    void setToken(const QString& token);
     void logout();
 
     void about();
@@ -48,7 +48,7 @@ private:
     ProjectTable* m_projectTable = nullptr;
     HttpRestApi* m_httpRestApi = nullptr;
     FileSettings* m_fileSettings = nullptr;
-    
+
     QMenu* m_fileMenu = nullptr;
     QMenu* m_accountMenu = nullptr;
 
