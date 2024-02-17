@@ -9,8 +9,8 @@
 #include "dialog/account/LoginDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
-#include "external/network/http/HttpRestApi.h"
-#include "external/network/controller/account/Account.h"
+#include "external/repository/network/http/HttpRestApi.h"
+#include "external/repository/network/controller/account/Account.h"
 #include <QtWidgets>
 
 ActionBuilder::ActionBuilder(const Parameters& parameters) :

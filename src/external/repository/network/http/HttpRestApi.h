@@ -1,6 +1,6 @@
 #pragma once
 #include "HttpRequestAttributes.h"
-#include "external/network/RestApi.h"
+#include "external/repository/network/RestApi.h"
 #include "core/async/Task.h"
 #include "core/async/NetworkAccessManager.h"
 #include <QUrlQuery>

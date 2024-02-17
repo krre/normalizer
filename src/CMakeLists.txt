@@ -31,26 +31,26 @@ add_library(common STATIC
     core/async/Awaiter.h
     external/settings/Settings.h
     external/settings/FileSettings.h external/settings/FileSettings.cpp
-    external/network/http/HttpRestApi.h external/network/http/HttpRestApi.cpp
+    external/repository/network/http/HttpRestApi.h external/repository/network/http/HttpRestApi.cpp
     ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
-    external/network/http/HttpRequest.h external/network/http/HttpRequest.cpp
-    external/network/http/HttpRequestAttributes.h
+    external/repository/network/http/HttpRequest.h external/repository/network/http/HttpRequest.cpp
+    external/repository/network/http/HttpRequestAttributes.h
     ui/dialog/DialogMessages.h
     ui/dialog/account/ChangePasswordDialog.h ui/dialog/account/ChangePasswordDialog.cpp
     core/Utils.h core/Utils.cpp
-    external/network/controller/account/Account.cpp
-    external/network/controller/account/Account.h
-    external/network/controller/project/Project.h
-    external/network/controller/project/Project.cpp
-    external/network/controller/RestController.h external/network/controller/RestController.cpp
+    external/repository/network/controller/account/Account.cpp
+    external/repository/network/controller/account/Account.h
+    external/repository/network/controller/project/Project.h
+    external/repository/network/controller/project/Project.cpp
+    external/repository/network/controller/RestController.h external/repository/network/controller/RestController.cpp
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/editor/tree/NodeTree.h ui/editor/tree/NodeTree.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     ui/editor/tree/NodeProperties.h ui/editor/tree/NodeProperties.cpp
     ui/editor/tree/NodeTreeView.h ui/editor/tree/NodeTreeView.cpp
-    external/network/RestApi.h
-    external/network/controller/module/Module.h external/network/controller/module/Module.cpp
+    external/repository/network/RestApi.h
+    external/repository/network/controller/module/Module.h external/repository/network/controller/module/Module.cpp
     ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
     ui/editor/NodeManager.h ui/editor/NodeManager.cpp
     ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp

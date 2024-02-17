@@ -1,5 +1,5 @@
 #include "ProjectEditor.h"
-#include "external/network/controller/project/Project.h"
+#include "external/repository/network/controller/project/Project.h"
 #include "project/Project.h"
 #include <QtWidgets>
 

@@ -2,7 +2,7 @@
 #include "ActionBuilder.h"
 #include "editor/CodeEditor.h"
 #include "core/Application.h"
-#include "external/network/http/HttpRestApi.h"
+#include "external/repository/network/http/HttpRestApi.h"
 #include "external/settings/FileSettings.h"
 #include "widget/project/ProjectTable.h"
 #include <QtWidgets>

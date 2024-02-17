@@ -1,6 +1,6 @@
 #include "ui/dialog/account/ChangePasswordDialog.h"
-#include "external/network/controller/account/Account.h"
-#include "external/network/RestApi.h"
+#include "external/repository/network/controller/account/Account.h"
+#include "external/repository/network/RestApi.h"
 #include "core/Utils.h"
 #include <QTest>
 #include <QLineEdit>
