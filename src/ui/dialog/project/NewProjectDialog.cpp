@@ -48,12 +48,13 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     enableOkButton();
 }
 
-NewProjectDialog::~NewProjectDialog() {
+void NewProjectDialog::accept() {
     Settings::ProjectLocation projectLocation;
     projectLocation.directory = m_directoryBrowseLayout->text();
     projectLocation.host = m_hostLineEdit->text();
 
     m_settings->setProjectLocation(projectLocation);
+    StandardDialog::accept();
 }
 
 void NewProjectDialog::enableOkButton() {

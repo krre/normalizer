@@ -12,7 +12,9 @@ class NewProjectDialog : public StandardDialog {
     Q_OBJECT
 public:
     NewProjectDialog(Settings* settings);
-    ~NewProjectDialog();
+
+public slots:
+    void accept() override;
 
 private slots:
     void enableOkButton();
