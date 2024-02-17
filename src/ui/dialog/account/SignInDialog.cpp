@@ -1,17 +1,17 @@
-#include "LoginDialog.h"
+#include "SignInDialog.h"
 #include "external/repository/network/controller/account/Account.h"
 #include "external/repository/network/RestApi.h"
 #include <QtWidgets>
 
-LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
-    setWindowTitle(tr("Log In"));
+SingInDialog::SingInDialog(Controller::Account* account) : m_account(account) {
+    setWindowTitle(tr("Sign In"));
 
     m_emailLineEdit = new QLineEdit;
-    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &LoginDialog::enableOkButton);
+    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &SingInDialog::enableOkButton);
 
     m_passwordLineEdit = new QLineEdit;
     m_passwordLineEdit->setEchoMode(QLineEdit::Password);
-    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &LoginDialog::enableOkButton);
+    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &SingInDialog::enableOkButton);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
@@ -23,20 +23,20 @@ LoginDialog::LoginDialog(Controller::Account* account) : m_account(account) {
     enableOkButton();
 }
 
-QString LoginDialog::token() const {
+QString SingInDialog::token() const {
     return m_token;
 }
 
-void LoginDialog::accept() {
+void SingInDialog::accept() {
     getToken();
 }
 
-void LoginDialog::enableOkButton() {
+void SingInDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty());
 }
 
-Async::Task<void> LoginDialog::getToken() {
+Async::Task<void> SingInDialog::getToken() {
     Controller::Account::LoginRequest account;
     account.email = m_emailLineEdit->text();
     account.password = m_passwordLineEdit->text();

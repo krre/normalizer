@@ -34,7 +34,7 @@ private slots:
 
     void openPreferencesDialog();
 
-    void openLoginDialog();
+    void openSignInDialog();
     void openAccountDialog();
     void openRegisterAccountDialog();
 

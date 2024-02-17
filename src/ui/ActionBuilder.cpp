@@ -6,7 +6,7 @@
 #include "dialog/project/NewProjectDialog.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/RegisterAccountDialog.h"
-#include "dialog/account/LoginDialog.h"
+#include "dialog/account/SignInDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
 #include "external/repository/network/http/HttpRestApi.h"
@@ -42,7 +42,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     m_accountMenu = menuBar->addMenu(tr("Account"));
-    m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openLoginDialog);
+    m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openSignInDialog);
     m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openRegisterAccountDialog);
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
@@ -62,12 +62,12 @@ void ActionBuilder::openPreferencesDialog() {
     }
 }
 
-void ActionBuilder::openLoginDialog() {
+void ActionBuilder::openSignInDialog() {
     Controller::Account account(m_httpRestApi);
-    LoginDialog loginDialog(&account);
+    SingInDialog signInDialog(&account);
 
-    if (loginDialog.exec() == QDialog::Accepted) {
-        setToken(loginDialog.token());
+    if (signInDialog.exec() == QDialog::Accepted) {
+        setToken(signInDialog.token());
     }
 }
 

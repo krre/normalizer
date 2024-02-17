@@ -1,4 +1,4 @@
-#include "ui/dialog/account/LoginDialog.h"
+#include "ui/dialog/account/SignInDialog.h"
 #include "external/repository/network/controller/account/Account.h"
 #include "external/repository/network/RestApi.h"
 #include "core/Utils.h"
@@ -33,16 +33,16 @@ private slots:
 void TestLogin::validData() {
     TestRestApi restApi;
     Controller::Account account(&restApi);
-    LoginDialog loginDialog(&account);
+    SingInDialog signInDialog(&account);
 
-    auto emailLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
+    auto emailLineEdit = static_cast<QLineEdit*>(signInDialog.focusWidget());
     emailLineEdit->setText(Email);
 
-    QTest::keyClick(&loginDialog, Qt::Key_Tab);
-    auto passwordLineEdit = static_cast<QLineEdit*>(loginDialog.focusWidget());
+    QTest::keyClick(&signInDialog, Qt::Key_Tab);
+    auto passwordLineEdit = static_cast<QLineEdit*>(signInDialog.focusWidget());
     passwordLineEdit->setText(Password);
 
-    loginDialog.accept();
+    signInDialog.accept();
 
     QCOMPARE(restApi.email, Email);
     QCOMPARE(restApi.password, Utils::sha256(Password));

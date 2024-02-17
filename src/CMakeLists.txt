@@ -32,7 +32,7 @@ add_library(common STATIC
     external/settings/Settings.h
     external/settings/FileSettings.h external/settings/FileSettings.cpp
     external/repository/network/http/HttpRestApi.h external/repository/network/http/HttpRestApi.cpp
-    ui/dialog/account/LoginDialog.cpp ui/dialog/account/LoginDialog.h
+    ui/dialog/account/SignInDialog.cpp ui/dialog/account/SignInDialog.h
     ui/dialog/account/AccountDialog.h ui/dialog/account/AccountDialog.cpp
     external/repository/network/http/HttpRequest.h external/repository/network/http/HttpRequest.cpp
     external/repository/network/http/HttpRequestAttributes.h
