@@ -24,13 +24,13 @@ public:
 };
 
 
-class TestLogin : public QObject {
+class TestSignIn : public QObject {
     Q_OBJECT
 private slots:
     void validData();
 };
 
-void TestLogin::validData() {
+void TestSignIn::validData() {
     TestRestApi restApi;
     Controller::Account account(&restApi);
     SingInDialog signInDialog(&account);
@@ -48,6 +48,6 @@ void TestLogin::validData() {
     QCOMPARE(restApi.password, Utils::sha256(Password));
 }
 
-QTEST_MAIN(TestLogin)
+QTEST_MAIN(TestSignIn)
 
-#include "tst_login.moc"
+#include "tst_SignIn.moc"

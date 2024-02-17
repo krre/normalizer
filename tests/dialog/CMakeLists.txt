@@ -1,5 +1,5 @@
 add_subdirectory(preferences)
+add_subdirectory(sign-in)
 add_subdirectory(register-account)
-add_subdirectory(login)
 add_subdirectory(account)
 add_subdirectory(change-password)
