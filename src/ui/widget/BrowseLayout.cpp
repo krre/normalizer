@@ -15,6 +15,10 @@ QString BrowseLayout::text() const {
     return m_lineEdit->text();
 }
 
+void BrowseLayout::setFocus() {
+    m_lineEdit->setFocus();
+}
+
 void BrowseLayout::onClicked() {
     QString dirPath = QFileDialog::getExistingDirectory();
 
