@@ -3,7 +3,8 @@
 #include <QTest>
 #include <QLineEdit>
 
-static const QUrl ApiUrl = QUrl("localhost/api");
+static constexpr auto LocalDirectory = "directory";
+static constexpr auto RemoteHost = "host";
 
 class TestSettings : public Settings {
 public:
@@ -15,14 +16,6 @@ public:
 
     bool containsGeometry() const override {
         return true;
-    }
-
-    void setServer(const Server& server) override {
-        m_server = server;
-    }
-
-    Server server() const override {
-        return m_server;
     }
 
     void setAccount(const Account& account) override {
@@ -65,7 +58,6 @@ public:
         return m_editor;
     }
 
-    Server m_server;
     Account m_account;
     Project m_project;
     ProjectLocation m_projectLocation;
@@ -81,16 +73,22 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    Settings::Server server;
-    server.api = ApiUrl.toString();
+    Settings::ProjectLocation projectLocation;
+    projectLocation.directory = LocalDirectory;
+    projectLocation.host = RemoteHost;
 
     TestSettings settings;
-    settings.m_server = server;
+    settings.m_projectLocation = projectLocation;
 
     PreferencesDialog preferencesDialog(&settings);
-    auto apiLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    auto directoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
-    QCOMPARE(apiLineEdit->text(), ApiUrl.toString());
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+
+    QCOMPARE(directoryLineEdit->text(), LocalDirectory);
+    QCOMPARE(hostLineEdit->text(), RemoteHost);
 }
 
 void TestPreferences::setSettings() {
@@ -98,11 +96,19 @@ void TestPreferences::setSettings() {
 
     PreferencesDialog preferencesDialog(&settings);
 
-    auto apiLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    apiLineEdit->setText(ApiUrl.toString());
+    auto directoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    directoryLineEdit->setText(LocalDirectory);
+
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
+
+    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    hostLineEdit->setText(RemoteHost);
+
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_server.api, ApiUrl);
+    QCOMPARE(settings.m_projectLocation.directory, LocalDirectory);
+    QCOMPARE(settings.m_projectLocation.host, RemoteHost);
 }
 
 QTEST_MAIN(TestPreferences)
