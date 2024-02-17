@@ -22,7 +22,7 @@ public:
         QString name;
     };
 
-    struct NewProject {
+    struct ProjectLocation {
         QString directory;
         QString host;
     };
@@ -48,8 +48,8 @@ public:
     virtual void setProject(const Project& project) = 0;
     virtual Project project() const = 0;
 
-    virtual void setNewProject(const NewProject& newProject) = 0;
-    virtual NewProject newProject() const = 0;
+    virtual void setProjectLocation(const ProjectLocation& projectLocation) = 0;
+    virtual ProjectLocation projectLocation() const = 0;
 
     virtual void setProjectTable(const ProjectTable& projectTable) = 0;
     virtual ProjectTable projectTable() const = 0;

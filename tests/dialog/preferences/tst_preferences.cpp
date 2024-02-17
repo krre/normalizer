@@ -41,12 +41,12 @@ public:
         return m_project;
     }
 
-    void setNewProject(const NewProject& newProject) override {
-        m_newProject = newProject;
+    void setProjectLocation(const ProjectLocation& projectLocation) override {
+        m_projectLocation = projectLocation;
     }
 
-    NewProject newProject() const override {
-        return m_newProject;
+    ProjectLocation projectLocation() const override {
+        return m_projectLocation;
     }
 
     void setProjectTable(const ProjectTable& projectTable) override {
@@ -68,7 +68,7 @@ public:
     Server m_server;
     Account m_account;
     Project m_project;
-    NewProject m_newProject;
+    ProjectLocation m_projectLocation;
     ProjectTable m_projectTable;
     Editor m_editor;
 };

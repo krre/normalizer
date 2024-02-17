@@ -26,8 +26,8 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 
     connect(m_locationComboBox, &QComboBox::currentIndexChanged, this, &NewProjectDialog::switchLocation);
 
-    m_directoryBrowseLayout = new BrowseLayout(m_settings->newProject().directory);
-    m_hostLineEdit = new QLineEdit(m_settings->newProject().host);
+    m_directoryBrowseLayout = new BrowseLayout(m_settings->projectLocation().directory);
+    m_hostLineEdit = new QLineEdit(m_settings->projectLocation().host);
 
     m_formLayout = new QFormLayout;
     m_formLayout->addRow(tr("Name:"), m_nameLineEdit);
@@ -49,11 +49,11 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 }
 
 NewProjectDialog::~NewProjectDialog() {
-    Settings::NewProject newProject;
-    newProject.directory = m_directoryBrowseLayout->text();
-    newProject.host = m_hostLineEdit->text();
+    Settings::ProjectLocation projectLocation;
+    projectLocation.directory = m_directoryBrowseLayout->text();
+    projectLocation.host = m_hostLineEdit->text();
 
-    m_settings->setNewProject(newProject);
+    m_settings->setProjectLocation(projectLocation);
 }
 
 void NewProjectDialog::enableOkButton() {

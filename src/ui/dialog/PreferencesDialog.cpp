@@ -6,10 +6,10 @@
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
-    Settings::NewProject newProject = settings->newProject();
+    Settings::ProjectLocation projectLocation = settings->projectLocation();
 
-    m_directoryBrowseLayout = new BrowseLayout(settings->newProject().directory);
-    m_hostLineEdit = new QLineEdit(newProject.host);
+    m_directoryBrowseLayout = new BrowseLayout(settings->projectLocation().directory);
+    m_hostLineEdit = new QLineEdit(projectLocation.host);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow("Local directory:", m_directoryBrowseLayout);
@@ -25,10 +25,10 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 }
 
 void PreferencesDialog::accept() {
-    Settings::NewProject newProject;
-    newProject.directory = m_directoryBrowseLayout->text();
-    newProject.host = m_hostLineEdit->text();
+    Settings::ProjectLocation projectLocation;
+    projectLocation.directory = m_directoryBrowseLayout->text();
+    projectLocation.host = m_hostLineEdit->text();
 
-    m_settings->setNewProject(newProject);
+    m_settings->setProjectLocation(projectLocation);
     StandardDialog::accept();
 }
