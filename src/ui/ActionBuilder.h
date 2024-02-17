@@ -39,7 +39,7 @@ private slots:
     void openRegisterAccountDialog();
 
     void setToken(const QString& token);
-    void logout();
+    void signOut();
 
     void about();
 
@@ -58,8 +58,8 @@ private:
     QAction* m_editProjectAction = nullptr;
     QAction* m_deleteProjectAction = nullptr;
 
-    QAction* m_registerAction = nullptr;
-    QAction* m_loginAction = nullptr;
-    QAction* m_accountAction = nullptr;
-    QAction* m_logoutAction = nullptr;
+    QAction* m_signUpAction = nullptr;
+    QAction* m_signInAction = nullptr;
+    QAction* m_editAccountAction = nullptr;
+    QAction* m_signOutAction = nullptr;
 };

@@ -42,10 +42,10 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     editMenu->addAction(tr("Preferences..."), this, &ActionBuilder::openPreferencesDialog);
 
     m_accountMenu = menuBar->addMenu(tr("Account"));
-    m_registerAction = m_accountMenu->addAction(tr("Register..."), this, &ActionBuilder::openRegisterAccountDialog);
-    m_loginAction = m_accountMenu->addAction(tr("Log In..."), this, &ActionBuilder::openLoginDialog);
-    m_accountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
-    m_logoutAction = m_accountMenu->addAction(tr("Log Out"), this, &ActionBuilder::logout);
+    m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openLoginDialog);
+    m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openRegisterAccountDialog);
+    m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
+    m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -96,7 +96,7 @@ void ActionBuilder::setToken(const QString& token) {
     emit tokenChanged(token);
 }
 
-void ActionBuilder::logout() {
+void ActionBuilder::signOut() {
     setToken(QString());
 }
 
@@ -125,10 +125,10 @@ void ActionBuilder::updateProjectActions() {
 
 void ActionBuilder::updateAccountActions() {
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
-    m_registerAction->setVisible(!tokenExists);
-    m_loginAction->setVisible(!tokenExists);
-    m_accountAction->setVisible(tokenExists);
-    m_logoutAction->setVisible(tokenExists);
+    m_signUpAction->setVisible(!tokenExists);
+    m_signInAction->setVisible(!tokenExists);
+    m_editAccountAction->setVisible(tokenExists);
+    m_signOutAction->setVisible(tokenExists);
 }
 
 void ActionBuilder::newProject() {
