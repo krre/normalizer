@@ -2,7 +2,7 @@
 #include "external/repository/network/controller/RestController.h"
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
-#include "project/Project.h"
+#include "program/Project.h"
 #include <QVariant>
 #include <QDateTime>
 

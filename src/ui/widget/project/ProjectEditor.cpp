@@ -1,6 +1,6 @@
 #include "ProjectEditor.h"
 #include "external/repository/network/controller/project/Project.h"
-#include "project/Project.h"
+#include "program/Project.h"
 #include <QtWidgets>
 
 ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :

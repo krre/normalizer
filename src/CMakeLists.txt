@@ -56,7 +56,7 @@ add_library(common STATIC
     ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp
     ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     ui/dialog/project/NewProjectDialog.h ui/dialog/project/NewProjectDialog.cpp
-    project/Project.h project/Project.cpp
+    program/Project.h program/Project.cpp
     external/repository/Repository.h external/repository/Repository.cpp
     external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
     external/repository/database/Database.h external/repository/database/Database.cpp

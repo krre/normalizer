@@ -1,7 +1,7 @@
 #include "NewProjectDialog.h"
 #include "ui/widget/BrowseLayout.h"
 #include "external/settings/Settings.h"
-#include "project/Project.h"
+#include "program/Project.h"
 #include <QtWidgets>
 
 NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
