@@ -10,7 +10,7 @@ constexpr auto FullName = "Morpheus";
 constexpr auto Email = "admin@example.com";
 constexpr auto Password = "qwerty";
 
-class TestRegisterAccount : public QObject {
+class TestSignUp : public QObject {
     Q_OBJECT
 private slots:
     void validData();
@@ -35,7 +35,7 @@ public:
     QString password;
 };
 
-void TestRegisterAccount::validData() {
+void TestSignUp::validData() {
     TestRestApi restApi;
     Controller::Account account(&restApi);
     SignUpDialog signUpDialog(&account);
@@ -67,6 +67,6 @@ void TestRegisterAccount::validData() {
     QCOMPARE(restApi.password, Utils::sha256(Password));
 }
 
-QTEST_MAIN(TestRegisterAccount)
+QTEST_MAIN(TestSignUp)
 
-#include "tst_register_account.moc"
+#include "tst_SignUp.moc"
