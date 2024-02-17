@@ -61,6 +61,7 @@ add_library(common STATIC
     external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
     external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
     external/database/Database.h external/database/Database.cpp
+    external/controller/AbstractController.h external/controller/AbstractController.cpp
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
