@@ -5,7 +5,7 @@
 #include "widget/project/ProjectTable.h"
 #include "dialog/project/NewProjectDialog.h"
 #include "dialog/PreferencesDialog.h"
-#include "dialog/account/RegisterAccountDialog.h"
+#include "dialog/account/SignUpDialog.h"
 #include "dialog/account/SignInDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
@@ -43,7 +43,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     m_accountMenu = menuBar->addMenu(tr("Account"));
     m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openSignInDialog);
-    m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openRegisterAccountDialog);
+    m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openSignUpDialog);
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
     updateAccountActions();
@@ -80,12 +80,12 @@ void ActionBuilder::openAccountDialog() {
     }
 }
 
-void ActionBuilder::openRegisterAccountDialog() {
+void ActionBuilder::openSignUpDialog() {
     Controller::Account account(m_httpRestApi);
-    RegisterAccountDialog registerAccountDialog(&account);
+    SignUpDialog signUpDialog(&account);
 
-    if (registerAccountDialog.exec() == QDialog::Accepted) {
-        setToken(registerAccountDialog.token());
+    if (signUpDialog.exec() == QDialog::Accepted) {
+        setToken(signUpDialog.token());
     }
 }
 

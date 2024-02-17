@@ -1,4 +1,4 @@
-#include "ui/dialog/account/RegisterAccountDialog.h"
+#include "ui/dialog/account/SignUpDialog.h"
 #include "external/repository/network/controller/account/Account.h"
 #include "external/repository/network/RestApi.h"
 #include "core/Utils.h"
@@ -38,28 +38,28 @@ public:
 void TestRegisterAccount::validData() {
     TestRestApi restApi;
     Controller::Account account(&restApi);
-    RegisterAccountDialog registerAccountDialog(&account);
+    SignUpDialog signUpDialog(&account);
 
-    auto loginLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    auto loginLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
     loginLineEdit->setText(Login);
 
-    QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-    auto fullNameLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    QTest::keyClick(&signUpDialog, Qt::Key_Tab);
+    auto fullNameLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
     fullNameLineEdit->setText(FullName);
 
-    QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-    auto emailLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    QTest::keyClick(&signUpDialog, Qt::Key_Tab);
+    auto emailLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
     emailLineEdit->setText(Email);
 
-    QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-    auto passwordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    QTest::keyClick(&signUpDialog, Qt::Key_Tab);
+    auto passwordLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
     passwordLineEdit->setText(Password);
 
-    QTest::keyClick(&registerAccountDialog, Qt::Key_Tab);
-    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(registerAccountDialog.focusWidget());
+    QTest::keyClick(&signUpDialog, Qt::Key_Tab);
+    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
     confirmPasswordLineEdit->setText(Password);
 
-    registerAccountDialog.accept();
+    signUpDialog.accept();
 
     QCOMPARE(restApi.login, Login);
     QCOMPARE(restApi.fullName, FullName);

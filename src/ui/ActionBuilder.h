@@ -36,7 +36,7 @@ private slots:
 
     void openSignInDialog();
     void openAccountDialog();
-    void openRegisterAccountDialog();
+    void openSignUpDialog();
 
     void setToken(const QString& token);
     void signOut();

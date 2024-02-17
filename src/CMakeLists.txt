@@ -25,7 +25,7 @@ add_library(common STATIC
     ui/dialog/PreferencesDialog.h ui/dialog/PreferencesDialog.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
-    ui/dialog/account/RegisterAccountDialog.h ui/dialog/account/RegisterAccountDialog.cpp
+    ui/dialog/account/SignUpDialog.h ui/dialog/account/SignUpDialog.cpp
     core/async/Task.h
     core/async/NetworkAccessManager.h core/async/NetworkAccessManager.cpp
     core/async/Awaiter.h

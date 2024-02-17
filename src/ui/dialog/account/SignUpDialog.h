@@ -8,9 +8,9 @@ namespace Controller {
 
 class QLineEdit;
 
-class RegisterAccountDialog : public StandardDialog {
+class SignUpDialog : public StandardDialog {
 public:
-    RegisterAccountDialog(Controller::Account* account);
+    SignUpDialog(Controller::Account* account);
     QString token() const;
 
 public slots:
