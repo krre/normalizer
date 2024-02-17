@@ -24,6 +24,7 @@ public:
 
     struct NewProject {
         QString directory;
+        QString host;
     };
 
     struct ProjectTable {

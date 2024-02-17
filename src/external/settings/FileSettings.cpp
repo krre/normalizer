@@ -94,14 +94,21 @@ Settings::Project FileSettings::project() const {
 
 void FileSettings::setNewProject(const NewProject& newProject) {
     QSettings settings;
-    settings.setValue("NewProject/directory", newProject.directory);
+    settings.beginGroup("NewProject");
+    settings.setValue("directory", newProject.directory);
+    settings.setValue("host", newProject.host);
+    settings.endGroup();
 }
 
 Settings::NewProject FileSettings::newProject() const {
     QSettings settings;
+    settings.beginGroup("NewProject");
 
     NewProject result;
-    result.directory = settings.value("NewProject/directory", QDir::homePath() + "/" + "NormProjects").toString();
+    result.directory = settings.value("directory", QDir::homePath() + "/" + "NormProjects").toString();
+    result.host = settings.value("host", "https://api.norm.dev").toString();
+
+    settings.endGroup();
 
     return result;
 }
