@@ -21,7 +21,6 @@ public:
 
     explicit ActionBuilder(const Parameters& parameters);
 
-    void updateProjectActions();
     void updateAccountActions();
 
 signals:
@@ -50,12 +49,6 @@ private:
 
     QMenu* m_fileMenu = nullptr;
     QMenu* m_accountMenu = nullptr;
-
-    QAction* m_createProjectAction = nullptr;
-    QAction* m_openProjectAction = nullptr;
-    QAction* m_closeProjectAction = nullptr;
-    QAction* m_editProjectAction = nullptr;
-    QAction* m_deleteProjectAction = nullptr;
 
     QAction* m_signInAction = nullptr;
     QAction* m_signUpAction = nullptr;

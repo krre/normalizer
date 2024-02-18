@@ -37,7 +37,6 @@ void MainWindow::openProject(Id id, const QString& name) {
     m_codeEditor.reset(new CodeEditor(id, m_httpRestApi.data(), m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
 
-    m_actionBuilder->updateProjectActions();
     m_actionBuilder->updateAccountActions();
 
     FileSettings::Project project = m_fileSettings->project();
@@ -51,7 +50,6 @@ void MainWindow::openProject(Id id, const QString& name) {
 void MainWindow::closeProject() {
     m_codeEditor.reset();
 
-    m_actionBuilder->updateProjectActions();
     m_actionBuilder->updateAccountActions();
 
     FileSettings::Project project = m_fileSettings->project();

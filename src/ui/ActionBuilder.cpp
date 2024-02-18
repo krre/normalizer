@@ -22,17 +22,9 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     m_fileMenu = menuBar->addMenu(tr("File"));
     m_fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
-    // m_projectMenu->menuAction()->setVisible(!m_fileSettings->account().token.isEmpty());
-    // m_createProjectAction = m_projectMenu->addAction(tr("Create..."), m_projectTable, &ProjectTable::create);
-    // m_openProjectAction = m_projectMenu->addAction(tr("Open"), m_projectTable, &ProjectTable::open);
-    // m_closeProjectAction = m_projectMenu->addAction(tr("Close"), this, &ActionBuilder::projectClosed);
-    // m_editProjectAction = m_projectMenu->addAction(tr("Edit..."), m_projectTable, &ProjectTable::edit);
-    // m_deleteProjectAction = m_projectMenu->addAction(tr("Delete..."), m_projectTable, &ProjectTable::remove);
 
     m_fileMenu->addSeparator();
     m_fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
-
-    updateProjectActions();
 
     auto editMenu = new Menu(tr("Edit"), menuBar);
     menuBar->addMenu(editMenu);
@@ -46,6 +38,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
     m_accountSeparatorAction = m_accountMenu->addSeparator();
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
+
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
@@ -114,18 +107,6 @@ void ActionBuilder::about() {
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
                            .arg(Application::Name, Application::Version, QT_VERSION_STR,
                             Application::BuildDate, Application::BuildTime, Application::Url, Application::CopyrightYear));
-}
-
-void ActionBuilder::updateProjectActions() {
-    // m_createProjectAction->setVisible(m_projectTable->isVisible());
-    // m_openProjectAction->setVisible(m_projectTable->isVisible());
-    // m_closeProjectAction->setVisible(!m_projectTable->isVisible());
-    // m_editProjectAction->setVisible(m_projectTable->isVisible());
-    // m_deleteProjectAction->setVisible(m_projectTable->isVisible());
-
-    // m_openProjectAction->setEnabled(m_projectTable->currentRow().has_value());
-    // m_editProjectAction->setEnabled(m_projectTable->currentRow().has_value());
-    // m_deleteProjectAction->setEnabled(m_projectTable->currentRow().has_value());
 }
 
 void ActionBuilder::updateAccountActions() {
