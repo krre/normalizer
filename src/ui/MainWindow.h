@@ -5,7 +5,6 @@
 
 class HttpRestApi;
 class FileSettings;
-class ProjectTable;
 class CodeEditor;
 class ActionBuilder;
 
