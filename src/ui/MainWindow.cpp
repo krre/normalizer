@@ -4,7 +4,6 @@
 #include "core/Application.h"
 #include "external/repository/network/http/HttpRestApi.h"
 #include "external/settings/FileSettings.h"
-#include "widget/project/ProjectTable.h"
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -13,23 +12,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_fileSettings.reset(new FileSettings);
     m_httpRestApi.reset(new HttpRestApi(m_fileSettings->projectLocation().host));
 
-    m_projectTable.reset(new ProjectTable(m_httpRestApi.data(), m_fileSettings.data()));
-    m_projectTable->setVisible(false);
-    connect(m_projectTable.data(), &ProjectTable::opened, this, &MainWindow::openProject);
-
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;
-    parameters.projectTable = m_projectTable.data();
     parameters.httpNetwork = m_httpRestApi.data();
     parameters.fileSettings = m_fileSettings.data();
 
     m_actionBuilder = new ActionBuilder(parameters);
-    connect(m_actionBuilder, &ActionBuilder::projectClosed, this, &MainWindow::closeProject);
-
     m_rootWidget = new QWidget;
     setCentralWidget(m_rootWidget);
-
-    // setToRootWidget(m_projectTable.data());
 
     readSettings();
 }
@@ -46,7 +36,6 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 void MainWindow::openProject(Id id, const QString& name) {
     m_codeEditor.reset(new CodeEditor(id, m_httpRestApi.data(), m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
-    m_projectTable->setVisible(false);
 
     m_actionBuilder->updateProjectActions();
     m_actionBuilder->updateAccountActions();
@@ -61,8 +50,6 @@ void MainWindow::openProject(Id id, const QString& name) {
 
 void MainWindow::closeProject() {
     m_codeEditor.reset();
-    setToRootWidget(m_projectTable.data());
-    m_projectTable->setVisible(true);
 
     m_actionBuilder->updateProjectActions();
     m_actionBuilder->updateAccountActions();
@@ -97,20 +84,6 @@ void MainWindow::readSettings() {
         resize(availableGeometry.width() * scale, availableGeometry.height() * scale);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
-
-    // if (!m_fileSettings->account().token.isEmpty()) {
-    //     FileSettings::Project project = m_fileSettings->project();
-
-    //     if (project.id) {
-    //         openProject(project.id, project.name);
-    //     } else {
-    //         m_projectTable->setVisible(true);
-
-    //         QTimer::singleShot(0, this, [this] {
-    //             m_actionBuilder->updateAccountActions();
-    //         });
-    //     }
-    // }
 }
 
 void MainWindow::writeSettings() {

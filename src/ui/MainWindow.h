@@ -32,8 +32,6 @@ private:
 
     QScopedPointer<HttpRestApi> m_httpRestApi;
     QScopedPointer<FileSettings> m_fileSettings;
-
-    QScopedPointer<ProjectTable> m_projectTable;
     QScopedPointer<CodeEditor> m_codeEditor;
 
     ActionBuilder* m_actionBuilder = nullptr;
