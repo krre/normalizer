@@ -43,29 +43,6 @@ Settings::Account FileSettings::account() const {
     return result;
 }
 
-void FileSettings::setProject(const Project& project) {
-    QSettings settings;
-    settings.beginGroup("Project");
-
-    settings.setValue("id", project.id);
-    settings.setValue("name", project.name);
-
-    settings.endGroup();
-}
-
-Settings::Project FileSettings::project() const {
-    QSettings settings;
-    settings.beginGroup("Project");
-
-    Project result;
-    result.id = settings.value("id", 0).toLongLong();
-    result.name = settings.value("name").toString();
-
-    settings.endGroup();
-
-    return result;
-}
-
 void FileSettings::setProjectLocation(const ProjectLocation& projectLocation) {
     QSettings settings;
     settings.beginGroup("ProjectLocation");

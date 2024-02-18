@@ -1,5 +1,4 @@
 #pragma once
-#include "core/CommonTypes.h"
 #include <QUrl>
 
 class Settings {
@@ -11,11 +10,6 @@ public:
 
     struct Account {
         QString token;
-    };
-
-    struct Project {
-        Id id;
-        QString name;
     };
 
     struct ProjectLocation {
@@ -37,9 +31,6 @@ public:
 
     virtual void setAccount(const Account& account) = 0;
     virtual Account account() const = 0;
-
-    virtual void setProject(const Project& project) = 0;
-    virtual Project project() const = 0;
 
     virtual void setProjectLocation(const ProjectLocation& projectLocation) = 0;
     virtual ProjectLocation projectLocation() const = 0;

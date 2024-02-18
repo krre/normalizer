@@ -22,14 +22,6 @@ public:
         return m_account;
     }
 
-    void setProject(const Project& project) override {
-        m_project = project;
-    }
-
-    Project project() const override {
-        return m_project;
-    }
-
     void setProjectLocation(const ProjectLocation& projectLocation) override {
         m_projectLocation = projectLocation;
     }
@@ -55,7 +47,6 @@ public:
     }
 
     Account m_account;
-    Project m_project;
     ProjectLocation m_projectLocation;
     ProjectTable m_projectTable;
     Editor m_editor;
