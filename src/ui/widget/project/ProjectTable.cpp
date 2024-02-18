@@ -23,10 +23,11 @@ ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(se
     connect(m_tableWidget, &QTableWidget::customContextMenuRequested, this, &ProjectTable::showContextMenu);
 
     auto verticalLayout = new QVBoxLayout;
-    verticalLayout->setContentsMargins(0, 0, 0, 0);
+    verticalLayout->setContentsMargins(QMargins());
     verticalLayout->addWidget(m_tableWidget);
 
     setLayout(verticalLayout);
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 ProjectTable::~ProjectTable() {
