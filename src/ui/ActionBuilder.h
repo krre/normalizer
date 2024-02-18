@@ -58,8 +58,9 @@ private:
     QAction* m_editProjectAction = nullptr;
     QAction* m_deleteProjectAction = nullptr;
 
-    QAction* m_signUpAction = nullptr;
     QAction* m_signInAction = nullptr;
+    QAction* m_signUpAction = nullptr;
     QAction* m_editAccountAction = nullptr;
+    QAction* m_accountSeparatorAction = nullptr;
     QAction* m_signOutAction = nullptr;
 };

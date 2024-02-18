@@ -45,6 +45,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openSignInDialog);
     m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openSignUpDialog);
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
+    m_accountSeparatorAction = m_accountMenu->addSeparator();
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
     updateAccountActions();
 
@@ -125,9 +126,10 @@ void ActionBuilder::updateProjectActions() {
 
 void ActionBuilder::updateAccountActions() {
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
-    m_signUpAction->setVisible(!tokenExists);
     m_signInAction->setVisible(!tokenExists);
+    m_signUpAction->setVisible(!tokenExists);
     m_editAccountAction->setVisible(tokenExists);
+    m_accountSeparatorAction->setVisible(tokenExists);
     m_signOutAction->setVisible(tokenExists);
 }
 
