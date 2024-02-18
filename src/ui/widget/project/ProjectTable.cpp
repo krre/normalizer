@@ -5,6 +5,7 @@
 #include <QtWidgets>
 
 ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(settings) {
+    setWindowTitle(tr("Account Projects"));
     m_project.reset(new Controller::Project(restApi));
 
     QStringList columnLabels = { tr("Id"), tr("Name"), tr("Target"), tr("Description"), tr("Created time"), tr("Updated time") };
