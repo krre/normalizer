@@ -75,15 +75,18 @@ void MainWindow::setToRootWidget(QWidget* widget) {
 }
 
 void MainWindow::readSettings() {
-    if (m_fileSettings->containsGeometry()) {
-        restoreGeometry(m_fileSettings->mainWindow().geometry);
-        restoreState(m_fileSettings->mainWindow().state);
+    QByteArray geometry = m_fileSettings->mainWindow().geometry;
+
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
     } else {
         const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
         constexpr auto scale = 0.8;
         resize(availableGeometry.width() * scale, availableGeometry.height() * scale);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
+
+    restoreState(m_fileSettings->mainWindow().state);
 }
 
 void MainWindow::writeSettings() {

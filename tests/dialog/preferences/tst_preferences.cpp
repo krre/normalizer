@@ -14,10 +14,6 @@ public:
         return MainWindow();
     }
 
-    bool containsGeometry() const override {
-        return true;
-    }
-
     void setAccount(const Account& account) override {
         m_account = account;
     }

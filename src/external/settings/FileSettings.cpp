@@ -29,11 +29,6 @@ Settings::MainWindow FileSettings::mainWindow() const {
     return result;
 }
 
-bool FileSettings::containsGeometry() const {
-    QSettings settings;
-    return settings.contains("MainWindow/geometry");
-}
-
 void FileSettings::setAccount(const Account& account) {
     QSettings settings;
     settings.setValue("Account/token", account.token);
