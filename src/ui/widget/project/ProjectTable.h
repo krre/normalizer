@@ -22,7 +22,7 @@ public:
 
 signals:
     void currentRowChanged(std::optional<int> row);
-    void opened(Id id, const QString& name);
+    void openClicked(Id id, const QString& name);
 
 public slots:
     void create();

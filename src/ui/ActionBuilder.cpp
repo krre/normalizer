@@ -84,6 +84,7 @@ void ActionBuilder::openSignUpDialog() {
 
 void ActionBuilder::openProjectsTable() {
     auto projectTable = new ProjectTable(m_httpRestApi, m_fileSettings);
+    connect(projectTable, &ProjectTable::openClicked, m_mainWindow, &MainWindow::openProject);
     projectTable->show();
 }
 
