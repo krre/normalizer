@@ -16,7 +16,6 @@
 ActionBuilder::ActionBuilder(const Parameters& parameters) :
         QObject(parameters.mainWindow),
         m_mainWindow(parameters.mainWindow),
-        m_projectTable(parameters.projectTable),
         m_httpRestApi(parameters.httpNetwork),
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
@@ -33,7 +32,6 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_fileMenu->addSeparator();
     m_fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
-    connect(m_projectTable, &ProjectTable::currentRowChanged, this, &ActionBuilder::updateProjectActions);
     updateProjectActions();
 
     auto editMenu = new Menu(tr("Edit"), menuBar);
@@ -44,6 +42,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_accountMenu = menuBar->addMenu(tr("Account"));
     m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openSignInDialog);
     m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openSignUpDialog);
+    m_projectsAction = m_accountMenu->addAction(tr("Projects..."), this, &ActionBuilder::openProjectsTable);
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
     m_accountSeparatorAction = m_accountMenu->addSeparator();
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
@@ -90,6 +89,11 @@ void ActionBuilder::openSignUpDialog() {
     }
 }
 
+void ActionBuilder::openProjectsTable() {
+    auto projectTable = new ProjectTable(m_httpRestApi, m_fileSettings);
+    projectTable->show();
+}
+
 void ActionBuilder::setToken(const QString& token) {
     m_fileSettings->setAccount(FileSettings::Account(token));
     m_httpRestApi->setToken(token);
@@ -128,6 +132,7 @@ void ActionBuilder::updateAccountActions() {
     bool tokenExists = !m_fileSettings->account().token.isEmpty();
     m_signInAction->setVisible(!tokenExists);
     m_signUpAction->setVisible(!tokenExists);
+    m_projectsAction->setVisible(tokenExists);
     m_editAccountAction->setVisible(tokenExists);
     m_accountSeparatorAction->setVisible(tokenExists);
     m_signOutAction->setVisible(tokenExists);

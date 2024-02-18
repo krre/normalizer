@@ -15,7 +15,6 @@ class ActionBuilder : public QObject {
 public:
     struct Parameters {
         MainWindow* mainWindow;
-        ProjectTable* projectTable;
         HttpRestApi* httpNetwork;
         FileSettings* fileSettings;
     };
@@ -35,8 +34,9 @@ private slots:
     void openPreferencesDialog();
 
     void openSignInDialog();
-    void openAccountDialog();
     void openSignUpDialog();
+    void openProjectsTable();
+    void openAccountDialog();
 
     void setToken(const QString& token);
     void signOut();
@@ -45,7 +45,6 @@ private slots:
 
 private:
     MainWindow* m_mainWindow = nullptr;
-    ProjectTable* m_projectTable = nullptr;
     HttpRestApi* m_httpRestApi = nullptr;
     FileSettings* m_fileSettings = nullptr;
 
@@ -60,6 +59,7 @@ private:
 
     QAction* m_signInAction = nullptr;
     QAction* m_signUpAction = nullptr;
+    QAction* m_projectsAction = nullptr;
     QAction* m_editAccountAction = nullptr;
     QAction* m_accountSeparatorAction = nullptr;
     QAction* m_signOutAction = nullptr;
