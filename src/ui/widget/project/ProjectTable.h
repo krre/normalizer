@@ -45,6 +45,9 @@ private:
         UpdatedTime,
     };
 
+    void readSettings();
+    void writeSettings();
+
     void addRow(const Controller::Project::GetResponse& project);
     void updateRow(const Controller::Project::GetResponse& project);
 

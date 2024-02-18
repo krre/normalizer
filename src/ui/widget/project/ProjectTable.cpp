@@ -6,6 +6,7 @@
 
 ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("Account Projects"));
+
     m_project.reset(new Controller::Project(restApi));
 
     QStringList columnLabels = { tr("Id"), tr("Name"), tr("Target"), tr("Description"), tr("Created time"), tr("Updated time") };
@@ -29,13 +30,12 @@ ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(se
 
     setLayout(verticalLayout);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    readSettings();
 }
 
 ProjectTable::~ProjectTable() {
-    Settings::ProjectTable projectTable;
-    projectTable.header = m_tableWidget->horizontalHeader()->saveState();
-
-    m_settings->setProjectTable(projectTable);
+    writeSettings();
 }
 
 Async::Task<void> ProjectTable::load() {
@@ -122,6 +122,26 @@ void ProjectTable::showContextMenu(const QPoint& pos) {
 
 void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
     load();
+}
+
+void ProjectTable::readSettings() {
+    QByteArray geometry = m_settings->projectTable().geometry;
+
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
+    } else {
+        const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
+        resize(900, 500);
+        move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
+    }
+}
+
+void ProjectTable::writeSettings() {
+    Settings::ProjectTable projectTable;
+    projectTable.geometry = saveGeometry();
+    projectTable.header = m_tableWidget->horizontalHeader()->saveState();
+
+    m_settings->setProjectTable(projectTable);
 }
 
 void ProjectTable::addRow(const Controller::Project::GetResponse& project) {

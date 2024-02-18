@@ -95,7 +95,10 @@ Settings::ProjectLocation FileSettings::projectLocation() const {
 void FileSettings::setProjectTable(const ProjectTable& projectTable) {
     QSettings settings;
     settings.beginGroup("ProjectTable");
+
+    settings.setValue("geometry", projectTable.geometry);
     settings.setValue("header", projectTable.header);
+
     settings.endGroup();
 }
 
@@ -104,6 +107,7 @@ Settings::ProjectTable FileSettings::projectTable() const {
     settings.beginGroup("ProjectTable");
 
     ProjectTable result;
+    result.geometry = settings.value("geometry").toByteArray();
     result.header = settings.value("header").toByteArray();
 
     settings.endGroup();

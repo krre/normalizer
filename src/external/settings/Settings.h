@@ -24,6 +24,7 @@ public:
     };
 
     struct ProjectTable {
+        QByteArray geometry;
         QByteArray header;
     };
 
