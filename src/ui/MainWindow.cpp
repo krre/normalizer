@@ -88,5 +88,9 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-    m_fileSettings->setMainWindow(FileSettings::MainWindow(saveGeometry(), saveState()));
+    Settings::MainWindow mainWindow;
+    mainWindow.geometry = saveGeometry();
+    mainWindow.state = saveState();
+
+    m_fileSettings->setMainWindow(mainWindow);
 }
