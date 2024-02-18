@@ -117,7 +117,7 @@ void ProjectTable::showContextMenu(const QPoint& pos) {
     customMenu->addAction(tr("Open"), this, &ProjectTable::open);
     customMenu->addAction(tr("Edit..."), this, &ProjectTable::edit);
     customMenu->addAction(tr("Delete..."), this, &ProjectTable::remove);
-    customMenu->exec(m_tableWidget->mapToGlobal(pos));
+    customMenu->exec(QCursor::pos());
 }
 
 void ProjectTable::showEvent(QShowEvent* event [[maybe_unused]]) {
