@@ -22,7 +22,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     m_fileMenu = menuBar->addMenu(tr("File"));
     m_fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
-
+    m_fileMenu->addSeparator();
+    m_closeAction = m_fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
     m_fileMenu->addSeparator();
     m_fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
@@ -39,12 +40,27 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_accountSeparatorAction = m_accountMenu->addSeparator();
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
 
+    updateFileActions(false);
     updateAccountActions();
 
     auto helpMenu = menuBar->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &ActionBuilder::about);
 
     m_httpRestApi->setToken(m_fileSettings->account().token);
+}
+
+void ActionBuilder::updateFileActions(bool isProjectOpen) {
+    m_closeAction->setEnabled(isProjectOpen);
+}
+
+void ActionBuilder::updateAccountActions() {
+    bool tokenExists = !m_fileSettings->account().token.isEmpty();
+    m_signInAction->setVisible(!tokenExists);
+    m_signUpAction->setVisible(!tokenExists);
+    m_projectsAction->setVisible(tokenExists);
+    m_editAccountAction->setVisible(tokenExists);
+    m_accountSeparatorAction->setVisible(tokenExists);
+    m_signOutAction->setVisible(tokenExists);
 }
 
 void ActionBuilder::openPreferencesDialog() {
@@ -108,16 +124,6 @@ void ActionBuilder::about() {
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
                            .arg(Application::Name, Application::Version, QT_VERSION_STR,
                             Application::BuildDate, Application::BuildTime, Application::Url, Application::CopyrightYear));
-}
-
-void ActionBuilder::updateAccountActions() {
-    bool tokenExists = !m_fileSettings->account().token.isEmpty();
-    m_signInAction->setVisible(!tokenExists);
-    m_signUpAction->setVisible(!tokenExists);
-    m_projectsAction->setVisible(tokenExists);
-    m_editAccountAction->setVisible(tokenExists);
-    m_accountSeparatorAction->setVisible(tokenExists);
-    m_signOutAction->setVisible(tokenExists);
 }
 
 void ActionBuilder::newProject() {

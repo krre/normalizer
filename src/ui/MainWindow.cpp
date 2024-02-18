@@ -36,13 +36,13 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 void MainWindow::openProject(Id id, const QString& name) {
     m_codeEditor.reset(new CodeEditor(id, m_httpRestApi.data(), m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
-    m_actionBuilder->updateAccountActions();
+    m_actionBuilder->updateFileActions(true);
     setWindowTitle(name + " - " + Application::Name);
 }
 
 void MainWindow::closeProject() {
     m_codeEditor.reset();
-    m_actionBuilder->updateAccountActions();
+    m_actionBuilder->updateFileActions(false);
     setWindowTitle(Application::Name);
 }
 
