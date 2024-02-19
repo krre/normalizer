@@ -10,96 +10,100 @@ namespace Controller {
 
 class Account : public RestController {
 public:
-    struct CreateRequest {
-        QString login;
-        QString email;
-        QString fullName;
-        QString password;
+    struct Request {
+        struct Create {
+            QString login;
+            QString email;
+            QString fullName;
+            QString password;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "login", login },
-                { "email", email },
-                { "full_name", fullName },
-                { "password", Utils::sha256(password) },
-            });
-        }
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "login", login },
+                                    { "email", email },
+                                    { "full_name", fullName },
+                                    { "password", Utils::sha256(password) },
+                                    });
+            }
+        };
+
+        struct Update {
+            QString fullName;
+
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "full_name", fullName },
+                                    });
+            }
+        };
+
+        struct Password {
+            QString oldPassword;
+            QString newPassword;
+
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "old_password", Utils::sha256(oldPassword) },
+                                    { "new_password", Utils::sha256(newPassword) },
+                                    });
+            }
+        };
+
+        struct Login {
+            QString email;
+            QString password;
+
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "email", email },
+                                    { "password", Utils::sha256(password) },
+                                    });
+            }
+        };
     };
 
-    struct UpdateRequest {
-        QString fullName;
+    struct Response {
+        struct Token {
+            QString token;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "full_name", fullName },
-            });
-        }
-    };
+            static Token deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct PasswordRequest {
-        QString oldPassword;
-        QString newPassword;
+                Token result;
+                result.token = params["token"].toString();
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "old_password", Utils::sha256(oldPassword) },
-                { "new_password", Utils::sha256(newPassword) },
-            });
-        }
-    };
+                return result;
+            }
+        };
 
-    struct LoginRequest {
-        QString email;
-        QString password;
+        struct Get {
+            QString login;
+            QString email;
+            QString fullName;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "email", email },
-                { "password", Utils::sha256(password) },
-            });
-        }
-    };
+            static Get deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct TokenResponse {
-        QString token;
+                Get result;
+                result.login = params["login"].toString();
+                result.email = params["email"].toString();
+                result.fullName = params["full_name"].toString();
 
-        static TokenResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            TokenResponse result;
-            result.token = params["token"].toString();
-
-            return result;
-        }
-    };
-
-    struct GetResponse {
-        QString login;
-        QString email;
-        QString fullName;
-
-        static GetResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            GetResponse result;
-            result.login = params["login"].toString();
-            result.email = params["email"].toString();
-            result.fullName = params["full_name"].toString();
-
-            return result;
-        }
+                return result;
+            }
+        };
     };
 
     Account(RestApi* restApi);
 
     QString name() const override;
 
-    Async::Task<TokenResponse> create(const CreateRequest& params);
-    Async::Task<void> update(const UpdateRequest& params);
-    Async::Task<GetResponse> getOne();
-    Async::Task<TokenResponse> login(const LoginRequest& params);
+    Async::Task<Response::Token> create(const Request::Create& params);
+    Async::Task<void> update(const Request::Update& params);
+    Async::Task<Response::Get> getOne();
+    Async::Task<Response::Token> login(const Request::Login& params);
     Async::Task<void> remove();
-    Async::Task<void> changePassword(const PasswordRequest& params);
+    Async::Task<void> changePassword(const Request::Password& params);
 };
 
 }

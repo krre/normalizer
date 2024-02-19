@@ -59,7 +59,7 @@ void SignUpDialog::enableOkButton() {
 }
 
 Async::Task<void> SignUpDialog::getToken() {
-    Controller::Account::CreateRequest account;
+    Controller::Account::Request::Create account;
     account.login = m_loginLineEdit->text();
     account.fullName = m_fullNameLineEdit->text();
     account.email = m_emailLineEdit->text();

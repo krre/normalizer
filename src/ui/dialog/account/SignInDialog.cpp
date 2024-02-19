@@ -37,7 +37,7 @@ void SingInDialog::enableOkButton() {
 }
 
 Async::Task<void> SingInDialog::getToken() {
-    Controller::Account::LoginRequest account;
+    Controller::Account::Request::Login account;
     account.email = m_emailLineEdit->text();
     account.password = m_passwordLineEdit->text();
 
