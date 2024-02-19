@@ -85,7 +85,7 @@ Async::Task<void> ProjectTable::edit() {
     ProjectEditor projectEditor(m_project.data(), id);
 
     if (projectEditor.exec() == QDialog::Accepted) {
-        Controller::Project::GetResponse project = co_await m_project->getOne(id);
+        Controller::Project::Response::Get project = co_await m_project->getOne(id);
         updateRow(project);
     }
 }
@@ -144,7 +144,7 @@ void ProjectTable::writeSettings() {
     m_settings->setProjectTable(projectTable);
 }
 
-void ProjectTable::addRow(const Controller::Project::GetResponse& project) {
+void ProjectTable::addRow(const Controller::Project::Response::Get& project) {
     m_tableWidget->insertRow(m_tableWidget->rowCount());
     int row = m_tableWidget->rowCount() - 1;
 
@@ -167,7 +167,7 @@ void ProjectTable::addRow(const Controller::Project::GetResponse& project) {
     m_tableWidget->setItem(row, int(Column::UpdatedTime), updatedItem);
 }
 
-void ProjectTable::updateRow(const Controller::Project::GetResponse& project) {
+void ProjectTable::updateRow(const Controller::Project::Response::Get& project) {
     for (int i = 0; i < m_tableWidget->rowCount(); i++) {
         if (m_tableWidget->item(i, int(Column::Id))->text().toInt() == project.id) {
             m_tableWidget->item(i, int(Column::Name))->setText(project.name);

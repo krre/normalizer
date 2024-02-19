@@ -10,76 +10,80 @@ namespace Controller {
 
 class Project : public RestController {
 public:
-    struct CreateRequest {
-        QString name;
-        ::Project::Target target;
-        QString description;
+    struct Request {
+        struct Create {
+            QString name;
+            ::Project::Target target;
+            QString description;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "name", name },
-                { "target", int(target) },
-                { "description", description },
-            });
-        }
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "name", name },
+                                    { "target", int(target) },
+                                    { "description", description },
+                                    });
+            }
+        };
+
+        struct Update {
+            QString name;
+            QString description;
+
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "name", name },
+                                    { "description", description },
+                                    });
+            }
+        };
     };
 
-    struct UpdateRequest {
-        QString name;
-        QString description;
+    struct Response {
+        struct Create {
+            Id id;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "name", name },
-                { "description", description },
-            });
-        }
-    };
+            static Create deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct CreateResponse {
-        Id id;
+                Create result;
+                result.id = params["id"].toLongLong();
 
-        static CreateResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
+                return result;
+            }
+        };
 
-            CreateResponse result;
-            result.id = params["id"].toLongLong();
+        struct Get {
+            Id id;
+            QString name;
+            ::Project::Target target;
+            QString description;
+            QDateTime createdTime;
+            QDateTime updatedTime;
 
-            return result;
-        }
-    };
+            static Get deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct GetResponse {
-        Id id;
-        QString name;
-        ::Project::Target target;
-        QString description;
-        QDateTime createdTime;
-        QDateTime updatedTime;
+                Get result;
+                result.id = params["id"].toLongLong();
+                result.name = params["name"].toString();
+                result.target = static_cast<::Project::Target>(params["target"].toInt());
+                result.description = params["description"].toString();
+                result.createdTime = params["created_at"].toDateTime();
+                result.updatedTime = params["updated_at"].toDateTime();
 
-        static GetResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            GetResponse result;
-            result.id = params["id"].toLongLong();
-            result.name = params["name"].toString();
-            result.target = static_cast<::Project::Target>(params["target"].toInt());
-            result.description = params["description"].toString();
-            result.createdTime = params["created_at"].toDateTime();
-            result.updatedTime = params["updated_at"].toDateTime();
-
-            return result;
-        }
+                return result;
+            }
+        };
     };
 
     Project(RestApi* restApi);
 
     QString name() const override;
 
-    Async::Task<CreateResponse> create(const CreateRequest& params);
-    Async::Task<void> update(Id id, const UpdateRequest& params);
-    Async::Task<GetResponse> getOne(Id id);
-    Async::Task<QList<GetResponse>> getAll();
+    Async::Task<Response::Create> create(const Request::Create& params);
+    Async::Task<void> update(Id id, const Request::Update& params);
+    Async::Task<Response::Get> getOne(Id id);
+    Async::Task<QList<Response::Get>> getAll();
     Async::Task<void> remove(Id id);
 };
 

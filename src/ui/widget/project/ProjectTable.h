@@ -48,8 +48,8 @@ private:
     void readSettings();
     void writeSettings();
 
-    void addRow(const Controller::Project::GetResponse& project);
-    void updateRow(const Controller::Project::GetResponse& project);
+    void addRow(const Controller::Project::Response::Get& project);
+    void updateRow(const Controller::Project::Response::Get& project);
 
     QScopedPointer<Controller::Project> m_project;
     TableWidget* m_tableWidget = nullptr;

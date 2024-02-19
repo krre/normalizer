@@ -51,7 +51,7 @@ void ProjectEditor::createForm() {
 }
 
 Async::Task<void> ProjectEditor::createProject() {
-    Controller::Project::CreateRequest project;
+    Controller::Project::Request::Create project;
     project.name = m_nameLineEdit->text();
     project.target = static_cast<Project::Target>(m_targetComboBox->currentIndex());
     project.description = m_descriptionTextEdit->toPlainText();
@@ -61,7 +61,7 @@ Async::Task<void> ProjectEditor::createProject() {
 }
 
 Async::Task<void> ProjectEditor::updateProject() {
-    Controller::Project::UpdateRequest project;
+    Controller::Project::Request::Update project;
     project.name = m_nameLineEdit->text();
     project.description = m_descriptionTextEdit->toPlainText();
 
@@ -70,7 +70,7 @@ Async::Task<void> ProjectEditor::updateProject() {
 }
 
 Async::Task<void> ProjectEditor::getProject() {
-    Controller::Project::GetResponse project = co_await m_project->getOne(m_id);
+    Controller::Project::Response::Get project = co_await m_project->getOne(m_id);
     m_nameLineEdit->setText(project.name);
     m_targetLabel->setText(Project::targetString(project.target));
     m_descriptionTextEdit->setPlainText(project.description);
