@@ -14,74 +14,78 @@ public:
         Private
     };
 
-    struct CreateRequest {
-        std::optional<Id> moduleId;
+    struct Request {
+        struct Create {
+            std::optional<Id> moduleId;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "module_id", QVariant::fromValue(moduleId) },
-            });
-        }
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "module_id", QVariant::fromValue(moduleId) },
+                                    });
+            }
+        };
+
+        struct Update {
+            QString name;
+            Visibility visibility;
+
+            QVariant serialize() const {
+                return QVariantMap({
+                                    { "name", name },
+                                    { "visibility", int(visibility) },
+                                    });
+            }
+        };
     };
 
-    struct UpdateRequest {
-        QString name;
-        Visibility visibility;
+    struct Response {
+        struct Create {
+            Id id;
+            QString name;
+            Visibility visibility;
 
-        QVariant serialize() const {
-            return QVariantMap({
-                { "name", name },
-                { "visibility", int(visibility) },
-            });
-        }
-    };
+            static Create deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct CreateResponse {
-        Id id;
-        QString name;
-        Visibility visibility;
+                Create result;
+                result.id = params["id"].toLongLong();
+                result.name = params["name"].toString();
+                result.visibility = static_cast<Visibility>(params["visibility"].toInt());
 
-        static CreateResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
+                return result;
+            }
+        };
 
-            CreateResponse result;
-            result.id = params["id"].toLongLong();
-            result.name = params["name"].toString();
-            result.visibility = static_cast<Visibility>(params["visibility"].toInt());
+        struct Get {
+            Id id;
+            Id projectId;
+            QString name;
+            Visibility visibility;
+            QDateTime updatedTime;
 
-            return result;
-        }
-    };
+            static Get deserialize(const QVariant& value) {
+                QVariantMap params = value.toMap();
 
-    struct GetResponse {
-        Id id;
-        Id projectId;
-        QString name;
-        Visibility visibility;
-        QDateTime updatedTime;
+                Get result;
+                result.id = params["id"].toLongLong();
+                result.projectId = params["project_id"].toLongLong();
+                result.name = params["name"].toString();
+                result.visibility = static_cast<Visibility>(params["visibility"].toInt());
+                result.updatedTime = params["updated_at"].toDateTime();
 
-        static GetResponse deserialize(const QVariant& value) {
-            QVariantMap params = value.toMap();
-
-            GetResponse result;
-            result.id = params["id"].toLongLong();
-            result.projectId = params["project_id"].toLongLong();
-            result.name = params["name"].toString();
-            result.visibility = static_cast<Visibility>(params["visibility"].toInt());
-            result.updatedTime = params["updated_at"].toDateTime();
-
-            return result;
-        }
+                return result;
+            }
+        };
     };
 
     Module(Id projectId, RestApi* restApi);
 
     QString name() const override;
 
-    Async::Task<CreateResponse> create(std::optional<Id> moduleId = std::nullopt);
-    Async::Task<void> update(Id id, const UpdateRequest& params);
-    Async::Task<GetResponse> getOne(Id id);
-    Async::Task<QList<GetResponse>> getAll();
+    Async::Task<Response::Create> create(std::optional<Id> moduleId = std::nullopt);
+    Async::Task<void> update(Id id, const Request::Update& params);
+    Async::Task<Response::Get> getOne(Id id);
+    Async::Task<QList<Response::Get>> getAll();
     Async::Task<void> remove(Id id);
 
 private:
