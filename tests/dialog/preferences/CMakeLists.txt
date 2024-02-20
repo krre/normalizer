@@ -1,8 +1,8 @@
-qt_add_executable(test_preferences
+qt_add_executable(TestPreferences
     tst_preferences.cpp
 )
 
-target_link_libraries(test_preferences PRIVATE
+target_link_libraries(TestPreferences PRIVATE
     Qt6::Test
     Qt6::Widgets
     Qt6::Network
