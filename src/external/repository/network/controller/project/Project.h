@@ -18,10 +18,10 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "name", name },
-                                    { "target", int(target) },
-                                    { "description", description },
-                                    });
+                    { "name", name },
+                    { "target", int(target) },
+                    { "description", description },
+                });
             }
         };
 
@@ -31,9 +31,9 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "name", name },
-                                    { "description", description },
-                                    });
+                    { "name", name },
+                    { "description", description },
+                });
             }
         };
     };

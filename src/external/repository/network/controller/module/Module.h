@@ -20,8 +20,8 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "module_id", QVariant::fromValue(moduleId) },
-                                    });
+                    { "module_id", QVariant::fromValue(moduleId) },
+                });
             }
         };
 
@@ -31,9 +31,9 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "name", name },
-                                    { "visibility", int(visibility) },
-                                    });
+                    { "name", name },
+                    { "visibility", int(visibility) },
+                });
             }
         };
     };

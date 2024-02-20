@@ -19,11 +19,11 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "login", login },
-                                    { "email", email },
-                                    { "full_name", fullName },
-                                    { "password", Utils::sha256(password) },
-                                    });
+                    { "login", login },
+                    { "email", email },
+                    { "full_name", fullName },
+                    { "password", Utils::sha256(password) },
+                });
             }
         };
 
@@ -32,8 +32,8 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "full_name", fullName },
-                                    });
+                    { "full_name", fullName },
+                });
             }
         };
 
@@ -43,9 +43,9 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "old_password", Utils::sha256(oldPassword) },
-                                    { "new_password", Utils::sha256(newPassword) },
-                                    });
+                    { "old_password", Utils::sha256(oldPassword) },
+                    { "new_password", Utils::sha256(newPassword) },
+                });
             }
         };
 
@@ -55,9 +55,9 @@ public:
 
             QVariant serialize() const {
                 return QVariantMap({
-                                    { "email", email },
-                                    { "password", Utils::sha256(password) },
-                                    });
+                    { "email", email },
+                    { "password", Utils::sha256(password) },
+                });
             }
         };
     };
