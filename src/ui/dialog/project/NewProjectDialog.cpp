@@ -26,7 +26,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 
     connect(m_locationComboBox, &QComboBox::currentIndexChanged, this, &NewProjectDialog::switchLocation);
 
-    m_directoryBrowseLayout = new BrowseLayout(m_settings->projectLocation().directory);
+    m_workspaceBrowseLayout = new BrowseLayout(m_settings->projectLocation().workspace);
     m_hostLineEdit = new QLineEdit(m_settings->projectLocation().host);
 
     m_formLayout = new QFormLayout;
@@ -34,7 +34,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     m_formLayout->addRow(tr("Description:"), m_descriptionLineEdit);
     m_formLayout->addRow(tr("Target:"), m_targetComboBox);
     m_formLayout->addRow(tr("Location:"), m_locationComboBox);
-    m_formLayout->addRow(tr("Directory:"), m_directoryBrowseLayout);
+    m_formLayout->addRow(tr("Workspace:"), m_workspaceBrowseLayout);
     m_formLayout->addRow(tr("Host:"), m_hostLineEdit);
 
     m_formLayout->itemAt(m_formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
@@ -50,7 +50,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 
 void NewProjectDialog::accept() {
     Settings::ProjectLocation projectLocation;
-    projectLocation.directory = m_directoryBrowseLayout->text();
+    projectLocation.workspace = m_workspaceBrowseLayout->text();
     projectLocation.host = m_hostLineEdit->text();
 
     m_settings->setProjectLocation(projectLocation);
@@ -64,9 +64,9 @@ void NewProjectDialog::enableOkButton() {
 void NewProjectDialog::switchLocation() {
     if (m_locationComboBox->currentIndex() == int(Project::Location::Local)) {
         m_formLayout->setRowVisible(m_hostLineEdit, false);
-        m_formLayout->setRowVisible(m_directoryBrowseLayout, true);
+        m_formLayout->setRowVisible(m_workspaceBrowseLayout, true);
     } else {
-        m_formLayout->setRowVisible(m_directoryBrowseLayout, false);
+        m_formLayout->setRowVisible(m_workspaceBrowseLayout, false);
         m_formLayout->setRowVisible(m_hostLineEdit, true);
     }
 }

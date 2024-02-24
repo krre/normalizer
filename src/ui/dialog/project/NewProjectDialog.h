@@ -29,5 +29,5 @@ private:
     QLineEdit* m_hostLineEdit = nullptr;
     QComboBox* m_targetComboBox = nullptr;
     QComboBox* m_locationComboBox = nullptr;
-    BrowseLayout* m_directoryBrowseLayout = nullptr;
+    BrowseLayout* m_workspaceBrowseLayout = nullptr;
 };

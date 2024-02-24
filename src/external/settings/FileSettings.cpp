@@ -46,7 +46,7 @@ Settings::Account FileSettings::account() const {
 void FileSettings::setProjectLocation(const ProjectLocation& projectLocation) {
     QSettings settings;
     settings.beginGroup("ProjectLocation");
-    settings.setValue("directory", projectLocation.directory);
+    settings.setValue("workspace", projectLocation.workspace);
     settings.setValue("host", projectLocation.host);
     settings.endGroup();
 }
@@ -56,7 +56,7 @@ Settings::ProjectLocation FileSettings::projectLocation() const {
     settings.beginGroup("ProjectLocation");
 
     ProjectLocation result;
-    result.directory = settings.value("directory", QDir::homePath() + "/" + "NormProjects").toString();
+    result.workspace = settings.value("workspace", QDir::homePath() + "/" + "NormProjects").toString();
     result.host = settings.value("host", "https://api.norm.dev").toString();
 
     settings.endGroup();

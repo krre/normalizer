@@ -16,6 +16,6 @@ public slots:
 private:
     Settings* m_settings = nullptr;
 
-    BrowseLayout* m_directoryBrowseLayout = nullptr;
+    BrowseLayout* m_workspaceBrowseLayout = nullptr;
     QLineEdit* m_hostLineEdit = nullptr;
 };

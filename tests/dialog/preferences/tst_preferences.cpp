@@ -3,7 +3,7 @@
 #include <QTest>
 #include <QLineEdit>
 
-static constexpr auto LocalDirectory = "directory";
+static constexpr auto LocalWorkspace = "workspace";
 static constexpr auto RemoteHost = "host";
 
 class TestSettings : public Settings {
@@ -61,7 +61,7 @@ private slots:
 
 void TestPreferences::readSettings() {
     Settings::ProjectLocation projectLocation;
-    projectLocation.directory = LocalDirectory;
+    projectLocation.workspace = LocalWorkspace;
     projectLocation.host = RemoteHost;
 
     TestSettings settings;
@@ -74,7 +74,7 @@ void TestPreferences::readSettings() {
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
     auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
-    QCOMPARE(directoryLineEdit->text(), LocalDirectory);
+    QCOMPARE(directoryLineEdit->text(), LocalWorkspace);
     QCOMPARE(hostLineEdit->text(), RemoteHost);
 }
 
@@ -84,7 +84,7 @@ void TestPreferences::setSettings() {
     PreferencesDialog preferencesDialog(&settings);
 
     auto directoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-    directoryLineEdit->setText(LocalDirectory);
+    directoryLineEdit->setText(LocalWorkspace);
 
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
     QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
@@ -94,7 +94,7 @@ void TestPreferences::setSettings() {
 
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_projectLocation.directory, LocalDirectory);
+    QCOMPARE(settings.m_projectLocation.workspace, LocalWorkspace);
     QCOMPARE(settings.m_projectLocation.host, RemoteHost);
 }
 

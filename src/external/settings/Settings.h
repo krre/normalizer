@@ -13,7 +13,7 @@ public:
     };
 
     struct ProjectLocation {
-        QString directory;
+        QString workspace;
         QString host;
     };
 
