@@ -15,10 +15,10 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
     formLayout->addRow("Local directory:", m_directoryBrowseLayout);
     formLayout->addRow("Remote host:", m_hostLineEdit);
 
-    auto urlGroupBox = new QGroupBox("Project Location");
-    urlGroupBox->setLayout(formLayout);
+    auto projectLocationGroupBox = new QGroupBox("Project Location");
+    projectLocationGroupBox->setLayout(formLayout);
 
-    setContentWidget(urlGroupBox);
+    setContentWidget(projectLocationGroupBox);
 
     resizeToWidth(600);
     m_directoryBrowseLayout->setFocus();
