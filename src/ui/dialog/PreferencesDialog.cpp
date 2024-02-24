@@ -24,10 +24,10 @@ QGroupBox* PreferencesDialog::createProjectLocationGroupBox() {
     m_hostLineEdit = new QLineEdit(m_settings->projectLocation().host);
 
     auto layout = new QFormLayout;
-    layout->addRow("Local workspace:", m_workspaceBrowseLayout);
-    layout->addRow("Remote host:", m_hostLineEdit);
+    layout->addRow(tr("Local workspace:"), m_workspaceBrowseLayout);
+    layout->addRow(tr("Remote host:"), m_hostLineEdit);
 
-    auto groupBox = new QGroupBox("Project Location");
+    auto groupBox = new QGroupBox(tr("Project Location"));
     groupBox->setLayout(layout);
     return groupBox;
 }
