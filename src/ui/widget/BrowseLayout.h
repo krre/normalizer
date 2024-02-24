@@ -10,6 +10,8 @@ public:
     QString text() const;
     void setFocus();
 
+    void setWidgetsEnabled(bool enable);
+
 private slots:
     void onClicked();
 
