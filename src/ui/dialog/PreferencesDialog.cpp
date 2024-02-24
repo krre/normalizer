@@ -5,21 +5,7 @@
 
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
-
-    Settings::ProjectLocation projectLocation = settings->projectLocation();
-
-    m_workspaceBrowseLayout = new BrowseLayout(settings->projectLocation().workspace);
-    m_hostLineEdit = new QLineEdit(projectLocation.host);
-
-    auto formLayout = new QFormLayout;
-    formLayout->addRow("Local workspace:", m_workspaceBrowseLayout);
-    formLayout->addRow("Remote host:", m_hostLineEdit);
-
-    auto projectLocationGroupBox = new QGroupBox("Project Location");
-    projectLocationGroupBox->setLayout(formLayout);
-
-    setContentWidget(projectLocationGroupBox);
-
+    setContentWidget(createProjectLocationGroupBox());
     resizeToWidth(600);
     m_workspaceBrowseLayout->setFocus();
 }
@@ -31,4 +17,17 @@ void PreferencesDialog::accept() {
 
     m_settings->setProjectLocation(projectLocation);
     StandardDialog::accept();
+}
+
+QGroupBox* PreferencesDialog::createProjectLocationGroupBox() {
+    m_workspaceBrowseLayout = new BrowseLayout(m_settings->projectLocation().workspace);
+    m_hostLineEdit = new QLineEdit(m_settings->projectLocation().host);
+
+    auto layout = new QFormLayout;
+    layout->addRow("Local workspace:", m_workspaceBrowseLayout);
+    layout->addRow("Remote host:", m_hostLineEdit);
+
+    auto groupBox = new QGroupBox("Project Location");
+    groupBox->setLayout(layout);
+    return groupBox;
 }

@@ -4,6 +4,7 @@
 class Settings;
 class BrowseLayout;
 
+class QGroupBox;
 class QLineEdit;
 
 class PreferencesDialog : public StandardDialog {
@@ -14,6 +15,8 @@ public slots:
     void accept() override;
 
 private:
+    QGroupBox* createProjectLocationGroupBox();
+
     Settings* m_settings = nullptr;
 
     BrowseLayout* m_workspaceBrowseLayout = nullptr;
