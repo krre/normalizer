@@ -14,6 +14,9 @@ public:
     void setProjectLocation(const ProjectLocation& projectLocation) override;
     ProjectLocation projectLocation() const override;
 
+    void setNormLocation(const NormLocation& normLocation) override;
+    NormLocation normLocation() const override;
+
     void setProjectTable(const ProjectTable& projectTable) override;
     ProjectTable projectTable() const override;
 

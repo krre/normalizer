@@ -17,6 +17,16 @@ public:
         QString host;
     };
 
+    struct NormLocation {
+        enum class Type {
+            Home,
+            Custom
+        };
+
+        Type type;
+        QString directory;
+    };
+
     struct ProjectTable {
         QByteArray geometry;
         QByteArray header;
@@ -34,6 +44,9 @@ public:
 
     virtual void setProjectLocation(const ProjectLocation& projectLocation) = 0;
     virtual ProjectLocation projectLocation() const = 0;
+
+    virtual void setNormLocation(const NormLocation& normLocation) = 0;
+    virtual NormLocation normLocation() const = 0;
 
     virtual void setProjectTable(const ProjectTable& projectTable) = 0;
     virtual ProjectTable projectTable() const = 0;

@@ -64,6 +64,27 @@ Settings::ProjectLocation FileSettings::projectLocation() const {
     return result;
 }
 
+void FileSettings::setNormLocation(const NormLocation& normLocation) {
+    QSettings settings;
+    settings.beginGroup("NormLocation");
+    settings.setValue("type", int(normLocation.type));
+    settings.setValue("directory", normLocation.directory);
+    settings.endGroup();
+}
+
+Settings::NormLocation FileSettings::normLocation() const {
+    QSettings settings;
+    settings.beginGroup("NormLocation");
+
+    NormLocation result;
+    result.type = static_cast<NormLocation::Type>(settings.value("type").toInt());
+    result.directory = settings.value("directory").toString();
+
+    settings.endGroup();
+
+    return result;
+}
+
 void FileSettings::setProjectTable(const ProjectTable& projectTable) {
     QSettings settings;
     settings.beginGroup("ProjectTable");

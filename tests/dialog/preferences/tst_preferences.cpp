@@ -30,6 +30,14 @@ public:
         return m_projectLocation;
     }
 
+    void setNormLocation(const NormLocation& normLocation) override {
+        m_normLocation = normLocation;
+    }
+
+    NormLocation normLocation() const override {
+        return m_normLocation;
+    }
+
     void setProjectTable(const ProjectTable& projectTable) override {
         m_projectTable = projectTable;
     }
@@ -48,6 +56,7 @@ public:
 
     Account m_account;
     ProjectLocation m_projectLocation;
+    NormLocation m_normLocation;
     ProjectTable m_projectTable;
     Editor m_editor;
 };
