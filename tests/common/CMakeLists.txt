@@ -1,10 +1,10 @@
 find_package(Qt6 REQUIRED COMPONENTS Test)
 
-add_library(test_common STATIC
-
+add_library(testCommon STATIC
+    TestSettings.cpp TestSettings.h
 )
 
-target_link_libraries(test_common PRIVATE
+target_link_libraries(testCommon PRIVATE
     Qt6::Test
     Qt6::Widgets
     Qt6::Network

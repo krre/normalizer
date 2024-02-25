@@ -7,6 +7,6 @@ target_link_libraries(TestSignUp PRIVATE
     Qt6::Widgets
     Qt6::Network
     common
-    test_common
+    testCommon
 )
 

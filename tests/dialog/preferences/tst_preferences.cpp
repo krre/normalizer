@@ -1,5 +1,5 @@
 #include "ui/dialog/PreferencesDialog.h"
-#include "external/settings/Settings.h"
+#include "tests/common/TestSettings.h"
 #include <QTest>
 #include <QLineEdit>
 
@@ -9,61 +9,6 @@ static constexpr auto RemoteHost = "host";
 static constexpr auto NormLocationType = Settings::NormLocation::Type::Custom;
 static constexpr auto NormLocationDirectory = "directory";
 
-class TestSettings : public Settings {
-public:
-    void setMainWindow(const MainWindow& mainWindow [[maybe_unused]]) override {}
-
-    Settings::MainWindow mainWindow() const override {
-        return MainWindow();
-    }
-
-    void setAccount(const Account& account) override {
-        m_account = account;
-    }
-
-    Account account() const override {
-        return m_account;
-    }
-
-    void setProjectLocation(const ProjectLocation& projectLocation) override {
-        m_projectLocation = projectLocation;
-    }
-
-    ProjectLocation projectLocation() const override {
-        return m_projectLocation;
-    }
-
-    void setNormLocation(const NormLocation& normLocation) override {
-        m_normLocation = normLocation;
-    }
-
-    NormLocation normLocation() const override {
-        return m_normLocation;
-    }
-
-    void setProjectTable(const ProjectTable& projectTable) override {
-        m_projectTable = projectTable;
-    }
-
-    ProjectTable projectTable() const override {
-        return m_projectTable;
-    }
-
-    void setEditor(const Editor& editor) override {
-        m_editor = editor;
-    }
-
-    Editor editor() const override {
-        return m_editor;
-    }
-
-    Account m_account;
-    ProjectLocation m_projectLocation;
-    NormLocation m_normLocation;
-    ProjectTable m_projectTable;
-    Editor m_editor;
-};
-
 class TestPreferences : public QObject {
     Q_OBJECT
 private slots:
@@ -72,12 +17,17 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettings settings;
-    settings.m_projectLocation.workspace = LocalWorkspace;
-    settings.m_projectLocation.host = RemoteHost;
+    TestSettings::ProjectLocation projectLocation;
+    projectLocation.workspace = LocalWorkspace;
+    projectLocation.host = RemoteHost;
 
-    settings.m_normLocation.type = NormLocationType;
-    settings.m_normLocation.directory = NormLocationDirectory;
+    TestSettings::NormLocation normLocation;
+    normLocation.type = NormLocationType;
+    normLocation.directory = NormLocationDirectory;
+
+    TestSettings settings;
+    settings.setProjectLocation(projectLocation);
+    settings.setNormLocation(normLocation);
 
     PreferencesDialog preferencesDialog(&settings);
     auto workspaceDirectoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
@@ -115,10 +65,10 @@ void TestPreferences::setSettings() {
 
     preferencesDialog.accept();
 
-    QCOMPARE(settings.m_projectLocation.workspace, LocalWorkspace);
-    QCOMPARE(settings.m_projectLocation.host, RemoteHost);
-    QCOMPARE(settings.m_normLocation.type, NormLocationType);
-    QCOMPARE(settings.m_normLocation.directory, NormLocationDirectory);
+    QCOMPARE(settings.projectLocation().workspace, LocalWorkspace);
+    QCOMPARE(settings.projectLocation().host, RemoteHost);
+    QCOMPARE(settings.normLocation().type, NormLocationType);
+    QCOMPARE(settings.normLocation().directory, NormLocationDirectory);
 }
 
 QTEST_MAIN(TestPreferences)

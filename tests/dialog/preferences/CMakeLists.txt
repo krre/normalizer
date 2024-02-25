@@ -7,4 +7,5 @@ target_link_libraries(TestPreferences PRIVATE
     Qt6::Widgets
     Qt6::Network
     common
+    testCommon
 )
