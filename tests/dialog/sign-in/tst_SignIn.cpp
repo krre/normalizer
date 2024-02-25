@@ -35,12 +35,10 @@ void TestSignIn::validData() {
     Controller::Account account(&restApi);
     SingInDialog signInDialog(&account);
 
-    auto emailLineEdit = static_cast<QLineEdit*>(signInDialog.focusWidget());
-    emailLineEdit->setText(Email);
+    static_cast<QLineEdit*>(signInDialog.focusWidget())->setText(Email);
 
     QTest::keyClick(&signInDialog, Qt::Key_Tab);
-    auto passwordLineEdit = static_cast<QLineEdit*>(signInDialog.focusWidget());
-    passwordLineEdit->setText(Password);
+    static_cast<QLineEdit*>(signInDialog.focusWidget())->setText(Password);
 
     signInDialog.accept();
 

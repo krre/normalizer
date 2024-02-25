@@ -34,16 +34,13 @@ void TestChangePassword::validData() {
     Controller::Account account(&restApi);
     ChangePasswordDialog changePasswordDialog(&account);
 
-    auto oldPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
-    oldPasswordLineEdit->setText(OldPassword);
+    static_cast<QLineEdit*>(changePasswordDialog.focusWidget())->setText(OldPassword);
 
     QTest::keyClick(&changePasswordDialog, Qt::Key_Tab);
-    auto newPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
-    newPasswordLineEdit->setText(NewPassword);
+    static_cast<QLineEdit*>(changePasswordDialog.focusWidget())->setText(NewPassword);
 
     QTest::keyClick(&changePasswordDialog, Qt::Key_Tab);
-    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(changePasswordDialog.focusWidget());
-    confirmPasswordLineEdit->setText(NewPassword);
+    static_cast<QLineEdit*>(changePasswordDialog.focusWidget())->setText(NewPassword);
 
     changePasswordDialog.accept();
 

@@ -63,8 +63,7 @@ void TestAccountDialog::updateData() {
     Controller::Account account(&restApi);
     AccountDialog accountDialog(&account);
 
-    auto fullNameLineEdit = static_cast<QLineEdit*>(accountDialog.focusWidget());
-    fullNameLineEdit->setText(FullName);
+    static_cast<QLineEdit*>(accountDialog.focusWidget())->setText(FullName);
 
     accountDialog.accept();
 

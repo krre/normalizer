@@ -40,24 +40,19 @@ void TestSignUp::validData() {
     Controller::Account account(&restApi);
     SignUpDialog signUpDialog(&account);
 
-    auto loginLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
-    loginLineEdit->setText(Login);
+    static_cast<QLineEdit*>(signUpDialog.focusWidget())->setText(Login);
 
     QTest::keyClick(&signUpDialog, Qt::Key_Tab);
-    auto fullNameLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
-    fullNameLineEdit->setText(FullName);
+    static_cast<QLineEdit*>(signUpDialog.focusWidget())->setText(FullName);
 
     QTest::keyClick(&signUpDialog, Qt::Key_Tab);
-    auto emailLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
-    emailLineEdit->setText(Email);
+    static_cast<QLineEdit*>(signUpDialog.focusWidget())->setText(Email);
 
     QTest::keyClick(&signUpDialog, Qt::Key_Tab);
-    auto passwordLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
-    passwordLineEdit->setText(Password);
+    static_cast<QLineEdit*>(signUpDialog.focusWidget())->setText(Password);
 
     QTest::keyClick(&signUpDialog, Qt::Key_Tab);
-    auto confirmPasswordLineEdit = static_cast<QLineEdit*>(signUpDialog.focusWidget());
-    confirmPasswordLineEdit->setText(Password);
+    static_cast<QLineEdit*>(signUpDialog.focusWidget())->setText(Password);
 
     signUpDialog.accept();
 
