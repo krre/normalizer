@@ -1,6 +1,7 @@
 #include "PreferencesDialog.h"
 #include "ui/widget/BrowseLayout.h"
 #include "external/settings/Settings.h"
+#include "core/Utils.h"
 #include <QtWidgets>
 
 PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
@@ -43,6 +44,7 @@ QGroupBox* PreferencesDialog::createNormLocationGroupBox() {
 
     m_homeLineEdit = new QLineEdit;
     m_homeLineEdit->setReadOnly(true);
+    m_homeLineEdit->setText(Utils::normHome());
 
     m_customBrowseLayout = new BrowseLayout;
 
