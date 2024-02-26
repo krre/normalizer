@@ -71,4 +71,4 @@ void TestAccountDialog::updateData() {
 
 QTEST_MAIN(TestAccountDialog)
 
-#include "tst_account.moc"
+#include "TestAccount.moc"

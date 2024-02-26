@@ -47,4 +47,4 @@ void TestChangePassword::validData() {
 
 QTEST_MAIN(TestChangePassword)
 
-#include "tst_change_password.moc"
+#include "TestChangePassword.moc"

@@ -1,5 +1,5 @@
 qt_add_executable(TestAccount
-    tst_account.cpp
+    TestAccount.cpp
 )
 
 target_link_libraries(TestAccount PRIVATE

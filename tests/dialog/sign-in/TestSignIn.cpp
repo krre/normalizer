@@ -44,4 +44,4 @@ void TestSignIn::validData() {
 
 QTEST_MAIN(TestSignIn)
 
-#include "tst_SignIn.moc"
+#include "TestSignIn.moc"

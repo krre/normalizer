@@ -1,5 +1,5 @@
 qt_add_executable(TestSignIn
-    tst_SignIn.cpp
+    TestSignIn.cpp
 )
 
 target_link_libraries(TestSignIn PRIVATE

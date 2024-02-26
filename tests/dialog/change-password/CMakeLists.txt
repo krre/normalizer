@@ -1,5 +1,5 @@
 qt_add_executable(TestChangePassword
-    tst_change_password.cpp
+    TestChangePassword.cpp
 )
 
 target_link_libraries(TestChangePassword PRIVATE

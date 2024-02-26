@@ -61,4 +61,4 @@ void TestSignUp::validData() {
 
 QTEST_MAIN(TestSignUp)
 
-#include "tst_SignUp.moc"
+#include "TestSignUp.moc"

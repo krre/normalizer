@@ -1,5 +1,5 @@
 qt_add_executable(TestPreferences
-    tst_preferences.cpp
+    TestPreferences.cpp
 )
 
 target_link_libraries(TestPreferences PRIVATE

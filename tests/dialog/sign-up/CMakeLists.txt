@@ -1,5 +1,5 @@
 qt_add_executable(TestSignUp
-    tst_SignUp.cpp
+    TestSignUp.cpp
 )
 
 target_link_libraries(TestSignUp PRIVATE

@@ -73,4 +73,4 @@ void TestPreferences::setSettings() {
 
 QTEST_MAIN(TestPreferences)
 
-#include "tst_preferences.moc"
+#include "TestPreferences.moc"
