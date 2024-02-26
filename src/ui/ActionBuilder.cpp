@@ -9,6 +9,7 @@
 #include "dialog/account/SignInDialog.h"
 #include "dialog/account/AccountDialog.h"
 #include "external/settings/FileSettings.h"
+#include "external/process/NormProcess.h"
 #include "external/repository/network/http/HttpRestApi.h"
 #include "external/repository/network/controller/account/Account.h"
 #include <QtWidgets>
@@ -127,6 +128,8 @@ void ActionBuilder::about() {
 }
 
 void ActionBuilder::newProject() {
-    NewProjectDialog newProjectDialog(m_fileSettings);
+    NormProcess process;
+
+    NewProjectDialog newProjectDialog(&process, m_fileSettings);
     newProjectDialog.exec();
 }

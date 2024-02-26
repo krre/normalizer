@@ -1,10 +1,10 @@
 #include "NewProjectDialog.h"
 #include "ui/widget/BrowseLayout.h"
+#include "external/process/Process.h"
 #include "external/settings/Settings.h"
-#include "program/Project.h"
 #include <QtWidgets>
 
-NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
+NewProjectDialog::NewProjectDialog(Process* process, Settings* settings) : m_process(process), m_settings(settings) {
     setWindowTitle(tr("New Project"));
 
     m_nameLineEdit = new QLineEdit;
@@ -33,6 +33,7 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 }
 
 void NewProjectDialog::accept() {
+    m_process->createProject(m_nameLineEdit->text(), m_workspaceBrowseLayout->text(), static_cast<Project::Target>(m_targetComboBox->currentIndex()));
     StandardDialog::accept();
 }
 
