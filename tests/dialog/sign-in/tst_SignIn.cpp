@@ -23,7 +23,6 @@ public:
     QString password;
 };
 
-
 class TestSignIn : public QObject {
     Q_OBJECT
 private slots:
