@@ -24,8 +24,8 @@ private:
 
 class RestApi {
 public:
-    virtual Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery()) = 0;
-    virtual Async::Task<QVariant> del(const QString& endpoint) = 0;
-    virtual Async::Task<QVariant> post(const QString& endpoint, const QVariant& data = QVariant()) = 0;
-    virtual Async::Task<QVariant> put(const QString& endpoint, const QVariant& data = QVariant()) = 0;
+    virtual Async::Task<QVariant> get(const QString& endpoint, const QUrlQuery& query = QUrlQuery()) { co_return QVariant(); };
+    virtual Async::Task<QVariant> del(const QString& endpoint) { co_return QVariant(); };
+    virtual Async::Task<QVariant> post(const QString& endpoint, const QVariant& data = QVariant()) { co_return QVariant(); };
+    virtual Async::Task<QVariant> put(const QString& endpoint, const QVariant& data = QVariant()) { co_return QVariant(); };
 };

@@ -17,8 +17,7 @@ public:
             { "full_name", FullName }
         });
     }
-    Async::Task<QVariant> del(const QString& endpoint [[maybe_unused]]) override { co_return QVariant(); }
-    Async::Task<QVariant> post(const QString& endpoint [[maybe_unused]], const QVariant& data = QVariant()) override { co_return QVariant(); }
+
     Async::Task<QVariant> put(const QString& endpoint [[maybe_unused]], const QVariant& data = QVariant()) override {
         fullName = data.toMap()["full_name"].toString();
         co_return QVariant();

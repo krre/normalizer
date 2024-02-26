@@ -10,14 +10,11 @@ constexpr auto Password = "qwerty";
 
 class TestRestApi : public RestApi {
 public:
-    Async::Task<QVariant> get(const QString& endpoint [[maybe_unused]], const QUrlQuery& query = QUrlQuery()) override { co_return QVariant(); }
-    Async::Task<QVariant> del(const QString& endpoint [[maybe_unused]]) override { co_return QVariant(); }
     Async::Task<QVariant> post(const QString& endpoint [[maybe_unused]], const QVariant& data = QVariant()) override {
         email = data.toMap()["email"].toString();
         password = data.toMap()["password"].toString();
         co_return QVariant();
     }
-    Async::Task<QVariant> put(const QString& endpoint [[maybe_unused]], const QVariant& data = QVariant()) override { co_return QVariant(); }
 
     QString email;
     QString password;
