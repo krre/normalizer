@@ -22,7 +22,6 @@ private:
     Settings* m_settings = nullptr;
 
     QLineEdit* m_nameLineEdit = nullptr;
-    QLineEdit* m_descriptionLineEdit = nullptr;
     QComboBox* m_targetComboBox = nullptr;
     BrowseLayout* m_workspaceBrowseLayout = nullptr;
 };

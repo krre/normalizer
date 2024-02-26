@@ -10,7 +10,6 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewProjectDialog::enableOkButton);
 
-    m_descriptionLineEdit = new QLineEdit;
     m_workspaceBrowseLayout = new BrowseLayout(m_settings->projectLocation().workspace);
 
     m_targetComboBox = new QComboBox;
@@ -21,7 +20,6 @@ NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
-    formLayout->addRow(tr("Description:"), m_descriptionLineEdit);
     formLayout->addRow(tr("Workspace:"), m_workspaceBrowseLayout);
     formLayout->addRow(tr("Target:"), m_targetComboBox);
 
