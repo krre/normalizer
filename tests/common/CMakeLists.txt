@@ -2,6 +2,7 @@ find_package(Qt6 REQUIRED COMPONENTS Test)
 
 add_library(testCommon STATIC
     TestSettings.cpp TestSettings.h
+    TestProcess.h TestProcess.cpp
 )
 
 target_link_libraries(testCommon PRIVATE
