@@ -128,7 +128,7 @@ void ActionBuilder::about() {
 }
 
 void ActionBuilder::newProject() {
-    NormProcess process;
+    NormProcess process(m_fileSettings);
 
     NewProjectDialog newProjectDialog(&process, m_fileSettings);
     newProjectDialog.exec();
