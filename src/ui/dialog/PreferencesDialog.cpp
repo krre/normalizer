@@ -47,7 +47,7 @@ QGroupBox* PreferencesDialog::createProjectLocationGroupBox() {
 
 QGroupBox* PreferencesDialog::createNormLocationGroupBox() {
     m_homeRadioButton = new QRadioButton("NORM_HOME");
-    m_directoryRadioButton = new QRadioButton(tr("Directory"));
+    m_customRadioButton = new QRadioButton(tr("Custom"));
 
     m_homeLineEdit = new QLineEdit(Utils::normHome());
     m_homeLineEdit->setReadOnly(true);
@@ -56,25 +56,25 @@ QGroupBox* PreferencesDialog::createNormLocationGroupBox() {
 
     auto clickedHandler = [=, this] {
         m_homeLineEdit->setEnabled(m_homeRadioButton->isChecked());
-        m_customBrowseLayout->setWidgetsEnabled(m_directoryRadioButton->isChecked());
+        m_customBrowseLayout->setWidgetsEnabled(m_customRadioButton->isChecked());
     };
 
     connect(m_homeRadioButton, &QRadioButton::toggled, clickedHandler);
-    connect(m_directoryRadioButton, &QRadioButton::toggled, clickedHandler);
+    connect(m_customRadioButton, &QRadioButton::toggled, clickedHandler);
 
     if (m_settings->normLocation().type == Settings::NormLocation::Type::Home) {
         m_homeRadioButton->setChecked(true);
     } else {
-        m_directoryRadioButton->setChecked(true);
+        m_customRadioButton->setChecked(true);
     }
 
     auto layout = new QGridLayout;
     layout->addWidget(m_homeRadioButton, 0, 0);
     layout->addWidget(m_homeLineEdit, 0, 1);
-    layout->addWidget(m_directoryRadioButton, 1, 0);
+    layout->addWidget(m_customRadioButton, 1, 0);
     layout->addLayout(m_customBrowseLayout, 1, 1);
 
-    auto groupBox = new QGroupBox(tr("Norm Location"));
+    auto groupBox = new QGroupBox(tr("Norm Directory"));
     groupBox->setLayout(layout);
     return groupBox;
 }

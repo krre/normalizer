@@ -28,5 +28,5 @@ private:
     QLineEdit* m_homeLineEdit = nullptr;
 
     QRadioButton* m_homeRadioButton = nullptr;
-    QRadioButton* m_directoryRadioButton = nullptr;
+    QRadioButton* m_customRadioButton = nullptr;
 };
