@@ -1,10 +1,9 @@
 #include "NormProcess.h"
-#include "external/settings/Settings.h"
 #include <QProcess>
 #include <QDebug>
 
-NormProcess::NormProcess(Settings* settings) {
-    m_normPath = settings->normDirectory() + "/bin/norm";
+NormProcess::NormProcess(const QString& normDirectory) {
+    m_normPath = normDirectory + "/bin/norm";
 }
 
 void NormProcess::createProject(const QString& name, const QString& directory, Project::Target target) {
