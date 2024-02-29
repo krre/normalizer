@@ -1,4 +1,5 @@
 #pragma once
+#include "core/Utils.h"
 #include <QUrl>
 
 class Settings {
@@ -47,6 +48,7 @@ public:
 
     virtual void setNormLocation(const NormLocation& normLocation) = 0;
     virtual NormLocation normLocation() const = 0;
+    QString normDirectory() const { return normLocation().type == NormLocation::Type::Home ? Utils::normHome() : normLocation().directory; }
 
     virtual void setProjectTable(const ProjectTable& projectTable) = 0;
     virtual ProjectTable projectTable() const = 0;
