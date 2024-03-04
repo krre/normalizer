@@ -10,6 +10,8 @@ find_package(Qt6 REQUIRED COMPONENTS
     3DAnimation
 )
 
+configure_file(config.h.in config.h @ONLY)
+
 add_library(common STATIC
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
@@ -64,6 +66,12 @@ add_library(common STATIC
     external/controller/AbstractController.h external/controller/AbstractController.cpp
     external/process/Process.h external/process/Process.cpp
     external/process/NormProcess.h external/process/NormProcess.cpp
+)
+
+# For visibility in IDE (e.g., Qt Creator)
+add_custom_target(custom
+    SOURCES
+    config.h.in
 )
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
