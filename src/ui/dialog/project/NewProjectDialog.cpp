@@ -1,16 +1,14 @@
 #include "NewProjectDialog.h"
 #include "ui/widget/BrowseLayout.h"
-#include "external/process/Process.h"
 #include "external/settings/Settings.h"
+#include "program/Project.h"
 #include <QtWidgets>
 
-NewProjectDialog::NewProjectDialog(Process* process, Settings* settings) : m_process(process), m_settings(settings) {
+NewProjectDialog::NewProjectDialog(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("New Project"));
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewProjectDialog::enableOkButton);
-
-    m_workspaceBrowseLayout = new BrowseLayout("");
 
     m_targetComboBox = new QComboBox;
     m_targetComboBox->addItems({
@@ -20,7 +18,6 @@ NewProjectDialog::NewProjectDialog(Process* process, Settings* settings) : m_pro
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
-    formLayout->addRow(tr("Workspace:"), m_workspaceBrowseLayout);
     formLayout->addRow(tr("Target:"), m_targetComboBox);
 
     formLayout->itemAt(formLayout->indexOf(m_targetComboBox))->setAlignment(Qt::AlignLeft);
@@ -33,7 +30,6 @@ NewProjectDialog::NewProjectDialog(Process* process, Settings* settings) : m_pro
 }
 
 void NewProjectDialog::accept() {
-    m_process->createProject(m_nameLineEdit->text(), m_workspaceBrowseLayout->text(), static_cast<Project::Target>(m_targetComboBox->currentIndex()));
     StandardDialog::accept();
 }
 
