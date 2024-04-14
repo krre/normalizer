@@ -5,7 +5,7 @@
 #include <QtWidgets>
 
 ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(settings) {
-    setWindowTitle(tr("Account Projects"));
+    setWindowTitle(tr("Projects"));
 
     m_project.reset(new Controller::Project(restApi));
 
