@@ -5,5 +5,4 @@ class Utils {
 public:
     Utils();
     static QString sha256(const QString& data);
-    static QString normHome();
 };
