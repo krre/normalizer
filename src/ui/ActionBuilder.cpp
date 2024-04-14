@@ -68,7 +68,7 @@ void ActionBuilder::openPreferencesDialog() {
     PreferencesDialog preferencesDialog(m_fileSettings);
 
     if (preferencesDialog.exec() == QDialog::Accepted) {
-        m_httpRestApi->setUrl(m_fileSettings->projectLocation().host);
+        m_httpRestApi->setUrl(m_fileSettings->normHost().url);
     }
 }
 
@@ -128,7 +128,7 @@ void ActionBuilder::about() {
 }
 
 void ActionBuilder::newProject() {
-    NormProcess process(m_fileSettings->normDirectory());
+    NormProcess process("");
 
     NewProjectDialog newProjectDialog(&process, m_fileSettings);
     newProjectDialog.exec();

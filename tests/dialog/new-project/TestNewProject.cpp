@@ -6,7 +6,6 @@
 #include <QComboBox>
 
 static constexpr auto NormDirectory = "norm";
-static constexpr auto NormLocationType = TestSettings::NormLocation::Type::Custom;
 
 static constexpr auto ProjectName = "name";
 static constexpr auto ProjectDirectory = "directory";
@@ -21,12 +20,7 @@ private slots:
 void TestNewProject::createProject() {
     TestProcess process;
 
-    TestSettings::NormLocation normLocation;
-    normLocation.directory = NormDirectory;
-    normLocation.type = NormLocationType;
-
     TestSettings settings;
-    settings.setNormLocation(normLocation);
 
     NewProjectDialog newProjectDialog(&process, &settings);
 

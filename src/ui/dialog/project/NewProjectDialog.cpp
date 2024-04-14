@@ -10,7 +10,7 @@ NewProjectDialog::NewProjectDialog(Process* process, Settings* settings) : m_pro
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewProjectDialog::enableOkButton);
 
-    m_workspaceBrowseLayout = new BrowseLayout(m_settings->projectLocation().workspace);
+    m_workspaceBrowseLayout = new BrowseLayout("");
 
     m_targetComboBox = new QComboBox;
     m_targetComboBox->addItems({

@@ -11,11 +11,8 @@ public:
     void setAccount(const Account& account) override;
     Account account() const override;
 
-    void setProjectLocation(const ProjectLocation& projectLocation) override;
-    ProjectLocation projectLocation() const override;
-
-    void setNormLocation(const NormLocation& normLocation) override;
-    NormLocation normLocation() const override;
+    void setNormHost(const NormHost& normHost) override;
+    NormHost normHost() const override;
 
     void setProjectTable(const ProjectTable& projectTable) override;
     ProjectTable projectTable() const override;

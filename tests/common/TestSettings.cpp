@@ -12,20 +12,12 @@ Settings::Account TestSettings::account() const {
     return m_account;
 }
 
-void TestSettings::setProjectLocation(const Settings::ProjectLocation& projectLocation) {
-    m_projectLocation = projectLocation;
+void TestSettings::setNormHost(const Settings::NormHost& normHost) {
+    m_normHost = normHost;
 }
 
-Settings::ProjectLocation TestSettings::projectLocation() const {
-    return m_projectLocation;
-}
-
-void TestSettings::setNormLocation(const Settings::NormLocation& normLocation) {
-    m_normLocation = normLocation;
-}
-
-Settings::NormLocation TestSettings::normLocation() const {
-    return m_normLocation;
+Settings::NormHost TestSettings::normHost() const {
+    return m_normHost;
 }
 
 void TestSettings::setProjectTable(const Settings::ProjectTable& projectTable) {

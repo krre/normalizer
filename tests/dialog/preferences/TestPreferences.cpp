@@ -3,11 +3,7 @@
 #include <QTest>
 #include <QLineEdit>
 
-static constexpr auto LocalWorkspace = "workspace";
-static constexpr auto RemoteHost = "host";
-
-static constexpr auto NormLocationType = Settings::NormLocation::Type::Custom;
-static constexpr auto NormLocationDirectory = "directory";
+static constexpr auto NormHostUrl = "url";
 
 class TestPreferences : public QObject {
     Q_OBJECT
@@ -17,58 +13,26 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettings::ProjectLocation projectLocation;
-    projectLocation.workspace = LocalWorkspace;
-    projectLocation.host = RemoteHost;
-
-    TestSettings::NormLocation normLocation;
-    normLocation.type = NormLocationType;
-    normLocation.directory = NormLocationDirectory;
+    TestSettings::NormHost normHost;
+    normHost.url = NormHostUrl;
 
     TestSettings settings;
-    settings.setProjectLocation(projectLocation);
-    settings.setNormLocation(normLocation);
+    settings.setNormHost(normHost);
 
     PreferencesDialog preferencesDialog(&settings);
-    auto workspaceDirectoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
+    auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto hostLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    auto normDirectoryLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
-
-    QCOMPARE(workspaceDirectoryLineEdit->text(), LocalWorkspace);
-    QCOMPARE(hostLineEdit->text(), RemoteHost);
-    QCOMPARE(normDirectoryLineEdit->text(), NormLocationDirectory);
+    QCOMPARE(urlLineEdit->text(), NormHostUrl);
 }
 
 void TestPreferences::setSettings() {
     TestSettings settings;
 
     PreferencesDialog preferencesDialog(&settings);
-
-    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(LocalWorkspace);
-
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(RemoteHost);
-
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Down);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    QTest::keyClick(&preferencesDialog, Qt::Key_Tab);
-    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(NormLocationDirectory);
-
+    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(NormHostUrl);
     preferencesDialog.accept();
 
-    QCOMPARE(settings.projectLocation().workspace, LocalWorkspace);
-    QCOMPARE(settings.projectLocation().host, RemoteHost);
-    QCOMPARE(settings.normLocation().type, NormLocationType);
-    QCOMPARE(settings.normLocation().directory, NormLocationDirectory);
+    QCOMPARE(settings.normHost().url, NormHostUrl);
 }
 
 QTEST_MAIN(TestPreferences)

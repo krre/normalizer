@@ -16,17 +16,8 @@ public slots:
     void accept() override;
 
 private:
-    QGroupBox* createProjectLocationGroupBox();
-    QGroupBox* createNormLocationGroupBox();
+    QGroupBox* createNormHostGroupBox();
 
     Settings* m_settings = nullptr;
-
-    BrowseLayout* m_workspaceBrowseLayout = nullptr;
-    BrowseLayout* m_customBrowseLayout = nullptr;
-
-    QLineEdit* m_hostLineEdit = nullptr;
-    QLineEdit* m_homeLineEdit = nullptr;
-
-    QRadioButton* m_homeRadioButton = nullptr;
-    QRadioButton* m_customRadioButton = nullptr;
+    QLineEdit* m_urlLineEdit = nullptr;
 };

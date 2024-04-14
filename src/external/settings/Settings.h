@@ -13,19 +13,8 @@ public:
         QString token;
     };
 
-    struct ProjectLocation {
-        QString workspace;
-        QString host;
-    };
-
-    struct NormLocation {
-        enum class Type {
-            Home,
-            Custom
-        };
-
-        Type type;
-        QString directory;
+    struct NormHost {
+        QString url;
     };
 
     struct ProjectTable {
@@ -43,12 +32,8 @@ public:
     virtual void setAccount(const Account& account) = 0;
     virtual Account account() const = 0;
 
-    virtual void setProjectLocation(const ProjectLocation& projectLocation) = 0;
-    virtual ProjectLocation projectLocation() const = 0;
-
-    virtual void setNormLocation(const NormLocation& normLocation) = 0;
-    virtual NormLocation normLocation() const = 0;
-    QString normDirectory() const { return normLocation().type == NormLocation::Type::Home ? Utils::normHome() : normLocation().directory; }
+    virtual void setNormHost(const NormHost& normHost) = 0;
+    virtual NormHost normHost() const = 0;
 
     virtual void setProjectTable(const ProjectTable& projectTable) = 0;
     virtual ProjectTable projectTable() const = 0;

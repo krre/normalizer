@@ -43,42 +43,19 @@ Settings::Account FileSettings::account() const {
     return result;
 }
 
-void FileSettings::setProjectLocation(const ProjectLocation& projectLocation) {
+void FileSettings::setNormHost(const NormHost& normHost) {
     QSettings settings;
-    settings.beginGroup("ProjectLocation");
-    settings.setValue("workspace", projectLocation.workspace);
-    settings.setValue("host", projectLocation.host);
+    settings.beginGroup("NormHost");
+    settings.setValue("url", normHost.url);
     settings.endGroup();
 }
 
-Settings::ProjectLocation FileSettings::projectLocation() const {
+Settings::NormHost FileSettings::normHost() const {
     QSettings settings;
-    settings.beginGroup("ProjectLocation");
+    settings.beginGroup("NormHost");
 
-    ProjectLocation result;
-    result.workspace = settings.value("workspace", QDir::homePath() + "/" + "NormProjects").toString();
-    result.host = settings.value("host", "https://api.norm.dev").toString();
-
-    settings.endGroup();
-
-    return result;
-}
-
-void FileSettings::setNormLocation(const NormLocation& normLocation) {
-    QSettings settings;
-    settings.beginGroup("NormLocation");
-    settings.setValue("type", int(normLocation.type));
-    settings.setValue("directory", normLocation.directory);
-    settings.endGroup();
-}
-
-Settings::NormLocation FileSettings::normLocation() const {
-    QSettings settings;
-    settings.beginGroup("NormLocation");
-
-    NormLocation result;
-    result.type = static_cast<NormLocation::Type>(settings.value("type").toInt());
-    result.directory = settings.value("directory").toString();
+    NormHost result;
+    result.url = settings.value("url", "https://api.norm.dev").toString();
 
     settings.endGroup();
 
