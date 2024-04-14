@@ -64,8 +64,6 @@ add_library(common STATIC
     external/repository/database/Database.h external/repository/database/Database.cpp
     external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
     external/controller/AbstractController.h external/controller/AbstractController.cpp
-    external/process/Process.h external/process/Process.cpp
-    external/process/NormProcess.h external/process/NormProcess.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
