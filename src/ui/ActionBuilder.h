@@ -48,7 +48,7 @@ private:
     HttpRestApi* m_httpRestApi = nullptr;
     FileSettings* m_fileSettings = nullptr;
 
-    QMenu* m_fileMenu = nullptr;
+    QMenu* m_projectMenu = nullptr;
     QMenu* m_accountMenu = nullptr;
 
     QAction* m_closeAction = nullptr;

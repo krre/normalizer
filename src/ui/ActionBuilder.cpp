@@ -20,12 +20,12 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
         m_fileSettings(parameters.fileSettings) {
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
-    m_fileMenu = menuBar->addMenu(tr("File"));
-    m_fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
-    m_fileMenu->addSeparator();
-    m_closeAction = m_fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
-    m_fileMenu->addSeparator();
-    m_fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
+    m_projectMenu = menuBar->addMenu(tr("Project"));
+    m_projectMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
+    m_projectMenu->addSeparator();
+    m_closeAction = m_projectMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
+    m_projectMenu->addSeparator();
+    m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
     auto editMenu = new Menu(tr("Edit"), menuBar);
     menuBar->addMenu(editMenu);
