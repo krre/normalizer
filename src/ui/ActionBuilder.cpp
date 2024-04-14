@@ -22,8 +22,9 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
 
     m_projectMenu = menuBar->addMenu(tr("Project"));
     m_projectMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
-    m_projectMenu->addSeparator();
     m_closeAction = m_projectMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
+    m_projectMenu->addSeparator();
+    m_projectsAction = m_projectMenu->addAction(tr("Projects..."), this, &ActionBuilder::openProjectsTable);
     m_projectMenu->addSeparator();
     m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
@@ -35,7 +36,6 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     m_accountMenu = menuBar->addMenu(tr("Account"));
     m_signInAction = m_accountMenu->addAction(tr("Sign In..."), this, &ActionBuilder::openSignInDialog);
     m_signUpAction = m_accountMenu->addAction(tr("Sign Up..."), this, &ActionBuilder::openSignUpDialog);
-    m_projectsAction = m_accountMenu->addAction(tr("Projects..."), this, &ActionBuilder::openProjectsTable);
     m_editAccountAction = m_accountMenu->addAction(tr("Edit..."), this, &ActionBuilder::openAccountDialog);
     m_accountSeparatorAction = m_accountMenu->addSeparator();
     m_signOutAction = m_accountMenu->addAction(tr("Sign Out"), this, &ActionBuilder::signOut);
