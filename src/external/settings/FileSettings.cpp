@@ -43,18 +43,18 @@ Settings::Account FileSettings::account() const {
     return result;
 }
 
-void FileSettings::setNormHost(const NormHost& normHost) {
+void FileSettings::setDevelopmentServer(const DevelopmentServer& developmentServer) {
     QSettings settings;
-    settings.beginGroup("NormHost");
-    settings.setValue("url", normHost.url);
+    settings.beginGroup("DevelopmentServer");
+    settings.setValue("url", developmentServer.url);
     settings.endGroup();
 }
 
-Settings::NormHost FileSettings::normHost() const {
+Settings::DevelopmentServer FileSettings::developmentServer() const {
     QSettings settings;
-    settings.beginGroup("NormHost");
+    settings.beginGroup("DevelopmentServer");
 
-    NormHost result;
+    DevelopmentServer result;
     result.url = settings.value("url", "https://api.norm.dev").toString();
 
     settings.endGroup();

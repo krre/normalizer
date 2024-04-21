@@ -8,8 +8,8 @@ public:
     void setAccount(const Account& account) override;
     Account account() const override;
 
-    void setNormHost(const NormHost& normHost) override;
-    NormHost normHost() const override;
+    void setDevelopmentServer(const DevelopmentServer& developmentServer) override;
+    DevelopmentServer developmentServer() const override;
 
     void setProjectTable(const ProjectTable& projectTable) override;
     ProjectTable projectTable() const override;
@@ -19,7 +19,7 @@ public:
 
 private:
     Account m_account;
-    NormHost m_normHost;
+    DevelopmentServer m_developmentServer;
     ProjectTable m_projectTable;
     Editor m_editor;
 };

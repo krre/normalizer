@@ -16,7 +16,7 @@ public slots:
     void accept() override;
 
 private:
-    QGroupBox* createNormHostGroupBox();
+    QGroupBox* createDevelopmentServerGroupBox();
 
     Settings* m_settings = nullptr;
     QLineEdit* m_urlLineEdit = nullptr;

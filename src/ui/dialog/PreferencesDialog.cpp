@@ -6,7 +6,7 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
     setWindowTitle(tr("Preferences"));
 
     auto verticalLayout = new QVBoxLayout;
-    verticalLayout->addWidget(createNormHostGroupBox());
+    verticalLayout->addWidget(createDevelopmentServerGroupBox());
 
     setContentLayout(verticalLayout);
     resizeToWidth(600);
@@ -14,20 +14,20 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 }
 
 void PreferencesDialog::accept() {
-    Settings::NormHost hormHost;
-    hormHost.url = m_urlLineEdit->text();
-    m_settings->setNormHost(hormHost);
+    Settings::DevelopmentServer server;
+    server.url = m_urlLineEdit->text();
+    m_settings->setDevelopmentServer(server);
 
     StandardDialog::accept();
 }
 
-QGroupBox* PreferencesDialog::createNormHostGroupBox() {
-    m_urlLineEdit = new QLineEdit(m_settings->normHost().url);
+QGroupBox* PreferencesDialog::createDevelopmentServerGroupBox() {
+    m_urlLineEdit = new QLineEdit(m_settings->developmentServer().url);
 
     auto layout = new QFormLayout;
     layout->addRow("URL:", m_urlLineEdit);
 
-    auto groupBox = new QGroupBox(tr("Norm Host"));
+    auto groupBox = new QGroupBox(tr("Development Server"));
     groupBox->setLayout(layout);
     return groupBox;
 }

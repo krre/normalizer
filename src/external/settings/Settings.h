@@ -13,7 +13,7 @@ public:
         QString token;
     };
 
-    struct NormHost {
+    struct DevelopmentServer {
         QString url;
     };
 
@@ -32,8 +32,8 @@ public:
     virtual void setAccount(const Account& account) = 0;
     virtual Account account() const = 0;
 
-    virtual void setNormHost(const NormHost& normHost) = 0;
-    virtual NormHost normHost() const = 0;
+    virtual void setDevelopmentServer(const DevelopmentServer& developmentServer) = 0;
+    virtual DevelopmentServer developmentServer() const = 0;
 
     virtual void setProjectTable(const ProjectTable& projectTable) = 0;
     virtual ProjectTable projectTable() const = 0;

@@ -3,7 +3,7 @@
 #include <QTest>
 #include <QLineEdit>
 
-static constexpr auto NormHostUrl = "url";
+static constexpr auto DevelopmentServerUrl = "url";
 
 class TestPreferences : public QObject {
     Q_OBJECT
@@ -13,26 +13,26 @@ private slots:
 };
 
 void TestPreferences::readSettings() {
-    TestSettings::NormHost normHost;
-    normHost.url = NormHostUrl;
+    TestSettings::DevelopmentServer developmentServer;
+    developmentServer.url = DevelopmentServerUrl;
 
     TestSettings settings;
-    settings.setNormHost(normHost);
+    settings.setDevelopmentServer(developmentServer);
 
     PreferencesDialog preferencesDialog(&settings);
     auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
-    QCOMPARE(urlLineEdit->text(), NormHostUrl);
+    QCOMPARE(urlLineEdit->text(), DevelopmentServerUrl);
 }
 
 void TestPreferences::setSettings() {
     TestSettings settings;
 
     PreferencesDialog preferencesDialog(&settings);
-    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(NormHostUrl);
+    static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(DevelopmentServerUrl);
     preferencesDialog.accept();
 
-    QCOMPARE(settings.normHost().url, NormHostUrl);
+    QCOMPARE(settings.developmentServer().url, DevelopmentServerUrl);
 }
 
 QTEST_MAIN(TestPreferences)

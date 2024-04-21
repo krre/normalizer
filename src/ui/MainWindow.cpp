@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle(Application::Name);
 
     m_fileSettings.reset(new FileSettings);
-    m_httpRestApi.reset(new HttpRestApi(m_fileSettings->normHost().url));
+    m_httpRestApi.reset(new HttpRestApi(m_fileSettings->developmentServer().url));
 
     ActionBuilder::Parameters parameters;
     parameters.mainWindow = this;

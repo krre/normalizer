@@ -12,12 +12,12 @@ Settings::Account TestSettings::account() const {
     return m_account;
 }
 
-void TestSettings::setNormHost(const Settings::NormHost& normHost) {
-    m_normHost = normHost;
+void TestSettings::setDevelopmentServer(const Settings::DevelopmentServer& developmentServer) {
+    m_developmentServer = developmentServer;
 }
 
-Settings::NormHost TestSettings::normHost() const {
-    return m_normHost;
+Settings::DevelopmentServer TestSettings::developmentServer() const {
+    return m_developmentServer;
 }
 
 void TestSettings::setProjectTable(const Settings::ProjectTable& projectTable) {
