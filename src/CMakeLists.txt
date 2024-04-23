@@ -60,8 +60,6 @@ add_library(common STATIC
     ui/dialog/project/NewProjectDialog.h ui/dialog/project/NewProjectDialog.cpp
     program/Project.h program/Project.cpp
     external/repository/Repository.h external/repository/Repository.cpp
-    external/repository/DatabaseRepository.h external/repository/DatabaseRepository.cpp
-    external/repository/database/Database.h external/repository/database/Database.cpp
     external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
     external/controller/AbstractController.h external/controller/AbstractController.cpp
 )
