@@ -59,9 +59,6 @@ add_library(common STATIC
     ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     ui/dialog/project/NewProjectDialog.h ui/dialog/project/NewProjectDialog.cpp
     program/Project.h program/Project.cpp
-    external/repository/Repository.h external/repository/Repository.cpp
-    external/repository/NetworkRepository.h external/repository/NetworkRepository.cpp
-    external/controller/AbstractController.h external/controller/AbstractController.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
