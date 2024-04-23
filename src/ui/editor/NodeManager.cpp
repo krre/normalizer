@@ -1,7 +1,7 @@
 #include "NodeManager.h"
 #include "model/NodeModel.h"
-#include "external/repository/network/RestApi.h"
-#include "external/repository/network/controller/module/Module.h"
+#include "external/network/RestApi.h"
+#include "external/network/controller/module/Module.h"
 
 NodeManager::NodeManager(Id projectId, RestApi* restApi) : m_projectId(projectId), m_restApi(restApi) {
 }

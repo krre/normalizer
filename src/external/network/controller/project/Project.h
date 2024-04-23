@@ -1,38 +1,38 @@
 #pragma once
-#include "external/repository/network/controller/RestController.h"
+#include "external/network/controller/RestController.h"
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
+#include "program/Project.h"
 #include <QVariant>
 #include <QDateTime>
 
 namespace Controller {
 
-class Module : public RestController {
+class Project : public RestController {
 public:
-    enum class Visibility {
-        Public,
-        Private
-    };
-
     struct Request {
         struct Create {
-            std::optional<Id> moduleId;
+            QString name;
+            ::Project::Target target;
+            QString description;
 
             QVariant serialize() const {
                 return QVariantMap({
-                    { "module_id", QVariant::fromValue(moduleId) },
+                    { "name", name },
+                    { "target", int(target) },
+                    { "description", description },
                 });
             }
         };
 
         struct Update {
             QString name;
-            Visibility visibility;
+            QString description;
 
             QVariant serialize() const {
                 return QVariantMap({
                     { "name", name },
-                    { "visibility", int(visibility) },
+                    { "description", description },
                 });
             }
         };
@@ -41,16 +41,12 @@ public:
     struct Response {
         struct Create {
             Id id;
-            QString name;
-            Visibility visibility;
 
             static Create deserialize(const QVariant& value) {
                 QVariantMap params = value.toMap();
 
                 Create result;
                 result.id = params["id"].toLongLong();
-                result.name = params["name"].toString();
-                result.visibility = static_cast<Visibility>(params["visibility"].toInt());
 
                 return result;
             }
@@ -58,9 +54,10 @@ public:
 
         struct Get {
             Id id;
-            Id projectId;
             QString name;
-            Visibility visibility;
+            ::Project::Target target;
+            QString description;
+            QDateTime createdTime;
             QDateTime updatedTime;
 
             static Get deserialize(const QVariant& value) {
@@ -68,9 +65,10 @@ public:
 
                 Get result;
                 result.id = params["id"].toLongLong();
-                result.projectId = params["project_id"].toLongLong();
                 result.name = params["name"].toString();
-                result.visibility = static_cast<Visibility>(params["visibility"].toInt());
+                result.target = static_cast<::Project::Target>(params["target"].toInt());
+                result.description = params["description"].toString();
+                result.createdTime = params["created_at"].toDateTime();
                 result.updatedTime = params["updated_at"].toDateTime();
 
                 return result;
@@ -78,18 +76,15 @@ public:
         };
     };
 
-    Module(Id projectId, RestApi* restApi);
+    Project(RestApi* restApi);
 
     QString name() const override;
 
-    Async::Task<Response::Create> create(std::optional<Id> moduleId = std::nullopt);
+    Async::Task<Response::Create> create(const Request::Create& params);
     Async::Task<void> update(Id id, const Request::Update& params);
     Async::Task<Response::Get> getOne(Id id);
     Async::Task<QList<Response::Get>> getAll();
     Async::Task<void> remove(Id id);
-
-private:
-    Id m_projectId;
 };
 
 }

@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "external/repository/network/RestApi.h"
+#include "external/network/RestApi.h"
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>

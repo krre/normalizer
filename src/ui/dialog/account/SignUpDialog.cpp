@@ -1,7 +1,7 @@
 #include "SignUpDialog.h"
 #include "ui/dialog/DialogMessages.h"
-#include "external/repository/network/controller/account/Account.h"
-#include "external/repository/network/RestApi.h"
+#include "external/network/controller/account/Account.h"
+#include "external/network/RestApi.h"
 #include <QtWidgets>
 
 SignUpDialog::SignUpDialog(Controller::Account* account) : m_account(account) {

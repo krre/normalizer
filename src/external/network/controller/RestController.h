@@ -1,5 +1,5 @@
 #pragma once
-#include "external/repository/network/RestApi.h"
+#include "external/network/RestApi.h"
 #include "core/async/Task.h"
 #include "core/CommonTypes.h"
 #include <QString>

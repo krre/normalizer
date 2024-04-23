@@ -1,6 +1,6 @@
 #include "ui/dialog/account/AccountDialog.h"
-#include "external/repository/network/controller/account/Account.h"
-#include "external/repository/network/RestApi.h"
+#include "external/network/controller/account/Account.h"
+#include "external/network/RestApi.h"
 #include <QTest>
 #include <QLineEdit>
 

@@ -1,5 +1,5 @@
 #include "Module.h"
-#include "external/repository/network/RestApi.h"
+#include "external/network/RestApi.h"
 
 namespace Controller {
 

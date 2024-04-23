@@ -1,6 +1,6 @@
 #include "SignInDialog.h"
-#include "external/repository/network/controller/account/Account.h"
-#include "external/repository/network/RestApi.h"
+#include "external/network/controller/account/Account.h"
+#include "external/network/RestApi.h"
 #include <QtWidgets>
 
 SingInDialog::SingInDialog(Controller::Account* account) : m_account(account) {
