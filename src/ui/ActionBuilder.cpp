@@ -3,7 +3,6 @@
 #include "core/Application.h"
 #include "widget/Menu.h"
 #include "widget/project/ProjectTable.h"
-#include "dialog/project/NewProjectDialog.h"
 #include "dialog/PreferencesDialog.h"
 #include "dialog/account/SignUpDialog.h"
 #include "dialog/account/SignInDialog.h"
@@ -21,10 +20,8 @@ ActionBuilder::ActionBuilder(const Parameters& parameters) :
     QMenuBar* menuBar = m_mainWindow->menuBar();
 
     m_projectMenu = menuBar->addMenu(tr("Project"));
-    m_projectMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &ActionBuilder::newProject);
-    m_closeAction = m_projectMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
-    m_projectMenu->addSeparator();
     m_projectsAction = m_projectMenu->addAction(tr("Projects..."), this, &ActionBuilder::openProjectsTable);
+    m_closeAction = m_projectMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, m_mainWindow, &MainWindow::closeProject);
     m_projectMenu->addSeparator();
     m_projectMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, m_mainWindow, &MainWindow::close);
 
@@ -124,9 +121,4 @@ void ActionBuilder::about() {
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
                            .arg(Application::Name, Application::Version, QT_VERSION_STR,
                             Application::BuildDate, Application::BuildTime, Application::Url, Application::CopyrightYear));
-}
-
-void ActionBuilder::newProject() {
-    NewProjectDialog newProjectDialog(m_fileSettings);
-    newProjectDialog.exec();
 }
