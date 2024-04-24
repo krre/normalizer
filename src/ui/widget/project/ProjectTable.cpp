@@ -111,12 +111,11 @@ Async::Task<void> ProjectTable::remove() {
 void ProjectTable::showContextMenu(const QPoint& pos) {
     auto index = m_tableWidget->indexAt(pos);
 
-    if (!index.isValid()) return;
-
     auto customMenu = new QMenu(m_tableWidget);
-    customMenu->addAction(tr("Open"), this, &ProjectTable::open);
-    customMenu->addAction(tr("Edit..."), this, &ProjectTable::edit);
-    customMenu->addAction(tr("Delete..."), this, &ProjectTable::remove);
+    customMenu->addAction(tr("Create..."), this, &ProjectTable::create);
+    customMenu->addAction(tr("Open"), this, &ProjectTable::open)->setEnabled(index.isValid());
+    customMenu->addAction(tr("Edit..."), this, &ProjectTable::edit)->setEnabled(index.isValid());
+    customMenu->addAction(tr("Delete..."), this, &ProjectTable::remove)->setEnabled(index.isValid());
     customMenu->exec(QCursor::pos());
 }
 
