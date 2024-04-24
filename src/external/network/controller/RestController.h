@@ -26,24 +26,24 @@ protected:
         co_return Response::deserialize(response);
     }
 
-    template <typename T>
-    Async::Task<void> update(Id id, const T& params) {
+    template <typename Request>
+    Async::Task<void> update(Id id, const Request& params) {
         co_await m_restApi->put(endpoint(id), params.serialize());
     }
 
-    template <typename T>
-    Async::Task<T> getOne(Id id) {
+    template <typename Response>
+    Async::Task<Response> getOne(Id id) {
         QVariant response = co_await m_restApi->get(endpoint(id));
-        co_return T::deserialize(response);
+        co_return Response::deserialize(response);
     }
 
-    template <typename T>
-    Async::Task<QList<T>> getAll() {
+    template <typename Response>
+    Async::Task<QList<Response>> getAll() {
         QVariant response = co_await restApi()->get(endpoint());
-        QList<T> result;
+        QList<Response> result;
 
         for (const auto& item : response.toList()) {
-            result.append(T::deserialize(item));
+            result.append(Response::deserialize(item));
         }
 
         co_return result;
