@@ -17,6 +17,8 @@ public:
     CodeEditor(Id projectId, RestApi* restApi, Settings* settings);
     ~CodeEditor();
 
+    Id projectId() const;
+
 private:
     QScopedPointer<NodeManager> m_nodeManager;
 

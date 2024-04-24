@@ -89,6 +89,8 @@ void FileSettings::setEditor(const Editor& editor) {
     QSettings settings;
     settings.beginGroup("Editor");
     settings.setValue("selected", editor.selected);
+    settings.setValue("projectId", editor.projectId);
+    settings.setValue("projectName", editor.projectName);
     settings.endGroup();
 }
 
@@ -98,6 +100,8 @@ Settings::Editor FileSettings::editor() const {
 
     Editor result;
     result.selected = settings.value("selected").toInt();
+    result.projectId = settings.value("projectId").toInt();
+    result.projectName = settings.value("projectName").toString();
 
     settings.endGroup();
 

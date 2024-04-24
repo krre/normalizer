@@ -43,3 +43,7 @@ CodeEditor::~CodeEditor() {
 
     m_settings->setEditor(editor);
 }
+
+Id CodeEditor::projectId() const {
+    return m_nodeManager->projectId();
+}

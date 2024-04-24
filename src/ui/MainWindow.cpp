@@ -38,12 +38,14 @@ void MainWindow::openProject(Id id, const QString& name) {
     setToRootWidget(m_codeEditor.data());
     m_actionBuilder->updateFileActions(true);
     setWindowTitle(name + " - " + Application::Name);
+    m_projectName = name;
 }
 
 void MainWindow::closeProject() {
     m_codeEditor.reset();
     m_actionBuilder->updateFileActions(false);
     setWindowTitle(Application::Name);
+    m_projectName.clear();
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {
@@ -71,6 +73,12 @@ void MainWindow::readSettings() {
     }
 
     restoreState(m_fileSettings->mainWindow().state);
+
+    Settings::Editor editor = m_fileSettings->editor();
+
+    if (editor.projectId) {
+        openProject(editor.projectId, editor.projectName);
+    }
 }
 
 void MainWindow::writeSettings() {
@@ -79,4 +87,9 @@ void MainWindow::writeSettings() {
     mainWindow.state = saveState();
 
     m_fileSettings->setMainWindow(mainWindow);
+
+    Settings::Editor editor = m_fileSettings->editor();
+    editor.projectId = m_codeEditor.isNull() ? 0 : m_codeEditor->projectId();
+    editor.projectName = m_projectName;
+    m_fileSettings->setEditor(editor);
 }

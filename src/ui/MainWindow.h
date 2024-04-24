@@ -28,6 +28,7 @@ private:
     void writeSettings();
 
     QWidget* m_rootWidget = nullptr;
+    QString m_projectName;
 
     QScopedPointer<HttpRestApi> m_httpRestApi;
     QScopedPointer<FileSettings> m_fileSettings;

@@ -14,6 +14,10 @@ NodeModel* NodeManager::model() const {
     return m_model.data();
 }
 
+Id NodeManager::projectId() const {
+    return m_projectId;
+}
+
 Async::Task<void> NodeManager::getModules() {
     Controller::Module module(m_projectId, m_restApi);
     auto response = co_await module.getAll();

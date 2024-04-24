@@ -24,6 +24,8 @@ public:
 
     struct Editor {
         int selected;
+        int projectId;
+        QString projectName;
     };
 
     virtual void setMainWindow(const MainWindow& mainWindow) = 0;
