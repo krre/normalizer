@@ -56,7 +56,7 @@ add_custom_target(custom
 
 set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 
-target_link_libraries(common PRIVATE
+target_link_libraries(common PUBLIC
     Qt6::Widgets
     Qt6::Network
     Qt6::Sql
