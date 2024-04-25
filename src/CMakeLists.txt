@@ -1,15 +1,3 @@
-find_package(Qt6 REQUIRED COMPONENTS
-    Widgets
-    Network
-    Sql
-    3DCore
-    3DRender
-    3DInput
-    3DLogic
-    3DExtras
-    3DAnimation
-)
-
 configure_file(config.h.in config.h @ONLY)
 
 add_library(common STATIC

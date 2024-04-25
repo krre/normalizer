@@ -5,7 +5,18 @@ project(normalizer VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Network)
+find_package(Qt6 REQUIRED COMPONENTS
+    Widgets
+    Network
+    Sql
+    3DCore
+    3DRender
+    3DInput
+    3DLogic
+    3DExtras
+    3DAnimation
+)
+
 qt_standard_project_setup()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
