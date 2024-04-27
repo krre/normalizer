@@ -4,13 +4,31 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 ApplicationWindow {
+    id: root
     width: 1200
     height: 800
     visible: true
     title: app.name
 
     Component.onCompleted: {
-        x = (Screen.desktopAvailableWidth - width) /2
-        y = (Screen.desktopAvailableHeight - height) /2
+        root.visibility = windowSettings.visibility
+
+        // Settings not exists - first start
+        if (!(windowSettings.value("width") || windowSettings.value("height"))) {
+            x = (Screen.desktopAvailableWidth - width) / 2
+            y = (Screen.desktopAvailableHeight - height) / 2
+        }
+    }
+
+    onClosing: windowSettings.visibility = root.visibility
+
+    Settings {
+        id: windowSettings
+        category: "Window"
+        property alias x: root.x
+        property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
+        property int visibility: Window.Windowed
     }
 }
