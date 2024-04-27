@@ -8,7 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Network
-    Sql
     3DCore
     3DRender
     3DInput
