@@ -9,8 +9,8 @@ public:
     Exception(const QString& error);
     Exception(const std::string& error);
 
-    template<typename... Args>
-    Exception(std::format_string<Args...> fmt, Args&&... args) : Exception(std::format(fmt, args...)) {}
+    // template<typename... Args>
+    // Exception(std::format_string<Args...> fmt, Args&&... args) : Exception(std::format(fmt, args...)) {}
 
     const QString& error() const;
 
