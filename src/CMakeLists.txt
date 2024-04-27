@@ -59,12 +59,6 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PUBLIC
     Qt6::Widgets
     Qt6::Network
-    Qt6::3DCore
-    Qt6::3DRender
-    Qt6::3DInput
-    Qt6::3DLogic
-    Qt6::3DExtras
-    Qt6::3DAnimation
 )
 
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
