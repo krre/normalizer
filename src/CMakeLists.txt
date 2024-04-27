@@ -59,6 +59,8 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PUBLIC
     Qt6::Widgets
     Qt6::Network
+    Qt6::Quick
+    Qt6::QuickControls2
 )
 
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

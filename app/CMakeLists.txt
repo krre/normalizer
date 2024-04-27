@@ -1,5 +1,13 @@
 add_executable(normalizer main.cpp)
 
+qt_add_qml_module(normalizer
+    URI normalizerqml
+    NO_RESOURCE_TARGET_PATH
+
+    QML_FILES
+        Main.qml
+)
+
 target_link_libraries(normalizer PRIVATE
     common
 )

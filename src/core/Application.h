@@ -1,8 +1,10 @@
 #pragma once
 #include "src/config.h"
-#include <QApplication>
+#include <QGuiApplication>
 
-class Application : public QApplication {
+class Application : public QGuiApplication {
+    Q_OBJECT
+    Q_PROPERTY(QString name READ name CONSTANT)
 public:
     static constexpr auto Organization = "Norm";
     static constexpr auto Name = "Normalizer";
@@ -16,5 +18,5 @@ public:
     bool notify(QObject* receiver, QEvent* event) override;
 
 private:
-    void showErrorMessage(const QString& message) const;
+    QString name() const { return Name; }
 };
