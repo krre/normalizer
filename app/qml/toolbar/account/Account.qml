@@ -27,6 +27,11 @@ Popup {
                 SignInDialog {}
             }
 
+            Component {
+                id: signUpDialogComp
+                SignUpDialog {}
+            }
+
             Button {
                 text: qsTr("Sign In")
                 onClicked: {
@@ -37,6 +42,10 @@ Popup {
 
             Button {
                 text: qsTr("Sign Up")
+                onClicked: {
+                    signUpDialogComp.createObject(appRoot).open()
+                    root.close()
+                }
             }
         }
     }
