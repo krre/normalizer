@@ -11,6 +11,6 @@ Menu {
 
     Action {
         text: qsTr("About %1").arg(app.name)
-        onTriggered: aboutDialogComp.createObject(root)
+        onTriggered: aboutDialogComp.createObject(appRoot)
     }
 }

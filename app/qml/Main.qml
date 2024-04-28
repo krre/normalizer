@@ -4,14 +4,14 @@ import QtQuick.Controls
 import "toolbar"
 
 ApplicationWindow {
-    id: root
+    id: appRoot
     width: 1200
     height: 800
     visible: true
     title: app.name
 
     Component.onCompleted: {
-        root.visibility = windowSettings.visibility
+        appRoot.visibility = windowSettings.visibility
 
         // Settings not exists - first start
         if (!(windowSettings.value("width") || windowSettings.value("height"))) {
@@ -20,17 +20,17 @@ ApplicationWindow {
         }
     }
 
-    onClosing: windowSettings.visibility = root.visibility
+    onClosing: windowSettings.visibility = appRoot.visibility
 
     header: AppToolBar {}
 
     Settings {
         id: windowSettings
         category: "Window"
-        property alias x: root.x
-        property alias y: root.y
-        property alias width: root.width
-        property alias height: root.height
+        property alias x: appRoot.x
+        property alias y: appRoot.y
+        property alias width: appRoot.width
+        property alias height: appRoot.height
         property int visibility: Window.Windowed
     }
 }
