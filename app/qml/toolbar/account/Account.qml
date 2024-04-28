@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Popup {
+    id: root
     x: appRoot.width - content.width - 40
     y: toolBar.height
     background: Rectangle {
@@ -21,8 +22,17 @@ Popup {
         }
 
         RowLayout {
+            Component {
+                id: signInDialogComp
+                SignInDialog {}
+            }
+
             Button {
                 text: qsTr("Sign In")
+                onClicked: {
+                    signInDialogComp.createObject(appRoot).open()
+                    root.close()
+                }
             }
 
             Button {
