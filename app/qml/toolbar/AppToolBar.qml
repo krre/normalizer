@@ -12,13 +12,11 @@ ToolBar {
         }
 
         ToolButton {
-            action: Action {
-                text: qsTr("Menu")
-                onTriggered: optionsMenu.open()
-            }
+            text: qsTr("Menu")
+            onClicked: appMenu.open()
 
             AppMenu {
-                id: optionsMenu
+                id: appMenu
                 x: parent.width - width
             }
         }
