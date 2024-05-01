@@ -4,13 +4,10 @@ import QtQuick.Layouts
 
 Popup {
     id: root
-    x: appRoot.width - content.width - 40
-    y: toolBar.height
+    property alias content: content
     background: Rectangle {
         border.color: "gray"
     }
-
-    onVisibleChanged: if (!visible) destroy()
 
     ColumnLayout {
         id: content

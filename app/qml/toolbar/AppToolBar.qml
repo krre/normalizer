@@ -7,6 +7,12 @@ import "account"
 ToolBar {
     id: toolBar
 
+    AccountPopup {
+        id: accountPopup
+        x: appRoot.width - content.width - 20
+        y: toolBar.height
+    }
+
     RowLayout {
         anchors.fill: parent
 
@@ -16,12 +22,7 @@ ToolBar {
 
         ToolButton {
             text: qsTr("Account")
-            onClicked: accountComp.createObject(appRoot).open()
-
-            Component {
-                id: accountComp
-                AccountPopup {}
-            }
+            onClicked: accountPopup.open()
         }
 
         ToolButton {
