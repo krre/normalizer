@@ -6,6 +6,7 @@ Dialog {
     title: qsTr("Sign Up")
     anchors.centerIn: parent
     standardButtons: Dialog.Ok | Dialog.Cancel
+    modal: true
     closePolicy: Popup.CloseOnEscape
 
     Component.onDestruction: if (!visible) destroy()
