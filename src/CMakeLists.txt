@@ -46,6 +46,9 @@ add_library(common STATIC
     ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp
     ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     program/Project.h program/Project.cpp
+    qml/Account.h qml/Account.cpp
+    qml/QmlController.h qml/QmlController.cpp
+    qml/QmlTypes.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
