@@ -9,7 +9,7 @@ qt_add_qml_module(normalizer
         qml/toolbar/AppToolBar.qml
         qml/toolbar/menu/AboutDialog.qml
         qml/toolbar/menu/AppMenu.qml
-        qml/toolbar/account/Account.qml
+        qml/toolbar/account/AccountPopup.qml
         qml/toolbar/account/SignInDialog.qml
         qml/toolbar/account/SignUpDialog.qml
 )

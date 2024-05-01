@@ -20,7 +20,7 @@ ToolBar {
 
             Component {
                 id: accountComp
-                Account {}
+                AccountPopup {}
             }
         }
 
