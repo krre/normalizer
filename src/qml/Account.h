@@ -13,6 +13,8 @@ public:
     Account();
     ~Account();
 
+    Q_INVOKABLE void create(const QString& login, const QString& email, const QString& fullName, const QString& password);
+
 private:
     QScopedPointer<Controller::Account> m_account;
 };

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Normalizer
 
 Dialog {
     title: qsTr("Sign Up")
@@ -10,6 +11,14 @@ Dialog {
     closePolicy: Popup.CloseOnEscape
 
     Component.onDestruction: if (!visible) destroy()
+
+    onAccepted: {
+        account.create(login.text, email.text, fullName.text, password.text)
+    }
+
+    Account {
+        id: account
+    }
 
     ColumnLayout {
         anchors.fill: parent
