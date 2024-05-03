@@ -13,7 +13,7 @@ Async::Task<Project::Response::Create> Project::create(const Request::Create& pa
     co_return co_await RestController::create<Request::Create, Response::Create>(params);
 }
 
-Async::Task<void>Project::update(Id id, const Request::Update& params) {
+Async::Task<void> Project::update(Id id, const Request::Update& params) {
     co_await RestController::update(id, params);
 }
 
@@ -21,11 +21,11 @@ Async::Task<Project::Response::Get> Project::getOne(Id id) {
     co_return co_await RestController::getOne<Response::Get>(id);
 }
 
-Async::Task<QList<Project::Response::Get>>Project::getAll() {
+Async::Task<QList<Project::Response::Get>> Project::getAll() {
     co_return co_await RestController::getAll<Response::Get>();
 }
 
-Async::Task<void>Project::remove(Id id) {
+Async::Task<void> Project::remove(Id id) {
     co_await RestController::remove(id);
 }
 
