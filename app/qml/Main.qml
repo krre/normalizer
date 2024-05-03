@@ -24,6 +24,11 @@ ApplicationWindow {
 
     header: AppToolBar {}
 
+    Shortcut {
+        sequence: "Ctrl+Q"
+        onActivated: Qt.quit()
+    }
+
     Settings {
         id: windowSettings
         category: "Window"
