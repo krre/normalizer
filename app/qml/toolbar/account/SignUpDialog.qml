@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+ import QtQuick.Dialogs
 import Normalizer
 
 Dialog {
@@ -18,6 +19,18 @@ Dialog {
 
     Account {
         id: account
+        onErrorOccured: (status, message) => errorDialog.show(message)
+    }
+
+    MessageDialog {
+        id: errorDialog
+        buttons: MessageDialog.Ok
+        parentWindow: appRoot
+
+        function show(message) {
+            text = message
+            open()
+        }
     }
 
     ColumnLayout {
