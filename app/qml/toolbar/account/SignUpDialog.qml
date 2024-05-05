@@ -11,7 +11,7 @@ Dialog {
     modal: true
     closePolicy: Popup.CloseOnEscape
 
-    Component.onDestruction: if (!visible) destroy()
+    onVisibleChanged: if (!visible) destroy()
 
     onAccepted: {
         account.create(login.text, email.text, fullName.text, password.text)

@@ -10,7 +10,7 @@ Dialog {
     modal: true
     closePolicy: Popup.CloseOnEscape
 
-    Component.onDestruction: if (!visible) destroy()
+    onVisibleChanged: if (!visible) destroy()
 
     Account {
         id: account
