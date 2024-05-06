@@ -7,8 +7,14 @@ import "account"
 ToolBar {
     id: toolBar
 
+    UserPopup {
+        id: userPopup
+        x: appRoot.width - content.width - 20
+        y: toolBar.height
+    }
+
     GuestPopup {
-        id: accountPopup
+        id: guestPopup
         x: appRoot.width - content.width - 20
         y: toolBar.height
     }
@@ -22,7 +28,7 @@ ToolBar {
 
         ToolButton {
             text: qsTr("Account")
-            onClicked: accountPopup.open()
+            onClicked: appRoot.settings.account.token ? userPopup.open() : guestPopup.open()
         }
 
         ToolButton {

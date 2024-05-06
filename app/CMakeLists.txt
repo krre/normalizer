@@ -11,6 +11,7 @@ qt_add_qml_module(normalizer
         qml/toolbar/menu/AboutDialog.qml
         qml/toolbar/menu/AppMenu.qml
         qml/toolbar/account/GuestPopup.qml
+        qml/toolbar/account/UserPopup.qml
         qml/toolbar/account/SignInDialog.qml
         qml/toolbar/account/SignUpDialog.qml
         qml/dialog/ErrorDialog.qml
