@@ -2,11 +2,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Normalizer
+import "../../dialog"
 
 Dialog {
+    id: root
     title: qsTr("Sign In")
     anchors.centerIn: parent
-    standardButtons: Dialog.Ok | Dialog.Cancel
     modal: true
     closePolicy: Popup.CloseOnEscape
 
@@ -14,6 +15,17 @@ Dialog {
 
     Account {
         id: account
+
+        onLogined: (token) => {
+            print(token)
+            root.accept()
+        }
+
+        onErrorOccured: (status, message) => errorDialog.show(message)
+    }
+
+    ErrorDialog {
+        id: errorDialog
     }
 
     ColumnLayout {
@@ -30,6 +42,12 @@ Dialog {
             id: password
             Layout.fillWidth: true
             placeholderText: qsTr("Password")
+        }
+
+        DialogButtonBox {
+            standardButtons: Dialog.Ok | Dialog.Cancel
+            onAccepted: account.login(email.text, password.text)
+            onRejected: root.reject()
         }
     }
 }
