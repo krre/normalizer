@@ -7,15 +7,10 @@ import Normalizer
 Dialog {
     title: qsTr("Sign Up")
     anchors.centerIn: parent
-    standardButtons: Dialog.Ok | Dialog.Cancel
     modal: true
     closePolicy: Popup.CloseOnEscape
 
     onVisibleChanged: if (!visible) destroy()
-
-    onAccepted: {
-        account.create(login.text, email.text, fullName.text, password.text)
-    }
 
     Account {
         id: account
@@ -65,6 +60,12 @@ Dialog {
             id: confirmPassword
             Layout.fillWidth: true
             placeholderText: qsTr("Confirm password")
+        }
+
+        DialogButtonBox {
+            standardButtons: Dialog.Ok | Dialog.Cancel
+            onAccepted: account.create(login.text, email.text, fullName.text, password.text)
+            onRejected: root.reject()
         }
     }
 }
