@@ -11,16 +11,18 @@ ApplicationWindow {
     title: app.name
 
     Component.onCompleted: {
-        appRoot.visibility = windowSettings.visibility
+        appRoot.visibility = settings.window.visibility
 
         // Settings not exists - first start
-        if (!(windowSettings.value("width") || windowSettings.value("height"))) {
+        if (!(settings.window.width || settings.window.height)) {
             x = (Screen.desktopAvailableWidth - width) / 2
             y = (Screen.desktopAvailableHeight - height) / 2
+        } else {
+            settings.window.getGeometry(appRoot)
         }
     }
 
-    onClosing: windowSettings.visibility = appRoot.visibility
+    onClosing: settings.window.setGeometry(appRoot)
 
     header: AppToolBar {}
 
@@ -29,13 +31,7 @@ ApplicationWindow {
         onActivated: Qt.quit()
     }
 
-    Settings {
-        id: windowSettings
-        category: "Window"
-        property alias x: appRoot.x
-        property alias y: appRoot.y
-        property alias width: appRoot.width
-        property alias height: appRoot.height
-        property int visibility: Window.Windowed
+    AppSettings {
+        id: settings
     }
 }

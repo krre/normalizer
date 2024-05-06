@@ -6,13 +6,14 @@ qt_add_qml_module(normalizer
 
     QML_FILES
         qml/Main.qml
+        qml/AppSettings.qml
         qml/toolbar/AppToolBar.qml
         qml/toolbar/menu/AboutDialog.qml
         qml/toolbar/menu/AppMenu.qml
         qml/toolbar/account/AccountPopup.qml
         qml/toolbar/account/SignInDialog.qml
         qml/toolbar/account/SignUpDialog.qml
-        QML_FILES qml/dialog/ErrorDialog.qml
+        qml/dialog/ErrorDialog.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
