@@ -4,6 +4,7 @@ import QtQuick
 Item {
     id: root
     property alias window: window
+    property alias account: account
 
     Settings {
         id: window
@@ -28,5 +29,11 @@ Item {
             appWindow.width = width
             appWindow.height = height
         }
+    }
+
+    Settings {
+        id: account
+        category: "Account"
+        property string token
     }
 }

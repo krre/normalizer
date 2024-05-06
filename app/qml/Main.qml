@@ -4,6 +4,7 @@ import QtQuick.Controls
 import "toolbar"
 
 ApplicationWindow {
+    property alias settings: settings
     id: appRoot
     width: 1200
     height: 800

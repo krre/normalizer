@@ -16,7 +16,7 @@ Dialog {
     Account {
         id: account
         onCreated: (token) => {
-            print(token)
+            appRoot.settings.account.token = token
             root.accept()
         }
 
