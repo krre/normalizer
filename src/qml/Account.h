@@ -16,6 +16,9 @@ public:
 
     Q_INVOKABLE void create(const QString& login, const QString& email, const QString& fullName, const QString& password);
 
+signals:
+    void created(const QString& token);
+
 private:
     Async::Task<void> createImpl(const QString& login, const QString& email, const QString& fullName, const QString& password);
 

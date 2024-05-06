@@ -23,7 +23,8 @@ Async::Task<void> Account::createImpl(const QString& login, const QString& email
     params.password = password;
 
     try {
-        co_await m_account->create(params);
+        Controller::Account::Response::Token response = co_await m_account->create(params);
+        emit created(response.token);
     } catch (RestException& e) {
         QString message = e.status() == RestStatus::Conflict ? tr("Account already exists") : e.message();
         emit errorOccured(e.status(), message);

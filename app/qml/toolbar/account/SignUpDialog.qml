@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Normalizer
 
 Dialog {
+    id: root
     title: qsTr("Sign Up")
     anchors.centerIn: parent
     modal: true
@@ -14,6 +15,11 @@ Dialog {
 
     Account {
         id: account
+        onCreated: (token) => {
+            print(token)
+            root.accept()
+        }
+
         onErrorOccured: (status, message) => errorDialog.show(message)
     }
 
