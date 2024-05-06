@@ -7,7 +7,7 @@ import "account"
 ToolBar {
     id: toolBar
 
-    AccountPopup {
+    GuestPopup {
         id: accountPopup
         x: appRoot.width - content.width - 20
         y: toolBar.height
