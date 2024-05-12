@@ -12,8 +12,8 @@
 #include "external/network/controller/account/Account.h"
 #include <QtWidgets>
 
-ActionBuilder::ActionBuilder(const Parameters& parameters) :
-        QObject(parameters.mainWindow),
+ActionBuilder::ActionBuilder(const Parameters& parameters)
+    : QObject(parameters.mainWindow),
         m_mainWindow(parameters.mainWindow),
         m_httpRestApi(parameters.httpNetwork),
         m_fileSettings(parameters.fileSettings) {

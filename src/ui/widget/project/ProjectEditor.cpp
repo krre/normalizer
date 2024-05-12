@@ -3,8 +3,8 @@
 #include "program/Project.h"
 #include <QtWidgets>
 
-ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent) :
-        StandardDialog(parent), m_project(project), m_state(State::Add) {
+ProjectEditor::ProjectEditor(Controller::Project* project, QWidget* parent)
+    : StandardDialog(parent), m_project(project), m_state(State::Add) {
     setWindowTitle(tr("Create Project"));
     createForm();
 }

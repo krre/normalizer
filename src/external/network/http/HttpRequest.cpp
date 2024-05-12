@@ -5,8 +5,8 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
 
-HttpRequest::HttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes) : m_networkAccessManager(networkAccessManager), m_requestAttributes(requestAttributes) {
-
+HttpRequest::HttpRequest(Async::NetworkAccessManager* networkAccessManager, HttpRequestAttributes* requestAttributes)
+    : m_networkAccessManager(networkAccessManager), m_requestAttributes(requestAttributes) {
 }
 
 Async::Task<QVariant> HttpRequest::send(const QString& endpoint) {
