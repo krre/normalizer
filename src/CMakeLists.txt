@@ -44,7 +44,6 @@ add_library(common STATIC
     ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
     ui/editor/NodeManager.h ui/editor/NodeManager.cpp
     ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp
-    ui/editor/3d/Window3D.h ui/editor/3d/Window3D.cpp
     program/Project.h program/Project.cpp
     qml/Account.h qml/Account.cpp
     qml/QmlController.h qml/QmlController.cpp
