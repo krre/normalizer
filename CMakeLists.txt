@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Network
-    Quick
-    QuickControls2
 )
 
 qt_standard_project_setup()

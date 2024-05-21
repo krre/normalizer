@@ -1,8 +1,10 @@
 #include "Application.h"
 #include "external/network/RestApi.h"
+#include <QMainWindow>
+#include <QMessageBox>
 #include <QSettings>
 
-Application::Application(int& argc, char* argv[]) : QGuiApplication(argc, argv) {
+Application::Application(int& argc, char* argv[]) : QApplication(argc, argv) {
     setOrganizationName(Organization);
     setApplicationName(Name);
 
@@ -13,12 +15,23 @@ Application::Application(int& argc, char* argv[]) : QGuiApplication(argc, argv) 
 
 bool Application::notify(QObject* receiver, QEvent* event) {
     try {
-        return QGuiApplication::notify(receiver, event);
+        return QApplication::notify(receiver, event);
     } catch (RestException& e) {
-        qCritical().noquote() << e.message();
+        showErrorMessage(e.message());
     } catch (const std::exception& e) {
-        qCritical().noquote() << e.what();
+        showErrorMessage(e.what());
     }
 
     return false;
+}
+
+void Application::showErrorMessage(const QString& message) const {
+    for (QWidget* widget : QApplication::topLevelWidgets()) {
+        if (dynamic_cast<QMainWindow*>(widget)) {
+            QMessageBox::critical(widget, Name, message);
+            return;
+        }
+    }
+
+    qCritical().noquote() << "Exception:" << message;
 }

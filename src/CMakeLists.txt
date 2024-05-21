@@ -22,9 +22,6 @@ add_library(common STATIC
     external/settings/FileSettings.h external/settings/FileSettings.cpp
     external/settings/Settings.h
     program/Project.h program/Project.cpp
-    qml/Account.h qml/Account.cpp
-    qml/QmlController.h qml/QmlController.cpp
-    qml/QmlTypes.h
     ui/ActionBuilder.h ui/ActionBuilder.cpp
     ui/MainWindow.h ui/MainWindow.cpp
     ui/dialog/DialogMessages.h
@@ -61,8 +58,6 @@ set_target_properties(common PROPERTIES OUTPUT_NAME normalizer)
 target_link_libraries(common PUBLIC
     Qt6::Widgets
     Qt6::Network
-    Qt6::Quick
-    Qt6::QuickControls2
 )
 
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

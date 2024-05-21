@@ -39,6 +39,8 @@ private slots:
     void setToken(const QString& token);
     void signOut();
 
+    void about();
+
 private:
     MainWindow* m_mainWindow = nullptr;
     HttpRestApi* m_httpRestApi = nullptr;

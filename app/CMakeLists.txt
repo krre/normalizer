@@ -1,22 +1,5 @@
 qt_add_executable(normalizer main.cpp)
 
-qt_add_qml_module(normalizer
-    URI normalizerqml
-    NO_RESOURCE_TARGET_PATH
-
-    QML_FILES
-        qml/Main.qml
-        qml/AppSettings.qml
-        qml/toolbar/AppToolBar.qml
-        qml/toolbar/menu/AboutDialog.qml
-        qml/toolbar/menu/AppMenu.qml
-        qml/toolbar/account/GuestPopup.qml
-        qml/toolbar/account/UserPopup.qml
-        qml/toolbar/account/SignInDialog.qml
-        qml/toolbar/account/SignUpDialog.qml
-        qml/dialog/ErrorDialog.qml
-)
-
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
