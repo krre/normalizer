@@ -38,7 +38,7 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
 }
 
 CodeEditor::~CodeEditor() {
-    Settings::Editor editor = m_settings->editor();
+    auto editor = m_settings->editor();
     editor.selected = pageComboBox->currentIndex();
 
     m_settings->setEditor(editor);
