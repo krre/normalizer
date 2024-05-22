@@ -4,6 +4,8 @@
 #include "core/Application.h"
 #include <QtWidgets>
 
+constexpr auto dateFormat = "yyyy.MM.dd hh:mm";
+
 ProjectTable::ProjectTable(RestApi* restApi, Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("Projects"));
 
@@ -159,10 +161,10 @@ void ProjectTable::addRow(const Controller::Project::Response::Get& project) {
     QTableWidgetItem* descriptionItem = new QTableWidgetItem(project.description);
     m_tableWidget->setItem(row, int(Column::Description), descriptionItem);
 
-    QTableWidgetItem* createdItem = new QTableWidgetItem(project.createdTime.toString("yyyy.MM.dd hh:mm"));
+    QTableWidgetItem* createdItem = new QTableWidgetItem(project.createdTime.toString(dateFormat));
     m_tableWidget->setItem(row, int(Column::CreatedTime), createdItem);
 
-    QTableWidgetItem* updatedItem = new QTableWidgetItem(project.updatedTime.toString("yyyy.MM.dd hh:mm"));
+    QTableWidgetItem* updatedItem = new QTableWidgetItem(project.updatedTime.toString(dateFormat));
     m_tableWidget->setItem(row, int(Column::UpdatedTime), updatedItem);
 }
 
@@ -171,7 +173,7 @@ void ProjectTable::updateRow(const Controller::Project::Response::Get& project) 
         if (m_tableWidget->item(i, int(Column::Id))->text().toInt() == project.id) {
             m_tableWidget->item(i, int(Column::Name))->setText(project.name);
             m_tableWidget->item(i, int(Column::Description))->setText(project.description);
-            m_tableWidget->item(i, int(Column::UpdatedTime))->setText(project.updatedTime.toString("yyyy.MM.dd hh:mm"));
+            m_tableWidget->item(i, int(Column::UpdatedTime))->setText(project.updatedTime.toString(dateFormat));
             break;
         }
     }
