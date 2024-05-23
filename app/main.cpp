@@ -1,5 +1,6 @@
 #include "ui/MainWindow.h"
 #include "core/Application.h"
+#include <QVulkanInstance>
 
 int main(int argc, char* argv[]) {
     // Hack to fix styling with Qt 6.5 on GTK3
@@ -7,6 +8,12 @@ int main(int argc, char* argv[]) {
     qunsetenv("XDG_CURRENT_DESKTOP");
 
     Application app(argc, argv);
+
+    QVulkanInstance instance;
+
+    if (!instance.create()) {
+        qFatal("Failed to create Vulkan instance: %d", instance.errorCode());
+    }
 
     MainWindow mainWindow;
     mainWindow.show();
