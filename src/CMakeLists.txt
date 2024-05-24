@@ -46,6 +46,7 @@ add_library(common STATIC
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
     ui/editor/3d/VulkanWindow.h ui/editor/3d/VulkanWindow.cpp
+    ui/editor/3d/VulkanRenderer.h ui/editor/3d/VulkanRenderer.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
