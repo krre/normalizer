@@ -5,7 +5,7 @@
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
-CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_settings(settings) {
+CodeEditor::CodeEditor(Id projectId, VulkanWindow* vulkanWindow, RestApi* restApi, Settings* settings) : m_settings(settings) {
     m_nodeManager.reset(new NodeManager(projectId, restApi));
 
     pageComboBox = new QComboBox;
@@ -13,7 +13,7 @@ CodeEditor::CodeEditor(Id projectId, RestApi* restApi, Settings* settings) : m_s
     pageComboBox->addItem(tr("Node Tree"));
     pageComboBox->setCurrentIndex(settings->editor().selected);
 
-    m_view3d = new View3D(m_nodeManager.data());
+    m_view3d = new View3D(vulkanWindow, m_nodeManager.data());
     m_nodeTree = new NodeTree(m_nodeManager.data());
 
     auto stackedLayout = new QStackedLayout;

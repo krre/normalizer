@@ -2,6 +2,7 @@
 #include "core/CommonTypes.h"
 #include <QWidget>
 
+class VulkanWindow;
 class RestApi;
 class Settings;
 class View3D;
@@ -14,7 +15,7 @@ class QComboBox;
 class CodeEditor : public QWidget {
     Q_OBJECT
 public:
-    CodeEditor(Id projectId, RestApi* restApi, Settings* settings);
+    CodeEditor(Id projectId, VulkanWindow* vulkanWindow, RestApi* restApi, Settings* settings);
     ~CodeEditor();
 
     Id projectId() const;

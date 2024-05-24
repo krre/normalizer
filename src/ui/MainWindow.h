@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QPropertyNotifier>
 
+class VulkanWindow;
 class HttpRestApi;
 class FileSettings;
 class CodeEditor;
@@ -11,7 +12,7 @@ class ActionBuilder;
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-    MainWindow(QWidget* parent = nullptr);
+    MainWindow(VulkanWindow* vulkanWindow);
     ~MainWindow();
 
 public slots:
@@ -27,6 +28,7 @@ private:
     void readSettings();
     void writeSettings();
 
+    VulkanWindow* m_vulkanWindow = nullptr;
     QWidget* m_rootWidget = nullptr;
     QString m_projectName;
 
