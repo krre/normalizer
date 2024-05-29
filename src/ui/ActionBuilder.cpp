@@ -120,5 +120,5 @@ void ActionBuilder::about() {
           "Build on %4 %5<br><br>"
           "<a href=%6>%6</a><br><br>Copyright © %7, Vladimir Zarypov")
                            .arg(Application::Name, Application::Version, QT_VERSION_STR,
-                            Application::BuildDate, Application::BuildTime, Application::Url, Application::CopyrightYears));
+                            Application::BuildDate, Application::BuildTime, Application::Url, Application::Years));
 }

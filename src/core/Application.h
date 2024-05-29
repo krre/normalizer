@@ -8,7 +8,7 @@ public:
     static constexpr auto Name = "Normalizer";
     static constexpr auto Version = PROJECT_VERSION;
     static constexpr auto Url = "https://github.com/krre/normalizer";
-    static constexpr auto CopyrightYears = "2022-2024";
+    static constexpr auto Years = "2022-2024";
     static constexpr auto BuildDate = __DATE__;
     static constexpr auto BuildTime = __TIME__;
 
