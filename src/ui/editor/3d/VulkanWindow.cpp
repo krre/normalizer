@@ -6,5 +6,5 @@ VulkanWindow::VulkanWindow() {
 }
 
 QVulkanWindowRenderer* VulkanWindow::createRenderer() {
-    return new VulkanRenderer;
+    return new VulkanRenderer(this);
 }

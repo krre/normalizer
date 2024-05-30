@@ -3,6 +3,13 @@
 
 class VulkanRenderer : public QVulkanWindowRenderer {
 public:
-    VulkanRenderer();
+    VulkanRenderer(QVulkanWindow* window);
+
+    void initResources() override;
+    void releaseResources() override;
     void startNextFrame() override;
+
+private:
+    QVulkanWindow* m_window = nullptr;
+    QVulkanDeviceFunctions* m_devFuncs;
 };
