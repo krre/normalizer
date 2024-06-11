@@ -35,3 +35,11 @@ void TestSettings::setEditor(const Editor& editor) {
 Settings::Editor TestSettings::editor() const {
     return m_editor;
 }
+
+void TestSettings::setGraphics(const Graphics& graphics) {
+    m_graphics = graphics;
+}
+
+Settings::Graphics TestSettings::graphics() const {
+    return m_graphics;
+}

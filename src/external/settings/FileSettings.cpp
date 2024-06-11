@@ -107,3 +107,22 @@ Settings::Editor FileSettings::editor() const {
 
     return result;
 }
+
+void FileSettings::setGraphics(const Graphics& graphics) {
+    QSettings settings;
+    settings.beginGroup("Graphics");
+    settings.setValue("adapter", graphics.adapter);
+    settings.endGroup();
+}
+
+Settings::Graphics FileSettings::graphics() const {
+    QSettings settings;
+    settings.beginGroup("Graphics");
+
+    Graphics result;
+    result.adapter = settings.value("adapter").toInt();
+
+    settings.endGroup();
+
+    return result;
+}

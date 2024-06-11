@@ -28,6 +28,10 @@ public:
         QString projectName;
     };
 
+    struct Graphics {
+        int adapter;
+    };
+
     virtual void setMainWindow(const MainWindow& mainWindow) = 0;
     virtual MainWindow mainWindow() const = 0;
 
@@ -42,4 +46,7 @@ public:
 
     virtual void setEditor(const Editor& editor) = 0;
     virtual Editor editor() const = 0;
+
+    virtual void setGraphics(const Graphics& graphics) = 0;
+    virtual Graphics graphics() const = 0;
 };

@@ -17,9 +17,13 @@ public:
     void setEditor(const Editor& editor) override;
     Editor editor() const override;
 
+    void setGraphics(const Graphics& graphics) override;
+    Graphics graphics() const override;
+
 private:
     Account m_account;
     DevelopmentServer m_developmentServer;
     ProjectTable m_projectTable;
     Editor m_editor;
+    Graphics m_graphics;
 };

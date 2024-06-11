@@ -19,4 +19,7 @@ public:
 
     void setEditor(const Editor& editor) override;
     Editor editor() const override;
+
+    void setGraphics(const Graphics& graphics) override;
+    Graphics graphics() const override;
 };
