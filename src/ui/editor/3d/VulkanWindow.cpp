@@ -1,8 +1,9 @@
 #include "VulkanWindow.h"
 #include "VulkanRenderer.h"
 
-VulkanWindow::VulkanWindow() {
-
+VulkanWindow::VulkanWindow(QVulkanInstance* instance) {
+    setVulkanInstance(instance);
+    setPhysicalDeviceIndex(1);
 }
 
 QVulkanWindowRenderer* VulkanWindow::createRenderer() {

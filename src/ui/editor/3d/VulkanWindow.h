@@ -3,6 +3,6 @@
 
 class VulkanWindow : public QVulkanWindow {
 public:
-    VulkanWindow();
+    VulkanWindow(QVulkanInstance* instance);
     QVulkanWindowRenderer* createRenderer() override;
 };

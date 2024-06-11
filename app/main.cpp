@@ -16,11 +16,7 @@ int main(int argc, char* argv[]) {
         qFatal("Failed to create Vulkan instance: %d", instance.errorCode());
     }
 
-    auto vulkanWindow = new VulkanWindow;
-    vulkanWindow->setVulkanInstance(&instance);
-    vulkanWindow->setPhysicalDeviceIndex(1);
-
-    MainWindow mainWindow(vulkanWindow);
+    MainWindow mainWindow(new VulkanWindow(&instance));
     mainWindow.show();
 
     return app.exec();
