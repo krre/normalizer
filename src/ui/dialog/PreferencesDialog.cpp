@@ -7,6 +7,7 @@ PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : Stan
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->addWidget(createDevelopmentServerGroupBox());
+    verticalLayout->addWidget(createGraphicsGroupBox());
 
     setContentLayout(verticalLayout);
     resizeToWidth(600);
@@ -18,6 +19,10 @@ void PreferencesDialog::accept() {
     server.url = m_urlLineEdit->text();
     m_settings->setDevelopmentServer(server);
 
+    Settings::Graphics graphics;
+    graphics.adapter = m_adapterComboBox->currentIndex();
+    m_settings->setGraphics(graphics);
+
     StandardDialog::accept();
 }
 
@@ -28,6 +33,20 @@ QGroupBox* PreferencesDialog::createDevelopmentServerGroupBox() {
     layout->addRow("URL:", m_urlLineEdit);
 
     auto groupBox = new QGroupBox(tr("Development Server"));
+    groupBox->setLayout(layout);
+    return groupBox;
+}
+
+QGroupBox* PreferencesDialog::createGraphicsGroupBox() {
+    m_adapterComboBox = new QComboBox;
+    m_adapterComboBox->addItems({ "Adapter 1", "Adapter2" });
+    m_adapterComboBox->setCurrentIndex(m_settings->graphics().adapter);
+
+    auto layout = new QFormLayout;
+    layout->addRow(tr("Adapter:"), m_adapterComboBox);
+    layout->itemAt(layout->indexOf(m_adapterComboBox))->setAlignment(Qt::AlignLeft);
+
+    auto groupBox = new QGroupBox(tr("Graphics"));
     groupBox->setLayout(layout);
     return groupBox;
 }
