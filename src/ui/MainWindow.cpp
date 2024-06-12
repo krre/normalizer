@@ -6,7 +6,7 @@
 #include "external/settings/FileSettings.h"
 #include <QtWidgets>
 
-MainWindow::MainWindow(VulkanWindow* vulkanWindow) : m_vulkanWindow(vulkanWindow) {
+MainWindow::MainWindow(QVulkanInstance* instance) : m_vulkanInstance(instance) {
     setWindowTitle(Application::Name);
 
     m_fileSettings.reset(new FileSettings);
@@ -34,7 +34,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::openProject(Id id, const QString& name) {
-    m_codeEditor.reset(new CodeEditor(id, m_vulkanWindow, m_httpRestApi.data(), m_fileSettings.data()));
+    m_codeEditor.reset(new CodeEditor(id, m_vulkanInstance, m_httpRestApi.data(), m_fileSettings.data()));
     setToRootWidget(m_codeEditor.data());
     m_actionBuilder->updateFileActions(true);
     setWindowTitle(name + " - " + Application::Name);

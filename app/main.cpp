@@ -1,5 +1,4 @@
 #include "ui/MainWindow.h"
-#include "gfx/VulkanWindow.h"
 #include "core/Application.h"
 #include <QVulkanInstance>
 
@@ -16,7 +15,7 @@ int main(int argc, char* argv[]) {
         qFatal("Failed to create Vulkan instance: %d", instance.errorCode());
     }
 
-    MainWindow mainWindow(new VulkanWindow(&instance));
+    MainWindow mainWindow(&instance);
     mainWindow.show();
 
     return app.exec();

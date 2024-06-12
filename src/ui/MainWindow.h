@@ -9,10 +9,12 @@ class FileSettings;
 class CodeEditor;
 class ActionBuilder;
 
+class QVulkanInstance;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-    MainWindow(VulkanWindow* vulkanWindow);
+    MainWindow(QVulkanInstance* instance);
     ~MainWindow();
 
 public slots:
@@ -28,7 +30,7 @@ private:
     void readSettings();
     void writeSettings();
 
-    VulkanWindow* m_vulkanWindow = nullptr;
+    QVulkanInstance* m_vulkanInstance = nullptr;
     QWidget* m_rootWidget = nullptr;
     QString m_projectName;
 

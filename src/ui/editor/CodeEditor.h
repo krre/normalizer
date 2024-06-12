@@ -11,11 +11,12 @@ class NodeModel;
 class NodeManager;
 
 class QComboBox;
+class QVulkanInstance;
 
 class CodeEditor : public QWidget {
     Q_OBJECT
 public:
-    CodeEditor(Id projectId, VulkanWindow* vulkanWindow, RestApi* restApi, Settings* settings);
+    CodeEditor(Id projectId, QVulkanInstance* vulkanInstance, RestApi* restApi, Settings* settings);
     ~CodeEditor();
 
     Id projectId() const;
