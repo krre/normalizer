@@ -49,6 +49,7 @@ add_library(common STATIC
     ui/editor/3d/VulkanRenderer.h ui/editor/3d/VulkanRenderer.cpp
     gfx/vulkan/device/PhysicalDevice.h gfx/vulkan/device/PhysicalDevice.cpp
     gfx/vulkan/Handle.h
+    gfx/vulkan/Instance.h gfx/vulkan/Instance.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
