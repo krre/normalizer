@@ -1,5 +1,5 @@
 #include "ui/MainWindow.h"
-#include "ui/editor/3d/VulkanWindow.h"
+#include "gfx/VulkanWindow.h"
 #include "core/Application.h"
 #include <QVulkanInstance>
 

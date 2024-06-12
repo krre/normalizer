@@ -45,11 +45,11 @@ add_library(common STATIC
     ui/widget/TableWidget.h ui/widget/TableWidget.cpp
     ui/widget/project/ProjectEditor.h ui/widget/project/ProjectEditor.cpp
     ui/widget/project/ProjectTable.h ui/widget/project/ProjectTable.cpp
-    ui/editor/3d/VulkanWindow.h ui/editor/3d/VulkanWindow.cpp
-    ui/editor/3d/VulkanRenderer.h ui/editor/3d/VulkanRenderer.cpp
     gfx/vulkan/device/PhysicalDevice.h gfx/vulkan/device/PhysicalDevice.cpp
     gfx/vulkan/Handle.h
     gfx/vulkan/Instance.h gfx/vulkan/Instance.cpp
+    gfx/VulkanRenderer.cpp gfx/VulkanRenderer.h
+    gfx/VulkanWindow.cpp gfx/VulkanWindow.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
