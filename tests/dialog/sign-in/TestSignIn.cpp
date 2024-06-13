@@ -29,7 +29,7 @@ private slots:
 void TestSignIn::validData() {
     TestRestApi restApi;
     Controller::Account account(&restApi);
-    SingInDialog signInDialog(&account);
+    SignInDialog signInDialog(&account);
 
     static_cast<QLineEdit*>(signInDialog.focusWidget())->setText(Email);
 

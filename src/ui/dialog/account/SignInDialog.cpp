@@ -3,15 +3,15 @@
 #include "external/network/RestApi.h"
 #include <QtWidgets>
 
-SingInDialog::SingInDialog(Controller::Account* account) : m_account(account) {
+SignInDialog::SignInDialog(Controller::Account* account) : m_account(account) {
     setWindowTitle(tr("Sign In"));
 
     m_emailLineEdit = new QLineEdit;
-    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &SingInDialog::enableOkButton);
+    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &SignInDialog::enableOkButton);
 
     m_passwordLineEdit = new QLineEdit;
     m_passwordLineEdit->setEchoMode(QLineEdit::Password);
-    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &SingInDialog::enableOkButton);
+    connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &SignInDialog::enableOkButton);
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Email:"), m_emailLineEdit);
@@ -23,20 +23,20 @@ SingInDialog::SingInDialog(Controller::Account* account) : m_account(account) {
     enableOkButton();
 }
 
-QString SingInDialog::token() const {
+QString SignInDialog::token() const {
     return m_token;
 }
 
-void SingInDialog::accept() {
+void SignInDialog::accept() {
     getToken();
 }
 
-void SingInDialog::enableOkButton() {
+void SignInDialog::enableOkButton() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_emailLineEdit->text().isEmpty() &&
                                                           !m_passwordLineEdit->text().isEmpty());
 }
 
-Async::Task<void> SingInDialog::getToken() {
+Async::Task<void> SignInDialog::getToken() {
     Controller::Account::Request::Login account;
     account.email = m_emailLineEdit->text();
     account.password = m_passwordLineEdit->text();

@@ -79,7 +79,7 @@ void ActionBuilder::openPreferencesDialog() {
 
 void ActionBuilder::openSignInDialog() {
     Controller::Account account(m_httpRestApi);
-    SingInDialog signInDialog(&account);
+    SignInDialog signInDialog(&account);
 
     if (signInDialog.exec() == QDialog::Accepted) {
         setToken(signInDialog.token());
