@@ -2,12 +2,12 @@
 #include "external/settings/Settings.h"
 #include <QtWidgets>
 
-PreferencesDialog::PreferencesDialog(Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
+PreferencesDialog::PreferencesDialog(const QStringList& adapters, Settings* settings, QWidget* parent) : StandardDialog(parent), m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
     auto verticalLayout = new QVBoxLayout;
     verticalLayout->addWidget(createDevelopmentServerGroupBox());
-    verticalLayout->addWidget(createGraphicsGroupBox());
+    verticalLayout->addWidget(createGraphicsGroupBox(adapters));
 
     setContentLayout(verticalLayout);
     resizeToWidth(600);
@@ -37,9 +37,9 @@ QGroupBox* PreferencesDialog::createDevelopmentServerGroupBox() {
     return groupBox;
 }
 
-QGroupBox* PreferencesDialog::createGraphicsGroupBox() {
+QGroupBox* PreferencesDialog::createGraphicsGroupBox(const QStringList& adapters) {
     m_adapterComboBox = new QComboBox;
-    m_adapterComboBox->addItems({ "Adapter 1", "Adapter2" });
+    m_adapterComboBox->addItems(adapters);
     m_adapterComboBox->setCurrentIndex(m_settings->graphics().adapter);
 
     auto layout = new QFormLayout;

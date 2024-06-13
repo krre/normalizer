@@ -28,6 +28,10 @@ MainWindow::~MainWindow() {
 
 }
 
+QVulkanInstance* MainWindow::vulkanInstance() const {
+    return m_vulkanInstance;
+}
+
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();

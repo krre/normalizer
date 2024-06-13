@@ -10,14 +10,14 @@ class QComboBox;
 
 class PreferencesDialog : public StandardDialog {
 public:
-    PreferencesDialog(Settings* settings, QWidget* parent = nullptr);
+    PreferencesDialog(const QStringList& adapters, Settings* settings, QWidget* parent = nullptr);
 
 public slots:
     void accept() override;
 
 private:
     QGroupBox* createDevelopmentServerGroupBox();
-    QGroupBox* createGraphicsGroupBox();
+    QGroupBox* createGraphicsGroupBox(const QStringList& adapters);
 
     Settings* m_settings = nullptr;
     QLineEdit* m_urlLineEdit = nullptr;

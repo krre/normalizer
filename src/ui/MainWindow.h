@@ -17,6 +17,8 @@ public:
     MainWindow(QVulkanInstance* instance);
     ~MainWindow();
 
+    QVulkanInstance* vulkanInstance() const;
+
 public slots:
     void openProject(Id id, const QString& name);
     void closeProject();

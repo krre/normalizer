@@ -1,6 +1,8 @@
 #include "ActionBuilder.h"
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "gfx/vulkan/Instance.h"
+#include "gfx/vulkan/device/PhysicalDevice.h"
 #include "widget/Menu.h"
 #include "widget/project/ProjectTable.h"
 #include "dialog/PreferencesDialog.h"
@@ -61,7 +63,14 @@ void ActionBuilder::updateAccountActions() {
 }
 
 void ActionBuilder::openPreferencesDialog() {
-    PreferencesDialog preferencesDialog(m_fileSettings);
+    Vulkan::Instance instance(m_mainWindow->vulkanInstance());
+    QStringList adapters;
+
+    for (const auto& pd : instance.createPhysicalDevices()) {
+        adapters.append(pd->properties().deviceName);
+    }
+
+    PreferencesDialog preferencesDialog(adapters, m_fileSettings);
 
     if (preferencesDialog.exec() == QDialog::Accepted) {
         m_httpRestApi->setUrl(m_fileSettings->developmentServer().url);

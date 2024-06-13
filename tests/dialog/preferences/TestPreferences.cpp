@@ -6,6 +6,7 @@
 
 static constexpr auto DevelopmentServerUrl = "url";
 static constexpr int GraphicsAdapter = 1;
+const QStringList Adapters = { "adapter1", "adapter2" };
 
 class TestPreferences : public QObject {
     Q_OBJECT
@@ -25,7 +26,7 @@ void TestPreferences::readSettings() {
     settings.setDevelopmentServer(developmentServer);
     settings.setGraphics(graphics);
 
-    PreferencesDialog preferencesDialog(&settings);
+    PreferencesDialog preferencesDialog(Adapters, &settings);
 
     auto urlLineEdit = static_cast<QLineEdit*>(preferencesDialog.focusWidget());
 
@@ -39,7 +40,7 @@ void TestPreferences::readSettings() {
 void TestPreferences::setSettings() {
     TestSettings settings;
 
-    PreferencesDialog preferencesDialog(&settings);
+    PreferencesDialog preferencesDialog(Adapters, &settings);
 
     static_cast<QLineEdit*>(preferencesDialog.focusWidget())->setText(DevelopmentServerUrl);
 
