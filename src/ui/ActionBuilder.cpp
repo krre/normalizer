@@ -19,7 +19,7 @@ ActionBuilder::ActionBuilder(const Parameters& parameters)
         m_mainWindow(parameters.mainWindow),
         m_httpRestApi(parameters.httpNetwork),
         m_fileSettings(parameters.fileSettings) {
-    QMenuBar* menuBar = m_mainWindow->menuBar();
+    auto menuBar = m_mainWindow->menuBar();
 
     m_projectMenu = menuBar->addMenu(tr("Project"));
     m_projectsAction = m_projectMenu->addAction(tr("Projects..."), this, &ActionBuilder::openProjectsTable);
