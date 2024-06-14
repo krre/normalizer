@@ -2,7 +2,6 @@
 #include "StandardDialog.h"
 
 class Settings;
-class BrowseLayout;
 
 class QGroupBox;
 class QLineEdit;
