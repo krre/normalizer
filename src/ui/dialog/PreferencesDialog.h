@@ -9,6 +9,7 @@ class QLineEdit;
 class QComboBox;
 
 class PreferencesDialog : public StandardDialog {
+    Q_OBJECT
 public:
     PreferencesDialog(const QStringList& adapters, Settings* settings, QWidget* parent = nullptr);
 
