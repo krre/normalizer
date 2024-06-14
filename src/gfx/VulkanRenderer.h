@@ -7,6 +7,7 @@ public:
 
     void initResources() override;
     void releaseResources() override;
+
     void startNextFrame() override;
 
 private:
