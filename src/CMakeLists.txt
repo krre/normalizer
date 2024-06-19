@@ -33,12 +33,7 @@ add_library(common STATIC
     ui/dialog/account/SignUpDialog.h ui/dialog/account/SignUpDialog.cpp
     ui/editor/3d/View3D.h ui/editor/3d/View3D.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-    ui/editor/NodeContextMenu.h ui/editor/NodeContextMenu.cpp
     ui/editor/NodeManager.h ui/editor/NodeManager.cpp
-    ui/editor/model/NodeModel.cpp ui/editor/model/NodeModel.h
-    ui/editor/tree/NodeProperties.h ui/editor/tree/NodeProperties.cpp
-    ui/editor/tree/NodeTree.h ui/editor/tree/NodeTree.cpp
-    ui/editor/tree/NodeTreeView.h ui/editor/tree/NodeTreeView.cpp
     ui/widget/Action.h
     ui/widget/BrowseLayout.h ui/widget/BrowseLayout.cpp
     ui/widget/Menu.h

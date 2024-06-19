@@ -23,7 +23,6 @@ public:
     };
 
     struct Editor {
-        int selected;
         int projectId;
         QString projectName;
     };

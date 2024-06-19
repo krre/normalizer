@@ -4,14 +4,12 @@
 #include <QScopedPointer>
 
 class RestApi;
-class NodeModel;
 
 class NodeManager {
 public:
     NodeManager(Id projectId, RestApi* restApi);
     ~NodeManager();
 
-    NodeModel* model() const;
     Id projectId() const;
 
     Async::Task<void> getModules();
@@ -20,5 +18,4 @@ public:
 private:
     Id m_projectId = 0;
     RestApi* m_restApi = nullptr;
-    QScopedPointer<NodeModel> m_model;
 };

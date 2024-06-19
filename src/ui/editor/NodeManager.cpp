@@ -1,5 +1,4 @@
 #include "NodeManager.h"
-#include "model/NodeModel.h"
 #include "external/network/RestApi.h"
 #include "external/network/controller/module/Module.h"
 
@@ -8,10 +7,6 @@ NodeManager::NodeManager(Id projectId, RestApi* restApi) : m_projectId(projectId
 
 NodeManager::~NodeManager() {
 
-}
-
-NodeModel* NodeManager::model() const {
-    return m_model.data();
 }
 
 Id NodeManager::projectId() const {
