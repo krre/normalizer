@@ -8,7 +8,7 @@ Module::Module(Id projectId, RestApi* restApi) : RestController(restApi), m_proj
 }
 
 QString Module::name() const {
-    return QString("project/%1/module").arg(m_projectId);
+    return QString("projects/%1/modules").arg(m_projectId);
 }
 
 Async::Task<Module::Response::Create> Module::create(std::optional<Id> moduleId) {
