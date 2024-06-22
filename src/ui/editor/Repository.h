@@ -5,10 +5,10 @@
 
 class RestApi;
 
-class NodeManager {
+class Repository {
 public:
-    NodeManager(Id projectId, RestApi* restApi);
-    ~NodeManager();
+    Repository(Id projectId, RestApi* restApi);
+    ~Repository();
 
     Id projectId() const;
 

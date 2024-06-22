@@ -8,7 +8,7 @@ class Settings;
 class View3D;
 class NodeTree;
 class NodeModel;
-class NodeManager;
+class Repository;
 
 class QComboBox;
 class QVulkanInstance;
@@ -22,7 +22,7 @@ public:
     Id projectId() const;
 
 private:
-    QScopedPointer<NodeManager> m_nodeManager;
+    QScopedPointer<Repository> m_nodeManager;
 
     View3D* m_view3d = nullptr;
     Settings* m_settings = nullptr;

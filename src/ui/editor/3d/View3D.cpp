@@ -2,7 +2,7 @@
 #include "gfx/VulkanWindow.h"
 #include <QtWidgets>
 
-View3D::View3D(VulkanWindow* vulkanWindow, NodeManager* nodeManager) : m_nodeManager(nodeManager) {
+View3D::View3D(VulkanWindow* vulkanWindow, Repository* nodeManager) : m_nodeManager(nodeManager) {
     auto wrapper = QWidget::createWindowContainer(vulkanWindow);
 
     auto verticalLayout = new QVBoxLayout;
