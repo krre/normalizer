@@ -10,6 +10,8 @@ namespace Controller {
 
 class Account : public RestController {
 public:
+    static constexpr auto Name = "account";
+
     struct Request {
         struct Create {
             QString login;

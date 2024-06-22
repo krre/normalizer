@@ -1,5 +1,6 @@
 #include "Module.h"
 #include "external/network/RestApi.h"
+#include "external/network/controller/project/Project.h"
 
 namespace Controller {
 
@@ -8,7 +9,7 @@ Module::Module(Id projectId, RestApi* restApi) : RestController(restApi), m_proj
 }
 
 QString Module::name() const {
-    return QString("projects/%1/modules").arg(m_projectId);
+    return QString("%1/%2/%3").arg(Project::Name).arg(m_projectId).arg(Name);
 }
 
 Async::Task<Module::Response::Create> Module::create(std::optional<Id> moduleId) {

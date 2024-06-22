@@ -6,7 +6,7 @@ namespace Controller {
 Account::Account(RestApi* restApi) : RestController(restApi) {}
 
 QString Account::name() const {
-    return "account";
+    return Name;
 }
 
 Async::Task<Account::Response::Token> Account::create(const Request::Create& params) {

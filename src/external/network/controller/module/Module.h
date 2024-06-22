@@ -9,6 +9,8 @@ namespace Controller {
 
 class Module : public RestController {
 public:
+    static constexpr auto Name = "modules";
+
     enum class Visibility {
         Public,
         Private

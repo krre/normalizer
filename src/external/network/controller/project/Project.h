@@ -10,6 +10,8 @@ namespace Controller {
 
 class Project : public RestController {
 public:
+    static constexpr auto Name = "projects";
+
     struct Request {
         struct Create {
             QString name;

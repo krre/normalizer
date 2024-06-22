@@ -6,7 +6,7 @@ namespace Controller {
 Project::Project(RestApi* restApi) : RestController(restApi) {}
 
 QString Project::name() const {
-    return "projects";
+    return Name;
 }
 
 Async::Task<Project::Response::Create> Project::create(const Request::Create& params) {
