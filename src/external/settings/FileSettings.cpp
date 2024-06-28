@@ -98,6 +98,7 @@ Settings::Editor FileSettings::editor() const {
     settings.beginGroup("Editor");
 
     Editor result;
+    result.projectId = settings.value("projectId").toInt();
     result.projectName = settings.value("projectName").toString();
 
     settings.endGroup();

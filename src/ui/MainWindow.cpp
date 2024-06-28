@@ -50,6 +50,7 @@ void MainWindow::closeProject() {
     m_actionBuilder->updateFileActions(false);
     setWindowTitle(Application::Name);
     m_projectName.clear();
+    m_fileSettings->setEditor({});
 }
 
 void MainWindow::setToRootWidget(QWidget* widget) {
