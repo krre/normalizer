@@ -80,7 +80,7 @@ void MainWindow::readSettings() {
 
     Settings::Editor editor = m_fileSettings->editor();
 
-    if (editor.projectId) {
+    if (editor.projectId && !m_fileSettings->account().token.isEmpty()) {
         openProject(editor.projectId, editor.projectName);
     }
 }
