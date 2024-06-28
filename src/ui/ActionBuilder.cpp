@@ -118,6 +118,7 @@ void ActionBuilder::setToken(const QString& token) {
 }
 
 void ActionBuilder::signOut() {
+    m_mainWindow->closeProject();
     setToken(QString());
 }
 
