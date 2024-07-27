@@ -122,7 +122,7 @@ void ActionBuilder::signOut() {
     setToken(QString());
 }
 
-void ActionBuilder::about() {
+void ActionBuilder::about() const {
     QMessageBox::about(m_mainWindow, Application::Name,
         tr("<h3>%1 %2</h3>"
           "IDE for the Norm visual programming language<br><br>"

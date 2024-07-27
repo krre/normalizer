@@ -39,7 +39,7 @@ private slots:
     void setToken(const QString& token);
     void signOut();
 
-    void about();
+    void about() const;
 
 private:
     MainWindow* m_mainWindow = nullptr;
