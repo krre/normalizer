@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>js/utils.js</file>
-        <file>js/dialog.js</file>
-        <file>qml/main/WorkArea.qml</file>
-    </qresource>
-</RCC>
