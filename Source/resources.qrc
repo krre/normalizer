@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Graphics/Shaders/OnTopMaterial.frag</file>
+        <file>Graphics/Shaders/OnTopMaterial.vert</file>
+    </qresource>
+</RCC>
