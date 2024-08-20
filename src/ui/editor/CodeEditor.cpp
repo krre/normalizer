@@ -18,8 +18,7 @@ CodeEditor::CodeEditor(Id projectId, QVulkanInstance* vulkanInstance, RestApi* r
     m_nodeManager->getModules();
 }
 
-CodeEditor::~CodeEditor() {
-}
+CodeEditor::~CodeEditor() = default;
 
 Id CodeEditor::projectId() const {
     return m_nodeManager->projectId();

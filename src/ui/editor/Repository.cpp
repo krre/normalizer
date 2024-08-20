@@ -5,10 +5,6 @@
 Repository::Repository(Id projectId, RestApi* restApi) : m_projectId(projectId), m_restApi(restApi) {
 }
 
-Repository::~Repository() {
-
-}
-
 Id Repository::projectId() const {
     return m_projectId;
 }

@@ -8,7 +8,6 @@ class RestApi;
 class Repository {
 public:
     Repository(Id projectId, RestApi* restApi);
-    ~Repository();
 
     Id projectId() const;
 

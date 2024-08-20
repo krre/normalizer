@@ -24,9 +24,7 @@ MainWindow::MainWindow(QVulkanInstance* instance) : m_vulkanInstance(instance) {
     readSettings();
 }
 
-MainWindow::~MainWindow() {
-
-}
+MainWindow::~MainWindow() = default;
 
 QVulkanInstance* MainWindow::vulkanInstance() const {
     return m_vulkanInstance;
