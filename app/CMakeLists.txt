@@ -17,8 +17,6 @@ target_link_libraries(normalizer PRIVATE
     common
 )
 
-include(GNUInstallDirs)
-
 install(TARGETS normalizer
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
