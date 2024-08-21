@@ -9,3 +9,4 @@ name = "normalizer"
 path = "src/normalizer/lib.rs"
 
 [dependencies]
+winit = "0.30.5"

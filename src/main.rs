@@ -1,6 +1,6 @@
 use normalizer::core::Application;
 
 fn main() {
-    let app = Application::new();
+    let mut app = Application::new();
     app.run();
 }
