@@ -1,3 +1,6 @@
+use normalizer::core::Application;
+
 fn main() {
-    println!("Normalizer");
+    let app = Application::new();
+    app.run();
 }
