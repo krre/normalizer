@@ -9,4 +9,6 @@ name = "normalizer"
 path = "src/normalizer/lib.rs"
 
 [dependencies]
+serde = { version = "1.0.208", features = ["derive"] }
+serde_json = "1.0.125"
 winit = "0.30.5"
