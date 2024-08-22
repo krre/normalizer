@@ -54,7 +54,7 @@ impl ApplicationHandler for Application {
         self.window = Some(event_loop.create_window(attrs).unwrap());
     }
 
-    fn window_event(&mut self, event_loop: &ActiveEventLoop, id: WindowId, event: WindowEvent) {
+    fn window_event(&mut self, event_loop: &ActiveEventLoop, _id: WindowId, event: WindowEvent) {
         match event {
             WindowEvent::CloseRequested => {
                 event_loop.exit();
