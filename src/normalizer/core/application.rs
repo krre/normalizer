@@ -5,6 +5,8 @@ use winit::event::WindowEvent;
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
 use winit::window::{Window, WindowId};
 
+use crate::renderer::Renderer;
+
 use super::Preferences;
 
 pub const NAME: &str = "Normalizer";
@@ -14,6 +16,7 @@ pub const ORGANIZATION: &str = "Norm";
 pub struct Application {
     window: Option<Window>,
     preferences: Preferences,
+    renderer: Renderer,
 }
 
 impl Application {
@@ -64,6 +67,7 @@ impl ApplicationHandler for Application {
             }
             WindowEvent::RedrawRequested => {
                 self.window.as_ref().unwrap().request_redraw();
+                self.renderer.render();
             }
             WindowEvent::Moved(pos) => {
                 self.preferences.window.x = pos.x;
