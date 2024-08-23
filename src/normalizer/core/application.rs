@@ -1,3 +1,5 @@
+use std::error::Error;
+
 use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
@@ -19,10 +21,11 @@ impl Application {
         Self::default()
     }
 
-    pub fn run(&mut self) {
-        let event_loop = EventLoop::new().unwrap();
+    pub fn run(&mut self) -> Result<(), Box<dyn Error>> {
+        let event_loop = EventLoop::new()?;
         event_loop.set_control_flow(ControlFlow::Wait);
-        event_loop.run_app(self).unwrap();
+        event_loop.run_app(self)?;
+        Ok(())
     }
 }
 
