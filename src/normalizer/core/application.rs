@@ -12,7 +12,6 @@ use super::Preferences;
 pub const NAME: &str = "Normalizer";
 pub const ORGANIZATION: &str = "Norm";
 
-#[derive(Default)]
 pub struct Application {
     window: Option<Window>,
     preferences: Preferences,
@@ -21,7 +20,11 @@ pub struct Application {
 
 impl Application {
     pub fn new() -> Self {
-        Self::default()
+        Self {
+            window: None,
+            preferences: Preferences::default(),
+            renderer: Renderer::new(),
+        }
     }
 
     pub fn run(&mut self) -> Result<(), Box<dyn Error>> {
