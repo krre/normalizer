@@ -16,8 +16,8 @@ impl Renderer {
         println!("Graphics adapter: {}", adapter.get_info().name);
 
         let device_descriptor = wgpu::DeviceDescriptor::default();
-        let device_future = adapter.request_device(&device_descriptor, None);
-        let (device, queue) = pollster::block_on(device_future).unwrap();
+        let (device, queue) =
+            pollster::block_on(adapter.request_device(&device_descriptor, None)).unwrap();
 
         Self {
             instance,
