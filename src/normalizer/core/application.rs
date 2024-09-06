@@ -1,4 +1,5 @@
 use std::error::Error;
+use std::sync::Arc;
 
 use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
@@ -13,9 +14,9 @@ pub const NAME: &str = "Normalizer";
 pub const ORGANIZATION: &str = "Norm";
 
 pub struct Application {
-    window: Option<Window>,
+    window: Option<Arc<Window>>,
     preferences: Preferences,
-    renderer: Renderer,
+    renderer: Option<Renderer>,
 }
 
 impl Application {
@@ -23,7 +24,7 @@ impl Application {
         Self {
             window: None,
             preferences: Preferences::default(),
-            renderer: Renderer::new(),
+            renderer: None,
         }
     }
 
@@ -63,7 +64,9 @@ impl ApplicationHandler for Application {
 
         attrs = attrs.with_title(NAME.to_string());
 
-        self.window = Some(event_loop.create_window(attrs).unwrap());
+        let window = Arc::new(event_loop.create_window(attrs).unwrap());
+        self.renderer = Some(Renderer::new(window.clone()));
+        self.window = Some(window);
     }
 
     fn window_event(&mut self, event_loop: &ActiveEventLoop, _id: WindowId, event: WindowEvent) {
@@ -86,7 +89,7 @@ impl ApplicationHandler for Application {
             }
             WindowEvent::RedrawRequested => {
                 window.request_redraw();
-                self.renderer.render();
+                self.renderer.as_mut().unwrap().render();
             }
             _ => (),
         }

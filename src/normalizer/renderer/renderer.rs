@@ -1,14 +1,17 @@
-use wgpu::{Adapter, Device, Instance, Queue};
+use std::sync::Arc;
+
+use wgpu::{Adapter, Device, Instance, Queue, Surface};
 
 pub struct Renderer {
     instance: Instance,
     adapter: Adapter,
     device: Device,
     queue: Queue,
+    surface: Surface<'static>,
 }
 
 impl Renderer {
-    pub fn new() -> Self {
+    pub fn new(window: Arc<winit::window::Window>) -> Self {
         let instance = wgpu::Instance::default();
         // FIXME: Founded adapter may not match the window surface. Better use instance.request_adapter() with appropriate surface.
         let adapter = Self::find_adapter(&instance);
@@ -19,11 +22,14 @@ impl Renderer {
         let (device, queue) =
             pollster::block_on(adapter.request_device(&device_descriptor, None)).unwrap();
 
+        let surface = instance.create_surface(window).unwrap();
+
         Self {
             instance,
             adapter,
             device,
             queue,
+            surface,
         }
     }
 
