@@ -1,6 +1,7 @@
 use std::sync::Arc;
 
 use wgpu::{Adapter, Device, Instance, Queue, Surface};
+use winit::dpi::PhysicalSize;
 
 pub struct Renderer {
     instance: Instance,
@@ -8,6 +9,7 @@ pub struct Renderer {
     device: Device,
     queue: Queue,
     surface: Surface<'static>,
+    surface_config: wgpu::SurfaceConfiguration,
 }
 
 impl Renderer {
@@ -22,7 +24,14 @@ impl Renderer {
         let (device, queue) =
             pollster::block_on(adapter.request_device(&device_descriptor, None)).unwrap();
 
+        let size = window.clone().inner_size();
         let surface = instance.create_surface(window).unwrap();
+
+        let surface_config = surface
+            .get_default_config(&adapter, size.width, size.height)
+            .expect("Surface isn't supported by the adapter.");
+
+        surface.configure(&device, &surface_config);
 
         Self {
             instance,
@@ -30,6 +39,7 @@ impl Renderer {
             device,
             queue,
             surface,
+            surface_config,
         }
     }
 
@@ -45,6 +55,12 @@ impl Renderer {
         };
 
         return pollster::block_on(instance.request_adapter(&adapter_options)).unwrap();
+    }
+
+    pub fn resize_surface(&mut self, size: PhysicalSize<u32>) {
+        self.surface_config.width = size.width.max(1);
+        self.surface_config.height = size.height.max(1);
+        self.surface.configure(&self.device, &self.surface_config);
     }
 
     pub fn render(&self) {}
