@@ -63,5 +63,44 @@ impl Renderer {
         self.surface.configure(&self.device, &self.surface_config);
     }
 
-    pub fn render(&self) {}
+    pub fn render(&self) {
+        let surface_texture = self.surface.get_current_texture().unwrap();
+        let texture_view = surface_texture
+            .texture
+            .create_view(&wgpu::TextureViewDescriptor::default());
+        self.clear_view(
+            &texture_view,
+            &wgpu::Color {
+                r: 1.0,
+                g: 0.0,
+                b: 0.0,
+                a: 1.0,
+            },
+        );
+        surface_texture.present();
+    }
+
+    fn clear_view(&self, view: &wgpu::TextureView, color: &wgpu::Color) {
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor { label: None });
+        {
+            let _rpass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                label: None,
+                color_attachments: &[Some(wgpu::RenderPassColorAttachment {
+                    view: &view,
+                    resolve_target: None,
+                    ops: wgpu::Operations {
+                        load: wgpu::LoadOp::Clear(*color),
+                        store: wgpu::StoreOp::Store,
+                    },
+                })],
+                depth_stencil_attachment: None,
+                timestamp_writes: None,
+                occlusion_query_set: None,
+            });
+        }
+
+        self.queue.submit(Some(encoder.finish()));
+    }
 }
