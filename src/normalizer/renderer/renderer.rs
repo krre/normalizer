@@ -4,7 +4,9 @@ use wgpu::{Adapter, Device, Instance, Queue, Surface};
 use winit::dpi::PhysicalSize;
 
 pub struct Renderer {
+    #[allow(dead_code)]
     instance: Instance,
+    #[allow(dead_code)]
     adapter: Adapter,
     device: Device,
     queue: Queue,
