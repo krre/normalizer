@@ -62,10 +62,12 @@ impl ApplicationHandler for Application {
             }
         }
 
-        attrs = attrs.with_title(NAME.to_string());
+        attrs = attrs.with_title(NAME.to_string()).with_visible(false);
 
         let window = Arc::new(event_loop.create_window(attrs).unwrap());
         self.renderer = Some(Renderer::new(window.clone()));
+        self.renderer.as_mut().unwrap().render();
+        window.set_visible(true);
         self.window = Some(window);
     }
 
