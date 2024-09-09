@@ -3,6 +3,8 @@ use std::sync::Arc;
 use wgpu::{Adapter, Device, Instance, Queue, Surface};
 use winit::dpi::PhysicalSize;
 
+use crate::style::BACKGROUND_COLOR;
+
 pub struct Renderer {
     #[allow(dead_code)]
     instance: Instance,
@@ -70,15 +72,7 @@ impl Renderer {
         let texture_view = surface_texture
             .texture
             .create_view(&wgpu::TextureViewDescriptor::default());
-        self.clear_view(
-            &texture_view,
-            &wgpu::Color {
-                r: 1.0,
-                g: 0.0,
-                b: 0.0,
-                a: 1.0,
-            },
-        );
+        self.clear_view(&texture_view, &BACKGROUND_COLOR);
         surface_texture.present();
     }
 
