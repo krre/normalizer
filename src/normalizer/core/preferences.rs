@@ -52,16 +52,15 @@ impl Preferences {
         file.write_all(value.as_bytes()).unwrap();
     }
 
-    pub fn dir() -> String {
-        let mut result = dirs::config_dir().unwrap();
-        result.push(ORGANIZATION);
-        result.to_str().unwrap().to_string()
+    pub fn dir() -> PathBuf {
+        [dirs::config_dir().unwrap(), ORGANIZATION.into()]
+            .iter()
+            .collect()
     }
 
-    pub fn path() -> String {
-        let mut result = PathBuf::new();
-        result.push(Self::dir());
-        result.push(NAME.to_owned() + ".prefs");
-        result.to_str().unwrap().to_string()
+    pub fn path() -> PathBuf {
+        let mut result: PathBuf = [Self::dir(), NAME.into()].iter().collect();
+        result.set_extension("prefs");
+        result
     }
 }
