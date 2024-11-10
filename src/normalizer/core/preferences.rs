@@ -30,9 +30,9 @@ impl Preferences {
     }
 
     pub fn load(&mut self) -> bool {
-        if let Ok(mut f) = File::open(Self::path()) {
+        if let Ok(mut file) = File::open(Self::path()) {
             let mut contents = String::new();
-            f.read_to_string(&mut contents).unwrap();
+            file.read_to_string(&mut contents).unwrap();
             *self = serde_json::from_slice::<Preferences>(contents.as_bytes()).unwrap();
             return true;
         }
