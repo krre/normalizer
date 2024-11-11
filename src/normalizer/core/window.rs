@@ -1,13 +1,17 @@
 use std::sync::Arc;
 
+use winit::keyboard::ModifiersState;
+
 pub struct Window {
     winit_window: Arc<winit::window::Window>,
+    modifiers: ModifiersState,
 }
 
 impl Window {
     pub fn new(winit_window: winit::window::Window) -> Self {
         Self {
             winit_window: Arc::new(winit_window),
+            modifiers: Default::default(),
         }
     }
 
@@ -33,6 +37,10 @@ impl Window {
 
     pub fn set_visible(&self, visible: bool) {
         self.winit_window.set_visible(visible);
+    }
+
+    pub fn set_modifiers(&mut self, modifiers: ModifiersState) {
+        self.modifiers = modifiers;
     }
 
     pub fn redraw(&self) {
