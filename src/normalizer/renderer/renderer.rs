@@ -3,7 +3,7 @@ use std::sync::Arc;
 use wgpu::{Adapter, Device, Instance, Queue, Surface};
 use winit::dpi::PhysicalSize;
 
-use crate::style::BACKGROUND_COLOR;
+use crate::{core::Window, style::BACKGROUND_COLOR};
 
 pub struct Renderer {
     #[allow(dead_code)]
@@ -17,7 +17,7 @@ pub struct Renderer {
 }
 
 impl Renderer {
-    pub fn new(window: Arc<winit::window::Window>) -> Self {
+    pub fn new(window: Arc<Window>) -> Self {
         let instance = wgpu::Instance::default();
         // FIXME: Founded adapter may not match the window surface. Better use instance.request_adapter() with appropriate surface.
         let adapter = Self::find_adapter(&instance);
@@ -28,11 +28,10 @@ impl Renderer {
         let (device, queue) =
             pollster::block_on(adapter.request_device(&device_descriptor, None)).unwrap();
 
-        let size = window.clone().inner_size();
-        let surface = instance.create_surface(window).unwrap();
+        let surface = instance.create_surface(window.inner()).unwrap();
 
         let surface_config = surface
-            .get_default_config(&adapter, size.width, size.height)
+            .get_default_config(&adapter, window.width(), window.height())
             .expect("Surface isn't supported by the adapter.");
 
         surface.configure(&device, &surface_config);
