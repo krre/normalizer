@@ -35,6 +35,20 @@ impl Application {
         event_loop.run_app(self)?;
         Ok(())
     }
+
+    pub(crate) fn update_preferences(&mut self) {
+        let window = self.window.as_mut().unwrap().borrow();
+        let pref_window = &mut self.preferences.window;
+        pref_window.is_maximized = window.is_maximized();
+
+        if !window.is_maximized() {
+            pref_window.width = window.width();
+            pref_window.height = window.height();
+
+            pref_window.x = window.x();
+            pref_window.y = window.y();
+        }
+    }
 }
 
 impl Drop for Application {
@@ -97,6 +111,7 @@ impl ApplicationHandler for Application {
                         if ch.to_uppercase() == "Q"
                             && window.borrow().modifiers() == &ModifiersState::CONTROL
                         {
+                            self.update_preferences();
                             event_loop.exit();
                         }
                     }
@@ -104,17 +119,7 @@ impl ApplicationHandler for Application {
             }
 
             WindowEvent::CloseRequested => {
-                let pref_window = &mut self.preferences.window;
-                pref_window.is_maximized = window.borrow().is_maximized();
-
-                if !window.borrow().is_maximized() {
-                    pref_window.width = window.borrow().width();
-                    pref_window.height = window.borrow().height();
-
-                    pref_window.x = window.borrow().x();
-                    pref_window.y = window.borrow().y();
-                }
-
+                self.update_preferences();
                 event_loop.exit();
             }
 
