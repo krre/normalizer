@@ -43,6 +43,10 @@ impl Window {
         self.modifiers = modifiers;
     }
 
+    pub fn modifiers(&self) -> &ModifiersState {
+        &self.modifiers
+    }
+
     pub fn redraw(&self) {
         self.winit_window.request_redraw();
     }

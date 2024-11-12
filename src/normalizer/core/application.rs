@@ -5,6 +5,7 @@ use std::rc::Rc;
 use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
+use winit::keyboard::{Key, ModifiersState};
 
 use crate::renderer::Renderer;
 
@@ -84,6 +85,22 @@ impl ApplicationHandler for Application {
         match event {
             WindowEvent::ModifiersChanged(modifiers) => {
                 window.borrow_mut().set_modifiers(modifiers.state());
+            }
+
+            WindowEvent::KeyboardInput {
+                event,
+                is_synthetic: false,
+                ..
+            } => {
+                if event.state.is_pressed() {
+                    if let Key::Character(ch) = event.logical_key.as_ref() {
+                        if ch.to_uppercase() == "Q"
+                            && window.borrow().modifiers() == &ModifiersState::CONTROL
+                        {
+                            event_loop.exit();
+                        }
+                    }
+                }
             }
 
             WindowEvent::CloseRequested => {
