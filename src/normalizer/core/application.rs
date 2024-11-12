@@ -49,6 +49,11 @@ impl Application {
             pref_window.y = window.y();
         }
     }
+
+    pub(crate) fn quit(&mut self, event_loop: &ActiveEventLoop) {
+        self.update_preferences();
+        event_loop.exit();
+    }
 }
 
 impl Drop for Application {
@@ -111,16 +116,14 @@ impl ApplicationHandler for Application {
                         if ch.to_uppercase() == "Q"
                             && window.borrow().modifiers() == &ModifiersState::CONTROL
                         {
-                            self.update_preferences();
-                            event_loop.exit();
+                            self.quit(event_loop);
                         }
                     }
                 }
             }
 
             WindowEvent::CloseRequested => {
-                self.update_preferences();
-                event_loop.exit();
+                self.quit(event_loop);
             }
 
             WindowEvent::Resized(size) => {
