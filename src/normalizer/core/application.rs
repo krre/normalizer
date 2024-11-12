@@ -1,5 +1,6 @@
+use std::cell::RefCell;
 use std::error::Error;
-use std::sync::Arc;
+use std::rc::Rc;
 
 use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
@@ -13,7 +14,7 @@ pub const NAME: &str = "Normalizer";
 pub const ORGANIZATION: &str = "Norm";
 
 pub struct Application {
-    window: Option<Arc<Window>>,
+    window: Option<Rc<RefCell<Window>>>,
     preferences: Preferences,
     renderer: Option<Renderer>,
 }
@@ -64,10 +65,10 @@ impl ApplicationHandler for Application {
         attrs = attrs.with_title(NAME.to_string()).with_visible(false);
 
         let winit_window = event_loop.create_window(attrs).unwrap();
-        let window = Arc::new(Window::new(winit_window));
+        let window = Rc::new(RefCell::new(Window::new(winit_window)));
         self.renderer = Some(Renderer::new(window.clone()));
         self.renderer.as_mut().unwrap().render();
-        window.set_visible(true);
+        window.borrow().set_visible(true);
 
         self.window = Some(window);
     }
@@ -78,19 +79,23 @@ impl ApplicationHandler for Application {
         _id: winit::window::WindowId,
         event: WindowEvent,
     ) {
-        let window = self.window.as_ref().unwrap();
+        let window = self.window.as_mut().unwrap();
 
         match event {
+            WindowEvent::ModifiersChanged(modifiers) => {
+                window.borrow_mut().set_modifiers(modifiers.state());
+            }
+
             WindowEvent::CloseRequested => {
                 let pref_window = &mut self.preferences.window;
-                pref_window.is_maximized = window.is_maximized();
+                pref_window.is_maximized = window.borrow().is_maximized();
 
-                if !window.is_maximized() {
-                    pref_window.width = window.width();
-                    pref_window.height = window.height();
+                if !window.borrow().is_maximized() {
+                    pref_window.width = window.borrow().width();
+                    pref_window.height = window.borrow().height();
 
-                    pref_window.x = window.x();
-                    pref_window.y = window.y();
+                    pref_window.x = window.borrow().x();
+                    pref_window.y = window.borrow().y();
                 }
 
                 event_loop.exit();
@@ -99,7 +104,7 @@ impl ApplicationHandler for Application {
                 self.renderer.as_mut().unwrap().resize_surface(size);
             }
             WindowEvent::RedrawRequested => {
-                window.redraw();
+                window.borrow().redraw();
                 self.renderer.as_mut().unwrap().render();
             }
             _ => (),

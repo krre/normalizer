@@ -1,4 +1,4 @@
-use std::sync::Arc;
+use std::{cell::RefCell, rc::Rc};
 
 use wgpu::{Adapter, Device, Instance, Queue, Surface};
 use winit::dpi::PhysicalSize;
@@ -17,7 +17,7 @@ pub struct Renderer {
 }
 
 impl Renderer {
-    pub fn new(window: Arc<Window>) -> Self {
+    pub fn new(window: Rc<RefCell<Window>>) -> Self {
         let instance = wgpu::Instance::default();
         // FIXME: Founded adapter may not match the window surface. Better use instance.request_adapter() with appropriate surface.
         let adapter = Self::find_adapter(&instance);
@@ -28,10 +28,10 @@ impl Renderer {
         let (device, queue) =
             pollster::block_on(adapter.request_device(&device_descriptor, None)).unwrap();
 
-        let surface = instance.create_surface(window.inner()).unwrap();
+        let surface = instance.create_surface(window.borrow().inner()).unwrap();
 
         let surface_config = surface
-            .get_default_config(&adapter, window.width(), window.height())
+            .get_default_config(&adapter, window.borrow().width(), window.borrow().height())
             .expect("Surface isn't supported by the adapter.");
 
         surface.configure(&device, &surface_config);
