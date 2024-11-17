@@ -133,6 +133,7 @@ impl ApplicationHandler for Application {
             WindowEvent::RedrawRequested => {
                 window.borrow().redraw();
                 self.renderer.as_mut().unwrap().render();
+                window.borrow().draw(self.renderer.as_ref().unwrap());
             }
             _ => (),
         }

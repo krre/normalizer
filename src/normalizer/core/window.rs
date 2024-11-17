@@ -2,9 +2,16 @@ use std::sync::Arc;
 
 use winit::keyboard::ModifiersState;
 
+use crate::{
+    renderer::Renderer,
+    scene::{scene2d::Scene2d, scene3d::Scene3d, Scene},
+};
+
 pub struct Window {
     winit_window: Arc<winit::window::Window>,
     modifiers: ModifiersState,
+    scene2d: Scene2d,
+    scene3d: Scene3d,
 }
 
 impl Window {
@@ -12,6 +19,8 @@ impl Window {
         Self {
             winit_window: Arc::new(winit_window),
             modifiers: Default::default(),
+            scene2d: Scene2d::new(),
+            scene3d: Scene3d::new(),
         }
     }
 
@@ -53,5 +62,10 @@ impl Window {
 
     pub fn inner(&self) -> Arc<winit::window::Window> {
         self.winit_window.clone()
+    }
+
+    pub fn draw(&self, renderer: &Renderer) {
+        self.scene3d.draw(renderer);
+        self.scene2d.draw(renderer);
     }
 }
