@@ -7,5 +7,7 @@ impl Scene {
         Self {}
     }
 
-    pub fn draw(&self, renderer: &Renderer) {}
+    pub fn draw(&self, renderer: &Renderer) {
+        let _ = renderer;
+    }
 }
