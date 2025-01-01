@@ -1,5 +1,7 @@
 use std::{error::Error, rc::Weak};
 
+use antiq::core::Size2D;
+
 use super::Preferences;
 
 pub const NAME: &str = "Normalizer";
@@ -19,12 +21,10 @@ impl Application {
             .build()?;
 
         let window = antiq::core::Window::new(app.context().clone())?;
-
-        {
-            let w = window.upgrade().unwrap();
-            w.set_title(NAME);
-            w.set_visible(true);
-        }
+        let w = window.upgrade().unwrap();
+        w.set_title(NAME);
+        w.set_size(Size2D::new(1200, 800));
+        w.set_visible(true);
 
         Ok(Self {
             app,
