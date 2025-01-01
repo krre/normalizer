@@ -23,7 +23,7 @@ impl Application {
         Ok(Self {
             app,
             main_window,
-            preferences: Preferences::default(),
+            preferences: Preferences::new(),
         })
     }
 
