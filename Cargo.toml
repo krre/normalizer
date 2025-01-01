@@ -11,6 +11,7 @@ name = "normalizer"
 path = "src/normalizer/lib.rs"
 
 [dependencies]
+antiq = { path = "../antiq" }
 dirs = "5.0.1"
 pollster = "0.4.0"
 serde = { version = "1.0.217", features = ["derive"] }
