@@ -5,6 +5,8 @@ use std::{
 
 use antiq::core::Size2D;
 
+use crate::style::BACKGROUND_COLOR;
+
 use super::application::NAME;
 
 pub struct MainWindow {
@@ -17,6 +19,7 @@ impl MainWindow {
         let w = window.upgrade().unwrap();
         w.set_title(NAME);
         w.set_size(Size2D::new(1200, 800));
+        w.set_color(BACKGROUND_COLOR);
         w.set_visible(true);
 
         Ok(Self { window })
