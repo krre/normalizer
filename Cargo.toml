@@ -3,7 +3,7 @@ name = "normalizer"
 version = "0.1.0"
 authors = ["Vladimir Zarypov <krre31@gmail.com>"]
 edition = "2021"
-description = "IDE for developing of Norm projects"
+description = "Norm IDE"
 repository = "https://github.com/krre/normalizer"
 
 [lib]
