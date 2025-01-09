@@ -7,14 +7,18 @@ use antiq::core::Size2D;
 
 use crate::style::BACKGROUND_COLOR;
 
-use super::application::NAME;
+use super::{application::NAME, Preferences};
 
 pub struct MainWindow {
     window: Weak<antiq::core::Window>,
+    preferences: Rc<Preferences>,
 }
 
 impl MainWindow {
-    pub fn new(context: Rc<antiq::core::Context>) -> Result<Self, Box<dyn Error>> {
+    pub fn new(
+        context: Rc<antiq::core::Context>,
+        preferences: Rc<Preferences>,
+    ) -> Result<Self, Box<dyn Error>> {
         let window = antiq::core::Window::new(context)?;
         let w = window.upgrade().unwrap();
         w.set_title(NAME);
@@ -22,6 +26,15 @@ impl MainWindow {
         w.set_color(BACKGROUND_COLOR);
         w.set_visible(true);
 
-        Ok(Self { window })
+        Ok(Self {
+            window,
+            preferences,
+        })
+    }
+}
+
+impl Drop for MainWindow {
+    fn drop(&mut self) {
+        self.preferences.save();
     }
 }

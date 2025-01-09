@@ -1,4 +1,4 @@
-use std::error::Error;
+use std::{error::Error, rc::Rc};
 
 use super::{MainWindow, Preferences};
 
@@ -8,7 +8,7 @@ pub const ORGANIZATION: &str = "Norm";
 pub struct Application {
     app: antiq::core::Application,
     main_window: MainWindow,
-    preferences: Preferences,
+    preferences: Rc<Preferences>,
 }
 
 impl Application {
@@ -21,7 +21,8 @@ impl Application {
         let mut preferences = Preferences::new();
         preferences.load();
 
-        let main_window = MainWindow::new(app.context().clone())?;
+        let preferences = Rc::new(preferences);
+        let main_window = MainWindow::new(app.context().clone(), preferences.clone())?;
 
         Ok(Self {
             app,
