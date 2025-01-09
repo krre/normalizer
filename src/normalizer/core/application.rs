@@ -18,12 +18,15 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
+        let mut preferences = Preferences::new();
+        preferences.load();
+
         let main_window = MainWindow::new(app.context().clone())?;
 
         Ok(Self {
             app,
             main_window,
-            preferences: Preferences::new(),
+            preferences,
         })
     }
 
