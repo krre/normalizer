@@ -11,6 +11,7 @@ use super::application::{NAME, ORGANIZATION};
 #[derive(Default, Serialize, Deserialize)]
 pub struct Preferences {
     pub window: Window,
+    pub is_loaded: bool,
 }
 
 #[derive(Default, Serialize, Deserialize)]
@@ -29,15 +30,15 @@ impl Preferences {
         }
     }
 
-    pub fn load(&mut self) -> bool {
+    pub fn load(&mut self) {
         if let Ok(mut file) = File::open(Self::path()) {
             let mut contents = String::new();
             file.read_to_string(&mut contents).unwrap();
             *self = serde_json::from_slice::<Preferences>(contents.as_bytes()).unwrap();
-            return true;
+            self.is_loaded = true;
         }
 
-        false
+        self.is_loaded = false;
     }
 
     pub fn save(&self) {
