@@ -11,7 +11,7 @@ use super::application::{NAME, ORGANIZATION};
 #[derive(Default, Serialize, Deserialize)]
 pub struct Preferences {
     pub window: Window,
-    pub is_loaded: bool,
+    is_loaded: bool,
 }
 
 #[derive(Default, Serialize, Deserialize)]
@@ -63,5 +63,9 @@ impl Preferences {
         let mut result: PathBuf = [Self::dir(), NAME.into()].iter().collect();
         result.set_extension("prefs");
         result
+    }
+
+    pub fn is_loaded(&self) -> bool {
+        self.is_loaded
     }
 }
