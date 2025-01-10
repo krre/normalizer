@@ -1,3 +1,4 @@
+use antiq::core::{Pos2D, Size2D};
 use serde::{Deserialize, Serialize};
 
 pub type Preferences = antiq::core::Preferences<Settings>;
@@ -9,9 +10,7 @@ pub struct Settings {
 
 #[derive(Default, Serialize, Deserialize)]
 pub struct Window {
-    pub x: i32,
-    pub y: i32,
-    pub width: u32,
-    pub height: u32,
+    pub pos: Pos2D,
+    pub size: Size2D,
     pub is_maximized: bool,
 }

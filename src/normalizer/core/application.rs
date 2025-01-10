@@ -1,4 +1,4 @@
-use std::{error::Error, rc::Rc};
+use std::{cell::RefCell, error::Error, rc::Rc};
 
 use super::{MainWindow, Preferences};
 
@@ -8,7 +8,6 @@ pub const ORGANIZATION: &str = "Norm";
 pub struct Application {
     app: antiq::core::Application,
     main_window: MainWindow,
-    preferences: Rc<Preferences>,
 }
 
 impl Application {
@@ -21,23 +20,13 @@ impl Application {
         let mut preferences = Preferences::new(app.context().clone());
         preferences.load();
 
-        let preferences = Rc::new(preferences);
+        let preferences = Rc::new(RefCell::new(preferences));
         let main_window = MainWindow::new(app.context().clone(), preferences.clone())?;
 
-        Ok(Self {
-            app,
-            main_window,
-            preferences,
-        })
+        Ok(Self { app, main_window })
     }
 
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
         self.app.run()
-    }
-}
-
-impl Drop for Application {
-    fn drop(&mut self) {
-        self.preferences.save();
     }
 }
