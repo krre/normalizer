@@ -22,6 +22,13 @@ impl MainWindow {
         window.set_color(BACKGROUND_COLOR);
         window.set_visible(true);
 
+        {
+            let prefs = preferences.borrow();
+            let prefs = prefs.get_ref();
+            window.set_position(prefs.window.pos);
+            window.set_size(prefs.window.size);
+        }
+
         Ok(Self {
             window,
             preferences,
