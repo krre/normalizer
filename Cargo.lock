@@ -37,6 +37,7 @@ dependencies = [
  "cfg-if",
  "cfg_aliases 0.2.1",
  "cocoa",
+ "dirs",
  "log",
  "pollster",
  "raw-window-handle",
@@ -625,7 +626,6 @@ name = "normalizer"
 version = "0.1.0"
 dependencies = [
  "antiq",
- "dirs",
  "serde",
  "serde_json",
 ]

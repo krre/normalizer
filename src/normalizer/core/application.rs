@@ -18,7 +18,7 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
-        let mut preferences = Preferences::new();
+        let mut preferences = Preferences::new(app.context().clone());
         preferences.load();
 
         let preferences = Rc::new(preferences);
