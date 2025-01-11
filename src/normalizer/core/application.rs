@@ -1,5 +1,7 @@
 use std::{cell::RefCell, error::Error, rc::Rc};
 
+use antiq::core::{Format, PreferencesBuilder};
+
 use super::{MainWindow, Preferences};
 
 pub const NAME: &str = "Normalizer";
@@ -17,7 +19,9 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
-        let mut preferences = Preferences::new(app.context().clone());
+        let mut preferences = PreferencesBuilder::new(app.context().clone())
+            .format(Format::Pretty)
+            .build();
         preferences.load();
 
         let preferences = Rc::new(RefCell::new(preferences));
