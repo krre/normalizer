@@ -7,7 +7,7 @@ use crate::style::BACKGROUND_COLOR;
 use super::{application::NAME, Preferences};
 
 pub struct MainWindow {
-    window: Rc<antiq::core::Window>,
+    window: Rc<antiq::window::Window>,
     preferences: Rc<RefCell<Preferences>>,
 }
 
@@ -16,7 +16,7 @@ impl MainWindow {
         context: Rc<antiq::core::Context>,
         preferences: Rc<RefCell<Preferences>>,
     ) -> Result<Self, Box<dyn Error>> {
-        let window = antiq::core::Window::new(context)?.upgrade().unwrap();
+        let window = antiq::window::Window::new(context)?.upgrade().unwrap();
         window.set_title(NAME);
         window.set_color(BACKGROUND_COLOR);
         window.set_visible(true);

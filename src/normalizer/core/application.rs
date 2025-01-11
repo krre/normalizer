@@ -1,20 +1,20 @@
 use std::{cell::RefCell, error::Error, rc::Rc};
 
-use antiq::core::{Format, PreferencesBuilder};
+use antiq::preferences::{Format, PreferencesBuilder};
 
-use super::{MainWindow, Preferences};
+use super::MainWindow;
 
 pub const NAME: &str = "Normalizer";
 pub const ORGANIZATION: &str = "Norm";
 
 pub struct Application {
-    app: antiq::core::Application,
+    app: antiq::application::Application,
     main_window: MainWindow,
 }
 
 impl Application {
     pub fn new() -> Result<Self, Box<dyn Error>> {
-        let app = antiq::core::ApplicationBuilder::new()
+        let app = antiq::application::ApplicationBuilder::new()
             .name(NAME)
             .organization(ORGANIZATION)
             .build()?;

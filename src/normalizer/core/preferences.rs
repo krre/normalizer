@@ -1,7 +1,7 @@
 use antiq::core::{Pos2D, Size2D};
 use serde::{Deserialize, Serialize};
 
-pub type Preferences = antiq::core::Preferences<Settings>;
+pub type Preferences = antiq::preferences::Preferences<Settings>;
 
 #[derive(Default, Serialize, Deserialize)]
 pub struct Settings {
