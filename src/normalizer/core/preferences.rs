@@ -1,10 +1,10 @@
 use antiq::core::{Pos2D, Size2D};
 use serde::{Deserialize, Serialize};
 
-pub type Preferences = antiq::preferences::Preferences<Settings>;
+pub type Preferences = antiq::preferences::Preferences<AppPreferences>;
 
 #[derive(Default, Serialize, Deserialize)]
-pub struct Settings {
+pub struct AppPreferences {
     pub window: Window,
 }
 
