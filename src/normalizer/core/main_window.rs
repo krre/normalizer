@@ -18,15 +18,19 @@ impl MainWindow {
     ) -> Result<Self, Box<dyn Error>> {
         let window = antiq::core::Window::new(context)?.upgrade().unwrap();
         window.set_title(NAME);
-        window.set_size(Size2D::new(1200, 800));
         window.set_color(BACKGROUND_COLOR);
         window.set_visible(true);
 
         {
             let prefs = preferences.borrow();
-            let prefs = prefs.get_ref();
-            window.set_position(prefs.window.pos);
-            window.set_size(prefs.window.size);
+
+            if prefs.is_loaded() {
+                let prefs = prefs.get_ref();
+                window.set_position(prefs.window.pos);
+                window.set_size(prefs.window.size);
+            } else {
+                window.set_size(Size2D::new(1200, 800));
+            }
         }
 
         Ok(Self {
