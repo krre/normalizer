@@ -1,6 +1,4 @@
-use std::{cell::RefCell, error::Error, rc::Rc};
-
-use antiq::preferences::{Format, PreferencesBuilder};
+use std::error::Error;
 
 use super::MainWindow;
 
@@ -19,11 +17,7 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
-        let mut preferences = PreferencesBuilder::new(&app).format(Format::Pretty).build();
-        preferences.load();
-
-        let preferences = Rc::new(RefCell::new(preferences));
-        let main_window = MainWindow::new(app.context().clone(), preferences.clone())?;
+        let main_window = MainWindow::new(&app)?;
 
         Ok(Self { app, main_window })
     }
