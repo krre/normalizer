@@ -4,6 +4,7 @@ use antiq::{
     application::Application,
     core::Size2D,
     preferences::{Format, PreferencesBuilder},
+    window::Window,
 };
 
 use crate::style::BACKGROUND_COLOR;
@@ -11,13 +12,13 @@ use crate::style::BACKGROUND_COLOR;
 use super::{application::NAME, preferences::AppPreferences, Preferences};
 
 pub struct MainWindow {
-    window: Rc<antiq::window::Window>,
+    window: Rc<Window>,
     preferences: Preferences,
 }
 
 impl MainWindow {
     pub fn new(app: &Application) -> Result<Self, Box<dyn Error>> {
-        let window = antiq::window::Window::new(app)?.upgrade().unwrap();
+        let window = Window::new(app)?.upgrade().unwrap();
         window.set_title(NAME);
         window.set_color(BACKGROUND_COLOR);
         window.set_visible(true);
