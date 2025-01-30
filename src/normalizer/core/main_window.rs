@@ -17,9 +17,7 @@ pub struct MainWindow {
 
 impl MainWindow {
     pub fn new(app: &Application) -> Result<Self, Box<dyn Error>> {
-        let window = antiq::window::Window::new(app.context())?
-            .upgrade()
-            .unwrap();
+        let window = antiq::window::Window::new(app)?.upgrade().unwrap();
         window.set_title(NAME);
         window.set_color(BACKGROUND_COLOR);
         window.set_visible(true);
