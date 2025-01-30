@@ -19,9 +19,7 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
-        let mut preferences = PreferencesBuilder::new(app.context().clone())
-            .format(Format::Pretty)
-            .build();
+        let mut preferences = PreferencesBuilder::new(&app).format(Format::Pretty).build();
         preferences.load();
 
         let preferences = Rc::new(RefCell::new(preferences));
