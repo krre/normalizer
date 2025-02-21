@@ -9,7 +9,7 @@ use antiq::{
 
 use crate::style::BACKGROUND_COLOR;
 
-use super::{application::NAME, preferences::AppPreferences, Preferences};
+use super::{Preferences, application::NAME, preferences::AppPreferences};
 
 pub struct MainWindow {
     window: Rc<Window>,
