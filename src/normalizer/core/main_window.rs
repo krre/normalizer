@@ -1,8 +1,12 @@
-use std::{error::Error, rc::Rc};
+use std::{
+    cell::RefCell,
+    error::Error,
+    rc::{Rc, Weak},
+};
 
 use antiq::{
     application::Application,
-    core::Size2D,
+    core::{Size2D, UpgradeOrErr},
     preferences::{Format, PreferencesBuilder},
     window::Window,
 };
@@ -12,30 +16,31 @@ use crate::style::BACKGROUND_COLOR;
 use super::{Preferences, application::NAME, preferences::AppPreferences};
 
 pub struct MainWindow {
-    window: Rc<Window>,
+    window: Weak<RefCell<Window>>,
     preferences: Preferences,
 }
 
 impl MainWindow {
     pub fn new(app: &Application) -> Result<Self, Box<dyn Error>> {
-        let window = Window::new(app)?.upgrade().unwrap();
-        window.set_title(NAME);
-        window.set_color(BACKGROUND_COLOR);
-        window.set_visible(true);
+        let window = Window::new(app)?.upgrade_or_err()?;
+        let mut win = window.borrow_mut();
+        win.set_title(NAME);
+        win.set_color(BACKGROUND_COLOR);
+        win.set_visible(true);
 
         let mut preferences = PreferencesBuilder::new(&app).format(Format::Pretty).build();
         preferences.load();
 
         if preferences.is_loaded() {
             let data: &AppPreferences = preferences.get_ref();
-            window.set_position(data.window.pos);
-            window.set_size(data.window.size);
+            win.set_position(data.window.pos);
+            win.set_size(data.window.size);
         } else {
-            window.set_size(Size2D::new(1200, 800));
+            win.set_size(Size2D::new(1200, 800));
         }
 
         Ok(Self {
-            window,
+            window: Rc::downgrade(&window),
             preferences,
         })
     }
@@ -43,9 +48,12 @@ impl MainWindow {
 
 impl Drop for MainWindow {
     fn drop(&mut self) {
-        let data = self.preferences.get_mut();
-        data.window.pos = self.window.position();
-        data.window.size = self.window.size();
-        self.preferences.save();
+        if let Some(w) = self.window.upgrade() {
+            let windon = w.borrow();
+            let data = self.preferences.get_mut();
+            data.window.pos = windon.position();
+            data.window.size = windon.size();
+            self.preferences.save();
+        }
     }
 }
