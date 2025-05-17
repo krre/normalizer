@@ -6,8 +6,9 @@ use std::{
 
 use antiq::{
     application::Application,
-    core::{Size2D, UpgradeOrErr},
+    core::UpgradeOrErr,
     preferences::{Format, PreferencesBuilder},
+    ui::d2::geometry::Size2D,
     window::Window,
 };
 

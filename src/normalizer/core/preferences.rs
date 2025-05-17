@@ -1,6 +1,6 @@
 use antiq::{
-    core::{Pos2D, Size2D},
     preferences,
+    ui::d2::geometry::{Pos2D, Size2D},
 };
 use serde::{Deserialize, Serialize};
 
