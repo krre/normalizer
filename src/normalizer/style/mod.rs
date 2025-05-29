@@ -1,4 +1,4 @@
-use antiq::core::Color;
+use antiq::ui::Color;
 
 pub const BACKGROUND_COLOR: Color = Color {
     r: 0.05,
