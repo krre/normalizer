@@ -45,10 +45,8 @@ impl MainWindow {
             preferences,
         })
     }
-}
 
-impl Drop for MainWindow {
-    fn drop(&mut self) {
+    fn save_preferences(&mut self) {
         if let Some(w) = self.window.upgrade() {
             let windon = w.borrow();
             let data = self.preferences.get_mut();
@@ -56,5 +54,11 @@ impl Drop for MainWindow {
             data.window.size = windon.size();
             self.preferences.save();
         }
+    }
+}
+
+impl Drop for MainWindow {
+    fn drop(&mut self) {
+        self.save_preferences();
     }
 }
