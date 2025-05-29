@@ -7,7 +7,7 @@ pub const ORGANIZATION: &str = "Norm";
 
 pub struct Application {
     app: antiq::application::Application,
-    main_window: MainWindow,
+    _main_window: MainWindow,
 }
 
 impl Application {
@@ -19,7 +19,10 @@ impl Application {
 
         let main_window = MainWindow::new(&app)?;
 
-        Ok(Self { app, main_window })
+        Ok(Self {
+            app,
+            _main_window: main_window,
+        })
     }
 
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
