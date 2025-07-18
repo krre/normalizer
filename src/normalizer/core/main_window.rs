@@ -1,12 +1,7 @@
-use std::{
-    cell::RefCell,
-    error::Error,
-    rc::{Rc, Weak},
-};
+use std::{cell::RefCell, error::Error, rc::Rc};
 
 use antiq::{
     application::Application,
-    core::UpgradeOrErr,
     preferences::{Format, PreferencesBuilder},
     ui::d2::geometry::Size2D,
     window::Window,
@@ -17,43 +12,40 @@ use crate::style::BACKGROUND_COLOR;
 use super::{Preferences, application::NAME, preferences::AppPreferences};
 
 pub struct MainWindow {
-    window: Weak<RefCell<Window>>,
+    window: Rc<RefCell<Window>>,
     preferences: Preferences,
 }
 
 impl MainWindow {
     pub fn new(app: &Application) -> Result<Self, Box<dyn Error>> {
-        let window = Window::new(app)?.upgrade_or_err()?;
-        let mut win = window.borrow_mut();
-        win.set_title(NAME);
-        win.set_color(BACKGROUND_COLOR);
-        win.set_visible(true);
+        let mut window = Window::new(app)?;
+        window.set_title(NAME);
+        window.set_color(BACKGROUND_COLOR);
+        window.set_visible(true);
 
         let mut preferences = PreferencesBuilder::new(&app).format(Format::Pretty).build();
         preferences.load();
 
         if preferences.is_loaded() {
             let data: &AppPreferences = preferences.get_ref();
-            win.set_position(data.window.pos);
-            win.set_size(data.window.size);
+            window.set_position(data.window.pos);
+            window.set_size(data.window.size);
         } else {
-            win.set_size(Size2D::new(1200, 800));
+            window.set_size(Size2D::new(1200, 800));
         }
 
         Ok(Self {
-            window: Rc::downgrade(&window),
+            window: Rc::new(RefCell::new(window)),
             preferences,
         })
     }
 
     fn save_preferences(&mut self) {
-        if let Some(w) = self.window.upgrade() {
-            let windon = w.borrow();
-            let data = self.preferences.get_mut();
-            data.window.pos = windon.position();
-            data.window.size = windon.size();
-            self.preferences.save();
-        }
+        let window = self.window.borrow();
+        let data = self.preferences.get_mut();
+        data.window.pos = window.position();
+        data.window.size = window.size();
+        self.preferences.save();
     }
 }
 
