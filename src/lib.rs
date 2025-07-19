@@ -1,2 +1,4 @@
-pub mod core;
-pub mod style;
+mod core;
+use antiq::Application;
+
+antiq::run_app!(core::Normalizer);

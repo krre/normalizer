@@ -11,3 +11,4 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 antiq = { path = "../antiq" }
+wasm-bindgen = "0.2.100"

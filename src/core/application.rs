@@ -1,23 +1,17 @@
-use std::error::Error;
+pub struct Normalizer {}
 
-pub const NAME: &str = "Normalizer";
-pub const ORGANIZATION: &str = "Norm";
-
-pub struct Application {
-    app: antiq::application::Application,
+impl Normalizer {
+    pub fn new() -> Self {
+        Self {}
+    }
 }
 
-impl Application {
-    pub fn new() -> Result<Self, Box<dyn Error>> {
-        let app = antiq::application::ApplicationBuilder::new()
-            .name(NAME)
-            .organization(ORGANIZATION)
-            .build()?;
+impl antiq::Application for Normalizer {
+    fn run(&self) {}
+}
 
-        Ok(Self { app })
-    }
-
-    pub fn run(&self) -> Result<(), Box<dyn Error>> {
-        self.app.run()
+impl Default for Normalizer {
+    fn default() -> Self {
+        Self::new()
     }
 }
