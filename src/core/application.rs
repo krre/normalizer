@@ -1,13 +1,10 @@
 use std::error::Error;
 
-use super::MainWindow;
-
 pub const NAME: &str = "Normalizer";
 pub const ORGANIZATION: &str = "Norm";
 
 pub struct Application {
     app: antiq::application::Application,
-    _main_window: MainWindow,
 }
 
 impl Application {
@@ -17,12 +14,7 @@ impl Application {
             .organization(ORGANIZATION)
             .build()?;
 
-        let main_window = MainWindow::new(&app)?;
-
-        Ok(Self {
-            app,
-            _main_window: main_window,
-        })
+        Ok(Self { app })
     }
 
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
