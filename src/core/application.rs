@@ -7,7 +7,9 @@ impl Normalizer {
 }
 
 impl antiq::Application for Normalizer {
-    fn run(&self) {}
+    fn run(&self) {
+        antiq::log("Run Webassembly Normalizer");
+    }
 }
 
 impl Default for Normalizer {
