@@ -1,18 +1,21 @@
-use std::rc::Rc;
-
 use antiq::Application;
-use antiq::Context;
 
-pub struct Normalizer {
-    _context: Rc<Context>,
+pub struct Normalizer {}
+
+impl Normalizer {
+    fn new() -> Self {
+        Self {}
+    }
 }
 
 impl Application for Normalizer {
-    fn new(context: Rc<Context>) -> Self {
-        Self { _context: context }
-    }
-
     fn run(&self) {
         antiq::log("Run Webassembly Normalizer");
+    }
+}
+
+impl Default for Normalizer {
+    fn default() -> Self {
+        Self::new()
     }
 }
