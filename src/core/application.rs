@@ -1,4 +1,4 @@
-use antiq::Application;
+use antiq::{Application, ui::Ui3d};
 
 pub struct Normalizer {}
 
@@ -9,8 +9,8 @@ impl Normalizer {
 }
 
 impl Application for Normalizer {
-    fn run(&self) {
-        antiq::log("Run Webassembly Normalizer");
+    fn build_ui(&self) -> Ui3d {
+        Ui3d {}
     }
 }
 
