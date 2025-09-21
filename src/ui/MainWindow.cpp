@@ -2,11 +2,18 @@
 #include "core/Application.h"
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QCloseEvent>
+#include <QSettings>
 
 MainWindow::MainWindow() {
     setWindowTitle(Application::applicationName());
     createActions();
-    resize(800, 600);
+    readSettings();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    writeSettings();
+    event->accept();
 }
 
 void MainWindow::showAbout() {
@@ -19,6 +26,28 @@ Build on %4 %5<br><br>
 Copyright © %7, Vladimir Zarypov)")
         .arg(Application::Name, Application::Version, QT_VERSION_STR,
         Application::BuildDate, Application::BuildTime, Application::Url, Application::Years));
+}
+
+void MainWindow::readSettings() {
+    QSettings settings;
+    QByteArray geometry = settings.value("MainWindow/geometry").toByteArray();
+
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
+    } else {
+        const auto screenSize = screen()->size();
+        constexpr auto scale = 0.75;
+        resize(screenSize.width() * scale, screenSize.height() * scale);
+        move((screenSize.width() - width()) / 2, (screenSize.height() - height()) / 2);
+    }
+
+    restoreState(settings.value("MainWindow/state").toByteArray());
+}
+
+void MainWindow::writeSettings() {
+    QSettings settings;
+    settings.setValue("MainWindow/geometry", saveGeometry());
+    settings.setValue("MainWindow/state", saveState());
 }
 
 void MainWindow::createActions() {
