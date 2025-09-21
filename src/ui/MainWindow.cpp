@@ -22,6 +22,9 @@ Copyright © %7, Vladimir Zarypov)")
 }
 
 void MainWindow::createActions() {
+    auto fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
+
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
 }
