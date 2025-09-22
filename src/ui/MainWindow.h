@@ -1,6 +1,8 @@
 #pragma once
 #include <QMainWindow>
 
+class FileSettings;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -17,4 +19,6 @@ private:
     void writeSettings();
 
     void createActions();
+
+    FileSettings* m_fileSettings = nullptr;
 };
