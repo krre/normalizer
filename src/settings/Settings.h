@@ -1,7 +1,5 @@
 #pragma once
 #include <QVariant>
-#include <QSize>
-#include <QColor>
 
 class Settings {
 public:
