@@ -1,12 +1,12 @@
 #include "MainWindow.h"
 #include "core/Application.h"
 #include "ui/dialog/NewProject.h"
+#include "ui/dialog/Preferences.h"
 #include "settings/FileSettings.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QSettings>
-#include <QStandardPaths>
 
 MainWindow::MainWindow() {
     m_fileSettings = new FileSettings(this);
@@ -22,11 +22,16 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 void MainWindow::create() {
-    NewProject newProject(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/" + Application::ProgrammingLanguage);
+    NewProject newProject(m_fileSettings->pathWorkspace());
 
     if (newProject.exec() == QDialog::Accepted) {
         qDebug() << newProject.directory() << newProject.name();
     }
+}
+
+void MainWindow::showPreferences() {
+    Preferences preferences(m_fileSettings);
+    preferences.exec();
 }
 
 void MainWindow::showAbout() {
@@ -66,6 +71,9 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
+
+    auto editMenu = menuBar()->addMenu(tr("Edit"));
+    editMenu->addAction(tr("Preferences..."), this, &MainWindow::showPreferences);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
