@@ -7,6 +7,7 @@ qt_add_library(common STATIC
     settings/Settings.cpp settings/Settings.h
     ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
+    ui/dialog/NewProject.cpp ui/dialog/NewProject.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

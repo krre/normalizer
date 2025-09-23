@@ -1,10 +1,12 @@
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "ui/dialog/NewProject.h"
 #include "settings/FileSettings.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QSettings>
+#include <QStandardPaths>
 
 MainWindow::MainWindow() {
     m_fileSettings = new FileSettings(this);
@@ -17,6 +19,14 @@ MainWindow::MainWindow() {
 void MainWindow::closeEvent(QCloseEvent *event) {
     writeSettings();
     event->accept();
+}
+
+void MainWindow::create() {
+    NewProject newProject(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/" + Application::ProgrammingLanguage);
+
+    if (newProject.exec() == QDialog::Accepted) {
+        qDebug() << newProject.directory() << newProject.name();
+    }
 }
 
 void MainWindow::showAbout() {
@@ -53,6 +63,8 @@ void MainWindow::writeSettings() {
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
+    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
