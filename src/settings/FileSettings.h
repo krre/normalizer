@@ -8,5 +8,5 @@ public:
 
 protected:
     void setValue(const QString& key, const QVariant& value) override;
-    QVariant value(const QString& key, const QVariant& defaultValue = QVariant()) const override;
+    QVariant value(const QString& key, const QVariant& defaultValue = {}) const override;
 };
