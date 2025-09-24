@@ -1,4 +1,5 @@
 #pragma once
+#include "project/Project.h"
 #include "StandardDialog.h"
 
 class BrowseLayout;
@@ -9,16 +10,11 @@ class QComboBox;
 class NewProject : public StandardDialog {
     Q_OBJECT
 public:
-    enum class Target {
-        Application,
-        Library
-    };
-
     NewProject(const QString& workDir);
 
     QString name() const;
     QString directory() const;
-    Target target() const;
+    Project::Target target() const;
 
 public slots:
     void accept() override;

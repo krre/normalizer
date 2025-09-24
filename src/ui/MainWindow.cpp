@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "project/Project.h"
 #include "ui/dialog/NewProject.h"
 #include "ui/dialog/Preferences.h"
 #include "settings/FileSettings.h"
@@ -10,6 +11,7 @@
 
 MainWindow::MainWindow() {
     m_fileSettings = new FileSettings(this);
+    m_project = new Project(this);
 
     setWindowTitle(Application::applicationName());
     createActions();
@@ -25,7 +27,7 @@ void MainWindow::create() {
     NewProject newProject(m_fileSettings->pathWorkspace());
 
     if (newProject.exec() == QDialog::Accepted) {
-        qDebug() << newProject.directory() << newProject.name();
+        m_project->create(newProject.name(), newProject.directory(), newProject.target());
     }
 }
 

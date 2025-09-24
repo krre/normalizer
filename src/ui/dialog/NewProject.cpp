@@ -42,8 +42,8 @@ QString NewProject::directory() const {
     return m_directoryBrowseLayout->lineEdit()->text();
 }
 
-NewProject::Target NewProject::target() const {
-    return static_cast<Target>(m_targetComboBox->currentIndex());
+Project::Target NewProject::target() const {
+    return static_cast<Project::Target>(m_targetComboBox->currentIndex());
 }
 
 void NewProject::accept() {

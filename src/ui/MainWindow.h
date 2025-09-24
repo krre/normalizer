@@ -2,6 +2,7 @@
 #include <QMainWindow>
 
 class FileSettings;
+class Project;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -23,4 +24,5 @@ private:
     void createActions();
 
     FileSettings* m_fileSettings = nullptr;
+    Project* m_project = nullptr;
 };
