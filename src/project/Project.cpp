@@ -4,7 +4,7 @@
 
 Project::Project(QObject* parent) : QObject(parent) {
     m_normProcess = new QProcess(this);
-    m_normProcess->setProgram("norm");
+    m_normProcess->setProgram(CliTool);
 }
 
 void Project::create(const QString& name, const QString& directory, Target target) {

@@ -5,6 +5,8 @@ class QProcess;
 
 class Project : QObject {
 public:
+    static constexpr auto CliTool = "norm";
+
     enum class Target {
         Application,
         Library
