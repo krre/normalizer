@@ -32,6 +32,7 @@ void Project::create(const QString& name, const QString& directory, Target targe
     m_normProcess->setWorkingDirectory(directory);
     m_normProcess->setArguments({ "create", name, target == Target::Application ? "--app" : "--lib" });
     m_normProcess->start();
+    m_normProcess->waitForFinished();
 
     m_name = name;
     m_directory = directory;
