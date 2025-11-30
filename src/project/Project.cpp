@@ -15,6 +15,10 @@ QString Project::directory() const {
     return m_directory;
 }
 
+bool Project::isValid() const {
+    return m_isValid;
+}
+
 Project::Target Project::target() const {
     return m_target;
 }
@@ -30,4 +34,12 @@ void Project::create(const QString& name, const QString& directory, Target targe
     m_name = name;
     m_directory = directory;
     m_target = target;
+
+    m_isValid = true;
+}
+
+void Project::reset() {
+    m_name = QString();
+    m_directory = QString();
+    m_isValid = false;
 }
