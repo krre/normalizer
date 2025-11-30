@@ -13,7 +13,7 @@ MainWindow::MainWindow() {
     m_fileSettings = new FileSettings(this);
     m_project = new Project(this);
 
-    setWindowTitle(Application::applicationName());
+    changeWindowTitle();
     createActions();
     readSettings();
 }
@@ -28,6 +28,7 @@ void MainWindow::create() {
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());
+        changeWindowTitle();
     }
 }
 
@@ -66,6 +67,16 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
+}
+
+void MainWindow::changeWindowTitle() {
+    QString title = Application::applicationName();
+
+    if (m_project->isValid()) {
+        title = m_project->name() + " - " + title;
+    }
+
+    setWindowTitle(title);
 }
 
 void MainWindow::createActions() {
