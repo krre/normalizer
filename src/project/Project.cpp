@@ -5,6 +5,8 @@
 Project::Project(QObject* parent) : QObject(parent) {
     m_normProcess = new QProcess(this);
     m_normProcess->setProgram(CliTool);
+
+    reset();
 }
 
 QString Project::name() const {
