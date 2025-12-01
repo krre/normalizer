@@ -45,6 +45,15 @@ void Project::create(const QString& name, const QString& directory, Target targe
     setState(State::Ready);
 }
 
+void Project::open(const QString& dirPath) {
+    QFileInfo fi(dirPath);
+
+    m_directory = fi.absolutePath();
+    m_name = fi.fileName();
+
+    setState(State::Ready);
+}
+
 void Project::reset() {
     m_name = QString();
     m_directory = QString();

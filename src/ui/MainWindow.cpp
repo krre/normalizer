@@ -6,6 +6,7 @@
 #include "settings/FileSettings.h"
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QCloseEvent>
 #include <QSettings>
 
@@ -30,6 +31,17 @@ void MainWindow::createProject() {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());
         changeWindowTitle();
     }
+}
+
+void MainWindow::openProject() {
+    QString path = QFileDialog::getExistingDirectory(this);
+
+    if (path.isEmpty()) {
+        return;
+    }
+
+    m_project->open(path);
+    changeWindowTitle();
 }
 
 void MainWindow::closeProject() {
@@ -87,6 +99,7 @@ void MainWindow::changeWindowTitle() {
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::createProject);
+    fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::openProject);
     fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeProject);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);

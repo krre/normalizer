@@ -29,6 +29,7 @@ public:
     bool isValid() const;
 
     void create(const QString& name, const QString& directory, Target target);
+    void open(const QString& dirPath);
     void reset();
 
 signals:
