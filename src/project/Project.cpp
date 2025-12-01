@@ -9,6 +9,10 @@ Project::Project(QObject* parent) : QObject(parent) {
     reset();
 }
 
+Project::State Project::state() const {
+    return m_state;
+}
+
 QString Project::name() const {
     return m_name;
 }
@@ -18,7 +22,7 @@ QString Project::directory() const {
 }
 
 bool Project::isValid() const {
-    return m_isValid;
+    return m_state != State::Uninitialized;
 }
 
 Project::Target Project::target() const {
@@ -38,11 +42,17 @@ void Project::create(const QString& name, const QString& directory, Target targe
     m_directory = directory;
     m_target = target;
 
-    m_isValid = true;
+    setState(State::Ready);
 }
 
 void Project::reset() {
     m_name = QString();
     m_directory = QString();
-    m_isValid = false;
+    setState(State::Uninitialized);
+}
+
+void Project::setState(State state) {
+    if (state == m_state) return;
+    m_state = state;
+    emit stateChanged(state);
 }
