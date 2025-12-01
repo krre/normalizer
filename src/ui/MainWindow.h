@@ -14,6 +14,8 @@ protected:
 
 private slots:
     void create();
+    void closeProject();
+
     void showPreferences();
     void showAbout();
 
