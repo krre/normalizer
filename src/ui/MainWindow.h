@@ -13,7 +13,7 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private slots:
-    void create();
+    void createProject();
     void closeProject();
 
     void showPreferences();
