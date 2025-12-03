@@ -10,6 +10,7 @@ qt_add_library(common STATIC
     ui/dialog/NewProject.cpp ui/dialog/NewProject.h
     ui/dialog/Preferences.cpp ui/dialog/Preferences.h
     project/Project.h project/Project.cpp
+    ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

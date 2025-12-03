@@ -3,6 +3,7 @@
 
 class FileSettings;
 class Project;
+class CodeEditor;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -26,7 +27,9 @@ private:
 
     void changeWindowTitle();
     void createActions();
+    void createCodeEditor();
 
     FileSettings* m_fileSettings = nullptr;
     Project* m_project = nullptr;
+    CodeEditor* m_codeEditor = nullptr;
 };

@@ -4,6 +4,7 @@
 #include "ui/dialog/NewProject.h"
 #include "ui/dialog/Preferences.h"
 #include "settings/FileSettings.h"
+#include "editor/CodeEditor.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -29,6 +30,7 @@ void MainWindow::createProject() {
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());
+        createCodeEditor();
         changeWindowTitle();
     }
 }
@@ -41,11 +43,14 @@ void MainWindow::openProject() {
     }
 
     m_project->open(path);
+    createCodeEditor();
     changeWindowTitle();
 }
 
 void MainWindow::closeProject() {
     m_project->reset();
+    m_codeEditor = nullptr;
+    setCentralWidget(nullptr);
     changeWindowTitle();
 }
 
@@ -109,4 +114,9 @@ void MainWindow::createActions() {
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
+}
+
+void MainWindow::createCodeEditor() {
+    m_codeEditor = new CodeEditor;
+    setCentralWidget(m_codeEditor);
 }
