@@ -3,6 +3,7 @@
 
 class Settings;
 class QLineEdit;
+class QCheckBox;
 
 class Preferences : public StandardDialog {
     Q_OBJECT
@@ -18,4 +19,5 @@ private:
 
     Settings* m_settings = nullptr;
     QLineEdit* m_workDirLineEdit = nullptr;
+    QCheckBox* m_vulkanCheckBox = nullptr;
 };

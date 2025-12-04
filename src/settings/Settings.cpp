@@ -11,6 +11,10 @@ namespace Path {
     constexpr auto Workspace = "Path/workspace";
 }
 
+namespace Logging {
+    constexpr auto Vulkan = "Logging/vulkan";
+}
+
 void Settings::setMainWindowGeometry(const QByteArray& geometry) {
     setValue(MainWindow::Geometry, geometry);
 }
@@ -33,4 +37,12 @@ void Settings::setPathWorkspace(const QString& workspace) {
 
 QString Settings::pathWorkspace() const {
     return value(Path::Workspace, QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/" + Application::WorkspaceName).toString();
+}
+
+void Settings::setLoggingVulkan(bool enable) {
+    setValue(Logging::Vulkan, enable);
+}
+
+bool Settings::loggingVulkan() const {
+    return value(Logging::Vulkan, false).toBool();
 }

@@ -9,7 +9,9 @@ int main(int argc, char* argv[]) {
 
     FileSettings settings;
 
-    QLoggingCategory::setFilterRules("qt.vulkan=true");
+    if (settings.loggingVulkan()) {
+        QLoggingCategory::setFilterRules("qt.vulkan=true");
+    }
 
     QVulkanInstance instance;
     instance.setLayers({ "VK_LAYER_KHRONOS_validation" });
