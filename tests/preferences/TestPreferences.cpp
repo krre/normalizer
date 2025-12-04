@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QCheckBox>
 
-constexpr auto Workspace = "NormWorkspace";
+constexpr auto PathWorkspace = "NormWorkspace";
 constexpr auto LoggingVulkan = true;
 
 class TestPreferences : public QObject {
@@ -17,7 +17,7 @@ private slots:
 
 void TestPreferences::readPreferences() {
     TestSettings settings;
-    settings.setPathWorkspace(Workspace);
+    settings.setPathWorkspace(PathWorkspace);
     settings.setLoggingVulkan(LoggingVulkan);
 
     Preferences preferences(&settings);
@@ -31,7 +31,7 @@ void TestPreferences::readPreferences() {
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto vulkanCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
-    QCOMPARE(workspaceLineEdit->text(), Workspace);
+    QCOMPARE(workspaceLineEdit->text(), PathWorkspace);
     QCOMPARE(vulkanCheckBox->isChecked(), LoggingVulkan);
 }
 
@@ -44,7 +44,7 @@ void TestPreferences::setPreferences() {
     QTest::keyClick(&preferences, Qt::Key_Tab); // Cancel button
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
-    workspaceLineEdit->setText(Workspace);
+    workspaceLineEdit->setText(PathWorkspace);
 
     QTest::keyClick(&preferences, Qt::Key_Tab); // Browse button
     QTest::keyClick(&preferences, Qt::Key_Tab);
@@ -53,7 +53,7 @@ void TestPreferences::setPreferences() {
 
     preferences.accept();
 
-    QCOMPARE(settings.pathWorkspace(), Workspace);
+    QCOMPARE(settings.pathWorkspace(), PathWorkspace);
 }
 
 QTEST_MAIN(TestPreferences)
