@@ -3,7 +3,7 @@
 #include "project/Project.h"
 #include "ui/dialog/NewProject.h"
 #include "ui/dialog/Preferences.h"
-#include "settings/FileSettings.h"
+#include "settings/Settings.h"
 #include "editor/CodeEditor.h"
 #include <QMenuBar>
 #include <QMessageBox>
@@ -11,8 +11,7 @@
 #include <QCloseEvent>
 #include <QSettings>
 
-MainWindow::MainWindow() {
-    m_fileSettings = new FileSettings(this);
+MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_project = new Project(this);
 
     changeWindowTitle();
@@ -26,7 +25,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 void MainWindow::createProject() {
-    NewProject newProject(m_fileSettings->pathWorkspace());
+    NewProject newProject(m_settings->pathWorkspace());
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());
@@ -55,7 +54,7 @@ void MainWindow::closeProject() {
 }
 
 void MainWindow::showPreferences() {
-    Preferences preferences(m_fileSettings);
+    Preferences preferences(m_settings);
     preferences.exec();
 }
 
@@ -72,7 +71,7 @@ Copyright © %7, Vladimir Zarypov)")
 }
 
 void MainWindow::readSettings() {
-    QByteArray geometry = m_fileSettings->mainWindowGeometry();
+    QByteArray geometry = m_settings->mainWindowGeometry();
 
     if (!geometry.isEmpty()) {
         restoreGeometry(geometry);
@@ -83,12 +82,12 @@ void MainWindow::readSettings() {
         move((screenSize.width() - width()) / 2, (screenSize.height() - height()) / 2);
     }
 
-    restoreState(m_fileSettings->mainWindowState());
+    restoreState(m_settings->mainWindowState());
 }
 
 void MainWindow::writeSettings() {
-    m_fileSettings->setMainWindowGeometry(saveGeometry());
-    m_fileSettings->setMainWindowState(saveState());
+    m_settings->setMainWindowGeometry(saveGeometry());
+    m_settings->setMainWindowState(saveState());
 }
 
 void MainWindow::changeWindowTitle() {

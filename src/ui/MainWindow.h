@@ -1,14 +1,14 @@
 #pragma once
 #include <QMainWindow>
 
-class FileSettings;
+class Settings;
 class Project;
 class CodeEditor;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-    MainWindow();
+    MainWindow(Settings* settings);
 
 protected:
     void closeEvent(QCloseEvent* event) override;
@@ -29,7 +29,7 @@ private:
     void createActions();
     void createCodeEditor();
 
-    FileSettings* m_fileSettings = nullptr;
+    Settings* m_settings = nullptr;
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
 };
