@@ -7,6 +7,11 @@ namespace MainWindow {
     constexpr auto State = "MainWindow/state";
 }
 
+namespace Ui {
+    constexpr auto LoadLastProject = "Ui/loadLastProject";
+    constexpr auto LastProjectPath = "Ui/lastProjectPath";
+}
+
 namespace Path {
     constexpr auto Workspace = "Path/workspace";
 }
@@ -29,6 +34,22 @@ void Settings::setMainWindowState(const QByteArray& state) {
 
 QByteArray Settings::mainWindowState() const {
     return value(MainWindow::State).toByteArray();
+}
+
+void Settings::setUiLoadLastProject(bool load) {
+    setValue(Ui::LoadLastProject, load);
+}
+
+bool Settings::uiLoadLastProject() const {
+    return value(Ui::LoadLastProject, true).toBool();
+}
+
+void Settings::setUiLastProjectPath(const QString& path) {
+    setValue(Ui::LastProjectPath, path);
+}
+
+QString Settings::uiLastLoadPath() const {
+    return value(Ui::LastProjectPath).toString();
 }
 
 void Settings::setPathWorkspace(const QString& workspace) {

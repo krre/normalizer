@@ -19,5 +19,6 @@ private:
 
     Settings* m_settings = nullptr;
     QLineEdit* m_workDirLineEdit = nullptr;
+    QCheckBox* m_loadLastProjectCheckBox = nullptr;
     QCheckBox* m_vulkanCheckBox = nullptr;
 };

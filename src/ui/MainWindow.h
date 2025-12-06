@@ -29,6 +29,8 @@ private:
     void createActions();
     void createCodeEditor();
 
+    void openProjectFromPath(const QString& path);
+
     Settings* m_settings = nullptr;
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;

@@ -9,6 +9,15 @@
 Preferences::Preferences(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
+    m_loadLastProjectCheckBox = new QCheckBox(tr("Load last project"));
+    m_loadLastProjectCheckBox->setChecked(settings->uiLoadLastProject());
+
+    auto uiLayout = new QVBoxLayout;
+    uiLayout->addWidget(m_loadLastProjectCheckBox);
+
+    auto uiGroupBox = new QGroupBox(tr("User Interface"));
+    uiGroupBox->setLayout(uiLayout);
+
     auto workspaceLayout = new BrowseLayout(settings->pathWorkspace());
     m_workDirLineEdit = workspaceLayout->lineEdit();
 
@@ -28,6 +37,7 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     loggingGroupBox->setLayout(loggingLayout);
 
     auto contentLayout = new QVBoxLayout;
+    contentLayout->addWidget(uiGroupBox);
     contentLayout->addWidget(pathGroupBox);
     contentLayout->addWidget(loggingGroupBox);
 
@@ -46,6 +56,7 @@ void Preferences::readSettings() {
 }
 
 void Preferences::writeSettings() {
+    m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
     m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
 }

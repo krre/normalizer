@@ -9,6 +9,12 @@ public:
     void setMainWindowState(const  QByteArray& state);
     QByteArray mainWindowState() const;
 
+    void setUiLoadLastProject(bool load);
+    bool uiLoadLastProject() const;
+
+    void setUiLastProjectPath(const QString& path);
+    QString uiLastLoadPath() const;
+
     void setPathWorkspace(const QString& workspace);
     QString pathWorkspace() const;
 

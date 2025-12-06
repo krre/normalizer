@@ -29,21 +29,13 @@ void MainWindow::createProject() {
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());
-        createCodeEditor();
-        changeWindowTitle();
+        openProjectFromPath(newProject.directory() + "/" + newProject.name());
     }
 }
 
 void MainWindow::openProject() {
     QString path = QFileDialog::getExistingDirectory(this);
-
-    if (path.isEmpty()) {
-        return;
-    }
-
-    m_project->open(path);
-    createCodeEditor();
-    changeWindowTitle();
+    openProjectFromPath(path);
 }
 
 void MainWindow::closeProject() {
@@ -51,6 +43,7 @@ void MainWindow::closeProject() {
     m_codeEditor = nullptr;
     setCentralWidget(nullptr);
     changeWindowTitle();
+    m_settings->setUiLastProjectPath(QString());
 }
 
 void MainWindow::showPreferences() {
@@ -83,6 +76,10 @@ void MainWindow::readSettings() {
     }
 
     restoreState(m_settings->mainWindowState());
+
+    if (m_settings->uiLoadLastProject()) {
+        openProjectFromPath(m_settings->uiLastLoadPath());
+    }
 }
 
 void MainWindow::writeSettings() {
@@ -124,4 +121,13 @@ void MainWindow::createActions() {
 void MainWindow::createCodeEditor() {
     m_codeEditor = new CodeEditor;
     setCentralWidget(m_codeEditor);
+}
+
+void MainWindow::openProjectFromPath(const QString& path) {
+     if (!QFile::exists(path)) return;
+
+    m_project->open(path);
+    createCodeEditor();
+    changeWindowTitle();
+    m_settings->setUiLastProjectPath(path);
 }
