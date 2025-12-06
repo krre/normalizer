@@ -104,7 +104,7 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::createProject);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::openProject);
-    fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeProject);
+    auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeProject);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
@@ -113,6 +113,12 @@ void MainWindow::createActions() {
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
+
+    closeAction->setEnabled(false);
+
+    connect(m_project, &Project::stateChanged, [=] (Project::State state) {
+        closeAction->setEnabled(state != Project::State::Uninitialized);
+    });
 }
 
 void MainWindow::createCodeEditor() {

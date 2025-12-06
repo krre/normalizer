@@ -3,7 +3,7 @@
 
 class QProcess;
 
-class Project : QObject {
+class Project : public QObject {
     Q_OBJECT
 public:
     static constexpr auto CliTool = "norm";
