@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QCheckBox>
 
+constexpr auto UiLoadLastProject = true;
 constexpr auto PathWorkspace = "NormWorkspace";
 constexpr auto LoggingVulkan = true;
 
@@ -17,6 +18,7 @@ private slots:
 
 void TestPreferences::readPreferences() {
     TestSettings settings;
+    settings.setUiLoadLastProject(UiLoadLastProject);
     settings.setPathWorkspace(PathWorkspace);
     settings.setLoggingVulkan(LoggingVulkan);
 
@@ -25,12 +27,16 @@ void TestPreferences::readPreferences() {
     QTest::keyClick(&preferences, Qt::Key_Tab); // OK button
     QTest::keyClick(&preferences, Qt::Key_Tab); // Cancel button
     QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto loadLastProjectCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
+
+    QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
 
     QTest::keyClick(&preferences, Qt::Key_Tab); // Browse button
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto vulkanCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
+    QCOMPARE(loadLastProjectCheckBox->isChecked(), UiLoadLastProject);
     QCOMPARE(workspaceLineEdit->text(), PathWorkspace);
     QCOMPARE(vulkanCheckBox->isChecked(), LoggingVulkan);
 }
@@ -42,6 +48,10 @@ void TestPreferences::setPreferences() {
 
     QTest::keyClick(&preferences, Qt::Key_Tab); // OK button
     QTest::keyClick(&preferences, Qt::Key_Tab); // Cancel button
+    QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto loadLastProjectCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
+    loadLastProjectCheckBox->setChecked(UiLoadLastProject);
+
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
     workspaceLineEdit->setText(PathWorkspace);
