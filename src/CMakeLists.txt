@@ -11,6 +11,7 @@ qt_add_library(common STATIC
     ui/dialog/Preferences.cpp ui/dialog/Preferences.h
     project/Project.h project/Project.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
+    network/WebSocketClient.h network/WebSocketClient.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
@@ -19,5 +20,9 @@ add_custom_target(custom
     config.h.in
 )
 
-target_link_libraries(common PUBLIC Qt6::Widgets)
+target_link_libraries(common PUBLIC
+    Qt6::Widgets
+    Qt6::WebSockets
+)
+
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
