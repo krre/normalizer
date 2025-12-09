@@ -15,6 +15,9 @@ public:
     void setUiLastProjectPath(const QString& path);
     QString uiLastLoadPath() const;
 
+    void setNetworkPort(int port);
+    int networkPort() const;
+
     void setPathWorkspace(const QString& workspace);
     QString pathWorkspace() const;
 

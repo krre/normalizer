@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QCheckBox>
 #include <QFormLayout>
+#include <QIntValidator>
 
 Preferences::Preferences(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("Preferences"));
@@ -20,6 +21,15 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
 
     auto workspaceLayout = new BrowseLayout(settings->pathWorkspace());
     m_workDirLineEdit = workspaceLayout->lineEdit();
+
+    m_portLineEdit = new QLineEdit(QString::number(settings->networkPort()));
+    m_portLineEdit->setValidator(new QIntValidator(1, 1 << 16));
+
+    auto networkLayout = new QFormLayout;
+    networkLayout->addRow(tr("Port:"), m_portLineEdit);
+
+    auto networkGroupBox = new QGroupBox(tr("Network"));
+    networkGroupBox->setLayout(networkLayout);
 
     auto pathLayout = new QFormLayout;
     pathLayout->addRow(tr("Workspace:"), workspaceLayout);
@@ -38,6 +48,7 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
 
     auto contentLayout = new QVBoxLayout;
     contentLayout->addWidget(uiGroupBox);
+    contentLayout->addWidget(networkGroupBox);
     contentLayout->addWidget(pathGroupBox);
     contentLayout->addWidget(loggingGroupBox);
 
@@ -57,6 +68,7 @@ void Preferences::readSettings() {
 
 void Preferences::writeSettings() {
     m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
+    m_settings->setNetworkPort(m_portLineEdit->text().toInt());
     m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
 }

@@ -12,6 +12,10 @@ namespace Ui {
     constexpr auto LastProjectPath = "Ui/lastProjectPath";
 }
 
+namespace Network {
+    constexpr auto Port = "Network/port";
+}
+
 namespace Path {
     constexpr auto Workspace = "Path/workspace";
 }
@@ -50,6 +54,14 @@ void Settings::setUiLastProjectPath(const QString& path) {
 
 QString Settings::uiLastLoadPath() const {
     return value(Ui::LastProjectPath).toString();
+}
+
+void Settings::setNetworkPort(int port) {
+    setValue(Network::Port, port);
+}
+
+int Settings::networkPort() const {
+    return value(Network::Port, 3010).toInt();
 }
 
 void Settings::setPathWorkspace(const QString& workspace) {
