@@ -23,7 +23,7 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_webSocketClient->connect();
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
+void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();
 }
