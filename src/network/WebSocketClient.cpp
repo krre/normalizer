@@ -21,3 +21,7 @@ WebSocketClient::WebSocketClient(int port, QObject* parent) : QObject(parent), m
 void WebSocketClient::connect() {
     m_webSocket->open(QUrl(QString("ws://127.0.0.1:%1").arg(m_port)));
 }
+
+WebSocketClient::State WebSocketClient::state() const {
+    return m_webSocket->state() == QAbstractSocket::ConnectedState ? State::Connected : State::Disconnected;
+}

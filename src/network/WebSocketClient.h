@@ -12,7 +12,9 @@ public:
     };
 
     WebSocketClient(int port, QObject* parent = nullptr);
+
     void connect();
+    State state() const;
 
 signals:
     void stateChanged(WebSocketClient::State state);
