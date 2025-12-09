@@ -73,8 +73,10 @@ void TestPreferences::setPreferences() {
 
     preferences.accept();
 
+    QCOMPARE(settings.uiLoadLastProject(), UiLoadLastProject);
     QCOMPARE(settings.networkPort(), NetworkPort);
     QCOMPARE(settings.pathWorkspace(), PathWorkspace);
+    QCOMPARE(settings.loggingVulkan(), LoggingVulkan);
 }
 
 QTEST_MAIN(TestPreferences)
