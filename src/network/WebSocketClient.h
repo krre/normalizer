@@ -11,7 +11,7 @@ public:
         Disconnected
     };
 
-    WebSocketClient(int port);
+    WebSocketClient(int port, QObject* parent = nullptr);
     void connect();
 
 signals:

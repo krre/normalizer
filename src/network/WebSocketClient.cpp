@@ -1,7 +1,7 @@
 #include "WebSocketClient.h"
 #include <QWebSocket>
 
-WebSocketClient::WebSocketClient(int port) : m_port(port) {
+WebSocketClient::WebSocketClient(int port, QObject* parent) : QObject(parent), m_port(port) {
     m_webSocket = new QWebSocket;
     m_webSocket->setParent(this);
 

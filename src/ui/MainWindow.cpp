@@ -5,6 +5,7 @@
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
 #include "editor/CodeEditor.h"
+#include "network/WebSocketClient.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -13,10 +14,13 @@
 
 MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_project = new Project(this);
+    m_webSocketClient = new WebSocketClient(settings->networkPort(), this);
 
     changeWindowTitle();
     createActions();
     readSettings();
+
+    m_webSocketClient->connect();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {

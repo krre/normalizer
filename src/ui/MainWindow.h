@@ -4,6 +4,7 @@
 class Settings;
 class Project;
 class CodeEditor;
+class WebSocketClient;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -34,4 +35,5 @@ private:
     Settings* m_settings = nullptr;
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
+    WebSocketClient* m_webSocketClient = nullptr;
 };
