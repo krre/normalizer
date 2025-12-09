@@ -1,4 +1,5 @@
 #pragma once
+#include "network/WebSocketClient.h"
 #include <QMainWindow>
 
 class Settings;
@@ -21,6 +22,8 @@ private slots:
 
     void showPreferences();
     void showAbout();
+
+    void setConnectionState(WebSocketClient::State state);
 
 private:
     void readSettings();

@@ -5,8 +5,8 @@
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
 #include "editor/CodeEditor.h"
-#include "network/WebSocketClient.h"
 #include <QMenuBar>
+#include <QStatusBar>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
@@ -14,12 +14,15 @@
 
 MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_project = new Project(this);
+
     m_webSocketClient = new WebSocketClient(settings->networkPort(), this);
+    connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
 
     changeWindowTitle();
     createActions();
     readSettings();
 
+    setConnectionState(m_webSocketClient->state());
     m_webSocketClient->connect();
 }
 
@@ -65,6 +68,18 @@ Build on %4 %5<br><br>
 Copyright © %7, Vladimir Zarypov)")
         .arg(Application::Name, Application::Version, QT_VERSION_STR,
         Application::BuildDate, Application::BuildTime, Application::Url, Application::Years));
+}
+
+void MainWindow::setConnectionState(WebSocketClient::State state) {
+    QString connectionMessage;
+
+    if (state == WebSocketClient::State::Connected) {
+        connectionMessage = tr("Connected");
+    } else {
+        connectionMessage = tr("Disconnected");
+    }
+
+    statusBar()->showMessage(connectionMessage);
 }
 
 void MainWindow::readSettings() {
