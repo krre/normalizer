@@ -6,6 +6,7 @@
 #include <QCheckBox>
 
 constexpr auto UiLoadLastProject = true;
+constexpr auto NetworkPort = 5555;
 constexpr auto PathWorkspace = "NormWorkspace";
 constexpr auto LoggingVulkan = true;
 
@@ -19,6 +20,7 @@ private slots:
 void TestPreferences::readPreferences() {
     TestSettings settings;
     settings.setUiLoadLastProject(UiLoadLastProject);
+    settings.setNetworkPort(NetworkPort);
     settings.setPathWorkspace(PathWorkspace);
     settings.setLoggingVulkan(LoggingVulkan);
 
@@ -30,6 +32,9 @@ void TestPreferences::readPreferences() {
     auto loadLastProjectCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto portLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
+
+    QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
 
     QTest::keyClick(&preferences, Qt::Key_Tab); // Browse button
@@ -37,6 +42,7 @@ void TestPreferences::readPreferences() {
     auto vulkanCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
     QCOMPARE(loadLastProjectCheckBox->isChecked(), UiLoadLastProject);
+    QCOMPARE(portLineEdit->text().toInt(), NetworkPort);
     QCOMPARE(workspaceLineEdit->text(), PathWorkspace);
     QCOMPARE(vulkanCheckBox->isChecked(), LoggingVulkan);
 }
@@ -53,6 +59,10 @@ void TestPreferences::setPreferences() {
     loadLastProjectCheckBox->setChecked(UiLoadLastProject);
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto portLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
+    portLineEdit->setText(QString::number(NetworkPort));
+
+    QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
     workspaceLineEdit->setText(PathWorkspace);
 
@@ -63,6 +73,7 @@ void TestPreferences::setPreferences() {
 
     preferences.accept();
 
+    QCOMPARE(settings.networkPort(), NetworkPort);
     QCOMPARE(settings.pathWorkspace(), PathWorkspace);
 }
 
