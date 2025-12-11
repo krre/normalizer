@@ -8,6 +8,7 @@ class WebSocketClient : public QObject {
     Q_OBJECT
 public:
     enum class State {
+        Connecting,
         Connected,
         Disconnected
     };
@@ -22,6 +23,9 @@ signals:
     void messageReceived(const QByteArray& message);
 
 private:
+    void setState(State state);
+
     QWebSocket* m_webSocket = nullptr;
     QUrl m_url;
+    State m_state = State::Disconnected;
 };

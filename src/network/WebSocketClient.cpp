@@ -6,11 +6,11 @@ WebSocketClient::WebSocketClient(const QUrl& url, QObject* parent) : QObject(par
     m_webSocket->setParent(this);
 
     QObject::connect(m_webSocket, &QWebSocket::connected, this, [this] {
-        emit stateChanged(State::Connected);
+        setState(State::Connected);
     });
 
     QObject::connect(m_webSocket, &QWebSocket::disconnected, this, [this] {
-        emit stateChanged(State::Disconnected);
+        setState(State::Disconnected);
     });
 
     QObject::connect(m_webSocket, &QWebSocket::binaryMessageReceived, this, [this] (const QByteArray& message) {
@@ -20,8 +20,15 @@ WebSocketClient::WebSocketClient(const QUrl& url, QObject* parent) : QObject(par
 
 void WebSocketClient::connect() {
     m_webSocket->open(m_url);
+    setState(State::Connecting);
+}
+
+void WebSocketClient::setState(State state) {
+    if (state == m_state) return;
+    m_state = state;
+    emit stateChanged(state);
 }
 
 WebSocketClient::State WebSocketClient::state() const {
-    return m_webSocket->state() == QAbstractSocket::ConnectedState ? State::Connected : State::Disconnected;
+    return m_state;
 }

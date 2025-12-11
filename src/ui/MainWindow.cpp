@@ -78,10 +78,18 @@ Copyright © %7, Vladimir Zarypov)")
 void MainWindow::setConnectionState(WebSocketClient::State state) {
     QString connectionMessage;
 
-    if (state == WebSocketClient::State::Connected) {
-        connectionMessage = tr("Connected");
-    } else {
-        connectionMessage = tr("Disconnected");
+    switch (state) {
+        case WebSocketClient::State::Connecting:
+            connectionMessage = tr("Connecting...");
+            break;
+        case WebSocketClient::State::Connected:
+            break;
+            connectionMessage = tr("Connected");
+        case WebSocketClient::State::Disconnected:
+            connectionMessage = tr("Disconnected");
+            break;
+        default:
+            break;
     }
 
     m_statusLabel->setText(connectionMessage);
