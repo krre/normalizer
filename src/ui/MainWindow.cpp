@@ -7,6 +7,7 @@
 #include "editor/CodeEditor.h"
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QLabel>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
@@ -17,6 +18,10 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
 
     m_webSocketClient = new WebSocketClient(QUrl(settings->networkHost() + ":" + QString::number(settings->networkPort())), this);
     connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
+
+    m_statusLabel = new QLabel;
+    m_statusLabel->setContentsMargins(4, 0, 0, 0);
+    statusBar()->addWidget(m_statusLabel);
 
     changeWindowTitle();
     createActions();
@@ -79,7 +84,7 @@ void MainWindow::setConnectionState(WebSocketClient::State state) {
         connectionMessage = tr("Disconnected");
     }
 
-    statusBar()->showMessage(connectionMessage);
+    m_statusLabel->setText(connectionMessage);
 }
 
 void MainWindow::readSettings() {

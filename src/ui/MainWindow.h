@@ -7,6 +7,8 @@ class Project;
 class CodeEditor;
 class WebSocketClient;
 
+class QLabel;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -39,4 +41,6 @@ private:
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
     WebSocketClient* m_webSocketClient = nullptr;
+
+    QLabel* m_statusLabel = nullptr;
 };
