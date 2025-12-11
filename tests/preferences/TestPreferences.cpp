@@ -4,8 +4,10 @@
 #include <QTest>
 #include <QLineEdit>
 #include <QCheckBox>
+#include <QSpinBox>
 
 constexpr auto UiLoadLastProject = true;
+constexpr auto NetworkHost = "ws://127.0.0.1";
 constexpr auto NetworkPort = 5555;
 constexpr auto PathWorkspace = "NormWorkspace";
 constexpr auto LoggingVulkan = true;
@@ -20,6 +22,7 @@ private slots:
 void TestPreferences::readPreferences() {
     TestSettings settings;
     settings.setUiLoadLastProject(UiLoadLastProject);
+    settings.setNetworkHost(NetworkHost);
     settings.setNetworkPort(NetworkPort);
     settings.setPathWorkspace(PathWorkspace);
     settings.setLoggingVulkan(LoggingVulkan);
@@ -32,7 +35,10 @@ void TestPreferences::readPreferences() {
     auto loadLastProjectCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
-    auto portLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
+    auto hostLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
+
+    QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto portLineEdit = static_cast<QSpinBox*>(preferences.focusWidget());
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
@@ -42,7 +48,8 @@ void TestPreferences::readPreferences() {
     auto vulkanCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
     QCOMPARE(loadLastProjectCheckBox->isChecked(), UiLoadLastProject);
-    QCOMPARE(portLineEdit->text().toInt(), NetworkPort);
+    QCOMPARE(hostLineEdit->text(), NetworkHost);
+    QCOMPARE(portLineEdit->value(), NetworkPort);
     QCOMPARE(workspaceLineEdit->text(), PathWorkspace);
     QCOMPARE(vulkanCheckBox->isChecked(), LoggingVulkan);
 }
@@ -59,8 +66,12 @@ void TestPreferences::setPreferences() {
     loadLastProjectCheckBox->setChecked(UiLoadLastProject);
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
-    auto portLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
-    portLineEdit->setText(QString::number(NetworkPort));
+    auto hostLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
+    hostLineEdit->setText(NetworkHost);
+
+    QTest::keyClick(&preferences, Qt::Key_Tab);
+    auto portLineEdit = static_cast<QSpinBox*>(preferences.focusWidget());
+    portLineEdit->setValue(NetworkPort);
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
@@ -74,6 +85,7 @@ void TestPreferences::setPreferences() {
     preferences.accept();
 
     QCOMPARE(settings.uiLoadLastProject(), UiLoadLastProject);
+    QCOMPARE(settings.networkHost(), NetworkHost);
     QCOMPARE(settings.networkPort(), NetworkPort);
     QCOMPARE(settings.pathWorkspace(), PathWorkspace);
     QCOMPARE(settings.loggingVulkan(), LoggingVulkan);
