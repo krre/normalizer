@@ -86,8 +86,8 @@ void MainWindow::setConnectionState(WebSocketClient::State state) {
             connectionMessage = tr("Connecting...");
             break;
         case WebSocketClient::State::Connected:
-            break;
             connectionMessage = tr("Connected");
+            break;
         case WebSocketClient::State::Disconnected:
             connectionMessage = tr("Disconnected");
             break;
