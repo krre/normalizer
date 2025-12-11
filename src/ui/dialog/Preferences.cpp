@@ -77,7 +77,7 @@ void Preferences::readSettings() {
 
 void Preferences::writeSettings() {
     m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
-    m_settings->setNetworkHost(m_portLineEdit->text());
+    m_settings->setNetworkHost(m_hostLineEdit->text());
     m_settings->setNetworkPort(m_portLineEdit->value());
     m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
