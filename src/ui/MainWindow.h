@@ -6,6 +6,7 @@ class Settings;
 class Project;
 class CodeEditor;
 class WebSocketClient;
+class NetworkApi;
 
 class QLabel;
 
@@ -41,6 +42,7 @@ private:
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
     WebSocketClient* m_webSocketClient = nullptr;
+    NetworkApi* m_networkApi = nullptr;
 
     QLabel* m_statusLabel = nullptr;
 };
