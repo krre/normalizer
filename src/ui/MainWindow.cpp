@@ -4,7 +4,7 @@
 #include "ui/dialog/NewProject.h"
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
-#include "network/NetworkApi.h"
+#include "network/ApiNetwork.h"
 #include "editor/CodeEditor.h"
 #include <QMenuBar>
 #include <QStatusBar>
@@ -20,7 +20,7 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_webSocketClient = new WebSocketClient(QUrl(settings->networkHost() + ":" + QString::number(settings->networkPort())), this);
     connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
 
-    m_networkApi = new NetworkApi(m_webSocketClient, this);
+    m_apiNetwork = new ApiNetwork(m_webSocketClient, this);
 
     m_statusLabel = new QLabel;
     m_statusLabel->setContentsMargins(4, 0, 0, 0);
