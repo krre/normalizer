@@ -14,6 +14,7 @@ qt_add_library(common STATIC
     network/WebSocketClient.h network/WebSocketClient.cpp
     network/api/Network.h network/ApiNetwork.cpp
     network/api/Controller.h network/api/Controller.cpp
+    network/api/common/Server.h network/api/common/Server.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

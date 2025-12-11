@@ -41,6 +41,9 @@ private:
 
     void openProjectFromPath(const QString& path);
 
+    void onConnected();
+    void onDisconnected();
+
     Settings* m_settings = nullptr;
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;

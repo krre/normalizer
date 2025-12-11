@@ -5,6 +5,7 @@
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
 #include "network/api/Network.h"
+#include "network/api/common/Server.h"
 #include "editor/CodeEditor.h"
 #include <QMenuBar>
 #include <QStatusBar>
@@ -87,9 +88,11 @@ void MainWindow::setConnectionState(WebSocketClient::State state) {
             break;
         case WebSocketClient::State::Connected:
             connectionMessage = tr("Connected");
+            onConnected();
             break;
         case WebSocketClient::State::Disconnected:
             connectionMessage = tr("Disconnected");
+            onDisconnected();
             break;
         default:
             break;
@@ -165,4 +168,14 @@ void MainWindow::openProjectFromPath(const QString& path) {
     createCodeEditor();
     changeWindowTitle();
     m_settings->setUiLastProjectPath(path);
+}
+
+void MainWindow::onConnected() {
+    Api::Server server(m_apiNetwork);
+    QVersionNumber version = server.version();
+    qDebug() << version;
+}
+
+void MainWindow::onDisconnected() {
+
 }
