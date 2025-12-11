@@ -15,7 +15,7 @@
 MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_project = new Project(this);
 
-    m_webSocketClient = new WebSocketClient(settings->networkPort(), this);
+    m_webSocketClient = new WebSocketClient(QUrl(settings->networkHost() + ":" + QString::number(settings->networkPort())), this);
     connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
 
     changeWindowTitle();

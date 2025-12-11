@@ -13,6 +13,7 @@ namespace Ui {
 }
 
 namespace Network {
+    constexpr auto Host = "Network/host";
     constexpr auto Port = "Network/port";
 }
 
@@ -54,6 +55,14 @@ void Settings::setUiLastProjectPath(const QString& path) {
 
 QString Settings::uiLastLoadPath() const {
     return value(Ui::LastProjectPath).toString();
+}
+
+void Settings::setNetworkHost(const QString& host) {
+    setValue(Network::Host, host);
+}
+
+QString Settings::networkHost() const {
+    return value(Network::Host, "ws://127.0.0.1").toString();
 }
 
 void Settings::setNetworkPort(int port) {

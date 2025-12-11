@@ -1,5 +1,6 @@
 #pragma once
 #include <QObject>
+#include <QUrl>
 
 class QWebSocket;
 
@@ -11,7 +12,7 @@ public:
         Disconnected
     };
 
-    WebSocketClient(int port, QObject* parent = nullptr);
+    WebSocketClient(const QUrl& url, QObject* parent = nullptr);
 
     void connect();
     State state() const;
@@ -22,5 +23,5 @@ signals:
 
 private:
     QWebSocket* m_webSocket = nullptr;
-    int m_port = 0;
+    QUrl m_url;
 };

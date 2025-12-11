@@ -1,7 +1,7 @@
 #include "WebSocketClient.h"
 #include <QWebSocket>
 
-WebSocketClient::WebSocketClient(int port, QObject* parent) : QObject(parent), m_port(port) {
+WebSocketClient::WebSocketClient(const QUrl& url, QObject* parent) : QObject(parent), m_url(url) {
     m_webSocket = new QWebSocket;
     m_webSocket->setParent(this);
 
@@ -19,7 +19,7 @@ WebSocketClient::WebSocketClient(int port, QObject* parent) : QObject(parent), m
 }
 
 void WebSocketClient::connect() {
-    m_webSocket->open(QUrl(QString("ws://127.0.0.1:%1").arg(m_port)));
+    m_webSocket->open(m_url);
 }
 
 WebSocketClient::State WebSocketClient::state() const {

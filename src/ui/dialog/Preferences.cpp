@@ -4,6 +4,8 @@
 #include <QGroupBox>
 #include <QLineEdit>
 #include <QCheckBox>
+#include <QSpinBox>
+#include <QLabel>
 #include <QFormLayout>
 #include <QIntValidator>
 
@@ -22,11 +24,18 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto workspaceLayout = new BrowseLayout(settings->pathWorkspace());
     m_workDirLineEdit = workspaceLayout->lineEdit();
 
-    m_portLineEdit = new QLineEdit(QString::number(settings->networkPort()));
-    m_portLineEdit->setValidator(new QIntValidator(1, 1 << 16));
+    m_hostLineEdit = new QLineEdit(settings->networkHost());
 
-    auto networkLayout = new QFormLayout;
-    networkLayout->addRow(tr("Port:"), m_portLineEdit);
+    m_portLineEdit = new QSpinBox;
+    m_portLineEdit->setMaximum(1);
+    m_portLineEdit->setMaximum(1 << 16);
+    m_portLineEdit->setValue(settings->networkPort());
+
+    auto networkLayout = new QHBoxLayout;
+    networkLayout->addWidget(new QLabel(tr("Host:")));
+    networkLayout->addWidget(m_hostLineEdit);
+    networkLayout->addWidget(new QLabel(tr("Port:")));
+    networkLayout->addWidget(m_portLineEdit);
 
     auto networkGroupBox = new QGroupBox(tr("Network"));
     networkGroupBox->setLayout(networkLayout);
@@ -68,7 +77,8 @@ void Preferences::readSettings() {
 
 void Preferences::writeSettings() {
     m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
-    m_settings->setNetworkPort(m_portLineEdit->text().toInt());
+    m_settings->setNetworkHost(m_portLineEdit->text());
+    m_settings->setNetworkPort(m_portLineEdit->value());
     m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
 }
