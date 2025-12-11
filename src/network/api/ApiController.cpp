@@ -2,11 +2,11 @@
 
 namespace Api {
 
-ApiController::ApiController(ApiNetwork* network) : m_network(network) {
+ApiController::ApiController(Network* network) : m_network(network) {
 
 }
 
-ApiNetwork* ApiController::network() const {
+Network* ApiController::network() const {
     return m_network;
 }
 

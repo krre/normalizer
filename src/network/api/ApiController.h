@@ -2,16 +2,16 @@
 
 namespace Api {
 
-class ApiNetwork;
+class Network;
 
 class ApiController {
 public:
-    ApiController(ApiNetwork* network);
+    ApiController(Network* network);
 
-    ApiNetwork* network() const;
+    Network* network() const;
 
 private:
-    ApiNetwork* m_network = nullptr;
+    Network* m_network = nullptr;
 };
 
 }

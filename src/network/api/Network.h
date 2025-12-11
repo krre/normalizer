@@ -5,9 +5,9 @@ class WebSocketClient;
 
 namespace Api {
 
-class ApiNetwork : public QObject {
+class Network : public QObject {
 public:
-    ApiNetwork(WebSocketClient* webSocketClient, QObject* parent = nullptr);
+    Network(WebSocketClient* webSocketClient, QObject* parent = nullptr);
 
 private:
     WebSocketClient* m_webSocketClient = nullptr;

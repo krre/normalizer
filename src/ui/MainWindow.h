@@ -3,7 +3,7 @@
 #include <QMainWindow>
 
 namespace Api {
-    class ApiNetwork;
+    class Network;
 }
 
 class Settings;
@@ -45,7 +45,7 @@ private:
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
     WebSocketClient* m_webSocketClient = nullptr;
-    Api::ApiNetwork* m_apiNetwork = nullptr;
+    Api::Network* m_apiNetwork = nullptr;
 
     QLabel* m_statusLabel = nullptr;
 };

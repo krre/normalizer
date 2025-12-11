@@ -1,8 +1,8 @@
-#include "api/ApiNetwork.h"
+#include "api/Network.h"
 
 namespace Api {
 
-ApiNetwork::ApiNetwork(WebSocketClient* webSocketClient, QObject* parent) : QObject(parent), m_webSocketClient(webSocketClient) {
+Network::Network(WebSocketClient* webSocketClient, QObject* parent) : QObject(parent), m_webSocketClient(webSocketClient) {
 
 }
 
