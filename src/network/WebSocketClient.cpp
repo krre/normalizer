@@ -23,6 +23,10 @@ void WebSocketClient::connect() {
     setState(State::Connecting);
 }
 
+void WebSocketClient::sendMessage(const QByteArray& message) {
+    m_webSocket->sendBinaryMessage(message);
+}
+
 void WebSocketClient::setState(State state) {
     if (state == m_state) return;
     m_state = state;

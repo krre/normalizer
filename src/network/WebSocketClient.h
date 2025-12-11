@@ -18,6 +18,8 @@ public:
     void connect();
     State state() const;
 
+    void sendMessage(const QByteArray& message);
+
 signals:
     void stateChanged(WebSocketClient::State state);
     void messageReceived(const QByteArray& message);
