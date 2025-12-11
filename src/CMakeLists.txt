@@ -12,7 +12,7 @@ qt_add_library(common STATIC
     project/Project.h project/Project.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     network/WebSocketClient.h network/WebSocketClient.cpp
-    network/api/Network.h network/ApiNetwork.cpp
+    network/api/Network.h network/Network.cpp
     network/api/Controller.h network/api/Controller.cpp
     network/api/common/Server.h network/api/common/Server.cpp
 )
