@@ -15,7 +15,6 @@ public slots:
     void accept() override;
 
 private:
-    void readSettings();
     void writeSettings();
 
     Settings* m_settings = nullptr;

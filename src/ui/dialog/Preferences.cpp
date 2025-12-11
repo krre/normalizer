@@ -64,15 +64,11 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     setContentLayout(contentLayout);
 
     resizeToWidth(500);
-    readSettings();
 }
 
 void Preferences::accept() {
     writeSettings();
     StandardDialog::accept();
-}
-
-void Preferences::readSettings() {
 }
 
 void Preferences::writeSettings() {
