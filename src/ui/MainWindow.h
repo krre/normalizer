@@ -2,11 +2,14 @@
 #include "network/WebSocketClient.h"
 #include <QMainWindow>
 
+namespace Api {
+    class ApiNetwork;
+}
+
 class Settings;
 class Project;
 class CodeEditor;
 class WebSocketClient;
-class ApiNetwork;
 
 class QLabel;
 
@@ -42,7 +45,7 @@ private:
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
     WebSocketClient* m_webSocketClient = nullptr;
-    ApiNetwork* m_apiNetwork = nullptr;
+    Api::ApiNetwork* m_apiNetwork = nullptr;
 
     QLabel* m_statusLabel = nullptr;
 };

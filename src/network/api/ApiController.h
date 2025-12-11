@@ -1,8 +1,8 @@
 #pragma once
 
-class ApiNetwork;
-
 namespace Api {
+
+class ApiNetwork;
 
 class ApiController {
 public:

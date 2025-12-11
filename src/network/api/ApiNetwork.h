@@ -3,6 +3,8 @@
 
 class WebSocketClient;
 
+namespace Api {
+
 class ApiNetwork : public QObject {
 public:
     ApiNetwork(WebSocketClient* webSocketClient, QObject* parent = nullptr);
@@ -10,3 +12,5 @@ public:
 private:
     WebSocketClient* m_webSocketClient = nullptr;
 };
+
+}
