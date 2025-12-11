@@ -4,9 +4,9 @@ namespace Api {
 
 class Network;
 
-class ApiController {
+class Controller {
 public:
-    ApiController(Network* network);
+    Controller(Network* network);
 
     Network* network() const;
 

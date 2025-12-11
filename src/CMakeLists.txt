@@ -13,7 +13,7 @@ qt_add_library(common STATIC
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
     network/WebSocketClient.h network/WebSocketClient.cpp
     network/api/Network.h network/ApiNetwork.cpp
-    network/api/ApiController.h network/api/ApiController.cpp
+    network/api/Controller.h network/api/Controller.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
