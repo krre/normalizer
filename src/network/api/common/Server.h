@@ -6,9 +6,13 @@ namespace Api {
 
 class Server : public Controller {
 public:
+    struct State {
+        QVersionNumber version;
+    };
+
     Server(Network* network);
 
-    QVersionNumber version() const;
+    State handshake() const;
 };
 
 }

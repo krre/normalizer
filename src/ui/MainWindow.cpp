@@ -172,8 +172,8 @@ void MainWindow::openProjectFromPath(const QString& path) {
 
 void MainWindow::onConnected() {
     Api::Server server(m_apiNetwork);
-    QVersionNumber version = server.version();
-    qDebug() << version;
+    Api::Server::State state = server.handshake();
+    qDebug() << state.version;
 }
 
 void MainWindow::onDisconnected() {

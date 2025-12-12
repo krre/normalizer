@@ -6,8 +6,9 @@ Server::Server(Network* network) : Controller(network) {
 
 }
 
-QVersionNumber Server::version() const {
-    return QVersionNumber();
+Server::State Server::handshake() const {
+    State state;
+    return state;
 }
 
 }
