@@ -12,6 +12,8 @@ public:
 
     Server(Network* network);
 
+    Name name() const;
+
     State handshake() const;
 };
 
