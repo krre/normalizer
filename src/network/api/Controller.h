@@ -1,4 +1,5 @@
 #pragma once
+#include <QByteArray>
 #include <cstdint>
 
 namespace Api {
@@ -16,6 +17,9 @@ public:
     virtual Name name() const = 0;
 
     Network* network() const;
+
+protected:
+    void send(uint8_t method, const QByteArray& params = QByteArray());
 
 private:
     Network* m_network = nullptr;

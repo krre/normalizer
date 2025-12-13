@@ -10,7 +10,9 @@ Controller::Name Server::name() const {
     return Name::Server;
 }
 
-Server::State Server::handshake() const {
+Server::State Server::handshake() {
+    send(static_cast<uint8_t>(Method::Handshake));
+
     State state;
     return state;
 }
