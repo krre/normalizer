@@ -4,7 +4,7 @@
 #include "ui/dialog/NewProject.h"
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
-#include "network/api/Network.h"
+#include "network/Network.h"
 #include "network/api/common/Server.h"
 #include "editor/CodeEditor.h"
 #include <QMenuBar>
