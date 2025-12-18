@@ -7,8 +7,8 @@
 #include <QSpinBox>
 
 constexpr auto UiLoadLastProject = true;
-constexpr auto NetworkHost = "ws://127.0.0.1";
-constexpr auto NetworkPort = 5555;
+constexpr auto ServerHost = "ws://127.0.0.1";
+constexpr auto ServerPort = 5555;
 constexpr auto PathWorkspace = "NormWorkspace";
 constexpr auto LoggingVulkan = true;
 
@@ -22,8 +22,8 @@ private slots:
 void TestPreferences::readPreferences() {
     TestSettings settings;
     settings.setUiLoadLastProject(UiLoadLastProject);
-    settings.setNetworkHost(NetworkHost);
-    settings.setNetworkPort(NetworkPort);
+    settings.setServerHost(ServerHost);
+    settings.setServerPort(ServerPort);
     settings.setPathWorkspace(PathWorkspace);
     settings.setLoggingVulkan(LoggingVulkan);
 
@@ -48,8 +48,8 @@ void TestPreferences::readPreferences() {
     auto vulkanCheckBox = static_cast<QCheckBox*>(preferences.focusWidget());
 
     QCOMPARE(loadLastProjectCheckBox->isChecked(), UiLoadLastProject);
-    QCOMPARE(hostLineEdit->text(), NetworkHost);
-    QCOMPARE(portLineEdit->value(), NetworkPort);
+    QCOMPARE(hostLineEdit->text(), ServerHost);
+    QCOMPARE(portLineEdit->value(), ServerPort);
     QCOMPARE(workspaceLineEdit->text(), PathWorkspace);
     QCOMPARE(vulkanCheckBox->isChecked(), LoggingVulkan);
 }
@@ -67,11 +67,11 @@ void TestPreferences::setPreferences() {
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto hostLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
-    hostLineEdit->setText(NetworkHost);
+    hostLineEdit->setText(ServerHost);
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto portLineEdit = static_cast<QSpinBox*>(preferences.focusWidget());
-    portLineEdit->setValue(NetworkPort);
+    portLineEdit->setValue(ServerPort);
 
     QTest::keyClick(&preferences, Qt::Key_Tab);
     auto workspaceLineEdit = static_cast<QLineEdit*>(preferences.focusWidget());
@@ -85,8 +85,8 @@ void TestPreferences::setPreferences() {
     preferences.accept();
 
     QCOMPARE(settings.uiLoadLastProject(), UiLoadLastProject);
-    QCOMPARE(settings.networkHost(), NetworkHost);
-    QCOMPARE(settings.networkPort(), NetworkPort);
+    QCOMPARE(settings.serverHost(), ServerHost);
+    QCOMPARE(settings.serverPort(), ServerPort);
     QCOMPARE(settings.pathWorkspace(), PathWorkspace);
     QCOMPARE(settings.loggingVulkan(), LoggingVulkan);
 }

@@ -24,21 +24,21 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto workspaceLayout = new BrowseLayout(settings->pathWorkspace());
     m_workDirLineEdit = workspaceLayout->lineEdit();
 
-    m_hostLineEdit = new QLineEdit(settings->networkHost());
+    m_hostLineEdit = new QLineEdit(settings->serverHost());
 
     m_portLineEdit = new QSpinBox;
     m_portLineEdit->setMaximum(1);
     m_portLineEdit->setMaximum(1 << 16);
-    m_portLineEdit->setValue(settings->networkPort());
+    m_portLineEdit->setValue(settings->serverPort());
 
-    auto networkLayout = new QHBoxLayout;
-    networkLayout->addWidget(new QLabel(tr("Host:")));
-    networkLayout->addWidget(m_hostLineEdit);
-    networkLayout->addWidget(new QLabel(tr("Port:")));
-    networkLayout->addWidget(m_portLineEdit);
+    auto serverLayout = new QHBoxLayout;
+    serverLayout->addWidget(new QLabel(tr("Host:")));
+    serverLayout->addWidget(m_hostLineEdit);
+    serverLayout->addWidget(new QLabel(tr("Port:")));
+    serverLayout->addWidget(m_portLineEdit);
 
-    auto networkGroupBox = new QGroupBox(tr("Network"));
-    networkGroupBox->setLayout(networkLayout);
+    auto serverGroupBox = new QGroupBox(tr("Server"));
+    serverGroupBox->setLayout(serverLayout);
 
     auto pathLayout = new QFormLayout;
     pathLayout->addRow(tr("Workspace:"), workspaceLayout);
@@ -57,7 +57,7 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
 
     auto contentLayout = new QVBoxLayout;
     contentLayout->addWidget(uiGroupBox);
-    contentLayout->addWidget(networkGroupBox);
+    contentLayout->addWidget(serverGroupBox);
     contentLayout->addWidget(pathGroupBox);
     contentLayout->addWidget(loggingGroupBox);
 
@@ -73,8 +73,8 @@ void Preferences::accept() {
 
 void Preferences::writeSettings() {
     m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
-    m_settings->setNetworkHost(m_hostLineEdit->text());
-    m_settings->setNetworkPort(m_portLineEdit->value());
+    m_settings->setServerHost(m_hostLineEdit->text());
+    m_settings->setServerPort(m_portLineEdit->value());
     m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
 }

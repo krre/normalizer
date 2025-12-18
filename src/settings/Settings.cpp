@@ -12,9 +12,9 @@ namespace Ui {
     constexpr auto LastProjectPath = "Ui/lastProjectPath";
 }
 
-namespace Network {
-    constexpr auto Host = "Network/host";
-    constexpr auto Port = "Network/port";
+namespace Server {
+    constexpr auto Host = "Server/host";
+    constexpr auto Port = "Server/port";
 }
 
 namespace Path {
@@ -57,20 +57,20 @@ QString Settings::uiLastLoadPath() const {
     return value(Ui::LastProjectPath).toString();
 }
 
-void Settings::setNetworkHost(const QString& host) {
-    setValue(Network::Host, host);
+void Settings::setServerHost(const QString& host) {
+    setValue(Server::Host, host);
 }
 
-QString Settings::networkHost() const {
-    return value(Network::Host, "ws://127.0.0.1").toString();
+QString Settings::serverHost() const {
+    return value(Server::Host, "ws://127.0.0.1").toString();
 }
 
-void Settings::setNetworkPort(int port) {
-    setValue(Network::Port, port);
+void Settings::setServerPort(int port) {
+    setValue(Server::Port, port);
 }
 
-int Settings::networkPort() const {
-    return value(Network::Port, 3010).toInt();
+int Settings::serverPort() const {
+    return value(Server::Port, 3010).toInt();
 }
 
 void Settings::setPathWorkspace(const QString& workspace) {
