@@ -10,7 +10,7 @@ public:
         Handshake = 0x00
     };
 
-    struct State {
+    struct Attributes {
         QVersionNumber version;
     };
 
@@ -18,7 +18,7 @@ public:
 
     Name name() const;
 
-    State handshake();
+    Attributes handshake();
 };
 
 }
