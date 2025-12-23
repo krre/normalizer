@@ -12,7 +12,7 @@ Controller::Name Server::name() const {
 }
 
 Async::Task<Server::Attributes> Server::handshake() {
-    QByteArray response = co_await send(static_cast<uint8_t>(Method::Handshake));
+    QByteArray response = co_await send(static_cast<MethodCode>(Method::Handshake));
     qDebug() << response;
 
     Attributes state;

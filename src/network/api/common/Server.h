@@ -6,7 +6,7 @@ namespace Api {
 
 class Server : public Controller {
 public:
-    enum class Method : uint8_t {
+    enum class Method : MethodCode {
         Handshake = 0x00
     };
 

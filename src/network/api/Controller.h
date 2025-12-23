@@ -7,9 +7,13 @@ namespace Api {
 
 class Network;
 
+using ControllerCode = uint8_t;
+using MethodCode = uint8_t;
+using ErrorCode = uint8_t;
+
 class Controller {
 public:
-    enum class Name : uint8_t {
+    enum class Name : ControllerCode {
         Server = 0x00
     };
 
@@ -20,7 +24,7 @@ public:
     Network* network() const;
 
 protected:
-    Async::Task<QByteArray> send(uint8_t method, const QByteArray& params = QByteArray());
+    Async::Task<QByteArray> send(MethodCode method, const QByteArray& params = QByteArray());
 
 private:
     Network* m_network = nullptr;
