@@ -1,4 +1,5 @@
 #pragma once
+#include "core/async/Task.h"
 #include <QByteArray>
 #include <cstdint>
 
@@ -19,7 +20,7 @@ public:
     Network* network() const;
 
 protected:
-    void send(uint8_t method, const QByteArray& params = QByteArray());
+    Async::Task<QByteArray> send(uint8_t method, const QByteArray& params = QByteArray());
 
 private:
     Network* m_network = nullptr;

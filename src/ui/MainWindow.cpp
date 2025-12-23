@@ -170,9 +170,9 @@ void MainWindow::openProjectFromPath(const QString& path) {
     m_settings->setUiLastProjectPath(path);
 }
 
-void MainWindow::onConnected() {
+Async::Task<void> MainWindow::onConnected() {
     Api::Server server(m_apiNetwork);
-    Api::Server::Attributes attributes = server.handshake();
+    Api::Server::Attributes attributes = co_await server.handshake();
     qDebug() << attributes.version;
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "network/WebSocketClient.h"
+#include "core/async/Task.h"
 #include <QMainWindow>
 
 namespace Api {
@@ -41,7 +42,7 @@ private:
 
     void openProjectFromPath(const QString& path);
 
-    void onConnected();
+    Async::Task<void> onConnected();
     void onDisconnected();
 
     Settings* m_settings = nullptr;

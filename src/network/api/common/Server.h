@@ -18,7 +18,7 @@ public:
 
     Name name() const;
 
-    Attributes handshake();
+    Async::Task<Attributes> handshake();
 };
 
 }

@@ -15,6 +15,7 @@ qt_add_library(common STATIC
     network/Network.h network/Network.cpp
     network/api/Controller.h network/api/Controller.cpp
     network/api/common/Server.h network/api/common/Server.cpp
+    core/async/Awaiter.h core/async/Task.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
