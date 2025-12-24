@@ -11,14 +11,21 @@ Network* Controller::network() const {
     return m_network;
 }
 
-Async::Task<QByteArray> Controller::send(MethodCode method, const QByteArray& params) {
+Async::Task<std::expected<QByteArray, ErrorCode>> Controller::send(MethodCode method, const QByteArray& params) {
     QByteArray message;
     message += static_cast<ControllerCode>(name());
     message += method;
     message += static_cast<uint16_t>(params.size());
     message += params;
 
-    co_return co_await m_network->sendMessage(message);
+    QByteArray response = co_await m_network->sendMessage(message);
+
+    if (static_cast<ResponseType>(response.at(0)) == ResponseType::Success) {
+        uint8_t size = response.at(1);
+        co_return response.right(size);
+    } else {
+        co_return std::unexpected(response.at(1));
+    }
 }
 
 }

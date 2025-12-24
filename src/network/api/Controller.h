@@ -1,18 +1,25 @@
 #pragma once
 #include "core/async/Task.h"
 #include <QByteArray>
+#include <expected>
 #include <cstdint>
 
 namespace Api {
 
 class Network;
 
+using ResponseTypeCode = uint8_t;
 using ControllerCode = uint8_t;
 using MethodCode = uint8_t;
 using ErrorCode = uint8_t;
 
 class Controller {
 public:
+    enum class ResponseType : ResponseTypeCode {
+        Success = 0x00,
+        Error = 0x01
+    };
+
     enum class Name : ControllerCode {
         Server = 0x00
     };
@@ -24,7 +31,7 @@ public:
     Network* network() const;
 
 protected:
-    Async::Task<QByteArray> send(MethodCode method, const QByteArray& params = QByteArray());
+    Async::Task<std::expected<QByteArray, ErrorCode>> send(MethodCode method, const QByteArray& params = QByteArray());
 
 private:
     Network* m_network = nullptr;
