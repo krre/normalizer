@@ -21,9 +21,6 @@ public:
     void setServerPort(int port);
     int serverPort() const;
 
-    void setPathWorkspace(const QString& workspace);
-    QString pathWorkspace() const;
-
     void setLoggingVulkan(bool enable);
     bool loggingVulkan() const;
 

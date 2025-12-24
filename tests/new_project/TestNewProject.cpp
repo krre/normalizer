@@ -4,7 +4,6 @@
 #include <QLineEdit>
 #include <QComboBox>
 
-constexpr auto WorkDir = "/home/user/norm";
 constexpr auto Name = "test";
 constexpr auto Directory = "/home/user/git";
 constexpr auto Target = Project::Target::Library;
@@ -16,9 +15,7 @@ private slots:
 };
 
 void TestNewProject::readProject() {
-    NewProject newProject(WorkDir);
-
-    QCOMPARE(newProject.directory(), WorkDir);
+    NewProject newProject;
 
     auto nameLineEdit = static_cast<QLineEdit*>(newProject.focusWidget());
     nameLineEdit->setText(Name);

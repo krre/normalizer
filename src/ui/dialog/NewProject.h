@@ -10,7 +10,7 @@ class QComboBox;
 class NewProject : public StandardDialog {
     Q_OBJECT
 public:
-    NewProject(const QString& workDir);
+    NewProject();
 
     QString name() const;
     QString directory() const;

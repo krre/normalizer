@@ -8,13 +8,13 @@
 #include <QMessageBox>
 #include <QDir>
 
-NewProject::NewProject(const QString& workDir) {
+NewProject::NewProject() {
     setWindowTitle(tr("New Project"));
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewProject::setOkButtonState);
 
-    m_directoryBrowseLayout = new BrowseLayout(workDir);
+    m_directoryBrowseLayout = new BrowseLayout();
     connect(m_directoryBrowseLayout->lineEdit(), &QLineEdit::textChanged, this, &NewProject::setOkButtonState);
 
     m_targetComboBox = new QComboBox;

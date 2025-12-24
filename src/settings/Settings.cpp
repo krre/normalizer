@@ -73,14 +73,6 @@ int Settings::serverPort() const {
     return value(Server::Port, 3010).toInt();
 }
 
-void Settings::setPathWorkspace(const QString& workspace) {
-    setValue(Path::Workspace, workspace);
-}
-
-QString Settings::pathWorkspace() const {
-    return value(Path::Workspace, QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/" + Application::WorkspaceName).toString();
-}
-
 void Settings::setLoggingVulkan(bool enable) {
     setValue(Logging::Vulkan, enable);
 }

@@ -41,7 +41,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::createProject() {
-    NewProject newProject(m_settings->pathWorkspace());
+    NewProject newProject;
 
     if (newProject.exec() == QDialog::Accepted) {
         m_project->create(newProject.name(), newProject.directory(), newProject.target());

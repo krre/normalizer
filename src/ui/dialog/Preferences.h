@@ -18,7 +18,7 @@ private:
     void writeSettings();
 
     Settings* m_settings = nullptr;
-    QLineEdit* m_workDirLineEdit = nullptr;
+
     QLineEdit* m_hostLineEdit = nullptr;
     QSpinBox* m_portLineEdit = nullptr;
     QCheckBox* m_loadLastProjectCheckBox = nullptr;

@@ -21,9 +21,6 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto uiGroupBox = new QGroupBox(tr("User Interface"));
     uiGroupBox->setLayout(uiLayout);
 
-    auto workspaceLayout = new BrowseLayout(settings->pathWorkspace());
-    m_workDirLineEdit = workspaceLayout->lineEdit();
-
     m_hostLineEdit = new QLineEdit(settings->serverHost());
 
     m_portLineEdit = new QSpinBox;
@@ -40,12 +37,6 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto serverGroupBox = new QGroupBox(tr("Server"));
     serverGroupBox->setLayout(serverLayout);
 
-    auto pathLayout = new QFormLayout;
-    pathLayout->addRow(tr("Workspace:"), workspaceLayout);
-
-    auto pathGroupBox = new QGroupBox(tr("Path"));
-    pathGroupBox->setLayout(pathLayout);
-
     m_vulkanCheckBox = new QCheckBox("Vulkan");
     m_vulkanCheckBox->setChecked(settings->loggingVulkan());
 
@@ -58,7 +49,6 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto contentLayout = new QVBoxLayout;
     contentLayout->addWidget(uiGroupBox);
     contentLayout->addWidget(serverGroupBox);
-    contentLayout->addWidget(pathGroupBox);
     contentLayout->addWidget(loggingGroupBox);
 
     setContentLayout(contentLayout);
@@ -75,6 +65,5 @@ void Preferences::writeSettings() {
     m_settings->setUiLoadLastProject(m_loadLastProjectCheckBox->isChecked());
     m_settings->setServerHost(m_hostLineEdit->text());
     m_settings->setServerPort(m_portLineEdit->value());
-    m_settings->setPathWorkspace(m_workDirLineEdit->text());
     m_settings->setLoggingVulkan(m_vulkanCheckBox->isChecked());
 }
