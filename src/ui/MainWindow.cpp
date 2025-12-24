@@ -2,6 +2,7 @@
 #include "core/Application.h"
 #include "project/Project.h"
 #include "ui/dialog/NewProject.h"
+#include "ui/dialog/NewWorkspace.h"
 #include "ui/dialog/Preferences.h"
 #include "settings/Settings.h"
 #include "network/Network.h"
@@ -38,6 +39,14 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();
+}
+
+void MainWindow::createWorkspace() {
+    NewWorkspace newWorkspace;
+
+    if (newWorkspace.exec() == QDialog::Accepted) {
+
+    }
 }
 
 void MainWindow::createProject() {
@@ -134,7 +143,8 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
 
     auto newMenu = fileMenu->addMenu(tr("New"));
-    newMenu->addAction(tr("Project..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::createProject);
+    newMenu->addAction(tr("Workspace..."), this, &MainWindow::createWorkspace);
+    newMenu->addAction(tr("Project..."), this, &MainWindow::createProject);
 
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeProject);
     fileMenu->addSeparator();
