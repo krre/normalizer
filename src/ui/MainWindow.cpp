@@ -132,7 +132,10 @@ void MainWindow::changeWindowTitle() {
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::createProject);
+
+    auto newMenu = fileMenu->addMenu(tr("New"));
+    newMenu->addAction(tr("Project..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::createProject);
+
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeProject);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
