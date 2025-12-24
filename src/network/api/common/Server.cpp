@@ -1,5 +1,4 @@
 #include "Server.h"
-#include <QDebug>
 
 namespace Api {
 
@@ -13,13 +12,23 @@ Controller::Name Server::name() const {
 
 Async::Task<Server::Attributes> Server::handshake() {
     auto response = co_await send(static_cast<MethodCode>(Method::Handshake));
+    Attributes attributes;
 
     if (response.has_value()) {
-        qDebug() << response.value();
+        QDataStream stream(response.value());
+        stream.setByteOrder(QDataStream::BigEndian);
+
+        quint32 numVersion;
+        stream >> numVersion;
+
+        int major = numVersion / 1'000'000;
+        int minor = (numVersion / 1'000) % 1'000;
+        int patch = numVersion % 1'000;
+
+        attributes.version = QVersionNumber(major, minor, patch);
     }
 
-    Attributes state;
-    co_return state;
+    co_return attributes;
 }
 
 }
