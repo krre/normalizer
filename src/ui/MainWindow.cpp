@@ -19,10 +19,8 @@
 MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_project = new Project(this);
 
-    m_webSocketClient = new WebSocketClient(QUrl(settings->serverHost() + ":" + QString::number(settings->serverPort())), this);
-    connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
-
-    m_network = new Network(m_webSocketClient, this);
+    m_network = new Network(QUrl(settings->serverHost() + ":" + QString::number(settings->serverPort())), this);
+    connect(m_network, &Network::stateChanged, this, &MainWindow::setConnectionState);
 
     m_statusLabel = new QLabel;
     m_statusLabel->setContentsMargins(4, 0, 0, 0);
@@ -32,8 +30,8 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     createActions();
     readSettings();
 
-    setConnectionState(m_webSocketClient->state());
-    m_webSocketClient->connect();
+    setConnectionState(m_network->state());
+    m_network->connect();
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
@@ -83,18 +81,18 @@ Copyright © %7, Vladimir Zarypov)")
         Application::BuildDate, Application::BuildTime, Application::Url, Application::Years));
 }
 
-void MainWindow::setConnectionState(WebSocketClient::State state) {
+void MainWindow::setConnectionState(Network::State state) {
     QString connectionMessage;
 
     switch (state) {
-        case WebSocketClient::State::Connecting:
+        case Network::State::Connecting:
             connectionMessage = tr("Connecting...");
             break;
-        case WebSocketClient::State::Connected:
+        case Network::State::Connected:
             connectionMessage = tr("Connected");
             onConnected();
             break;
-        case WebSocketClient::State::Disconnected:
+        case Network::State::Disconnected:
             connectionMessage = tr("Disconnected");
             onDisconnected();
             break;

@@ -1,12 +1,11 @@
 #pragma once
-#include "network/WebSocketClient.h"
+#include "network/Network.h"
 #include "core/async/Task.h"
 #include <QMainWindow>
 
 class Settings;
 class Project;
 class CodeEditor;
-class WebSocketClient;
 class Network;
 
 class QLabel;
@@ -27,7 +26,7 @@ private slots:
     void showPreferences();
     void showAbout();
 
-    void setConnectionState(WebSocketClient::State state);
+    void setConnectionState(Network::State state);
 
 private:
     void readSettings();
@@ -45,7 +44,6 @@ private:
     Settings* m_settings = nullptr;
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
-    WebSocketClient* m_webSocketClient = nullptr;
     Network* m_network = nullptr;
 
     QLabel* m_statusLabel = nullptr;

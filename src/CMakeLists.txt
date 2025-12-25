@@ -11,7 +11,7 @@ qt_add_library(common STATIC
     ui/dialog/Preferences.cpp ui/dialog/Preferences.h
     project/Project.h project/Project.cpp
     ui/editor/CodeEditor.h ui/editor/CodeEditor.cpp
-    network/WebSocketClient.h network/WebSocketClient.cpp
+
     network/Network.h network/Network.cpp
     network/api/Controller.h network/api/Controller.cpp
     network/api/common/Server.h network/api/common/Server.cpp
