@@ -4,9 +4,9 @@
 #include <expected>
 #include <cstdint>
 
-namespace Api {
-
 class Network;
+
+namespace Api {
 
 using ResponseTypeCode = uint8_t;
 using ControllerCode = uint8_t;

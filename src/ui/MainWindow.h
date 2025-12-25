@@ -3,14 +3,11 @@
 #include "core/async/Task.h"
 #include <QMainWindow>
 
-namespace Api {
-    class Network;
-}
-
 class Settings;
 class Project;
 class CodeEditor;
 class WebSocketClient;
+class Network;
 
 class QLabel;
 
@@ -49,7 +46,7 @@ private:
     Project* m_project = nullptr;
     CodeEditor* m_codeEditor = nullptr;
     WebSocketClient* m_webSocketClient = nullptr;
-    Api::Network* m_apiNetwork = nullptr;
+    Network* m_network = nullptr;
 
     QLabel* m_statusLabel = nullptr;
 };

@@ -22,7 +22,7 @@ MainWindow::MainWindow(Settings* settings) : m_settings(settings) {
     m_webSocketClient = new WebSocketClient(QUrl(settings->serverHost() + ":" + QString::number(settings->serverPort())), this);
     connect(m_webSocketClient, &WebSocketClient::stateChanged, this, &MainWindow::setConnectionState);
 
-    m_apiNetwork = new Api::Network(m_webSocketClient, this);
+    m_network = new Network(m_webSocketClient, this);
 
     m_statusLabel = new QLabel;
     m_statusLabel->setContentsMargins(4, 0, 0, 0);
@@ -178,7 +178,7 @@ void MainWindow::openProjectFromPath(const QString& path) {
 }
 
 Async::Task<void> MainWindow::onConnected() {
-    Api::Server server(m_apiNetwork);
+    Api::Server server(m_network);
     Api::Server::Attributes attributes = co_await server.handshake();
     qDebug() << attributes.version;
 }

@@ -4,8 +4,6 @@
 
 class WebSocketClient;
 
-namespace Api {
-
 class NetworkWaker : public Async::Waker<QByteArray> {
 public:
     NetworkWaker(WebSocketClient* webSocketClient);
@@ -20,5 +18,3 @@ public:
 private:
     WebSocketClient* m_webSocketClient = nullptr;
 };
-
-}
