@@ -5,10 +5,7 @@
 
 class QWebSocket;
 
-class NetworkWaker : public Async::Waker<QByteArray> {
-public:
-    NetworkWaker(QWebSocket* webSocket);
-};
+using WebSocketAwaiter = Async::Awaiter<QByteArray>;
 
 class Network : public QObject {
     Q_OBJECT
@@ -24,7 +21,7 @@ public:
     void connect();
     State state() const;
 
-    Async::Awaiter<QByteArray> sendMessage(const QByteArray& message);
+    QScopedPointer<WebSocketAwaiter> sendMessage(const QByteArray& message);
 
 signals:
     void stateChanged(Network::State state);
@@ -35,4 +32,5 @@ private:
     QWebSocket* m_webSocket = nullptr;
     QUrl m_url;
     State m_state = State::Disconnected;
+    WebSocketAwaiter* m_awaiter = nullptr;
 };

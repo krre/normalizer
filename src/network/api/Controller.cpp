@@ -18,7 +18,7 @@ Async::Task<std::expected<QByteArray, ErrorCode>> Controller::send(MethodCode me
     message += static_cast<uint16_t>(params.size());
     message += params;
 
-    QByteArray response = co_await m_network->sendMessage(message);
+    QByteArray response = co_await *m_network->sendMessage(message).data();
 
     if (static_cast<ResponseType>(response.at(0)) == ResponseType::Success) {
         uint8_t size = response.at(1);

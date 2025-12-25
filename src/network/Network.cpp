@@ -1,12 +1,5 @@
 #include "Network.h"
-#include "core/async/Awaiter.h"
 #include <QWebSocket>
-
-NetworkWaker::NetworkWaker(QWebSocket* webSocket) {
-    QObject::connect(webSocket, &QWebSocket::binaryMessageReceived, [this] (const QByteArray& message) {
-        awaiter()->resume(message);
-    });
-}
 
 Network::Network(const QUrl& url, QObject* parent) : QObject(parent), m_url(url) {
     m_webSocket = new QWebSocket;
@@ -19,11 +12,20 @@ Network::Network(const QUrl& url, QObject* parent) : QObject(parent), m_url(url)
     QObject::connect(m_webSocket, &QWebSocket::disconnected, this, [this] {
         setState(State::Disconnected);
     });
+
+    QObject::connect(m_webSocket, &QWebSocket::binaryMessageReceived, [this] (const QByteArray& message) {
+        if (m_awaiter) {
+            m_awaiter->resume(message);
+            m_awaiter = nullptr;
+        }
+    });
 }
 
-Async::Awaiter<QByteArray> Network::sendMessage(const QByteArray& message) {
+QScopedPointer<WebSocketAwaiter> Network::sendMessage(const QByteArray& message) {
     m_webSocket->sendBinaryMessage(message);
-    return Async::Awaiter<QByteArray>(std::make_unique<NetworkWaker>(m_webSocket));
+    m_awaiter = new WebSocketAwaiter;
+
+    return QScopedPointer<WebSocketAwaiter>(m_awaiter);
 }
 
 void Network::connect() {
