@@ -17,6 +17,7 @@ qt_add_library(common STATIC
     network/api/common/Server.h network/api/common/Server.cpp
     core/async/Awaiter.h core/async/Task.h
     ui/dialog/NewWorkspace.cpp ui/dialog/NewWorkspace.h
+    network/api/common/Workspace.cpp network/api/common/Workspace.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

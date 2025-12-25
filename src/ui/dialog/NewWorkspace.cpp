@@ -1,11 +1,12 @@
 #include "NewWorkspace.h"
+#include "network/api/common/Workspace.h"
 #include <QLineEdit>
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QMessageBox>
 
-NewWorkspace::NewWorkspace() {
+NewWorkspace::NewWorkspace(Network* network) : m_network(network) {
     setWindowTitle(tr("New Workspace"));
 
     m_nameLineEdit = new QLineEdit;
@@ -26,9 +27,18 @@ QString NewWorkspace::name() const {
 }
 
 void NewWorkspace::accept() {
-    StandardDialog::accept();
+    createWorkspace();
 }
 
 void NewWorkspace::setOkButtonState() {
     buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!m_nameLineEdit->text().isEmpty());
+}
+
+Async::Task<void> NewWorkspace::createWorkspace() {
+    Api::Workspace workspace(m_network);
+    Api::Id id = co_await workspace.create(m_nameLineEdit->text());
+    qDebug() << id;
+
+    StandardDialog::accept();
+    co_return;
 }

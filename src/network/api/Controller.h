@@ -13,6 +13,8 @@ using ControllerCode = uint8_t;
 using MethodCode = uint8_t;
 using ErrorCode = uint8_t;
 
+using Id = uint8_t;
+
 class Controller {
 public:
     enum class ResponseType : ResponseTypeCode {
@@ -21,7 +23,8 @@ public:
     };
 
     enum class Name : ControllerCode {
-        Server = 0x00
+        Server = 0x00,
+        Workspace = 0x01
     };
 
     Controller(Network* network);

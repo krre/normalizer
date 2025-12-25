@@ -42,7 +42,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::createWorkspace() {
-    NewWorkspace newWorkspace;
+    NewWorkspace newWorkspace(m_network);
 
     if (newWorkspace.exec() == QDialog::Accepted) {
 
