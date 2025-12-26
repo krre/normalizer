@@ -6,7 +6,7 @@ Workspace::Workspace(Network* network) : Controller(network) {
 
 }
 
-Async::Task<Id> Workspace::create(const QString& name) {
+Async::Task<Workspace::Id> Workspace::create(const QString& name) {
     QByteArray params;
 
     QByteArray nameBa = name.toUtf8();
@@ -17,7 +17,9 @@ Async::Task<Id> Workspace::create(const QString& name) {
     Id id = 0;
 
     if (response.has_value()) {
-        id = response->at(0);
+        QDataStream stream(response.value());
+        stream.setByteOrder(QDataStream::BigEndian);
+        stream >> id;
     }
 
     co_return id;
