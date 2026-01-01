@@ -6,7 +6,6 @@ class Application : public QApplication {
 public:
     static constexpr auto Name = "Normalizer";
     static constexpr auto Organization = "Norm Group";
-    static constexpr auto WorkspaceName = "Norm Projects";
     static constexpr auto Version = PROJECT_VERSION;
     static constexpr auto Url = "https://github.com/krre/normalizer";
     static constexpr auto Years = "2015-2026";
