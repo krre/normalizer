@@ -5,7 +5,6 @@
 #include <QComboBox>
 
 constexpr auto Name = "test";
-constexpr auto Directory = "/home/user/git";
 constexpr auto Target = Project::Target::Library;
 
 class TestNewProject : public QObject {
@@ -22,14 +21,6 @@ void TestNewProject::readProject() {
 
     QCOMPARE(newProject.name(), Name);
 
-    QTest::keyClick(&newProject, Qt::Key_Tab);
-
-    auto directoryLineEdit = static_cast<QLineEdit*>(newProject.focusWidget());
-    directoryLineEdit->setText(Directory);
-
-    QCOMPARE(newProject.directory(), Directory);
-
-    QTest::keyClick(&newProject, Qt::Key_Tab); // Browse button
     QTest::keyClick(&newProject, Qt::Key_Tab); // Target combobox
     auto targetComboBox = static_cast<QComboBox*>(newProject.focusWidget());
     targetComboBox->setCurrentIndex(int(Project::Target::Library));

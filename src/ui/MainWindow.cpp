@@ -51,8 +51,7 @@ void MainWindow::createProject() {
     NewProject newProject;
 
     if (newProject.exec() == QDialog::Accepted) {
-        m_project->create(newProject.name(), newProject.directory(), newProject.target());
-        openProjectFromPath(newProject.directory() + "/" + newProject.name());
+
     }
 }
 
