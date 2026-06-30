@@ -5,23 +5,23 @@ wasm_dir := "wasm"
 all: wasm web
 
 # Build WASM module
-[working-directory: 'wasm']
+[working-directory('wasm')]
 wasm:
-    wasm-pack build --target web --out-dir ../{{web_dir}}/src/lib/wasm
+    wasm-pack build --target web --out-dir ../{{ web_dir }}/src/lib/wasm
 
 # Run frontend
-[working-directory: 'web']
+[working-directory('web')]
 web:
     npm run dev
 
 # Build WASM + Frontend
-[working-directory: 'web']
+[working-directory('web')]
 build:
     wasm
     npm run build
 
 # Cleanup all
 clean:
-    cd {{wasm_dir}} && cargo clean
-    rm -rf {{web_dir}}/src/lib/wasm
-    rm -rf {{web_dir}}/dist
+    cd {{ wasm_dir }} && cargo clean
+    rm -rf {{ web_dir }}/src/lib/wasm
+    rm -rf {{ web_dir }}/dist
