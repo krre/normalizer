@@ -22,7 +22,11 @@ pub fn build(b: *std.Build) void {
     const web_dir = "web";
 
     const install_wasm = b.addInstallArtifact(exe, .{
-        .dest_dir = .{ .override = .{ .custom = web_dir } },
+        .dest_dir = .{
+            .override = .{
+                .custom = web_dir,
+            },
+        },
         .dest_sub_path = "lib.wasm",
     });
 
@@ -35,8 +39,8 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const angie_mod = angie3d_dep.module(angie3d);
-    exe.root_module.export_symbol_names = angie_mod.export_symbol_names;
+    const angie3d_mod = angie3d_dep.module(angie3d);
+    exe.root_module.export_symbol_names = angie3d_mod.export_symbol_names;
 
     const install_angie3d_web = b.addInstallDirectory(.{
         .source_dir = angie3d_dep.path("web"),
