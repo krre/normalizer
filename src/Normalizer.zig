@@ -1,16 +1,21 @@
 const std = @import("std");
-const Allocator = std.mem.Allocator;
 const angie3d = @import("angie3d");
+const Widget = angie3d.ui.widget.Widget;
 const Box = angie3d.ui.widget.Box;
-const Application = angie3d.ui.Application;
+const Application = angie3d.core.Application;
 
-const Umbrella = @This();
+const Self = @This();
 
-pub var app: Application = undefined;
-var root: Box = undefined;
+root: Box,
 
-pub fn init(allocator: Allocator) void {
-    root = Box.init(allocator);
-    app = Application.init(allocator, &root.widget);
-    Application.setTitle("Normalizer");
+pub fn init(app: *Application) Self {
+    app.setTitle("Normalizer");
+
+    return Self{
+        .root = Box.init(app.allocator),
+    };
+}
+
+pub fn rootWidget(self: *Self) *Widget {
+    return &self.root.widget;
 }
