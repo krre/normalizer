@@ -4,18 +4,18 @@ const Widget = angie3d.ui.widget.Widget;
 const Box = angie3d.ui.widget.Box;
 const Application = angie3d.core.Application;
 
-const Self = @This();
+const Normalizer = @This();
 
 root: Box,
 
-pub fn init(app: *Application) Self {
+pub fn init(app: *Application) Normalizer {
     app.setTitle("Normalizer");
 
-    return Self{
+    return Normalizer{
         .root = Box.init(app.allocator),
     };
 }
 
-pub fn rootWidget(self: *Self) *Widget {
+pub fn rootWidget(self: *Normalizer) *Widget {
     return &self.root.widget;
 }
