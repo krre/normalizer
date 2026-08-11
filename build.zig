@@ -46,6 +46,7 @@ pub fn build(b: *std.Build) void {
         .source_dir = angie3d_dep.path("web"),
         .install_dir = .prefix,
         .install_subdir = web_dir,
+        .exclude_extensions = &.{"png"},
     });
 
     b.getInstallStep().dependOn(&install_angie3d_web.step);
