@@ -7,19 +7,16 @@ const Normalizer = @This();
 
 universe: *Universe,
 
-pub fn init(app: *Application) Normalizer {
+pub fn init(app: *Application) !Normalizer {
     app.setTitle("Normalizer");
 
-    const universe = app.allocator.create(Universe) catch |err| {
-        switch (err) {
-            error.OutOfMemory => @panic("Out of memory to create Universe"),
-        }
-    };
+    const universe = try app.allocator.create(Universe);
 
-    const view = View{
-        .universe = universe,
-    };
-    app.multiverse.setView(.{ .view = view });
+    app.multiverse.setView(.{
+        .view = View{
+            .universe = universe,
+        },
+    });
 
     return Normalizer{
         .universe = universe,
