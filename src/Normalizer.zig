@@ -12,9 +12,7 @@ pub fn init(app: *Application) !Normalizer {
     const universe = try app.allocator.create(Universe);
 
     app.multiverse.setView(.{
-        .view = View{
-            .universe = universe,
-        },
+        .view = View.init(universe),
     });
 
     return Normalizer{
