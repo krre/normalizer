@@ -11,7 +11,7 @@ pub fn init(app: *Application) !Normalizer {
     app.setTitle("Normalizer");
     const universe = try app.allocator.create(Universe);
 
-    app.multiverse.setView(.{
+    app.setView(.{
         .view = View.init(universe),
     });
 
