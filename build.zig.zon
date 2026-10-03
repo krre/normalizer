@@ -2,7 +2,7 @@
     .name = .normalizer,
     .version = "0.1.0",
     .fingerprint = 0x8dc935460edffda6,
-    .minimum_zig_version = "0.16.0",
+    .minimum_zig_version = "0.17.0",
     .dependencies = .{
         .angie3d = .{ .path = "../angie3d" },
     },
