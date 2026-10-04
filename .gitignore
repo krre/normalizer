@@ -1,4 +1,5 @@
-/.vscode
-/.zed
-/.zig-cache
-/zig-out
+# Qt Creator
+/build*
+/.qtcreator
+*.user
+*.autosave
