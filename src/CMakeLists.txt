@@ -2,6 +2,8 @@ configure_file(config.h.in config.h @ONLY)
 
 qt_add_library(common STATIC
     core/Application.cpp core/Application.h
+    settings/FileSettings.cpp settings/FileSettings.h
+    settings/Settings.cpp settings/Settings.h
     ui/MainWindow.cpp ui/MainWindow.h
 )
 
