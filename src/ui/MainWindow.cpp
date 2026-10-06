@@ -33,10 +33,8 @@ Copyright © %7, Vladimir Zarypov)")
 
 void MainWindow::readSettings() {
     if (!restoreGeometry(m_fileSettings->mainWindowGeometry())) {
-        const auto screenSize = screen()->size();
-        constexpr auto scale = 0.75;
-        resize(screenSize.width() * scale, screenSize.height() * scale);
-        move((screenSize.width() - width()) / 2, (screenSize.height() - height()) / 2);
+        resize(screen()->size() * 0.75);
+        move(screen()->availableGeometry().center() - rect().center());
     }
 
     restoreState(m_fileSettings->mainWindowState());
