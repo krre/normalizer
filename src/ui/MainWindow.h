@@ -12,6 +12,7 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private slots:
+    void showNewProject();
     void showAbout();
 
 private:

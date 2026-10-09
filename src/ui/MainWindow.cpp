@@ -19,6 +19,10 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     event->accept();
 }
 
+void MainWindow::showNewProject() {
+    qDebug() << "new project";
+}
+
 void MainWindow::showAbout() {
     QMessageBox::about(this, tr("About %1").arg(Application::Name),
 tr(R"(<h3>%1 %2</h3>
@@ -47,6 +51,11 @@ void MainWindow::writeSettings() {
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
+
+    auto newMenu = fileMenu->addMenu(tr("New"));
+    newMenu->addAction(tr("Project..."), Qt::CTRL | Qt::SHIFT | Qt::Key_N, this, &MainWindow::showNewProject);
+
+    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
